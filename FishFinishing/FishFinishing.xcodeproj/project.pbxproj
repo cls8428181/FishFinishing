@@ -1,0 +1,497 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		96B097E42249C69100154643 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 96B097E32249C69100154643 /* AppDelegate.m */; };
+		96B097ED2249C69100154643 /* FishFinishing.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 96B097EB2249C69100154643 /* FishFinishing.xcdatamodeld */; };
+		96B097EF2249C69300154643 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 96B097EE2249C69300154643 /* Assets.xcassets */; };
+		96B097F22249C69300154643 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96B097F02249C69300154643 /* LaunchScreen.storyboard */; };
+		96B097F52249C69300154643 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 96B097F42249C69300154643 /* main.m */; };
+		DECCDD5E4E647B48B4169D6B /* libPods-FishFinishing.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A4C03A400C3DD905C0BF54B /* libPods-FishFinishing.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		250E20706DF350D6DFABC34B /* Pods-FishFinishing.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FishFinishing.release.xcconfig"; path = "Pods/Target Support Files/Pods-FishFinishing/Pods-FishFinishing.release.xcconfig"; sourceTree = "<group>"; };
+		2A005F4211F7C68C8953E2D2 /* Pods-FishFinishing.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FishFinishing.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FishFinishing/Pods-FishFinishing.debug.xcconfig"; sourceTree = "<group>"; };
+		7A4C03A400C3DD905C0BF54B /* libPods-FishFinishing.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FishFinishing.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		96B097DF2249C69100154643 /* FishFinishing.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FishFinishing.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		96B097E22249C69100154643 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		96B097E32249C69100154643 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		96B097EC2249C69100154643 /* FishFinishing.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FishFinishing.xcdatamodel; sourceTree = "<group>"; };
+		96B097EE2249C69300154643 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		96B097F12249C69300154643 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		96B097F32249C69300154643 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		96B097F42249C69300154643 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		96B097DC2249C69100154643 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DECCDD5E4E647B48B4169D6B /* libPods-FishFinishing.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		96B097D62249C69100154643 = {
+			isa = PBXGroup;
+			children = (
+				96B097E12249C69100154643 /* FishFinishing */,
+				96B097E02249C69100154643 /* Products */,
+				B5224EB430AA393C1741EE08 /* Pods */,
+				A4870966EDC8814BA5EEA211 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		96B097E02249C69100154643 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				96B097DF2249C69100154643 /* FishFinishing.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		96B097E12249C69100154643 /* FishFinishing */ = {
+			isa = PBXGroup;
+			children = (
+				96B097FB2249C6B100154643 /* Application */,
+				96B097FC2249C6BB00154643 /* Base */,
+				96B097FD2249C6C200154643 /* Classes */,
+				96B097FE2249C6CF00154643 /* Common */,
+				96B097FF2249C6D800154643 /* Library */,
+				96B098012249C7BA00154643 /* Supporting Files */,
+				96B097EE2249C69300154643 /* Assets.xcassets */,
+				96B097F02249C69300154643 /* LaunchScreen.storyboard */,
+				96B097F32249C69300154643 /* Info.plist */,
+				96B097F42249C69300154643 /* main.m */,
+				96B097EB2249C69100154643 /* FishFinishing.xcdatamodeld */,
+			);
+			path = FishFinishing;
+			sourceTree = "<group>";
+		};
+		96B097FB2249C6B100154643 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				96B097E22249C69100154643 /* AppDelegate.h */,
+				96B097E32249C69100154643 /* AppDelegate.m */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		96B097FC2249C6BB00154643 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		96B097FD2249C6C200154643 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		96B097FE2249C6CF00154643 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				96B098022249C87400154643 /* Category */,
+				96B098032249C87D00154643 /* Utils */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		96B097FF2249C6D800154643 /* Library */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Library;
+			sourceTree = "<group>";
+		};
+		96B098012249C7BA00154643 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		96B098022249C87400154643 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
+		96B098032249C87D00154643 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		A4870966EDC8814BA5EEA211 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7A4C03A400C3DD905C0BF54B /* libPods-FishFinishing.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B5224EB430AA393C1741EE08 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				2A005F4211F7C68C8953E2D2 /* Pods-FishFinishing.debug.xcconfig */,
+				250E20706DF350D6DFABC34B /* Pods-FishFinishing.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		96B097DE2249C69100154643 /* FishFinishing */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 96B097F82249C69300154643 /* Build configuration list for PBXNativeTarget "FishFinishing" */;
+			buildPhases = (
+				9F154E08BFB26A5AC1F0BF04 /* [CP] Check Pods Manifest.lock */,
+				96B097DB2249C69100154643 /* Sources */,
+				96B097DC2249C69100154643 /* Frameworks */,
+				96B097DD2249C69100154643 /* Resources */,
+				115B99091CF43394F0549F1A /* [CP] Embed Pods Frameworks */,
+				577688FDCBAB851C60F8264D /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = FishFinishing;
+			productName = FishFinishing;
+			productReference = 96B097DF2249C69100154643 /* FishFinishing.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		96B097D72249C69100154643 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1010;
+				ORGANIZATIONNAME = "常立山";
+				TargetAttributes = {
+					96B097DE2249C69100154643 = {
+						CreatedOnToolsVersion = 10.1;
+					};
+				};
+			};
+			buildConfigurationList = 96B097DA2249C69100154643 /* Build configuration list for PBXProject "FishFinishing" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 96B097D62249C69100154643;
+			productRefGroup = 96B097E02249C69100154643 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				96B097DE2249C69100154643 /* FishFinishing */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		96B097DD2249C69100154643 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				96B097F22249C69300154643 /* LaunchScreen.storyboard in Resources */,
+				96B097EF2249C69300154643 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		115B99091CF43394F0549F1A /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FishFinishing/Pods-FishFinishing-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		577688FDCBAB851C60F8264D /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FishFinishing/Pods-FishFinishing-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9F154E08BFB26A5AC1F0BF04 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-FishFinishing-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		96B097DB2249C69100154643 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				96B097ED2249C69100154643 /* FishFinishing.xcdatamodeld in Sources */,
+				96B097F52249C69300154643 /* main.m in Sources */,
+				96B097E42249C69100154643 /* AppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		96B097F02249C69300154643 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				96B097F12249C69300154643 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		96B097F62249C69300154643 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		96B097F72249C69300154643 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		96B097F92249C69300154643 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2A005F4211F7C68C8953E2D2 /* Pods-FishFinishing.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = NJNULN45M9;
+				INFOPLIST_FILE = FishFinishing/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = cn.cls.FishFinishing;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		96B097FA2249C69300154643 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 250E20706DF350D6DFABC34B /* Pods-FishFinishing.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = NJNULN45M9;
+				INFOPLIST_FILE = FishFinishing/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = cn.cls.FishFinishing;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		96B097DA2249C69100154643 /* Build configuration list for PBXProject "FishFinishing" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				96B097F62249C69300154643 /* Debug */,
+				96B097F72249C69300154643 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		96B097F82249C69300154643 /* Build configuration list for PBXNativeTarget "FishFinishing" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				96B097F92249C69300154643 /* Debug */,
+				96B097FA2249C69300154643 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		96B097EB2249C69100154643 /* FishFinishing.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				96B097EC2249C69100154643 /* FishFinishing.xcdatamodel */,
+			);
+			currentVersion = 96B097EC2249C69100154643 /* FishFinishing.xcdatamodel */;
+			path = FishFinishing.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 96B097D72249C69100154643 /* Project object */;
+}
