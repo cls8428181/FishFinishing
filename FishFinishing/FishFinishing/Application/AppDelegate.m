@@ -7,8 +7,12 @@
 //
 
 #import "AppDelegate.h"
+#import "KNBAppManager.h"
+#import "KNBWelcomeViewController.h"
+#import "XHLaunchAdManager.h"
+#import "CALayer+Transition.h"
 
-@interface AppDelegate ()
+@interface AppDelegate ()<KNBWelcomeVCDelegate>
 
 @end
 
@@ -17,9 +21,38 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    self.window.backgroundColor = [UIColor whiteColor];
+    [self.window makeKeyAndVisible];
+    // 配置文件
+    [KNBAppManager shareInstance];
+    //引导页
+    [self showPageGuideView];
     return YES;
 }
 
+/**
+ *  引导页
+ */
+- (void)showPageGuideView {
+    if ([KNBWelcomeViewController isShowGuideView]) {
+        KNBWelcomeViewController *welcomeVC = [[KNBWelcomeViewController alloc] init];
+        welcomeVC.delegate = self;
+        self.window.rootViewController = welcomeVC;
+    } else {
+        [self isShowGuidePageViewComplete];
+        //配置广告图
+        [XHLaunchAdManager shareManager];
+    }
+}
+
+#pragma mark-- KNBWelcomeVCDelegate
+- (void)isShowGuidePageViewComplete {
+    self.tabBarController = [[KNTabBarViewController alloc] init];
+    self.navController = [[KNBNavgationController alloc] initWithRootViewController:self.tabBarController];
+    self.window.rootViewController = self.navController;
+    [self.window.layer transitionWithAnimType:TransitionAnimTypePageCurl subType:TransitionSubtypesFromRight curve:TransitionCurveEaseInEaseOut duration:0.5f];
+}
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

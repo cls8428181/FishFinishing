@@ -1,0 +1,100 @@
+//
+//  KenuoTraining.pch
+//  KenuoTraining
+//
+//  Created by Robert on 16/2/22.
+//  Copyright © 2016年 Robert. All rights reserved.
+//
+/*
+ *   #####################################################
+ *   #                                                   #
+ *   #                       _oo0oo_                     #
+ *   #                      o8888888o                    #
+ *   #                      88" . "88                    #
+ *   #                      (| -_- |)                    #
+ *   #                      0\  =  /0                    #
+ *   #                    ___/`---'\___                  #
+ *   #                  .' \\|     |# '.                 #
+ *   #                 / \\|||  :  |||# \                #
+ *   #                / _||||| -:- |||||- \              #
+ *   #               |   | \\\  -  #/ |   |              #
+ *   #               | \_|  ''\---/''  |_/ |             #
+ *   #               \  .-\__  '-'  ___/-. /             #
+ *   #             ___'. .'  /--.--\  `. .'___           #
+ *   #          ."" '<  `.___\_<|>_/___.' >' "".         #
+ *   #         | | :  `- \`.;`\ _ /`;.`/ - ` : | |       #
+ *   #         \  \ `_.   \_ __\ /__ _/   .-` /  /       #
+ *   #     =====`-.____`.___ \_____/___.-`___.-'=====    #
+ *   #                       `=---='                     #
+ *   #     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~   #
+ *   #                                                   #
+ *   #               佛祖保佑         永无BUG              #
+ *   #                                                   #
+ *   #####################################################
+ */
+
+#ifndef KenuoTraining_pch
+#define KenuoTraining_pch
+
+#ifdef __OBJC__
+
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+#import "KNBPrecompile.h"
+#import <Masonry.h>
+#import "UIView+Frame.h"
+#import "UIColor+Hex.h"
+#import <ReactiveObjC.h>
+#import <IQKeyboardManager.h>
+#import <LCProgressHUD.h>
+#import "KNBUtilExtend.h"
+
+// 环境配置 0：本地测试 1:正式环境 2:线上测试
+#define KNB_ENV_TYPE 0
+
+#if (KNB_ENV_TYPE == 0) // 本地环境
+#define KNB_MAINCONFIGURL @"http://10.10.8.22:8801"
+#elif (KNB_ENV_TYPE == 1) // 线上正式
+#define KNB_MAINCONFIGURL @"https://jiekou1.idengyun.com"
+#else  // 线上测试
+#define KNB_MAINCONFIGURL @"http://online-test.idengyun.com"
+#endif
+
+#ifdef DEBUG
+    #define NSLog(...) NSLog(__VA_ARGS__);
+#else
+    #define NSLog(...)
+#endif
+
+//本地记录版本号 用于判断是否展示引导页
+#define VERSION_INFO_CURRENT @"currentversion"
+//提交单元测试结果成功的通知
+#define KNB_UPEXERCISERESULT_SUCCESS @"KNB_UPEXERCISERESULT_SUCCESS"
+//定时器超时通知
+#define KNBTimerTimeOutNotification @"KNBTimerTimeOutNotification"
+//收到推送消息通知
+#define KNBNewMessageCommingNotification @"KNBNewMessageCommingNotification"
+
+// 有关支付的配置信息
+#define KNPingpp_AppId @"app_S4iHOGGiX98K0GCS"
+#define KN_PayCodeWX @"wx" // 微信
+#define KN_PayCodeAlipay @"alipay" // 支付宝
+#define KN_AlpiyUrlScheme  @"KNPayUrl002"
+#define KN_WXUrlScheme  @"wxfd961ca17ae513c5"
+
+// 导航服务器地址
+#define KN_NaviServerUrl  @"https://import.idengyun.com:8082"
+// 文件服务器地址
+#define KN_FileServerUrl  @"https://import.idengyun.com:8086"
+
+// 根据6/6s设计图等比例适配
+#define KNB_SCREEN_ASPECT_RATIO_H(height) (KNB_SCREEN_WIDTH / 375.0) * height
+#define KNB_SCREEN_ASPECT_RATIO_W(width) (KNB_SCREEN_HEIGHT / 667.0) * width
+
+typedef NS_ENUM(NSInteger, KNTraingErrorCode) {
+    KNTraingError_token = 10014, // token过期
+    KNTraingError_update = 10017,// 强制更新
+};
+
+#endif
+#endif /* KenuoTraining_pch */
