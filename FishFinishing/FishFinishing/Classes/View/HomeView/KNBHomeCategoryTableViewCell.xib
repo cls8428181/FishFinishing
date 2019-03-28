@@ -12,15 +12,101 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="274" id="KGk-i7-Jjw" customClass="KNBHomeCategoryTableViewCell">
-            <rect key="frame" x="0.0" y="0.0" width="470" height="274"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="266" id="KGk-i7-Jjw" customClass="KNBHomeCategoryTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="371" height="266"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="470" height="273.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="371" height="265.5"/>
                 <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bYl-KS-Mpd">
+                        <rect key="frame" x="0.0" y="0.0" width="74" height="75"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="75" id="zJ7-8u-Lgn"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <inset key="titleEdgeInsets" minX="-20" minY="-10" maxX="0.0" maxY="-50"/>
+                        <inset key="imageEdgeInsets" minX="15" minY="-20" maxX="0.0" maxY="0.0"/>
+                        <state key="normal" title="量房报价" image="1_selected">
+                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </state>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ich-Tq-22V">
+                        <rect key="frame" x="148.5" y="0.0" width="74" height="75"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <inset key="titleEdgeInsets" minX="-20" minY="-10" maxX="0.0" maxY="-50"/>
+                        <inset key="imageEdgeInsets" minX="15" minY="-20" maxX="0.0" maxY="0.0"/>
+                        <state key="normal" title="装修公司" image="3_selected">
+                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </state>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q8k-cb-P8C">
+                        <rect key="frame" x="222.5" y="0.0" width="74.5" height="75"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <inset key="titleEdgeInsets" minX="-20" minY="-10" maxX="0.0" maxY="-50"/>
+                        <inset key="imageEdgeInsets" minX="15" minY="-20" maxX="0.0" maxY="0.0"/>
+                        <state key="normal" title="找长工" image="1_selected">
+                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </state>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZRs-qt-xRt">
+                        <rect key="frame" x="297" y="0.0" width="74" height="75"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="75" id="2o2-tc-q4e"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <inset key="titleEdgeInsets" minX="-20" minY="-10" maxX="0.0" maxY="-50"/>
+                        <inset key="imageEdgeInsets" minX="15" minY="-20" maxX="0.0" maxY="0.0"/>
+                        <state key="normal" title="家居建材" image="1_selected">
+                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </state>
+                    </button>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="1_selected" translatesAutoresizingMaskIntoConstraints="NO" id="1Xr-Ed-NCh">
+                        <rect key="frame" x="12" y="87" width="347" height="166.5"/>
+                    </imageView>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="71K-N2-g6P">
+                        <rect key="frame" x="74" y="0.0" width="74.5" height="75"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <inset key="titleEdgeInsets" minX="-20" minY="-10" maxX="0.0" maxY="-50"/>
+                        <inset key="imageEdgeInsets" minX="15" minY="-20" maxX="0.0" maxY="0.0"/>
+                        <state key="normal" title="找设计" image="2_selected">
+                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </state>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="ZRs-qt-xRt" firstAttribute="height" secondItem="bYl-KS-Mpd" secondAttribute="height" id="2RO-eB-Gnc"/>
+                    <constraint firstAttribute="trailing" secondItem="1Xr-Ed-NCh" secondAttribute="trailing" constant="12" id="6iz-8i-tVO"/>
+                    <constraint firstItem="bYl-KS-Mpd" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="7Fd-4m-3RI"/>
+                    <constraint firstItem="71K-N2-g6P" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="Br3-ff-kEa"/>
+                    <constraint firstItem="Q8k-cb-P8C" firstAttribute="leading" secondItem="Ich-Tq-22V" secondAttribute="trailing" id="DKA-3M-DZy"/>
+                    <constraint firstItem="71K-N2-g6P" firstAttribute="height" secondItem="bYl-KS-Mpd" secondAttribute="height" id="Dmu-EN-rgQ"/>
+                    <constraint firstItem="Ich-Tq-22V" firstAttribute="leading" secondItem="71K-N2-g6P" secondAttribute="trailing" id="Flq-AO-55R"/>
+                    <constraint firstItem="ZRs-qt-xRt" firstAttribute="leading" secondItem="Q8k-cb-P8C" secondAttribute="trailing" id="PrF-Kq-xeV"/>
+                    <constraint firstItem="ZRs-qt-xRt" firstAttribute="width" secondItem="bYl-KS-Mpd" secondAttribute="width" id="Tsw-9r-twE"/>
+                    <constraint firstItem="Ich-Tq-22V" firstAttribute="height" secondItem="bYl-KS-Mpd" secondAttribute="height" id="UUN-qJ-DpI"/>
+                    <constraint firstItem="71K-N2-g6P" firstAttribute="width" secondItem="bYl-KS-Mpd" secondAttribute="width" id="VYG-x6-Mjh"/>
+                    <constraint firstAttribute="bottom" secondItem="1Xr-Ed-NCh" secondAttribute="bottom" constant="12" id="VwQ-os-o83"/>
+                    <constraint firstItem="71K-N2-g6P" firstAttribute="leading" secondItem="bYl-KS-Mpd" secondAttribute="trailing" id="btk-bH-MPw"/>
+                    <constraint firstItem="Ich-Tq-22V" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="cNl-LO-ZGQ"/>
+                    <constraint firstItem="ZRs-qt-xRt" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="g1g-qH-daI"/>
+                    <constraint firstItem="Ich-Tq-22V" firstAttribute="width" secondItem="bYl-KS-Mpd" secondAttribute="width" id="gGM-S2-mF2"/>
+                    <constraint firstItem="bYl-KS-Mpd" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="h5H-dD-j5M"/>
+                    <constraint firstItem="Q8k-cb-P8C" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="ojf-12-dXb"/>
+                    <constraint firstItem="Q8k-cb-P8C" firstAttribute="width" secondItem="bYl-KS-Mpd" secondAttribute="width" id="pEX-7D-Yxp"/>
+                    <constraint firstItem="Q8k-cb-P8C" firstAttribute="height" secondItem="bYl-KS-Mpd" secondAttribute="height" id="q0Z-U7-i8n"/>
+                    <constraint firstItem="1Xr-Ed-NCh" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="12" id="qgK-lK-Jlg"/>
+                    <constraint firstItem="1Xr-Ed-NCh" firstAttribute="top" secondItem="bYl-KS-Mpd" secondAttribute="bottom" constant="12" id="sbq-De-GPk"/>
+                    <constraint firstAttribute="trailing" secondItem="ZRs-qt-xRt" secondAttribute="trailing" id="wuD-8O-Tck"/>
+                </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
-            <point key="canvasLocation" x="249.59999999999999" y="242.87856071964021"/>
+            <point key="canvasLocation" x="170.40000000000001" y="239.28035982008998"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="1_selected" width="21.5" height="21"/>
+        <image name="2_selected" width="20" height="22"/>
+        <image name="3_selected" width="22.5" height="21.5"/>
+    </resources>
 </document>

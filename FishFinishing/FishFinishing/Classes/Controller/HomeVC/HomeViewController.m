@@ -8,10 +8,16 @@
 
 #import "HomeViewController.h"
 #import "SDCycleScrollView.h"
+#import "KNBHomeCategoryTableViewCell.h"
+#import "KNBHomeDesignSketchTableViewCell.h"
+#import "KNBHomeRecommendTableViewCell.h"
+#import "KNBHomeSectionView.h"
+#import "KNBLoginViewController.h"
 
 @interface HomeViewController ()<SDCycleScrollViewDelegate>
 // 轮播图
 @property (nonatomic, strong) SDCycleScrollView *cycleScrollView;
+// 轮播图数据
 @property (nonatomic, strong) NSArray *bannerArray;
 @end
 
@@ -47,7 +53,7 @@
 - (void)addUI {
     [self.view addSubview:self.knbTableView];
     self.knbTableView.tableHeaderView = self.cycleScrollView;
-    self.knbTableView.frame = CGRectMake(0, 0, KNB_SCREEN_WIDTH, KNB_SCREEN_HEIGHT);
+    self.knbTableView.frame = CGRectMake(0, 0, KNB_SCREEN_WIDTH, KNB_SCREEN_HEIGHT - KNB_TAB_HEIGHT);
 }
 
 - (void)fetchData {
@@ -64,24 +70,41 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *ID = @"cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
-    if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:ID];
+    UITableViewCell *cell = nil;
+    if (indexPath.section == 0) {
+        cell = [KNBHomeCategoryTableViewCell cellWithTableView:tableView];
+    } else if (indexPath.section == 1) {
+        cell = [KNBHomeDesignSketchTableViewCell cellWithTableView:tableView];
+    } else {
+        cell = [KNBHomeRecommendTableViewCell cellWithTableView:tableView];
     }
-    cell.backgroundColor = [UIColor redColor];
-//    <#CellClass#> *model = self.dataArray[indexPath.section];
-//    <#CellClass#> *cell = [<#CellClass#> cellWithTableView:tableView];
-//    cell.model = model;
     return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 100;
+    if (indexPath.section == 0) {
+        return [KNBHomeCategoryTableViewCell cellHeight];
+    } else if (indexPath.section == 1) {
+        return [KNBHomeDesignSketchTableViewCell cellHeight];
+    } else {
+        return [KNBHomeRecommendTableViewCell cellHeight];
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 10;
+    return section == 0 ? 10 : 40;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    if (section == 0) return nil;
+    KNBHomeSectionView *sectionView = [[KNBHomeSectionView alloc] init];
+    if (section == 1) {
+        sectionView.titleLabel.text = @"效果图";
+    }
+    if (section == 2) {
+        sectionView.titleLabel.text = @"附近装修推荐";
+    }
+    return sectionView;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -90,15 +113,9 @@
 
 #pragma mark - SDCycleScrollViewDelegate
 - (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index {
-//    KNBQuestionADListModel *bannerModel = self.bannerArray[index];
-//    // GROWING: 视频首页banner
-//    [[KNBGroManager shareInstance] bannerClickMessage:bannerModel position:index bannerPlace:KNBBannerPlaceTypeCourseHome];
-//    if (!isNullStr(bannerModel.ad_url)) {
-//        KNWebViewController *webVC = [[KNWebViewController alloc] init];
-//        webVC.shareButtonHidden = bannerModel.is_share != 0;
-//        webVC.urlString = bannerModel.ad_url;
-//        [self.navigationController pushViewController:webVC animated:YES];
-//    }
+    KNBLoginViewController *loginVC = [[KNBLoginViewController alloc] init];
+    loginVC.vcType = KNBLoginTypeLogin;
+    [self.navigationController pushViewController:loginVC animated:YES];
 }
 
 #pragma mark - Event Response
@@ -113,7 +130,7 @@
 /* getter和setter全部都放在最后*/
 - (SDCycleScrollView *)cycleScrollView {
     if (!_cycleScrollView) {
-        _cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, KNB_SCREEN_WIDTH, KNB_SCREEN_WIDTH * 334 / 750) delegate:nil placeholderImage:[UIImage imageNamed:@"placeholder_icon_find"]];
+        _cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, KNB_SCREEN_WIDTH, KNB_SCREEN_WIDTH * 245 / 375) delegate:nil placeholderImage:[UIImage imageNamed:@"placeholder_icon_find"]];
         _cycleScrollView.delegate = self;
         _cycleScrollView.backgroundColor = [UIColor whiteColor];
         _cycleScrollView.pageControlAliment = SDCycleScrollViewPageContolAlimentCenter;
@@ -127,13 +144,7 @@
 
 - (void)setBannerArray:(NSArray *)bannerArray{
     if (_bannerArray != bannerArray) {
-//        _bannerArray = bannerArray;
-//        [self.bannerUrlArray removeAllObjects];
-//        for (KNBQuestionADListModel *model in bannerArray) {
-//            [self.bannerUrlArray addObject:model.ad_pic];
-//        }
-//        self.cycleScrollView.imageURLStringsGroup = self.bannerUrlArray;
-        self.cycleScrollView.imageURLStringsGroup = @[@"https://b-ssl.duitang.com/uploads/item/201601/06/20160106063007_B35dz.jpeg",@"https://b-ssl.duitang.com/uploads/item/201601/06/20160106063007_B35dz.jpeg",@"https://b-ssl.duitang.com/uploads/item/201601/06/20160106063007_B35dz.jpeg"];
+        _bannerArray = bannerArray;
     }
 }
 @end

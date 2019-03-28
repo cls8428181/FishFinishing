@@ -12,6 +12,16 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface KNBHomeRecommendTableViewCell : UITableViewCell
 
+/**
+ cell 创建
+ */
++ (instancetype)cellWithTableView:(UITableView *)tableView;
+
+/**
+ cell 高度
+ */
++ (CGFloat)cellHeight;
+
 @end
 
 NS_ASSUME_NONNULL_END

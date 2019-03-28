@@ -109,12 +109,12 @@ const NSInteger KNTabBarButtonTitleLabelTag = 666;
         button.imageEdgeInsets = UIEdgeInsetsMake(0, 0, KNB_TAB_IMAGEMARGIN, 0);
         CGFloat buttonWith = KNB_SCREEN_WIDTH / selectImgCount;
         button.adjustsImageWhenHighlighted = NO;
-        CGRect titleLabelFrame = CGRectMake(0, 30, buttonWith, 20);
+        CGRect titleLabelFrame = CGRectMake(0, 35, buttonWith, 20);
         if (i == 2) {
             CGFloat plusX = buttonWith * i;
-            CGFloat plusY = -(buttonWith / 2);
-            button.frame = CGRectMake(plusX, plusY, buttonWith, KNB_TAB_HEIGHT + 20);
-            titleLabelFrame = CGRectMake(0, 70, buttonWith, 20);
+            CGFloat plusY = - 15;
+            button.frame = CGRectMake(plusX, plusY, buttonWith, KNB_TAB_HEIGHT + 15);
+            titleLabelFrame = CGRectMake(0, 50, buttonWith, 20);
         } else {
             button.frame = CGRectMake(buttonWith * i, 0, buttonWith, KNB_TAB_HEIGHT);
         }
@@ -164,10 +164,6 @@ const NSInteger KNTabBarButtonTitleLabelTag = 666;
         UILabel *titleLabel = [tabButton viewWithTag:KNTabBarButtonTitleLabelTag];
         titleLabel.textColor = buttonSelect ? self.titleSelectColor : self.titleDefaultColor;
     }
-//
-//    KNB_PerformOnMainThread(^{
-//        [self addScaleAnimationOnView:button];
-//    });
 }
 
 ////缩放动画
@@ -212,11 +208,11 @@ const NSInteger KNTabBarButtonTitleLabelTag = 666;
 
 - (NSArray *)unSelectImgArray {
     if (!_unSelectImgArray) {
-        _unSelectImgArray = @[ @"tabbar",
-                               @"tabbar",
-                               @"tabbar",
-                               @"tabbar",
-                               @"tabbar"
+        _unSelectImgArray = @[ @"1",
+                               @"2",
+                               @"5",
+                               @"3",
+                               @"4"
                                ];
     }
     return _unSelectImgArray;
@@ -224,11 +220,11 @@ const NSInteger KNTabBarButtonTitleLabelTag = 666;
 
 - (NSArray *)selectImgArray {
     if (!_selectImgArray) {
-        _selectImgArray = @[ @"tabbar",
-                             @"tabbar",
-                             @"tabbar",
-                             @"tabbar",
-                             @"tabbar"
+        _selectImgArray = @[ @"1_selected",
+                             @"2_selected",
+                             @"5",
+                             @"3_selected",
+                             @"4_selected"
                              ];
     }
     return _selectImgArray;

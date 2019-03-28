@@ -1,7 +1,11 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -13,7 +17,36 @@
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="knb_launchsrceen_bg" translatesAutoresizingMaskIntoConstraints="NO" id="TFy-2r-5Vo">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="knb_launchsrceen_title" translatesAutoresizingMaskIntoConstraints="NO" id="wqq-di-jU6">
+                                <rect key="frame" x="109" y="454" width="157" height="59"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="knb_icon_logo" translatesAutoresizingMaskIntoConstraints="NO" id="JX3-dB-b16">
+                                <rect key="frame" x="142" y="138" width="91" height="91"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="大鱼装修" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Dt-AV-1ti">
+                                <rect key="frame" x="146.5" y="259" width="82" height="24"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="wqq-di-jU6" firstAttribute="centerX" secondItem="TFy-2r-5Vo" secondAttribute="centerX" id="OTS-NJ-7bu"/>
+                            <constraint firstItem="JX3-dB-b16" firstAttribute="centerY" secondItem="TFy-2r-5Vo" secondAttribute="centerY" constant="-150" id="cFg-zD-ZVA"/>
+                            <constraint firstItem="7Dt-AV-1ti" firstAttribute="top" secondItem="JX3-dB-b16" secondAttribute="bottom" constant="30" id="gST-fs-aIK"/>
+                            <constraint firstItem="TFy-2r-5Vo" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="hz7-al-idx"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="TFy-2r-5Vo" secondAttribute="trailing" id="kef-wP-zzZ"/>
+                            <constraint firstAttribute="bottom" secondItem="TFy-2r-5Vo" secondAttribute="bottom" id="nlV-1t-0a8"/>
+                            <constraint firstItem="JX3-dB-b16" firstAttribute="centerX" secondItem="TFy-2r-5Vo" secondAttribute="centerX" id="oXC-f8-UtX"/>
+                            <constraint firstItem="7Dt-AV-1ti" firstAttribute="centerX" secondItem="TFy-2r-5Vo" secondAttribute="centerX" id="qab-kJ-ko9"/>
+                            <constraint firstItem="wqq-di-jU6" firstAttribute="centerY" secondItem="TFy-2r-5Vo" secondAttribute="centerY" constant="150" id="tox-aI-3dD"/>
+                            <constraint firstItem="TFy-2r-5Vo" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="yMD-7z-HAe"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                 </viewController>
@@ -22,4 +55,9 @@
             <point key="canvasLocation" x="53" y="375"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="knb_icon_logo" width="91" height="91"/>
+        <image name="knb_launchsrceen_bg" width="375" height="667"/>
+        <image name="knb_launchsrceen_title" width="157.5" height="59.5"/>
+    </resources>
 </document>

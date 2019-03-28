@@ -74,6 +74,14 @@
 #define KNB_TAB_IMAGEMARGIN (KNB_ISIPHONEX ? 40 : 10)
 
 #define KNB_NAV_COLOR [UIColor colorWithRed:255 / 255.0 green:255 / 255.0 blue:255 / 255.0 alpha:1.0]
+//图片名字
+#define KNBImages(imageName) [UIImage imageNamed:imageName]
+//字体大小
+#define KNBFont(font) [UIFont systemFontOfSize:font]
+//图片地址
+#define KNBImageUrl(imageUrl) [NSURL URLWithString:imageUrl]
+//过滤字符串
+#define KNBLimitString(string, index) (!isNullStr(string) && string.length > index) ? [string substringWithRange:NSMakeRange(0, index)] : string;
 
 //权限判断
 #define KNB_HasJurisdiction(moduleName) [[KNBUserInfo shareInstance] hasJurisdiction:moduleName]

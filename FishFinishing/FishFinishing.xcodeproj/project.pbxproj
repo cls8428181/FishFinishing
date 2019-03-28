@@ -42,9 +42,7 @@
 		966AA57C224A2D3E00EDBF5F /* KNBHomeCategoryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 966AA57A224A2D3E00EDBF5F /* KNBHomeCategoryTableViewCell.m */; };
 		966AA57D224A2D3E00EDBF5F /* KNBHomeCategoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 966AA57B224A2D3E00EDBF5F /* KNBHomeCategoryTableViewCell.xib */; };
 		966AA581224A2D7000EDBF5F /* KNBHomeDesignSketchTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 966AA57F224A2D7000EDBF5F /* KNBHomeDesignSketchTableViewCell.m */; };
-		966AA582224A2D7000EDBF5F /* KNBHomeDesignSketchTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 966AA580224A2D7000EDBF5F /* KNBHomeDesignSketchTableViewCell.xib */; };
 		966AA586224A2DA200EDBF5F /* KNBHomeRecommendTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 966AA584224A2DA200EDBF5F /* KNBHomeRecommendTableViewCell.m */; };
-		966AA587224A2DA200EDBF5F /* KNBHomeRecommendTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 966AA585224A2DA200EDBF5F /* KNBHomeRecommendTableViewCell.xib */; };
 		96B097E42249C69100154643 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 96B097E32249C69100154643 /* AppDelegate.m */; };
 		96B097ED2249C69100154643 /* FishFinishing.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 96B097EB2249C69100154643 /* FishFinishing.xcdatamodeld */; };
 		96B097EF2249C69300154643 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 96B097EE2249C69300154643 /* Assets.xcassets */; };
@@ -102,6 +100,18 @@
 		96B098D62249D73200154643 /* KNBNavigationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 96B098D52249D73200154643 /* KNBNavigationView.m */; };
 		96B098E32249E45000154643 /* NJKWebViewProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = 96B098E02249E45000154643 /* NJKWebViewProgress.m */; };
 		96B098E42249E45000154643 /* NJKWebViewProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 96B098E22249E45000154643 /* NJKWebViewProgressView.m */; };
+		96E55411224CA65500D025C4 /* KNBDesignSketchCollectionSectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 96E55410224CA65500D025C4 /* KNBDesignSketchCollectionSectionView.m */; };
+		96E55415224CAC4A00D025C4 /* XDSDropDownMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 96E55414224CAC4900D025C4 /* XDSDropDownMenu.m */; };
+		96E55417224CB54D00D025C4 /* KNBDesignSketchCollectionSectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96E55416224CB54D00D025C4 /* KNBDesignSketchCollectionSectionView.xib */; };
+		96E5541A224CBEFD00D025C4 /* KNBSortView.m in Sources */ = {isa = PBXBuildFile; fileRef = 96E55418224CBEFC00D025C4 /* KNBSortView.m */; };
+		96E5541C224CCD4200D025C4 /* KNBMe.plist in Resources */ = {isa = PBXBuildFile; fileRef = 96E5541B224CCD4200D025C4 /* KNBMe.plist */; };
+		96FDB4C4224B1641005844E7 /* KNBHomeDoctorSubCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 96FDB4C3224B1640005844E7 /* KNBHomeDoctorSubCell.m */; };
+		96FDB4C7224B17D7005844E7 /* KNBHomeSectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 96FDB4C6224B17D7005844E7 /* KNBHomeSectionView.m */; };
+		96FDB4CB224B553F005844E7 /* KNBHomeRecommendSubTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 96FDB4C9224B553F005844E7 /* KNBHomeRecommendSubTableViewCell.m */; };
+		96FDB4CC224B553F005844E7 /* KNBHomeRecommendSubTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96FDB4CA224B553F005844E7 /* KNBHomeRecommendSubTableViewCell.xib */; };
+		96FDB4CF224B62D6005844E7 /* KNBLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96FDB4CE224B62D6005844E7 /* KNBLoginViewController.m */; };
+		96FDB4D3224B68F9005844E7 /* KNBLoginInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = 96FDB4D2224B68F9005844E7 /* KNBLoginInputView.m */; };
+		96FDB4D6224B6B5E005844E7 /* KNBButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 96FDB4D4224B6B5E005844E7 /* KNBButton.m */; };
 		DECCDD5E4E647B48B4169D6B /* libPods-FishFinishing.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A4C03A400C3DD905C0BF54B /* libPods-FishFinishing.a */; };
 /* End PBXBuildFile section */
 
@@ -176,10 +186,8 @@
 		966AA57B224A2D3E00EDBF5F /* KNBHomeCategoryTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KNBHomeCategoryTableViewCell.xib; sourceTree = "<group>"; };
 		966AA57E224A2D7000EDBF5F /* KNBHomeDesignSketchTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNBHomeDesignSketchTableViewCell.h; sourceTree = "<group>"; };
 		966AA57F224A2D7000EDBF5F /* KNBHomeDesignSketchTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNBHomeDesignSketchTableViewCell.m; sourceTree = "<group>"; };
-		966AA580224A2D7000EDBF5F /* KNBHomeDesignSketchTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KNBHomeDesignSketchTableViewCell.xib; sourceTree = "<group>"; };
 		966AA583224A2DA200EDBF5F /* KNBHomeRecommendTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNBHomeRecommendTableViewCell.h; sourceTree = "<group>"; };
 		966AA584224A2DA200EDBF5F /* KNBHomeRecommendTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNBHomeRecommendTableViewCell.m; sourceTree = "<group>"; };
-		966AA585224A2DA200EDBF5F /* KNBHomeRecommendTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KNBHomeRecommendTableViewCell.xib; sourceTree = "<group>"; };
 		96B097DF2249C69100154643 /* FishFinishing.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FishFinishing.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		96B097E22249C69100154643 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		96B097E32249C69100154643 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -297,6 +305,27 @@
 		96B098E02249E45000154643 /* NJKWebViewProgress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NJKWebViewProgress.m; sourceTree = "<group>"; };
 		96B098E12249E45000154643 /* NJKWebViewProgress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NJKWebViewProgress.h; sourceTree = "<group>"; };
 		96B098E22249E45000154643 /* NJKWebViewProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NJKWebViewProgressView.m; sourceTree = "<group>"; };
+		96E5540F224CA65500D025C4 /* KNBDesignSketchCollectionSectionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNBDesignSketchCollectionSectionView.h; sourceTree = "<group>"; };
+		96E55410224CA65500D025C4 /* KNBDesignSketchCollectionSectionView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNBDesignSketchCollectionSectionView.m; sourceTree = "<group>"; };
+		96E55413224CAC4900D025C4 /* XDSDropDownMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XDSDropDownMenu.h; sourceTree = "<group>"; };
+		96E55414224CAC4900D025C4 /* XDSDropDownMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XDSDropDownMenu.m; sourceTree = "<group>"; };
+		96E55416224CB54D00D025C4 /* KNBDesignSketchCollectionSectionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KNBDesignSketchCollectionSectionView.xib; sourceTree = "<group>"; };
+		96E55418224CBEFC00D025C4 /* KNBSortView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KNBSortView.m; sourceTree = "<group>"; };
+		96E55419224CBEFD00D025C4 /* KNBSortView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KNBSortView.h; sourceTree = "<group>"; };
+		96E5541B224CCD4200D025C4 /* KNBMe.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = KNBMe.plist; sourceTree = "<group>"; };
+		96FDB4C2224B1640005844E7 /* KNBHomeDoctorSubCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KNBHomeDoctorSubCell.h; sourceTree = "<group>"; };
+		96FDB4C3224B1640005844E7 /* KNBHomeDoctorSubCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KNBHomeDoctorSubCell.m; sourceTree = "<group>"; };
+		96FDB4C5224B17D7005844E7 /* KNBHomeSectionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNBHomeSectionView.h; sourceTree = "<group>"; };
+		96FDB4C6224B17D7005844E7 /* KNBHomeSectionView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNBHomeSectionView.m; sourceTree = "<group>"; };
+		96FDB4C8224B553F005844E7 /* KNBHomeRecommendSubTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNBHomeRecommendSubTableViewCell.h; sourceTree = "<group>"; };
+		96FDB4C9224B553F005844E7 /* KNBHomeRecommendSubTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNBHomeRecommendSubTableViewCell.m; sourceTree = "<group>"; };
+		96FDB4CA224B553F005844E7 /* KNBHomeRecommendSubTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KNBHomeRecommendSubTableViewCell.xib; sourceTree = "<group>"; };
+		96FDB4CD224B62D6005844E7 /* KNBLoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNBLoginViewController.h; sourceTree = "<group>"; };
+		96FDB4CE224B62D6005844E7 /* KNBLoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNBLoginViewController.m; sourceTree = "<group>"; };
+		96FDB4D1224B68F9005844E7 /* KNBLoginInputView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNBLoginInputView.h; sourceTree = "<group>"; };
+		96FDB4D2224B68F9005844E7 /* KNBLoginInputView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNBLoginInputView.m; sourceTree = "<group>"; };
+		96FDB4D4224B6B5E005844E7 /* KNBButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KNBButton.m; sourceTree = "<group>"; };
+		96FDB4D5224B6B5E005844E7 /* KNBButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KNBButton.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -316,6 +345,8 @@
 			children = (
 				966AA511224A009600EDBF5F /* KNBWelcomeViewController.h */,
 				966AA512224A009600EDBF5F /* KNBWelcomeViewController.m */,
+				96FDB4CD224B62D6005844E7 /* KNBLoginViewController.h */,
+				96FDB4CE224B62D6005844E7 /* KNBLoginViewController.m */,
 			);
 			path = LoginVC;
 			sourceTree = "<group>";
@@ -421,6 +452,7 @@
 		966AA54D224A0A8800EDBF5F /* MeVC */ = {
 			isa = PBXGroup;
 			children = (
+				96E5541B224CCD4200D025C4 /* KNBMe.plist */,
 				966AA55A224A0B9F00EDBF5F /* MeViewController.h */,
 				966AA55B224A0B9F00EDBF5F /* MeViewController.m */,
 			);
@@ -473,10 +505,15 @@
 				966AA57B224A2D3E00EDBF5F /* KNBHomeCategoryTableViewCell.xib */,
 				966AA57E224A2D7000EDBF5F /* KNBHomeDesignSketchTableViewCell.h */,
 				966AA57F224A2D7000EDBF5F /* KNBHomeDesignSketchTableViewCell.m */,
-				966AA580224A2D7000EDBF5F /* KNBHomeDesignSketchTableViewCell.xib */,
+				96FDB4C2224B1640005844E7 /* KNBHomeDoctorSubCell.h */,
+				96FDB4C3224B1640005844E7 /* KNBHomeDoctorSubCell.m */,
 				966AA583224A2DA200EDBF5F /* KNBHomeRecommendTableViewCell.h */,
 				966AA584224A2DA200EDBF5F /* KNBHomeRecommendTableViewCell.m */,
-				966AA585224A2DA200EDBF5F /* KNBHomeRecommendTableViewCell.xib */,
+				96FDB4C5224B17D7005844E7 /* KNBHomeSectionView.h */,
+				96FDB4C6224B17D7005844E7 /* KNBHomeSectionView.m */,
+				96FDB4C8224B553F005844E7 /* KNBHomeRecommendSubTableViewCell.h */,
+				96FDB4C9224B553F005844E7 /* KNBHomeRecommendSubTableViewCell.m */,
+				96FDB4CA224B553F005844E7 /* KNBHomeRecommendSubTableViewCell.xib */,
 			);
 			path = HomeView;
 			sourceTree = "<group>";
@@ -547,6 +584,7 @@
 		96B097FF2249C6D800154643 /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				96E55412224CAC4900D025C4 /* XDSDropDownMenu */,
 				966AA561224A1E4F00EDBF5F /* SDCycleScrollView */,
 				966AA51C224A033000EDBF5F /* KNBLaunchAd */,
 				96B098DE2249E45000154643 /* NJKWebViewProgress */,
@@ -667,6 +705,8 @@
 		96B0984E2249CC1000154643 /* UIButton */ = {
 			isa = PBXGroup;
 			children = (
+				96FDB4D5224B6B5E005844E7 /* KNBButton.h */,
+				96FDB4D4224B6B5E005844E7 /* KNBButton.m */,
 				96B098532249CC1000154643 /* UIButton+ArrayButton.h */,
 				96B0985A2249CC1000154643 /* UIButton+ArrayButton.m */,
 				96B098592249CC1000154643 /* UIButton+ChangeTitleLeft.h */,
@@ -866,6 +906,8 @@
 		96B098DD2249D8F300154643 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				96E5540E224CA5F300D025C4 /* DesignSketchView */,
+				96FDB4D0224B68BB005844E7 /* LoginView */,
 				966AA578224A2CBE00EDBF5F /* HomeView */,
 				966AA55D224A1A6100EDBF5F /* SearchView */,
 			);
@@ -881,6 +923,36 @@
 				96B098E22249E45000154643 /* NJKWebViewProgressView.m */,
 			);
 			path = NJKWebViewProgress;
+			sourceTree = "<group>";
+		};
+		96E5540E224CA5F300D025C4 /* DesignSketchView */ = {
+			isa = PBXGroup;
+			children = (
+				96E55419224CBEFD00D025C4 /* KNBSortView.h */,
+				96E55418224CBEFC00D025C4 /* KNBSortView.m */,
+				96E5540F224CA65500D025C4 /* KNBDesignSketchCollectionSectionView.h */,
+				96E55410224CA65500D025C4 /* KNBDesignSketchCollectionSectionView.m */,
+				96E55416224CB54D00D025C4 /* KNBDesignSketchCollectionSectionView.xib */,
+			);
+			path = DesignSketchView;
+			sourceTree = "<group>";
+		};
+		96E55412224CAC4900D025C4 /* XDSDropDownMenu */ = {
+			isa = PBXGroup;
+			children = (
+				96E55413224CAC4900D025C4 /* XDSDropDownMenu.h */,
+				96E55414224CAC4900D025C4 /* XDSDropDownMenu.m */,
+			);
+			path = XDSDropDownMenu;
+			sourceTree = "<group>";
+		};
+		96FDB4D0224B68BB005844E7 /* LoginView */ = {
+			isa = PBXGroup;
+			children = (
+				96FDB4D1224B68F9005844E7 /* KNBLoginInputView.h */,
+				96FDB4D2224B68F9005844E7 /* KNBLoginInputView.m */,
+			);
+			path = LoginView;
 			sourceTree = "<group>";
 		};
 		A4870966EDC8814BA5EEA211 /* Frameworks */ = {
@@ -962,11 +1034,12 @@
 			files = (
 				966AA519224A00D700EDBF5F /* KNBStartPageView.xib in Resources */,
 				966AA57D224A2D3E00EDBF5F /* KNBHomeCategoryTableViewCell.xib in Resources */,
+				96E5541C224CCD4200D025C4 /* KNBMe.plist in Resources */,
 				96B097F22249C69300154643 /* LaunchScreen.storyboard in Resources */,
 				966AA51A224A00D700EDBF5F /* KNBStartPage.plist in Resources */,
-				966AA587224A2DA200EDBF5F /* KNBHomeRecommendTableViewCell.xib in Resources */,
-				966AA582224A2D7000EDBF5F /* KNBHomeDesignSketchTableViewCell.xib in Resources */,
+				96FDB4CC224B553F005844E7 /* KNBHomeRecommendSubTableViewCell.xib in Resources */,
 				96B097EF2249C69300154643 /* Assets.xcassets in Resources */,
+				96E55417224CB54D00D025C4 /* KNBDesignSketchCollectionSectionView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1000,11 +1073,16 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-FishFinishing/Pods-FishFinishing-resources.sh",
+				"${PODS_ROOT}/IQKeyboardManager/IQKeyboardManager/Resources/IQKeyboardManager.bundle",
+				"${PODS_ROOT}/LCProgressHUD/LCProgressHUD/LCProgressHUD.bundle",
+				"${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1040,6 +1118,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				96FDB4C4224B1641005844E7 /* KNBHomeDoctorSubCell.m in Sources */,
 				966AA546224A033000EDBF5F /* XHLaunchAdConfiguration.m in Sources */,
 				96B098972249CC1000154643 /* UIImage+WaterMark.m in Sources */,
 				96B098B02249CC1000154643 /* NSString+Trim.m in Sources */,
@@ -1051,9 +1130,11 @@
 				966AA576224A1E4F00EDBF5F /* TAAnimatedDotView.m in Sources */,
 				96B098E32249E45000154643 /* NJKWebViewProgress.m in Sources */,
 				966AA547224A033000EDBF5F /* XHLaunchAdCache.m in Sources */,
+				96E5541A224CBEFD00D025C4 /* KNBSortView.m in Sources */,
 				966AA55C224A0B9F00EDBF5F /* MeViewController.m in Sources */,
 				96B098302249CB8800154643 /* KNBBaseModel.m in Sources */,
 				96B098BB2249CC1000154643 /* NSTimer+EOCBlocksSupport.m in Sources */,
+				96FDB4C7224B17D7005844E7 /* KNBHomeSectionView.m in Sources */,
 				966AA57C224A2D3E00EDBF5F /* KNBHomeCategoryTableViewCell.m in Sources */,
 				966AA544224A033000EDBF5F /* XHLaunchAdDownloader.m in Sources */,
 				96B098CD2249D68D00154643 /* EXTRuntimeExtensions.m in Sources */,
@@ -1061,6 +1142,7 @@
 				96B098312249CB8800154643 /* KNBBaseRequest.m in Sources */,
 				96B098BA2249CC1000154643 /* CALayer+Transition.m in Sources */,
 				96B098332249CB8800154643 /* KNBBaseViewController.m in Sources */,
+				96FDB4D3224B68F9005844E7 /* KNBLoginInputView.m in Sources */,
 				96B098D62249D73200154643 /* KNBNavigationView.m in Sources */,
 				96B0989E2249CC1000154643 /* UILabel+AutoSize.m in Sources */,
 				96B098A22249CC1000154643 /* UIButton+ImageAndTitle.m in Sources */,
@@ -1077,6 +1159,7 @@
 				96B098AC2249CC1000154643 /* UIImageView+FaceAwareFill.m in Sources */,
 				96B0982E2249CB8800154643 /* KNOCJSModel.m in Sources */,
 				966AA53E224A033000EDBF5F /* XHLaunchAdView.m in Sources */,
+				96E55411224CA65500D025C4 /* KNBDesignSketchCollectionSectionView.m in Sources */,
 				96B098B32249CC1000154643 /* NSString+Empty.m in Sources */,
 				96B0989D2249CC1000154643 /* UILabel+Space.m in Sources */,
 				96B098B42249CC1000154643 /* NSString+MD5.m in Sources */,
@@ -1107,10 +1190,12 @@
 				96B098A82249CC1000154643 /* UIView+Frame.m in Sources */,
 				966AA573224A1E4F00EDBF5F /* SDCollectionViewCell.m in Sources */,
 				966AA560224A1ADC00EDBF5F /* KNBSearchView.m in Sources */,
+				96FDB4CB224B553F005844E7 /* KNBHomeRecommendSubTableViewCell.m in Sources */,
 				96B098AD2249CC1000154643 /* UIImageView+Addition.m in Sources */,
 				966AA53C224A033000EDBF5F /* FLAnimatedImageView.m in Sources */,
 				966AA53B224A033000EDBF5F /* FLAnimatedImage.m in Sources */,
 				96B098B22249CC1000154643 /* NSString+HTML.m in Sources */,
+				96FDB4CF224B62D6005844E7 /* KNBLoginViewController.m in Sources */,
 				96B098AE2249CC1000154643 /* UIImageView+KNBImage.m in Sources */,
 				96B098352249CB8800154643 /* KNBBaseRequestAccessory.m in Sources */,
 				96B098A72249CC1000154643 /* UIColor+Hex.m in Sources */,
@@ -1124,8 +1209,10 @@
 				96B098B12249CC1000154643 /* NSString+Contain.m in Sources */,
 				966AA575224A1E4F00EDBF5F /* TAPageControl.m in Sources */,
 				966AA586224A2DA200EDBF5F /* KNBHomeRecommendTableViewCell.m in Sources */,
+				96FDB4D6224B6B5E005844E7 /* KNBButton.m in Sources */,
 				96B098B62249CC1000154643 /* GTMNSString+HTML.m in Sources */,
 				96B097E42249C69100154643 /* AppDelegate.m in Sources */,
+				96E55415224CAC4A00D025C4 /* XDSDropDownMenu.m in Sources */,
 				96B098BC2249CC1000154643 /* KNBTextField.m in Sources */,
 				966AA545224A033000EDBF5F /* XHLaunchAdImageView+XHLaunchAdCache.m in Sources */,
 			);

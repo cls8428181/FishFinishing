@@ -25,7 +25,7 @@
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     // 配置文件
-    [KNBAppManager shareInstance];
+    [[KNBAppManager shareInstance] configureThird];
     //引导页
     [self showPageGuideView];
     return YES;

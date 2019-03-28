@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="KNBDesignSketchCollectionSectionView">
+            <rect key="frame" x="0.0" y="0.0" width="559" height="164"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IzS-XZ-3ZX">
+                    <rect key="frame" x="0.0" y="0.0" width="186.5" height="164"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <state key="normal" title="风格">
+                        <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <connections>
+                        <action selector="styleBtnClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="jea-Xd-6d9"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S5s-xI-Kvm">
+                    <rect key="frame" x="186.5" y="0.0" width="186" height="164"/>
+                    <state key="normal" title="户型">
+                        <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <connections>
+                        <action selector="typeBtnClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="7sa-V5-XeY"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yI3-S6-4mb">
+                    <rect key="frame" x="372.5" y="0.0" width="186.5" height="164"/>
+                    <state key="normal" title="面积">
+                        <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <connections>
+                        <action selector="areaBtnClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="bFK-x2-Gax"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="yI3-S6-4mb" secondAttribute="trailing" id="AE8-E6-Qxk"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="IzS-XZ-3ZX" secondAttribute="bottom" id="Cbr-5b-6bj"/>
+                <constraint firstItem="S5s-xI-Kvm" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="QEe-GK-Snb"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="S5s-xI-Kvm" secondAttribute="bottom" id="RmR-3e-xoD"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="yI3-S6-4mb" secondAttribute="bottom" id="VAX-Mv-hOo"/>
+                <constraint firstItem="yI3-S6-4mb" firstAttribute="leading" secondItem="S5s-xI-Kvm" secondAttribute="trailing" id="Vq5-nO-OEe"/>
+                <constraint firstItem="S5s-xI-Kvm" firstAttribute="leading" secondItem="IzS-XZ-3ZX" secondAttribute="trailing" id="dfn-hk-iLr"/>
+                <constraint firstItem="IzS-XZ-3ZX" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="eL2-ik-yYX"/>
+                <constraint firstItem="IzS-XZ-3ZX" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="eUI-qV-XR3"/>
+                <constraint firstItem="yI3-S6-4mb" firstAttribute="width" secondItem="IzS-XZ-3ZX" secondAttribute="width" id="fd7-gE-Tze"/>
+                <constraint firstItem="yI3-S6-4mb" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="pxW-Mo-gYE"/>
+                <constraint firstItem="S5s-xI-Kvm" firstAttribute="width" secondItem="IzS-XZ-3ZX" secondAttribute="width" id="zhR-cc-TRh"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="areaButton" destination="yI3-S6-4mb" id="fTc-v2-pUW"/>
+                <outlet property="styleButton" destination="IzS-XZ-3ZX" id="zLY-gx-vFh"/>
+                <outlet property="typeButton" destination="S5s-xI-Kvm" id="38l-vV-qSp"/>
+            </connections>
+            <point key="canvasLocation" x="277.60000000000002" y="-85.457271364317847"/>
+        </view>
+    </objects>
+</document>

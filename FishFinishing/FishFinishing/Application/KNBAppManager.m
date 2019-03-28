@@ -57,6 +57,10 @@ KNB_DEFINE_SINGLETON_FOR_CLASS(KNBAppManager);
 //    [self configureRequestFilters];
     // 定位
     [[KNGetUserLoaction shareInstance] startLocation];
+    
+    //开启键盘控制
+    [IQKeyboardManager sharedManager].enable = YES;
+    [IQKeyboardManager sharedManager].shouldResignOnTouchOutside = YES;
 }
 
 #pragma mark-- VistorConfig

@@ -15,6 +15,11 @@
 KNB_DEFINE_SINGLETON_FOR_HEADER(KNBAppManager);
 
 /**
+ 配置第三方
+ */
+- (void)configureThird;
+
+/**
  *  token 过期验证
  */
 - (void)configureRequestFilters;
