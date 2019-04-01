@@ -1,19 +1,19 @@
 //
-//  KNBHomeRecommendSubTableViewCell.m
+//  KNBDSFreeOrderAddressTableViewCell.m
 //  FishFinishing
 //
-//  Created by 常立山 on 2019/3/27.
+//  Created by 常立山 on 2019/4/1.
 //  Copyright © 2019 常立山. All rights reserved.
 //
 
-#import "KNBHomeRecommendSubTableViewCell.h"
+#import "KNBDSFreeOrderAddressTableViewCell.h"
 
-@implementation KNBHomeRecommendSubTableViewCell
+@implementation KNBDSFreeOrderAddressTableViewCell
 
 #pragma mark - life cycle
 + (instancetype)cellWithTableView:(UITableView *)tableView {
-    static NSString *ID = @"KNBHomeRecommendSubTableViewCell";
-    KNBHomeRecommendSubTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
+    static NSString *ID = @"KNBDSFreeOrderAddressTableViewCell";
+    KNBDSFreeOrderAddressTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
     if (!cell) {
         [tableView registerNib:[UINib nibWithNibName:ID bundle:nil] forCellReuseIdentifier:ID];
         cell = [tableView dequeueReusableCellWithIdentifier:ID];
@@ -24,7 +24,6 @@
 
 #pragma mark - private method
 + (CGFloat)cellHeight {
-    return 185;
+    return 50;
 }
-
 @end

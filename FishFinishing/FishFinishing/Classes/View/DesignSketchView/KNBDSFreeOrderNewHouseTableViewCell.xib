@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="130" id="KGk-i7-Jjw" customClass="KNBDSFreeOrderNewHouseTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="381" height="130"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="381" height="129.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lHT-BS-ySk">
+                        <rect key="frame" x="12" y="5" width="357" height="119.5"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Voy-Ez-4sX">
+                                <rect key="frame" x="104" y="51.5" width="67" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="-10" maxY="0.0"/>
+                                <state key="normal" title="旧房翻新" image="knb_design_unselected">
+                                    <color key="titleColor" red="0.50196078430000002" green="0.50196078430000002" blue="0.50196078430000002" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <state key="selected" image="knb_design_selected"/>
+                                <connections>
+                                    <action selector="oldHouseButtonAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="HSb-6c-Qq8"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bbr-0K-JMS">
+                                <rect key="frame" x="12" y="51.5" width="67" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="-10" maxY="0.0"/>
+                                <state key="normal" title="新房装修" image="knb_design_unselected">
+                                    <color key="titleColor" red="0.50196078430000002" green="0.50196078430000002" blue="0.50196078430000002" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <state key="selected" image="knb_design_selected"/>
+                                <connections>
+                                    <action selector="newHouseButtonAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="P7S-VT-4HF"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.94901960780000005" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="bbr-0K-JMS" firstAttribute="leading" secondItem="lHT-BS-ySk" secondAttribute="leading" constant="12" id="AMQ-T3-fYa"/>
+                            <constraint firstItem="Voy-Ez-4sX" firstAttribute="centerY" secondItem="lHT-BS-ySk" secondAttribute="centerY" id="WI4-So-nTA"/>
+                            <constraint firstItem="Voy-Ez-4sX" firstAttribute="leading" secondItem="bbr-0K-JMS" secondAttribute="trailing" constant="25" id="XAc-gS-IGO"/>
+                            <constraint firstItem="bbr-0K-JMS" firstAttribute="centerY" secondItem="lHT-BS-ySk" secondAttribute="centerY" id="eFw-I1-57D"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                            <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="3"/>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="lHT-BS-ySk" secondAttribute="trailing" constant="12" id="WTM-Df-ft2"/>
+                    <constraint firstAttribute="bottom" secondItem="lHT-BS-ySk" secondAttribute="bottom" constant="5" id="XZE-Rk-Ts6"/>
+                    <constraint firstItem="lHT-BS-ySk" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="cQC-mz-a74"/>
+                    <constraint firstItem="lHT-BS-ySk" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="12" id="fCd-wj-XBG"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
+            <point key="canvasLocation" x="104.8" y="90.854572713643179"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="knb_design_selected" width="9" height="9.5"/>
+        <image name="knb_design_unselected" width="9.5" height="9.5"/>
+    </resources>
+</document>

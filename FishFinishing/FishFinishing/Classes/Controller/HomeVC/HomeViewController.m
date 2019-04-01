@@ -7,12 +7,15 @@
 //
 
 #import "HomeViewController.h"
+//views
 #import "SDCycleScrollView.h"
 #import "KNBHomeCategoryTableViewCell.h"
 #import "KNBHomeDesignSketchTableViewCell.h"
 #import "KNBHomeRecommendTableViewCell.h"
 #import "KNBHomeSectionView.h"
+//controllers
 #import "KNBLoginViewController.h"
+#import "AppDelegate.h"
 
 @interface HomeViewController ()<SDCycleScrollViewDelegate>
 // 轮播图
@@ -48,7 +51,7 @@
 - (void)configuration {
     self.view.backgroundColor = [UIColor knBgColor];
     [self.naviView removeFromSuperview];
-    self.cycleScrollView.imageURLStringsGroup = @[@"https://b-ssl.duitang.com/uploads/item/201601/06/20160106063007_B35dz.jpeg",@"https://b-ssl.duitang.com/uploads/item/201601/06/20160106063007_B35dz.jpeg",@"https://b-ssl.duitang.com/uploads/item/201601/06/20160106063007_B35dz.jpeg"];
+    self.cycleScrollView.imageURLStringsGroup = @[@"knb_home_banner",@"knb_home_banner",@"knb_home_banner"];
 }
 
 - (void)addUI {
@@ -131,7 +134,7 @@
 /* getter和setter全部都放在最后*/
 - (SDCycleScrollView *)cycleScrollView {
     if (!_cycleScrollView) {
-        _cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, KNB_SCREEN_WIDTH, KNB_SCREEN_WIDTH * 245 / 375) delegate:nil placeholderImage:[UIImage imageNamed:@"placeholder_icon_find"]];
+        _cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, KNB_SCREEN_WIDTH, KNB_SCREEN_WIDTH * 245 / 375) delegate:nil placeholderImage:[UIImage imageNamed:@"knb_home_banner"]];
         _cycleScrollView.delegate = self;
         _cycleScrollView.backgroundColor = [UIColor whiteColor];
         _cycleScrollView.pageControlAliment = SDCycleScrollViewPageContolAlimentCenter;

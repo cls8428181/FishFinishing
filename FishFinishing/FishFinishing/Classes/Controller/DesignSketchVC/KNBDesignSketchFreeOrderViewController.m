@@ -7,11 +7,27 @@
 //
 
 #import "KNBDesignSketchFreeOrderViewController.h"
+//views
+#import "KNBDesignSketchFreeOrderHeaderView.h"
+#import "KNBDSFreeOrderNewHouseTableViewCell.h"
+#import "KNBDSFreeOrderAddressTableViewCell.h"
+#import "KNBDSFreeOrderAreaTableViewCell.h"
+#import "KNBDSFreeOrderNameTableViewCell.h"
+#import "KNBDSFreeOrderPhoneTableViewCell.h"
+#import "KNBDSFreeOrderFooterView.h"
+
 
 @interface KNBDesignSketchFreeOrderViewController ()
 //顶部广告图片
 @property (nonatomic, strong) UIImageView *adImageView;
-
+//服务商 label
+@property (nonatomic, strong) UILabel *titleLabel;
+//服务商按钮
+@property (nonatomic, strong) UIButton *titleButton;
+//header view
+@property (nonatomic, strong) KNBDesignSketchFreeOrderHeaderView *headerView;
+//footer view
+@property (nonatomic, strong) KNBDSFreeOrderFooterView *footerView;
 @end
 
 @implementation KNBDesignSketchFreeOrderViewController
@@ -35,6 +51,13 @@
  */
 - (void)settingConstraints {
     KNB_WS(weakSelf);
+    [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(12);
+        make.top.mas_equalTo(22);
+    }];
+    [self.titleButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+    }];
     [self.adImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(12);
         make.top.equalTo(weakSelf.naviView.mas_bottom).mas_offset(12);
@@ -63,7 +86,8 @@
 - (void)addUI {
     [self.view addSubview:self.adImageView];
     [self.view addSubview:self.knbTableView];
-    
+    self.knbTableView.tableHeaderView = self.headerView;
+    self.knbTableView.tableFooterView = self.footerView;
 }
 
 - (void)fetchData {
@@ -72,23 +96,33 @@
 
 #pragma mark - tableview delegate & dataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 5;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return 1;
 }
 
-//- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-//    <#CellClass#> *model = self.dataArray[indexPath.section];
-//    <#CellClass#> *cell = [<#CellClass#> cellWithTableView:tableView];
-//    cell.model = model;
-//    return cell;
-//}
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 5;
+}
 
-//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-//    return [<#CellClass#> cellHeight];
-//}
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *cell = nil;
+    if (indexPath.row == 0) {
+        cell = [KNBDSFreeOrderNewHouseTableViewCell cellWithTableView:tableView];
+    } else if (indexPath.row == 1) {
+        cell = [KNBDSFreeOrderAddressTableViewCell cellWithTableView:tableView];
+    } else if (indexPath.row == 2) {
+        cell = [KNBDSFreeOrderAreaTableViewCell cellWithTableView:tableView];
+    } else if (indexPath.row == 3) {
+        cell = [KNBDSFreeOrderNameTableViewCell cellWithTableView:tableView];
+    } else {
+        cell = [KNBDSFreeOrderPhoneTableViewCell cellWithTableView:tableView];
+    }
+
+    return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 50;
+}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     return 10;
@@ -118,6 +152,40 @@
         _adImageView.image = KNBImages(@"timg");
     }
     return _adImageView;
+}
+
+- (KNBDesignSketchFreeOrderHeaderView *)headerView {
+    if (!_headerView) {
+        _headerView = [[KNBDesignSketchFreeOrderHeaderView alloc] init];
+        _headerView.frame = CGRectMake(0, 0, KNB_SCREEN_WIDTH, 200);
+    }
+    return _headerView;
+}
+
+- (KNBDSFreeOrderFooterView *)footerView {
+    if (!_footerView) {
+        _footerView = [[KNBDSFreeOrderFooterView alloc] init];
+        _footerView.frame = CGRectMake(0, 0, KNB_SCREEN_WIDTH, 65);
+    }
+    return _footerView;
+}
+
+- (UILabel *)titleLabel {
+    if (!_titleLabel) {
+        _titleLabel = [[UILabel alloc] init];
+        _titleLabel.font = [UIFont boldSystemFontOfSize:14];
+        _titleLabel.text = @"服务商:";
+    }
+    return _titleLabel;
+}
+
+- (UIButton *)titleButton {
+    if (!_titleButton) {
+        _titleButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_titleButton setTitle:@"装饰公司" forState:UIControlStateNormal];
+        [_titleButton setImage:KNBImages(@"KNBMe_5") forState:UIControlStateNormal];
+    }
+    return _titleButton;
 }
 
 @end

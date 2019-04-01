@@ -112,9 +112,9 @@ const NSInteger KNTabBarButtonTitleLabelTag = 666;
         CGRect titleLabelFrame = CGRectMake(0, 35, buttonWith, 20);
         if (i == 2) {
             CGFloat plusX = buttonWith * i;
-            CGFloat plusY = - 15;
+            CGFloat plusY = - 25;
             button.frame = CGRectMake(plusX, plusY, buttonWith, KNB_TAB_HEIGHT + 15);
-            titleLabelFrame = CGRectMake(0, 50, buttonWith, 20);
+            titleLabelFrame = CGRectMake(0, 60, buttonWith, 20);
         } else {
             button.frame = CGRectMake(buttonWith * i, 0, buttonWith, KNB_TAB_HEIGHT);
         }
@@ -133,6 +133,9 @@ const NSInteger KNTabBarButtonTitleLabelTag = 666;
 //            [self tabBarPressed:button];
 //            button.selected = YES;
 //        }
+        if (i == 0) {
+            button.selected = YES;
+        }
         [self.tabBarView insertSubview:button atIndex:i];
         [self.buttonsArray addObject:button];
     }
@@ -166,18 +169,6 @@ const NSInteger KNTabBarButtonTitleLabelTag = 666;
     }
 }
 
-////缩放动画
-//- (void)addScaleAnimationOnView:(UIView *)animationView {
-//    CAKeyframeAnimation *animation = [CAKeyframeAnimation animation];
-//    animation.keyPath = @"transform.scale";
-//    animation.values = @[ @1.0, @1.3, @0.9, @1.15, @0.95, @1.02, @1.0 ];
-//    animation.duration = 1;
-//    animation.repeatCount = 1;
-//    animation.calculationMode = kCAAnimationCubic;
-//    [animationView.layer addAnimation:animation forKey:nil];
-//}
-
-
 #pragma mark - Getter
 - (UIView *)tabBarView {
     if (!_tabBarView) {
@@ -208,11 +199,11 @@ const NSInteger KNTabBarButtonTitleLabelTag = 666;
 
 - (NSArray *)unSelectImgArray {
     if (!_unSelectImgArray) {
-        _unSelectImgArray = @[ @"1",
-                               @"2",
-                               @"5",
-                               @"3",
-                               @"4"
+        _unSelectImgArray = @[ @"knb_tabbar_home_unselect",
+                               @"knb_tabbar_design_unselect",
+                               @"knb_tabbar_appointment",
+                               @"knb_tabbar_business_unselect",
+                               @"knb_tabbar_me_unselect"
                                ];
     }
     return _unSelectImgArray;
@@ -220,11 +211,11 @@ const NSInteger KNTabBarButtonTitleLabelTag = 666;
 
 - (NSArray *)selectImgArray {
     if (!_selectImgArray) {
-        _selectImgArray = @[ @"1_selected",
-                             @"2_selected",
-                             @"5",
-                             @"3_selected",
-                             @"4_selected"
+        _selectImgArray = @[ @"knb_tabbar_home_select",
+                             @"knb_tabbar_design_select",
+                             @"knb_tabbar_appointment",
+                             @"knb_tabbar_business_select",
+                             @"knb_tabbar_me_select"
                              ];
     }
     return _selectImgArray;

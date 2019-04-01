@@ -7,6 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		961C52EA2251A56F0089E997 /* KNBDesignSketchFreeOrderHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 961C52E92251A56F0089E997 /* KNBDesignSketchFreeOrderHeaderView.m */; };
+		961C52EE2251A8450089E997 /* KNBDSFreeOrderNewHouseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 961C52EC2251A8450089E997 /* KNBDSFreeOrderNewHouseTableViewCell.m */; };
+		961C52EF2251A8450089E997 /* KNBDSFreeOrderNewHouseTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 961C52ED2251A8450089E997 /* KNBDSFreeOrderNewHouseTableViewCell.xib */; };
+		961C52F32251A8710089E997 /* KNBDSFreeOrderAddressTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 961C52F12251A8710089E997 /* KNBDSFreeOrderAddressTableViewCell.m */; };
+		961C52F42251A8710089E997 /* KNBDSFreeOrderAddressTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 961C52F22251A8710089E997 /* KNBDSFreeOrderAddressTableViewCell.xib */; };
+		961C52F82251A8C00089E997 /* KNBDSFreeOrderAreaTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 961C52F62251A8C00089E997 /* KNBDSFreeOrderAreaTableViewCell.m */; };
+		961C52F92251A8C00089E997 /* KNBDSFreeOrderAreaTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 961C52F72251A8C00089E997 /* KNBDSFreeOrderAreaTableViewCell.xib */; };
+		961C52FD2251A8E50089E997 /* KNBDSFreeOrderNameTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 961C52FB2251A8E50089E997 /* KNBDSFreeOrderNameTableViewCell.m */; };
+		961C52FE2251A8E50089E997 /* KNBDSFreeOrderNameTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 961C52FC2251A8E50089E997 /* KNBDSFreeOrderNameTableViewCell.xib */; };
+		961C53022251A8FC0089E997 /* KNBDSFreeOrderPhoneTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 961C53002251A8FC0089E997 /* KNBDSFreeOrderPhoneTableViewCell.m */; };
+		961C53032251A8FC0089E997 /* KNBDSFreeOrderPhoneTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 961C53012251A8FC0089E997 /* KNBDSFreeOrderPhoneTableViewCell.xib */; };
+		961C53062251A9310089E997 /* KNBDSFreeOrderFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 961C53052251A9310089E997 /* KNBDSFreeOrderFooterView.m */; };
 		966169B7224DAB6400FB2D01 /* KNBMeHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 966169B6224DAB6400FB2D01 /* KNBMeHeaderView.m */; };
 		966169BB224DAB7600FB2D01 /* KNBMeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 966169B9224DAB7600FB2D01 /* KNBMeTableViewCell.m */; };
 		966169BC224DAB7600FB2D01 /* KNBMeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 966169BA224DAB7600FB2D01 /* KNBMeTableViewCell.xib */; };
@@ -124,6 +136,25 @@
 		250E20706DF350D6DFABC34B /* Pods-FishFinishing.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FishFinishing.release.xcconfig"; path = "Pods/Target Support Files/Pods-FishFinishing/Pods-FishFinishing.release.xcconfig"; sourceTree = "<group>"; };
 		2A005F4211F7C68C8953E2D2 /* Pods-FishFinishing.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FishFinishing.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FishFinishing/Pods-FishFinishing.debug.xcconfig"; sourceTree = "<group>"; };
 		7A4C03A400C3DD905C0BF54B /* libPods-FishFinishing.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FishFinishing.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		961C52E82251A56F0089E997 /* KNBDesignSketchFreeOrderHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNBDesignSketchFreeOrderHeaderView.h; sourceTree = "<group>"; };
+		961C52E92251A56F0089E997 /* KNBDesignSketchFreeOrderHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNBDesignSketchFreeOrderHeaderView.m; sourceTree = "<group>"; };
+		961C52EB2251A8450089E997 /* KNBDSFreeOrderNewHouseTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNBDSFreeOrderNewHouseTableViewCell.h; sourceTree = "<group>"; };
+		961C52EC2251A8450089E997 /* KNBDSFreeOrderNewHouseTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNBDSFreeOrderNewHouseTableViewCell.m; sourceTree = "<group>"; };
+		961C52ED2251A8450089E997 /* KNBDSFreeOrderNewHouseTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KNBDSFreeOrderNewHouseTableViewCell.xib; sourceTree = "<group>"; };
+		961C52F02251A8710089E997 /* KNBDSFreeOrderAddressTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNBDSFreeOrderAddressTableViewCell.h; sourceTree = "<group>"; };
+		961C52F12251A8710089E997 /* KNBDSFreeOrderAddressTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNBDSFreeOrderAddressTableViewCell.m; sourceTree = "<group>"; };
+		961C52F22251A8710089E997 /* KNBDSFreeOrderAddressTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KNBDSFreeOrderAddressTableViewCell.xib; sourceTree = "<group>"; };
+		961C52F52251A8C00089E997 /* KNBDSFreeOrderAreaTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNBDSFreeOrderAreaTableViewCell.h; sourceTree = "<group>"; };
+		961C52F62251A8C00089E997 /* KNBDSFreeOrderAreaTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNBDSFreeOrderAreaTableViewCell.m; sourceTree = "<group>"; };
+		961C52F72251A8C00089E997 /* KNBDSFreeOrderAreaTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KNBDSFreeOrderAreaTableViewCell.xib; sourceTree = "<group>"; };
+		961C52FA2251A8E50089E997 /* KNBDSFreeOrderNameTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNBDSFreeOrderNameTableViewCell.h; sourceTree = "<group>"; };
+		961C52FB2251A8E50089E997 /* KNBDSFreeOrderNameTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNBDSFreeOrderNameTableViewCell.m; sourceTree = "<group>"; };
+		961C52FC2251A8E50089E997 /* KNBDSFreeOrderNameTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KNBDSFreeOrderNameTableViewCell.xib; sourceTree = "<group>"; };
+		961C52FF2251A8FC0089E997 /* KNBDSFreeOrderPhoneTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNBDSFreeOrderPhoneTableViewCell.h; sourceTree = "<group>"; };
+		961C53002251A8FC0089E997 /* KNBDSFreeOrderPhoneTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNBDSFreeOrderPhoneTableViewCell.m; sourceTree = "<group>"; };
+		961C53012251A8FC0089E997 /* KNBDSFreeOrderPhoneTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KNBDSFreeOrderPhoneTableViewCell.xib; sourceTree = "<group>"; };
+		961C53042251A9310089E997 /* KNBDSFreeOrderFooterView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNBDSFreeOrderFooterView.h; sourceTree = "<group>"; };
+		961C53052251A9310089E997 /* KNBDSFreeOrderFooterView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNBDSFreeOrderFooterView.m; sourceTree = "<group>"; };
 		966169B5224DAB6400FB2D01 /* KNBMeHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNBMeHeaderView.h; sourceTree = "<group>"; };
 		966169B6224DAB6400FB2D01 /* KNBMeHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNBMeHeaderView.m; sourceTree = "<group>"; };
 		966169B8224DAB7600FB2D01 /* KNBMeTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNBMeTableViewCell.h; sourceTree = "<group>"; };
@@ -964,6 +995,25 @@
 				96E5540F224CA65500D025C4 /* KNBDesignSketchCollectionSectionView.h */,
 				96E55410224CA65500D025C4 /* KNBDesignSketchCollectionSectionView.m */,
 				96E55416224CB54D00D025C4 /* KNBDesignSketchCollectionSectionView.xib */,
+				961C52E82251A56F0089E997 /* KNBDesignSketchFreeOrderHeaderView.h */,
+				961C52E92251A56F0089E997 /* KNBDesignSketchFreeOrderHeaderView.m */,
+				961C52EB2251A8450089E997 /* KNBDSFreeOrderNewHouseTableViewCell.h */,
+				961C52EC2251A8450089E997 /* KNBDSFreeOrderNewHouseTableViewCell.m */,
+				961C52ED2251A8450089E997 /* KNBDSFreeOrderNewHouseTableViewCell.xib */,
+				961C52F02251A8710089E997 /* KNBDSFreeOrderAddressTableViewCell.h */,
+				961C52F12251A8710089E997 /* KNBDSFreeOrderAddressTableViewCell.m */,
+				961C52F22251A8710089E997 /* KNBDSFreeOrderAddressTableViewCell.xib */,
+				961C52F52251A8C00089E997 /* KNBDSFreeOrderAreaTableViewCell.h */,
+				961C52F62251A8C00089E997 /* KNBDSFreeOrderAreaTableViewCell.m */,
+				961C52F72251A8C00089E997 /* KNBDSFreeOrderAreaTableViewCell.xib */,
+				961C52FA2251A8E50089E997 /* KNBDSFreeOrderNameTableViewCell.h */,
+				961C52FB2251A8E50089E997 /* KNBDSFreeOrderNameTableViewCell.m */,
+				961C52FC2251A8E50089E997 /* KNBDSFreeOrderNameTableViewCell.xib */,
+				961C52FF2251A8FC0089E997 /* KNBDSFreeOrderPhoneTableViewCell.h */,
+				961C53002251A8FC0089E997 /* KNBDSFreeOrderPhoneTableViewCell.m */,
+				961C53012251A8FC0089E997 /* KNBDSFreeOrderPhoneTableViewCell.xib */,
+				961C53042251A9310089E997 /* KNBDSFreeOrderFooterView.h */,
+				961C53052251A9310089E997 /* KNBDSFreeOrderFooterView.m */,
 			);
 			path = DesignSketchView;
 			sourceTree = "<group>";
@@ -1063,15 +1113,20 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				961C53032251A8FC0089E997 /* KNBDSFreeOrderPhoneTableViewCell.xib in Resources */,
+				961C52F92251A8C00089E997 /* KNBDSFreeOrderAreaTableViewCell.xib in Resources */,
 				966AA519224A00D700EDBF5F /* KNBStartPageView.xib in Resources */,
 				966AA57D224A2D3E00EDBF5F /* KNBHomeCategoryTableViewCell.xib in Resources */,
 				96E5541C224CCD4200D025C4 /* KNBMe.plist in Resources */,
+				961C52F42251A8710089E997 /* KNBDSFreeOrderAddressTableViewCell.xib in Resources */,
 				96B097F22249C69300154643 /* LaunchScreen.storyboard in Resources */,
 				966AA51A224A00D700EDBF5F /* KNBStartPage.plist in Resources */,
 				96FDB4CC224B553F005844E7 /* KNBHomeRecommendSubTableViewCell.xib in Resources */,
 				96B097EF2249C69300154643 /* Assets.xcassets in Resources */,
 				96E55417224CB54D00D025C4 /* KNBDesignSketchCollectionSectionView.xib in Resources */,
+				961C52FE2251A8E50089E997 /* KNBDSFreeOrderNameTableViewCell.xib in Resources */,
 				966169BC224DAB7600FB2D01 /* KNBMeTableViewCell.xib in Resources */,
+				961C52EF2251A8450089E997 /* KNBDSFreeOrderNewHouseTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1150,6 +1205,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				961C53022251A8FC0089E997 /* KNBDSFreeOrderPhoneTableViewCell.m in Sources */,
+				961C52F32251A8710089E997 /* KNBDSFreeOrderAddressTableViewCell.m in Sources */,
 				96FDB4C4224B1641005844E7 /* KNBHomeDoctorSubCell.m in Sources */,
 				966AA546224A033000EDBF5F /* XHLaunchAdConfiguration.m in Sources */,
 				96B098972249CC1000154643 /* UIImage+WaterMark.m in Sources */,
@@ -1200,6 +1257,7 @@
 				96B098A62249CC1000154643 /* UIButton+ArrayButton.m in Sources */,
 				96B0989B2249CC1000154643 /* UIImage+RoundedCorner.m in Sources */,
 				96B098AF2249CC1000154643 /* AlivcStringDrawing.m in Sources */,
+				961C52EA2251A56F0089E997 /* KNBDesignSketchFreeOrderHeaderView.m in Sources */,
 				96B098A32249CC1000154643 /* UIButton+ChangeTitleLeft.m in Sources */,
 				96B098BE2249CC1000154643 /* NSDate+BTAddition.m in Sources */,
 				96B098D22249D6F700154643 /* KNGetUserLoaction.m in Sources */,
@@ -1219,6 +1277,7 @@
 				96B098A92249CC1000154643 /* UITextView+ZWPlaceHolder.m in Sources */,
 				966AA543224A033000EDBF5F /* XHLaunchAdController.m in Sources */,
 				96B098322249CB8800154643 /* KNWebViewController.m in Sources */,
+				961C52EE2251A8450089E997 /* KNBDSFreeOrderNewHouseTableViewCell.m in Sources */,
 				96B098992249CC1000154643 /* UIImage+QRCode.m in Sources */,
 				966AA51B224A00D700EDBF5F /* KNBStartPageView.m in Sources */,
 				96B098A82249CC1000154643 /* UIView+Frame.m in Sources */,
@@ -1229,12 +1288,15 @@
 				966AA53C224A033000EDBF5F /* FLAnimatedImageView.m in Sources */,
 				966AA53B224A033000EDBF5F /* FLAnimatedImage.m in Sources */,
 				96B098B22249CC1000154643 /* NSString+HTML.m in Sources */,
+				961C52FD2251A8E50089E997 /* KNBDSFreeOrderNameTableViewCell.m in Sources */,
 				96FDB4CF224B62D6005844E7 /* KNBLoginViewController.m in Sources */,
 				96B098AE2249CC1000154643 /* UIImageView+KNBImage.m in Sources */,
 				96B098352249CB8800154643 /* KNBBaseRequestAccessory.m in Sources */,
+				961C53062251A9310089E997 /* KNBDSFreeOrderFooterView.m in Sources */,
 				96B098A72249CC1000154643 /* UIColor+Hex.m in Sources */,
 				96811888224F5F7B00E4A622 /* KNBDesignSketchFreeOrderViewController.m in Sources */,
 				96B0989C2249CC1000154643 /* UIImage+Resize.m in Sources */,
+				961C52F82251A8C00089E997 /* KNBDSFreeOrderAreaTableViewCell.m in Sources */,
 				966AA581224A2D7000EDBF5F /* KNBHomeDesignSketchTableViewCell.m in Sources */,
 				966AA53F224A033000EDBF5F /* XHLaunchAdButton.m in Sources */,
 				96B098AB2249CC1000154643 /* NSURL+Video.m in Sources */,
