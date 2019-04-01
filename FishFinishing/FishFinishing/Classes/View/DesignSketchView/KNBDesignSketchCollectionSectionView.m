@@ -10,8 +10,7 @@
 #import "XDSDropDownMenu.h"
 
 @interface KNBDesignSketchCollectionSectionView ()<XDSDropDownMenuDelegate>
-@property (weak, nonatomic) IBOutlet UIButton *typeButton;
-@property (weak, nonatomic) IBOutlet UIButton *areaButton;
+//按钮数组
 @property (nonatomic, strong)  NSArray *buttonArray;
 @property (nonatomic, strong)  NSArray *dropDownMenuArray;
 @end
@@ -21,6 +20,8 @@
     XDSDropDownMenu *typeDropDownMenu;
     XDSDropDownMenu *areaDropDownMenu;
 }
+
+#pragma mark - life cycle
 - (instancetype)init {
     if (self = [super init]) {
 
@@ -31,8 +32,8 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     [self setArrays]; //配置buttonArray和dropDownMenuArray
-//    [self setButtons];//设置按钮边框和圆角
 }
+
 #pragma mark - 配置buttonArray和dropDownMenuArray
 - (void)setArrays{
     
@@ -52,6 +53,7 @@
         nextDropDownMenu.tag = 1000;
     }
 }
+
 #pragma mark - 风格按钮
 - (IBAction)styleBtnClick:(UIButton *)sender {
 //    NSArray *dataArray = @[@"1",@"2",@"3",@"4",@"5",@"6",@"7"];
@@ -62,6 +64,7 @@
         self.optionCompleteBlock(self, KNBOptionViewButtonType_Style);
     }
 }
+
 #pragma mark - 户型按钮
 - (IBAction)typeBtnClick:(UIButton *)sender {
     NSArray *dataArray = @[@"1",@"2",@"3"];
@@ -70,6 +73,7 @@
     [self hideOtherDropDownMenu:typeDropDownMenu];
     
 }
+
 #pragma mark - 面积按钮
 - (IBAction)areaBtnClick:(UIButton *)sender {
     NSArray *dataArray = @[@"man",@"woman"];
@@ -78,6 +82,7 @@
     [self hideOtherDropDownMenu:areaDropDownMenu];
     
 }
+
 #pragma mark - 设置dropDownMenu
 /*
  判断是显示dropDownMenu还是收回dropDownMenu
@@ -97,6 +102,7 @@
         dropDownMenu.tag = 1000;
     }
 }
+
 #pragma mark - 隐藏其它DropDownMenu
 /*
  在点击按钮的时候，隐藏其它打开的下拉菜单（dropDownMenu）
@@ -112,6 +118,7 @@
         }
     }
 }
+
 #pragma mark - 下拉菜单代理
 /*
  在点击下拉菜单后，将其tag值重新设为1000

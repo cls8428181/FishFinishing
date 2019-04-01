@@ -7,9 +7,12 @@
 //
 
 #import "MeViewController.h"
+//views
+#import "KNBMeHeaderView.h"
+#import "KNBMeTableViewCell.h"
 
 @interface MeViewController ()
-
+@property (nonatomic, strong) KNBMeHeaderView *headerView;
 @end
 
 @implementation MeViewController
@@ -37,9 +40,10 @@
 
 #pragma mark - Utils
 - (void)configuration {
-    self.naviView.title = @"我的";
-    self.naviView.titleNaviLabel.textColor = [UIColor blackColor];
+    [self.naviView removeFromSuperview];
     self.view.backgroundColor = [UIColor knBgColor];
+    self.knGroupTableView.tableHeaderView = self.headerView;
+    self.knGroupTableView.frame = CGRectMake(0, 0, KNB_SCREEN_WIDTH, KNB_SCREEN_HEIGHT - KNB_TAB_HEIGHT);
     
 }
 
@@ -66,17 +70,17 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-//    <#CellClass#> *model = self.dataArray[indexPath.section];
-//    <#CellClass#> *cell = [<#CellClass#> cellWithTableView:tableView];
-//    cell.model = model;
-    static NSString *ID = @"cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
-    if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:ID];
-    }
     NSDictionary *dic = self.dataArray[indexPath.section][indexPath.row];
-    cell.textLabel.text = dic[@"title"];
-    cell.imageView.image = KNBImages(dic[@"imageName"]);
+    KNBMeTableViewCell *cell = [KNBMeTableViewCell cellWithTableView:tableView];
+    cell.titleLabel.text = dic[@"title"];
+    cell.iconImageView.image = KNBImages(dic[@"imageName"]);
+    if ([dic[@"title"] isEqualToString:@"我要接单"]) {
+        cell.markImageView.hidden = NO;
+        cell.rightLabel.hidden = NO;
+    } else {
+        cell.markImageView.hidden = YES;
+        cell.rightLabel.hidden = YES;
+    }
     return cell;
 }
 
@@ -102,5 +106,12 @@
 
 #pragma mark - Getters And Setters
 /* getter和setter全部都放在最后*/
+- (KNBMeHeaderView *)headerView {
+    if (!_headerView) {
+        _headerView = [[KNBMeHeaderView alloc] init];
+        _headerView.frame = CGRectMake(0, 0, KNB_SCREEN_WIDTH, KNB_SCREEN_WIDTH * 170/375 + 140);
+    }
+    return _headerView;
+}
 
 @end

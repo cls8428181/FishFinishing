@@ -10,28 +10,18 @@
 
 
 @interface KNBHomeDoctorSubCell ()
-/**
- 头像
- */
+//头像
 @property (nonatomic, strong) UIImageView *headImage;
-
-/**
- 名字工作
- */
+//名字工作
 @property (nonatomic, strong) UILabel *nameLabel;
-
-/**
- 擅长
- */
+//擅长
 @property (nonatomic, strong) UILabel *majorLabel;
-
-/**
- 分割线
- */
+//分割线
 @property (nonatomic, strong) UIView *sepLineView;
+//更多按钮
 @property (nonatomic, strong) UIButton *showMoreButton;
-@end
 
+@end
 
 @implementation KNBHomeDoctorSubCell
 

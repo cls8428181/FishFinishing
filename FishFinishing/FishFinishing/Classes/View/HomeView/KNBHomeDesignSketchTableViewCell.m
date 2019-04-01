@@ -19,6 +19,8 @@
 @end
 
 @implementation KNBHomeDesignSketchTableViewCell
+
+#pragma mark - life cycle
 + (instancetype)cellWithTableView:(UITableView *)tableView {
     static NSString *ID = @"KNBHomeDesignSketchTableViewCell";
     KNBHomeDesignSketchTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
@@ -54,13 +56,10 @@
     }];
 }
 
+#pragma mark - private method
+
 + (CGFloat)cellHeight {
     return 200;
-}
-
-- (void)awakeFromNib {
-    [super awakeFromNib];
-    // Initialization code
 }
 
 #pragma mark - System Delegate

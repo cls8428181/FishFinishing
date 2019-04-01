@@ -19,6 +19,8 @@
 @end
 
 @implementation KNBHomeRecommendTableViewCell
+
+#pragma mark - life cycle
 + (instancetype)cellWithTableView:(UITableView *)tableView {
     static NSString *ID = @"KNBHomeRecommendTableViewCell";
     KNBHomeRecommendTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
@@ -54,12 +56,9 @@
     }];
 }
 
+#pragma mark - private method
 + (CGFloat)cellHeight {
     return 130 * 3 + 45;
-}
-
-- (void)awakeFromNib {
-    [super awakeFromNib];
 }
 
 #pragma mark - tableviewe delegate & datasource

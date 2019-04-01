@@ -19,6 +19,7 @@
 @property (nonatomic, strong) SDCycleScrollView *cycleScrollView;
 // 轮播图数据
 @property (nonatomic, strong) NSArray *bannerArray;
+
 @end
 
 @implementation HomeViewController

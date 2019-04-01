@@ -16,6 +16,7 @@
 @end
 
 @implementation RecruitmentViewController
+
 #pragma mark - life cycle
 - (void)viewDidLoad {
     [super viewDidLoad];

@@ -56,6 +56,7 @@
 @end
 
 @implementation KNBLoginViewController
+
 #pragma mark - life cycle
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -239,6 +240,7 @@
         self.lastView = self.passwordEnterView;
     }
 }
+
 #pragma mark - Event Response
 - (void)backAction {
     [self.verinumView timerControll:NO];
@@ -319,6 +321,7 @@
 - (void)verinumViewTimerControll:(BOOL)startTimer {
     [self.verinumView timerControll:startTimer];
 }
+
 #pragma mark - lazy load
 - (KNBButton *)logoButton {
     if (!_logoButton) {

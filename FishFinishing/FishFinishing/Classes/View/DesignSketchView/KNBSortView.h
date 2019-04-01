@@ -7,23 +7,34 @@
 //
 
 #import <UIKit/UIKit.h>
+@class KNBDesignSketchCollectionSectionView;
 
 typedef void (^KNBeautySort)(NSInteger sortTag);
 
-@class KNBDesignSketchCollectionSectionView;
-
-
 @interface KNBSortView : UIView
 
+/**
+ 弹框高度
+ */
 @property (nonatomic, assign) CGFloat sortViewHeight;
+
+/**
+ 选择之后的回调
+ */
 @property (nonatomic, copy) KNBeautySort sortClicked;
-@property (nonatomic, assign) BOOL isMerchant;
 
+/**
+ 创建弹框
 
+ @param sortArr 文字列表
+ @param superView 父视图
+ @param optionView 定位用
+ */
 - (instancetype)initWithFrame:(CGRect)frame sortArr:(NSArray *)sortArr superView:(UIView *)superView optionView:(KNBDesignSketchCollectionSectionView *)optionView;
 
+/**
+ 展示弹框
+ */
 - (void)showSortViewWithSortTag:(NSInteger)sortTag;
-
-- (void)showMerchantViewWithMerchantTag:(NSInteger)merchantTag;
 
 @end

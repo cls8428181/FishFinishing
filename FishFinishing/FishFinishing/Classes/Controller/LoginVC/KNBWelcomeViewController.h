@@ -13,6 +13,9 @@
 
 @protocol KNBWelcomeVCDelegate <NSObject>
 
+/**
+ 展示引导页的回调
+ */
 - (void)isShowGuidePageViewComplete;
 
 @end

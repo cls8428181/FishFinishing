@@ -9,6 +9,8 @@
 #import "KNBHomeCategoryTableViewCell.h"
 
 @implementation KNBHomeCategoryTableViewCell
+
+#pragma mark - life cycle
 + (instancetype)cellWithTableView:(UITableView *)tableView {
     static NSString *ID = @"KNBHomeCategoryTableViewCell";
     KNBHomeCategoryTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
@@ -20,13 +22,9 @@
     return cell;
 }
 
+#pragma mark - private method
 + (CGFloat)cellHeight {
     return 225;
-}
-
-- (void)awakeFromNib {
-    [super awakeFromNib];
-    // Initialization code
 }
 
 @end

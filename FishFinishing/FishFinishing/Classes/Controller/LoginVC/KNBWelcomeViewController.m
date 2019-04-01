@@ -18,9 +18,8 @@
 
 @end
 
-
 @implementation KNBWelcomeViewController
-
+#pragma mark - life cycle
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.view addSubview:self.scrollView];
@@ -53,7 +52,6 @@
         }
     }
 }
-
 
 + (BOOL)isShowGuideView {
 //    // 读取版本信息

@@ -9,21 +9,23 @@
 #import "KNBSortView.h"
 #import "KNBDesignSketchCollectionSectionView.h"
 
-
 @interface KNBSortView ()
-
+//背景视图
 @property (nonatomic, strong) UIView *alphaView;
+//父视图
 @property (nonatomic, strong) UIView *knSuperView;
+//开始视图(用来定位位置)
 @property (nonatomic, strong) KNBDesignSketchCollectionSectionView *optionView;
+//显示文字数组
 @property (nonatomic, strong) NSArray *titleArr;
-
+//按钮数组
 @property (nonatomic, strong) NSMutableArray *sortButtons;
 
 @end
 
-
 @implementation KNBSortView
 
+#pragma mark - life cycle
 - (instancetype)initWithFrame:(CGRect)frame sortArr:(NSArray *)sortArr superView:(UIView *)superView optionView:(KNBDesignSketchCollectionSectionView *)optionView {
     self = [super initWithFrame:frame];
     if (self) {
@@ -61,6 +63,7 @@
     return self;
 }
 
+#pragma mark - private mothed
 - (void)showSortViewWithSortTag:(NSInteger)sortTag {
     self.optionView.styleButton.selected = self.height == 0.0;
     [UIView animateWithDuration:0.2 animations:^{
@@ -78,31 +81,19 @@
         }
     }
 }
-//
-//- (void)showMerchantViewWithMerchantTag:(NSInteger)merchantTag {
-//    self.optionView.merchantButton.selected = self.height == 0.0;
-//    [UIView animateWithDuration:0.2 animations:^{
-//        self.height = self.height == 0.0 ? self.sortViewHeight : 0.0;
-//        self.alphaView.alpha = self.alphaView.alpha == 0.0 ? 0.7 : 0.0;
-//    }];
-//    if (merchantTag > 99) {
-//        [self.optionView.merchantButton setTitle:self.titleArr[merchantTag - 100] forState:UIControlStateNormal];
-//        for (int i = 0; i < self.titleArr.count; i++) {
-//            UIButton *btn = (UIButton *)self.sortButtons[i];
-//            [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-//            if (i == merchantTag - 100) {
-//                [btn setTitleColor:[UIColor knThemeColor] forState:UIControlStateNormal];
-//            }
-//        }
-//    }
-//}
 
+#pragma mark - event response
 - (void)sortBtnAction:(UIButton *)button {
     if (self.sortClicked) {
         self.sortClicked(button.tag);
     }
 }
 
+- (void)alphaViewAction:(UITapGestureRecognizer *)tap {
+    [self showSortViewWithSortTag:0];
+}
+
+#pragma mark - lazy load
 - (NSMutableArray *)sortButtons {
     if (!_sortButtons) {
         _sortButtons = [[NSMutableArray alloc] init];
@@ -121,14 +112,6 @@
         [self.knSuperView insertSubview:_alphaView belowSubview:self];
     }
     return _alphaView;
-}
-
-- (void)alphaViewAction:(UITapGestureRecognizer *)tap {
-    if (self.isMerchant) {
-        [self showMerchantViewWithMerchantTag:0];
-    } else {
-        [self showSortViewWithSortTag:0];
-    }
 }
 
 @end

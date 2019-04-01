@@ -16,8 +16,25 @@ typedef NS_ENUM(NSInteger, KNBOptionViewButtonType) {
 NS_ASSUME_NONNULL_BEGIN
 
 @interface KNBDesignSketchCollectionSectionView : UICollectionReusableView
+
+/**
+ 风格按钮
+ */
 @property (weak, nonatomic) IBOutlet UIButton *styleButton;
 
+/**
+ 类型按钮
+ */
+@property (weak, nonatomic) IBOutlet UIButton *typeButton;
+
+/**
+ 面积按钮
+ */
+@property (weak, nonatomic) IBOutlet UIButton *areaButton;
+
+/**
+ 选择之后的回调
+ */
 @property (nonatomic, copy) void (^optionCompleteBlock)(KNBDesignSketchCollectionSectionView *optionView, KNBOptionViewButtonType type);
 
 @end

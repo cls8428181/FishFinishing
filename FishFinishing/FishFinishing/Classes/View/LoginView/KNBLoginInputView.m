@@ -30,6 +30,7 @@
 
 @implementation KNBLoginInputView
 
+#pragma mark - life cycle
 - (instancetype)initWithFrame:(CGRect)frame viewType:(KNBLoginInputViewType)viewType {
     if (self = [super initWithFrame:frame]) {
         self.viewType = viewType;
@@ -177,6 +178,7 @@
         dispatch_resume(_timer);
     }
 }
+
 #pragma mark - Event Response
 - (void)selectVeriNumClick:(KNBButton *)sender {
     if (self.getVerifyCodeBlock) {

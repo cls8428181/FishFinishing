@@ -12,16 +12,21 @@
 #import "KNBDesignSketchCollectionSectionView.h"
 #import "KNBSortView.h"
 
+//controllers
+#import "KNBDesignSketchDetailViewController.h"
+
 @interface DesignSketchViewController ()<UICollectionViewDelegate, UICollectionViewDataSource>
 //滑动区域
 @property (nonatomic, strong) UICollectionView *collectionView;
-//
+//筛选弹框
 @property (nonatomic, strong) KNBSortView *sortView;
-
+//顶部下拉筛选
 @property (nonatomic, strong) KNBDesignSketchCollectionSectionView *sectionView;
+
 @end
 
 @implementation DesignSketchViewController
+
 #pragma mark - life cycle
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -119,6 +124,8 @@
 
 //cell的点击事件
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    KNBDesignSketchDetailViewController *detailVC = [[KNBDesignSketchDetailViewController alloc] init];
+    [self.navigationController pushViewController:detailVC animated:YES];
 }
 
 #pragma mark - Event Response

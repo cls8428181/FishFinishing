@@ -16,6 +16,7 @@
 
 @implementation KNBHomeSectionView
 
+#pragma mark - life cycle
 - (instancetype)init {
     if (self = [super init]) {
         [self addSubview:self.lineView];
