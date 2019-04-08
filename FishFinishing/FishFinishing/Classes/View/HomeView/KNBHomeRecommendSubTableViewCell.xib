@@ -12,14 +12,14 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="234" id="KGk-i7-Jjw" customClass="KNBHomeRecommendSubTableViewCell">
-            <rect key="frame" x="0.0" y="0.0" width="539" height="234"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="261" id="KGk-i7-Jjw" customClass="KNBHomeRecommendSubTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="555" height="261"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="539" height="233.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="555" height="260.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="knb_icon_logo" translatesAutoresizingMaskIntoConstraints="NO" id="HIa-Xo-MwE">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="knb_default_user" translatesAutoresizingMaskIntoConstraints="NO" id="HIa-Xo-MwE">
                         <rect key="frame" x="12" y="18" width="38" height="38"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="38" id="0W2-7D-gyp"/>
@@ -27,33 +27,33 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="装饰设计" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bwf-CD-5lp">
-                        <rect key="frame" x="60" y="25" width="57.5" height="0.0"/>
+                        <rect key="frame" x="60" y="25" width="57.5" height="17"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="1_selected" translatesAutoresizingMaskIntoConstraints="NO" id="o7B-JC-lNG">
-                        <rect key="frame" x="127.5" y="14.5" width="21" height="21"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="knb_home_icon_rz" translatesAutoresizingMaskIntoConstraints="NO" id="o7B-JC-lNG">
+                        <rect key="frame" x="127.5" y="29.5" width="20" height="8"/>
                     </imageView>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="252" verticalHuggingPriority="251" image="1_selected" translatesAutoresizingMaskIntoConstraints="NO" id="7Fh-QU-4nn">
-                        <rect key="frame" x="60" y="35" width="21" height="21"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="252" verticalHuggingPriority="251" image="knb_home_icon_posi" translatesAutoresizingMaskIntoConstraints="NO" id="7Fh-QU-4nn">
+                        <rect key="frame" x="60" y="52" width="9" height="12"/>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0km" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4mX-oM-hmx" userLabel="距离">
-                        <rect key="frame" x="507" y="19.5" width="19" height="11"/>
+                        <rect key="frame" x="523" y="28" width="19" height="11"/>
                         <fontDescription key="fontDescription" type="system" pointSize="9"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1So-QH-vyD" userLabel="拨打电话">
-                        <rect key="frame" x="506" y="35.5" width="20" height="20"/>
+                        <rect key="frame" x="522" y="44" width="20" height="20"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="20" id="ZZu-4O-ssh"/>
                             <constraint firstAttribute="width" constant="20" id="coW-Rz-fVI"/>
                         </constraints>
-                        <state key="normal" image="1_selected"/>
+                        <state key="normal" image="knb_home_icon_phone"/>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="45A-Yu-BAd" userLabel="预约免费量房">
-                        <rect key="frame" x="466" y="60.5" width="60" height="24"/>
+                        <rect key="frame" x="482" y="69" width="60" height="24"/>
                         <color key="backgroundColor" red="0.0" green="0.58823529411764708" blue="0.90196078431372551" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="24" id="D9P-qB-nF2"/>
@@ -69,41 +69,53 @@
                         </userDefinedRuntimeAttributes>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="北京市门头沟区大于接到订单接到觉得时间" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JmK-Rz-MDv">
-                        <rect key="frame" x="86" y="35" width="340" height="0.0"/>
+                        <rect key="frame" x="74" y="52" width="368" height="14.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="P5y-CN-f0n" userLabel="tagsView">
-                        <rect key="frame" x="60" y="58" width="376" height="23"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <rect key="frame" x="60" y="76.5" width="392" height="85"/>
+                    </view>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="knb_home_zs" translatesAutoresizingMaskIntoConstraints="NO" id="Q5K-z3-LId">
+                        <rect key="frame" x="192.5" y="170.5" width="170" height="75"/>
+                    </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="knb_home_zs" translatesAutoresizingMaskIntoConstraints="NO" id="7qM-7d-U19">
+                        <rect key="frame" x="12" y="170.5" width="170.5" height="75"/>
+                    </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="knb_home_zs" translatesAutoresizingMaskIntoConstraints="NO" id="y9d-2m-amS">
+                        <rect key="frame" x="372.5" y="170.5" width="170.5" height="75"/>
+                    </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="knb_home_icon_zd" translatesAutoresizingMaskIntoConstraints="NO" id="Mh1-wL-7eT">
+                        <rect key="frame" x="157.5" y="29" width="20" height="9"/>
+                    </imageView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c6x-cX-UEB">
+                        <rect key="frame" x="12" y="259.5" width="531" height="1"/>
+                        <color key="backgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.94901960784313721" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="23" id="2QB-Cl-YUT"/>
+                            <constraint firstAttribute="height" constant="1" id="iZU-nX-a71"/>
                         </constraints>
                     </view>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="timg" translatesAutoresizingMaskIntoConstraints="NO" id="Q5K-z3-LId">
-                        <rect key="frame" x="187" y="91" width="165" height="127.5"/>
-                    </imageView>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="timg" translatesAutoresizingMaskIntoConstraints="NO" id="7qM-7d-U19">
-                        <rect key="frame" x="12" y="91" width="165" height="127.5"/>
-                    </imageView>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="timg" translatesAutoresizingMaskIntoConstraints="NO" id="y9d-2m-amS">
-                        <rect key="frame" x="362" y="91" width="165" height="127.5"/>
-                    </imageView>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="y9d-2m-amS" secondAttribute="trailing" constant="12" id="96O-EX-KU6"/>
                     <constraint firstItem="4mX-oM-hmx" firstAttribute="centerY" secondItem="o7B-JC-lNG" secondAttribute="centerY" id="9tS-gZ-hqp"/>
                     <constraint firstItem="JmK-Rz-MDv" firstAttribute="leading" secondItem="7Fh-QU-4nn" secondAttribute="trailing" constant="5" id="AOs-UR-2UM"/>
                     <constraint firstItem="HIa-Xo-MwE" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="18" id="Cav-CQ-f8i"/>
+                    <constraint firstAttribute="bottom" secondItem="c6x-cX-UEB" secondAttribute="bottom" id="DAc-GA-p3u"/>
                     <constraint firstItem="y9d-2m-amS" firstAttribute="width" secondItem="7qM-7d-U19" secondAttribute="width" id="Eww-7P-rX6"/>
-                    <constraint firstItem="7qM-7d-U19" firstAttribute="top" secondItem="P5y-CN-f0n" secondAttribute="bottom" constant="10" id="I7p-ke-snn"/>
+                    <constraint firstItem="7qM-7d-U19" firstAttribute="top" secondItem="P5y-CN-f0n" secondAttribute="bottom" constant="9" id="I7p-ke-snn"/>
                     <constraint firstItem="45A-Yu-BAd" firstAttribute="top" secondItem="1So-QH-vyD" secondAttribute="bottom" constant="5" id="J6s-ey-muo"/>
+                    <constraint firstItem="JmK-Rz-MDv" firstAttribute="top" secondItem="Bwf-CD-5lp" secondAttribute="bottom" constant="10" id="KOW-9X-o7D"/>
+                    <constraint firstItem="c6x-cX-UEB" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="12" id="KTq-tR-Dlu"/>
                     <constraint firstAttribute="trailing" secondItem="45A-Yu-BAd" secondAttribute="trailing" constant="13" id="Lbn-YB-cLI"/>
-                    <constraint firstItem="y9d-2m-amS" firstAttribute="top" secondItem="P5y-CN-f0n" secondAttribute="bottom" constant="10" id="M10-23-GKl"/>
+                    <constraint firstItem="y9d-2m-amS" firstAttribute="top" secondItem="P5y-CN-f0n" secondAttribute="bottom" constant="9" id="M10-23-GKl"/>
                     <constraint firstItem="o7B-JC-lNG" firstAttribute="centerY" secondItem="Bwf-CD-5lp" secondAttribute="centerY" id="RmF-eS-mLT"/>
+                    <constraint firstItem="Mh1-wL-7eT" firstAttribute="centerY" secondItem="o7B-JC-lNG" secondAttribute="centerY" id="S3t-GD-Y5m"/>
+                    <constraint firstItem="P5y-CN-f0n" firstAttribute="top" secondItem="JmK-Rz-MDv" secondAttribute="bottom" constant="10" id="Tvl-Wi-Z34"/>
                     <constraint firstItem="y9d-2m-amS" firstAttribute="leading" secondItem="Q5K-z3-LId" secondAttribute="trailing" constant="10" id="Xjn-VQ-vzM"/>
                     <constraint firstItem="HIa-Xo-MwE" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="12" id="YLs-8N-OUZ"/>
+                    <constraint firstItem="Mh1-wL-7eT" firstAttribute="leading" secondItem="o7B-JC-lNG" secondAttribute="trailing" constant="10" id="Z89-1a-i5e"/>
                     <constraint firstItem="o7B-JC-lNG" firstAttribute="leading" secondItem="Bwf-CD-5lp" secondAttribute="trailing" constant="10" id="ZPB-z2-YRZ"/>
                     <constraint firstItem="Bwf-CD-5lp" firstAttribute="leading" secondItem="HIa-Xo-MwE" secondAttribute="trailing" constant="10" id="a77-NY-ONH"/>
                     <constraint firstItem="7qM-7d-U19" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="12" id="cO0-aj-U7z"/>
@@ -111,28 +123,33 @@
                     <constraint firstItem="7Fh-QU-4nn" firstAttribute="leading" secondItem="HIa-Xo-MwE" secondAttribute="trailing" constant="10" id="dpw-nQ-rHd"/>
                     <constraint firstItem="Bwf-CD-5lp" firstAttribute="top" secondItem="HIa-Xo-MwE" secondAttribute="top" constant="7" id="eWB-61-Z9v"/>
                     <constraint firstAttribute="trailing" secondItem="1So-QH-vyD" secondAttribute="trailing" constant="13" id="ehX-3O-TpY"/>
-                    <constraint firstItem="P5y-CN-f0n" firstAttribute="top" secondItem="JmK-Rz-MDv" secondAttribute="bottom" constant="23" id="iLN-ng-ZfI"/>
+                    <constraint firstAttribute="trailing" secondItem="c6x-cX-UEB" secondAttribute="trailing" constant="12" id="h0y-jv-5lS"/>
                     <constraint firstItem="1So-QH-vyD" firstAttribute="top" secondItem="4mX-oM-hmx" secondAttribute="bottom" constant="5" id="kjb-cS-h6n"/>
                     <constraint firstItem="1So-QH-vyD" firstAttribute="leading" secondItem="JmK-Rz-MDv" secondAttribute="trailing" constant="80" id="lyH-hb-yyu"/>
                     <constraint firstAttribute="trailing" secondItem="4mX-oM-hmx" secondAttribute="trailing" constant="13" id="mcb-4a-Aak"/>
                     <constraint firstItem="Q5K-z3-LId" firstAttribute="leading" secondItem="7qM-7d-U19" secondAttribute="trailing" constant="10" id="o07-RI-JtH"/>
                     <constraint firstAttribute="bottom" secondItem="7qM-7d-U19" secondAttribute="bottom" constant="15" id="o0r-83-CNF"/>
-                    <constraint firstItem="Q5K-z3-LId" firstAttribute="top" secondItem="P5y-CN-f0n" secondAttribute="bottom" constant="10" id="peR-nk-2UQ"/>
+                    <constraint firstItem="Q5K-z3-LId" firstAttribute="top" secondItem="P5y-CN-f0n" secondAttribute="bottom" constant="9" id="peR-nk-2UQ"/>
                     <constraint firstItem="45A-Yu-BAd" firstAttribute="leading" secondItem="P5y-CN-f0n" secondAttribute="trailing" constant="30" id="rm9-1g-cvK"/>
                     <constraint firstItem="Q5K-z3-LId" firstAttribute="width" secondItem="7qM-7d-U19" secondAttribute="width" id="tSf-Ny-1yT"/>
-                    <constraint firstItem="7Fh-QU-4nn" firstAttribute="top" secondItem="Bwf-CD-5lp" secondAttribute="bottom" constant="10" id="vhN-yy-yOs"/>
                     <constraint firstItem="y9d-2m-amS" firstAttribute="height" secondItem="7qM-7d-U19" secondAttribute="height" id="xyx-Gh-5jh"/>
                     <constraint firstItem="P5y-CN-f0n" firstAttribute="leading" secondItem="7Fh-QU-4nn" secondAttribute="leading" id="yzw-52-u0k"/>
                     <constraint firstItem="JmK-Rz-MDv" firstAttribute="top" secondItem="7Fh-QU-4nn" secondAttribute="top" id="zqv-gV-LyO"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
-            <point key="canvasLocation" x="304.80000000000001" y="225.78710644677662"/>
+            <connections>
+                <outlet property="tagBgView" destination="P5y-CN-f0n" id="gjH-vd-ZSR"/>
+            </connections>
+            <point key="canvasLocation" x="317.60000000000002" y="237.93103448275863"/>
         </tableViewCell>
     </objects>
     <resources>
-        <image name="1_selected" width="21.5" height="21"/>
-        <image name="knb_icon_logo" width="91" height="91"/>
-        <image name="timg" width="3840" height="2160"/>
+        <image name="knb_default_user" width="39" height="39"/>
+        <image name="knb_home_icon_phone" width="20" height="20"/>
+        <image name="knb_home_icon_posi" width="9.5" height="12.5"/>
+        <image name="knb_home_icon_rz" width="20.5" height="8"/>
+        <image name="knb_home_icon_zd" width="20" height="9"/>
+        <image name="knb_home_zs" width="110" height="75"/>
     </resources>
 </document>

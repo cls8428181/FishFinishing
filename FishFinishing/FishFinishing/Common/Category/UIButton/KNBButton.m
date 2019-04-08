@@ -15,7 +15,7 @@
 @implementation KNBButton
 
 - (void)verticalImageAndTitle:(CGFloat)spacing {
-    CGSize imageSize = self.imageView.frame.size;
+    CGSize imageSize = CGSizeMake(50, 50);
     CGSize titleSize = self.titleLabel.frame.size;
     CGSize textSize = [self.titleLabel.text sizeWithAttributes:@{ @"NSFontAttributeName" : self.titleLabel.font }];
     CGSize frameSize = CGSizeMake(ceilf(textSize.width), ceilf(textSize.height));

@@ -7,8 +7,10 @@
 //
 
 #import "KNBHomeDesignSketchTableViewCell.h"
+//utils
 #import <HMSegmentedControl.h>
-#import "KNBHomeDoctorSubCell.h"
+//views
+#import "KNBHomeDesignSketchSubTableViewCell.h"
 
 @interface KNBHomeDesignSketchTableViewCell () <UICollectionViewDelegate, UICollectionViewDataSource>
 //头部滑动视图
@@ -72,17 +74,12 @@
 }
 //每一个cell是什么
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    KNBHomeDoctorSubCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"KNBHomeDoctorSubCellIdentifier" forIndexPath:indexPath];
-    if (indexPath.row == 4) {
-        [cell showMoreDoctorView];
-    } else {
-        [cell dismissMoreDoctorView];
-    }
+    KNBHomeDesignSketchSubTableViewCell *cell = [KNBHomeDesignSketchSubTableViewCell cellWithCollectionView:collectionView indexPath:indexPath];
     return cell;
 }
 //定义每一个cell的大小
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    return CGSizeMake(149.5, 140);
+    return CGSizeMake(133, 155);
 }
 
 //- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
@@ -132,7 +129,8 @@
         _collectionView.backgroundColor = [UIColor whiteColor];
         _collectionView.delegate = self;
         _collectionView.dataSource = self;
-        [_collectionView registerClass:[KNBHomeDoctorSubCell class] forCellWithReuseIdentifier:@"KNBHomeDoctorSubCellIdentifier"];
+        [_collectionView registerClass:[KNBHomeDesignSketchSubTableViewCell class]
+            forCellWithReuseIdentifier:@"KNBHomeDesignSketchSubTableViewCell"];
 //        [_collectionView registerClass:[KNBCollectionSectionView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"KNBHomeDoctorCellSectionHeaderView"];
 //        [_collectionView registerClass:[KNBCollectionSectionView class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"KNBHomeDoctorCellSectionFooterView"];
     }

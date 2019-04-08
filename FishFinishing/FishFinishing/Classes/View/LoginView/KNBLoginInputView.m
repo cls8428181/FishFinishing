@@ -78,7 +78,7 @@
         [self addSubview:self.lineView];
         
         self.textField.tintColor = [UIColor colorWithHex:0xffb0a1];
-        
+        [self.textField setValue:[UIColor whiteColor] forKeyPath:@"_placeholderLabel.textColor"];
 //        [self addGestureRecognizer:[self addTapGesture]];
     }
     return self;

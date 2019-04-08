@@ -58,7 +58,7 @@
 
 #pragma mark - private method
 + (CGFloat)cellHeight {
-    return 130 * 3 + 45;
+    return 190 * 3 + 60;
 }
 
 #pragma mark - tableviewe delegate & datasource
@@ -78,27 +78,15 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return [KNBHomeRecommendSubTableViewCell cellHeight];
 }
-//
-//- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-//    return CGFLOAT_MIN;
-//}
-//
-//- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-//    return CGFLOAT_MIN;
-//}
-//
-//- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-//    return nil;
-//}
-//
-//- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
-//    return nil;
-//}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    !self.didSelectRowAtIndexPath ?: self.didSelectRowAtIndexPath(indexPath);
+}
 
 #pragma mark - lazy load
 - (HMSegmentedControl *)segmentedControl {
     if (!_segmentedControl) {
-        _segmentedControl = [[HMSegmentedControl alloc] initWithSectionTitles:@[ @"装修公司", @"装修工长", @"设计师   ", @"家居建材" ]];
+        _segmentedControl = [[HMSegmentedControl alloc] initWithSectionTitles:@[ @"装修公司", @"装修工长", @"设计师   ", @"家居建材" ,@"装修工人"]];
         _segmentedControl.titleTextAttributes = @{NSForegroundColorAttributeName : [UIColor blackColor], NSFontAttributeName : [UIFont systemFontOfSize:15.0]};
         _segmentedControl.selectedTitleTextAttributes = @{NSForegroundColorAttributeName : [UIColor colorWithHex:0x009fe8], NSFontAttributeName : [UIFont systemFontOfSize:15.0]};
         _segmentedControl.selectionIndicatorColor = [UIColor colorWithHex:0x009fe8];
@@ -106,6 +94,7 @@
         _segmentedControl.selectionStyle = HMSegmentedControlSelectionStyleTextWidthStripe;
         _segmentedControl.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationDown;
         _segmentedControl.selectionIndicatorEdgeInsets = UIEdgeInsetsMake(0, 20, 0, 40);
+        _segmentedControl.segmentEdgeInset = UIEdgeInsetsMake(0, 0, 0, 20);
         KNB_WS(weakSelf);
         [_segmentedControl setIndexChangeBlock:^(NSInteger index) {
             [weakSelf.tableView reloadData];
@@ -121,6 +110,7 @@
         _tableView.dataSource = self;
         _tableView.backgroundColor = [UIColor whiteColor];
         _tableView.separatorStyle = UITableViewCellSelectionStyleNone;
+        _tableView.scrollEnabled = NO;
     }
     return _tableView;
 }

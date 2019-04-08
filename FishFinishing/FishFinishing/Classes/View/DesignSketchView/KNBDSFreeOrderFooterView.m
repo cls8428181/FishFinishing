@@ -9,7 +9,10 @@
 #import "KNBDSFreeOrderFooterView.h"
 
 @interface KNBDSFreeOrderFooterView ()
-@property (nonatomic, strong) UIButton *enterButton;
+//图标
+@property (nonatomic, strong) UIImageView *iconImageView;
+//内容
+@property (nonatomic, strong) UILabel *contentLabel;
 @end
 
 @implementation KNBDSFreeOrderFooterView
@@ -17,31 +20,42 @@
 #pragma mark - life cycle
 - (instancetype)init {
     if (self = [super init]) {
-        [self addSubview:self.enterButton];
+        [self addSubview:self.iconImageView];
+        [self addSubview:self.contentLabel];
     }
     return self;
 }
 
 - (void)layoutSubviews {
     [super layoutSubviews];
-    [self.enterButton mas_makeConstraints:^(MASConstraintMaker *make) {
+    KNB_WS(weakSelf);
+    [self.iconImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(12);
-        make.right.mas_equalTo(-12);
-        make.top.mas_equalTo(5);
-        make.bottom.mas_equalTo(-5);
+        make.centerY.equalTo(weakSelf);
+    }];
+    [self.contentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(weakSelf.iconImageView.mas_right).mas_offset(10);
+        make.centerY.equalTo(weakSelf);
     }];
 }
 
 #pragma mark - lazy load
-- (UIButton *)enterButton {
-    if (!_enterButton) {
-        _enterButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_enterButton setTitle:@"立即计算" forState:UIControlStateNormal];
-        [_enterButton setBackgroundColor:[UIColor colorWithHex:0x0096e6]];
-        _enterButton.layer.masksToBounds = YES;
-        _enterButton.layer.cornerRadius = 3.f;
+- (UIImageView *)iconImageView {
+    if (!_iconImageView) {
+        _iconImageView = [[UIImageView alloc] init];
+        _iconImageView.image = KNBImages(@"knb_design_asterisk");
     }
-    return _enterButton;
+    return _iconImageView;
+}
+
+- (UILabel *)contentLabel {
+    if (!_contentLabel) {
+        _contentLabel = [[UILabel alloc] init];
+        _contentLabel.text = @"大鱼承诺: 您的私人信息, 不泄露给第三方";
+        _contentLabel.textColor = [UIColor colorWithHex:0x808080];
+        _contentLabel.font = [UIFont systemFontOfSize:12];
+    }
+    return _contentLabel;
 }
 
 @end

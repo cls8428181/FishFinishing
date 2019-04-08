@@ -20,9 +20,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) UIView *searchBgView;
 @property (nonatomic, copy) KNBSearchViewTouchBlock touchBlock;
 
-- (instancetype)initWithFrame:(CGRect)frame isNaviSearch:(BOOL)isNaviSearch;
-- (instancetype)initWithFrame:(CGRect)frame isIMSearch:(BOOL)isIMSearch;
-
 @end
 
 NS_ASSUME_NONNULL_END

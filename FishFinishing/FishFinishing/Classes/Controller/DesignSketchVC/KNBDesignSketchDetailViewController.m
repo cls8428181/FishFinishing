@@ -7,8 +7,6 @@
 //
 
 #import "KNBDesignSketchDetailViewController.h"
-//controllers
-#import "KNBDesignSketchFreeOrderViewController.h"
 
 @interface KNBDesignSketchDetailViewController ()
 //返回按钮
@@ -118,8 +116,7 @@
 }
 
 - (void)orderButtonAction {
-    KNBDesignSketchFreeOrderViewController *freeVC = [[KNBDesignSketchFreeOrderViewController alloc] init];
-    [self.navigationController pushViewController:freeVC animated:YES];
+
 }
 
 #pragma mark - Getters And Setters

@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface KNBHomeRecommendTableViewCell : UITableViewCell
 
+@property (nonatomic, copy) void(^didSelectRowAtIndexPath)(NSIndexPath *indexPath);
 /**
  cell 创建
  */

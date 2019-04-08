@@ -8,7 +8,7 @@
 
 #import "DesignSketchViewController.h"
 //views
-#import "KNBHomeDoctorSubCell.h"
+#import "KNBDesignSketchCollectionViewCell.h"
 #import "KNBDesignSketchCollectionSectionView.h"
 #import "KNBSortView.h"
 
@@ -78,17 +78,12 @@
 }
 //每一个cell是什么
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    KNBHomeDoctorSubCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"KNBHomeDoctorSubCellIdentifier" forIndexPath:indexPath];
-    if (indexPath.row == 4) {
-        [cell showMoreDoctorView];
-    } else {
-        [cell dismissMoreDoctorView];
-    }
+    KNBDesignSketchCollectionViewCell *cell = [KNBDesignSketchCollectionViewCell cellWithCollectionView:collectionView indexPath:indexPath];
     return cell;
 }
 //定义每一个cell的大小
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    return CGSizeMake(170, 225);
+    return CGSizeMake(170, 192);
 }
 
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
@@ -141,6 +136,7 @@
         layout.minimumInteritemSpacing = 10;
         layout.minimumLineSpacing = 10;
         layout.headerReferenceSize = CGSizeMake(KNB_SCREEN_WIDTH, 50); //头视图的大小
+        layout.sectionInset = UIEdgeInsetsMake(10, 12, 10, 12);
 //        layout.footerReferenceSize = CGSizeMake(12.5, 140);
         layout.scrollDirection = UICollectionViewScrollDirectionVertical;
         _collectionView = [[UICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:layout];
@@ -148,7 +144,8 @@
         _collectionView.backgroundColor = [UIColor whiteColor];
         _collectionView.delegate = self;
         _collectionView.dataSource = self;
-        [_collectionView registerClass:[KNBHomeDoctorSubCell class] forCellWithReuseIdentifier:@"KNBHomeDoctorSubCellIdentifier"];
+//        [_collectionView registerClass:[KNBHomeDesignSketchSubTableViewCell class] forCellWithReuseIdentifier:@"KNBHomeDesignSketchSubTableViewCell"];
+        [_collectionView registerNib:[UINib nibWithNibName:@"KNBDesignSketchCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"KNBDesignSketchCollectionViewCell"];
         [_collectionView registerNib:[UINib nibWithNibName:@"KNBDesignSketchCollectionSectionView" bundle:nil] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"KNBDesignSketchCollectionSectionView"];
 //        [_collectionView registerClass:[KNBDesignSketchCollectionSectionView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"KNBDesignSketchCollectionSectionView"];
 //                [_collectionView registerClass:[KNBCollectionSectionView class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"KNBHomeDoctorCellSectionFooterView"];

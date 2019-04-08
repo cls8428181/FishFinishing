@@ -12,6 +12,8 @@
 #import "KNBLoginInputView.h"
 
 @interface KNBLoginViewController ()
+//背景
+@property (nonatomic, strong) UIImageView *bgView;
 //logo
 @property (nonatomic, strong) KNBButton *logoButton;
 //输入手机号带icon
@@ -74,6 +76,9 @@
  */
 - (void)settingConstraints {
     KNB_WS(weakSelf);
+    [self.bgView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(weakSelf.view);
+    }];
     //logo
     [self.logoButton mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(weakSelf.naviView.mas_bottom).mas_offset(40);
@@ -208,11 +213,12 @@
     }
     self.naviView.backgroundColor = [UIColor clearColor];
     [self.naviView addRightBarItemImageName:@"knb_login_close" target:self sel:@selector(backAction)];
-    self.view.backgroundColor = [UIColor orangeColor];
-    
+    [self.naviView removeLeftBarItem];
 }
 
 - (void)addUI {
+    [self.view addSubview:self.bgView];
+    [self.view bringSubviewToFront:self.naviView];
     [self.view addSubview:self.logoButton];
     [self.view addSubview:self.sureButton];
     if (self.vcType == KNBLoginTypeLogin) {
@@ -323,6 +329,14 @@
 }
 
 #pragma mark - lazy load
+- (UIImageView *)bgView {
+    if (!_bgView) {
+        _bgView = [[UIImageView alloc] init];
+        _bgView.image = KNBImages(@"knb_login_registerbg");
+    }
+    return _bgView;
+}
+
 - (KNBButton *)logoButton {
     if (!_logoButton) {
         _logoButton = [KNBButton buttonWithType:UIButtonTypeCustom];

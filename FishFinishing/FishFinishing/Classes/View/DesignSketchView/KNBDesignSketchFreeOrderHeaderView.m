@@ -8,7 +8,17 @@
 
 #import "KNBDesignSketchFreeOrderHeaderView.h"
 
+@interface KNBDesignSketchFreeOrderHeaderView ()
+
+@end
+
 @implementation KNBDesignSketchFreeOrderHeaderView
 
-
+#pragma mark - life cycle
+- (instancetype)init {
+    if (self = [super init]) {
+        
+    }
+    return self;
+}
 @end

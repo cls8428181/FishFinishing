@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="167" id="KGk-i7-Jjw" customClass="KNBHomeCompanyHeaderTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="357" height="167"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="357" height="166.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="knb_default_user" translatesAutoresizingMaskIntoConstraints="NO" id="wi9-yg-jHC">
+                        <rect key="frame" x="12" y="38.5" width="90" height="90"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="90" id="847-sl-307"/>
+                            <constraint firstAttribute="height" constant="90" id="Hsu-5H-1YZ"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="良工装饰" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G4g-FI-1Ds">
+                        <rect key="frame" x="127" y="46.5" width="57.5" height="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="knb_home_icon_rz" translatesAutoresizingMaskIntoConstraints="NO" id="714-i5-YAn">
+                        <rect key="frame" x="194.5" y="51" width="20" height="8"/>
+                    </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="knb_home_icon_posi" translatesAutoresizingMaskIntoConstraints="NO" id="oJe-wc-vI3">
+                        <rect key="frame" x="127" y="73.5" width="9" height="12"/>
+                    </imageView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WWW-vy-9Gc">
+                        <rect key="frame" x="127" y="97" width="218" height="23.5"/>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="地址" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vaS-lq-Ukf">
+                        <rect key="frame" x="142" y="72.5" width="25" height="14.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" red="0.50196078431372548" green="0.50196078431372548" blue="0.50196078431372548" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="WWW-vy-9Gc" firstAttribute="bottom" secondItem="wi9-yg-jHC" secondAttribute="bottom" constant="-8" id="658-Ou-9jd"/>
+                    <constraint firstItem="714-i5-YAn" firstAttribute="leading" secondItem="G4g-FI-1Ds" secondAttribute="trailing" constant="10" id="9tz-GQ-47f"/>
+                    <constraint firstAttribute="trailing" secondItem="WWW-vy-9Gc" secondAttribute="trailing" constant="12" id="Asr-pv-Bdg"/>
+                    <constraint firstItem="714-i5-YAn" firstAttribute="centerY" secondItem="G4g-FI-1Ds" secondAttribute="centerY" id="MIt-aE-MOB"/>
+                    <constraint firstItem="oJe-wc-vI3" firstAttribute="centerY" secondItem="vaS-lq-Ukf" secondAttribute="centerY" id="QUS-ZK-IZo"/>
+                    <constraint firstItem="wi9-yg-jHC" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="12" id="RgT-99-JRv"/>
+                    <constraint firstItem="vaS-lq-Ukf" firstAttribute="leading" secondItem="G4g-FI-1Ds" secondAttribute="leading" constant="15" id="TTB-2w-Z8H"/>
+                    <constraint firstItem="vaS-lq-Ukf" firstAttribute="top" secondItem="G4g-FI-1Ds" secondAttribute="bottom" constant="9" id="VM4-U9-K3t"/>
+                    <constraint firstItem="WWW-vy-9Gc" firstAttribute="top" secondItem="vaS-lq-Ukf" secondAttribute="bottom" constant="10" id="dWN-7e-X1B"/>
+                    <constraint firstItem="wi9-yg-jHC" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="dvh-x4-Xnu"/>
+                    <constraint firstItem="G4g-FI-1Ds" firstAttribute="leading" secondItem="wi9-yg-jHC" secondAttribute="trailing" constant="25" id="etv-XB-XBQ"/>
+                    <constraint firstItem="oJe-wc-vI3" firstAttribute="leading" secondItem="G4g-FI-1Ds" secondAttribute="leading" id="iKd-cG-QzC"/>
+                    <constraint firstItem="WWW-vy-9Gc" firstAttribute="leading" secondItem="G4g-FI-1Ds" secondAttribute="leading" id="qZm-j1-Tdn"/>
+                    <constraint firstItem="G4g-FI-1Ds" firstAttribute="top" secondItem="wi9-yg-jHC" secondAttribute="top" constant="8" id="uiG-IC-jIi"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
+            <connections>
+                <outlet property="tagBgView" destination="WWW-vy-9Gc" id="dPu-hE-h0l"/>
+            </connections>
+            <point key="canvasLocation" x="159.19999999999999" y="195.6521739130435"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="knb_default_user" width="39" height="39"/>
+        <image name="knb_home_icon_posi" width="9.5" height="12.5"/>
+        <image name="knb_home_icon_rz" width="20.5" height="8"/>
+    </resources>
+</document>

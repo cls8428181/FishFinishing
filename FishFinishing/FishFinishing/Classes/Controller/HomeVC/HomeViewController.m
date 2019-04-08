@@ -13,8 +13,13 @@
 #import "KNBHomeDesignSketchTableViewCell.h"
 #import "KNBHomeRecommendTableViewCell.h"
 #import "KNBHomeSectionView.h"
+#import "KNBSearchView.h"
 //controllers
+#import "KNBHomeOfferViewController.h"
+#import "KNBHomeDesignViewController.h"
 #import "KNBLoginViewController.h"
+#import "KNBHomeCompanyDetailViewController.h"
+#import "KNBHomeCompanyListViewController.h"
 #import "AppDelegate.h"
 
 @interface HomeViewController ()<SDCycleScrollViewDelegate>
@@ -22,6 +27,8 @@
 @property (nonatomic, strong) SDCycleScrollView *cycleScrollView;
 // 轮播图数据
 @property (nonatomic, strong) NSArray *bannerArray;
+//搜索
+@property (nonatomic, strong) KNBSearchView *searchView;
 
 @end
 
@@ -56,6 +63,9 @@
 
 - (void)addUI {
     [self.view addSubview:self.knbTableView];
+    [self.view addSubview:self.searchView];
+    [self.view bringSubviewToFront:self.searchView];
+    self.searchView.backgroundColor=[[UIColor colorWithHex:0x0096e6] colorWithAlphaComponent:0];
     self.knbTableView.tableHeaderView = self.cycleScrollView;
     self.knbTableView.frame = CGRectMake(0, 0, KNB_SCREEN_WIDTH, KNB_SCREEN_HEIGHT - KNB_TAB_HEIGHT);
 }
@@ -74,13 +84,49 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    KNB_WS(weakSelf);
     UITableViewCell *cell = nil;
     if (indexPath.section == 0) {
         cell = [KNBHomeCategoryTableViewCell cellWithTableView:tableView];
+        KNBHomeCategoryTableViewCell *blockCell = (KNBHomeCategoryTableViewCell *)cell;
+        blockCell.offerButtonAction = ^{//量房报价
+            KNBHomeOfferViewController *offerVC = [[KNBHomeOfferViewController alloc] init];
+            [weakSelf.navigationController pushViewController:offerVC animated:YES];
+        };
+        blockCell.companyButtonAction = ^{//装修公司
+            KNBHomeCompanyListViewController *companyVC = [[KNBHomeCompanyListViewController alloc] init];
+            companyVC.VCtype = KNBHomeListTypeCompany;
+            [weakSelf.navigationController pushViewController:companyVC animated:YES];
+        };
+        blockCell.foremanButtonAction = ^{//找工长
+            KNBHomeCompanyListViewController *foremanVC = [[KNBHomeCompanyListViewController alloc] init];
+            foremanVC.VCtype = KNBHomeListTypeForeman;
+            [weakSelf.navigationController pushViewController:foremanVC animated:YES];
+        };
+        blockCell.designButtonAction = ^{//找设计
+            KNBHomeDesignViewController *designVC = [[KNBHomeDesignViewController alloc] init];
+            [weakSelf.navigationController pushViewController:designVC animated:YES];
+        };
+        blockCell.materialButtonAction = ^{//家居建材
+            KNBHomeCompanyListViewController *materialVC = [[KNBHomeCompanyListViewController alloc] init];
+            materialVC.VCtype = KNBHomeListTypeMaterial;
+            [weakSelf.navigationController pushViewController:materialVC animated:YES];
+        };
+        blockCell.workerButtonAction = ^{//装修工人
+            KNBHomeCompanyListViewController *workerVC = [[KNBHomeCompanyListViewController alloc] init];
+            workerVC.VCtype = KNBHomeListTypeWorker;
+            [weakSelf.navigationController pushViewController:workerVC animated:YES];
+        };
     } else if (indexPath.section == 1) {
         cell = [KNBHomeDesignSketchTableViewCell cellWithTableView:tableView];
     } else {
         cell = [KNBHomeRecommendTableViewCell cellWithTableView:tableView];
+        KNBHomeRecommendTableViewCell *blockCell = (KNBHomeRecommendTableViewCell *)cell;
+        blockCell.didSelectRowAtIndexPath = ^(NSIndexPath * _Nonnull indexPath) {
+            KNBHomeCompanyDetailViewController *companyVC = [[KNBHomeCompanyDetailViewController alloc] init];
+            [weakSelf.navigationController pushViewController:companyVC animated:YES];
+        };
+
     }
     return cell;
 }
@@ -122,6 +168,27 @@
     [self.navigationController pushViewController:loginVC animated:YES];
 }
 
+#pragma mark - private method
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    // 导航栏处理
+    CGFloat yOffset = scrollView.contentOffset.y;
+    if (yOffset < 0.0) {
+        [UIView animateWithDuration:0.5 animations:^{
+            self.searchView.backgroundColor=[[UIColor colorWithHex:0x0096e6] colorWithAlphaComponent:0];
+        }];
+    } else {
+        [UIView animateWithDuration:0.5 animations:^{
+            self.searchView.backgroundColor=[[UIColor colorWithHex:0x0096e6] colorWithAlphaComponent:1];
+        }];
+    }
+
+    CGFloat maxAlphaOffset = 150;
+    CGFloat alpha = yOffset / (CGFloat)maxAlphaOffset;
+    alpha = (alpha >= 1) ? 1 : alpha;
+    alpha = (alpha <= 0) ? 0 : alpha;
+    self.searchView.backgroundColor=[[UIColor colorWithHex:0x0096e6] colorWithAlphaComponent:alpha];
+}
+
 #pragma mark - Event Response
 /*
  *  所有button、gestureRecognizer的响应事件都放在这个区域里面，不要到处乱放。
@@ -150,5 +217,12 @@
     if (_bannerArray != bannerArray) {
         _bannerArray = bannerArray;
     }
+}
+
+- (KNBSearchView *)searchView {
+    if (!_searchView) {
+        _searchView = [[KNBSearchView alloc] initWithFrame:CGRectMake(0, 0, KNB_SCREEN_WIDTH, KNB_NAV_HEIGHT)];
+    }
+    return _searchView;
 }
 @end

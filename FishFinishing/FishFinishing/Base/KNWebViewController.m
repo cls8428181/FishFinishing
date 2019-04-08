@@ -74,7 +74,7 @@ NSString *const KNWebDocumentTitles = @"document.title";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self.naviView addLeftBarItemImageName:@"icon_navi_back" target:self sel:@selector(backAction)];
+    [self.naviView addLeftBarItemImageName:@"knb_back_black" target:self sel:@selector(backAction)];
     self.showDocumentTitle = YES;
     self.webView.frame = CGRectMake(0, KNB_NAV_HEIGHT, KNB_SCREEN_WIDTH, KNB_SCREEN_HEIGHT - KNB_NAV_HEIGHT);
     [self.navigationController.navigationBar addSubview:self.progressView];

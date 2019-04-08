@@ -9,6 +9,11 @@
 #import "KNBNavigationView.h"
 #import "NSString+Size.h"
 
+@interface KNBNavigationView ()
+
+@property (nonatomic, strong) UIView *lineView;
+
+@end
 
 @implementation KNBNavigationView
 
@@ -28,10 +33,17 @@
     [self addSubview:self.leftNaviButton];
     [self addSubview:self.titleNaviLabel];
     [self addSubview:self.rightNaviButton];
+    [self addSubview:self.lineView];
+}
+
+- (void)setBackgroundColor:(UIColor *)backgroundColor {
+    [super setBackgroundColor:backgroundColor];
+    if (CGColorEqualToColor(backgroundColor.CGColor, [UIColor clearColor].CGColor)) {
+        self.lineView.backgroundColor = backgroundColor;
+    }
 }
 
 #pragma mark - Setting
-
 - (void)addLeftBarItemTitle:(NSString *)title {
     CGFloat titleWidth = [title widthWithFont:[UIFont systemFontOfSize:18] constrainedToHeight:44];
     UIButton *leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -91,7 +103,7 @@
 - (UILabel *)titleNaviLabel {
     if (!_titleNaviLabel) {
         _titleNaviLabel = [[UILabel alloc] initWithFrame:CGRectMake(60, KNB_StatusBar_H, KNB_SCREEN_WIDTH - 120, 44)];
-        _titleNaviLabel.textColor = [UIColor whiteColor];
+        _titleNaviLabel.textColor = [UIColor blackColor];
         _titleNaviLabel.font = [UIFont boldSystemFontOfSize:18];
         _titleNaviLabel.textAlignment = NSTextAlignmentCenter;
     }
@@ -107,6 +119,15 @@
         _rightNaviButton.titleLabel.font = [UIFont systemFontOfSize:15];
     }
     return _rightNaviButton;
+}
+
+- (UIView *)lineView {
+    if (!_lineView) {
+        _lineView = [[UIView alloc] init];
+        _lineView.backgroundColor = [UIColor colorWithHex:0xf2f2f2];
+        _lineView.frame = CGRectMake(0, KNB_NAV_HEIGHT - 1, KNB_SCREEN_WIDTH, 1);
+    }
+    return _lineView;
 }
 
 @end

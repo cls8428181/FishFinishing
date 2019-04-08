@@ -20,10 +20,10 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lHT-BS-ySk">
-                        <rect key="frame" x="12" y="5" width="357" height="119.5"/>
+                        <rect key="frame" x="12" y="10" width="357" height="114.5"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Voy-Ez-4sX">
-                                <rect key="frame" x="104" y="51.5" width="67" height="17"/>
+                                <rect key="frame" x="104" y="49" width="67" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="-10" maxY="0.0"/>
                                 <state key="normal" title="旧房翻新" image="knb_design_unselected">
@@ -35,7 +35,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bbr-0K-JMS">
-                                <rect key="frame" x="12" y="51.5" width="67" height="17"/>
+                                <rect key="frame" x="12" y="49" width="67" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="-10" maxY="0.0"/>
                                 <state key="normal" title="新房装修" image="knb_design_unselected">
@@ -63,7 +63,7 @@
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="lHT-BS-ySk" secondAttribute="trailing" constant="12" id="WTM-Df-ft2"/>
                     <constraint firstAttribute="bottom" secondItem="lHT-BS-ySk" secondAttribute="bottom" constant="5" id="XZE-Rk-Ts6"/>
-                    <constraint firstItem="lHT-BS-ySk" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="cQC-mz-a74"/>
+                    <constraint firstItem="lHT-BS-ySk" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="cQC-mz-a74"/>
                     <constraint firstItem="lHT-BS-ySk" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="12" id="fCd-wj-XBG"/>
                 </constraints>
             </tableViewCellContentView>

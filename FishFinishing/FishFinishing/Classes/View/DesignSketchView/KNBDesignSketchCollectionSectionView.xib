@@ -16,28 +16,33 @@
             <rect key="frame" x="0.0" y="0.0" width="559" height="164"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IzS-XZ-3ZX">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IzS-XZ-3ZX">
                     <rect key="frame" x="0.0" y="0.0" width="186.5" height="164"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <state key="normal" title="风格">
+                    <inset key="titleEdgeInsets" minX="-20" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    <inset key="imageEdgeInsets" minX="80" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    <state key="normal" title="风格" image="knb_design_down">
                         <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </state>
                     <connections>
                         <action selector="styleBtnClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="jea-Xd-6d9"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S5s-xI-Kvm">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S5s-xI-Kvm">
                     <rect key="frame" x="186.5" y="0.0" width="186" height="164"/>
-                    <state key="normal" title="户型">
+                    <inset key="titleEdgeInsets" minX="-20" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    <inset key="imageEdgeInsets" minX="80" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    <state key="normal" title="户型" image="knb_design_down">
                         <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </state>
                     <connections>
                         <action selector="typeBtnClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="7sa-V5-XeY"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yI3-S6-4mb">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yI3-S6-4mb">
                     <rect key="frame" x="372.5" y="0.0" width="186.5" height="164"/>
-                    <state key="normal" title="面积">
+                    <inset key="titleEdgeInsets" minX="-20" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    <inset key="imageEdgeInsets" minX="80" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    <state key="normal" title="面积" image="knb_design_down">
                         <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </state>
                     <connections>
@@ -70,4 +75,7 @@
             <point key="canvasLocation" x="277.60000000000002" y="-85.457271364317847"/>
         </view>
     </objects>
+    <resources>
+        <image name="knb_design_down" width="10" height="6"/>
+    </resources>
 </document>

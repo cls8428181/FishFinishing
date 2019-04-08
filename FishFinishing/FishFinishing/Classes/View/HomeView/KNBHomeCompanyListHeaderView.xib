@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="KNBHomeCompanyListHeaderView">
+            <rect key="frame" x="0.0" y="0.0" width="573" height="186"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gWe-L0-eUs">
+                    <rect key="frame" x="191" y="0.0" width="191" height="186"/>
+                    <inset key="titleEdgeInsets" minX="-20" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    <inset key="imageEdgeInsets" minX="80" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    <state key="normal" title="区域" image="knb_design_down">
+                        <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <connections>
+                        <action selector="areaButtonAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="vf6-OF-GSE"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sio-IP-zYa">
+                    <rect key="frame" x="0.0" y="0.0" width="191" height="186"/>
+                    <inset key="titleEdgeInsets" minX="-20" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    <inset key="imageEdgeInsets" minX="80" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    <state key="normal" title="风格" image="knb_design_down">
+                        <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <connections>
+                        <action selector="styleButtonAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="mST-G1-kGd"/>
+                    </connections>
+                </button>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cJY-ZG-34T">
+                    <rect key="frame" x="382" y="0.0" width="191" height="186"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="cJY-ZG-34T" firstAttribute="width" secondItem="sio-IP-zYa" secondAttribute="width" id="0Mh-Mr-DSr"/>
+                <constraint firstItem="gWe-L0-eUs" firstAttribute="width" secondItem="sio-IP-zYa" secondAttribute="width" id="3WQ-hy-o90"/>
+                <constraint firstItem="gWe-L0-eUs" firstAttribute="leading" secondItem="sio-IP-zYa" secondAttribute="trailing" id="BKJ-Qd-Nro"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="cJY-ZG-34T" secondAttribute="bottom" id="Djg-kr-138"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="sio-IP-zYa" secondAttribute="bottom" id="EY2-rl-DhZ"/>
+                <constraint firstItem="sio-IP-zYa" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="F7Y-jr-e6t"/>
+                <constraint firstItem="cJY-ZG-34T" firstAttribute="leading" secondItem="gWe-L0-eUs" secondAttribute="trailing" id="GtP-dI-ye2"/>
+                <constraint firstItem="gWe-L0-eUs" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="OcC-Vk-IAS"/>
+                <constraint firstItem="cJY-ZG-34T" firstAttribute="leading" secondItem="gWe-L0-eUs" secondAttribute="trailing" id="RQ9-LK-rSV"/>
+                <constraint firstItem="gWe-L0-eUs" firstAttribute="width" secondItem="sio-IP-zYa" secondAttribute="width" id="SVt-aE-Bf3"/>
+                <constraint firstItem="cJY-ZG-34T" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="a1O-Zu-hMI"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="gWe-L0-eUs" secondAttribute="bottom" id="foC-Ju-7tQ"/>
+                <constraint firstItem="sio-IP-zYa" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="qH4-gm-grl"/>
+                <constraint firstItem="gWe-L0-eUs" firstAttribute="leading" secondItem="sio-IP-zYa" secondAttribute="trailing" id="r6d-ur-ElG"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="cJY-ZG-34T" secondAttribute="trailing" id="v44-aW-OX8"/>
+                <constraint firstItem="gWe-L0-eUs" firstAttribute="leading" secondItem="sio-IP-zYa" secondAttribute="trailing" id="yPP-l1-5pq"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="288.80000000000001" y="309.44527736131937"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="knb_design_down" width="10" height="6"/>
+    </resources>
+</document>

@@ -7,13 +7,13 @@
 			<key>title</key>
 			<string>入驻展示</string>
 			<key>imageName</key>
-			<string>KNBMe_4</string>
+			<string>knb_me_icon_show</string>
 		</dict>
 		<dict>
 			<key>title</key>
 			<string>我要接单</string>
 			<key>imageName</key>
-			<string>KNBMe_2</string>
+			<string>knb_me_icon_receiving</string>
 		</dict>
 	</array>
 	<array>
@@ -21,7 +21,7 @@
 			<key>title</key>
 			<string>分享好友</string>
 			<key>imageName</key>
-			<string>KNBMe_3</string>
+			<string>knb_me_icon_share</string>
 		</dict>
 	</array>
 	<array>
@@ -29,13 +29,13 @@
 			<key>title</key>
 			<string>关于我们</string>
 			<key>imageName</key>
-			<string>KNBMe_4</string>
+			<string>knb_me_icon_about</string>
 		</dict>
 		<dict>
 			<key>title</key>
 			<string>版本更新</string>
 			<key>imageName</key>
-			<string>KNBMe_5</string>
+			<string>knb_me_icon_update</string>
 		</dict>
 	</array>
 </array>

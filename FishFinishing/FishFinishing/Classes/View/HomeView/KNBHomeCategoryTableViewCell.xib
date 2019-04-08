@@ -12,101 +12,162 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="266" id="KGk-i7-Jjw" customClass="KNBHomeCategoryTableViewCell">
-            <rect key="frame" x="0.0" y="0.0" width="371" height="266"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="160" id="KGk-i7-Jjw" customClass="KNBHomeCategoryTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="550" height="160"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="371" height="265.5"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="550" height="159.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bYl-KS-Mpd">
-                        <rect key="frame" x="0.0" y="0.0" width="74" height="75"/>
+                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vod-5E-9gA">
+                        <rect key="frame" x="0.0" y="0.0" width="550" height="75.5"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Oas-X7-grf">
+                                <rect key="frame" x="0.0" y="0.0" width="610" height="75"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bYl-KS-Mpd">
+                                        <rect key="frame" x="12" y="0.0" width="97.5" height="75"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="75" id="zJ7-8u-Lgn"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <inset key="titleEdgeInsets" minX="-40" minY="10" maxX="0.0" maxY="-50"/>
+                                        <inset key="imageEdgeInsets" minX="15" minY="-20" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" title="量房报价" image="knb_home_icon_offer">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="offerButtonAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="sYJ-xO-dqm"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="71K-N2-g6P">
+                                        <rect key="frame" x="109.5" y="0.0" width="98" height="75"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <inset key="titleEdgeInsets" minX="-40" minY="10" maxX="0.0" maxY="-50"/>
+                                        <inset key="imageEdgeInsets" minX="15" minY="-20" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" title="装修公司" image="knb_home_icon_company">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="companyButtonAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="FwI-5p-Af0"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ich-Tq-22V">
+                                        <rect key="frame" x="207.5" y="0.0" width="97.5" height="75"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <inset key="titleEdgeInsets" minX="-40" minY="10" maxX="0.0" maxY="-50"/>
+                                        <inset key="imageEdgeInsets" minX="15" minY="-20" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" title="找工长" image="knb_home_icon_foreman">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="foremanButtonAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="AGg-RY-88x"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q8k-cb-P8C">
+                                        <rect key="frame" x="305" y="0.0" width="97.5" height="75"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <inset key="titleEdgeInsets" minX="-40" minY="10" maxX="0.0" maxY="-50"/>
+                                        <inset key="imageEdgeInsets" minX="15" minY="-20" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" title="找设计" image="knb_home_icon_design">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="designButtonAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="WbU-o4-xnI"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZRs-qt-xRt">
+                                        <rect key="frame" x="402.5" y="0.0" width="98" height="75"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="75" id="2o2-tc-q4e"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <inset key="titleEdgeInsets" minX="-40" minY="10" maxX="0.0" maxY="-50"/>
+                                        <inset key="imageEdgeInsets" minX="15" minY="-20" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" title="家居建材" image="knb_home_icon_home">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="materialsButtonAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="jFA-yp-O0v"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j5N-c7-hBo">
+                                        <rect key="frame" x="500.5" y="0.0" width="97.5" height="75"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <inset key="titleEdgeInsets" minX="-40" minY="10" maxX="0.0" maxY="-50"/>
+                                        <inset key="imageEdgeInsets" minX="15" minY="-20" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" title="装修工人" image="knb_home_icon_worker">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="workerButtonAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="VxO-5c-0Bw"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="71K-N2-g6P" firstAttribute="leading" secondItem="bYl-KS-Mpd" secondAttribute="trailing" id="5th-y1-XPV"/>
+                                    <constraint firstItem="j5N-c7-hBo" firstAttribute="leading" secondItem="ZRs-qt-xRt" secondAttribute="trailing" id="7Uq-Lx-SV9"/>
+                                    <constraint firstItem="j5N-c7-hBo" firstAttribute="width" secondItem="bYl-KS-Mpd" secondAttribute="width" id="A30-Nb-dkG"/>
+                                    <constraint firstAttribute="trailing" secondItem="j5N-c7-hBo" secondAttribute="trailing" constant="12" id="HJW-QM-Npi"/>
+                                    <constraint firstItem="ZRs-qt-xRt" firstAttribute="width" secondItem="bYl-KS-Mpd" secondAttribute="width" id="Hh3-f1-2WA"/>
+                                    <constraint firstItem="Q8k-cb-P8C" firstAttribute="top" secondItem="Oas-X7-grf" secondAttribute="top" id="Irz-hH-3p2"/>
+                                    <constraint firstItem="Ich-Tq-22V" firstAttribute="top" secondItem="Oas-X7-grf" secondAttribute="top" id="MZA-mq-vGu"/>
+                                    <constraint firstItem="ZRs-qt-xRt" firstAttribute="top" secondItem="Oas-X7-grf" secondAttribute="top" id="R4y-fp-JBI"/>
+                                    <constraint firstAttribute="bottom" secondItem="ZRs-qt-xRt" secondAttribute="bottom" id="TGx-RB-NBH"/>
+                                    <constraint firstItem="Ich-Tq-22V" firstAttribute="leading" secondItem="71K-N2-g6P" secondAttribute="trailing" id="V0E-F1-9Yo"/>
+                                    <constraint firstAttribute="bottom" secondItem="Q8k-cb-P8C" secondAttribute="bottom" id="VhZ-qe-Ttl"/>
+                                    <constraint firstItem="Ich-Tq-22V" firstAttribute="width" secondItem="bYl-KS-Mpd" secondAttribute="width" id="VtM-ri-P2B"/>
+                                    <constraint firstItem="bYl-KS-Mpd" firstAttribute="leading" secondItem="Oas-X7-grf" secondAttribute="leading" constant="12" id="Y3J-wJ-pGE"/>
+                                    <constraint firstAttribute="bottom" secondItem="j5N-c7-hBo" secondAttribute="bottom" id="cqn-48-m0l"/>
+                                    <constraint firstItem="ZRs-qt-xRt" firstAttribute="leading" secondItem="Q8k-cb-P8C" secondAttribute="trailing" id="dwN-08-x1x"/>
+                                    <constraint firstItem="Q8k-cb-P8C" firstAttribute="leading" secondItem="Ich-Tq-22V" secondAttribute="trailing" id="eUQ-q4-GyW"/>
+                                    <constraint firstItem="71K-N2-g6P" firstAttribute="width" secondItem="bYl-KS-Mpd" secondAttribute="width" id="eY7-fn-fkz"/>
+                                    <constraint firstItem="Q8k-cb-P8C" firstAttribute="width" secondItem="bYl-KS-Mpd" secondAttribute="width" id="g3e-ym-nir"/>
+                                    <constraint firstAttribute="bottom" secondItem="Ich-Tq-22V" secondAttribute="bottom" id="mbg-sm-NgA"/>
+                                    <constraint firstAttribute="bottom" secondItem="bYl-KS-Mpd" secondAttribute="bottom" id="ng5-sf-D85"/>
+                                    <constraint firstAttribute="bottom" secondItem="71K-N2-g6P" secondAttribute="bottom" id="u8E-sn-FIL"/>
+                                    <constraint firstItem="71K-N2-g6P" firstAttribute="top" secondItem="Oas-X7-grf" secondAttribute="top" id="vh1-Ie-qYf"/>
+                                    <constraint firstItem="bYl-KS-Mpd" firstAttribute="top" secondItem="Oas-X7-grf" secondAttribute="top" id="w8g-lJ-iLH"/>
+                                    <constraint firstItem="j5N-c7-hBo" firstAttribute="top" secondItem="Oas-X7-grf" secondAttribute="top" id="wKI-Bi-PWD"/>
+                                </constraints>
+                            </view>
+                        </subviews>
                         <constraints>
-                            <constraint firstAttribute="height" constant="75" id="zJ7-8u-Lgn"/>
+                            <constraint firstItem="Oas-X7-grf" firstAttribute="centerX" secondItem="Vod-5E-9gA" secondAttribute="centerX" constant="30" id="2yg-Oe-jVA"/>
+                            <constraint firstAttribute="bottom" secondItem="Oas-X7-grf" secondAttribute="bottom" id="5Kk-E6-dUH"/>
+                            <constraint firstItem="Oas-X7-grf" firstAttribute="centerY" secondItem="Vod-5E-9gA" secondAttribute="centerY" id="JJq-eF-kEb"/>
+                            <constraint firstItem="Oas-X7-grf" firstAttribute="leading" secondItem="Vod-5E-9gA" secondAttribute="leading" id="bxU-MP-pty"/>
+                            <constraint firstItem="Oas-X7-grf" firstAttribute="top" secondItem="Vod-5E-9gA" secondAttribute="top" id="o9y-Kf-dwU"/>
+                            <constraint firstAttribute="trailing" secondItem="Oas-X7-grf" secondAttribute="trailing" id="yfp-An-Hsg"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <inset key="titleEdgeInsets" minX="-20" minY="-10" maxX="0.0" maxY="-50"/>
-                        <inset key="imageEdgeInsets" minX="15" minY="-20" maxX="0.0" maxY="0.0"/>
-                        <state key="normal" title="量房报价" image="1_selected">
-                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        </state>
-                    </button>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ich-Tq-22V">
-                        <rect key="frame" x="148.5" y="0.0" width="74" height="75"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <inset key="titleEdgeInsets" minX="-20" minY="-10" maxX="0.0" maxY="-50"/>
-                        <inset key="imageEdgeInsets" minX="15" minY="-20" maxX="0.0" maxY="0.0"/>
-                        <state key="normal" title="装修公司" image="3_selected">
-                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        </state>
-                    </button>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q8k-cb-P8C">
-                        <rect key="frame" x="222.5" y="0.0" width="74.5" height="75"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <inset key="titleEdgeInsets" minX="-20" minY="-10" maxX="0.0" maxY="-50"/>
-                        <inset key="imageEdgeInsets" minX="15" minY="-20" maxX="0.0" maxY="0.0"/>
-                        <state key="normal" title="找长工" image="1_selected">
-                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        </state>
-                    </button>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZRs-qt-xRt">
-                        <rect key="frame" x="297" y="0.0" width="74" height="75"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="75" id="2o2-tc-q4e"/>
-                        </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <inset key="titleEdgeInsets" minX="-20" minY="-10" maxX="0.0" maxY="-50"/>
-                        <inset key="imageEdgeInsets" minX="15" minY="-20" maxX="0.0" maxY="0.0"/>
-                        <state key="normal" title="家居建材" image="1_selected">
-                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        </state>
-                    </button>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="1_selected" translatesAutoresizingMaskIntoConstraints="NO" id="1Xr-Ed-NCh">
-                        <rect key="frame" x="12" y="87" width="347" height="166.5"/>
+                    </scrollView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="knb_home_ad" translatesAutoresizingMaskIntoConstraints="NO" id="1Xr-Ed-NCh">
+                        <rect key="frame" x="13" y="75.5" width="524" height="118"/>
                     </imageView>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="71K-N2-g6P">
-                        <rect key="frame" x="74" y="0.0" width="74.5" height="75"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <inset key="titleEdgeInsets" minX="-20" minY="-10" maxX="0.0" maxY="-50"/>
-                        <inset key="imageEdgeInsets" minX="15" minY="-20" maxX="0.0" maxY="0.0"/>
-                        <state key="normal" title="找设计" image="2_selected">
-                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        </state>
-                    </button>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="ZRs-qt-xRt" firstAttribute="height" secondItem="bYl-KS-Mpd" secondAttribute="height" id="2RO-eB-Gnc"/>
-                    <constraint firstAttribute="trailing" secondItem="1Xr-Ed-NCh" secondAttribute="trailing" constant="12" id="6iz-8i-tVO"/>
-                    <constraint firstItem="bYl-KS-Mpd" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="7Fd-4m-3RI"/>
-                    <constraint firstItem="71K-N2-g6P" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="Br3-ff-kEa"/>
-                    <constraint firstItem="Q8k-cb-P8C" firstAttribute="leading" secondItem="Ich-Tq-22V" secondAttribute="trailing" id="DKA-3M-DZy"/>
-                    <constraint firstItem="71K-N2-g6P" firstAttribute="height" secondItem="bYl-KS-Mpd" secondAttribute="height" id="Dmu-EN-rgQ"/>
-                    <constraint firstItem="Ich-Tq-22V" firstAttribute="leading" secondItem="71K-N2-g6P" secondAttribute="trailing" id="Flq-AO-55R"/>
-                    <constraint firstItem="ZRs-qt-xRt" firstAttribute="leading" secondItem="Q8k-cb-P8C" secondAttribute="trailing" id="PrF-Kq-xeV"/>
-                    <constraint firstItem="ZRs-qt-xRt" firstAttribute="width" secondItem="bYl-KS-Mpd" secondAttribute="width" id="Tsw-9r-twE"/>
-                    <constraint firstItem="Ich-Tq-22V" firstAttribute="height" secondItem="bYl-KS-Mpd" secondAttribute="height" id="UUN-qJ-DpI"/>
-                    <constraint firstItem="71K-N2-g6P" firstAttribute="width" secondItem="bYl-KS-Mpd" secondAttribute="width" id="VYG-x6-Mjh"/>
-                    <constraint firstAttribute="bottom" secondItem="1Xr-Ed-NCh" secondAttribute="bottom" constant="12" id="VwQ-os-o83"/>
-                    <constraint firstItem="71K-N2-g6P" firstAttribute="leading" secondItem="bYl-KS-Mpd" secondAttribute="trailing" id="btk-bH-MPw"/>
-                    <constraint firstItem="Ich-Tq-22V" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="cNl-LO-ZGQ"/>
-                    <constraint firstItem="ZRs-qt-xRt" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="g1g-qH-daI"/>
-                    <constraint firstItem="Ich-Tq-22V" firstAttribute="width" secondItem="bYl-KS-Mpd" secondAttribute="width" id="gGM-S2-mF2"/>
-                    <constraint firstItem="bYl-KS-Mpd" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="h5H-dD-j5M"/>
-                    <constraint firstItem="Q8k-cb-P8C" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="ojf-12-dXb"/>
-                    <constraint firstItem="Q8k-cb-P8C" firstAttribute="width" secondItem="bYl-KS-Mpd" secondAttribute="width" id="pEX-7D-Yxp"/>
-                    <constraint firstItem="Q8k-cb-P8C" firstAttribute="height" secondItem="bYl-KS-Mpd" secondAttribute="height" id="q0Z-U7-i8n"/>
-                    <constraint firstItem="1Xr-Ed-NCh" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="12" id="qgK-lK-Jlg"/>
-                    <constraint firstItem="1Xr-Ed-NCh" firstAttribute="top" secondItem="bYl-KS-Mpd" secondAttribute="bottom" constant="12" id="sbq-De-GPk"/>
-                    <constraint firstAttribute="trailing" secondItem="ZRs-qt-xRt" secondAttribute="trailing" id="wuD-8O-Tck"/>
+                    <constraint firstItem="Vod-5E-9gA" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="34a-om-jBd"/>
+                    <constraint firstItem="1Xr-Ed-NCh" firstAttribute="top" secondItem="Vod-5E-9gA" secondAttribute="bottom" id="8bi-WO-8vH"/>
+                    <constraint firstItem="Vod-5E-9gA" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="KTP-oy-YVf"/>
+                    <constraint firstItem="1Xr-Ed-NCh" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="13" id="LlH-m5-Yxi"/>
+                    <constraint firstAttribute="trailing" secondItem="Vod-5E-9gA" secondAttribute="trailing" id="Ske-FS-Vkn"/>
+                    <constraint firstAttribute="bottom" secondItem="1Xr-Ed-NCh" secondAttribute="bottom" constant="13" id="W6K-rF-xE2"/>
+                    <constraint firstAttribute="trailing" secondItem="1Xr-Ed-NCh" secondAttribute="trailing" constant="13" id="g4q-b3-n8V"/>
+                    <constraint firstAttribute="bottom" secondItem="Vod-5E-9gA" secondAttribute="bottom" constant="130.5" id="tDO-Cc-Fhd"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
-            <point key="canvasLocation" x="170.40000000000001" y="239.28035982008998"/>
+            <point key="canvasLocation" x="313.60000000000002" y="190.70464767616193"/>
         </tableViewCell>
     </objects>
     <resources>
-        <image name="1_selected" width="21.5" height="21"/>
-        <image name="2_selected" width="20" height="22"/>
-        <image name="3_selected" width="22.5" height="21.5"/>
+        <image name="knb_home_ad" width="350" height="118.5"/>
+        <image name="knb_home_icon_company" width="45" height="45"/>
+        <image name="knb_home_icon_design" width="45" height="45"/>
+        <image name="knb_home_icon_foreman" width="45" height="45"/>
+        <image name="knb_home_icon_home" width="45" height="45"/>
+        <image name="knb_home_icon_offer" width="45" height="45"/>
+        <image name="knb_home_icon_worker" width="45" height="45"/>
     </resources>
 </document>

@@ -84,7 +84,7 @@
 - (UIImageView *)bgImageView {
     if (!_bgImageView) {
         _bgImageView = [[UIImageView alloc] init];
-        _bgImageView.image = [UIImage imageNamed:@"timg"];
+        _bgImageView.image = [UIImage imageNamed:@"knb_me_headerbg"];
     }
     return _bgImageView;
 }
@@ -92,7 +92,7 @@
 - (UIButton *)adButton {
     if (!_adButton) {
         _adButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_adButton setImage:[UIImage imageNamed:@"timg"] forState:UIControlStateNormal];
+        [_adButton setImage:[UIImage imageNamed:@"knb_me_banner"] forState:UIControlStateNormal];
     }
     return _adButton;
 }
@@ -100,7 +100,7 @@
 - (UIImageView *)portraitImageView {
     if (!_portraitImageView) {
         _portraitImageView = [[UIImageView alloc] init];
-        _portraitImageView.image = KNBImages(@"knb_icon_logo");
+        _portraitImageView.image = KNBImages(@"knb_default_user");
     }
     return _portraitImageView;
 }

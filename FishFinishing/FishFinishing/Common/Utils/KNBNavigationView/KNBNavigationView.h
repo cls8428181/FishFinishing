@@ -33,6 +33,11 @@
 @property (nonatomic, strong) UIButton *rightNaviButton;
 
 /**
+ 是否是普通导航
+ */
+@property (nonatomic, assign) BOOL customNav;
+
+/**
  *  添加导航右边按钮
  *
  *  @param imgName 图片

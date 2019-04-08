@@ -28,7 +28,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.view addSubview:self.naviView];
-    [self.naviView addLeftBarItemImageName:@"icon_navi_back" target:self sel:@selector(backAction)];
+    [self.naviView addLeftBarItemImageName:@"knb_back_black" target:self sel:@selector(backAction)];
     self.view.backgroundColor = [UIColor knBgColor];
     self.requestPage = 1;
     self.automaticallyAdjustsScrollViewInsets = NO;
