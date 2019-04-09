@@ -7,10 +7,16 @@
 //
 
 #import "KNBBaseViewController.h"
+typedef NS_ENUM(NSInteger, KNBOrderVCType) {
+    KNBOrderVCTypeOrderFinishing = 0,       //预约装修
+    KNBOrderVCTypeRecruitment,              //立即入驻
+};
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface KNBOrderViewController : KNBBaseViewController
+
+@property (nonatomic, assign) KNBOrderVCType VCType;
 
 @end
 

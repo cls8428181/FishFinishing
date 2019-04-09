@@ -7,6 +7,7 @@
 //
 
 #import "RecruitmentViewController.h"
+#import "KNBOrderViewController.h"
 
 @interface RecruitmentViewController ()
 //背景
@@ -67,6 +68,11 @@
 /*
  *  所有button、gestureRecognizer的响应事件都放在这个区域里面，不要到处乱放。
  */
+- (void)enterButtonAction:(UIButton *)button {
+    KNBOrderViewController *orderVC = [[KNBOrderViewController alloc] init];
+    orderVC.VCType = KNBOrderVCTypeRecruitment;
+    [self.navigationController pushViewController:orderVC animated:YES];
+}
 
 #pragma mark - Getters And Setters
 /* getter和setter全部都放在最后*/
@@ -86,6 +92,7 @@
         _enterButton.titleLabel.font = [UIFont systemFontOfSize:14];
         _enterButton.layer.masksToBounds = YES;
         _enterButton.layer.cornerRadius = 20;
+        [_enterButton addTarget:self action:@selector(enterButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _enterButton;
 }

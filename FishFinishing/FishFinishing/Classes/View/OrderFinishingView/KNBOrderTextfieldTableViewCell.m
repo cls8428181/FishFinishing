@@ -31,4 +31,26 @@
     return 50;
 }
 
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    [self.describeTextField setValue:[UIColor colorWithHex:0x808080] forKeyPath:@"_placeholderLabel.textColor"];
+}
+
+- (void)setType:(KNBOrderTextFieldType)type {
+    _type = type;
+    if (type == KNBOrderTextFieldTypeArea) {
+        self.titleLabel.text = @"房屋面积:";
+        self.describeTextField.placeholder = @"m²";
+    } else if (type == KNBOrderTextFieldTypeCommunity) {
+        self.titleLabel.text = @"小区名称:";
+        self.describeTextField.placeholder = @"请输入小区名称";
+    } else if (type == KNBOrderTextFieldTypeName) {
+        self.titleLabel.text = @"联  系  人:";
+        self.describeTextField.placeholder = @"请输入姓名";
+    } else {
+        self.titleLabel.text = @"联系电话:";
+        self.describeTextField.placeholder = @"请输入联系电话";
+    }
+}
+
 @end

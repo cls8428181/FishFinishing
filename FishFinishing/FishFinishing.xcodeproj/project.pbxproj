@@ -38,6 +38,22 @@
 		961C533322548E730089E997 /* KNBHomeCompanyCaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 961C533122548E730089E997 /* KNBHomeCompanyCaseTableViewCell.m */; };
 		961C533422548E730089E997 /* KNBHomeCompanyCaseTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 961C533222548E730089E997 /* KNBHomeCompanyCaseTableViewCell.xib */; };
 		961C53382254A79E0089E997 /* FMTagsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 961C53372254A79D0089E997 /* FMTagsView.m */; };
+		9649268D225C45DF000BBC7E /* KNBOrderFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9649268C225C45DF000BBC7E /* KNBOrderFooterView.m */; };
+		964926AB225C7F21000BBC7E /* BRStringPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9649269B225C7F21000BBC7E /* BRStringPickerView.m */; };
+		964926AC225C7F21000BBC7E /* BRDatePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9649269F225C7F21000BBC7E /* BRDatePickerView.m */; };
+		964926AD225C7F21000BBC7E /* NSDate+BRAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 964926A0225C7F21000BBC7E /* NSDate+BRAdd.m */; };
+		964926AE225C7F21000BBC7E /* BRBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 964926A2225C7F21000BBC7E /* BRBaseView.m */; };
+		964926AF225C7F21000BBC7E /* BRAddressModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 964926A5225C7F21000BBC7E /* BRAddressModel.m */; };
+		964926B0225C7F21000BBC7E /* BRPickerView.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 964926A8225C7F21000BBC7E /* BRPickerView.bundle */; };
+		964926B1225C7F21000BBC7E /* BRAddressPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 964926AA225C7F21000BBC7E /* BRAddressPickerView.m */; };
+		964926B4225C8F32000BBC7E /* KNBRecruitmentPayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 964926B3225C8F32000BBC7E /* KNBRecruitmentPayViewController.m */; };
+		964926B8225C92BC000BBC7E /* KNBRecruitmentPayFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 964926B7225C92BC000BBC7E /* KNBRecruitmentPayFooterView.m */; };
+		964926BC225C948D000BBC7E /* KNBRecruitmentShowTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 964926BA225C948D000BBC7E /* KNBRecruitmentShowTableViewCell.m */; };
+		964926BD225C948D000BBC7E /* KNBRecruitmentShowTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 964926BB225C948D000BBC7E /* KNBRecruitmentShowTableViewCell.xib */; };
+		964926C1225C94A2000BBC7E /* KNBRecruitmentPayTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 964926BF225C94A2000BBC7E /* KNBRecruitmentPayTableViewCell.m */; };
+		964926C2225C94A2000BBC7E /* KNBRecruitmentPayTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 964926C0225C94A2000BBC7E /* KNBRecruitmentPayTableViewCell.xib */; };
+		964926C6225C94C6000BBC7E /* KNBRecruitmentProtocolTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 964926C4225C94C6000BBC7E /* KNBRecruitmentProtocolTableViewCell.m */; };
+		964926C7225C94C6000BBC7E /* KNBRecruitmentProtocolTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 964926C5225C94C6000BBC7E /* KNBRecruitmentProtocolTableViewCell.xib */; };
 		966169B7224DAB6400FB2D01 /* KNBMeHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 966169B6224DAB6400FB2D01 /* KNBMeHeaderView.m */; };
 		966169BB224DAB7600FB2D01 /* KNBMeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 966169B9224DAB7600FB2D01 /* KNBMeTableViewCell.m */; };
 		966169BC224DAB7600FB2D01 /* KNBMeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 966169BA224DAB7600FB2D01 /* KNBMeTableViewCell.xib */; };
@@ -227,6 +243,35 @@
 		961C533222548E730089E997 /* KNBHomeCompanyCaseTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KNBHomeCompanyCaseTableViewCell.xib; sourceTree = "<group>"; };
 		961C53362254A79D0089E997 /* FMTagsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMTagsView.h; sourceTree = "<group>"; };
 		961C53372254A79D0089E997 /* FMTagsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMTagsView.m; sourceTree = "<group>"; };
+		9649268B225C45DF000BBC7E /* KNBOrderFooterView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNBOrderFooterView.h; sourceTree = "<group>"; };
+		9649268C225C45DF000BBC7E /* KNBOrderFooterView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNBOrderFooterView.m; sourceTree = "<group>"; };
+		9649269A225C7F21000BBC7E /* BRStringPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRStringPickerView.h; sourceTree = "<group>"; };
+		9649269B225C7F21000BBC7E /* BRStringPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRStringPickerView.m; sourceTree = "<group>"; };
+		9649269D225C7F21000BBC7E /* BRDatePickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRDatePickerView.h; sourceTree = "<group>"; };
+		9649269E225C7F21000BBC7E /* NSDate+BRAdd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+BRAdd.h"; sourceTree = "<group>"; };
+		9649269F225C7F21000BBC7E /* BRDatePickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRDatePickerView.m; sourceTree = "<group>"; };
+		964926A0225C7F21000BBC7E /* NSDate+BRAdd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+BRAdd.m"; sourceTree = "<group>"; };
+		964926A2225C7F21000BBC7E /* BRBaseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRBaseView.m; sourceTree = "<group>"; };
+		964926A3225C7F21000BBC7E /* BRBaseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRBaseView.h; sourceTree = "<group>"; };
+		964926A5225C7F21000BBC7E /* BRAddressModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRAddressModel.m; sourceTree = "<group>"; };
+		964926A6225C7F21000BBC7E /* BRAddressPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRAddressPickerView.h; sourceTree = "<group>"; };
+		964926A7225C7F21000BBC7E /* BRPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRPickerView.h; sourceTree = "<group>"; };
+		964926A8225C7F21000BBC7E /* BRPickerView.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = BRPickerView.bundle; sourceTree = "<group>"; };
+		964926A9225C7F21000BBC7E /* BRAddressModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRAddressModel.h; sourceTree = "<group>"; };
+		964926AA225C7F21000BBC7E /* BRAddressPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRAddressPickerView.m; sourceTree = "<group>"; };
+		964926B2225C8F32000BBC7E /* KNBRecruitmentPayViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNBRecruitmentPayViewController.h; sourceTree = "<group>"; };
+		964926B3225C8F32000BBC7E /* KNBRecruitmentPayViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNBRecruitmentPayViewController.m; sourceTree = "<group>"; };
+		964926B6225C92BC000BBC7E /* KNBRecruitmentPayFooterView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNBRecruitmentPayFooterView.h; sourceTree = "<group>"; };
+		964926B7225C92BC000BBC7E /* KNBRecruitmentPayFooterView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNBRecruitmentPayFooterView.m; sourceTree = "<group>"; };
+		964926B9225C948D000BBC7E /* KNBRecruitmentShowTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNBRecruitmentShowTableViewCell.h; sourceTree = "<group>"; };
+		964926BA225C948D000BBC7E /* KNBRecruitmentShowTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNBRecruitmentShowTableViewCell.m; sourceTree = "<group>"; };
+		964926BB225C948D000BBC7E /* KNBRecruitmentShowTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KNBRecruitmentShowTableViewCell.xib; sourceTree = "<group>"; };
+		964926BE225C94A2000BBC7E /* KNBRecruitmentPayTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNBRecruitmentPayTableViewCell.h; sourceTree = "<group>"; };
+		964926BF225C94A2000BBC7E /* KNBRecruitmentPayTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNBRecruitmentPayTableViewCell.m; sourceTree = "<group>"; };
+		964926C0225C94A2000BBC7E /* KNBRecruitmentPayTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KNBRecruitmentPayTableViewCell.xib; sourceTree = "<group>"; };
+		964926C3225C94C6000BBC7E /* KNBRecruitmentProtocolTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNBRecruitmentProtocolTableViewCell.h; sourceTree = "<group>"; };
+		964926C4225C94C6000BBC7E /* KNBRecruitmentProtocolTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNBRecruitmentProtocolTableViewCell.m; sourceTree = "<group>"; };
+		964926C5225C94C6000BBC7E /* KNBRecruitmentProtocolTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KNBRecruitmentProtocolTableViewCell.xib; sourceTree = "<group>"; };
 		966169B5224DAB6400FB2D01 /* KNBMeHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNBMeHeaderView.h; sourceTree = "<group>"; };
 		966169B6224DAB6400FB2D01 /* KNBMeHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNBMeHeaderView.m; sourceTree = "<group>"; };
 		966169B8224DAB7600FB2D01 /* KNBMeTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNBMeTableViewCell.h; sourceTree = "<group>"; };
@@ -518,6 +563,77 @@
 			path = FMTagsView;
 			sourceTree = "<group>";
 		};
+		96492698225C7F21000BBC7E /* BRPickerView */ = {
+			isa = PBXGroup;
+			children = (
+				96492699225C7F21000BBC7E /* StringPickerView */,
+				9649269C225C7F21000BBC7E /* DatePickerView */,
+				964926A1225C7F21000BBC7E /* Base */,
+				964926A4225C7F21000BBC7E /* AddressPickerView */,
+			);
+			path = BRPickerView;
+			sourceTree = "<group>";
+		};
+		96492699225C7F21000BBC7E /* StringPickerView */ = {
+			isa = PBXGroup;
+			children = (
+				9649269A225C7F21000BBC7E /* BRStringPickerView.h */,
+				9649269B225C7F21000BBC7E /* BRStringPickerView.m */,
+			);
+			path = StringPickerView;
+			sourceTree = "<group>";
+		};
+		9649269C225C7F21000BBC7E /* DatePickerView */ = {
+			isa = PBXGroup;
+			children = (
+				9649269D225C7F21000BBC7E /* BRDatePickerView.h */,
+				9649269E225C7F21000BBC7E /* NSDate+BRAdd.h */,
+				9649269F225C7F21000BBC7E /* BRDatePickerView.m */,
+				964926A0225C7F21000BBC7E /* NSDate+BRAdd.m */,
+			);
+			path = DatePickerView;
+			sourceTree = "<group>";
+		};
+		964926A1225C7F21000BBC7E /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				964926A3225C7F21000BBC7E /* BRBaseView.h */,
+				964926A2225C7F21000BBC7E /* BRBaseView.m */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		964926A4225C7F21000BBC7E /* AddressPickerView */ = {
+			isa = PBXGroup;
+			children = (
+				964926A9225C7F21000BBC7E /* BRAddressModel.h */,
+				964926A5225C7F21000BBC7E /* BRAddressModel.m */,
+				964926A6225C7F21000BBC7E /* BRAddressPickerView.h */,
+				964926AA225C7F21000BBC7E /* BRAddressPickerView.m */,
+				964926A8225C7F21000BBC7E /* BRPickerView.bundle */,
+				964926A7225C7F21000BBC7E /* BRPickerView.h */,
+			);
+			path = AddressPickerView;
+			sourceTree = "<group>";
+		};
+		964926B5225C9295000BBC7E /* RecruitmentView */ = {
+			isa = PBXGroup;
+			children = (
+				964926B6225C92BC000BBC7E /* KNBRecruitmentPayFooterView.h */,
+				964926B7225C92BC000BBC7E /* KNBRecruitmentPayFooterView.m */,
+				964926B9225C948D000BBC7E /* KNBRecruitmentShowTableViewCell.h */,
+				964926BA225C948D000BBC7E /* KNBRecruitmentShowTableViewCell.m */,
+				964926BB225C948D000BBC7E /* KNBRecruitmentShowTableViewCell.xib */,
+				964926BE225C94A2000BBC7E /* KNBRecruitmentPayTableViewCell.h */,
+				964926BF225C94A2000BBC7E /* KNBRecruitmentPayTableViewCell.m */,
+				964926C0225C94A2000BBC7E /* KNBRecruitmentPayTableViewCell.xib */,
+				964926C3225C94C6000BBC7E /* KNBRecruitmentProtocolTableViewCell.h */,
+				964926C4225C94C6000BBC7E /* KNBRecruitmentProtocolTableViewCell.m */,
+				964926C5225C94C6000BBC7E /* KNBRecruitmentProtocolTableViewCell.xib */,
+			);
+			path = RecruitmentView;
+			sourceTree = "<group>";
+		};
 		966169B4224DAB3D00FB2D01 /* MeView */ = {
 			isa = PBXGroup;
 			children = (
@@ -647,6 +763,8 @@
 			children = (
 				966AA557224A0AEB00EDBF5F /* RecruitmentViewController.h */,
 				966AA558224A0AEB00EDBF5F /* RecruitmentViewController.m */,
+				964926B2225C8F32000BBC7E /* KNBRecruitmentPayViewController.h */,
+				964926B3225C8F32000BBC7E /* KNBRecruitmentPayViewController.m */,
 			);
 			path = RecruitmentVC;
 			sourceTree = "<group>";
@@ -871,6 +989,7 @@
 		96B097FF2249C6D800154643 /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				96492698225C7F21000BBC7E /* BRPickerView */,
 				9697FD30225597A900027AB3 /* GHDropMenu */,
 				961C53352254A79D0089E997 /* FMTagsView */,
 				966AA561224A1E4F00EDBF5F /* SDCycleScrollView */,
@@ -1194,6 +1313,7 @@
 		96B098DD2249D8F300154643 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				964926B5225C9295000BBC7E /* RecruitmentView */,
 				96E7E0C1225B254400188DD1 /* OrderFinishingView */,
 				966169B4224DAB3D00FB2D01 /* MeView */,
 				96E5540E224CA5F300D025C4 /* DesignSketchView */,
@@ -1268,6 +1388,8 @@
 				96E7E0CC225B2E6600188DD1 /* KNBOrderAddressTableViewCell.h */,
 				96E7E0CD225B2E6600188DD1 /* KNBOrderAddressTableViewCell.m */,
 				96E7E0CE225B2E6600188DD1 /* KNBOrderAddressTableViewCell.xib */,
+				9649268B225C45DF000BBC7E /* KNBOrderFooterView.h */,
+				9649268C225C45DF000BBC7E /* KNBOrderFooterView.m */,
 			);
 			path = OrderFinishingView;
 			sourceTree = "<group>";
@@ -1362,11 +1484,13 @@
 				961C530D225351160089E997 /* KNBDesignSketchFreeOrderHeaderView.xib in Resources */,
 				961C53032251A8FC0089E997 /* KNBDSFreeOrderPhoneTableViewCell.xib in Resources */,
 				961C52F92251A8C00089E997 /* KNBDSFreeOrderAreaTableViewCell.xib in Resources */,
+				964926C2225C94A2000BBC7E /* KNBRecruitmentPayTableViewCell.xib in Resources */,
 				966AA519224A00D700EDBF5F /* KNBStartPageView.xib in Resources */,
 				961C532A22548E210089E997 /* KNBHomeCompanyServerTableViewCell.xib in Resources */,
 				966AA57D224A2D3E00EDBF5F /* KNBHomeCategoryTableViewCell.xib in Resources */,
 				961C532522548E050089E997 /* KNBHomeCompanyHeaderTableViewCell.xib in Resources */,
 				961C53102253583F0089E997 /* LCDM2N.TTF in Resources */,
+				964926BD225C948D000BBC7E /* KNBRecruitmentShowTableViewCell.xib in Resources */,
 				961C533422548E730089E997 /* KNBHomeCompanyCaseTableViewCell.xib in Resources */,
 				96E5541C224CCD4200D025C4 /* KNBMe.plist in Resources */,
 				961C52F42251A8710089E997 /* KNBDSFreeOrderAddressTableViewCell.xib in Resources */,
@@ -1380,7 +1504,9 @@
 				96E55417224CB54D00D025C4 /* KNBDesignSketchCollectionSectionView.xib in Resources */,
 				961C530B2252194E0089E997 /* KNBHomeDesignSketchSubTableViewCell.xib in Resources */,
 				961C52FE2251A8E50089E997 /* KNBDSFreeOrderNameTableViewCell.xib in Resources */,
+				964926B0225C7F21000BBC7E /* BRPickerView.bundle in Resources */,
 				9697FD672255A9E400027AB3 /* KNBDesignSketchCollectionViewCell.xib in Resources */,
+				964926C7225C94C6000BBC7E /* KNBRecruitmentProtocolTableViewCell.xib in Resources */,
 				961C532F22548E4D0089E997 /* KNBHomeCompanyIntroTableViewCell.xib in Resources */,
 				966169BC224DAB7600FB2D01 /* KNBMeTableViewCell.xib in Resources */,
 				961C52EF2251A8450089E997 /* KNBDSFreeOrderNewHouseTableViewCell.xib in Resources */,
@@ -1472,6 +1598,7 @@
 				96B098972249CC1000154643 /* UIImage+WaterMark.m in Sources */,
 				96B098B02249CC1000154643 /* NSString+Trim.m in Sources */,
 				96B098E42249E45000154643 /* NJKWebViewProgressView.m in Sources */,
+				964926AB225C7F21000BBC7E /* BRStringPickerView.m in Sources */,
 				96B098C42249D56000154643 /* KNBMainConfigModel.m in Sources */,
 				9697FD5A225597A900027AB3 /* GHDropMenuWaterFallCell.m in Sources */,
 				96B098A52249CC1000154643 /* UIButton+Indicator.m in Sources */,
@@ -1496,6 +1623,7 @@
 				961C5320225486BD0089E997 /* KNBHomeCompanyDetailViewController.m in Sources */,
 				9697FD53225597A900027AB3 /* NSString+Arc4random.m in Sources */,
 				96B098312249CB8800154643 /* KNBBaseRequest.m in Sources */,
+				964926B4225C8F32000BBC7E /* KNBRecruitmentPayViewController.m in Sources */,
 				96E7E0BB225ADD5900188DD1 /* KNBHomeCompanyListHeaderView.m in Sources */,
 				96B098BA2249CC1000154643 /* CALayer+Transition.m in Sources */,
 				961C530A2252194E0089E997 /* KNBHomeDesignSketchSubTableViewCell.m in Sources */,
@@ -1514,6 +1642,7 @@
 				966AA571224A1E4F00EDBF5F /* SDCycleScrollView.m in Sources */,
 				96B098A12249CC1000154643 /* UIButton+CountDown.m in Sources */,
 				966AA548224A033000EDBF5F /* XHLaunchAdImageManager.m in Sources */,
+				964926B1225C7F21000BBC7E /* BRAddressPickerView.m in Sources */,
 				966AA559224A0AEB00EDBF5F /* RecruitmentViewController.m in Sources */,
 				96B098AC2249CC1000154643 /* UIImageView+FaceAwareFill.m in Sources */,
 				96B0982E2249CB8800154643 /* KNOCJSModel.m in Sources */,
@@ -1522,6 +1651,7 @@
 				966AA53E224A033000EDBF5F /* XHLaunchAdView.m in Sources */,
 				9697FD662255A9E400027AB3 /* KNBDesignSketchCollectionViewCell.m in Sources */,
 				96E55411224CA65500D025C4 /* KNBDesignSketchCollectionSectionView.m in Sources */,
+				964926AD225C7F21000BBC7E /* NSDate+BRAdd.m in Sources */,
 				96B098B32249CC1000154643 /* NSString+Empty.m in Sources */,
 				96B0989D2249CC1000154643 /* UILabel+Space.m in Sources */,
 				96B098B42249CC1000154643 /* NSString+MD5.m in Sources */,
@@ -1533,8 +1663,10 @@
 				9697FD5B225597A900027AB3 /* GHDropMenuFilterTagItem.m in Sources */,
 				96B098A32249CC1000154643 /* UIButton+ChangeTitleLeft.m in Sources */,
 				96B098BE2249CC1000154643 /* NSDate+BTAddition.m in Sources */,
+				964926AF225C7F21000BBC7E /* BRAddressModel.m in Sources */,
 				96B098D22249D6F700154643 /* KNGetUserLoaction.m in Sources */,
 				966AA542224A033000EDBF5F /* XHLaunchAd.m in Sources */,
+				964926AC225C7F21000BBC7E /* BRDatePickerView.m in Sources */,
 				961C532422548E050089E997 /* KNBHomeCompanyHeaderTableViewCell.m in Sources */,
 				966AA541224A033000EDBF5F /* XHLaunchAdConst.m in Sources */,
 				966AA53D224A033000EDBF5F /* XHLaunchAdManager.m in Sources */,
@@ -1546,6 +1678,8 @@
 				96B0982F2249CB8800154643 /* KNTabBarViewController.m in Sources */,
 				96B0989F2249CC1000154643 /* UILabel+YBAttributeTextTapAction.m in Sources */,
 				96B098A42249CC1000154643 /* UIButton+EnlargeArea.m in Sources */,
+				964926B8225C92BC000BBC7E /* KNBRecruitmentPayFooterView.m in Sources */,
+				9649268D225C45DF000BBC7E /* KNBOrderFooterView.m in Sources */,
 				966169BB224DAB7600FB2D01 /* KNBMeTableViewCell.m in Sources */,
 				96B097F52249C69300154643 /* main.m in Sources */,
 				96B098A92249CC1000154643 /* UITextView+ZWPlaceHolder.m in Sources */,
@@ -1561,10 +1695,12 @@
 				9697FD59225597A900027AB3 /* GHDropMenuFilterSingleInputItem.m in Sources */,
 				966AA560224A1ADC00EDBF5F /* KNBSearchView.m in Sources */,
 				9697FD52225597A900027AB3 /* UILabel+GHome.m in Sources */,
+				964926C6225C94C6000BBC7E /* KNBRecruitmentProtocolTableViewCell.m in Sources */,
 				96FDB4CB224B553F005844E7 /* KNBHomeRecommendSubTableViewCell.m in Sources */,
 				96B098AD2249CC1000154643 /* UIImageView+Addition.m in Sources */,
 				961C532922548E210089E997 /* KNBHomeCompanyServerTableViewCell.m in Sources */,
 				9697FD55225597A900027AB3 /* UIView+Extension.m in Sources */,
+				964926AE225C7F21000BBC7E /* BRBaseView.m in Sources */,
 				9697FD5E225597A900027AB3 /* GHDropMenuModel.m in Sources */,
 				966AA53C224A033000EDBF5F /* FLAnimatedImageView.m in Sources */,
 				966AA53B224A033000EDBF5F /* FLAnimatedImage.m in Sources */,
@@ -1573,6 +1709,7 @@
 				96FDB4CF224B62D6005844E7 /* KNBLoginViewController.m in Sources */,
 				96B098AE2249CC1000154643 /* UIImageView+KNBImage.m in Sources */,
 				96B098352249CB8800154643 /* KNBBaseRequestAccessory.m in Sources */,
+				964926C1225C94A2000BBC7E /* KNBRecruitmentPayTableViewCell.m in Sources */,
 				961C53062251A9310089E997 /* KNBDSFreeOrderFooterView.m in Sources */,
 				96E7E0C0225B1F1100188DD1 /* KNBOrderViewController.m in Sources */,
 				96B098A72249CC1000154643 /* UIColor+Hex.m in Sources */,
@@ -1589,6 +1726,7 @@
 				96B098BD2249CC1000154643 /* UITextField+Shake.m in Sources */,
 				966AA553224A0ACB00EDBF5F /* DesignSketchViewController.m in Sources */,
 				9697FD5C225597A900027AB3 /* GHDropMenuFilterInputItem.m in Sources */,
+				964926BC225C948D000BBC7E /* KNBRecruitmentShowTableViewCell.m in Sources */,
 				96B098B12249CC1000154643 /* NSString+Contain.m in Sources */,
 				966169B7224DAB6400FB2D01 /* KNBMeHeaderView.m in Sources */,
 				966AA575224A1E4F00EDBF5F /* TAPageControl.m in Sources */,

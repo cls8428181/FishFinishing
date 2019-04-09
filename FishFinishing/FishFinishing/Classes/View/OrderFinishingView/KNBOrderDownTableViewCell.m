@@ -40,7 +40,7 @@
         [self.describeButton setTitle:@"装修公司" forState:UIControlStateNormal];
         self.iconImageView.hidden = NO;
     } else if (type == KNBOrderDownTypeHouse) {
-        self.titleLabel.text = @"户型:";
+        self.titleLabel.text = @"户        型:";
         [self.describeButton setTitle:@"3室,1厅,1厨,1卫" forState:UIControlStateNormal];
     } else if (type == KNBOrderDownTypeStyle) {
         self.titleLabel.text = @"装修风格:";
@@ -50,8 +50,8 @@
         [self.describeButton setTitle:@"中" forState:UIControlStateNormal];
     }
     
-    [self.describeButton setTitleEdgeInsets:UIEdgeInsetsMake(0, -self.describeButton.imageView.bounds.size.width, 0, self.describeButton.imageView.bounds.size.width)];
-    [self.describeButton setImageEdgeInsets:UIEdgeInsetsMake(0, self.describeButton.titleLabel.bounds.size.width, 0, -self.describeButton.titleLabel.bounds.size.width)];
+    [self.describeButton setTitleEdgeInsets:UIEdgeInsetsMake(0, -self.describeButton.imageView.bounds.size.width - 15, 0, self.describeButton.imageView.bounds.size.width + 15)];
+    [self.describeButton setImageEdgeInsets:UIEdgeInsetsMake(0, self.describeButton.titleLabel.bounds.size.width - 5, 0, -self.describeButton.titleLabel.bounds.size.width + 5)];
 }
 
 @end

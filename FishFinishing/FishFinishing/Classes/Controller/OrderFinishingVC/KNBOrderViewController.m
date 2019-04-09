@@ -10,9 +10,13 @@
 #import "KNBOrderDownTableViewCell.h"
 #import "KNBOrderTextfieldTableViewCell.h"
 #import "KNBOrderAddressTableViewCell.h"
+#import "KNBOrderFooterView.h"
+#import "BRAddressPickerView.h"
+#import "BRStringPickerView.h"
+#import "KNBRecruitmentPayViewController.h"
 
 @interface KNBOrderViewController ()
-
+@property (nonatomic, strong) KNBOrderFooterView *footerView;
 @end
 
 @implementation KNBOrderViewController
@@ -39,10 +43,11 @@
 
 #pragma mark - Utils
 - (void)configuration {
-    self.naviView.title = @"预约";
+    self.naviView.title = self.VCType == KNBOrderVCTypeOrderFinishing ? @"预约" : @"商家入驻";
     [self.naviView addLeftBarItemImageName:@"knb_back_black" target:self sel:@selector(backAction)];
     self.view.backgroundColor = [UIColor knBgColor];
-    
+    self.knGroupTableView.tableFooterView = self.footerView;
+    self.knGroupTableView.backgroundColor = [UIColor whiteColor];
 }
 
 - (void)addUI {
@@ -62,7 +67,17 @@
     if (section == 0) {
         return 1;
     } else {
-        return 2;
+        if (_VCType == KNBOrderVCTypeOrderFinishing) {
+            return 2;
+        } else {
+            if (section == 1) {
+                return 2;
+            } else if (section == 2) {
+                return 3;
+            } else {
+                return 1;
+            }
+        }
     }
 }
 
@@ -75,6 +90,8 @@
     } else if (indexPath.section == 1) {
         if (indexPath.row == 0) {
             cell = [KNBOrderTextfieldTableViewCell cellWithTableView:tableView];
+            KNBOrderTextfieldTableViewCell *typeCell = (KNBOrderTextfieldTableViewCell *)cell;
+            typeCell.type = KNBOrderTextFieldTypeArea;
         } else {
             cell = [KNBOrderDownTableViewCell cellWithTableView:tableView];
             KNBOrderDownTableViewCell *typeCell = (KNBOrderDownTableViewCell *)cell;
@@ -84,6 +101,8 @@
     } else if (indexPath.section == 2) {
         if (indexPath.row == 0) {
             cell = [KNBOrderTextfieldTableViewCell cellWithTableView:tableView];
+            KNBOrderTextfieldTableViewCell *typeCell = (KNBOrderTextfieldTableViewCell *)cell;
+            typeCell.type = KNBOrderTextFieldTypeCommunity;
 
         } else {
             cell = [KNBOrderAddressTableViewCell cellWithTableView:tableView];
@@ -104,9 +123,13 @@
     } else {
         if (indexPath.row == 0) {
             cell = [KNBOrderTextfieldTableViewCell cellWithTableView:tableView];
+            KNBOrderTextfieldTableViewCell *typeCell = (KNBOrderTextfieldTableViewCell *)cell;
+            typeCell.type = KNBOrderTextFieldTypeName;
 
         } else {
             cell = [KNBOrderTextfieldTableViewCell cellWithTableView:tableView];
+            KNBOrderTextfieldTableViewCell *typeCell = (KNBOrderTextfieldTableViewCell *)cell;
+            typeCell.type = KNBOrderTextFieldTypePhone;
 
         }
     }
@@ -121,8 +144,36 @@
     return section == 0 ? CGFLOAT_MIN : 10;
 }
 
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    UIView *sectionView =[[UIView alloc] init];
+    sectionView.backgroundColor = [UIColor colorWithHex:0xf2f2f2];
+    return sectionView;
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+    if (indexPath.section == 0) {
+        [BRStringPickerView showStringPickerWithTitle:@"选择服务" dataSource:@[@"1",@"2",@"3"] defaultSelValue:nil resultBlock:^(id selectValue) {
+            
+        }];
+    } else if (indexPath.section == 1 && indexPath.row == 1) {
+        [BRStringPickerView showStringPickerWithTitle:@"选择户型" dataSource:@[@"1",@"2",@"3"] defaultSelValue:nil resultBlock:^(id selectValue) {
+            
+        }];
+    } else if (indexPath.section == 2 && indexPath.row == 1) {
+        [BRAddressPickerView showAddressPickerWithDefaultSelected:nil resultBlock:^(BRProvinceModel *province, BRCityModel *city, BRAreaModel *area) {
+            
+        }];
+    } else if (indexPath.section == 3) {
+        if (indexPath.row == 0) {
+            [BRStringPickerView showStringPickerWithTitle:@"选择风格" dataSource:@[@"1",@"2",@"3"] defaultSelValue:nil resultBlock:^(id selectValue) {
+                
+            }];
+        } else {
+            [BRStringPickerView showStringPickerWithTitle:@"选择档次" dataSource:@[@"1",@"2",@"3"] defaultSelValue:nil resultBlock:^(id selectValue) {
+                
+            }];
+        }
+    }
 }
 
 #pragma mark - Event Response
@@ -135,5 +186,21 @@
 
 #pragma mark - Getters And Setters
 /* getter和setter全部都放在最后*/
+- (KNBOrderFooterView *)footerView {
+    if (!_footerView) {
+        KNB_WS(weakSelf);
+        _footerView = [[KNBOrderFooterView alloc] initWithButtonTitle:_VCType ==  KNBOrderVCTypeOrderFinishing ? @"免费预约" : @"提交入驻"];
+        _footerView.frame = CGRectMake(0, 0, KNB_SCREEN_WIDTH, 80);
+        _footerView.enterButtonBlock = ^{
+            if (weakSelf.VCType == KNBOrderVCTypeOrderFinishing) {
+                
+            } else {
+                KNBRecruitmentPayViewController *payVC = [[KNBRecruitmentPayViewController alloc] init];
+                [weakSelf.navigationController pushViewController:payVC animated:YES];
+            }
+        };
+    }
+    return _footerView;
+}
 
 @end

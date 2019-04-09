@@ -71,6 +71,7 @@
  */
 - (void)enterButtonAction:(UIButton *)button {
     KNBOrderViewController *orderVC = [[KNBOrderViewController alloc] init];
+    orderVC.VCType = KNBOrderVCTypeOrderFinishing;
     [self.navigationController pushViewController:orderVC animated:YES];
 }
 

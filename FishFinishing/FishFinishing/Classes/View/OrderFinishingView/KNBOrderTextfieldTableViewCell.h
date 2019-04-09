@@ -8,10 +8,21 @@
 
 #import <UIKit/UIKit.h>
 
+typedef NS_ENUM(NSInteger, KNBOrderTextFieldType) {
+    KNBOrderTextFieldTypeArea = 0,       //面积
+    KNBOrderTextFieldTypeCommunity,      //小区
+    KNBOrderTextFieldTypeName,           //姓名
+    KNBOrderTextFieldTypePhone,          //电话
+};
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface KNBOrderTextfieldTableViewCell : UITableViewCell
 
+ /**
+  类型
+  */
+ @property (nonatomic, assign) KNBOrderTextFieldType type;
 /**
  cell 创建
  */

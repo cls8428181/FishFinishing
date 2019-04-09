@@ -11,7 +11,11 @@ typedef NS_ENUM(NSInteger, KNBOrderDownType) {
     KNBOrderDownTypeServer = 0,       //服务类型
     KNBOrderDownTypeHouse,            //户型
     KNBOrderDownTypeStyle,            //装修风格
-    KNBOrderDownTypeLevel             //装修档次
+    KNBOrderDownTypeLevel,            //装修档次
+    KNBOrderDownTypeRecruitment,      //入驻类型
+    KNBOrderDownTypeDomain,           //擅长领域
+    KNBOrderDownTypeShowPrice         //展示价格
+    
 };
 
 NS_ASSUME_NONNULL_BEGIN
@@ -19,6 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface KNBOrderDownTableViewCell : UITableViewCell
 
 @property (nonatomic, assign) KNBOrderDownType type;
+
 /**
  cell 创建
  */

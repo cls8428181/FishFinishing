@@ -55,6 +55,7 @@
 #pragma mark - Utils
 - (void)configuration {
     self.naviView.title = @"装修效果图";
+    [self.naviView removeLeftBarItem];
     self.naviView.titleNaviLabel.textColor = [UIColor blackColor];
     self.view.backgroundColor = [UIColor knBgColor];
     
