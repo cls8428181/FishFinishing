@@ -31,16 +31,16 @@
 
 - (NSInteger)getRequestStatuCode {
     NSDictionary *jsonDic = self.responseJSONObject;
-    return [[jsonDic objectForKey:@"result"] integerValue];
+    return [[jsonDic objectForKey:@"code"] integerValue];
 }
 
 - (BOOL)requestSuccess {
-    return [self getRequestStatuCode] == 200;
+    return [self getRequestStatuCode] == 1;
 }
 
 - (NSString *)errMessage {
     NSDictionary *jsonDic = self.responseJSONObject;
-    return [jsonDic objectForKey:@"message"];
+    return [jsonDic objectForKey:@"msg"];
 }
 
 - (NSTimeInterval)requestTimeoutInterval {
@@ -48,7 +48,7 @@
 }
 
 - (YTKRequestMethod)requestMethod {
-    return YTKRequestMethodPOST;
+    return YTKRequestMethodGET;
 }
 
 - (YTKRequestSerializerType)requestSerializerType {
@@ -56,8 +56,19 @@
 }
 
 - (id)requestArgument {
-    return self.appendSecretDic;
+    return self.baseMuDic;
 }
+
+//baseMuDic
+//- (NSDictionary *)appendSecretDic {
+//    NSString *jsonStr = [KNBBaseRequest changeJsonStr:self.baseMuDic];
+////    NSString *saltKey = [[KNBMainConfigModel shareInstance] getRequestUrlWithKey:KNB_SecretSalt];
+////    NSString *saltStr = [NSString stringWithFormat:@"%@%@%@", saltKey, jsonStr, saltKey];
+////    NSString *sign = [saltStr MD5];
+////    NSDictionary *dic = @{ @"sign" : sign,
+////                           @"jsonStr" : [NSString stringWithFormat:@"train%@", jsonStr] };
+//    return dic;
+//}
 
 - (NSMutableDictionary *)baseMuDic {
     if (!_baseMuDic) {
@@ -92,36 +103,6 @@
     return _hudString ? _hudString : nil;
 }
 
-//+ (NSString *)requestArticleId:(NSString *)articleId {
-//    if (articleId.length == 0 || [articleId isKindOfClass:[NSNull class]]) {
-//        return nil;
-//    }
-//    NSString *contentUrlString = [[KNBMainConfigModel shareInstance] getRequestUrlWithKey:KNB_ArticleContent];
-//    NSString *urlString = [NSString stringWithFormat:@"%@?article_id=%@", contentUrlString, articleId];
-//    return urlString;
-//}
-
-//- (NSDictionary *)requestArgumentDicWithSecretKey:(NSString *)secretKey moreArgument:(NSDictionary *)moreDic{
-//    NSString *userToken = [KNBUserInfo shareInstance].userToken;
-//    NSString *user_id = [KNBUserInfo shareInstance].userId;
-//    NSMutableDictionary *muDic = [NSMutableDictionary dictionary];
-//    NSDictionary *dic = @{ @"user_token" : userToken ?: @"",
-//                           @"nowu_id" : user_id ?: @"",
-//                           @"client" : @"ios",
-//                           @"company_id" : @([KNBUserInfo shareInstance].roleFranchisee_id),
-//                           @"user_id" : @([KNBUserInfo shareInstance].mtmyUserId),
-//                           @"ver_num" : KNB_APP_VERSION };
-//    [muDic addEntriesFromDictionary:dic];
-//    [muDic addEntriesFromDictionary:moreDic];
-//
-//    NSString *jsonStr = [KNBBaseRequest changeJsonStr:muDic];
-//    NSString *saltKey = secretKey;
-//    NSString *saltStr = [NSString stringWithFormat:@"%@%@%@", saltKey, jsonStr, saltKey];
-//    NSString *sign = [saltStr MD5];
-//    NSDictionary *signdic = @{ @"sign" : sign,
-//                           @"jsonStr" : [NSString stringWithFormat:@"market%@", jsonStr] };
-//    return signdic;
-//}
 #pragma mark -- 数据缓存
 //根据url和参数创建路径
 - (NSString *)cacheFilePath{

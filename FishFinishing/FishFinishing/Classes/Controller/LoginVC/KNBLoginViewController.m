@@ -7,9 +7,9 @@
 //
 
 #import "KNBLoginViewController.h"
-//views
 #import "KNBButton.h"
 #import "KNBLoginInputView.h"
+#import "KNBLoginRegisterApi.h"
 
 @interface KNBLoginViewController ()
 //背景
@@ -258,6 +258,12 @@
 }
 //登录or确定
 - (void)sureButtonClick:(KNBButton *)sender {
+//    KNBLoginRegisterApi *api = [[KNBLoginRegisterApi alloc] initWithMobel:@"18600393004" code:@"1234" password:@"12345678" repassword:@"12345678"];
+//    [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
+//        NSLog(@"%@",request.responseJSONObject);
+//    } failure:^(__kindof YTKBaseRequest * _Nonnull request) {
+//
+//    }];
     //验证手机号是否为空
     if (isNullStr(self.mobileView.textField.text) || !isPhoneNumber(self.mobileView.textField.text)) {
         [LCProgressHUD showInfoMsg:@"请输入正确的手机号"];
@@ -279,8 +285,11 @@
             [[LCProgressHUD sharedHUD].customView setSize:CGSizeMake(25, 25)];
             return;
         }
+        
 //        (self.vcType == KNBLoginRegisterType) ? [self registKNAppRequest] : [self findPassswordRequest];
     }
+
+    
 }
 //新用户注册
 - (void)userRegisterClick:(KNBButton *)sender {

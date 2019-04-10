@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		18D8D661225DBB7E00532E52 /* KNBLoginRegisterApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D8D660225DBB7E00532E52 /* KNBLoginRegisterApi.m */; };
+		18D8D66B225DCC5400532E52 /* FishFinishingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D8D66A225DCC5400532E52 /* FishFinishingTests.m */; };
+		18D8D673225DD2BC00532E52 /* PrintBeautifulLog in Resources */ = {isa = PBXBuildFile; fileRef = 18D8D672225DD2BC00532E52 /* PrintBeautifulLog */; };
+		18D8D674225DD2BC00532E52 /* PrintBeautifulLog in Resources */ = {isa = PBXBuildFile; fileRef = 18D8D672225DD2BC00532E52 /* PrintBeautifulLog */; };
+		18D8D677225DDCD800532E52 /* KNBLoginSendCodeApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D8D676225DDCD800532E52 /* KNBLoginSendCodeApi.m */; };
+		18D8D67A225DF28700532E52 /* KNBLoginThirdPartyApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D8D679225DF28700532E52 /* KNBLoginThirdPartyApi.m */; };
 		961C52EA2251A56F0089E997 /* KNBDesignSketchFreeOrderHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 961C52E92251A56F0089E997 /* KNBDesignSketchFreeOrderHeaderView.m */; };
 		961C52EE2251A8450089E997 /* KNBDSFreeOrderNewHouseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 961C52EC2251A8450089E997 /* KNBDSFreeOrderNewHouseTableViewCell.m */; };
 		961C52EF2251A8450089E997 /* KNBDSFreeOrderNewHouseTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 961C52ED2251A8450089E997 /* KNBDSFreeOrderNewHouseTableViewCell.xib */; };
@@ -188,13 +194,36 @@
 		96FDB4CF224B62D6005844E7 /* KNBLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96FDB4CE224B62D6005844E7 /* KNBLoginViewController.m */; };
 		96FDB4D3224B68F9005844E7 /* KNBLoginInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = 96FDB4D2224B68F9005844E7 /* KNBLoginInputView.m */; };
 		96FDB4D6224B6B5E005844E7 /* KNBButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 96FDB4D4224B6B5E005844E7 /* KNBButton.m */; };
+		A832EBABC65AC9BACB7BD894 /* libPods-FishFinishingTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 90338EC7CEBA9DC800248FF3 /* libPods-FishFinishingTests.a */; };
 		DECCDD5E4E647B48B4169D6B /* libPods-FishFinishing.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A4C03A400C3DD905C0BF54B /* libPods-FishFinishing.a */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		18D8D66D225DCC5400532E52 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 96B097D72249C69100154643 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 96B097DE2249C69100154643;
+			remoteInfo = FishFinishing;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		18D8D65F225DBB7E00532E52 /* KNBLoginRegisterApi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNBLoginRegisterApi.h; sourceTree = "<group>"; };
+		18D8D660225DBB7E00532E52 /* KNBLoginRegisterApi.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNBLoginRegisterApi.m; sourceTree = "<group>"; };
+		18D8D668225DCC5400532E52 /* FishFinishingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FishFinishingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		18D8D66A225DCC5400532E52 /* FishFinishingTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FishFinishingTests.m; sourceTree = "<group>"; };
+		18D8D66C225DCC5400532E52 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		18D8D672225DD2BC00532E52 /* PrintBeautifulLog */ = {isa = PBXFileReference; lastKnownFileType = folder; path = PrintBeautifulLog; sourceTree = "<group>"; };
+		18D8D675225DDCD800532E52 /* KNBLoginSendCodeApi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNBLoginSendCodeApi.h; sourceTree = "<group>"; };
+		18D8D676225DDCD800532E52 /* KNBLoginSendCodeApi.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNBLoginSendCodeApi.m; sourceTree = "<group>"; };
+		18D8D678225DF28700532E52 /* KNBLoginThirdPartyApi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNBLoginThirdPartyApi.h; sourceTree = "<group>"; };
+		18D8D679225DF28700532E52 /* KNBLoginThirdPartyApi.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNBLoginThirdPartyApi.m; sourceTree = "<group>"; };
 		250E20706DF350D6DFABC34B /* Pods-FishFinishing.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FishFinishing.release.xcconfig"; path = "Pods/Target Support Files/Pods-FishFinishing/Pods-FishFinishing.release.xcconfig"; sourceTree = "<group>"; };
 		2A005F4211F7C68C8953E2D2 /* Pods-FishFinishing.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FishFinishing.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FishFinishing/Pods-FishFinishing.debug.xcconfig"; sourceTree = "<group>"; };
 		7A4C03A400C3DD905C0BF54B /* libPods-FishFinishing.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FishFinishing.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		90338EC7CEBA9DC800248FF3 /* libPods-FishFinishingTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FishFinishingTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		916FD97401A54750515F7A97 /* Pods-FishFinishingTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FishFinishingTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FishFinishingTests/Pods-FishFinishingTests.debug.xcconfig"; sourceTree = "<group>"; };
 		961C52E82251A56F0089E997 /* KNBDesignSketchFreeOrderHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNBDesignSketchFreeOrderHeaderView.h; sourceTree = "<group>"; };
 		961C52E92251A56F0089E997 /* KNBDesignSketchFreeOrderHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNBDesignSketchFreeOrderHeaderView.m; sourceTree = "<group>"; };
 		961C52EB2251A8450089E997 /* KNBDSFreeOrderNewHouseTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNBDSFreeOrderNewHouseTableViewCell.h; sourceTree = "<group>"; };
@@ -532,9 +561,18 @@
 		96FDB4D2224B68F9005844E7 /* KNBLoginInputView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNBLoginInputView.m; sourceTree = "<group>"; };
 		96FDB4D4224B6B5E005844E7 /* KNBButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KNBButton.m; sourceTree = "<group>"; };
 		96FDB4D5224B6B5E005844E7 /* KNBButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KNBButton.h; sourceTree = "<group>"; };
+		CC3584E90147AF2A6439DADF /* Pods-FishFinishingTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FishFinishingTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FishFinishingTests/Pods-FishFinishingTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		18D8D665225DCC5400532E52 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A832EBABC65AC9BACB7BD894 /* libPods-FishFinishingTests.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		96B097DC2249C69100154643 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -546,6 +584,36 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		18D8D65D225DBB3F00532E52 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				18D8D65E225DBB4700532E52 /* LoginApi */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		18D8D65E225DBB4700532E52 /* LoginApi */ = {
+			isa = PBXGroup;
+			children = (
+				18D8D65F225DBB7E00532E52 /* KNBLoginRegisterApi.h */,
+				18D8D660225DBB7E00532E52 /* KNBLoginRegisterApi.m */,
+				18D8D675225DDCD800532E52 /* KNBLoginSendCodeApi.h */,
+				18D8D676225DDCD800532E52 /* KNBLoginSendCodeApi.m */,
+				18D8D678225DF28700532E52 /* KNBLoginThirdPartyApi.h */,
+				18D8D679225DF28700532E52 /* KNBLoginThirdPartyApi.m */,
+			);
+			path = LoginApi;
+			sourceTree = "<group>";
+		};
+		18D8D669225DCC5400532E52 /* FishFinishingTests */ = {
+			isa = PBXGroup;
+			children = (
+				18D8D66A225DCC5400532E52 /* FishFinishingTests.m */,
+				18D8D66C225DCC5400532E52 /* Info.plist */,
+			);
+			path = FishFinishingTests;
+			sourceTree = "<group>";
+		};
 		961C530E225358350089E997 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -926,6 +994,7 @@
 			isa = PBXGroup;
 			children = (
 				96B097E12249C69100154643 /* FishFinishing */,
+				18D8D669225DCC5400532E52 /* FishFinishingTests */,
 				96B097E02249C69100154643 /* Products */,
 				B5224EB430AA393C1741EE08 /* Pods */,
 				A4870966EDC8814BA5EEA211 /* Frameworks */,
@@ -936,6 +1005,7 @@
 			isa = PBXGroup;
 			children = (
 				96B097DF2249C69100154643 /* FishFinishing.app */,
+				18D8D668225DCC5400532E52 /* FishFinishingTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -969,6 +1039,7 @@
 		96B097FD2249C6C200154643 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				18D8D65D225DBB3F00532E52 /* Network */,
 				96B098DC2249D8EB00154643 /* Controller */,
 				96B098D82249D8D900154643 /* Model */,
 				96B098DD2249D8F300154643 /* View */,
@@ -989,6 +1060,7 @@
 		96B097FF2249C6D800154643 /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				18D8D672225DD2BC00532E52 /* PrintBeautifulLog */,
 				96492698225C7F21000BBC7E /* BRPickerView */,
 				9697FD30225597A900027AB3 /* GHDropMenu */,
 				961C53352254A79D0089E997 /* FMTagsView */,
@@ -1407,6 +1479,7 @@
 			isa = PBXGroup;
 			children = (
 				7A4C03A400C3DD905C0BF54B /* libPods-FishFinishing.a */,
+				90338EC7CEBA9DC800248FF3 /* libPods-FishFinishingTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1416,6 +1489,8 @@
 			children = (
 				2A005F4211F7C68C8953E2D2 /* Pods-FishFinishing.debug.xcconfig */,
 				250E20706DF350D6DFABC34B /* Pods-FishFinishing.release.xcconfig */,
+				916FD97401A54750515F7A97 /* Pods-FishFinishingTests.debug.xcconfig */,
+				CC3584E90147AF2A6439DADF /* Pods-FishFinishingTests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -1423,6 +1498,25 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		18D8D667225DCC5400532E52 /* FishFinishingTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 18D8D66F225DCC5400532E52 /* Build configuration list for PBXNativeTarget "FishFinishingTests" */;
+			buildPhases = (
+				6534D17BAEB707B40E5E71A3 /* [CP] Check Pods Manifest.lock */,
+				18D8D664225DCC5400532E52 /* Sources */,
+				18D8D665225DCC5400532E52 /* Frameworks */,
+				18D8D666225DCC5400532E52 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				18D8D66E225DCC5400532E52 /* PBXTargetDependency */,
+			);
+			name = FishFinishingTests;
+			productName = FishFinishingTests;
+			productReference = 18D8D668225DCC5400532E52 /* FishFinishingTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		96B097DE2249C69100154643 /* FishFinishing */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 96B097F82249C69300154643 /* Build configuration list for PBXNativeTarget "FishFinishing" */;
@@ -1431,7 +1525,6 @@
 				96B097DB2249C69100154643 /* Sources */,
 				96B097DC2249C69100154643 /* Frameworks */,
 				96B097DD2249C69100154643 /* Resources */,
-				115B99091CF43394F0549F1A /* [CP] Embed Pods Frameworks */,
 				577688FDCBAB851C60F8264D /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
@@ -1449,9 +1542,14 @@
 		96B097D72249C69100154643 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				DefaultBuildSystemTypeForWorkspace = Original;
 				LastUpgradeCheck = 1010;
 				ORGANIZATIONNAME = "常立山";
 				TargetAttributes = {
+					18D8D667225DCC5400532E52 = {
+						CreatedOnToolsVersion = 10.1;
+						TestTargetID = 96B097DE2249C69100154643;
+					};
 					96B097DE2249C69100154643 = {
 						CreatedOnToolsVersion = 10.1;
 					};
@@ -1471,11 +1569,20 @@
 			projectRoot = "";
 			targets = (
 				96B097DE2249C69100154643 /* FishFinishing */,
+				18D8D667225DCC5400532E52 /* FishFinishingTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		18D8D666225DCC5400532E52 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				18D8D674225DD2BC00532E52 /* PrintBeautifulLog in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		96B097DD2249C69100154643 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1503,6 +1610,7 @@
 				96B097EF2249C69300154643 /* Assets.xcassets in Resources */,
 				96E55417224CB54D00D025C4 /* KNBDesignSketchCollectionSectionView.xib in Resources */,
 				961C530B2252194E0089E997 /* KNBHomeDesignSketchSubTableViewCell.xib in Resources */,
+				18D8D673225DD2BC00532E52 /* PrintBeautifulLog in Resources */,
 				961C52FE2251A8E50089E997 /* KNBDSFreeOrderNameTableViewCell.xib in Resources */,
 				964926B0225C7F21000BBC7E /* BRPickerView.bundle in Resources */,
 				9697FD672255A9E400027AB3 /* KNBDesignSketchCollectionViewCell.xib in Resources */,
@@ -1518,25 +1626,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		115B99091CF43394F0549F1A /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FishFinishing/Pods-FishFinishing-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		577688FDCBAB851C60F8264D /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1545,7 +1634,7 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-FishFinishing/Pods-FishFinishing-resources.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-FishFinishing/Pods-FishFinishing-resources.sh",
 				"${PODS_ROOT}/IQKeyboardManager/IQKeyboardManager/Resources/IQKeyboardManager.bundle",
 				"${PODS_ROOT}/LCProgressHUD/LCProgressHUD/LCProgressHUD.bundle",
 				"${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle",
@@ -1554,11 +1643,35 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/IQKeyboardManager.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/LCProgressHUD.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MJRefresh.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FishFinishing/Pods-FishFinishing-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FishFinishing/Pods-FishFinishing-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6534D17BAEB707B40E5E71A3 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-FishFinishingTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		9F154E08BFB26A5AC1F0BF04 /* [CP] Check Pods Manifest.lock */ = {
@@ -1586,6 +1699,14 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		18D8D664225DCC5400532E52 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				18D8D66B225DCC5400532E52 /* FishFinishingTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		96B097DB2249C69100154643 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1597,6 +1718,7 @@
 				966AA546224A033000EDBF5F /* XHLaunchAdConfiguration.m in Sources */,
 				96B098972249CC1000154643 /* UIImage+WaterMark.m in Sources */,
 				96B098B02249CC1000154643 /* NSString+Trim.m in Sources */,
+				18D8D677225DDCD800532E52 /* KNBLoginSendCodeApi.m in Sources */,
 				96B098E42249E45000154643 /* NJKWebViewProgressView.m in Sources */,
 				964926AB225C7F21000BBC7E /* BRStringPickerView.m in Sources */,
 				96B098C42249D56000154643 /* KNBMainConfigModel.m in Sources */,
@@ -1645,6 +1767,7 @@
 				964926B1225C7F21000BBC7E /* BRAddressPickerView.m in Sources */,
 				966AA559224A0AEB00EDBF5F /* RecruitmentViewController.m in Sources */,
 				96B098AC2249CC1000154643 /* UIImageView+FaceAwareFill.m in Sources */,
+				18D8D661225DBB7E00532E52 /* KNBLoginRegisterApi.m in Sources */,
 				96B0982E2249CB8800154643 /* KNOCJSModel.m in Sources */,
 				96E7E0B8225ADB0900188DD1 /* KNBHomeCompanyListViewController.m in Sources */,
 				961C532E22548E4D0089E997 /* KNBHomeCompanyIntroTableViewCell.m in Sources */,
@@ -1735,6 +1858,7 @@
 				96FDB4D6224B6B5E005844E7 /* KNBButton.m in Sources */,
 				96B098B62249CC1000154643 /* GTMNSString+HTML.m in Sources */,
 				96B097E42249C69100154643 /* AppDelegate.m in Sources */,
+				18D8D67A225DF28700532E52 /* KNBLoginThirdPartyApi.m in Sources */,
 				96E7E0CA225B2E4D00188DD1 /* KNBOrderTextfieldTableViewCell.m in Sources */,
 				961C531C225462EF0089E997 /* KNBDSFreeOrderRedEnterTableViewCell.m in Sources */,
 				96B098BC2249CC1000154643 /* KNBTextField.m in Sources */,
@@ -1743,6 +1867,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		18D8D66E225DCC5400532E52 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 96B097DE2249C69100154643 /* FishFinishing */;
+			targetProxy = 18D8D66D225DCC5400532E52 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		96B097F02249C69300154643 /* LaunchScreen.storyboard */ = {
@@ -1756,6 +1888,46 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		18D8D670225DCC5400532E52 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 916FD97401A54750515F7A97 /* Pods-FishFinishingTests.debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = NJNULN45M9;
+				INFOPLIST_FILE = FishFinishingTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.winfoc.FishFinishingTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FishFinishing.app/FishFinishing";
+			};
+			name = Debug;
+		};
+		18D8D671225DCC5400532E52 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = CC3584E90147AF2A6439DADF /* Pods-FishFinishingTests.release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = NJNULN45M9;
+				INFOPLIST_FILE = FishFinishingTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.winfoc.FishFinishingTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FishFinishing.app/FishFinishing";
+			};
+			name = Release;
+		};
 		96B097F62249C69300154643 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1909,6 +2081,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		18D8D66F225DCC5400532E52 /* Build configuration list for PBXNativeTarget "FishFinishingTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				18D8D670225DCC5400532E52 /* Debug */,
+				18D8D671225DCC5400532E52 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		96B097DA2249C69100154643 /* Build configuration list for PBXProject "FishFinishing" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

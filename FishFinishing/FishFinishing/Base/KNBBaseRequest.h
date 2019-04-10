@@ -27,10 +27,6 @@
  *  基本配置字典 配置 ver_num
  */
 @property (nonatomic, strong) NSMutableDictionary *baseMuDic;
-/**
- * 报货基本配置字典
- */
-@property (nonatomic, strong) NSMutableDictionary *baseMuDicWithCargo;
 
 /**
  *  获取请求返回状态
@@ -52,28 +48,10 @@
  */
 - (NSString *)errMessage;
 
-
 /**
- *  文章内容完整url
- *
- *  @param arcId 文章Id
- */
-+ (NSString *)requestArticleId:(NSString *)articleId;
-
-/**
- *  拼接加密秘钥 (妃子校)
+ *  拼接加密秘钥
  */
 - (NSDictionary *)appendSecretDic;
-
-/**
- *  拼接加密秘钥（美货）
- */
-- (NSDictionary *)appendSecretDicWithCargo;
-
-/**
- *  拼接加密秘钥（文章）
- */
-- (NSDictionary *)appendSecretDicWithArticle;
 
 /*
  * 获取缓存路径
@@ -83,4 +61,5 @@
 - (NSDictionary *)requestArgumentDicWithSecretKey:(NSString *)secretKey moreArgument:(NSDictionary *)moreDic;
 /**字典转字符串*/
 + (NSString *)changeJsonStr:(NSDictionary *)dic;
+
 @end

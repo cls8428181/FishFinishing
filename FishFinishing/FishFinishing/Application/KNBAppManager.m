@@ -11,6 +11,7 @@
 #import <MagicalRecord/MagicalRecord.h>
 #import "AppDelegate.h"
 #import "KNBMainConfigModel.h"
+#import <AFNetworking.h>
 //#import "KNBRemindUpdate.h"
 //#import "KNUMManager.h"
 #import "KNGetUserLoaction.h"
@@ -54,7 +55,7 @@ KNB_DEFINE_SINGLETON_FOR_CLASS(KNBAppManager);
     // 判断网络状态
     [self configureNetReachability];
     // 网络请求配置
-//    [self configureRequestFilters];
+    [self configureRequestFilters];
     // 定位
     [[KNGetUserLoaction shareInstance] startLocation];
     
@@ -168,20 +169,19 @@ KNB_DEFINE_SINGLETON_FOR_CLASS(KNBAppManager);
     }];
 }
 
-//- (void)configureRequestFilters {
-//    YTKNetworkConfig *config = [YTKNetworkConfig sharedConfig];
-//    config.baseUrl = KNB_MAINCONFIGURL;
-//    //https 公匙
-//    //    NSString *cerPath = [[NSBundle mainBundle] pathForResource:@"https" ofType:@"cer"];
-//    //    NSData * certData =[NSData dataWithContentsOfFile:cerPath];
-//    //    NSSet * certSet = [[NSSet alloc] initWithObjects:certData, nil];
-//    //
-//    //    AFSecurityPolicy *securityPolicy = [AFSecurityPolicy defaultPolicy];
-//    //    [securityPolicy setAllowInvalidCertificates:YES];
-//    //    [securityPolicy setValidatesDomainName:NO];
-//    //    [securityPolicy setPinnedCertificates:certSet];
-//    //    config.securityPolicy = securityPolicy;
-//
+- (void)configureRequestFilters {
+    YTKNetworkConfig *config = [YTKNetworkConfig sharedConfig];
+    config.baseUrl = KNB_MAINCONFIGURL;
+    //https 公匙
+    NSString *cerPath = [[NSBundle mainBundle] pathForResource:@"https" ofType:@"cer"];
+    NSData * certData =[NSData dataWithContentsOfFile:cerPath];
+    NSSet * certSet = [[NSSet alloc] initWithObjects:certData, nil];
+    AFSecurityPolicy *securityPolicy = [AFSecurityPolicy defaultPolicy];
+    [securityPolicy setAllowInvalidCertificates:YES];
+    [securityPolicy setValidatesDomainName:NO];
+    [securityPolicy setPinnedCertificates:certSet];
+    config.securityPolicy = securityPolicy;
+
 //    KNBMainConfigApi *mainConfig = [[KNBMainConfigApi alloc] init];
 //    // 10014 token失效
 //    [mainConfig startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *request) {
@@ -209,7 +209,7 @@ KNB_DEFINE_SINGLETON_FOR_CLASS(KNBAppManager);
 //    } failure:^(__kindof YTKBaseRequest *request) {
 //        NSLog(@"mainConfig failed");
 //    }];
-//}
+}
 
 #pragma mark - 文件加密和解密文件清除
 - (void)clearTmpSecretFilePath {

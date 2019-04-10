@@ -50,14 +50,14 @@
 #import "KNBUtilExtend.h"
 
 // 环境配置 0：本地测试 1:正式环境 2:线上测试
-#define KNB_ENV_TYPE 0
+#define KNB_ENV_TYPE 2
 
 #if (KNB_ENV_TYPE == 0) // 本地环境
 #define KNB_MAINCONFIGURL @"http://10.10.8.22:8801"
 #elif (KNB_ENV_TYPE == 1) // 线上正式
 #define KNB_MAINCONFIGURL @"https://jiekou1.idengyun.com"
 #else  // 线上测试
-#define KNB_MAINCONFIGURL @"http://online-test.idengyun.com"
+#define KNB_MAINCONFIGURL @"http://192.168.1.110"
 #endif
 
 #ifdef DEBUG

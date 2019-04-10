@@ -14,6 +14,12 @@ NSString *const KNB_ADPhotoUrl = @"ad_pic";                   //启动广告图u
 NSString *const KNB_ADJumpUrl = @"ad_url";                    //启动广告跳转url
 NSString *const KNB_BaseUrlKey = @"base_url";                 //基本Url
 NSString *const KN_Version = @"version";                              // 版本号
+#pragma mark - 登录
+NSString *const KNB_Login_Register = @"/Api/Index/register"; //注册
+NSString *const KNB_Login_SendCode = @"/Api/Index/sendcode"; //发送验证码
+NSString *const KNB_Login_ThirdParty = @"/Api/Index/thirdlogin"; //第三方登录
+
+
 
 #import "KNBMainConfigModel.h"
 
@@ -33,7 +39,7 @@ NSString *const KN_Version = @"version";                              // 版本�
 KNB_DEFINE_SINGLETON_FOR_CLASS(KNBMainConfigModel);
 
 - (NSString *)getRequestUrlWithKey:(NSString *)key {
-    NSString *url = [[self interfaceListDic] objectForKey:key];
+    NSString *url = [NSString stringWithFormat:@"%@%@",KNB_MAINCONFIGURL,key];;
     if (!isNullStr(url)) {
         //除去地址两端的空格
         return [url stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];

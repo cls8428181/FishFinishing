@@ -1,0 +1,87 @@
+//
+//  FishFinishingTests.m
+//  FishFinishingTests
+//
+//  Created by apple on 2019/4/10.
+//  Copyright © 2019年 常立山. All rights reserved.
+//
+
+#import <XCTest/XCTest.h>
+#import "KNBLoginRegisterApi.h"
+#import "KNBLoginSendCodeApi.h"
+
+@interface FishFinishingTests : XCTestCase
+
+@end
+
+@implementation FishFinishingTests
+
+- (void)setUp {
+    // Put setup code here. This method is called before the invocation of each test method in the class.
+}
+
+- (void)tearDown {
+    // Put teardown code here. This method is called after the invocation of each test method in the class.
+}
+
+- (void)testExample {
+    // This is an example of a functional test case.
+    // Use XCTAssert and related functions to verify your tests produce the correct results.
+}
+//测试注册接口
+- (void)testRegisterApi {
+    XCTestExpectation *expectation = [self expectationWithDescription:@" KNBLoginRegisterApi"];
+    KNBLoginRegisterApi *api = [[KNBLoginRegisterApi alloc] initWithMobile:@"18600393004" code:@"1234" password:@"12345678" repassword:@"12345678"];
+
+    [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *request) {
+        XCTAssertNotNil(request.responseJSONObject, @"request.responseJSONObject nil");
+        XCTAssertNotNil(request, @"request nil");
+        XCTAssertEqual(request.responseStatusCode, 1, @"status != 1");
+//        NSArray *dataArray = [KNBBusinessSchoolActiveContentModel changeResponseJSONObject:request.responseJSONObject[@"data"]];
+        [expectation fulfill];
+        
+        NSLog(@"%@", request.responseJSONObject);
+        
+    } failure:^(__kindof YTKBaseRequest *request) {
+        XCTAssertNotNil(request, @"request nil");
+    }];
+    
+    [self waitForExpectationsWithTimeout:20 handler:^(NSError *_Nullable error) {
+        if (error) {
+            NSLog(@"Timeout Error: %@", error);
+        }
+    }];
+}
+//发送验证码
+- (void)testSendCodeApi {
+    XCTestExpectation *expectation = [self expectationWithDescription:@" KNBLoginSendCodeApi"];
+    KNBLoginSendCodeApi *api = [[KNBLoginSendCodeApi alloc] initWithMobile:@"18600393004" type:KNBLoginSendCodeTypeRegister];
+    
+    [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *request) {
+        XCTAssertNotNil(request.responseJSONObject, @"request.responseJSONObject nil");
+        XCTAssertNotNil(request, @"request nil");
+        XCTAssertEqual(request.responseStatusCode, 1, @"status != 1");
+        //        NSArray *dataArray = [KNBBusinessSchoolActiveContentModel changeResponseJSONObject:request.responseJSONObject[@"data"]];
+        [expectation fulfill];
+        
+        NSLog(@"%@", request.responseJSONObject);
+        
+    } failure:^(__kindof YTKBaseRequest *request) {
+        XCTAssertNotNil(request, @"request nil");
+    }];
+    
+    [self waitForExpectationsWithTimeout:20 handler:^(NSError *_Nullable error) {
+        if (error) {
+            NSLog(@"Timeout Error: %@", error);
+        }
+    }];
+}
+
+- (void)testPerformanceExample {
+    // This is an example of a performance test case.
+    [self measureBlock:^{
+        // Put the code you want to measure the time of here.
+    }];
+}
+
+@end

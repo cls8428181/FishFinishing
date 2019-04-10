@@ -10,6 +10,12 @@
 
 //主配置字典
 extern NSString *const KNB_BaseUrlKey;
+//注册
+extern NSString *const KNB_Login_Register;
+//发送验证码
+extern NSString *const KNB_Login_SendCode;
+//第三方登录
+extern NSString *const KNB_Login_ThirdParty;
 
 
 @interface KNBMainConfigModel : NSObject
