@@ -164,12 +164,12 @@
             if (timeout <= 0) { //倒计时结束，关闭
                 dispatch_source_cancel(_timer);
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    [self.timeButton setTitle:@"重新获取验证码" forState:UIControlStateNormal];
+                    [self.timeButton setTitle:@"重新获取" forState:UIControlStateNormal];
                 });
             } else {
                 dispatch_async(dispatch_get_main_queue(), ^{
                     //设置界面的按钮显示 根据自己需求设置
-                    [self.timeButton setTitle:[NSString stringWithFormat:@"(%ds)重新获取", timeout] forState:UIControlStateNormal];
+                    [self.timeButton setTitle:[NSString stringWithFormat:@"(%ds)", timeout] forState:UIControlStateNormal];
                 });
                 timeout--;
             }

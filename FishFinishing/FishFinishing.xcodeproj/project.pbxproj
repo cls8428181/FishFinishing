@@ -7,6 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		187A6A72225ECE74006CA2B0 /* KNBRecruitmentTypeApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 187A6A71225ECE74006CA2B0 /* KNBRecruitmentTypeApi.m */; };
+		187A6A75225ECF36006CA2B0 /* KNBRecruitmentCostApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 187A6A74225ECF36006CA2B0 /* KNBRecruitmentCostApi.m */; };
+		187A6A78225ECF82006CA2B0 /* KNBRecruitmentDomainApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 187A6A77225ECF82006CA2B0 /* KNBRecruitmentDomainApi.m */; };
+		187A6A7B225ED12F006CA2B0 /* KNBRecruitmentAddApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 187A6A7A225ED12F006CA2B0 /* KNBRecruitmentAddApi.m */; };
+		187A6A7F225ED27F006CA2B0 /* KNBOrderServerTypeApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 187A6A7E225ED27F006CA2B0 /* KNBOrderServerTypeApi.m */; };
+		187A6A82225ED3A6006CA2B0 /* KNBOrderStyleApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 187A6A81225ED3A6006CA2B0 /* KNBOrderStyleApi.m */; };
+		187A6A85225ED49E006CA2B0 /* KNBRecruitmentDetailApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 187A6A84225ED49E006CA2B0 /* KNBRecruitmentDetailApi.m */; };
+		187A6A88225ED4B7006CA2B0 /* KNBRecruitmentAddCaseApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 187A6A87225ED4B7006CA2B0 /* KNBRecruitmentAddCaseApi.m */; };
+		187A6A8B225ED4E6006CA2B0 /* KNBRecruitmentDelCaseApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 187A6A8A225ED4E6006CA2B0 /* KNBRecruitmentDelCaseApi.m */; };
+		187C9559225EC685006FD01A /* KNBLoginBindingApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 187C9558225EC685006FD01A /* KNBLoginBindingApi.m */; };
+		18A090ED225EC92E001ED33F /* KNBLoginModifyApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A090EC225EC92E001ED33F /* KNBLoginModifyApi.m */; };
+		18A090F0225EC98A001ED33F /* KNBLoginLoginApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A090EF225EC989001ED33F /* KNBLoginLoginApi.m */; };
+		18A090F4225EC9B4001ED33F /* KNBHomeBannerApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A090F3225EC9B4001ED33F /* KNBHomeBannerApi.m */; };
+		18A090F7225ECAA8001ED33F /* KNBHomeAllAreaApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A090F6225ECAA8001ED33F /* KNBHomeAllAreaApi.m */; };
+		18A090FA225ECAE0001ED33F /* KNBHomeSingleAreaApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A090F9225ECAE0001ED33F /* KNBHomeSingleAreaApi.m */; };
+		18D599B5225F0E9000B5177D /* KNBUploadFileApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D599B4225F0E9000B5177D /* KNBUploadFileApi.m */; };
+		18D599B8225F1D4B00B5177D /* KNBRecruitmentCaseDetailApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D599B7225F1D4B00B5177D /* KNBRecruitmentCaseDetailApi.m */; };
 		18D8D661225DBB7E00532E52 /* KNBLoginRegisterApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D8D660225DBB7E00532E52 /* KNBLoginRegisterApi.m */; };
 		18D8D66B225DCC5400532E52 /* FishFinishingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D8D66A225DCC5400532E52 /* FishFinishingTests.m */; };
 		18D8D673225DD2BC00532E52 /* PrintBeautifulLog in Resources */ = {isa = PBXBuildFile; fileRef = 18D8D672225DD2BC00532E52 /* PrintBeautifulLog */; };
@@ -209,6 +226,40 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		187A6A70225ECE74006CA2B0 /* KNBRecruitmentTypeApi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNBRecruitmentTypeApi.h; sourceTree = "<group>"; };
+		187A6A71225ECE74006CA2B0 /* KNBRecruitmentTypeApi.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNBRecruitmentTypeApi.m; sourceTree = "<group>"; };
+		187A6A73225ECF36006CA2B0 /* KNBRecruitmentCostApi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNBRecruitmentCostApi.h; sourceTree = "<group>"; };
+		187A6A74225ECF36006CA2B0 /* KNBRecruitmentCostApi.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNBRecruitmentCostApi.m; sourceTree = "<group>"; };
+		187A6A76225ECF82006CA2B0 /* KNBRecruitmentDomainApi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNBRecruitmentDomainApi.h; sourceTree = "<group>"; };
+		187A6A77225ECF82006CA2B0 /* KNBRecruitmentDomainApi.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNBRecruitmentDomainApi.m; sourceTree = "<group>"; };
+		187A6A79225ED12F006CA2B0 /* KNBRecruitmentAddApi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNBRecruitmentAddApi.h; sourceTree = "<group>"; };
+		187A6A7A225ED12F006CA2B0 /* KNBRecruitmentAddApi.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNBRecruitmentAddApi.m; sourceTree = "<group>"; };
+		187A6A7D225ED27F006CA2B0 /* KNBOrderServerTypeApi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNBOrderServerTypeApi.h; sourceTree = "<group>"; };
+		187A6A7E225ED27F006CA2B0 /* KNBOrderServerTypeApi.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNBOrderServerTypeApi.m; sourceTree = "<group>"; };
+		187A6A80225ED3A6006CA2B0 /* KNBOrderStyleApi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNBOrderStyleApi.h; sourceTree = "<group>"; };
+		187A6A81225ED3A6006CA2B0 /* KNBOrderStyleApi.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNBOrderStyleApi.m; sourceTree = "<group>"; };
+		187A6A83225ED49E006CA2B0 /* KNBRecruitmentDetailApi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNBRecruitmentDetailApi.h; sourceTree = "<group>"; };
+		187A6A84225ED49E006CA2B0 /* KNBRecruitmentDetailApi.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNBRecruitmentDetailApi.m; sourceTree = "<group>"; };
+		187A6A86225ED4B7006CA2B0 /* KNBRecruitmentAddCaseApi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNBRecruitmentAddCaseApi.h; sourceTree = "<group>"; };
+		187A6A87225ED4B7006CA2B0 /* KNBRecruitmentAddCaseApi.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNBRecruitmentAddCaseApi.m; sourceTree = "<group>"; };
+		187A6A89225ED4E6006CA2B0 /* KNBRecruitmentDelCaseApi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNBRecruitmentDelCaseApi.h; sourceTree = "<group>"; };
+		187A6A8A225ED4E6006CA2B0 /* KNBRecruitmentDelCaseApi.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNBRecruitmentDelCaseApi.m; sourceTree = "<group>"; };
+		187C9557225EC685006FD01A /* KNBLoginBindingApi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNBLoginBindingApi.h; sourceTree = "<group>"; };
+		187C9558225EC685006FD01A /* KNBLoginBindingApi.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNBLoginBindingApi.m; sourceTree = "<group>"; };
+		18A090EB225EC92E001ED33F /* KNBLoginModifyApi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNBLoginModifyApi.h; sourceTree = "<group>"; };
+		18A090EC225EC92E001ED33F /* KNBLoginModifyApi.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNBLoginModifyApi.m; sourceTree = "<group>"; };
+		18A090EE225EC989001ED33F /* KNBLoginLoginApi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNBLoginLoginApi.h; sourceTree = "<group>"; };
+		18A090EF225EC989001ED33F /* KNBLoginLoginApi.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNBLoginLoginApi.m; sourceTree = "<group>"; };
+		18A090F2225EC9B4001ED33F /* KNBHomeBannerApi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNBHomeBannerApi.h; sourceTree = "<group>"; };
+		18A090F3225EC9B4001ED33F /* KNBHomeBannerApi.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNBHomeBannerApi.m; sourceTree = "<group>"; };
+		18A090F5225ECAA8001ED33F /* KNBHomeAllAreaApi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNBHomeAllAreaApi.h; sourceTree = "<group>"; };
+		18A090F6225ECAA8001ED33F /* KNBHomeAllAreaApi.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNBHomeAllAreaApi.m; sourceTree = "<group>"; };
+		18A090F8225ECAE0001ED33F /* KNBHomeSingleAreaApi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNBHomeSingleAreaApi.h; sourceTree = "<group>"; };
+		18A090F9225ECAE0001ED33F /* KNBHomeSingleAreaApi.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNBHomeSingleAreaApi.m; sourceTree = "<group>"; };
+		18D599B3225F0E8F00B5177D /* KNBUploadFileApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KNBUploadFileApi.h; sourceTree = "<group>"; };
+		18D599B4225F0E9000B5177D /* KNBUploadFileApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KNBUploadFileApi.m; sourceTree = "<group>"; };
+		18D599B6225F1D4B00B5177D /* KNBRecruitmentCaseDetailApi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNBRecruitmentCaseDetailApi.h; sourceTree = "<group>"; };
+		18D599B7225F1D4B00B5177D /* KNBRecruitmentCaseDetailApi.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNBRecruitmentCaseDetailApi.m; sourceTree = "<group>"; };
 		18D8D65F225DBB7E00532E52 /* KNBLoginRegisterApi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNBLoginRegisterApi.h; sourceTree = "<group>"; };
 		18D8D660225DBB7E00532E52 /* KNBLoginRegisterApi.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNBLoginRegisterApi.m; sourceTree = "<group>"; };
 		18D8D668225DCC5400532E52 /* FishFinishingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FishFinishingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -584,9 +635,69 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		187A6A6F225ECE0A006CA2B0 /* RecruitmentApi */ = {
+			isa = PBXGroup;
+			children = (
+				187A6A70225ECE74006CA2B0 /* KNBRecruitmentTypeApi.h */,
+				187A6A71225ECE74006CA2B0 /* KNBRecruitmentTypeApi.m */,
+				187A6A73225ECF36006CA2B0 /* KNBRecruitmentCostApi.h */,
+				187A6A74225ECF36006CA2B0 /* KNBRecruitmentCostApi.m */,
+				187A6A76225ECF82006CA2B0 /* KNBRecruitmentDomainApi.h */,
+				187A6A77225ECF82006CA2B0 /* KNBRecruitmentDomainApi.m */,
+				187A6A79225ED12F006CA2B0 /* KNBRecruitmentAddApi.h */,
+				187A6A7A225ED12F006CA2B0 /* KNBRecruitmentAddApi.m */,
+				187A6A83225ED49E006CA2B0 /* KNBRecruitmentDetailApi.h */,
+				187A6A84225ED49E006CA2B0 /* KNBRecruitmentDetailApi.m */,
+				187A6A86225ED4B7006CA2B0 /* KNBRecruitmentAddCaseApi.h */,
+				187A6A87225ED4B7006CA2B0 /* KNBRecruitmentAddCaseApi.m */,
+				187A6A89225ED4E6006CA2B0 /* KNBRecruitmentDelCaseApi.h */,
+				187A6A8A225ED4E6006CA2B0 /* KNBRecruitmentDelCaseApi.m */,
+				18D599B6225F1D4B00B5177D /* KNBRecruitmentCaseDetailApi.h */,
+				18D599B7225F1D4B00B5177D /* KNBRecruitmentCaseDetailApi.m */,
+			);
+			path = RecruitmentApi;
+			sourceTree = "<group>";
+		};
+		187A6A7C225ED255006CA2B0 /* OrderFinishingApi */ = {
+			isa = PBXGroup;
+			children = (
+				187A6A7D225ED27F006CA2B0 /* KNBOrderServerTypeApi.h */,
+				187A6A7E225ED27F006CA2B0 /* KNBOrderServerTypeApi.m */,
+				187A6A80225ED3A6006CA2B0 /* KNBOrderStyleApi.h */,
+				187A6A81225ED3A6006CA2B0 /* KNBOrderStyleApi.m */,
+			);
+			path = OrderFinishingApi;
+			sourceTree = "<group>";
+		};
+		18A090F1225EC996001ED33F /* HomeApi */ = {
+			isa = PBXGroup;
+			children = (
+				18A090F2225EC9B4001ED33F /* KNBHomeBannerApi.h */,
+				18A090F3225EC9B4001ED33F /* KNBHomeBannerApi.m */,
+				18A090F5225ECAA8001ED33F /* KNBHomeAllAreaApi.h */,
+				18A090F6225ECAA8001ED33F /* KNBHomeAllAreaApi.m */,
+				18A090F8225ECAE0001ED33F /* KNBHomeSingleAreaApi.h */,
+				18A090F9225ECAE0001ED33F /* KNBHomeSingleAreaApi.m */,
+			);
+			path = HomeApi;
+			sourceTree = "<group>";
+		};
+		18D599B2225F0E6F00B5177D /* KNBUploadFileApi */ = {
+			isa = PBXGroup;
+			children = (
+				18D599B3225F0E8F00B5177D /* KNBUploadFileApi.h */,
+				18D599B4225F0E9000B5177D /* KNBUploadFileApi.m */,
+			);
+			path = KNBUploadFileApi;
+			sourceTree = "<group>";
+		};
 		18D8D65D225DBB3F00532E52 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				18D599B2225F0E6F00B5177D /* KNBUploadFileApi */,
+				187A6A7C225ED255006CA2B0 /* OrderFinishingApi */,
+				187A6A6F225ECE0A006CA2B0 /* RecruitmentApi */,
+				18A090F1225EC996001ED33F /* HomeApi */,
 				18D8D65E225DBB4700532E52 /* LoginApi */,
 			);
 			path = Network;
@@ -601,6 +712,12 @@
 				18D8D676225DDCD800532E52 /* KNBLoginSendCodeApi.m */,
 				18D8D678225DF28700532E52 /* KNBLoginThirdPartyApi.h */,
 				18D8D679225DF28700532E52 /* KNBLoginThirdPartyApi.m */,
+				187C9557225EC685006FD01A /* KNBLoginBindingApi.h */,
+				187C9558225EC685006FD01A /* KNBLoginBindingApi.m */,
+				18A090EB225EC92E001ED33F /* KNBLoginModifyApi.h */,
+				18A090EC225EC92E001ED33F /* KNBLoginModifyApi.m */,
+				18A090EE225EC989001ED33F /* KNBLoginLoginApi.h */,
+				18A090EF225EC989001ED33F /* KNBLoginLoginApi.m */,
 			);
 			path = LoginApi;
 			sourceTree = "<group>";
@@ -1729,6 +1846,7 @@
 				966AA574224A1E4F00EDBF5F /* TADotView.m in Sources */,
 				96811885224F497C00E4A622 /* KNBDesignSketchDetailViewController.m in Sources */,
 				966AA576224A1E4F00EDBF5F /* TAAnimatedDotView.m in Sources */,
+				187A6A75225ECF36006CA2B0 /* KNBRecruitmentCostApi.m in Sources */,
 				96B098E32249E45000154643 /* NJKWebViewProgress.m in Sources */,
 				966AA547224A033000EDBF5F /* XHLaunchAdCache.m in Sources */,
 				96E5541A224CBEFD00D025C4 /* KNBSortView.m in Sources */,
@@ -1742,9 +1860,12 @@
 				966AA544224A033000EDBF5F /* XHLaunchAdDownloader.m in Sources */,
 				96B098CD2249D68D00154643 /* EXTRuntimeExtensions.m in Sources */,
 				96B098B52249CC1000154643 /* NSString+Size.m in Sources */,
+				187A6A72225ECE74006CA2B0 /* KNBRecruitmentTypeApi.m in Sources */,
 				961C5320225486BD0089E997 /* KNBHomeCompanyDetailViewController.m in Sources */,
 				9697FD53225597A900027AB3 /* NSString+Arc4random.m in Sources */,
+				187C9559225EC685006FD01A /* KNBLoginBindingApi.m in Sources */,
 				96B098312249CB8800154643 /* KNBBaseRequest.m in Sources */,
+				18D599B8225F1D4B00B5177D /* KNBRecruitmentCaseDetailApi.m in Sources */,
 				964926B4225C8F32000BBC7E /* KNBRecruitmentPayViewController.m in Sources */,
 				96E7E0BB225ADD5900188DD1 /* KNBHomeCompanyListHeaderView.m in Sources */,
 				96B098BA2249CC1000154643 /* CALayer+Transition.m in Sources */,
@@ -1763,11 +1884,13 @@
 				96B097ED2249C69100154643 /* FishFinishing.xcdatamodeld in Sources */,
 				966AA571224A1E4F00EDBF5F /* SDCycleScrollView.m in Sources */,
 				96B098A12249CC1000154643 /* UIButton+CountDown.m in Sources */,
+				187A6A82225ED3A6006CA2B0 /* KNBOrderStyleApi.m in Sources */,
 				966AA548224A033000EDBF5F /* XHLaunchAdImageManager.m in Sources */,
 				964926B1225C7F21000BBC7E /* BRAddressPickerView.m in Sources */,
 				966AA559224A0AEB00EDBF5F /* RecruitmentViewController.m in Sources */,
 				96B098AC2249CC1000154643 /* UIImageView+FaceAwareFill.m in Sources */,
 				18D8D661225DBB7E00532E52 /* KNBLoginRegisterApi.m in Sources */,
+				18A090F7225ECAA8001ED33F /* KNBHomeAllAreaApi.m in Sources */,
 				96B0982E2249CB8800154643 /* KNOCJSModel.m in Sources */,
 				96E7E0B8225ADB0900188DD1 /* KNBHomeCompanyListViewController.m in Sources */,
 				961C532E22548E4D0089E997 /* KNBHomeCompanyIntroTableViewCell.m in Sources */,
@@ -1793,18 +1916,23 @@
 				961C532422548E050089E997 /* KNBHomeCompanyHeaderTableViewCell.m in Sources */,
 				966AA541224A033000EDBF5F /* XHLaunchAdConst.m in Sources */,
 				966AA53D224A033000EDBF5F /* XHLaunchAdManager.m in Sources */,
+				18D599B5225F0E9000B5177D /* KNBUploadFileApi.m in Sources */,
 				96B098A02249CC1000154643 /* UIResponder+Router.m in Sources */,
 				96B0989A2249CC1000154643 /* UIImage+Alpha.m in Sources */,
 				966AA513224A009600EDBF5F /* KNBWelcomeViewController.m in Sources */,
 				966AA556224A0ADD00EDBF5F /* OrderFinishingViewController.m in Sources */,
 				966AA540224A033000EDBF5F /* XHLaunchImageView.m in Sources */,
 				96B0982F2249CB8800154643 /* KNTabBarViewController.m in Sources */,
+				18A090F0225EC98A001ED33F /* KNBLoginLoginApi.m in Sources */,
 				96B0989F2249CC1000154643 /* UILabel+YBAttributeTextTapAction.m in Sources */,
+				18A090FA225ECAE0001ED33F /* KNBHomeSingleAreaApi.m in Sources */,
 				96B098A42249CC1000154643 /* UIButton+EnlargeArea.m in Sources */,
 				964926B8225C92BC000BBC7E /* KNBRecruitmentPayFooterView.m in Sources */,
 				9649268D225C45DF000BBC7E /* KNBOrderFooterView.m in Sources */,
 				966169BB224DAB7600FB2D01 /* KNBMeTableViewCell.m in Sources */,
+				18A090ED225EC92E001ED33F /* KNBLoginModifyApi.m in Sources */,
 				96B097F52249C69300154643 /* main.m in Sources */,
+				18A090F4225EC9B4001ED33F /* KNBHomeBannerApi.m in Sources */,
 				96B098A92249CC1000154643 /* UITextView+ZWPlaceHolder.m in Sources */,
 				9697FD57225597A900027AB3 /* GHDropMenu.m in Sources */,
 				966AA543224A033000EDBF5F /* XHLaunchAdController.m in Sources */,
@@ -1812,8 +1940,10 @@
 				961C52EE2251A8450089E997 /* KNBDSFreeOrderNewHouseTableViewCell.m in Sources */,
 				9697FD58225597A900027AB3 /* GHDropMenuOptionCell.m in Sources */,
 				96B098992249CC1000154643 /* UIImage+QRCode.m in Sources */,
+				187A6A85225ED49E006CA2B0 /* KNBRecruitmentDetailApi.m in Sources */,
 				966AA51B224A00D700EDBF5F /* KNBStartPageView.m in Sources */,
 				96B098A82249CC1000154643 /* UIView+Frame.m in Sources */,
+				187A6A8B225ED4E6006CA2B0 /* KNBRecruitmentDelCaseApi.m in Sources */,
 				966AA573224A1E4F00EDBF5F /* SDCollectionViewCell.m in Sources */,
 				9697FD59225597A900027AB3 /* GHDropMenuFilterSingleInputItem.m in Sources */,
 				966AA560224A1ADC00EDBF5F /* KNBSearchView.m in Sources */,
@@ -1823,13 +1953,16 @@
 				96B098AD2249CC1000154643 /* UIImageView+Addition.m in Sources */,
 				961C532922548E210089E997 /* KNBHomeCompanyServerTableViewCell.m in Sources */,
 				9697FD55225597A900027AB3 /* UIView+Extension.m in Sources */,
+				187A6A78225ECF82006CA2B0 /* KNBRecruitmentDomainApi.m in Sources */,
 				964926AE225C7F21000BBC7E /* BRBaseView.m in Sources */,
 				9697FD5E225597A900027AB3 /* GHDropMenuModel.m in Sources */,
 				966AA53C224A033000EDBF5F /* FLAnimatedImageView.m in Sources */,
 				966AA53B224A033000EDBF5F /* FLAnimatedImage.m in Sources */,
 				96B098B22249CC1000154643 /* NSString+HTML.m in Sources */,
 				961C52FD2251A8E50089E997 /* KNBDSFreeOrderNameTableViewCell.m in Sources */,
+				187A6A88225ED4B7006CA2B0 /* KNBRecruitmentAddCaseApi.m in Sources */,
 				96FDB4CF224B62D6005844E7 /* KNBLoginViewController.m in Sources */,
+				187A6A7F225ED27F006CA2B0 /* KNBOrderServerTypeApi.m in Sources */,
 				96B098AE2249CC1000154643 /* UIImageView+KNBImage.m in Sources */,
 				96B098352249CB8800154643 /* KNBBaseRequestAccessory.m in Sources */,
 				964926C1225C94A2000BBC7E /* KNBRecruitmentPayTableViewCell.m in Sources */,
@@ -1857,6 +1990,7 @@
 				9697FD5F225597A900027AB3 /* GHDropMenuFilterSectionHeader.m in Sources */,
 				96FDB4D6224B6B5E005844E7 /* KNBButton.m in Sources */,
 				96B098B62249CC1000154643 /* GTMNSString+HTML.m in Sources */,
+				187A6A7B225ED12F006CA2B0 /* KNBRecruitmentAddApi.m in Sources */,
 				96B097E42249C69100154643 /* AppDelegate.m in Sources */,
 				18D8D67A225DF28700532E52 /* KNBLoginThirdPartyApi.m in Sources */,
 				96E7E0CA225B2E4D00188DD1 /* KNBOrderTextfieldTableViewCell.m in Sources */,

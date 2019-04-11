@@ -15,19 +15,29 @@
     NSString *_nickname;
     NSString *_sex;
 }
-//
-//- (instancetype)initWithMobile:(NSString *)mobile type:(KNBLoginSendCodeType)type {
-//    if (self = [super init]) {
-//    }
-//    return self;
-//}
+
+- (instancetype)initWithOpenid:(NSString *)openid loginType:(KNBLoginThirdPartyType)loginType portrait:(NSString *)portrait nickName:(NSString *)nickName sex:(NSString *)sex {
+    if (self = [super init]) {
+        _openid = openid;
+        _login_type = (loginType == KNBLoginThirdPartyTypeWechat ? @"weixin" : (loginType == KNBLoginThirdPartyTypeBlog ? @"weibo" : @"qq"));
+        _portrait_img = portrait;
+        _nickname = nickName;
+        _sex = sex;
+    }
+    return self;
+}
 
 - (NSString *)requestUrl {
-    return [[KNBMainConfigModel shareInstance] getRequestUrlWithKey:KNB_Login_ThirdParty];
+    return [[KNBMainConfigModel shareInstance] getRequestUrlWithKey:KNBLogin_ThirdParty];
 }
 
 - (id)requestArgument {
     NSDictionary *dic = @{
+                          @"openid" : _openid,
+                          @"login_type" : _login_type,
+                          @"portrait_img" : _portrait_img,
+                          @"nickname" : _nickname,
+                          @"sex" : _sex
                           };
     [self.baseMuDic addEntriesFromDictionary:dic];
     return self.baseMuDic;

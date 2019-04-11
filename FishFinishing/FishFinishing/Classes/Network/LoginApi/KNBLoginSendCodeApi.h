@@ -16,7 +16,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface KNBLoginSendCodeApi : KNBBaseRequest
 
+/**
+ 发送验证码
+
+ @param mobile 手机号码
+ @param type 事件类型
+ */
 - (instancetype)initWithMobile:(NSString *)mobile type:(KNBLoginSendCodeType)type;
+
 @end
 
 NS_ASSUME_NONNULL_END

@@ -26,15 +26,10 @@
 }
 
 - (NSString *)requestUrl {
-    return [[KNBMainConfigModel shareInstance] getRequestUrlWithKey:KNB_Login_SendCode];
+    return [[KNBMainConfigModel shareInstance] getRequestUrlWithKey:KNBLogin_SendCode];
 }
 
 - (id)requestArgument {
-//    NSDictionary *dic = @{
-//                          @"mobile" : _mobile,
-//                          @"action" : _action,
-//                          };
-//    [self.baseMuDic addEntriesFromDictionary:dic];
     return @{
              @"mobile" : _mobile,
              @"action" : _action,

@@ -9,6 +9,10 @@
 #import <XCTest/XCTest.h>
 #import "KNBLoginRegisterApi.h"
 #import "KNBLoginSendCodeApi.h"
+#import "KNBLoginBindingApi.h"
+#import "KNBLoginThirdPartyApi.h"
+#import "KNBLoginModifyApi.h"
+#import "KNBLoginLoginApi.h"
 
 @interface FishFinishingTests : XCTestCase
 
@@ -36,7 +40,7 @@
     [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *request) {
         XCTAssertNotNil(request.responseJSONObject, @"request.responseJSONObject nil");
         XCTAssertNotNil(request, @"request nil");
-        XCTAssertEqual(request.responseStatusCode, 1, @"status != 1");
+        XCTAssertEqual(request.responseStatusCode, 200, @"status != 1");
 //        NSArray *dataArray = [KNBBusinessSchoolActiveContentModel changeResponseJSONObject:request.responseJSONObject[@"data"]];
         [expectation fulfill];
         
@@ -60,7 +64,7 @@
     [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *request) {
         XCTAssertNotNil(request.responseJSONObject, @"request.responseJSONObject nil");
         XCTAssertNotNil(request, @"request nil");
-        XCTAssertEqual(request.responseStatusCode, 1, @"status != 1");
+        XCTAssertEqual(request.responseStatusCode, 200, @"status != 1");
         //        NSArray *dataArray = [KNBBusinessSchoolActiveContentModel changeResponseJSONObject:request.responseJSONObject[@"data"]];
         [expectation fulfill];
         
@@ -70,6 +74,31 @@
         XCTAssertNotNil(request, @"request nil");
     }];
     
+    [self waitForExpectationsWithTimeout:20 handler:^(NSError *_Nullable error) {
+        if (error) {
+            NSLog(@"Timeout Error: %@", error);
+        }
+    }];
+}
+
+//第三方登录
+- (void)testThirdPartyApi {
+    XCTestExpectation *expectation = [self expectationWithDescription:@" KNBLoginThirdPartyApi"];
+    KNBLoginThirdPartyApi *api = [[KNBLoginThirdPartyApi alloc] initWithOpenid:@"11111" loginType:KNBLoginThirdPartyTypeWechat portrait:@"11111" nickName:@"111111" sex:@"11111"];
+    
+    [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *request) {
+        XCTAssertNotNil(request.responseJSONObject, @"request.responseJSONObject nil");
+        XCTAssertNotNil(request, @"request nil");
+        XCTAssertEqual(request.responseStatusCode, 200, @"code != 1");
+        //        NSArray *dataArray = [KNBBusinessSchoolActiveContentModel changeResponseJSONObject:request.responseJSONObject[@"data"]];
+        [expectation fulfill];
+        
+        NSLog(@"%@", request.responseJSONObject);
+        
+    } failure:^(__kindof YTKBaseRequest *request) {
+        XCTAssertNotNil(request, @"request nil");
+    }];
+
     [self waitForExpectationsWithTimeout:20 handler:^(NSError *_Nullable error) {
         if (error) {
             NSLog(@"Timeout Error: %@", error);

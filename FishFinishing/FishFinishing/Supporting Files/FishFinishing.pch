@@ -95,6 +95,11 @@ typedef NS_ENUM(NSInteger, KNTraingErrorCode) {
     KNTraingError_token = 10014, // token过期
     KNTraingError_update = 10017,// 强制更新
 };
+//上传图片
+static NSString *const KNBPublishContentItemType = @"KNBPublishContentItemType";
+static NSString *const KNBPublishContentItemName = @"KNBPublishContentItemName";
+static NSString *const KNBPublishContentItemPreviewImage = @"KNBPublishContentItemPreviewImage";
+static NSString *const KNBPublishContentItemOriginImage = @"KNBPublishContentItemOriginImage";
 
 #endif
 #endif /* KenuoTraining_pch */

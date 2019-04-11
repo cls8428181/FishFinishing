@@ -10,6 +10,10 @@
 #import "KNBButton.h"
 #import "KNBLoginInputView.h"
 #import "KNBLoginRegisterApi.h"
+#import "KNBLoginSendCodeApi.h"
+#import "KNBLoginModifyApi.h"
+#import "KNBLoginLoginApi.h"
+#import "KNBLoginThirdPartyApi.h"
 
 @interface KNBLoginViewController ()
 //背景
@@ -258,38 +262,99 @@
 }
 //登录or确定
 - (void)sureButtonClick:(KNBButton *)sender {
-//    KNBLoginRegisterApi *api = [[KNBLoginRegisterApi alloc] initWithMobel:@"18600393004" code:@"1234" password:@"12345678" repassword:@"12345678"];
-//    [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
-//        NSLog(@"%@",request.responseJSONObject);
-//    } failure:^(__kindof YTKBaseRequest * _Nonnull request) {
-//
-//    }];
-    //验证手机号是否为空
-    if (isNullStr(self.mobileView.textField.text) || !isPhoneNumber(self.mobileView.textField.text)) {
-        [LCProgressHUD showInfoMsg:@"请输入正确的手机号"];
-        [[LCProgressHUD sharedHUD].customView setSize:CGSizeMake(25, 25)];
-        return;
-    }
-    
     if (self.vcType == KNBLoginTypeLogin) {
-        if (isNullStr(self.verinumView.textField.text) && isNullStr(self.passwordView.textField.text)) {
-            NSString *msg = (self.passwordView.hidden) ? @"验证码不能为空" : @"密码不能为空";
-            [LCProgressHUD showInfoMsg:msg];
-            [[LCProgressHUD sharedHUD].customView setSize:CGSizeMake(25, 25)];
-            return;
-        }
-    } else {
-        if (isNullStr(self.verinumView.textField.text) || isNullStr(self.passwordView.textField.text)) {
-            NSString *msg = (isNullStr(self.verinumView.textField.text)) ? @"验证码不能为空" : @"密码不能为空";
-            [LCProgressHUD showInfoMsg:msg];
+        //验证手机号是否为空
+        if (isNullStr(self.mobileView.textField.text) || !isPhoneNumber(self.mobileView.textField.text)) {
+            [LCProgressHUD showInfoMsg:@"请输入正确的手机号"];
             [[LCProgressHUD sharedHUD].customView setSize:CGSizeMake(25, 25)];
             return;
         }
         
-//        (self.vcType == KNBLoginRegisterType) ? [self registKNAppRequest] : [self findPassswordRequest];
+        if (isNullStr(self.passwordView.textField.text)) {
+            [LCProgressHUD showInfoMsg:@"密码不能为空"];
+            [[LCProgressHUD sharedHUD].customView setSize:CGSizeMake(25, 25)];
+            return;
+        }
+        [self loginRequest];
+    } else {
+        //验证手机号是否为空
+        if (isNullStr(self.mobileTextView.textField.text) || !isPhoneNumber(self.mobileTextView.textField.text)) {
+            [LCProgressHUD showInfoMsg:@"请输入正确的手机号"];
+            [[LCProgressHUD sharedHUD].customView setSize:CGSizeMake(25, 25)];
+            return;
+        }
+        if (isNullStr(self.verinumView.textField.text)) {
+            [LCProgressHUD showInfoMsg:@"验证码不能为空"];
+            [[LCProgressHUD sharedHUD].customView setSize:CGSizeMake(25, 25)];
+            return;
+        }
+        if (isNullStr(self.passwordNewView.textField.text) || isNullStr(self.passwordSetView.textField.text)) {
+            NSString *msg = (isNullStr(self.passwordNewView.textField.text)) ? @"新密码不能为空" : @"密码不能为空";
+            [LCProgressHUD showInfoMsg:msg];
+            [[LCProgressHUD sharedHUD].customView setSize:CGSizeMake(25, 25)];
+            return;
+        }
+        if (isNullStr(self.passwordEnterView.textField.text)) {
+            [LCProgressHUD showInfoMsg:@"确认密码不能为空"];
+            [[LCProgressHUD sharedHUD].customView setSize:CGSizeMake(25, 25)];
+            return;
+        }
+        if (![self.passwordEnterView.textField.text isEqualToString:self.vcType == KNBLoginTypeRegister ? self.passwordSetView.textField.text : self.passwordNewView.textField.text]) {
+            [LCProgressHUD showInfoMsg:@"两次密码输入不一致"];
+            [[LCProgressHUD sharedHUD].customView setSize:CGSizeMake(25, 25)];
+        }
+        
+        (self.vcType == KNBLoginTypeRegister) ? [self registerRequest] : [self findPassswordRequest];
     }
+}
+//登录
+- (void)loginRequest {
+    KNBLoginLoginApi *api = [[KNBLoginLoginApi alloc] initWithMobile:self.mobileTextView.textField.text password:self.passwordView.textField.text];
+    api.hudString = @"";
+    KNB_WS(weakSelf);
+    [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *_Nonnull request) {
+        if (api.requestSuccess) {
+            NSDictionary *dic = request.responseObject[@"data"];
+            [weakSelf requestSuccess:YES requestEnd:YES];
+        } else {
+            [weakSelf requestSuccess:NO requestEnd:NO];
+        }
+    } failure:^(__kindof YTKBaseRequest *_Nonnull request) {
+        [weakSelf requestSuccess:NO requestEnd:NO];
+    }];
+}
+//注册
+- (void)registerRequest {
+    KNBLoginRegisterApi *api = [[KNBLoginRegisterApi alloc] initWithMobile:self.mobileTextView.textField.text code:self.verinumView.textField.text password:self.passwordSetView.textField.text repassword:self.passwordEnterView.textField.text];
+    api.hudString = @"";
+    KNB_WS(weakSelf);
+    [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *_Nonnull request) {
+        if (api.requestSuccess) {
+            NSDictionary *dic = request.responseObject[@"data"];
+            [weakSelf requestSuccess:YES requestEnd:YES];
+        } else {
+            [weakSelf requestSuccess:NO requestEnd:NO];
+        }
+    } failure:^(__kindof YTKBaseRequest *_Nonnull request) {
+        [weakSelf requestSuccess:NO requestEnd:NO];
+    }];
 
-    
+}
+//找回密码
+- (void)findPassswordRequest {
+    KNBLoginModifyApi *api = [[KNBLoginModifyApi alloc] initWithMobile:self.mobileTextView.textField.text code:self.verinumView.textField.text token:@"" password:self.passwordSetView.textField.text repassword:self.passwordEnterView.textField.text];
+    api.hudString = @"";
+    KNB_WS(weakSelf);
+    [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *_Nonnull request) {
+        if (api.requestSuccess) {
+            NSDictionary *dic = request.responseObject[@"data"];
+            [weakSelf requestSuccess:YES requestEnd:YES];
+        } else {
+            [weakSelf requestSuccess:NO requestEnd:NO];
+        }
+    } failure:^(__kindof YTKBaseRequest *_Nonnull request) {
+        [weakSelf requestSuccess:NO requestEnd:NO];
+    }];
 }
 //新用户注册
 - (void)userRegisterClick:(KNBButton *)sender {
@@ -311,26 +376,25 @@
 }
 //获取验证码
 - (void)getVerifyCodeRequest {
-    if (isNullStr(self.mobileView.textField.text) || !isPhoneNumber(self.mobileView.textField.text)) {
+    if (isNullStr(self.mobileTextView.textField.text) || !isPhoneNumber(self.mobileTextView.textField.text)) {
         [LCProgressHUD showInfoMsg:@"请输入正确的手机号"];
         [[LCProgressHUD sharedHUD].customView setSize:CGSizeMake(25, 25)];
         return;
     }
-//
-//    KNBVerificationCodeApi *verCode = [[KNBVerificationCodeApi alloc]
-//                                       initWithMobile:self.mobileView.textField.text];
-//    KNB_WS(weakSelf);
-//    [verCode startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *request) {
-//        if (verCode.statusCodeSuccess) {
-//            [LCProgressHUD showSuccess:@"发送成功"];
-            [self verinumViewTimerControll:YES];
-//        } else {
-//            [LCProgressHUD showInfoMsg:verCode.errMessage];
-//            [[LCProgressHUD sharedHUD].customView setSize:CGSizeMake(25, 25)];
-//        }
-//    } failure:^(__kindof YTKBaseRequest *request) {
-//        [LCProgressHUD showFailure:verCode.errMessage];
-//    }];
+    KNBLoginSendCodeApi *codeApi = [[KNBLoginSendCodeApi alloc] initWithMobile:self.mobileTextView.textField.text type:self.vcType == KNBLoginTypeRegister ? KNBLoginSendCodeTypeRegister : KNBLoginSendCodeTypeForgot];
+
+    KNB_WS(weakSelf);
+    [codeApi startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *request) {
+        if (codeApi.requestSuccess) {
+            [LCProgressHUD showSuccess:@"发送成功"];
+            [weakSelf verinumViewTimerControll:YES];
+        } else {
+            [LCProgressHUD showInfoMsg:codeApi.errMessage];
+            [[LCProgressHUD sharedHUD].customView setSize:CGSizeMake(25, 25)];
+        }
+    } failure:^(__kindof YTKBaseRequest *request) {
+        [LCProgressHUD showFailure:codeApi.errMessage];
+    }];
 }
 //定时器处理
 - (void)verinumViewTimerControll:(BOOL)startTimer {
@@ -353,7 +417,7 @@
         [_logoButton sizeToFit];
         [_logoButton setTitle:@"大鱼装修" forState:UIControlStateNormal];
         _logoButton.titleLabel.font = [UIFont boldSystemFontOfSize:16];
-        [_logoButton verticalImageAndTitle:15];
+        [_logoButton verticalImageAndTitle:15 width:60 height:60];
         [_logoButton setUserInteractionEnabled  :NO];
     }
     return _logoButton;
@@ -378,7 +442,7 @@
         _verinumView = [[KNBLoginInputView alloc] initWithFrame:CGRectZero viewType:KNBLoginInputViewTypeVerify];
         KNB_WS(weakSelf);
         _verinumView.getVerifyCodeBlock = ^{
-//            [weakSelf getVerifyCodeRequest];
+            [weakSelf getVerifyCodeRequest];
         };
     }
     return _verinumView;

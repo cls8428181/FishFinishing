@@ -35,4 +35,7 @@
  @param spacing 间距
  */
 - (void)verticalImageAndTitle:(CGFloat)spacing;
+
+- (void)verticalImageAndTitle:(CGFloat)spacing width:(NSInteger)width height:(NSInteger)height;
+
 @end

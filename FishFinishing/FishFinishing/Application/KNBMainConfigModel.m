@@ -6,20 +6,42 @@
 //  Copyright © 2016年 Robert. All rights reserved.
 //
 
-NSString *const KNB_MainConfigKey = @"mainConfig";            //主配置
+NSString *const KNB_MainConfigKey = @"mainConfig";     //主配置
 NSString *const KNB_InterfaceList = @"data";                  //接口列表
-NSString *const KNB_ADvertising = @"advertising";             // 启动广告信息
-NSString *const KNB_ADname = @"ads_name";                     //启动广告名称
-NSString *const KNB_ADPhotoUrl = @"ad_pic";                   //启动广告图url
-NSString *const KNB_ADJumpUrl = @"ad_url";                    //启动广告跳转url
-NSString *const KNB_BaseUrlKey = @"base_url";                 //基本Url
-NSString *const KN_Version = @"version";                              // 版本号
+NSString *const KNB_ADvertising = @"advertising";          // 启动广告信息
+NSString *const KNB_ADname = @"ads_name";               //启动广告名称256
+NSString *const KNB_ADPhotoUrl = @"ad_pic";               //启动广告图url
+NSString *const KNB_ADJumpUrl = @"ad_url";                //启动广告跳转url
+NSString *const KNB_BaseUrlKey = @"base_url";            //基本Url
+NSString *const KN_Version = @"version";                     // 版本号
+NSString *const KNB_UploadFile = @"/Api/Facilitator/uploadImage";   // 上传图片
+
 #pragma mark - 登录
-NSString *const KNB_Login_Register = @"/Api/Index/register"; //注册
-NSString *const KNB_Login_SendCode = @"/Api/Index/sendcode"; //发送验证码
-NSString *const KNB_Login_ThirdParty = @"/Api/Index/thirdlogin"; //第三方登录
+NSString *const KNBLogin_Register = @"/Api/Index/register";       //注册
+NSString *const KNBLogin_SendCode = @"/Api/Index/sendcode"; //发送验证码
+NSString *const KNBLogin_ThirdParty = @"/Api/Index/thirdlogin"; //第三方登录
+NSString *const KNBLogin_Binding = @"/Api/Index/binding";        //绑定手机号
+NSString *const KNBLogin_Modify = @"/Api/Index/changepwd";   //修改密码
+NSString *const KNBLogin_Login = @"/Api/Index/login";              //登录
 
+#pragma mark - 首页
+NSString *const KNBHome_Banner = @"/Api/Default/getbanner";      //获取 banner 图
+NSString *const KNBHome_AllArea = @"/Api/Default/getarea";         //获取全部省市区信息
+NSString *const KNBHome_SingleArea = @"/Api/Default/getregion"; //获取单独的省市区信息
 
+#pragma mark - 入驻商家
+NSString *const KNBRecruitment_Type = @"/Api/Facilitator/getcat";          //入驻商家类型
+NSString *const KNBRecruitment_Cost = @"/Api/Facilitator/getcost";         //展示费用
+NSString *const KNBRecruitment_Domain = @"/Api/Facilitator/gettag";      //擅长领域
+NSString *const KNBRecruitment_Add = @"/Api/Facilitator/addFacilitator"; //添加商家
+NSString *const KNBRecruitment_Detail = @"/Api/Facilitator/getDetail";     //商家详情
+NSString *const KNBRecruitment_AddCase = @"/Api/Facilitator/addCase"; //添加案例
+NSString *const KNBRecruitment_DelCase = @"/Api/Facilitator/delCase";   //删除案例
+NSString *const KNBRecruitment_GetCase = @"/Api/Facilitator/getCase";   //装修案例详情
+
+#pragma mark - 免费预约
+NSString *const KNBOrder_ServerType = @"/Api/Facilitator/getservice";   //免费预约服务类型
+NSString *const KNBOrder_Style = @"/Api/Facilitator/getStyle";               //装修风格
 
 #import "KNBMainConfigModel.h"
 
