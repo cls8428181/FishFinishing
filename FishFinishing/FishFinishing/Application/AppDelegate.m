@@ -11,6 +11,7 @@
 #import "KNBWelcomeViewController.h"
 #import "XHLaunchAdManager.h"
 #import "CALayer+Transition.h"
+#import "KNBLoginViewController.h"
 
 @interface AppDelegate ()<KNBWelcomeVCDelegate>
 
@@ -44,6 +45,21 @@
         //配置广告图
         [XHLaunchAdManager shareManager];
     }
+}
+
+/**
+ *  登陆页面
+ */
+- (void)presentLoginViewController {
+    UIViewController *visibleVC = self.navController.visibleViewController;
+    if ([visibleVC isKindOfClass:[KNBLoginViewController class]]) {
+        return;
+    }
+    [KNB_AppDelegate.tabBarController turnToControllerIndex:0]; //跳转到首页
+    KNBLoginViewController *loginVC = [[KNBLoginViewController alloc] init];
+    loginVC.vcType = KNBLoginTypeLogin;
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:loginVC];
+    [self.navController presentViewController:nav animated:NO completion:nil];
 }
 
 #pragma mark-- KNBWelcomeVCDelegate

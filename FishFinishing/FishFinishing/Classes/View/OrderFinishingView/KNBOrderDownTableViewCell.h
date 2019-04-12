@@ -23,7 +23,12 @@ NS_ASSUME_NONNULL_BEGIN
 @interface KNBOrderDownTableViewCell : UITableViewCell
 
 @property (nonatomic, assign) KNBOrderDownType type;
+@property (nonatomic, copy) void (^describeButtonBlock)(KNBOrderDownType type);
 
+/**
+ 内容按钮
+ */
+@property (weak, nonatomic) IBOutlet UIButton *describeButton;
 /**
  cell 创建
  */

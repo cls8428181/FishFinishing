@@ -20,7 +20,10 @@
 @property (readonly, strong) NSPersistentContainer *persistentContainer;
 
 - (void)saveContext;
-
+/**
+ *  跳转登陆页面
+ */
+- (void)presentLoginViewController;
 
 @end
 

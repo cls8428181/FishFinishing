@@ -181,7 +181,8 @@ KNB_DEFINE_SINGLETON_FOR_CLASS(KNBAppManager);
     [securityPolicy setValidatesDomainName:NO];
     [securityPolicy setPinnedCertificates:certSet];
     config.securityPolicy = securityPolicy;
-
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.securityPolicy = securityPolicy;
 //    KNBMainConfigApi *mainConfig = [[KNBMainConfigApi alloc] init];
 //    // 10014 token失效
 //    [mainConfig startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *request) {

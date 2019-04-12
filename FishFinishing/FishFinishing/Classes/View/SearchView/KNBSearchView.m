@@ -7,6 +7,11 @@
 //
 
 #import "KNBSearchView.h"
+#import "NSString+Contain.h"
+#import "NSString+Size.h"
+#import "KNBHomeCityListViewController.h"
+#import "KNAlertView.h"
+
 //高度
 CGFloat KNBSearchViewHeight = 44;
 
@@ -17,10 +22,10 @@ CGFloat KNBSearchViewHeight = 44;
 @property (nonatomic, strong) UILabel *searchLabel;
 //左边城市选择背景
 @property (nonatomic, strong) UIImageView *chooseCityView;
-//左边城市选择按钮
-@property (nonatomic, strong) UIButton *chooseCityButton;
 //右边聊天按钮
 @property (nonatomic, strong) UIButton *chatButton;
+//默认城市名称
+@property (nonatomic, copy) NSString *defaultCityName;
 @end
 
 @implementation KNBSearchView
@@ -39,7 +44,14 @@ CGFloat KNBSearchViewHeight = 44;
     [self addSubview:self.chatButton];
     [self addSubview:self.searchBgView];
     self.backgroundColor = [UIColor colorWithHex:0x0096e6];
-    
+    KNB_WS(weakSelf);
+    self.defaultCityName = [KNGetUserLoaction shareInstance].cityName;
+    [self changeButtontTitle:self.defaultCityName];
+    [KNGetUserLoaction shareInstance].completeBlock = ^(NSString *cityName) {
+        if (![weakSelf.defaultCityName isEqualToString:cityName]) {
+            [weakSelf remindChangeCityName:cityName];
+        }
+    };
 }
 
 - (void)layoutSubviews {
@@ -48,9 +60,12 @@ CGFloat KNBSearchViewHeight = 44;
     [self.chooseCityView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(weakSelf);
         make.top.mas_equalTo(KNB_StatusBar_H + 12);
+        make.width.mas_equalTo(60);
     }];
     [self.chooseCityButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(weakSelf.chooseCityView);
+        make.center.equalTo(weakSelf.chooseCityView);
+        make.width.mas_equalTo(55);
+        make.height.mas_equalTo(36);
     }];
     [self.chatButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(KNB_StatusBar_H + 12);
@@ -76,6 +91,44 @@ CGFloat KNBSearchViewHeight = 44;
     if (self.touchBlock) {
         self.touchBlock();
     }
+}
+
+- (void)chooseCityButtonAction:(UIButton *)button {
+    KNB_WS(weakSelf);
+    KNBHomeCityListViewController *cityListVC = [[KNBHomeCityListViewController alloc] init];
+    cityListVC.cityBlock = ^(NSString *cityName, NSString *areaId) {
+        [[KNGetUserLoaction shareInstance] saveUserCityName:cityName areaId:areaId];
+        weakSelf.defaultCityName = cityName;
+        [weakSelf changeButtontTitle:cityName];
+    };
+    KNBNavgationController *nav = [[KNBNavgationController alloc] initWithRootViewController:cityListVC];
+    [KNB_AppDelegate.navController presentViewController:nav animated:YES completion:nil];
+}
+
+- (void)changeButtontTitle:(NSString *)cityName {
+    self.defaultCityName = cityName;
+    cityName = [cityName replaceString:@"市" withString:@""];
+    CGFloat btnW = [cityName widthWithFont:[UIFont systemFontOfSize:14] constrainedToHeight:20];
+    if (btnW >= 35) {
+        btnW = 35;
+    }
+    [self.chooseCityButton setImageEdgeInsets:UIEdgeInsetsMake(0, 5, 0, btnW)];
+    [self.chooseCityButton setTitle:cityName forState:UIControlStateNormal];
+    [KNGetUserLoaction shareInstance].selectCityName = cityName;
+}
+
+//提醒用户是否切换城市
+- (void)remindChangeCityName:(NSString *)cityName {
+    KNB_WS(weakSelf);
+    KNAlertView *alterView = [[KNAlertView alloc] initAlterTitle:nil];
+    alterView.attributedString = [[KNGetUserLoaction shareInstance] remidTitle:cityName];
+    alterView.alterBlock = ^(NSInteger selectIndex) {
+        if (selectIndex == 1) {
+            [[KNGetUserLoaction shareInstance] saveUserCityName:cityName areaId:nil];
+            [weakSelf changeButtontTitle:cityName];
+        }
+    };
+    [alterView showAlterView];
 }
 
 #pragma mark - Setter
@@ -124,10 +177,14 @@ CGFloat KNBSearchViewHeight = 44;
 - (UIButton *)chooseCityButton {
     if (!_chooseCityButton) {
         _chooseCityButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_chooseCityButton setImage:KNBImages(@"knb_home_location") forState:UIControlStateNormal];
+        UIImage *image = [UIImage imageNamed:@"knb_home_location"];
+        [_chooseCityButton setImage:image forState:UIControlStateNormal];
         [_chooseCityButton setTitle:@"北京" forState:UIControlStateNormal];
         _chooseCityButton.titleLabel.font = [UIFont systemFontOfSize:14.f];
-        [_chooseCityButton setTitleEdgeInsets:UIEdgeInsetsMake(0, 10, 0, 0)];
+        [_chooseCityButton addTarget:self action:@selector(chooseCityButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+        [_chooseCityButton setTitleEdgeInsets:UIEdgeInsetsMake(0, 5, 0, 0)];
+        [self changeButtontTitle:self.defaultCityName];
+        _chooseCityButton.titleLabel.lineBreakMode = NSLineBreakByTruncatingTail;
     }
     return _chooseCityButton;
 }

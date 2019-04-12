@@ -16,10 +16,12 @@ extern CGFloat KNBSearchViewHeight;
 NS_ASSUME_NONNULL_BEGIN
 
 @interface KNBSearchView : UIView
-
+/**
+ 左边城市选择按钮
+ */
+@property (nonatomic, strong) UIButton *chooseCityButton;
 @property (nonatomic, strong) UIView *searchBgView;
 @property (nonatomic, copy) KNBSearchViewTouchBlock touchBlock;
-
 @end
 
 NS_ASSUME_NONNULL_END

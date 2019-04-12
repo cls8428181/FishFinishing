@@ -9,14 +9,6 @@
 #import "KNBRecruitmentTypeApi.h"
 
 @implementation KNBRecruitmentTypeApi
-
-- (instancetype)init {
-    if (self = [super init]) {
-
-    }
-    return self;
-}
-
 - (NSString *)requestUrl {
     return [[KNBMainConfigModel shareInstance] getRequestUrlWithKey:KNBRecruitment_Type];
 }

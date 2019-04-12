@@ -11,8 +11,6 @@
 @interface KNBOrderDownTableViewCell ()
 @property (weak, nonatomic) IBOutlet UIImageView *iconImageView;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
-@property (weak, nonatomic) IBOutlet UIButton *describeButton;
-
 @end
 
 @implementation KNBOrderDownTableViewCell
@@ -32,11 +30,19 @@
     return 50;
 }
 
+- (IBAction)describeButtonAction:(id)sender {
+    !self.describeButtonBlock ?: self.describeButtonBlock(self.type);
+}
+
 - (void)setType:(KNBOrderDownType)type {
     _type = type;
     self.iconImageView.hidden = YES;
     if (type == KNBOrderDownTypeServer) {
         self.titleLabel.text = @"服务类型:";
+        [self.describeButton setTitle:@"装修公司" forState:UIControlStateNormal];
+        self.iconImageView.hidden = NO;
+    } else if (type == KNBOrderDownTypeRecruitment) {
+        self.titleLabel.text = @"入驻类型:";
         [self.describeButton setTitle:@"装修公司" forState:UIControlStateNormal];
         self.iconImageView.hidden = NO;
     } else if (type == KNBOrderDownTypeHouse) {

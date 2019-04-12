@@ -20,7 +20,9 @@
 #import "KNBLoginViewController.h"
 #import "KNBHomeCompanyDetailViewController.h"
 #import "KNBHomeCompanyListViewController.h"
-#import "AppDelegate.h"
+#import "KNBHomeBannerApi.h"
+#import "KNBHomeBannerModel.h"
+
 
 @interface HomeViewController ()<SDCycleScrollViewDelegate>
 // 轮播图
@@ -29,7 +31,6 @@
 @property (nonatomic, strong) NSArray *bannerArray;
 //搜索
 @property (nonatomic, strong) KNBSearchView *searchView;
-
 @end
 
 @implementation HomeViewController
@@ -58,7 +59,6 @@
 - (void)configuration {
     self.view.backgroundColor = [UIColor knBgColor];
     [self.naviView removeFromSuperview];
-    self.cycleScrollView.imageURLStringsGroup = @[@"knb_home_banner",@"knb_home_banner",@"knb_home_banner"];
 }
 
 - (void)addUI {
@@ -71,7 +71,24 @@
 }
 
 - (void)fetchData {
-    
+    KNBHomeBannerApi *api = [[KNBHomeBannerApi alloc] initWithVari:@"index_banner" cityName:[KNGetUserLoaction shareInstance].cityName];
+    KNB_WS(weakSelf);
+    [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *_Nonnull request) {
+        if (api.requestSuccess) {
+            NSArray *modelArray = [KNBHomeBannerModel changeResponseJSONObject:request.responseObject[@"list"]];
+            NSMutableArray *tempArray = [NSMutableArray array];
+            for (KNBHomeBannerModel *model in modelArray) {
+                [tempArray addObject:model.img];
+            }
+            weakSelf.cycleScrollView.imageURLStringsGroup = tempArray;
+            weakSelf.knbTableView.tableHeaderView = weakSelf.cycleScrollView;
+            [weakSelf requestSuccess:YES requestEnd:YES];
+        } else {
+            [weakSelf requestSuccess:NO requestEnd:NO];
+        }
+    } failure:^(__kindof YTKBaseRequest *_Nonnull request) {
+        [weakSelf requestSuccess:NO requestEnd:NO];
+    }];
 }
 
 #pragma mark - tableview delegate & dataSource

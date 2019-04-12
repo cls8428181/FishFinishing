@@ -314,7 +314,9 @@
     KNB_WS(weakSelf);
     [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *_Nonnull request) {
         if (api.requestSuccess) {
-            NSDictionary *dic = request.responseObject[@"data"];
+            NSDictionary *dic = request.responseObject[@"list"];
+            [[KNBUserInfo shareInstance] registUserInfo:dic];
+            [weakSelf dismissViewControllerAnimated:YES completion:nil];
             [weakSelf requestSuccess:YES requestEnd:YES];
         } else {
             [weakSelf requestSuccess:NO requestEnd:NO];
@@ -325,15 +327,37 @@
 }
 //注册
 - (void)registerRequest {
+    if (self.mobileTextView.textField.text.length == 0) {
+        [LCProgressHUD showInfoMsg:@"请输入手机号"];
+        [[LCProgressHUD sharedHUD].customView setSize:CGSizeMake(25, 25)];
+        return;
+    }
+    if (self.verinumView.textField.text.length == 0) {
+        [LCProgressHUD showInfoMsg:@"请输入验证码"];
+        [[LCProgressHUD sharedHUD].customView setSize:CGSizeMake(25, 25)];
+        return;
+    }
+    if (self.passwordSetView.textField.text.length == 0) {
+        [LCProgressHUD showInfoMsg:@"请输入登录密码"];
+        [[LCProgressHUD sharedHUD].customView setSize:CGSizeMake(25, 25)];
+        return;
+    }
+    if (self.passwordSetView.textField.text.length < 6) {
+        [LCProgressHUD showInfoMsg:@"密码长度不能小于6位"];
+        [[LCProgressHUD sharedHUD].customView setSize:CGSizeMake(25, 25)];
+        return;
+    }
+    
     KNBLoginRegisterApi *api = [[KNBLoginRegisterApi alloc] initWithMobile:self.mobileTextView.textField.text code:self.verinumView.textField.text password:self.passwordSetView.textField.text repassword:self.passwordEnterView.textField.text];
     api.hudString = @"";
     KNB_WS(weakSelf);
     [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *_Nonnull request) {
         if (api.requestSuccess) {
-            NSDictionary *dic = request.responseObject[@"data"];
-            [weakSelf requestSuccess:YES requestEnd:YES];
+            [LCProgressHUD showSuccess:@"注册成功"];
+            [weakSelf backAction];
         } else {
-            [weakSelf requestSuccess:NO requestEnd:NO];
+            [LCProgressHUD showInfoMsg:api.errMessage];
+            [[LCProgressHUD sharedHUD].customView setSize:CGSizeMake(25, 25)];
         }
     } failure:^(__kindof YTKBaseRequest *_Nonnull request) {
         [weakSelf requestSuccess:NO requestEnd:NO];
@@ -347,15 +371,17 @@
     KNB_WS(weakSelf);
     [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *_Nonnull request) {
         if (api.requestSuccess) {
-            NSDictionary *dic = request.responseObject[@"data"];
-            [weakSelf requestSuccess:YES requestEnd:YES];
+            [LCProgressHUD showSuccess:@"修改成功"];
+            [weakSelf.navigationController popViewControllerAnimated:YES];
         } else {
-            [weakSelf requestSuccess:NO requestEnd:NO];
+            [LCProgressHUD showInfoMsg:api.errMessage];
+            [[LCProgressHUD sharedHUD].customView setSize:CGSizeMake(25, 25)];
         }
     } failure:^(__kindof YTKBaseRequest *_Nonnull request) {
         [weakSelf requestSuccess:NO requestEnd:NO];
     }];
 }
+
 //新用户注册
 - (void)userRegisterClick:(KNBButton *)sender {
     KNBLoginViewController *registerVC = [[KNBLoginViewController alloc] init];

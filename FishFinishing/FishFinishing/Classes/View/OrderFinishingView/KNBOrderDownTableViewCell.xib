@@ -33,6 +33,9 @@
                         <state key="normal" title="Button" image="knb_design_down">
                             <color key="titleColor" red="0.50196078431372548" green="0.50196078431372548" blue="0.50196078431372548" alpha="1" colorSpace="calibratedRGB"/>
                         </state>
+                        <connections>
+                            <action selector="describeButtonAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="WdO-U6-sPJ"/>
+                        </connections>
                     </button>
                     <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="knb_order_more" translatesAutoresizingMaskIntoConstraints="NO" id="XcV-bv-egJ">
                         <rect key="frame" x="12" y="14" width="16" height="16"/>

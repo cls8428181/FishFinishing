@@ -22,6 +22,10 @@ typedef void (^KNUserLoactionCompleteBlock)(NSString *location);
 @property (nonatomic, copy) KNUserLoactionCompleteBlock completeBlock;
 
 + (instancetype)shareInstance;
+/**
+ 用户选择的 城市
+ */
+@property (nonatomic,copy) NSString *selectCityName;
 
 /**
  *  开始定位
