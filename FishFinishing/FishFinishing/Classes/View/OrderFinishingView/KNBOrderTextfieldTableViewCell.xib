@@ -25,8 +25,8 @@
                         <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="m²" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GRT-Su-2h3">
-                        <rect key="frame" x="286.5" y="13.5" width="21.5" height="17"/>
+                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="m²" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GRT-Su-2h3">
+                        <rect key="frame" x="95" y="13.5" width="213" height="17"/>
                         <nil key="textColor"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <textInputTraits key="textInputTraits"/>
@@ -37,6 +37,7 @@
                     <constraint firstItem="uOj-j2-e0x" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="33" id="W5Y-Ye-AVt"/>
                     <constraint firstItem="uOj-j2-e0x" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="bxR-n4-s2u"/>
                     <constraint firstItem="GRT-Su-2h3" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="hmk-aT-ceh"/>
+                    <constraint firstItem="GRT-Su-2h3" firstAttribute="leading" secondItem="uOj-j2-e0x" secondAttribute="trailing" constant="33" id="s3j-bK-xpk"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>

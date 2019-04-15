@@ -127,7 +127,7 @@ typedef NS_ENUM(NSInteger, BRStringPickerMode) {
     if (!isDataSourceValid) {
         return;
     }
-    // 2. 给数据源赋值
+    // 2. 给数据源赋值}
     self.dataSourceArr = dataArr;
     
     // 3. 根据数据源 数组元素的类型，判断选择器的显示类型

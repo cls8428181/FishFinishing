@@ -15,7 +15,6 @@ typedef NS_ENUM(NSInteger, KNBOrderDownType) {
     KNBOrderDownTypeRecruitment,      //入驻类型
     KNBOrderDownTypeDomain,           //擅长领域
     KNBOrderDownTypeShowPrice         //展示价格
-    
 };
 
 NS_ASSUME_NONNULL_BEGIN
@@ -23,7 +22,6 @@ NS_ASSUME_NONNULL_BEGIN
 @interface KNBOrderDownTableViewCell : UITableViewCell
 
 @property (nonatomic, assign) KNBOrderDownType type;
-@property (nonatomic, copy) void (^describeButtonBlock)(KNBOrderDownType type);
 
 /**
  内容按钮
@@ -38,6 +36,11 @@ NS_ASSUME_NONNULL_BEGIN
  cell 高度
  */
 + (CGFloat)cellHeight;
+
+/**
+ 设置按钮名称
+ */
+- (void)setButtonTitle:(NSString *)title;
 
 @end
 

@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface KNBRecruitmentDomainApi : KNBBaseRequest
 
+- (instancetype)initWithCatId:(NSInteger)catId;
+
 @end
 
 NS_ASSUME_NONNULL_END

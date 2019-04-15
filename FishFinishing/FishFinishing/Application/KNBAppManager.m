@@ -18,6 +18,7 @@
 #import "NSString+MD5.h"
 //#import "KNPaypp.h"
 #import "YTKNetworkConfig.h"
+#import <YTKNetworkAgent.h>
 //#import "KNBPushNoticeModel.h"
 
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_10_0
@@ -183,6 +184,12 @@ KNB_DEFINE_SINGLETON_FOR_CLASS(KNBAppManager);
     config.securityPolicy = securityPolicy;
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.securityPolicy = securityPolicy;
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    //服务端返回格式问题，后端返回的结果不是"application/json"，afn 的 jsonResponseSerializer 是不认的。这里做临时处理
+    YTKNetworkAgent *agent = [YTKNetworkAgent sharedAgent];
+    [agent setValue:[NSSet setWithObjects:@"application/json", @"text/plain", @"text/javascript", @"text/json",@"text/html", nil]
+         forKeyPath:@"jsonResponseSerializer.acceptableContentTypes"];
+    
 //    KNBMainConfigApi *mainConfig = [[KNBMainConfigApi alloc] init];
 //    // 10014 token失效
 //    [mainConfig startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *request) {

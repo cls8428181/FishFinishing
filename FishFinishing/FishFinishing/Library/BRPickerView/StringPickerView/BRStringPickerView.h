@@ -66,5 +66,4 @@ typedef void(^BRStringCancelBlock)(void);
                       resultBlock:(BRStringResultBlock)resultBlock
                       cancelBlock:(BRStringCancelBlock)cancelBlock;
 
-
 @end

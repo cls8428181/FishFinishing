@@ -52,6 +52,7 @@
 }
 
 - (YTKRequestSerializerType)requestSerializerType {
+    //添加返回数据的类型支持
     return YTKRequestSerializerTypeJSON;
 }
 

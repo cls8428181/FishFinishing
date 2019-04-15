@@ -17,6 +17,16 @@ NS_ASSUME_NONNULL_BEGIN
  类型名称
  */
 @property (nonatomic, copy) NSString *catName;
+
+/**
+ 选择的子类型模型
+ */
+@property (nonatomic, strong) KNBRecruitmentTypeModel *selectSubModel;
+
+/**
+ 擅长领域标签
+ */
+@property (nonatomic, copy) NSString *tagName;
 @property (nonatomic, copy) NSString *pid;
 @property (nonatomic, copy) NSString *img;
 @property (nonatomic, copy) NSString *sort;
@@ -33,4 +43,16 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *serviceName;
 @end
 
+
+@interface KNBRecruitmentCostModel : KNBRecruitmentTypeModel
+@property (nonatomic, copy) NSString *name;
+
+/**
+ 费用
+ */
+@property (nonatomic, copy) NSString *price;
+@property (nonatomic, copy) NSString *termType;
+@property (nonatomic, copy) NSString *term;
+@property (nonatomic, copy) NSString *remark;
+@end
 NS_ASSUME_NONNULL_END

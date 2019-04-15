@@ -33,3 +33,18 @@
 }
 
 @end
+
+@implementation KNBRecruitmentCostModel
++ (NSDictionary *)JSONKeyPathsByPropertyKey {
+    return @{
+             @"typeId" : @"id",
+             @"name" : @"name",
+             @"price" : @"price",
+             @"termType" : @"term_type",
+             @"term" : @"term",
+             @"remark" : @"remark"
+             };
+}
+
+
+@end

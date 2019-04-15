@@ -30,8 +30,10 @@
     return 50;
 }
 
-- (IBAction)describeButtonAction:(id)sender {
-    !self.describeButtonBlock ?: self.describeButtonBlock(self.type);
+- (void)setButtonTitle:(NSString *)title {
+    [self.describeButton setTitle:title forState:UIControlStateNormal];
+    [self.describeButton setTitleEdgeInsets:UIEdgeInsetsMake(0, -self.describeButton.imageView.bounds.size.width - 15, 0, self.describeButton.imageView.bounds.size.width + 15)];
+    [self.describeButton setImageEdgeInsets:UIEdgeInsetsMake(0, self.describeButton.titleLabel.bounds.size.width - 5, 0, -self.describeButton.titleLabel.bounds.size.width + 5)];
 }
 
 - (void)setType:(KNBOrderDownType)type {
@@ -39,11 +41,11 @@
     self.iconImageView.hidden = YES;
     if (type == KNBOrderDownTypeServer) {
         self.titleLabel.text = @"服务类型:";
-        [self.describeButton setTitle:@"装修公司" forState:UIControlStateNormal];
+        [self.describeButton setTitle:@"请选择服务类型" forState:UIControlStateNormal];
         self.iconImageView.hidden = NO;
     } else if (type == KNBOrderDownTypeRecruitment) {
         self.titleLabel.text = @"入驻类型:";
-        [self.describeButton setTitle:@"装修公司" forState:UIControlStateNormal];
+        [self.describeButton setTitle:@"请选择入驻类型" forState:UIControlStateNormal];
         self.iconImageView.hidden = NO;
     } else if (type == KNBOrderDownTypeHouse) {
         self.titleLabel.text = @"户        型:";
@@ -51,6 +53,12 @@
     } else if (type == KNBOrderDownTypeStyle) {
         self.titleLabel.text = @"装修风格:";
         [self.describeButton setTitle:@"新中式风格" forState:UIControlStateNormal];
+    } else if (type == KNBOrderDownTypeShowPrice) {
+        self.titleLabel.text = @"展示费用:";
+        [self.describeButton setTitle:@"请选择入驻类型" forState:UIControlStateNormal];
+    } else if (type == KNBOrderDownTypeDomain) {
+        self.titleLabel.text = @"擅长领域:";
+        [self.describeButton setTitle:@"请选择擅长领域" forState:UIControlStateNormal];
     } else {
         self.titleLabel.text = @"装修档次:";
         [self.describeButton setTitle:@"中" forState:UIControlStateNormal];

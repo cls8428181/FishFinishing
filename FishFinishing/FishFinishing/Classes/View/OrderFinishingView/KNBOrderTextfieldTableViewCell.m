@@ -47,6 +47,15 @@
     } else if (type == KNBOrderTextFieldTypeName) {
         self.titleLabel.text = @"联  系  人:";
         self.describeTextField.placeholder = @"请输入姓名";
+    } else if (type == KNBOrderTextFieldTypeShopName) {
+        self.titleLabel.text = @"商家名称:";
+        self.describeTextField.placeholder = @"请输入商家名称";
+    } else if (type == KNBOrderTextFieldTypeLocation) {
+        self.titleLabel.text = @"所在位置:";
+        self.describeTextField.placeholder = @"请输入商家位置";
+    } else if (type == KNBOrderTextFieldTypeShopPhone) {
+        self.titleLabel.text = @"商家电话:";
+        self.describeTextField.placeholder = @"请输入商家电话";
     } else {
         self.titleLabel.text = @"联系电话:";
         self.describeTextField.placeholder = @"请输入联系电话";
