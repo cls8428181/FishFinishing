@@ -96,6 +96,11 @@ extern NSString *const KNBOrder_ServerType;
  * 装修风格
  */
 extern NSString *const KNBOrder_Style;
+/**
+ * 获取所有省市区
+ */
+extern NSString *const KNBOrder_Area;
+
 
 @interface KNBMainConfigModel : NSObject
 

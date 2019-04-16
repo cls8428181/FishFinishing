@@ -13,6 +13,7 @@
 #import "KNBLoginThirdPartyApi.h"
 #import "KNBLoginModifyApi.h"
 #import "KNBLoginLoginApi.h"
+#import "KNBOrderAreaApi.h"
 
 @interface FishFinishingTests : XCTestCase
 
@@ -99,6 +100,38 @@
         XCTAssertNotNil(request, @"request nil");
     }];
 
+    [self waitForExpectationsWithTimeout:20 handler:^(NSError *_Nullable error) {
+        if (error) {
+            NSLog(@"Timeout Error: %@", error);
+        }
+    }];
+}
+
+//获取所有省市区
+- (void)testGetAreaApi {
+    XCTestExpectation *expectation = [self expectationWithDescription:@" KNBOrderAreaApi"];
+     KNBOrderAreaApi *api = [[KNBOrderAreaApi alloc] init];
+    
+    [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *request) {
+        XCTAssertNotNil(request.responseJSONObject, @"request.responseJSONObject nil");
+        XCTAssertNotNil(request, @"request nil");
+        XCTAssertEqual(request.responseStatusCode, 200, @"code != 1");
+        NSLog(@"%@",request.responseJSONObject[@"list"]);
+        NSArray *array = request.responseJSONObject[@"list"];
+        NSString *str= NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
+        NSString *plistPath = [str stringByAppendingString:@"/hmkj_c_addressList.plist" ];
+        //转换成功后,文件位置要输出出来便于查找
+        NSLog(@"plistPath = %@", plistPath);
+        [array writeToFile:plistPath atomically:YES];
+        //        NSArray *dataArray = [KNBBusinessSchoolActiveContentModel changeResponseJSONObject:request.responseJSONObject[@"data"]];
+        [expectation fulfill];
+        
+        NSLog(@"%@", request.responseJSONObject);
+        
+    } failure:^(__kindof YTKBaseRequest *request) {
+        XCTAssertNotNil(request, @"request nil");
+    }];
+    
     [self waitForExpectationsWithTimeout:20 handler:^(NSError *_Nullable error) {
         if (error) {
             NSLog(@"Timeout Error: %@", error);

@@ -1,4 +1,4 @@
-'//
+//
 //  KNBRecruitmentIntroTableViewCell.m
 //  FishFinishing
 //
@@ -8,17 +8,25 @@
 
 #import "KNBRecruitmentIntroTableViewCell.h"
 
+@interface KNBRecruitmentIntroTableViewCell ()
+@property (weak, nonatomic) IBOutlet UITextView *contentTextView;
+
+@end
+
 @implementation KNBRecruitmentIntroTableViewCell
 
-- (void)awakeFromNib {
-    [super awakeFromNib];
-    // Initialization code
++ (instancetype)cellWithTableView:(UITableView *)tableView {
+    static NSString *ID = @"KNBRecruitmentIntroTableViewCell";
+    KNBRecruitmentIntroTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
+    if (!cell) {
+        [tableView registerNib:[UINib nibWithNibName:ID bundle:nil] forCellReuseIdentifier:ID];
+        cell = [tableView dequeueReusableCellWithIdentifier:ID];
+    }
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    return cell;
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
++ (CGFloat)cellHeight {
+    return 210;
 }
-
 @end

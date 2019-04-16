@@ -23,10 +23,8 @@
 @property (strong, nonatomic) UICollectionView *collectionView;
 
 @property (nonatomic) UIEdgeInsets contentInsets; //default is (10,10,10,10)
-
 @property (nonatomic) NSArray<NSString *> *tagsArray; //数据源
 @property (weak, nonatomic) id<FMTagsViewDelegate> delegate;
-
 @property (nonatomic) CGFloat lineSpacing;      //行间距, 默认为10
 @property (nonatomic) CGFloat interitemSpacing; //元素之间的间距，默认为5
 

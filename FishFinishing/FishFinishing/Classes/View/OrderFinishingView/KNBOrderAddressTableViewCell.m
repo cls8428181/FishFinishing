@@ -12,6 +12,9 @@
 @property (weak, nonatomic) IBOutlet UIButton *provinceButton;
 @property (weak, nonatomic) IBOutlet UIButton *cityButton;
 @property (weak, nonatomic) IBOutlet UIButton *districtButton;
+@property (weak, nonatomic) IBOutlet UILabel *provinceLabel;
+@property (weak, nonatomic) IBOutlet UILabel *cityLabel;
+@property (weak, nonatomic) IBOutlet UILabel *areaLabel;
 
 @end
 
@@ -31,11 +34,10 @@
     return 50;
 }
 
-- (IBAction)provinceButtonAction:(id)sender {
-}
-- (IBAction)cityButtonAction:(id)sender {
-}
-- (IBAction)districtButtonAction:(id)sender {
+- (void)setProvinceName:(NSString *)provinceName cityName:(NSString *)cityName areaName:(NSString *)areaName {
+    self.provinceLabel.text = provinceName;
+    self.cityLabel.text = cityName;
+    self.areaLabel.text = areaName;
 }
 
 @end

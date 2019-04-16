@@ -8,6 +8,11 @@
 
 #import "KNBRecruitmentEnterTableViewCell.h"
 
+@interface KNBRecruitmentEnterTableViewCell ()
+//确认按钮
+@property (weak, nonatomic) IBOutlet UIButton *enterButton;
+@end
+
 @implementation KNBRecruitmentEnterTableViewCell
 
 + (instancetype)cellWithTableView:(UITableView *)tableView {
@@ -23,6 +28,14 @@
 
 + (CGFloat)cellHeight {
     return 50;
+}
+
+- (void)setType:(KNBRecruitmentEnterType)type {
+    if (type == KNBRecruitmentEnterTypeOrder) {
+        [self.enterButton setTitle:@"免费预约" forState:UIControlStateNormal];
+    } else {
+        [self.enterButton setTitle:@"立即入驻" forState:UIControlStateNormal];
+    }
 }
 
 - (IBAction)enterButtonAction:(id)sender {

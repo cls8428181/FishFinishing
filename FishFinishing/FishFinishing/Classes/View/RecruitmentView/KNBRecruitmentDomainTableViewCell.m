@@ -7,12 +7,15 @@
 //
 
 #import "KNBRecruitmentDomainTableViewCell.h"
+#import "FMTagsView.h"
 
-@interface KNBRecruitmentDomainTableViewCell ()
+@interface KNBRecruitmentDomainTableViewCell () <FMTagsViewDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UIView *tagsView;
-
+//标签视图
+@property (nonatomic, strong) FMTagsView *tagView;
 @end
+
 @implementation KNBRecruitmentDomainTableViewCell
 
 + (instancetype)cellWithTableView:(UITableView *)tableView {
@@ -36,6 +39,50 @@
     } else {
         self.titleLabel.text = @"服务选择:";
     }
+}
+
+- (void)setTagsViewDataSource:(NSArray *)dataArray {
+    
+    [self.tagsView addSubview:self.tagView];
+    NSMutableArray *tempArray = [NSMutableArray array];
+    for (NSString *string in dataArray) {
+        [tempArray addObject:[NSString stringWithFormat:@"%@ X",string]];
+    }
+    self.tagView.tagsArray = tempArray;
+}
+
+- (void)tagsView:(FMTagsView *)tagsView didSelectTagAtIndex:(NSUInteger)index {
+    [self.tagView removeTagAtIndex:index];
+    if (isNullArray(self.tagView.tagsArray)) {
+        [self.tagView removeFromSuperview];
+    }
+}
+
+- (FMTagsView *)tagView {
+    if (!_tagView) {
+        FMTagsView *tagView = [[FMTagsView alloc] init];
+        tagView.frame = CGRectMake(0, 0, self.tagsView.frame.size.width, self.tagsView.frame.size.height);
+        tagView.contentInsets = UIEdgeInsetsMake(0, 0, 0, 0);
+//        tagView.tagInsets = UIEdgeInsetsMake(0.5, 8.5, 0.5, 9);
+        tagView.tagBorderWidth = 0.5;
+        tagView.tagcornerRadius = 5;
+        tagView.tagBorderColor = [UIColor colorWithHex:0xf2f2f2];
+        tagView.tagSelectedBorderColor = [UIColor colorWithHex:0x0096e6];
+        tagView.tagBackgroundColor = [UIColor colorWithHex:0xf2f2f2];
+        tagView.tagSelectedBackgroundColor = [UIColor colorWithHex:0x0096e6];
+        tagView.interitemSpacing = 16;
+        tagView.tagFont = KNBFont(9);
+        tagView.tagTextColor = [UIColor colorWithHex:0x333333];
+        tagView.allowsSelection = YES;
+        tagView.allowsMultipleSelection = NO;
+        tagView.collectionView.scrollEnabled = NO;
+        tagView.collectionView.showsVerticalScrollIndicator = NO;
+        tagView.tagHeight = 15;
+        tagView.mininumTagWidth = 40;
+        tagView.delegate = self;
+        _tagView = tagView;
+    }
+    return _tagView;
 }
 
 @end

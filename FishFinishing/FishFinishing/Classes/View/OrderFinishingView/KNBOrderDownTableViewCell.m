@@ -49,19 +49,19 @@
         self.iconImageView.hidden = NO;
     } else if (type == KNBOrderDownTypeHouse) {
         self.titleLabel.text = @"户        型:";
-        [self.describeButton setTitle:@"3室,1厅,1厨,1卫" forState:UIControlStateNormal];
+        [self.describeButton setTitle:@"请选择户型" forState:UIControlStateNormal];
     } else if (type == KNBOrderDownTypeStyle) {
         self.titleLabel.text = @"装修风格:";
-        [self.describeButton setTitle:@"新中式风格" forState:UIControlStateNormal];
+        [self.describeButton setTitle:@"请选择风格" forState:UIControlStateNormal];
     } else if (type == KNBOrderDownTypeShowPrice) {
         self.titleLabel.text = @"展示费用:";
-        [self.describeButton setTitle:@"请选择入驻类型" forState:UIControlStateNormal];
+        [self.describeButton setTitle:@"请选择展示费用" forState:UIControlStateNormal];
     } else if (type == KNBOrderDownTypeDomain) {
         self.titleLabel.text = @"擅长领域:";
         [self.describeButton setTitle:@"请选择擅长领域" forState:UIControlStateNormal];
     } else {
         self.titleLabel.text = @"装修档次:";
-        [self.describeButton setTitle:@"中" forState:UIControlStateNormal];
+        [self.describeButton setTitle:@"请选择装修档次" forState:UIControlStateNormal];
     }
     
     [self.describeButton setTitleEdgeInsets:UIEdgeInsetsMake(0, -self.describeButton.imageView.bounds.size.width - 15, 0, self.describeButton.imageView.bounds.size.width + 15)];

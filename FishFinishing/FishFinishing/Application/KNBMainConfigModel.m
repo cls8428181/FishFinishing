@@ -42,6 +42,7 @@ NSString *const KNBRecruitment_GetCase = @"/Api/Facilitator/getCase";   //装修
 #pragma mark - 免费预约
 NSString *const KNBOrder_ServerType = @"/Api/Facilitator/getservice";   //免费预约服务类型
 NSString *const KNBOrder_Style = @"/Api/Facilitator/getStyle";               //装修风格
+NSString *const KNBOrder_Area = @"/Api/Default/getarea";                    //获取所有省市区
 
 #import "KNBMainConfigModel.h"
 

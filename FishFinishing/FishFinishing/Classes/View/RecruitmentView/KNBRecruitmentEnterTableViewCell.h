@@ -7,10 +7,20 @@
 //
 
 #import <UIKit/UIKit.h>
+typedef NS_ENUM(NSInteger, KNBRecruitmentEnterType) {
+    KNBRecruitmentEnterTypeOrder = 0,       //免费预约
+    KNBRecruitmentEnterTypeRecruitment,   //商家入驻
+};
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface KNBRecruitmentEnterTableViewCell : UITableViewCell
+
+/**
+ 按钮类型
+ */
+@property (nonatomic, assign) KNBRecruitmentEnterType type;
+
 /**
  选择按钮的回调
  */

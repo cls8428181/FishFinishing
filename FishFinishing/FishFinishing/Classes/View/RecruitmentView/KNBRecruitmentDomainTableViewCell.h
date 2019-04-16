@@ -26,6 +26,8 @@ NS_ASSUME_NONNULL_BEGIN
  cell 高度
  */
 + (CGFloat)cellHeight;
+
+- (void)setTagsViewDataSource:(NSArray *)dataArray;
 @end
 
 NS_ASSUME_NONNULL_END
