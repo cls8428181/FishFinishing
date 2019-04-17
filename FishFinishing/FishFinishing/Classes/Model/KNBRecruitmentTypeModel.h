@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface KNBRecruitmentTypeModel : KNBBaseModel
+    @interface KNBRecruitmentTypeModel : KNBBaseModel
 @property (nonatomic, copy) NSString *typeId;
 
 /**
@@ -54,5 +54,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *termType;
 @property (nonatomic, copy) NSString *term;
 @property (nonatomic, copy) NSString *remark;
+@end
+
+@interface KNBRecruitmentUnitModel : KNBRecruitmentTypeModel
+@property (nonatomic, copy) NSString *typeId;
+@property (nonatomic, copy) NSString *name;
+@property (nonatomic, copy) NSString *sort;
 @end
 NS_ASSUME_NONNULL_END

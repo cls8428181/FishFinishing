@@ -33,6 +33,8 @@
 #import "KNBOrderAreaApi.h"
 #import "KNBOrderStyleApi.h"
 #import "BRChoicePickerView.h"
+#import "KNBOrderUnitApi.h"
+#import "KNBHomeBespokeApi.h"
 
 @interface KNBOrderViewController ()<UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 @property (nonatomic, strong) KNBOrderFooterView *footerView;
@@ -105,7 +107,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = nil;
-    
+    KNB_WS(weakSelf);
     if (self.VCType == KNBOrderVCTypeOrderFinishing) {//免费预约
         if (indexPath.section == 0) {
             cell = [KNBOrderDownTableViewCell cellWithTableView:tableView];
@@ -206,7 +208,11 @@
             KNBRecruitmentEnterTableViewCell *typeCell = (KNBRecruitmentEnterTableViewCell *)cell;
             typeCell.type = KNBRecruitmentEnterTypeRecruitment;
             typeCell.selectButtonBlock = ^(UIButton * _Nonnull button) {
-                
+                if (weakSelf.VCType == KNBOrderVCTypeOrderFinishing) {
+                    [weakSelf enterOrderFinishing];
+                } else {
+                    [weakSelf enterRecruitment];
+                }
             };
         }
     }
@@ -243,19 +249,14 @@
             [self recruitmentTypeRequest];
             
         } else if (indexPath.section == 1 && indexPath.row == 1) {
-            [BRChoicePickerView showTagsPickerWithTitle:@"选择户型" resultBlock:^(id selectValue) {
-                NSArray *tempArray = (NSArray *)selectValue;
-                KNBOrderDownTableViewCell *cell = [weakSelf.knGroupTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:1]];
-                [cell setButtonTitle:[NSString stringWithFormat:@"%ld室、%ld厅、%ld厨、%ld卫",[tempArray[0] integerValue],[tempArray[1] integerValue],[tempArray[2] integerValue],[tempArray[3] integerValue],[tempArray[4] integerValue]]];
-                
-            } cancelBlock:^{
-                
-            }];
-            
+            [self unitRequest];
         } else if (indexPath.section == 2 && indexPath.row == 1) {
             [KNBAddressPickerView showAddressPickerWithDefaultSelected:nil resultBlock:^(KNBCityModel *province, KNBCityModel *city, KNBCityModel *area) {
                 KNBOrderAddressTableViewCell *cell = [weakSelf.knGroupTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:2]];
                 [cell setProvinceName:province.name cityName:city.name areaName:area.name];
+                weakSelf.orderModel.province_id = [province.code integerValue];
+                weakSelf.orderModel.city_id = [city.code integerValue];
+                weakSelf.orderModel.area_id = [area.code integerValue];
             }];
         } else if (indexPath.section == 3) {
             if (indexPath.row == 0) {
@@ -264,6 +265,7 @@
                 [BRStringPickerView showStringPickerWithTitle:@"选择档次" dataSource:@[@"低",@"中",@"高",@"豪华"] defaultSelValue:nil resultBlock:^(id selectValue) {
                     KNBOrderDownTableViewCell *cell = [weakSelf.knGroupTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:3]];
                     [cell setButtonTitle:selectValue];
+                    weakSelf.orderModel.level = selectValue;
                 }];
             }
         }
@@ -317,8 +319,13 @@
                     KNBRecruitmentTypeModel *firstModel = [selectValue firstObject];
                     KNBRecruitmentTypeModel *lastModel = [selectValue lastObject];
                     [cell setButtonTitle:[NSString stringWithFormat:@"%@ %@",firstModel.catName,lastModel.catName]];
-                    weakSelf.recruitmentModel.typeModel = firstModel;
-                    weakSelf.recruitmentModel.typeModel.selectSubModel = lastModel;
+                    if (weakSelf.VCType == KNBOrderVCTypeOrderFinishing) {
+                        weakSelf.orderModel.typeModel = firstModel;
+                        weakSelf.orderModel.typeModel.selectSubModel = lastModel;
+                    } else {
+                        weakSelf.recruitmentModel.typeModel = firstModel;
+                        weakSelf.recruitmentModel.typeModel.selectSubModel = lastModel;
+                    }
                 }
             } cancelBlock:^{
                 
@@ -449,7 +456,49 @@
     }];
 }
 
+//立即入驻
+- (void)enterRecruitment {
+    
+}
+
 #pragma mark - 免费预约数据请求
+//请求户型数据
+- (void)unitRequest {
+    KNBOrderUnitApi *api = [[KNBOrderUnitApi alloc] init];
+    api.hudString = @"";
+    KNB_WS(weakSelf);
+    [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *_Nonnull request) {
+        if (api.requestSuccess) {
+            NSDictionary *dic = request.responseObject[@"list"];
+            NSArray *modelArray = [KNBRecruitmentUnitModel changeResponseJSONObject:dic];
+            [BRChoicePickerView showTagsPickerWithTitle:@"选择户型" dataSource:modelArray resultBlock:^(id selectValue) {
+                NSArray *tempArray = (NSArray *)selectValue;
+                KNBOrderDownTableViewCell *cell = [weakSelf.knGroupTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:1]];
+                [cell setButtonTitle:[NSString stringWithFormat:@"%ld室、%ld厅、%ld厨、%ld卫、%ld阳台",
+                                      [tempArray[0] integerValue],
+                                      [tempArray[1] integerValue],
+                                      [tempArray[2] integerValue],
+                                      [tempArray[3] integerValue],
+                                      [tempArray[4] integerValue]
+                                      ]];
+                weakSelf.orderModel.house_info = [NSString stringWithFormat:@"%ld室%ld厅%ld厨%ld卫%ld阳台",
+                                            [tempArray[0] integerValue],
+                                            [tempArray[1] integerValue],
+                                            [tempArray[2] integerValue],
+                                            [tempArray[3] integerValue],
+                                            [tempArray[4] integerValue]
+                                            ];
+            } cancelBlock:^{
+                
+            }];
+        } else {
+            [weakSelf requestSuccess:NO requestEnd:NO];
+        }
+    } failure:^(__kindof YTKBaseRequest *_Nonnull request) {
+        [weakSelf requestSuccess:NO requestEnd:NO];
+    }];
+    
+}
 //请求装修风格数据
 - (void)finishingStyleRequest {
     KNBOrderStyleApi *api = [[KNBOrderStyleApi alloc] init];
@@ -466,6 +515,7 @@
             [BRStringPickerView showStringPickerWithTitle:@"选择风格" dataSource:titleArray defaultSelValue:nil resultBlock:^(id selectValue) {
                 KNBOrderDownTableViewCell *cell = [weakSelf.knGroupTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:3]];
                 [cell setButtonTitle:selectValue];
+                weakSelf.orderModel.style = selectValue;
             }];
         } else {
             [weakSelf requestSuccess:NO requestEnd:NO];
@@ -530,6 +580,66 @@
     PickerImage.allowsEditing = YES;
     PickerImage.delegate = self;
     [self presentViewController:PickerImage animated:YES completion:nil];
+}
+
+//免费预约
+- (void)enterOrderFinishing {
+    KNBOrderTextfieldTableViewCell *araeCell = [self.knGroupTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:1]];
+    KNBOrderTextfieldTableViewCell *communityCell = [self.knGroupTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:2]];
+    KNBOrderTextfieldTableViewCell *nameCell = [self.knGroupTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:4]];
+    KNBOrderTextfieldTableViewCell *mobileCell = [self.knGroupTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:4]];
+    self.orderModel.area_info = araeCell.describeTextField.text;
+    self.orderModel.community = communityCell.describeTextField.text;
+    self.orderModel.name = nameCell.describeTextField.text;
+    self.orderModel.mobile = mobileCell.describeTextField.text;
+    if (!self.orderModel.typeModel) {
+        [LCProgressHUD showMessage:@"服务类型不能为空"];
+        return;
+    }
+    if (isNullStr(self.orderModel.area_info)) {
+        [LCProgressHUD showMessage:@"面积不能为空"];
+        return;
+    }
+    if (isNullStr(self.orderModel.house_info)) {
+        [LCProgressHUD showMessage:@"户型不能为空"];
+        return;
+    }
+    if (isNullStr(self.orderModel.community)) {
+        [LCProgressHUD showMessage:@"小区名称不能为空"];
+        return;
+    }
+    if (!self.orderModel.city_id || !self.orderModel.area_id) {
+        [LCProgressHUD showMessage:@"地址不能为空"];
+        return;
+    }
+    if (isNullStr(self.orderModel.style)) {
+        [LCProgressHUD showMessage:@"风格不能为空"];
+        return;
+    }
+    if (isNullStr(self.orderModel.level)) {
+        [LCProgressHUD showMessage:@"装修档次不能为空"];
+        return;
+    }
+    if (isNullStr(self.orderModel.name)) {
+        [LCProgressHUD showMessage:@"姓名不能为空"];
+        return;
+    }
+    if (isNullStr(self.orderModel.mobile)) {
+        [LCProgressHUD showMessage:@"电话不能为空"];
+        return;
+    }
+    KNBHomeBespokeApi *api = [[KNBHomeBespokeApi alloc] initWithfacId:@"0" facName:[NSNull null] catId:self.orderModel.typeModel.selectSubModel.typeId userId:@"" areaInfo:self.orderModel.area_info houseInfo:self.orderModel.house_info community:self.orderModel.community provinceId:self.orderModel.province_id cityId:self.orderModel.city_id areaId:self.orderModel.area_id decorateStyle:self.orderModel.style decorateGrade:self.orderModel.level name:self.orderModel.name mobile:self.orderModel.mobile decorateCat:[NSNull null]];
+    api.hudString = @"";
+    KNB_WS(weakSelf);
+    [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *_Nonnull request) {
+        if (api.requestSuccess) {
+            [LCProgressHUD showMessage:@"您已经预约成功"];
+        } else {
+            [weakSelf requestSuccess:NO requestEnd:NO];
+        }
+    } failure:^(__kindof YTKBaseRequest *_Nonnull request) {
+        [weakSelf requestSuccess:NO requestEnd:NO];
+    }];
 }
 
 #pragma mark - Event Response

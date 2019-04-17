@@ -9,7 +9,6 @@
 #import "KNBOrderTextfieldTableViewCell.h"
 
 @interface KNBOrderTextfieldTableViewCell ()
-@property (weak, nonatomic) IBOutlet UITextField *describeTextField;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 
 @end

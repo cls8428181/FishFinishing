@@ -20,6 +20,11 @@ NS_ASSUME_NONNULL_BEGIN
 @interface KNBChoiceTableViewCell : UITableViewCell
 
 /**
+ 标题
+ */
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+
+/**
  数字
  */
 @property (weak, nonatomic) IBOutlet UITextField *numTextField;
@@ -42,7 +47,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  cell 创建
  */
-+ (instancetype)cellWithTableView:(UITableView *)tableView;
++ (instancetype)cellWithTableView:(UITableView *)tableView title:(NSString *)title;
 
 /**
  cell 高度

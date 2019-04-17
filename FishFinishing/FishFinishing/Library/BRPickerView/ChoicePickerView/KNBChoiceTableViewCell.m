@@ -9,15 +9,13 @@
 #import "KNBChoiceTableViewCell.h"
 
 @interface KNBChoiceTableViewCell ()
-@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
-
 @property (nonatomic, assign) NSInteger num;
 
 @end
 
 @implementation KNBChoiceTableViewCell
 
-+ (instancetype)cellWithTableView:(UITableView *)tableView {
++ (instancetype)cellWithTableView:(UITableView *)tableView title:(nonnull NSString *)title {
     static NSString *ID = @"KNBChoiceTableViewCell";
     KNBChoiceTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
     if (!cell) {
@@ -26,6 +24,7 @@
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.num = 0;
+    cell.titleLabel.text = title;
     return cell;
 }
 

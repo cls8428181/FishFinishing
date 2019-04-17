@@ -28,6 +28,9 @@ NSString *const KNBLogin_Login = @"/Api/Index/login";              //登录
 NSString *const KNBHome_Banner = @"/Api/Default/getbanner";      //获取 banner 图
 NSString *const KNBHome_AllArea = @"/Api/Default/getarea";         //获取全部省市区信息
 NSString *const KNBHome_SingleArea = @"/Api/Default/getregion"; //获取单独的省市区信息
+NSString *const KNBHome_MassageList = @"/Api/Default/getMassageList"; //获取消息列表
+NSString *const KNBHome_MassageDetail = @"/Api/Default/getMassage"; //获取消息详情
+NSString *const KNBHome_MassageNum = @"/Api/Default/getMassageNum"; //获取消息数量
 
 #pragma mark - 入驻商家
 NSString *const KNBRecruitment_Type = @"/Api/Facilitator/getcat";          //入驻商家类型
@@ -38,11 +41,28 @@ NSString *const KNBRecruitment_Detail = @"/Api/Facilitator/getDetail";     //商
 NSString *const KNBRecruitment_AddCase = @"/Api/Facilitator/addCase"; //添加案例
 NSString *const KNBRecruitment_DelCase = @"/Api/Facilitator/delCase";   //删除案例
 NSString *const KNBRecruitment_GetCase = @"/Api/Facilitator/getCase";   //装修案例详情
+NSString *const KNBRecruitment_GetCatChild = @"/Api/Facilitator/getCatChild";   //获取服务商二级入驻类型
+NSString *const KNBRecruitment_GetCaseList = @"/Api/Facilitator/getCaseList";   //根据条件获取案例列表
+NSString *const KNBRecruitment_GetModify = @"/Api/Facilitator/getModify";   //获取修改服务商详情
+NSString *const KNBRecruitment_ModifyFacilitator = @"/Api/Facilitator/modifyFacilitator";   //修改服务商信息
+NSString *const KNBRecruitment_IncreaseBrowse = @"/Api/Facilitator/increaseBrowse";   //增加装修案列浏览量
+NSString *const KNBRecruitment_Getlist = @"/Api/Facilitator/getlist";   //获取服务商列表
 
 #pragma mark - 免费预约
 NSString *const KNBOrder_ServerType = @"/Api/Facilitator/getservice";   //免费预约服务类型
 NSString *const KNBOrder_Style = @"/Api/Facilitator/getStyle";               //装修风格
 NSString *const KNBOrder_Area = @"/Api/Default/getarea";                    //获取所有省市区
+NSString *const KNBOrder_Unit = @"/Api/Facilitator/getApartment";        //获取户型
+NSString *const KNBOrder_ModifyPower = @"/Api/Facilitator/judgeModifyPower";        //检查是否有修改权限
+NSString *const KNBOrder_Bespoke = @"/Api/Default/bespoke";        //免费预约
+
+#pragma mark - 支付相关
+NSString *const KNBOrder_WechatPay = @"/Api/Payment/createOrderByWeiXin";        //微信支付统一下单接口
+NSString *const KNBOrder_OrderStatus = @"/Api/Payment/getOrderStatus";        //查询订单状态
+NSString *const KNBOrder_AlipayPay = @"/Api/Payment/createOrderByAlipay";        //支付宝支付统一下单接口
+
+
+
 
 #import "KNBMainConfigModel.h"
 

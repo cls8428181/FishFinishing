@@ -8,6 +8,7 @@
 
 #import "BRChoicePickerView.h"
 #import "KNBChoiceTableViewCell.h"
+#import "KNBRecruitmentTypeModel.h"
 
 @interface BRChoicePickerView ()<UITableViewDelegate, UITableViewDataSource>
 //标签视图
@@ -30,22 +31,25 @@
 
 @implementation BRChoicePickerView
 + (void)showTagsPickerWithTitle:(NSString *)title
+                     dataSource:(NSArray *)dataSource
                     resultBlock:(BRStringResultBlock)resultBlock
                     cancelBlock:(BRStringCancelBlock)cancelBlock {
-    [self showStringPickerWithTitle:title themeColor:nil resultBlock:resultBlock cancelBlock:nil];
+    [self showStringPickerWithTitle:title dataSource:dataSource themeColor:nil resultBlock:resultBlock cancelBlock:nil];
 }
 
 #pragma mark - 3.显示自定义字符串选择器（支持 设置自动选择、自定义主题颜色、取消选择的回调）
 + (void)showStringPickerWithTitle:(NSString *)title
+                       dataSource:(NSArray *)dataSource
                        themeColor:(UIColor *)themeColor
                       resultBlock:(BRStringResultBlock)resultBlock
                       cancelBlock:(BRStringCancelBlock)cancelBlock {
-    BRChoicePickerView *strPickerView = [[BRChoicePickerView alloc]initWithTitle:title themeColor:themeColor resultBlock:resultBlock cancelBlock:cancelBlock];
+    BRChoicePickerView *strPickerView = [[BRChoicePickerView alloc]initWithTitle:title dataSource:dataSource themeColor:themeColor resultBlock:resultBlock cancelBlock:cancelBlock];
     [strPickerView showWithAnimation:YES];
 }
 
 #pragma mark - 初始化自定义字符串选择器
 - (instancetype)initWithTitle:(NSString *)title
+                   dataSource:(NSArray *)dataSource
                    themeColor:(UIColor *)themeColor
                   resultBlock:(BRStringResultBlock)resultBlock
                   cancelBlock:(BRStringCancelBlock)cancelBlock {
@@ -55,38 +59,42 @@
         self.themeColor = themeColor;
         self.resultBlock = resultBlock;
         self.cancelBlock = cancelBlock;
+        [self configDataSource:dataSource];
         self.selectRow = 0;
         [self initUI];
     }
     return self;
 }
+
+#pragma mark - 设置数据源
+- (void)configDataSource:(id)dataSource {
+    // 2. 给数据源赋值
+    NSMutableArray *dataArray = [NSMutableArray array];
+    for (KNBRecruitmentUnitModel *model in dataSource) {
+        [dataArray addObject:model.name];
+    }
+    self.dataArray = dataArray;
+    // 4. 给选择器设置默认值
+}
+
 #pragma mark - tableview delegate
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 5;
+    return self.dataArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    KNBChoiceTableViewCell *cell = [KNBChoiceTableViewCell cellWithTableView:tableView];
-    if (indexPath.row == 0) {
-        cell.type = KNBChoiceTypeBedroom;
-    } else if (indexPath.row == 1) {
-        cell.type = KNBChoiceTypeLivingroom;
-    } else if (indexPath.row == 2) {
-        cell.type = KNBChoiceTypeDiningroom;
-    } else if (indexPath.row == 3) {
-        cell.type = KNBChoiceTypeKitchen;
-    } else {
-        cell.type = KNBChoiceTypeToilet;
-    }
+    
+    KNBChoiceTableViewCell *cell = [KNBChoiceTableViewCell cellWithTableView:tableView title:self.dataArray[indexPath.row]];
+
     return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return kPickerHeight / 5;
+    return 50;
 }
 
 #pragma mark - 初始化子视图
@@ -120,7 +128,7 @@
 #pragma mark - 字符串选择器
 - (UITableView *)tableView {
     if (!_tableView) {
-        CGRect frame = CGRectMake(0, kTopViewHeight + 5, self.alertView.frame.size.width, kPickerHeight);
+        CGRect frame = CGRectMake(0, kTopViewHeight + 5, self.alertView.frame.size.width, self.dataArray.count * 50);
         _tableView = [[UITableView alloc] initWithFrame:frame style:UITableViewStylePlain];
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _tableView.backgroundColor = [UIColor knBgColor];
@@ -159,17 +167,31 @@
     [self dismissWithAnimation:YES];
     // 点击确定按钮后，执行block回调
     if(_resultBlock) {
-        KNBChoiceTableViewCell *bedroomCell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
-        KNBChoiceTableViewCell *livingroomCell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]];
-        KNBChoiceTableViewCell *diningroomCell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:0]];
-        KNBChoiceTableViewCell *kitchenCell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:3 inSection:0]];
-        KNBChoiceTableViewCell *toiletCell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:4 inSection:0]];
+        NSInteger bedroomNum = 0;
+        NSInteger hallNum = 0;
+        NSInteger kitchenNum = 0;
+        NSInteger toiletNum = 0;
+        NSInteger balconyNum = 0;
+        for (int i = 0; i < self.dataArray.count; i++) {
+            KNBChoiceTableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0]];
+            if ( [cell.titleLabel.text isEqualToString:@"卧室"]) {
+                bedroomNum = bedroomNum + 1;
+            } else if ( [cell.titleLabel.text isEqualToString:@"客厅"] ||  [cell.titleLabel.text isEqualToString:@"餐厅"]) {
+                hallNum = hallNum + 1;
+            }else if ( [cell.titleLabel.text isEqualToString:@"厨房"]) {
+                kitchenNum = kitchenNum + 1;
+            } else if ( [cell.titleLabel.text isEqualToString:@"卫生间"]) {
+                toiletNum = toiletNum + 1;
+            } else {
+                balconyNum = balconyNum + 1;
+            }
+        }
         NSArray *tempArray = @[
-                               @([bedroomCell.numTextField.text integerValue]),
-                               @([livingroomCell.numTextField.text integerValue]),
-                               @([diningroomCell.numTextField.text integerValue]),
-                               @([kitchenCell.numTextField.text integerValue]),
-                               @([toiletCell.numTextField.text integerValue])];
+                               @(bedroomNum),
+                               @(hallNum),
+                               @(kitchenNum),
+                               @(toiletNum),
+                               @(balconyNum)];
         _resultBlock(tempArray);
     }
 }

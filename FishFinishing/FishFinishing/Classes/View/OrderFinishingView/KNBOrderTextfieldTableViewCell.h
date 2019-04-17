@@ -22,6 +22,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface KNBOrderTextfieldTableViewCell : UITableViewCell
 
+@property (weak, nonatomic) IBOutlet UITextField *describeTextField;
+
  /**
   类型
   */

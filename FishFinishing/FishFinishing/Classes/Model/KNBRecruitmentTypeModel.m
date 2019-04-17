@@ -45,6 +45,15 @@
              @"remark" : @"remark"
              };
 }
+@end
 
 
+@implementation KNBRecruitmentUnitModel
++ (NSDictionary *)JSONKeyPathsByPropertyKey {
+    return @{
+             @"typeId" : @"id",
+             @"name" : @"name",
+             @"sort" : @"sort",
+             };
+}
 @end
