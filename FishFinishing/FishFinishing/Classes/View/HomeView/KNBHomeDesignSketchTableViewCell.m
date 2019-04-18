@@ -61,7 +61,7 @@
 #pragma mark - private method
 
 + (CGFloat)cellHeight {
-    return 200;
+    return 220;
 }
 
 #pragma mark - System Delegate
@@ -81,17 +81,6 @@
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     return CGSizeMake(133, 155);
 }
-
-//- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
-//    UICollectionReusableView *reusableView = nil;
-//
-//    if (kind == UICollectionElementKindSectionHeader) {
-//        reusableView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"KNBHomeDoctorCellSectionHeaderView" forIndexPath:indexPath];
-//    } else if (kind == UICollectionElementKindSectionFooter) {
-//        reusableView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"KNBHomeDoctorCellSectionHeaderView" forIndexPath:indexPath];
-//    }
-//    return reusableView;
-//}
 
 //cell的点击事件
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -140,8 +129,7 @@
         _collectionView.backgroundColor = [UIColor whiteColor];
         _collectionView.delegate = self;
         _collectionView.dataSource = self;
-        [_collectionView registerClass:[KNBHomeDesignSketchSubTableViewCell class]
-            forCellWithReuseIdentifier:@"KNBHomeDesignSketchSubTableViewCell"];
+        [_collectionView registerClass:[KNBHomeDesignSketchSubTableViewCell class] forCellWithReuseIdentifier:@"KNBHomeDesignSketchSubTableViewCell"];
     }
     return _collectionView;
 }

@@ -12,6 +12,11 @@
 @interface NSDate (BTAddition)
 
 /**
+ 时间戳转 "HH:mm:nn"格式
+ */
++ (NSString *)transformFromTimestamp:(NSString *)timestamp;
+
+/**
  *  转换成描述性字符串
  */
 - (NSString *)transformToFuzzyDate;

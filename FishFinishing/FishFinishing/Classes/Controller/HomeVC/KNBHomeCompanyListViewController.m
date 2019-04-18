@@ -116,6 +116,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     KNBHomeServiceModel *model = self.dataArray[indexPath.row];
     KNBHomeCompanyDetailViewController *detailVC = [[KNBHomeCompanyDetailViewController alloc] init];
+    detailVC.model = model;
     [self.navigationController pushViewController:detailVC animated:YES];
 }
 

@@ -7,11 +7,12 @@
 //
 
 #import "KNBBaseViewController.h"
+#import "KNBDesignSketchModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface KNBDesignSketchDetailViewController : KNBBaseViewController
-
+@property (nonatomic, strong) KNBDesignSketchModel *model;
 @end
 
 NS_ASSUME_NONNULL_END

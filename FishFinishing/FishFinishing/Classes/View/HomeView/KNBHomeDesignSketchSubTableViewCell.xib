@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -19,20 +19,15 @@
                 <rect key="frame" x="0.0" y="0.0" width="388" height="234.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q42-sq-Zu1">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="knb_home_effect" translatesAutoresizingMaskIntoConstraints="NO" id="nbP-2y-2ob">
                         <rect key="frame" x="0.0" y="0.0" width="388" height="234.5"/>
-                        <state key="normal" image="knb_home_effect"/>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
-                            <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="5"/>
-                        </userDefinedRuntimeAttributes>
-                    </button>
+                    </imageView>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="q42-sq-Zu1" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="98i-FX-1sP"/>
-                    <constraint firstItem="q42-sq-Zu1" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="mMa-cn-sWQ"/>
-                    <constraint firstAttribute="bottom" secondItem="q42-sq-Zu1" secondAttribute="bottom" id="rL8-LT-bas"/>
-                    <constraint firstAttribute="trailing" secondItem="q42-sq-Zu1" secondAttribute="trailing" id="x5S-9d-GCO"/>
+                    <constraint firstAttribute="trailing" secondItem="nbP-2y-2ob" secondAttribute="trailing" id="Hna-54-u8w"/>
+                    <constraint firstAttribute="bottom" secondItem="nbP-2y-2ob" secondAttribute="bottom" id="dUY-u1-528"/>
+                    <constraint firstItem="nbP-2y-2ob" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="gz3-O6-amp"/>
+                    <constraint firstItem="nbP-2y-2ob" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="rcN-7j-Ece"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>

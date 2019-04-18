@@ -10,6 +10,7 @@
 //views
 #import "KNBMeHeaderView.h"
 #import "KNBMeTableViewCell.h"
+#import "KNBHomeCompanyDetailViewController.h"
 
 @interface MeViewController ()
 @property (nonatomic, strong) KNBMeHeaderView *headerView;
@@ -93,7 +94,10 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+    if (indexPath.section == 0 && indexPath.row == 0) {
+        KNBHomeCompanyDetailViewController *detailVC = [[KNBHomeCompanyDetailViewController alloc] init];
+        [self.navigationController pushViewController:detailVC animated:YES];
+    }
 }
 
 #pragma mark - Event Response

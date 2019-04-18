@@ -10,6 +10,16 @@
 
 
 @implementation NSDate (BTAddition)
+
++ (NSString *)transformFromTimestamp:(NSString *)timestamp {
+    NSString * timeStampString = timestamp;
+    NSTimeInterval _interval=[timeStampString doubleValue] / 1000.0;
+    NSDate *date = [NSDate dateWithTimeIntervalSince1970:_interval];
+    NSDateFormatter *objDateformat = [[NSDateFormatter alloc] init];
+    [objDateformat setDateFormat:@"yyyy-MM-dd"];
+    return [objDateformat stringFromDate: date];
+}
+
 - (NSString *)transformToFuzzyDate {
     NSDate *nowDate = [NSDate date];
     NSUInteger timeInterval = [nowDate timeIntervalSinceDate:self];

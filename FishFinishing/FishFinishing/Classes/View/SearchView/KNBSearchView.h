@@ -16,6 +16,7 @@ extern CGFloat KNBSearchViewHeight;
 NS_ASSUME_NONNULL_BEGIN
 
 @interface KNBSearchView : UIView
+@property (nonatomic, copy) void (^chatButtonBlock)(void);
 /**
  左边城市选择按钮
  */

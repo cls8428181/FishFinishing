@@ -7,11 +7,12 @@
 //
 
 #import "KNBBaseViewController.h"
+#import "KNBHomeServiceModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface KNBHomeCompanyDetailViewController : KNBBaseViewController
-
+@property (nonatomic, strong) KNBHomeServiceModel *model;
 @end
 
 NS_ASSUME_NONNULL_END

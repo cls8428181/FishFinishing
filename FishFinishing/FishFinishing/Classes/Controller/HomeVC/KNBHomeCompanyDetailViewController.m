@@ -12,9 +12,11 @@
 #import "KNBHomeCompanyServerTableViewCell.h"
 #import "KNBHomeCompanyIntroTableViewCell.h"
 #import "KNBHomeCompanyCaseTableViewCell.h"
+#import "KNBRecruitmentDetailApi.h"
+#import "KNBHomeServiceModel.h"
 
 @interface KNBHomeCompanyDetailViewController ()
-
+@property (nonatomic, strong) KNBHomeServiceModel *currentModel;
 @end
 
 @implementation KNBHomeCompanyDetailViewController
@@ -53,7 +55,21 @@
 }
 
 - (void)fetchData {
-    
+    KNBRecruitmentDetailApi *api = [[KNBRecruitmentDetailApi alloc] initWithfacId:[self.model.serviceId integerValue]];
+    api.hudString = @"";
+    KNB_WS(weakSelf);
+    [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *_Nonnull request) {
+        if (api.requestSuccess) {
+            NSDictionary *dic = request.responseObject[@"list"];
+            KNBHomeServiceModel *model = [KNBHomeServiceModel changeResponseJSONObject:dic];
+            weakSelf.currentModel = model;
+            [weakSelf requestSuccess:YES requestEnd:YES];
+        } else {
+            [weakSelf requestSuccess:NO requestEnd:NO];
+        }
+    } failure:^(__kindof YTKBaseRequest *_Nonnull request) {
+        [weakSelf requestSuccess:NO requestEnd:NO];
+    }];
 }
 
 #pragma mark - tableview delegate & dataSource
@@ -69,12 +85,20 @@
     UITableViewCell *cell = nil;
     if (indexPath.section == 0) {
         cell = [KNBHomeCompanyHeaderTableViewCell cellWithTableView:tableView];
+        KNBHomeCompanyHeaderTableViewCell *blockCell = (KNBHomeCompanyHeaderTableViewCell *)cell;
+        blockCell.model = self.currentModel;
     } else if (indexPath.section == 1) {
         cell = [KNBHomeCompanyServerTableViewCell cellWithTableView:tableView];
+        KNBHomeCompanyServerTableViewCell *blockCell = (KNBHomeCompanyServerTableViewCell *)cell;
+        blockCell.model = self.currentModel;
     } else if (indexPath.section == 2) {
         cell = [KNBHomeCompanyIntroTableViewCell cellWithTableView:tableView];
+        KNBHomeCompanyIntroTableViewCell *blockCell = (KNBHomeCompanyIntroTableViewCell *)cell;
+        blockCell.model = self.currentModel;
     } else {
         cell = [KNBHomeCompanyCaseTableViewCell cellWithTableView:tableView];
+        KNBHomeCompanyCaseTableViewCell *blockCell = (KNBHomeCompanyCaseTableViewCell *)cell;
+        blockCell.model = self.currentModel;
     }
     return cell;
 }

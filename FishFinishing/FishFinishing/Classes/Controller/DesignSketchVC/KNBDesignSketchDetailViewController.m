@@ -7,20 +7,28 @@
 //
 
 #import "KNBDesignSketchDetailViewController.h"
+#import "RFPhotoScrollerView.h"
+#import "KNBRecruitmentCaseDetailApi.h"
+#import <UIImageView+WebCache.h>
+#import "KNBHomeOfferViewController.h"
 
 @interface KNBDesignSketchDetailViewController ()
 //返回按钮
 @property (nonatomic, strong) UIButton *backButton;
 //收藏按钮
-@property (nonatomic, strong) UIButton *collectButton;
+//@property (nonatomic, strong) UIButton *collectButton;
 //分享按钮
 @property (nonatomic, strong) UIButton *shareButton;
 //大图
-@property (nonatomic, strong) UIImageView *bigImageView;
+@property (nonatomic, strong) RFPhotoScrollerView *scrollerView;
 //预约免费设计服务
-@property (nonatomic, strong) UIButton *leftButton;
+@property (nonatomic, strong) UIView *leftBgView;
+@property (nonatomic, strong) UIImageView *leftImageView;
+@property (nonatomic, strong) UILabel *leftLabel;
 //立即预约
 @property (nonatomic, strong) UIButton *orderButton;
+//图片数组
+@property (nonatomic, strong) NSArray *photosArray;
 @end
 
 @implementation KNBDesignSketchDetailViewController
@@ -56,25 +64,30 @@
         make.width.mas_equalTo(44);
         make.height.mas_equalTo(44);
     }];
-    [self.collectButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(35);
-        make.right.equalTo(weakSelf.shareButton.mas_left).mas_offset(-25);
-        make.width.mas_equalTo(44);
-        make.height.mas_equalTo(44);
-    }];
-    [self.bigImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.equalTo(weakSelf.view);
-        make.centerY.equalTo(weakSelf.view);
-        make.height.mas_equalTo(290);
-    }];
-    [self.leftButton mas_makeConstraints:^(MASConstraintMaker *make) {
+//    [self.collectButton mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.top.mas_equalTo(35);
+//        make.right.equalTo(weakSelf.shareButton.mas_left).mas_offset(-25);
+//        make.width.mas_equalTo(44);
+//        make.height.mas_equalTo(44);
+//    }];
+    [self.leftBgView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.bottom.equalTo(weakSelf.view);
-        make.height.mas_equalTo(50);
+        make.height.mas_equalTo(KNB_TAB_HEIGHT);
         make.width.mas_equalTo(KNB_SCREEN_WIDTH/3 * 2);
+    }];
+    [self.leftImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(weakSelf.view).mas_offset(15);
+        make.centerY.equalTo(weakSelf.leftBgView);
+        make.height.mas_equalTo(38);
+        make.width.mas_equalTo(38);
+    }];
+    [self.leftLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(weakSelf.leftImageView);
+        make.left.equalTo(weakSelf.leftImageView.mas_right).mas_offset(10);
     }];
     [self.orderButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.bottom.equalTo(weakSelf.view);
-        make.height.mas_equalTo(50);
+        make.height.mas_equalTo(KNB_TAB_HEIGHT);
         make.width.mas_equalTo(KNB_SCREEN_WIDTH/3);
     }];
 }
@@ -83,20 +96,39 @@
 - (void)configuration {
     [self.naviView removeFromSuperview];
     self.view.backgroundColor = [UIColor blackColor];
-    
 }
 
 - (void)addUI {
     [self.view addSubview:self.backButton];
-    [self.view addSubview:self.collectButton];
+//    [self.view addSubview:self.collectButton];
     [self.view addSubview:self.shareButton];
-    [self.view addSubview:self.bigImageView];
-    [self.view addSubview:self.leftButton];
+    [self.view addSubview:self.leftBgView];
+    [self.leftBgView addSubview:self.leftImageView];
+    [self.leftBgView addSubview:self.leftLabel];
     [self.view addSubview:self.orderButton];
 }
 
 - (void)fetchData {
-    
+    KNBRecruitmentCaseDetailApi *api = [[KNBRecruitmentCaseDetailApi alloc] initWithCaseId:[self.model.caseId integerValue]];
+    api.hudString = @"";
+    KNB_WS(weakSelf);
+    [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *_Nonnull request) {
+        if (api.requestSuccess) {
+            NSDictionary *dic = request.responseObject[@"list"];
+//            KNBDesignSketchModel *model = [KNBDesignSketchModel changeResponseJSONObject:dic];
+            NSMutableArray *imgsArray = [NSMutableArray array];
+            NSArray *tempArray = dic[@"imgs"];
+            for (NSString *string in tempArray) {
+                [imgsArray addObject:string];
+            }
+            weakSelf.photosArray = imgsArray;
+            [weakSelf.view addSubview:weakSelf.scrollerView];
+        } else {
+            [weakSelf requestSuccess:NO requestEnd:NO];
+        }
+    } failure:^(__kindof YTKBaseRequest *_Nonnull request) {
+        [weakSelf requestSuccess:NO requestEnd:NO];
+    }];
 }
 
 #pragma mark - Event Response
@@ -116,7 +148,8 @@
 }
 
 - (void)orderButtonAction {
-
+    KNBHomeOfferViewController *offerVC = [[KNBHomeOfferViewController alloc] init];
+    [self.navigationController pushViewController:offerVC animated:YES];
 }
 
 #pragma mark - Getters And Setters
@@ -130,15 +163,15 @@
     return _backButton;
 }
 
-- (UIButton *)collectButton {
-    if (!_collectButton) {
-        _collectButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_collectButton setImage:KNBImages(@"knb_design_collect_unselect") forState:UIControlStateNormal];
-        [_collectButton setImage:KNBImages(@"knb_design_collect_selected") forState:UIControlStateSelected];
-        [_collectButton addTarget:self action:@selector(collectButtonAction) forControlEvents:UIControlEventTouchUpInside];
-    }
-    return _collectButton;
-}
+//- (UIButton *)collectButton {
+//    if (!_collectButton) {
+//        _collectButton = [UIButton buttonWithType:UIButtonTypeCustom];
+//        [_collectButton setImage:KNBImages(@"knb_design_collect_unselect") forState:UIControlStateNormal];
+//        [_collectButton setImage:KNBImages(@"knb_design_collect_selected") forState:UIControlStateSelected];
+//        [_collectButton addTarget:self action:@selector(collectButtonAction) forControlEvents:UIControlEventTouchUpInside];
+//    }
+//    return _collectButton;
+//}
 
 - (UIButton *)shareButton {
     if (!_shareButton) {
@@ -149,24 +182,40 @@
     return _shareButton;
 }
 
-- (UIImageView *)bigImageView {
-    if (!_bigImageView) {
-        _bigImageView = [[UIImageView alloc] init];
-        _bigImageView.image = KNBImages(@"timg");
+- (RFPhotoScrollerView *)scrollerView {
+    if (!_scrollerView) {
+        _scrollerView = [[RFPhotoScrollerView alloc]initWithImagesArray:self.photosArray currentIndex:0 frame:CGRectMake(0, KNB_NAV_HEIGHT, KNB_SCREEN_WIDTH, KNB_SCREEN_HEIGHT - KNB_NAV_HEIGHT - KNB_TAB_HEIGHT)];
     }
-    return _bigImageView;
+    return _scrollerView;
 }
 
-- (UIButton *)leftButton {
-    if (!_leftButton) {
-        _leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_leftButton setImage:KNBImages(@"3_selected") forState:UIControlStateNormal];
-        [_leftButton setTitle:@"预约免费设计服务" forState:UIControlStateNormal];
-        [_leftButton setBackgroundColor:[UIColor whiteColor]];
-        [_leftButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        _leftButton.titleLabel.font = [UIFont systemFontOfSize:18];
+- (UIView *)leftBgView {
+    if (!_leftBgView) {
+        _leftBgView = [[UIView alloc] init];
+        _leftBgView.backgroundColor = [UIColor whiteColor];
     }
-    return _leftButton;
+    return _leftBgView;
+}
+
+- (UIImageView *)leftImageView {
+    if (!_leftImageView) {
+        _leftImageView = [[UIImageView alloc] init];
+        [_leftImageView sd_setImageWithURL:[NSURL URLWithString:self.model.img] placeholderImage:KNBImages(@"knb_default_user")];
+        _leftImageView.layer.masksToBounds = YES;
+        _leftImageView.layer.cornerRadius = 19;
+        
+    }
+    return _leftImageView;
+}
+
+- (UILabel *)leftLabel {
+    if (!_leftLabel) {
+        _leftLabel = [[UILabel alloc] init];
+        _leftLabel.text = self.model.name;
+        _leftLabel.font = [UIFont systemFontOfSize:14];
+        _leftLabel.textColor = [UIColor colorWithHex:0x333333];
+    }
+    return _leftLabel;
 }
 
 - (UIButton *)orderButton {
@@ -180,5 +229,9 @@
 
     }
     return _orderButton;
+}
+
+- (void)setModel:(KNBDesignSketchModel *)model {
+    _model = model;
 }
 @end

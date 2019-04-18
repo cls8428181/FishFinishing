@@ -20,6 +20,9 @@
              @"telephone" : @"telephone",
              @"tag" : @"tag",
              @"caseList" : @"case",
+             @"service" : @"service",
+             @"title" : @"title",
+             @"browse_num" : @"browse_num"
              };
 }
 

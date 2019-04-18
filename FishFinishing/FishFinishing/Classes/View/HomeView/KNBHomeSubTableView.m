@@ -11,6 +11,7 @@
 #import "KNBHomeServiceModel.h"
 #import "KNBOrderFooterView.h"
 #import "KNBHomeCompanyDetailViewController.h"
+#import "KNBHomeCompanyListViewController.h"
 
 @interface KNBHomeSubTableView ()
 @property (nonatomic, strong) NSArray *dataArray;
@@ -74,7 +75,9 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    KNBHomeServiceModel *model = self.dataArray[indexPath.section];
     KNBHomeCompanyDetailViewController *detailVC = [[KNBHomeCompanyDetailViewController alloc] init];
+    detailVC.model = model;
     [[[self getCurrentViewController] navigationController] pushViewController:detailVC animated:YES];
 }
 
@@ -111,10 +114,17 @@
 }
 
 - (KNBOrderFooterView *)footerView {
+    KNB_WS(weakSelf);
     if (!_footerView) {
         _footerView = [[KNBOrderFooterView alloc] initWithButtonTitle:@"查看更多"];
+        _footerView.frame = CGRectMake(0, 0, KNB_SCREEN_WIDTH, 50);
         _footerView.enterButtonBlock = ^{
-            
+            KNBHomeCompanyListViewController *listVC = [[KNBHomeCompanyListViewController alloc] init];
+            KNBRecruitmentTypeModel *model = [[KNBRecruitmentTypeModel alloc] init];
+            model.catName = @"装修公司";
+            model.typeId = @"1";
+            listVC.model = model;
+            [[[weakSelf getCurrentViewController] navigationController] pushViewController:listVC animated:YES];
         };
     }
     return _footerView;

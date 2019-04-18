@@ -53,6 +53,21 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *tag;
 
 /**
+ 服务
+ */
+@property (nonatomic, copy) NSString *service;
+
+/**
+ 标题
+ */
+@property (nonatomic, copy) NSString *title;
+
+/**
+ 阅读量
+ */
+@property (nonatomic, copy) NSString *browse_num;
+
+/**
  案例数据
  */
 @property (nonatomic, strong) NSArray<KNBHomeServiceModel *> *caseList;

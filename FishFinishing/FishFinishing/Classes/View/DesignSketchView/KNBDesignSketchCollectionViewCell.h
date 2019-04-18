@@ -7,10 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "KNBDesignSketchModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface KNBDesignSketchCollectionViewCell : UICollectionViewCell
+
+@property (nonatomic, strong) KNBDesignSketchModel *model;
+
 /**
  cell 创建
  */
@@ -20,6 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
  cell 高度
  */
 + (CGFloat)cellHeight;
+
 @end
 
 NS_ASSUME_NONNULL_END

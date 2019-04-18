@@ -28,6 +28,7 @@
 #import "KNBRecruitmentTypeModel.h"
 #import "KNBRecruitmentServiceListApi.h"
 #import "KNBHomeServiceModel.h"
+#import "KNBHomeChatViewController.h"
 
 static CGFloat const kHeaderViewHeight = 50.0f;
 
@@ -329,8 +330,13 @@ static CGFloat const kHeaderViewHeight = 50.0f;
 }
 
 - (KNBSearchView *)searchView {
+    KNB_WS(weakSelf);
     if (!_searchView) {
         _searchView = [[KNBSearchView alloc] initWithFrame:CGRectMake(0, 0, KNB_SCREEN_WIDTH, KNB_NAV_HEIGHT)];
+        _searchView.chatButtonBlock = ^{
+            KNBHomeChatViewController *chatVC = [[KNBHomeChatViewController alloc] init];
+            [weakSelf.navigationController pushViewController:chatVC animated:YES];
+        };
     }
     return _searchView;
 }

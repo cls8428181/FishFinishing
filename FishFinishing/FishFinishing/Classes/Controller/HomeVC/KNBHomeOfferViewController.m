@@ -15,7 +15,7 @@
 #import "KNBDSFreeOrderNameTableViewCell.h"
 #import "KNBDSFreeOrderPhoneTableViewCell.h"
 #import "KNBDSFreeOrderFooterView.h"
-
+#import "KNBDSFreeOrderEnterTableViewCell.h"
 
 @interface KNBHomeOfferViewController ()
 //背景
@@ -95,8 +95,8 @@
     self.knbTableView.clipsToBounds = false;
     self.bgView.scrollEnabled = YES;
     self.knbTableView.scrollEnabled = NO;
-    self.knbTableView.frame = CGRectMake(12, 160, KNB_SCREEN_WIDTH - 24, 515);
-    self.footerView.frame = CGRectMake(12, CGRectGetMaxY(self.knbTableView.frame), KNB_SCREEN_WIDTH - 24, 38);
+    self.knbTableView.frame = CGRectMake(12, 160, KNB_SCREEN_WIDTH - 24, 530);
+    self.footerView.frame = CGRectMake(12, CGRectGetMaxY(self.knbTableView.frame) + 5, KNB_SCREEN_WIDTH - 24, 38);
 }
 
 - (void)addUI {
@@ -119,7 +119,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 5;
+    return 6;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -132,14 +132,19 @@
         cell = [KNBDSFreeOrderAreaTableViewCell cellWithTableView:tableView];
     } else if (indexPath.row == 3) {
         cell = [KNBDSFreeOrderNameTableViewCell cellWithTableView:tableView];
-    } else {
+    } else if (indexPath.row == 4) {
         cell = [KNBDSFreeOrderPhoneTableViewCell cellWithTableView:tableView];
+    } else {
+        cell = [KNBDSFreeOrderEnterTableViewCell cellWithTableView:tableView];
     }
 
     return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.row == 5) {
+        return 70;
+    }
     return 50;
 }
 
@@ -148,7 +153,9 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+    if (indexPath.row == 5) {
+        [LCProgressHUD showMessage:@"您的装修方案预约成功"];
+    }
 }
 
 #pragma mark - Event Response
@@ -168,7 +175,7 @@
 - (UIScrollView *)bgView {
     if (!_bgView) {
         _bgView = [[UIScrollView alloc] init];
-        _bgView.contentSize = CGSizeMake(KNB_SCREEN_WIDTH,720);
+        _bgView.contentSize = CGSizeMake(KNB_SCREEN_WIDTH,740);
     }
     return _bgView;
 }

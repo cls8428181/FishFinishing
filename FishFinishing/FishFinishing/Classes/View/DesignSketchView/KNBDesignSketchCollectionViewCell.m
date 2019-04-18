@@ -7,6 +7,8 @@
 //
 
 #import "KNBDesignSketchCollectionViewCell.h"
+#import "NSDate+BTAddition.h"
+#import <UIImageView+WebCache.h>
 
 @interface KNBDesignSketchCollectionViewCell ()
 
@@ -47,6 +49,13 @@
 #pragma mark - private method
 + (CGFloat)cellHeight {
     return 160;
+}
+
+- (void)setModel:(KNBDesignSketchModel *)model {
+    [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:model.img] placeholderImage:KNBImages(@"knb_default_user")];
+    self.timeLabel.text = [NSDate transformFromTimestamp:model.created_at];
+    self.titleLabel.text = model.name;
+    self.countLabel.text = model.browse_num;
 }
 
 @end

@@ -20,15 +20,15 @@
 
 - (id)requestArgument {
     NSDictionary *dic = @{
-                          @"page" : @(_page),
-                          @"limit" : @(_limit),
-                          @"city_name" : _city_name,
-                          @"style_id" : @(_style_id),
-                          @"apartment" : _apartment,
-                          @"min_area" : @(_min_area),
-                          @"max_area" : @(_max_area)
+//                          @"page" : @(_page),
+//                          @"limit" : @(_limit),
+//                          @"city_name" : _city_name,
+//                          @"style_id" : @(_style_id),
+//                          @"apartment" : _apartment,
+//                          @"min_area" : @(_min_area),
+//                          @"max_area" : @(_max_area)
                           }; //字典
     [self.baseMuDic addEntriesFromDictionary:dic];
-    return self.appendSecretDic;
+    return self.baseMuDic;
 }
 @end

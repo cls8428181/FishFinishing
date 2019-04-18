@@ -11,9 +11,12 @@
 #import "KNBDesignSketchCollectionViewCell.h"
 #import "KNBDesignSketchCollectionSectionView.h"
 #import "KNBSortView.h"
-
+#import "KNBRecruitmentCaseListApi.h"
 //controllers
 #import "KNBDesignSketchDetailViewController.h"
+#import "KNBDesignSketchModel.h"
+#import <CQTopBarViewController.h>
+#import "KNBHomeCompanyTagsViewController.h"
 
 @interface DesignSketchViewController ()<UICollectionViewDelegate, UICollectionViewDataSource>
 //滑动区域
@@ -22,6 +25,7 @@
 @property (nonatomic, strong) KNBSortView *sortView;
 //顶部下拉筛选
 @property (nonatomic, strong) KNBDesignSketchCollectionSectionView *sectionView;
+@property (nonatomic, strong) CQTopBarViewController *topBar;
 
 @end
 
@@ -61,14 +65,50 @@
     self.naviView.titleNaviLabel.textColor = [UIColor blackColor];
     self.view.backgroundColor = [UIColor knBgColor];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(InfoNotificationAction:) name:NSStringFromClass([KNBHomeCompanyTagsViewController class]) object:nil];
+    self.topBar = [[CQTopBarViewController alloc] init];
+    self.topBar.segmentFrame = CGRectMake(0, KNB_NAV_HEIGHT, KNB_SCREEN_WIDTH, 50);
+    self.topBar.sectionTitles = @[@"风格",@"户型",@"面积"];
+    self.topBar.pageViewClasses = @[[KNBHomeCompanyTagsViewController class],[KNBHomeCompanyTagsViewController class],[KNBHomeCompanyTagsViewController class]];
+    self.topBar.segmentlineColor = [UIColor whiteColor];
+    self.topBar.segmentImage = @"knb_home_icon_down";
+    self.topBar.selectSegmentImage = @"knb_home_icon_up";
+    self.topBar.selectedTitleTextColor = [UIColor colorWithHex:0x0096e6];
+    [self addChildViewController:self.topBar];
+    [self.view addSubview:self.topBar.view];
+    [self.topBar.footerView addSubview:self.collectionView];
+    self.knbTableView.frame = CGRectMake(0, 0, KNB_SCREEN_WIDTH, KNB_SCREEN_HEIGHT - KNB_NAV_HEIGHT - 50);
+    [self.view bringSubviewToFront:self.naviView];
+    
 }
 
 - (void)addUI {
-    [self.view addSubview:self.collectionView];
+//    [self.view addSubview:self.collectionView];
 }
 
 - (void)fetchData {
-    
+    KNBRecruitmentCaseListApi *api = [[KNBRecruitmentCaseListApi alloc] init];
+//    api.page = 1;
+//    api.limit = 10;
+//    api.city_name = [KNGetUserLoaction shareInstance].cityName;
+//    api.style_id = 1;
+//    api.apartment = @"";
+//    api.min_area = 0.00;
+//    api.max_area = 99.99;
+    api.hudString = @"";
+    KNB_WS(weakSelf);
+    [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *_Nonnull request) {
+        if (api.requestSuccess) {
+            NSDictionary *dic = request.responseObject[@"list"];
+            NSArray *modelArray = [KNBDesignSketchModel changeResponseJSONObject:dic];
+            [self.dataArray addObjectsFromArray:modelArray];
+            [self.collectionView reloadData];
+        } else {
+            [weakSelf requestSuccess:NO requestEnd:NO];
+        }
+    } failure:^(__kindof YTKBaseRequest *_Nonnull request) {
+        [weakSelf requestSuccess:NO requestEnd:NO];
+    }];
 }
 
 #pragma mark - collectionview delegate & dataSource
@@ -77,11 +117,13 @@
 }
 //每一组有多少个cell
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return 5;
+    return self.dataArray.count;
 }
 //每一个cell是什么
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    KNBDesignSketchModel *model = self.dataArray[indexPath.row];
     KNBDesignSketchCollectionViewCell *cell = [KNBDesignSketchCollectionViewCell cellWithCollectionView:collectionView indexPath:indexPath];
+    cell.model = model;
     return cell;
 }
 //定义每一个cell的大小
@@ -116,7 +158,9 @@
 
 //cell的点击事件
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    KNBDesignSketchModel *model = self.dataArray[indexPath.row];
     KNBDesignSketchDetailViewController *detailVC = [[KNBDesignSketchDetailViewController alloc] init];
+    detailVC.model = model;
     [self.navigationController pushViewController:detailVC animated:YES];
 }
 

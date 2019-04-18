@@ -131,6 +131,10 @@ CGFloat KNBSearchViewHeight = 44;
     [alterView showAlterView];
 }
 
+- (void)chatButtonAction {
+    !self.chatButtonBlock ?: self.chatButtonBlock();
+}
+
 #pragma mark - Setter
 
 - (UIView *)searchBgView {
@@ -193,6 +197,7 @@ CGFloat KNBSearchViewHeight = 44;
     if (!_chatButton) {
         _chatButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [_chatButton setImage:KNBImages(@"knb_home_news") forState:UIControlStateNormal];
+        [_chatButton addTarget:self action:@selector(chatButtonAction) forControlEvents:UIControlEventTouchUpInside];
     }
     return _chatButton;
 }
