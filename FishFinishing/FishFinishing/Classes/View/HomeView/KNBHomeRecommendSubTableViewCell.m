@@ -7,13 +7,26 @@
 //
 
 #import "KNBHomeRecommendSubTableViewCell.h"
+#import <UIImageView+WebCache.h>
 #import "FMTagsView.h"
+#import "KNBHomeOfferViewController.h"
 
 @interface KNBHomeRecommendSubTableViewCell ()
 //标签背景
 @property (weak, nonatomic) IBOutlet UIView *tagBgView;
 //标签视图
 @property (nonatomic, strong) FMTagsView *tagView;
+@property (weak, nonatomic) IBOutlet UIImageView *iconImageView;
+@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *addressLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *certImageView;
+@property (weak, nonatomic) IBOutlet UIImageView *topImageView;
+@property (weak, nonatomic) IBOutlet UIButton *orderButton;
+@property (weak, nonatomic) IBOutlet UIButton *mobileButton;
+@property (weak, nonatomic) IBOutlet UILabel *distanceLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *leftCase;
+@property (weak, nonatomic) IBOutlet UIImageView *middleCase;
+@property (weak, nonatomic) IBOutlet UIImageView *rightCase;
 
 @end
 
@@ -42,7 +55,46 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     [self.tagBgView addSubview:self.tagView];
-    self.tagView.tagsArray = @[@"装修",@"漂亮",@"大方"];
+}
+
++ (UIViewController *)currentViewController {
+    UIWindow *window = [[UIApplication sharedApplication] keyWindow];
+    if (window.windowLevel != UIWindowLevelNormal) {
+        NSArray *windows = [[UIApplication sharedApplication] windows];
+        for (UIWindow *tmpWin in windows) {
+            if (tmpWin.windowLevel == UIWindowLevelNormal) {
+                window = tmpWin;
+                break;
+            }
+        }
+    }
+    
+    UIViewController *currentVC = window.rootViewController;
+    while (currentVC.presentedViewController) {
+        currentVC = currentVC.presentedViewController;
+    }
+    if ([currentVC isKindOfClass:[UINavigationController class]]) {
+        currentVC = [(UINavigationController *)currentVC topViewController];
+    }
+    return currentVC;
+}
+
+- (IBAction)orderButtonAction:(id)sender {
+    KNBHomeOfferViewController *offerVC  = [[KNBHomeOfferViewController alloc] init];
+    UIViewController *vc = [KNBHomeRecommendSubTableViewCell currentViewController];
+    [vc.navigationController pushViewController:offerVC animated:YES];
+}
+
+- (IBAction)mobileButtonAction:(id)sender {
+    NSString *telephoneNumber = self.model.telephone;
+    NSMutableString * str=[[NSMutableString alloc] initWithFormat:@"tel:%@",telephoneNumber];
+    UIApplication *application = [UIApplication sharedApplication];
+    NSURL *URL = [NSURL URLWithString:str];
+    [application openURL:URL options:@{} completionHandler:^(BOOL success) {
+        //OpenSuccess = 选择 呼叫 为 1  选择 取消 为0
+        NSLog(@"OpenSuccess=%d",success);
+        
+    }];
 }
 
 #pragma mark - private method
@@ -72,5 +124,34 @@
         _tagView = tagView;
     }
     return _tagView;
+}
+
+- (void)setModel:(KNBHomeServiceModel *)model {
+    _model = model;
+    [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:model.logo]];
+    self.nameLabel.text = model.name;
+    self.addressLabel.text = model.address;
+    
+    NSString *distance = @"";
+    if ([model.distance integerValue] > 1000) {
+        distance = [NSString stringWithFormat:@"%ld km",[model.distance integerValue] / 1000];
+    } else {
+        distance = [NSString stringWithFormat:@"%ld m",[model.distance integerValue]];
+    }
+    self.distanceLabel.text = distance;
+    NSArray *tagsArray = [model.tag componentsSeparatedByString:@","];
+    self.tagView.tagsArray = tagsArray;
+    for (int i = 0 ; i < model.caseList.count; i++) {
+        KNBHomeServiceModel *caseModel = model.caseList[i];
+        if (i == 0) {
+            [self.leftCase sd_setImageWithURL:[NSURL URLWithString:caseModel.img] placeholderImage:KNBImages(@"knb_default_case")];
+        }
+        if (i == 1) {
+            [self.middleCase sd_setImageWithURL:[NSURL URLWithString:caseModel.img] placeholderImage:KNBImages(@"knb_default_case")];
+        }
+        if (i == 2) {
+            [self.rightCase sd_setImageWithURL:[NSURL URLWithString:caseModel.img] placeholderImage:KNBImages(@"knb_default_case")];
+        }
+    }
 }
 @end

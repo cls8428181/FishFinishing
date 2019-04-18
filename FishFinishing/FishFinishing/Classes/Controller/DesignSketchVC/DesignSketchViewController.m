@@ -55,7 +55,9 @@
 #pragma mark - Utils
 - (void)configuration {
     self.naviView.title = @"装修效果图";
-    [self.naviView removeLeftBarItem];
+    if (self.isTabbar) {
+        [self.naviView removeLeftBarItem];
+    }
     self.naviView.titleNaviLabel.textColor = [UIColor blackColor];
     self.view.backgroundColor = [UIColor knBgColor];
     
@@ -88,9 +90,6 @@
 }
 
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
-//    UICollectionReusableView *reusableView = nil;
-
-//    if (kind == UICollectionElementKindSectionHeader) {
     KNB_WS(weakSelf);
     self.sectionView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"KNBDesignSketchCollectionSectionView" forIndexPath:indexPath];
     self.sectionView.optionCompleteBlock = ^(KNBDesignSketchCollectionSectionView * _Nonnull optionView, KNBOptionViewButtonType type) {
@@ -112,9 +111,6 @@
         }
     };
     [self.view insertSubview:self.sortView belowSubview:self.sectionView];
-//    } else if (kind == UICollectionElementKindSectionFooter) {
-//        reusableView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"KNBHomeDoctorCellSectionHeaderView" forIndexPath:indexPath];
-//    }
     return self.sectionView;
 }
 
@@ -138,18 +134,14 @@
         layout.minimumLineSpacing = 10;
         layout.headerReferenceSize = CGSizeMake(KNB_SCREEN_WIDTH, 50); //头视图的大小
         layout.sectionInset = UIEdgeInsetsMake(10, 12, 10, 12);
-//        layout.footerReferenceSize = CGSizeMake(12.5, 140);
         layout.scrollDirection = UICollectionViewScrollDirectionVertical;
         _collectionView = [[UICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:layout];
         _collectionView.showsHorizontalScrollIndicator = NO;
         _collectionView.backgroundColor = [UIColor whiteColor];
         _collectionView.delegate = self;
         _collectionView.dataSource = self;
-//        [_collectionView registerClass:[KNBHomeDesignSketchSubTableViewCell class] forCellWithReuseIdentifier:@"KNBHomeDesignSketchSubTableViewCell"];
         [_collectionView registerNib:[UINib nibWithNibName:@"KNBDesignSketchCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"KNBDesignSketchCollectionViewCell"];
         [_collectionView registerNib:[UINib nibWithNibName:@"KNBDesignSketchCollectionSectionView" bundle:nil] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"KNBDesignSketchCollectionSectionView"];
-//        [_collectionView registerClass:[KNBDesignSketchCollectionSectionView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"KNBDesignSketchCollectionSectionView"];
-//                [_collectionView registerClass:[KNBCollectionSectionView class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"KNBHomeDoctorCellSectionFooterView"];
     }
     return _collectionView;
 }

@@ -26,16 +26,16 @@
 
 - (id)requestArgument {
     NSDictionary *dic = @{
-                          @"lng" : _lng,
-                          @"lat" : _lat,
-                          @"page" : @(_page),
-                          @"limit" : @(_limit),
-                          @"city_name" : _city_name,
-                          @"area_name" : _area_name,
+                          @"lng" : _lng ?: @"",
+                          @"lat" : _lat ?: @"",
+                          @"page" : @(_page) ?: @(1),
+                          @"limit" : @(_limit) ?: @(10),
+                          @"city_name" : _city_name ?: [KNGetUserLoaction shareInstance].cityName,
+                          @"area_name" : _area_name?: @"",
                           @"cat_parent_id" : @(_cat_parent_id),
-                          @"cat_id" : @(_cat_id)
+                          @"cat_id" : @(_cat_id) ?: @(0)
                           }; //字典
     [self.baseMuDic addEntriesFromDictionary:dic];
-    return self.appendSecretDic;
+    return self.baseMuDic;
 }
 @end

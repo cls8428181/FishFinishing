@@ -7,6 +7,7 @@
 //
 
 #import "KNBBaseViewController.h"
+#import "KNBRecruitmentTypeModel.h"
 
 typedef NS_ENUM(NSInteger, KNBHomeListType) {
     KNBHomeListTypeCompany = 0,     //装修公司
@@ -18,6 +19,8 @@ typedef NS_ENUM(NSInteger, KNBHomeListType) {
 NS_ASSUME_NONNULL_BEGIN
 
 @interface KNBHomeCompanyListViewController : KNBBaseViewController
+
+@property (nonatomic, strong) KNBRecruitmentTypeModel *model;
 
 @property (nonatomic, assign) KNBHomeListType VCtype;
 @end

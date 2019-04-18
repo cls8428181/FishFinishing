@@ -10,10 +10,19 @@
 #import "KNBHomeRecommendSubTableViewCell.h"
 #import "KNBHomeCompanyListHeaderView.h"
 #import "KNBHomeCompanyDetailViewController.h"
+#import "KNBRecruitmentServiceListApi.h"
+#import "KNBHomeServiceModel.h"
+#import "KNBCompanyListTagsView.h"
+#import <CQTopBarViewController.h>
+#import "KNBHomeCompanyTagsViewController.h"
 
 @interface KNBHomeCompanyListViewController ()
 //header view
 @property (nonatomic, strong) KNBHomeCompanyListHeaderView *headerView;
+// 空页面
+@property (nonatomic, strong) KNBDataEmptySet *emptySet;
+@property (nonatomic, strong) CQTopBarViewController *topBar;
+
 @end
 
 @implementation KNBHomeCompanyListViewController
@@ -26,44 +35,57 @@
     
     [self addUI];
     
-    [self settingConstraints];
-    
     [self fetchData];
-}
-
-#pragma mark - Setup UI Constraints
-/*
- *  在这里添加UIView的约束布局相关代码
- */
-- (void)settingConstraints {
-    KNB_WS(weakSelf);
 }
 
 #pragma mark - Utils
 - (void)configuration {
-    if (self.VCtype == KNBHomeListTypeCompany) {
-        self.naviView.title = @"装修公司";
-    } else if (self.VCtype == KNBHomeListTypeForeman) {
-        self.naviView.title = @"装修工长";
-    } else if (self.VCtype == KNBHomeListTypeDesign) {
-        self.naviView.title = @"设计师";
-    } else if (self.VCtype == KNBHomeListTypeMaterial) {
-        self.naviView.title = @"家居建材";
-    } else {
-        self.naviView.title = @"装修工人";
-    }
     [self.naviView addLeftBarItemImageName:@"knb_back_black" target:self sel:@selector(backAction)];
     self.view.backgroundColor = [UIColor knBgColor];
-    self.knbTableView.tableHeaderView = self.headerView;
-    
+//    self.knbTableView.tableHeaderView = self.headerView;
 }
 
 - (void)addUI {
-    [self.view addSubview:self.knbTableView];
+    [self.view addSubview:self.emptySet];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(InfoNotificationAction:) name:NSStringFromClass([KNBHomeCompanyTagsViewController class]) object:nil];
+    self.topBar = [[CQTopBarViewController alloc] init];
+    self.topBar.segmentFrame = CGRectMake(0, KNB_NAV_HEIGHT, KNB_SCREEN_WIDTH, 50);
+    self.topBar.sectionTitles = @[@"风格",@"区域"];
+    self.topBar.pageViewClasses = @[[KNBHomeCompanyTagsViewController class],[KNBHomeCompanyTagsViewController class]];
+    self.topBar.segmentlineColor = [UIColor whiteColor];
+    self.topBar.segmentImage = @"knb_home_icon_down";
+    self.topBar.selectSegmentImage = @"knb_home_icon_up";
+    self.topBar.selectedTitleTextColor = [UIColor colorWithHex:0x0096e6];
+    [self addChildViewController:self.topBar];
+    [self.view addSubview:self.topBar.view];
+    [self.topBar.footerView addSubview:self.knbTableView];
+    self.knbTableView.frame = CGRectMake(0, 0, KNB_SCREEN_WIDTH, KNB_SCREEN_HEIGHT - KNB_NAV_HEIGHT - 50);
+    [self.view bringSubviewToFront:self.naviView];
+}
+
+- (void)InfoNotificationAction:(NSNotification *)notification{
+    [self.topBar topBarReplaceObjectsAtIndexes:1 withObjects:notification.userInfo[@"text"]];
 }
 
 - (void)fetchData {
-    
+    KNBRecruitmentServiceListApi *serviceApi = [[KNBRecruitmentServiceListApi alloc] initWithLng:[KNGetUserLoaction shareInstance].lng lat:[KNGetUserLoaction shareInstance].lat];
+    serviceApi.cat_parent_id = [self.model.typeId integerValue];
+    serviceApi.page = 1;
+    serviceApi.limit = 10;
+    KNB_WS(weakSelf);
+    [serviceApi startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *_Nonnull request) {
+        if (serviceApi.requestSuccess) {
+            NSDictionary *dic = request.responseObject[@"list"];
+            NSArray *modelArray = [KNBHomeServiceModel changeResponseJSONObject:dic];
+            [self.dataArray addObjectsFromArray:modelArray];
+            [weakSelf requestSuccess:YES requestEnd:YES];
+        } else {
+            [weakSelf requestSuccess:NO requestEnd:NO];
+        }
+    } failure:^(__kindof YTKBaseRequest *_Nonnull request) {
+        [weakSelf requestSuccess:NO requestEnd:NO];
+    }];
 }
 
 #pragma mark - tableview delegate & dataSource
@@ -72,11 +94,14 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 5;
+    self.emptySet.dataArray = self.dataArray;
+    return self.dataArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    KNBHomeServiceModel *model = self.dataArray[indexPath.row];
     KNBHomeRecommendSubTableViewCell *cell = [KNBHomeRecommendSubTableViewCell cellWithTableView:tableView];
+    cell.model = model;
     return cell;
 }
 
@@ -89,6 +114,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    KNBHomeServiceModel *model = self.dataArray[indexPath.row];
     KNBHomeCompanyDetailViewController *detailVC = [[KNBHomeCompanyDetailViewController alloc] init];
     [self.navigationController pushViewController:detailVC animated:YES];
 }
@@ -104,11 +130,43 @@
 #pragma mark - Getters And Setters
 /* getter和setter全部都放在最后*/
 - (KNBHomeCompanyListHeaderView *)headerView {
+    KNB_WS(weakSelf);
     if (!_headerView) {
         _headerView = [[NSBundle mainBundle] loadNibNamed:@"KNBHomeCompanyListHeaderView" owner:nil options:nil].lastObject;
         _headerView.frame = CGRectMake(0, 0, KNB_SCREEN_WIDTH, 50);
+        _headerView.leftButtonBlock = ^{
+            [KNBCompanyListTagsView showTagsPickerWithDataSource:@[@"1",@"2"] superView:weakSelf.headerView resultBlock:^(id selectValue) {
+                
+            } cancelBlock:^{
+                
+            }];
+        };
+        _headerView.middleButtonBlock = ^{
+            
+        };
     }
     return _headerView;
+}
+
+- (void)setModel:(KNBRecruitmentTypeModel *)model {
+    _model = model;
+    self.naviView.title = model.catName;
+    if ([model.catName isEqualToString:@"装修工人"]) {
+        [self.headerView.leftButton setTitle:@"工种" forState: UIControlStateNormal];
+    }
+    if ([model.catName isEqualToString:@"设计师"]) {
+        self.headerView.middleButton.hidden = YES;
+    }
+}
+
+- (KNBDataEmptySet *)emptySet {
+    if (!_emptySet) {
+        _emptySet = [[KNBDataEmptySet alloc] init];
+        _emptySet.noticeImage = [UIImage imageNamed:@"knb_icon_logo"];
+        _emptySet.noticeString = @"什么都木有搜到";
+        _emptySet.hidden = YES;
+    }
+    return _emptySet;
 }
 
 @end

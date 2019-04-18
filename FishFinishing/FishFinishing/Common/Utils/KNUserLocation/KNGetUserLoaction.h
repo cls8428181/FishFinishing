@@ -12,7 +12,8 @@
 typedef void (^KNUserLoactionCompleteBlock)(NSString *location);
 
 @interface KNGetUserLoaction : NSObject <CLLocationManagerDelegate>
-
+@property (nonatomic, copy) NSString *lng;
+@property (nonatomic, copy) NSString *lat;
 @property (nonatomic, strong) CLLocationManager *locationManager;
 @property (nonatomic, strong) CLGeocoder *geocoder;
 @property (nonatomic, strong, readonly) CLLocation *location;

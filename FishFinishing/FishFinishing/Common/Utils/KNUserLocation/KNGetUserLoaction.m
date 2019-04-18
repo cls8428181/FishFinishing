@@ -205,6 +205,14 @@ NSString *const KNSaveUserLocation = @"KNSaveUserLocation";
     return self.location;
 }
 
+- (NSString *)lat {
+    return [NSString stringWithFormat:@"%f",self.location.coordinate.latitude];
+}
+
+- (NSString *)lng {
+    return [NSString stringWithFormat:@"%f",self.location.coordinate.longitude];
+}
+
 /**
  完整的地址
  */

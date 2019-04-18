@@ -42,6 +42,8 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (nonatomic, assign) NSInteger cat_id;
 
+- (instancetype)initWithLng:(NSString *)lng lat:(NSString *)lat;
+
 @end
 
 NS_ASSUME_NONNULL_END

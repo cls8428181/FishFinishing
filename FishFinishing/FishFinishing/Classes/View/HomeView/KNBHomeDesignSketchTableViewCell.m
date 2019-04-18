@@ -95,6 +95,19 @@
 
 //cell的点击事件
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    DesignSketchViewController *vc = [[DesignSketchViewController alloc] init];
+    vc.isTabbar = NO;
+    [[[self getCurrentViewController] navigationController] pushViewController:vc animated:YES];
+}
+
+- (UIViewController *)getCurrentViewController{
+    UIResponder *next = [self nextResponder];
+    do {if ([next isKindOfClass:[UIViewController class]]) {
+        return (UIViewController *)next;
+    }
+        next = [next nextResponder];
+    } while (next !=nil);
+    return nil;
 }
 
 #pragma mark - lazy load
@@ -121,8 +134,6 @@
         UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
         layout.minimumInteritemSpacing = 10;
         layout.minimumLineSpacing = 10;
-        layout.headerReferenceSize = CGSizeMake(12.5, 140); //头视图的大小
-        layout.footerReferenceSize = CGSizeMake(12.5, 140);
         layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
         _collectionView = [[UICollectionView alloc] initWithFrame:self.contentView.bounds collectionViewLayout:layout];
         _collectionView.showsHorizontalScrollIndicator = NO;
@@ -131,8 +142,6 @@
         _collectionView.dataSource = self;
         [_collectionView registerClass:[KNBHomeDesignSketchSubTableViewCell class]
             forCellWithReuseIdentifier:@"KNBHomeDesignSketchSubTableViewCell"];
-//        [_collectionView registerClass:[KNBCollectionSectionView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"KNBHomeDoctorCellSectionHeaderView"];
-//        [_collectionView registerClass:[KNBCollectionSectionView class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"KNBHomeDoctorCellSectionFooterView"];
     }
     return _collectionView;
 }

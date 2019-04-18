@@ -51,6 +51,7 @@
 #import "AppDelegate.h"
 #import "KNBUserInfo.h"
 #import "KNGetUserLoaction.h"
+#import "KNBDataEmptySet.h"
 
 // 环境配置 0：本地测试 1:正式环境 2:线上测试
 #define KNB_ENV_TYPE 2

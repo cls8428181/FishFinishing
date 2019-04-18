@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface DesignSketchViewController : KNBBaseViewController
-
+@property (nonatomic, assign) BOOL isTabbar;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -13,8 +13,10 @@
 @end
 @implementation KNBHomeCompanyListHeaderView
 - (IBAction)styleButtonAction:(id)sender {
+    !self.leftButtonBlock ?: self.leftButtonBlock();
 }
 
 - (IBAction)areaButtonAction:(id)sender {
+    !self.middleButtonBlock ?: self.middleButtonBlock();
 }
 @end

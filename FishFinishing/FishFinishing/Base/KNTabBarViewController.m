@@ -94,6 +94,7 @@ const NSInteger KNTabBarButtonTitleLabelTag = 666;
 - (void)creatViewControllers {
     self.homeVC = [[HomeViewController alloc] init];
     self.designSketchVC = [[DesignSketchViewController alloc] init];
+    self.designSketchVC.isTabbar = YES;
     self.orderFinishingVC = [[OrderFinishingViewController alloc] init];
     self.recruitmentVC = [[RecruitmentViewController alloc] init];
     self.meVC = [[MeViewController alloc] init];

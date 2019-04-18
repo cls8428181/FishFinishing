@@ -11,7 +11,10 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface KNBHomeCompanyListHeaderView : UIView
-
+@property (weak, nonatomic) IBOutlet UIButton *leftButton;
+@property (weak, nonatomic) IBOutlet UIButton *middleButton;
+@property (nonatomic, copy) void (^leftButtonBlock)(void);
+@property (nonatomic, copy) void (^middleButtonBlock)(void);
 @end
 
 NS_ASSUME_NONNULL_END

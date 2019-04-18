@@ -7,48 +7,130 @@
 //
 
 #import "KNBHomeCategoryTableViewCell.h"
+#import "KNBHomeCategoryCollectionViewCell.h"
+#import "KNBRecruitmentTypeModel.h"
 
-@interface KNBHomeCategoryTableViewCell ()
-
+@interface KNBHomeCategoryTableViewCell ()<UICollectionViewDelegate,UICollectionViewDataSource>
+//数据
+@property (nonatomic, strong) NSArray *dataArray;
+//广告
+@property (nonatomic, strong)  UIButton *adButton;
+//滑动区域
+@property (nonatomic, strong) UICollectionView *collectionView;
 @end
 
 @implementation KNBHomeCategoryTableViewCell
 
 #pragma mark - life cycle
-+ (instancetype)cellWithTableView:(UITableView *)tableView {
++ (instancetype)cellWithTableView:(UITableView *)tableView dataSource:(nonnull NSArray *)dataSource {
     static NSString *ID = @"KNBHomeCategoryTableViewCell";
     KNBHomeCategoryTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
     if (!cell) {
-        [tableView registerNib:[UINib nibWithNibName:ID bundle:nil] forCellReuseIdentifier:ID];
-        cell = [tableView dequeueReusableCellWithIdentifier:ID];
+        cell = [[KNBHomeCategoryTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.dataArray = dataSource;
     return cell;
 }
 
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
+    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    if (self) {
+        self.contentView.backgroundColor = [UIColor whiteColor];
+        [self.contentView addSubview:self.collectionView];
+        [self.contentView addSubview:self.adButton];
+    }
+    return self;
+}
+
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    KNB_WS(weakSelf);
+    
+    [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.top.equalTo(weakSelf.contentView);
+        make.height.mas_equalTo(100);
+    }];
+    
+    [self.adButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(12);
+        make.right.bottom.mas_equalTo(-12);
+        make.top.equalTo(weakSelf.collectionView.mas_bottom).mas_offset(0);
+    }];
+}
+
+#pragma mark - System Delegate
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
+    return 1;
+}
+//每一组有多少个cell
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    return self.dataArray.count;
+}
+//每一个cell是什么
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    KNBHomeCategoryCollectionViewCell *cell = [KNBHomeCategoryCollectionViewCell cellWithCollectionView:collectionView indexPath:indexPath];
+    KNBRecruitmentTypeModel *model = self.dataArray[indexPath.row];
+    cell.model = model;
+    return cell;
+}
+//定义每一个cell的大小
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+    return CGSizeMake(60, 75);
+}
+
+//cell的点击事件
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    !self.selectItemAtIndexBlock ?: self.selectItemAtIndexBlock(indexPath.row);
+}
+
 #pragma mark - private method
+
 + (CGFloat)cellHeight {
     return 225;
 }
 
-#pragma mark - event respon
-- (IBAction)offerButtonAction:(id)sender {
-    !self.offerButtonAction ?: self.offerButtonAction();
+- (void)reloadCollectionView {
+    [self.collectionView reloadData];
 }
-- (IBAction)companyButtonAction:(id)sender {
-    !self.companyButtonAction ?: self.companyButtonAction();
+
+#pragma mark - lazy load
+- (UICollectionView *)collectionView {
+    if (!_collectionView) {
+        UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
+        layout.minimumInteritemSpacing = 10;
+        layout.minimumLineSpacing = 10;
+        layout.sectionInset = UIEdgeInsetsMake(12, 12, 12, 12);
+        layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+        _collectionView = [[UICollectionView alloc] initWithFrame:self.contentView.bounds collectionViewLayout:layout];
+        _collectionView.showsHorizontalScrollIndicator = NO;
+        _collectionView.backgroundColor = [UIColor whiteColor];
+        _collectionView.delegate = self;
+        _collectionView.dataSource = self;
+        [_collectionView registerClass:[KNBHomeCategoryCollectionViewCell class]
+            forCellWithReuseIdentifier:@"KNBHomeCategoryCollectionViewCell"];
+    }
+    return _collectionView;
 }
-- (IBAction)foremanButtonAction:(id)sender {
-    !self.foremanButtonAction ?: self.foremanButtonAction();
+
+- (UIButton *)adButton {
+    if (!_adButton) {
+        _adButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_adButton setImage:KNBImages(@"knb_home_ad") forState:UIControlStateNormal];
+    }
+    return _adButton;
 }
-- (IBAction)designButtonAction:(id)sender {
-    !self.designButtonAction ?: self.designButtonAction();
-}
-- (IBAction)materialsButtonAction:(id)sender {
-    !self.materialButtonAction ?: self.materialButtonAction();
-}
-- (IBAction)workerButtonAction:(id)sender {
-    !self.workerButtonAction ?: self.workerButtonAction();
+
+- (void)setDataArray:(NSArray *)dataArray {
+    if (!isNullArray(dataArray)) {
+        NSMutableArray *tempArray = [NSMutableArray array];
+        KNBRecruitmentTypeModel *model = [[KNBRecruitmentTypeModel alloc] init];
+        model.catName = @"量房报价";
+        model.img = @"";
+        [tempArray addObject:model];
+        [tempArray addObjectsFromArray:dataArray];
+        _dataArray = tempArray;
+    }
 }
 
 @end

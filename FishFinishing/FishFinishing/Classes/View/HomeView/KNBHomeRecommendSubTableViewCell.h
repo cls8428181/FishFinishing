@@ -7,11 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "KNBHomeServiceModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface KNBHomeRecommendSubTableViewCell : UITableViewCell
-
+@property (nonatomic, strong) KNBHomeServiceModel *model;
 /**
  cell 创建
  */

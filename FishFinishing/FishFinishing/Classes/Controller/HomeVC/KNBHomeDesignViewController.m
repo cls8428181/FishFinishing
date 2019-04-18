@@ -15,6 +15,7 @@
 #import "KNBDSFreeOrderPhoneTableViewCell.h"
 #import "KNBDSFreeOrderRedEnterTableViewCell.h"
 #import "KNBDSFreeOrderFooterView.h"
+#import "DesignSketchViewController.h"
 //utils
 #import "KNBButton.h"
 
@@ -46,6 +47,7 @@
 @property (nonatomic, strong) UIView *headerView;
 //footer view
 @property (nonatomic, strong) KNBDSFreeOrderFooterView *footerView;
+
 @end
 
 @implementation KNBHomeDesignViewController
