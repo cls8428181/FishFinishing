@@ -73,11 +73,11 @@
 
 #pragma mark - event respon
 - (void)setButtonAction:(UIButton *)button {
-    
+    !self.settingButtonBlock ?: self.settingButtonBlock();
 }
 
 - (void)chatButtonAction:(UIButton *)button {
-    
+    !self.chatButtonBlock ?: self.chatButtonBlock();
 }
 
 #pragma mark - lazy load

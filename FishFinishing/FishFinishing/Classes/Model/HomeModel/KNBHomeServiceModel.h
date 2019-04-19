@@ -68,6 +68,16 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *browse_num;
 
 /**
+ 备注
+ */
+@property (nonatomic, copy) NSString *remark;
+
+/**
+ 创建时间
+ */
+@property (nonatomic, copy) NSString *created_at;
+
+/**
  案例数据
  */
 @property (nonatomic, strong) NSArray<KNBHomeServiceModel *> *caseList;

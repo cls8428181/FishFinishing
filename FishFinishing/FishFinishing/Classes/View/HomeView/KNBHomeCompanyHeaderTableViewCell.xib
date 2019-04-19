@@ -67,14 +67,18 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
             <connections>
+                <outlet property="addressLabel" destination="vaS-lq-Ukf" id="TYg-nB-nKM"/>
+                <outlet property="iconImageView" destination="wi9-yg-jHC" id="xmf-vK-eKm"/>
+                <outlet property="nameLabel" destination="G4g-FI-1Ds" id="YIF-pc-MEG"/>
                 <outlet property="tagBgView" destination="WWW-vy-9Gc" id="dPu-hE-h0l"/>
+                <outlet property="topImageView" destination="714-i5-YAn" id="zHJ-A1-Hbn"/>
             </connections>
             <point key="canvasLocation" x="159.19999999999999" y="195.6521739130435"/>
         </tableViewCell>
     </objects>
     <resources>
         <image name="knb_default_user" width="39" height="39"/>
-        <image name="knb_home_icon_posi" width="9.5" height="12.5"/>
-        <image name="knb_home_icon_rz" width="20.5" height="8"/>
+        <image name="knb_home_icon_posi" width="9" height="12"/>
+        <image name="knb_home_icon_rz" width="20" height="8"/>
     </resources>
 </document>

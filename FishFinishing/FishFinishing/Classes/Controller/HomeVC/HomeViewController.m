@@ -57,7 +57,6 @@ static CGFloat const kHeaderViewHeight = 50.0f;
 #pragma mark - life cycle
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self fetchData];
 }
 
 - (void)viewDidLoad {
@@ -66,7 +65,9 @@ static CGFloat const kHeaderViewHeight = 50.0f;
     [self configuration];
     
     [self addUI];
-        
+    
+    [self fetchData];
+
 }
 
 #pragma mark - Utils
@@ -103,14 +104,16 @@ static CGFloat const kHeaderViewHeight = 50.0f;
     }];
     
     KNBRecruitmentTypeApi *typeApi = [[KNBRecruitmentTypeApi alloc] init];
-    typeApi.hudString = @"";
+    [LCProgressHUD showLoading:@""];
     [typeApi startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *_Nonnull request) {
-        if (api.requestSuccess) {
+        if (typeApi.requestSuccess) {
             NSDictionary *dic = request.responseObject[@"list"];
             NSArray *modelArray = [KNBRecruitmentTypeModel changeResponseJSONObject:dic];
             weakSelf.categoryArray = modelArray;
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 [weakSelf serviceListRequest:0];
+            });
+            KNB_PerformOnMainThread(^{
                 [weakSelf.mainTableView reloadData];
             });
         } else {
@@ -120,6 +123,21 @@ static CGFloat const kHeaderViewHeight = 50.0f;
         [weakSelf requestSuccess:NO requestEnd:NO];
     }];
 
+}
+
+- (void)requestSuccess:(BOOL)success requestEnd:(BOOL)end {
+    [self.mainTableView.mj_header endRefreshing];
+    
+    if (end) {
+        [self.mainTableView.mj_footer endRefreshingWithNoMoreData];
+        [self.mainTableView reloadData];
+        return;
+    }
+    if (!success && self.requestPage > 1) {
+        self.requestPage -= 1;
+    } else {
+        [self.mainTableView reloadData];
+    }
 }
 
 #pragma mark - tableview delegate & dataSource
@@ -239,10 +257,13 @@ static CGFloat const kHeaderViewHeight = 50.0f;
     KNB_WS(weakSelf);
     [serviceApi startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *_Nonnull request) {
         if (serviceApi.requestSuccess) {
+            [LCProgressHUD hide];
             NSDictionary *dic = request.responseObject[@"list"];
             NSArray *modelArray = [KNBHomeServiceModel changeResponseJSONObject:dic];
             self.serviceArray = modelArray;
-            [weakSelf.subView reloadTableViewAtIndex:index dataSource:modelArray];
+            KNB_PerformOnMainThread(^{
+                [weakSelf.subView reloadTableViewAtIndex:index dataSource:modelArray];
+            });
         } else {
             [weakSelf requestSuccess:NO requestEnd:NO];
         }

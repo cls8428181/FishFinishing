@@ -8,13 +8,14 @@
 
 #import <UIKit/UIKit.h>
 typedef NS_ENUM(NSInteger, KNBOrderDownType) {
-    KNBOrderDownTypeServer = 0,       //服务类型
-    KNBOrderDownTypeHouse,            //户型
-    KNBOrderDownTypeStyle,            //装修风格
-    KNBOrderDownTypeLevel,            //装修档次
-    KNBOrderDownTypeRecruitment,      //入驻类型
+    KNBOrderDownTypeServer = 0,        //服务类型
+    KNBOrderDownTypeHouse,              //户型
+    KNBOrderDownTypeStyle,                //装修风格
+    KNBOrderDownTypeLevel,               //装修档次
+    KNBOrderDownTypeRecruitment,     //入驻类型
     KNBOrderDownTypeDomain,           //擅长领域
-    KNBOrderDownTypeShowPrice         //展示价格
+    KNBOrderDownTypeShowPrice,       //展示价格
+    KNBOrderDownTypeMedify             //修改密码
 };
 
 NS_ASSUME_NONNULL_BEGIN

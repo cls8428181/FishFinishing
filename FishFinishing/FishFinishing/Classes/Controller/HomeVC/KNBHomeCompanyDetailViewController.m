@@ -46,6 +46,9 @@
 - (void)configuration {
     self.naviView.title = @"装修公司";
     [self.naviView addLeftBarItemImageName:@"knb_back_black" target:self sel:@selector(backAction)];
+    if (self.isEdit) {
+        [self.naviView addRightBarItemImageName:@"knb_me_bianji" target:self sel:@selector(editButtonAction)];
+    }
     self.view.backgroundColor = [UIColor knBgColor];
     
 }
@@ -99,6 +102,7 @@
         cell = [KNBHomeCompanyCaseTableViewCell cellWithTableView:tableView];
         KNBHomeCompanyCaseTableViewCell *blockCell = (KNBHomeCompanyCaseTableViewCell *)cell;
         blockCell.model = self.currentModel;
+        blockCell.isEdit = self.isEdit;
     }
     return cell;
 }
@@ -111,7 +115,7 @@
     } else if (indexPath.section == 2) {
         return [KNBHomeCompanyIntroTableViewCell cellHeight];
     } else {
-        return [KNBHomeCompanyCaseTableViewCell cellHeight];
+        return [KNBHomeCompanyCaseTableViewCell cellHeight:self.currentModel.caseList.count];
     }
 }
 
@@ -130,6 +134,10 @@
  */
 - (void)backAction {
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)editButtonAction {
+    
 }
 
 #pragma mark - Getters And Setters

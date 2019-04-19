@@ -8,12 +8,17 @@
 
 #import "KNBHomeCompanyHeaderTableViewCell.h"
 #import "FMTagsView.h"
+#import <UIImageView+WebCache.h>
 
 @interface KNBHomeCompanyHeaderTableViewCell ()
 //标签背景
 @property (weak, nonatomic) IBOutlet UIView *tagBgView;
 //标签视图
 @property (nonatomic, strong) FMTagsView *tagView;
+@property (weak, nonatomic) IBOutlet UIImageView *iconImageView;
+@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *addressLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *topImageView;
 
 @end
 
@@ -42,7 +47,6 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     [self.tagBgView addSubview:self.tagView];
-    self.tagView.tagsArray = @[@"装修",@"漂亮",@"大方"];
 }
 
 #pragma mark - private method
@@ -72,6 +76,14 @@
         _tagView = tagView;
     }
     return _tagView;
+}
+
+- (void)setModel:(KNBHomeServiceModel *)model {
+    [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:model.logo] placeholderImage:KNBImages(@"knb_default_user")];
+    self.nameLabel.text = model.name;
+    self.addressLabel.text = model.address;
+    NSArray *array = [model.tag componentsSeparatedByString:@","]; //分割字符串
+    self.tagView.tagsArray = array;
 }
 
 @end

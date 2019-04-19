@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "KNBHomeServiceModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface KNBHomeDesignSketchSubTableViewCell : UICollectionViewCell
-
 /**
  cell 创建
  */

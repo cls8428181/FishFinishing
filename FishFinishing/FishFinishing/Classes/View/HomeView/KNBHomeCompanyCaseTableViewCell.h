@@ -15,6 +15,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) KNBHomeServiceModel *model;
 
 /**
+ 能否编辑
+ */
+@property (nonatomic, assign) BOOL isEdit;
+
+/**
  cell 创建
  */
 + (instancetype)cellWithTableView:(UITableView *)tableView;
@@ -22,7 +27,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  cell 高度
  */
-+ (CGFloat)cellHeight;
++ (CGFloat)cellHeight:(NSInteger)count;
 @end
 
 NS_ASSUME_NONNULL_END

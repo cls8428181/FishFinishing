@@ -11,6 +11,9 @@
 #import "KNBMeHeaderView.h"
 #import "KNBMeTableViewCell.h"
 #import "KNBHomeCompanyDetailViewController.h"
+#import "KNBMeAboutViewController.h"
+#import "KNBMeSetViewController.h"
+#import "KNBHomeChatViewController.h"
 
 @interface MeViewController ()
 @property (nonatomic, strong) KNBMeHeaderView *headerView;
@@ -95,8 +98,15 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0 && indexPath.row == 0) {
+        KNBHomeServiceModel *model = [[KNBHomeServiceModel alloc] init];
+        model.serviceId = @"1";
         KNBHomeCompanyDetailViewController *detailVC = [[KNBHomeCompanyDetailViewController alloc] init];
+        detailVC.model = model;
         [self.navigationController pushViewController:detailVC animated:YES];
+    }
+    if (indexPath.section == 2 && indexPath.row == 0) {
+        KNBMeAboutViewController *aboutVC = [[KNBMeAboutViewController alloc] init];
+        [self.navigationController pushViewController:aboutVC animated:YES];
     }
 }
 
@@ -111,9 +121,18 @@
 #pragma mark - Getters And Setters
 /* getter和setter全部都放在最后*/
 - (KNBMeHeaderView *)headerView {
+    KNB_WS(weakSelf);
     if (!_headerView) {
         _headerView = [[KNBMeHeaderView alloc] init];
         _headerView.frame = CGRectMake(0, 0, KNB_SCREEN_WIDTH, KNB_SCREEN_WIDTH * 170/375 + 140);
+        _headerView.settingButtonBlock = ^{
+            KNBMeSetViewController *setVC = [[KNBMeSetViewController alloc] init];
+            [weakSelf.navigationController pushViewController:setVC animated:YES];
+        };
+        _headerView.chatButtonBlock = ^{
+            KNBHomeChatViewController *chatVC = [[KNBHomeChatViewController alloc] init];
+            [weakSelf.navigationController pushViewController:chatVC animated:YES];
+        };
     }
     return _headerView;
 }

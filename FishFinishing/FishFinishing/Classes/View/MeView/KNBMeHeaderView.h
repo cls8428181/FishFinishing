@@ -11,6 +11,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface KNBMeHeaderView : UIView
+@property (nonatomic, copy) void (^settingButtonBlock)(void);
+@property (nonatomic, copy) void (^chatButtonBlock)(void);
 
 @end
 

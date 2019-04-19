@@ -35,6 +35,7 @@
 #import "BRChoicePickerView.h"
 #import "KNBOrderUnitApi.h"
 #import "KNBHomeBespokeApi.h"
+#import "KNBRecruitmentPayViewController.h"
 
 @interface KNBOrderViewController ()<UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 @property (nonatomic, strong) KNBOrderFooterView *footerView;
@@ -458,7 +459,8 @@
 
 //立即入驻
 - (void)enterRecruitment {
-    
+    KNBRecruitmentPayViewController *payVC = [[KNBRecruitmentPayViewController alloc] init];
+    [self.navigationController pushViewController:payVC animated:YES];
 }
 
 #pragma mark - 免费预约数据请求

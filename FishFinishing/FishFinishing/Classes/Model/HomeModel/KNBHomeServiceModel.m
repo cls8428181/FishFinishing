@@ -22,7 +22,9 @@
              @"caseList" : @"case",
              @"service" : @"service",
              @"title" : @"title",
-             @"browse_num" : @"browse_num"
+             @"browse_num" : @"browse_num",
+             @"remark" : @"remark",
+             @"created_at" : @"created_at"
              };
 }
 

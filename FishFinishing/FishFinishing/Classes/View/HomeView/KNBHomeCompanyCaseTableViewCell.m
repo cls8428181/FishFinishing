@@ -7,12 +7,15 @@
 //
 
 #import "KNBHomeCompanyCaseTableViewCell.h"
-#import "KNBHomeDesignSketchSubTableViewCell.h"
+#import "KNBHomeCompanyCaseSubCollectionViewCell.h"
+#import "KNBDesignSketchDetailViewController.h"
+#import "KNBDesignSketchModel.h"
 
 @interface KNBHomeCompanyCaseTableViewCell ()<UICollectionViewDelegate, UICollectionViewDataSource>
 //滑动区域
 @property (nonatomic, strong) UICollectionView *collectionView;
 
+@property (nonatomic, strong) NSArray *dataArray;
 @end
 
 @implementation KNBHomeCompanyCaseTableViewCell
@@ -44,8 +47,8 @@
 }
 
 #pragma mark - private method
-+ (CGFloat)cellHeight {
-    return 385;
++ (CGFloat)cellHeight:(NSInteger)count {
+    return 190 *( count %2 ? count /2 + 1 : count / 2);
 }
 
 #pragma mark - collectionview delegate & dataSource
@@ -54,11 +57,17 @@
 }
 //每一组有多少个cell
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return 4;
+    return self.dataArray.count;
 }
 //每一个cell是什么
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    KNBHomeDesignSketchSubTableViewCell *cell = [KNBHomeDesignSketchSubTableViewCell cellWithCollectionView:collectionView indexPath:indexPath];
+    KNBHomeServiceModel *model = self.dataArray[indexPath.row];
+    KNBHomeCompanyCaseSubCollectionViewCell *cell = [KNBHomeCompanyCaseSubCollectionViewCell cellWithCollectionView:collectionView indexPath:indexPath];
+    cell.model = model;
+    cell.isEdit = self.isEdit;
+    cell.deleteButtonBlock = ^{
+        
+    };
     return cell;
 }
 //定义每一个cell的大小
@@ -99,6 +108,24 @@
 
 //cell的点击事件
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    KNBHomeServiceModel *cellModel = self.dataArray[indexPath.row];
+    KNBDesignSketchModel *model  = [[KNBDesignSketchModel alloc] init];
+    model.caseId = cellModel.serviceId;
+    model.name = self.model.name;
+    model.img = self.model.logo;
+    KNBDesignSketchDetailViewController *detailVC = [[KNBDesignSketchDetailViewController alloc] init];
+    detailVC.model = model;
+    [[[self getCurrentViewController] navigationController] pushViewController:detailVC animated:YES];
+}
+
+- (UIViewController *)getCurrentViewController{
+    UIResponder *next = [self nextResponder];
+    do {if ([next isKindOfClass:[UIViewController class]]) {
+        return (UIViewController *)next;
+    }
+        next = [next nextResponder];
+    } while (next !=nil);
+    return nil;
 }
 
 #pragma mark - lazy load
@@ -107,7 +134,7 @@
         UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
         layout.minimumInteritemSpacing = 10;
         layout.minimumLineSpacing = 10;
-        layout.headerReferenceSize = CGSizeMake(KNB_SCREEN_WIDTH, 50); //头视图的大小
+        layout.headerReferenceSize = CGSizeMake(0, 0); //头视图的大小
         //        layout.footerReferenceSize = CGSizeMake(12.5, 140);
         layout.scrollDirection = UICollectionViewScrollDirectionVertical;
         _collectionView = [[UICollectionView alloc] initWithFrame:self.bounds collectionViewLayout:layout];
@@ -115,8 +142,9 @@
         _collectionView.backgroundColor = [UIColor whiteColor];
         _collectionView.delegate = self;
         _collectionView.dataSource = self;
+        _collectionView.scrollEnabled = NO;
         //        [_collectionView registerClass:[KNBHomeDesignSketchSubTableViewCell class] forCellWithReuseIdentifier:@"KNBHomeDesignSketchSubTableViewCell"];
-        [_collectionView registerNib:[UINib nibWithNibName:@"KNBHomeDesignSketchSubTableViewCell" bundle:nil] forCellWithReuseIdentifier:@"KNBHomeDesignSketchSubTableViewCell"];
+        [_collectionView registerNib:[UINib nibWithNibName:@"KNBHomeCompanyCaseSubCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"KNBHomeCompanyCaseSubCollectionViewCell"];
 //        [_collectionView registerNib:[UINib nibWithNibName:@"KNBDesignSketchCollectionSectionView" bundle:nil] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"KNBDesignSketchCollectionSectionView"];
         //        [_collectionView registerClass:[KNBDesignSketchCollectionSectionView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"KNBDesignSketchCollectionSectionView"];
         //                [_collectionView registerClass:[KNBCollectionSectionView class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"KNBHomeDoctorCellSectionFooterView"];
@@ -124,4 +152,9 @@
     return _collectionView;
 }
 
+- (void)setModel:(KNBHomeServiceModel *)model {
+    _model = model;
+    self.dataArray = model.caseList;
+    [self.collectionView reloadData];
+}
 @end

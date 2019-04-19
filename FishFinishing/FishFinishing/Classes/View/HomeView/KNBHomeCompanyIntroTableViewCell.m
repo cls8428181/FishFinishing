@@ -31,4 +31,8 @@
 + (CGFloat)cellHeight {
     return 185;
 }
+
+- (void)setModel:(KNBHomeServiceModel *)model {
+    self.contentLabel.text = model.remark;
+}
 @end

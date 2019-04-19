@@ -33,6 +33,10 @@
 - (void)setType:(KNBRecruitmentEnterType)type {
     if (type == KNBRecruitmentEnterTypeOrder) {
         [self.enterButton setTitle:@"免费预约" forState:UIControlStateNormal];
+        
+    }  else if (type == KNBRecruitmentEnterTypeSet) {
+        [self.enterButton setTitle:@"退出" forState:UIControlStateNormal];
+
     } else {
         [self.enterButton setTitle:@"立即入驻" forState:UIControlStateNormal];
     }

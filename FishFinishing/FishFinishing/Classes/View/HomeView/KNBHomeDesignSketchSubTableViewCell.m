@@ -14,10 +14,6 @@
 + (instancetype)cellWithCollectionView:(UICollectionView *)collectionView indexPath:(NSIndexPath *)indexPath {
     static NSString *ID = @"KNBHomeDesignSketchSubTableViewCell";
     KNBHomeDesignSketchSubTableViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:ID forIndexPath:indexPath];
-//    if (!cell) {
-//        [collectionView registerNib:[UINib nibWithNibName:ID bundle:nil] forCellWithReuseIdentifier:ID];
-//        cell = [collectionView dequeueReusableCellWithReuseIdentifier:ID forIndexPath:indexPath];
-//    }
     return cell;
 }
 

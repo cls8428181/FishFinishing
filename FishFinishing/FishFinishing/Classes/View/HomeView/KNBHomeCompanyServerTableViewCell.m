@@ -72,4 +72,9 @@
     }
     return _tagView;
 }
+
+- (void)setModel:(KNBHomeServiceModel *)model {
+    NSArray *array = [model.service componentsSeparatedByString:@","]; //分割字符串
+    self.tagView.tagsArray = array;
+}
 @end

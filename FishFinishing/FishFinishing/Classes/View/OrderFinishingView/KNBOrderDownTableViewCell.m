@@ -59,6 +59,8 @@
     } else if (type == KNBOrderDownTypeDomain) {
         self.titleLabel.text = @"擅长领域:";
         [self.describeButton setTitle:@"请选择擅长领域" forState:UIControlStateNormal];
+    } else if (type == KNBOrderDownTypeMedify) {
+        self.titleLabel.text = @"密码修改:";
     } else {
         self.titleLabel.text = @"装修档次:";
         [self.describeButton setTitle:@"请选择装修档次" forState:UIControlStateNormal];
