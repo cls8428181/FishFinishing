@@ -19,14 +19,8 @@ NS_ASSUME_NONNULL_BEGIN
  @param title 案列描述
  @param styleId 装修风格编号
  @param acreage 面积
- @param room 卧室数
- @param office 厅数
- @param wei 卫生间数
- @param kitchen 厨房数
- @param balcony 阳台数
- @param imgs 案列图片
  */
-- (instancetype)initWithToken:(NSString *)token title:(NSString *)title styleId:(NSInteger)styleId acreage:(double)acreage room:(NSInteger)room office:(NSInteger)office wei:(NSInteger)wei kitchen:(NSInteger)kitchen balcony:(NSInteger)balcony imgs:(NSString *)imgs;
+- (instancetype)initWithToken:(NSString *)token title:(NSString *)title styleId:(NSInteger)styleId acreage:(double)acreage apartment:(NSString *)apartment imgs:(NSString *)imgs;
 
 @end
 

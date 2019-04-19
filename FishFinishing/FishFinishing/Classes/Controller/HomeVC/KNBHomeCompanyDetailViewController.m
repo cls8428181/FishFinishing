@@ -14,6 +14,7 @@
 #import "KNBHomeCompanyCaseTableViewCell.h"
 #import "KNBRecruitmentDetailApi.h"
 #import "KNBHomeServiceModel.h"
+#import "KNBHomeCompanyEditDetailViewController.h"
 
 @interface KNBHomeCompanyDetailViewController ()
 @property (nonatomic, strong) KNBHomeServiceModel *currentModel;
@@ -137,7 +138,8 @@
 }
 
 - (void)editButtonAction {
-    
+    KNBHomeCompanyEditDetailViewController *editVC = [[KNBHomeCompanyEditDetailViewController alloc] init];
+    [self.navigationController pushViewController:editVC animated:YES];
 }
 
 #pragma mark - Getters And Setters

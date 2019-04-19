@@ -14,7 +14,7 @@ typedef NS_ENUM(NSInteger, KNBOrderTextFieldType) {
     KNBOrderTextFieldTypeName,           //姓名
     KNBOrderTextFieldTypePhone,          //电话
     KNBOrderTextFieldTypeShopName,    //商家名称
-    KNBOrderTextFieldTypeLocation,    //所在位置
+    KNBOrderTextFieldTypeLocation,       //所在位置
     KNBOrderTextFieldTypeShopPhone    //商家电话
 };
 

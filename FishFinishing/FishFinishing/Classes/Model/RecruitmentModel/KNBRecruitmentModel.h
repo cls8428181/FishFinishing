@@ -27,22 +27,37 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  商家头像
  */
-@property (nonatomic, copy) NSString *portrait;
+@property (nonatomic, copy) NSString *logo;
 
 /**
  商家位置
  */
-@property (nonatomic, copy) NSString *location;
+@property (nonatomic, copy) NSString *address;
 
 /**
- 商家位置
+ 商家电话
  */
-@property (nonatomic, copy) NSString *mobile;
+@property (nonatomic, copy) NSString *telephone;
 
 /**
  擅长领域
  */
 @property (nonatomic, strong) NSArray *domainList;
+
+/**
+ 擅长领域
+ */
+@property (nonatomic, copy) NSString *tag;
+
+/**
+ 服务
+ */
+@property (nonatomic, copy) NSString *service;
+
+/**
+ 简介
+ */
+@property (nonatomic, copy) NSString *remark;
 
 /**
  入住费用

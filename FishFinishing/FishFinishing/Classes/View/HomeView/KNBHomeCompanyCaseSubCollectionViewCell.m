@@ -15,6 +15,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *iconImageView;
 @property (weak, nonatomic) IBOutlet UIButton *deleteButton;
+@property (weak, nonatomic) IBOutlet UIView *bgView;
 @end
 
 @implementation KNBHomeCompanyCaseSubCollectionViewCell
@@ -49,5 +50,11 @@
 
 - (void)setIsEdit:(BOOL)isEdit {
     self.deleteButton.hidden = !isEdit;
+}
+
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    self.bgView.layer.borderColor = [UIColor colorWithHex:0xe6e6e6].CGColor;
+    self.bgView.layer.borderWidth = 1;
 }
 @end

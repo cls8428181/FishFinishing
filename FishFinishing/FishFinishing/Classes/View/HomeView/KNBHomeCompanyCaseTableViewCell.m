@@ -10,11 +10,13 @@
 #import "KNBHomeCompanyCaseSubCollectionViewCell.h"
 #import "KNBDesignSketchDetailViewController.h"
 #import "KNBDesignSketchModel.h"
+#import "KNBRecruitmentDelCaseApi.h"
+#import "KNBHomeCompanyCaseAddCollectionViewCell.h"
+#import "KNBHomeCompanyUploadCaseViewController.h"
 
 @interface KNBHomeCompanyCaseTableViewCell ()<UICollectionViewDelegate, UICollectionViewDataSource>
 //滑动区域
 @property (nonatomic, strong) UICollectionView *collectionView;
-
 @property (nonatomic, strong) NSArray *dataArray;
 @end
 
@@ -48,7 +50,7 @@
 
 #pragma mark - private method
 + (CGFloat)cellHeight:(NSInteger)count {
-    return 190 *( count %2 ? count /2 + 1 : count / 2);
+    return 210 *(count /2 + 1);
 }
 
 #pragma mark - collectionview delegate & dataSource
@@ -57,65 +59,46 @@
 }
 //每一组有多少个cell
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return self.dataArray.count;
+    return self.dataArray.count + 1;
 }
 //每一个cell是什么
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    KNBHomeServiceModel *model = self.dataArray[indexPath.row];
-    KNBHomeCompanyCaseSubCollectionViewCell *cell = [KNBHomeCompanyCaseSubCollectionViewCell cellWithCollectionView:collectionView indexPath:indexPath];
-    cell.model = model;
-    cell.isEdit = self.isEdit;
-    cell.deleteButtonBlock = ^{
-        
-    };
-    return cell;
-}
-//定义每一个cell的大小
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    return CGSizeMake(170, 160);
+    if (indexPath.row == self.dataArray.count) {
+        KNBHomeCompanyCaseAddCollectionViewCell *cell = [KNBHomeCompanyCaseAddCollectionViewCell cellWithCollectionView:collectionView indexPath:indexPath];
+        return cell;
+    } else {
+        KNBHomeServiceModel *model = self.dataArray[indexPath.row];
+        KNB_WS(weakSelf);
+        KNBHomeCompanyCaseSubCollectionViewCell *cell = [KNBHomeCompanyCaseSubCollectionViewCell cellWithCollectionView:collectionView indexPath:indexPath];
+        cell.model = model;
+        cell.isEdit = self.isEdit;
+        cell.deleteButtonBlock = ^{
+            [weakSelf deleteCaseRequest:indexPath.row];
+        };
+        return cell;
+    }
 }
 
-//- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
-//    //    UICollectionReusableView *reusableView = nil;
-//
-//    //    if (kind == UICollectionElementKindSectionHeader) {
-//    KNB_WS(weakSelf);
-//    self.sectionView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"KNBDesignSketchCollectionSectionView" forIndexPath:indexPath];
-//    self.sectionView.optionCompleteBlock = ^(KNBDesignSketchCollectionSectionView * _Nonnull optionView, KNBOptionViewButtonType type) {
-//        switch (type) {
-//            case KNBOptionViewButtonType_Style: {
-//                if (weakSelf.sortView.height == 0.0) {
-//                    [weakSelf.sortView showSortViewWithSortTag:0];
-//                }
-//                break;
-//            }
-//            case KNBOptionViewButtonType_Type: {
-//                break;
-//            }
-//            case KNBOptionViewButtonType_Area: {
-//                break;
-//            }
-//            default:
-//                break;
-//        }
-//    };
-//    [self.view insertSubview:self.sortView belowSubview:self.sectionView];
-//    //    } else if (kind == UICollectionElementKindSectionFooter) {
-//    //        reusableView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"KNBHomeDoctorCellSectionHeaderView" forIndexPath:indexPath];
-//    //    }
-//    return self.sectionView;
-//}
+//定义每一个cell的大小
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+    return CGSizeMake(180, 180);
+}
 
 //cell的点击事件
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    KNBHomeServiceModel *cellModel = self.dataArray[indexPath.row];
-    KNBDesignSketchModel *model  = [[KNBDesignSketchModel alloc] init];
-    model.caseId = cellModel.serviceId;
-    model.name = self.model.name;
-    model.img = self.model.logo;
-    KNBDesignSketchDetailViewController *detailVC = [[KNBDesignSketchDetailViewController alloc] init];
-    detailVC.model = model;
-    [[[self getCurrentViewController] navigationController] pushViewController:detailVC animated:YES];
+    if (indexPath.row == self.dataArray.count) {
+        KNBHomeCompanyUploadCaseViewController *addCaseVC = [[KNBHomeCompanyUploadCaseViewController alloc] init];
+        [[[self getCurrentViewController] navigationController] pushViewController:addCaseVC animated:YES];
+    } else {
+        KNBHomeServiceModel *cellModel = self.dataArray[indexPath.row];
+        KNBDesignSketchModel *model  = [[KNBDesignSketchModel alloc] init];
+        model.caseId = cellModel.serviceId;
+        model.name = self.model.name;
+        model.img = self.model.logo;
+        KNBDesignSketchDetailViewController *detailVC = [[KNBDesignSketchDetailViewController alloc] init];
+        detailVC.model = model;
+        [[[self getCurrentViewController] navigationController] pushViewController:detailVC animated:YES];
+    }
 }
 
 - (UIViewController *)getCurrentViewController{
@@ -126,6 +109,25 @@
         next = [next nextResponder];
     } while (next !=nil);
     return nil;
+}
+
+- (void)deleteCaseRequest:(NSInteger)index {
+    KNBHomeServiceModel *cellModel = self.dataArray[index];
+    KNBRecruitmentDelCaseApi *api = [[KNBRecruitmentDelCaseApi alloc] initWithToken:[KNBUserInfo shareInstance].token caseId:[cellModel.serviceId integerValue]];
+    api.hudString = @"";
+    KNB_WS(weakSelf);
+    [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *_Nonnull request) {
+        if (api.requestSuccess) {
+            NSMutableArray *tempArray = [NSMutableArray arrayWithArray:self.dataArray];
+            [tempArray removeObjectAtIndex:index];
+            self.dataArray = tempArray;
+            [self.collectionView reloadData];
+        } else {
+            [LCProgressHUD showMessage:@"删除案例失败,请重试"];
+        }
+    } failure:^(__kindof YTKBaseRequest *_Nonnull request) {
+        [LCProgressHUD showMessage:@"删除案例失败,请重试"];
+    }];
 }
 
 #pragma mark - lazy load
@@ -143,11 +145,8 @@
         _collectionView.delegate = self;
         _collectionView.dataSource = self;
         _collectionView.scrollEnabled = NO;
-        //        [_collectionView registerClass:[KNBHomeDesignSketchSubTableViewCell class] forCellWithReuseIdentifier:@"KNBHomeDesignSketchSubTableViewCell"];
         [_collectionView registerNib:[UINib nibWithNibName:@"KNBHomeCompanyCaseSubCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"KNBHomeCompanyCaseSubCollectionViewCell"];
-//        [_collectionView registerNib:[UINib nibWithNibName:@"KNBDesignSketchCollectionSectionView" bundle:nil] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"KNBDesignSketchCollectionSectionView"];
-        //        [_collectionView registerClass:[KNBDesignSketchCollectionSectionView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"KNBDesignSketchCollectionSectionView"];
-        //                [_collectionView registerClass:[KNBCollectionSectionView class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"KNBHomeDoctorCellSectionFooterView"];
+        [_collectionView registerNib:[UINib nibWithNibName:@"KNBHomeCompanyCaseAddCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"KNBHomeCompanyCaseAddCollectionViewCell"];
     }
     return _collectionView;
 }

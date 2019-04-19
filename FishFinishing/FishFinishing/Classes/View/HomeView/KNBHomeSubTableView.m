@@ -77,6 +77,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     KNBHomeServiceModel *model = self.dataArray[indexPath.section];
     KNBHomeCompanyDetailViewController *detailVC = [[KNBHomeCompanyDetailViewController alloc] init];
+    detailVC.isEdit = NO;
     detailVC.model = model;
     [[[self getCurrentViewController] navigationController] pushViewController:detailVC animated:YES];
 }

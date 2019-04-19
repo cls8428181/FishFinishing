@@ -25,4 +25,5 @@
     _typeModel.childList = typeModel.childList;
     _typeModel.serviceName = typeModel.serviceName;
 }
+
 @end

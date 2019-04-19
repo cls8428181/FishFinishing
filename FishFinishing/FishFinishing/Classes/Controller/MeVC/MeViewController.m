@@ -101,6 +101,7 @@
         KNBHomeServiceModel *model = [[KNBHomeServiceModel alloc] init];
         model.serviceId = @"1";
         KNBHomeCompanyDetailViewController *detailVC = [[KNBHomeCompanyDetailViewController alloc] init];
+        detailVC.isEdit = YES;
         detailVC.model = model;
         [self.navigationController pushViewController:detailVC animated:YES];
     }

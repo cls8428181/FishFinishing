@@ -24,9 +24,9 @@
 
 - (id)requestArgument {
     NSDictionary *dic = @{
-                          @"token" : _token
+                          @"token" : _token ?: @""
                           }; //字典
     [self.baseMuDic addEntriesFromDictionary:dic];
-    return self.appendSecretDic;
+    return self.baseMuDic;
 }
 @end
