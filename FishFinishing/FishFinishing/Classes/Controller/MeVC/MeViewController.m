@@ -14,6 +14,7 @@
 #import "KNBMeAboutViewController.h"
 #import "KNBMeSetViewController.h"
 #import "KNBHomeChatViewController.h"
+#import "KNBLoginViewController.h"
 
 @interface MeViewController ()
 @property (nonatomic, strong) KNBMeHeaderView *headerView;
@@ -97,18 +98,29 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.section == 0 && indexPath.row == 0) {
-        KNBHomeServiceModel *model = [[KNBHomeServiceModel alloc] init];
-        model.serviceId = @"1";
-        KNBHomeCompanyDetailViewController *detailVC = [[KNBHomeCompanyDetailViewController alloc] init];
-        detailVC.isEdit = YES;
-        detailVC.model = model;
-        [self.navigationController pushViewController:detailVC animated:YES];
+    if ([KNBUserInfo shareInstance].isLogin) {
+        if (indexPath.section == 0 && indexPath.row == 0) {
+            KNBHomeServiceModel *model = [[KNBHomeServiceModel alloc] init];
+            model.serviceId = @"1";
+            KNBHomeCompanyDetailViewController *detailVC = [[KNBHomeCompanyDetailViewController alloc] init];
+            detailVC.isEdit = YES;
+            detailVC.model = model;
+            [self.navigationController pushViewController:detailVC animated:YES];
+        }
+        if (indexPath.section == 1) {
+            NSString *urlStr = @"http://baidu.com";
+            NSString *name = @"效果图详情";
+            NSString *describeStr = @"这是效果图详情";
+            [self shareMessages:@[ name, describeStr, urlStr ] isActionType:NO shareButtonBlock:nil];
+        }
+        if (indexPath.section == 2 && indexPath.row == 0) {
+            KNBMeAboutViewController *aboutVC = [[KNBMeAboutViewController alloc] init];
+            [self.navigationController pushViewController:aboutVC animated:YES];
+        }
+    } else {
+        [LCProgressHUD showMessage:@"您还未登录,请先登录"];
     }
-    if (indexPath.section == 2 && indexPath.row == 0) {
-        KNBMeAboutViewController *aboutVC = [[KNBMeAboutViewController alloc] init];
-        [self.navigationController pushViewController:aboutVC animated:YES];
-    }
+
 }
 
 #pragma mark - Event Response
@@ -127,12 +139,28 @@
         _headerView = [[KNBMeHeaderView alloc] init];
         _headerView.frame = CGRectMake(0, 0, KNB_SCREEN_WIDTH, KNB_SCREEN_WIDTH * 170/375 + 140);
         _headerView.settingButtonBlock = ^{
-            KNBMeSetViewController *setVC = [[KNBMeSetViewController alloc] init];
-            [weakSelf.navigationController pushViewController:setVC animated:YES];
+            if ([KNBUserInfo shareInstance].isLogin) {
+                KNBMeSetViewController *setVC = [[KNBMeSetViewController alloc] init];
+                [weakSelf.navigationController pushViewController:setVC animated:YES];
+            } else {
+                [LCProgressHUD showMessage:@"您还未登录,请先登录"];
+            }
+
         };
         _headerView.chatButtonBlock = ^{
-            KNBHomeChatViewController *chatVC = [[KNBHomeChatViewController alloc] init];
-            [weakSelf.navigationController pushViewController:chatVC animated:YES];
+            if ([KNBUserInfo shareInstance].isLogin) {
+                KNBHomeChatViewController *chatVC = [[KNBHomeChatViewController alloc] init];
+                [weakSelf.navigationController pushViewController:chatVC animated:YES];
+            } else {
+                [LCProgressHUD showMessage:@"您还未登录,请先登录"];
+            }
+        };
+        _headerView.loginButtonBlock = ^{
+            if (![KNBUserInfo shareInstance].isLogin) {
+                KNBLoginViewController *loginVC = [[KNBLoginViewController alloc] init];
+                loginVC.vcType = KNBLoginTypeLogin;
+                [weakSelf presentViewController:loginVC animated:YES completion:nil];
+            }
         };
     }
     return _headerView;

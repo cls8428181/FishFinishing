@@ -460,6 +460,7 @@
 //立即入驻
 - (void)enterRecruitment {
     KNBRecruitmentPayViewController *payVC = [[KNBRecruitmentPayViewController alloc] init];
+    payVC.recruitmentModel = self.recruitmentModel;
     [self.navigationController pushViewController:payVC animated:YES];
 }
 
@@ -630,7 +631,7 @@
         [LCProgressHUD showMessage:@"电话不能为空"];
         return;
     }
-    KNBHomeBespokeApi *api = [[KNBHomeBespokeApi alloc] initWithfacId:@"0" facName:[NSNull null] catId:self.orderModel.typeModel.selectSubModel.typeId userId:@"" areaInfo:self.orderModel.area_info houseInfo:self.orderModel.house_info community:self.orderModel.community provinceId:self.orderModel.province_id cityId:self.orderModel.city_id areaId:self.orderModel.area_id decorateStyle:self.orderModel.style decorateGrade:self.orderModel.level name:self.orderModel.name mobile:self.orderModel.mobile decorateCat:[NSNull null]];
+    KNBHomeBespokeApi *api = [[KNBHomeBespokeApi alloc] initWithfacId:1 facName:[NSNull null] catId:[self.orderModel.typeModel.selectSubModel.typeId integerValue] userId:@"" areaInfo:self.orderModel.area_info houseInfo:self.orderModel.house_info community:self.orderModel.community provinceId:self.orderModel.province_id cityId:self.orderModel.city_id areaId:self.orderModel.area_id decorateStyle:self.orderModel.style decorateGrade:self.orderModel.level name:self.orderModel.name mobile:self.orderModel.mobile decorateCat:[NSNull null]];
     api.hudString = @"";
     KNB_WS(weakSelf);
     [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *_Nonnull request) {
@@ -664,6 +665,7 @@
                 
             } else {
                 KNBRecruitmentPayViewController *payVC = [[KNBRecruitmentPayViewController alloc] init];
+                payVC.recruitmentModel = weakSelf.recruitmentModel;
                 [weakSelf.navigationController pushViewController:payVC animated:YES];
             }
         };

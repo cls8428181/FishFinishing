@@ -222,9 +222,7 @@ static CGFloat const kHeaderViewHeight = 50.0f;
 
 #pragma mark - SDCycleScrollViewDelegate
 - (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index {
-    KNBLoginViewController *loginVC = [[KNBLoginViewController alloc] init];
-    loginVC.vcType = KNBLoginTypeLogin;
-    [self.navigationController pushViewController:loginVC animated:YES];
+
 }
 
 #pragma mark - private method
@@ -355,8 +353,13 @@ static CGFloat const kHeaderViewHeight = 50.0f;
     if (!_searchView) {
         _searchView = [[KNBSearchView alloc] initWithFrame:CGRectMake(0, 0, KNB_SCREEN_WIDTH, KNB_NAV_HEIGHT)];
         _searchView.chatButtonBlock = ^{
-            KNBHomeChatViewController *chatVC = [[KNBHomeChatViewController alloc] init];
-            [weakSelf.navigationController pushViewController:chatVC animated:YES];
+            if ([KNBUserInfo shareInstance].isLogin) {
+                KNBHomeChatViewController *chatVC = [[KNBHomeChatViewController alloc] init];
+                [weakSelf.navigationController pushViewController:chatVC animated:YES];
+            } else {
+                [LCProgressHUD showMessage:@"您还未登录,请先登录"];
+            }
+
         };
     }
     return _searchView;

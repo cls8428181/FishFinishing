@@ -288,12 +288,20 @@
             [[LCProgressHUD sharedHUD].customView setSize:CGSizeMake(25, 25)];
             return;
         }
-        if (isNullStr(self.passwordNewView.textField.text) || isNullStr(self.passwordSetView.textField.text)) {
-            NSString *msg = (isNullStr(self.passwordNewView.textField.text)) ? @"新密码不能为空" : @"密码不能为空";
-            [LCProgressHUD showInfoMsg:msg];
-            [[LCProgressHUD sharedHUD].customView setSize:CGSizeMake(25, 25)];
-            return;
+        if (self.vcType == KNBLoginTypeRegister) {
+            if (isNullStr(self.passwordSetView.textField.text)) {
+                [LCProgressHUD showInfoMsg:@"密码不能为空"];
+                [[LCProgressHUD sharedHUD].customView setSize:CGSizeMake(25, 25)];
+                return;
+            }
+        } else {
+            if (isNullStr(self.passwordNewView.textField.text)) {
+                [LCProgressHUD showInfoMsg:@"新密码不能为空"];
+                [[LCProgressHUD sharedHUD].customView setSize:CGSizeMake(25, 25)];
+                return;
+            }
         }
+
         if (isNullStr(self.passwordEnterView.textField.text)) {
             [LCProgressHUD showInfoMsg:@"确认密码不能为空"];
             [[LCProgressHUD sharedHUD].customView setSize:CGSizeMake(25, 25)];
@@ -309,7 +317,7 @@
 }
 //登录
 - (void)loginRequest {
-    KNBLoginLoginApi *api = [[KNBLoginLoginApi alloc] initWithMobile:self.mobileTextView.textField.text password:self.passwordView.textField.text];
+    KNBLoginLoginApi *api = [[KNBLoginLoginApi alloc] initWithMobile:self.mobileView.textField.text password:self.passwordView.textField.text];
     api.hudString = @"";
     KNB_WS(weakSelf);
     [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *_Nonnull request) {

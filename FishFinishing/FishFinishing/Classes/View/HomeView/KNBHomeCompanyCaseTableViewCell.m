@@ -50,7 +50,7 @@
 
 #pragma mark - private method
 + (CGFloat)cellHeight:(NSInteger)count {
-    return 210 *(count /2 + 1);
+    return 220 *(count /2 + 1);
 }
 
 #pragma mark - collectionview delegate & dataSource

@@ -69,9 +69,14 @@
  *  所有button、gestureRecognizer的响应事件都放在这个区域里面，不要到处乱放。
  */
 - (void)enterButtonAction:(UIButton *)button {
-    KNBOrderViewController *orderVC = [[KNBOrderViewController alloc] init];
-    orderVC.VCType = KNBOrderVCTypeRecruitment;
-    [self.navigationController pushViewController:orderVC animated:YES];
+    if ([KNBUserInfo shareInstance].isLogin) {
+        KNBOrderViewController *orderVC = [[KNBOrderViewController alloc] init];
+        orderVC.VCType = KNBOrderVCTypeRecruitment;
+        [self.navigationController pushViewController:orderVC animated:YES];
+    } else {
+        [LCProgressHUD showMessage:@"您还未登录,请先登录"];
+    }
+
 }
 
 #pragma mark - Getters And Setters

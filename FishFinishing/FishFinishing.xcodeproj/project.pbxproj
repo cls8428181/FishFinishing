@@ -190,6 +190,37 @@
 		966D15652268F2F4005F5D77 /* KNBHomeChatTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 966D15632268F2F4005F5D77 /* KNBHomeChatTableViewCell.xib */; };
 		966D15682268F34F005F5D77 /* KNBHomeChatModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 966D15672268F34F005F5D77 /* KNBHomeChatModel.m */; };
 		966D156B2268F8A7005F5D77 /* KNBHomeChatDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 966D156A2268F8A7005F5D77 /* KNBHomeChatDetailViewController.m */; };
+		966D15C1226C4E81005F5D77 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 966D15C0226C4E81005F5D77 /* libsqlite3.tbd */; };
+		966D15C3226C4E8C005F5D77 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 966D15C2226C4E8C005F5D77 /* CoreGraphics.framework */; };
+		966D15C5226C4F3A005F5D77 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 966D15C4226C4F3A005F5D77 /* SystemConfiguration.framework */; };
+		966D15C7226C4F44005F5D77 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 966D15C6226C4F44005F5D77 /* CoreTelephony.framework */; };
+		966D15C9226C4F5B005F5D77 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 966D15C8226C4F5A005F5D77 /* libc++.tbd */; };
+		966D15CB226C4F69005F5D77 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 966D15CA226C4F69005F5D77 /* libz.tbd */; };
+		966D15CD226C4F80005F5D77 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 966D15CC226C4F80005F5D77 /* ImageIO.framework */; };
+		966D15CF226C4F8C005F5D77 /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 966D15CE226C4F8C005F5D77 /* Photos.framework */; };
+		966D15F6226C70F3005F5D77 /* UMSocialSDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 966D15E0226C70F3005F5D77 /* UMSocialSDKResources.bundle */; };
+		966D15F7226C70F3005F5D77 /* UShareUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 966D15E1226C70F3005F5D77 /* UShareUI.framework */; };
+		966D15F8226C70F3005F5D77 /* UMShare.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 966D15E2226C70F3005F5D77 /* UMShare.framework */; };
+		966D15F9226C70F3005F5D77 /* UMCommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 966D15E3226C70F3005F5D77 /* UMCommon.framework */; };
+		966D15FA226C70F3005F5D77 /* UMAnalytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 966D15E5226C70F3005F5D77 /* UMAnalytics.framework */; };
+		966D15FB226C70F3005F5D77 /* libSocialSMS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 966D15E8226C70F3005F5D77 /* libSocialSMS.a */; };
+		966D15FC226C70F3005F5D77 /* libSocialWeChat.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 966D15EB226C70F3005F5D77 /* libSocialWeChat.a */; };
+		966D15FD226C70F3005F5D77 /* libSocialSina.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 966D15EE226C70F3005F5D77 /* libSocialSina.a */; };
+		966D15FE226C70F3005F5D77 /* libSocialQQ.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 966D15F2226C70F3005F5D77 /* libSocialQQ.a */; };
+		966D15FF226C70F3005F5D77 /* UMSocialSDKPromptResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 966D15F4226C70F3005F5D77 /* UMSocialSDKPromptResources.bundle */; };
+		966D1600226C70F3005F5D77 /* libUMSocialLog.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 966D15F5226C70F3005F5D77 /* libUMSocialLog.a */; };
+		966D1603226C71C7005F5D77 /* KNUMManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 966D1601226C71C7005F5D77 /* KNUMManager.m */; };
+		966D1606226C7669005F5D77 /* ShareView.m in Sources */ = {isa = PBXBuildFile; fileRef = 966D1604226C7668005F5D77 /* ShareView.m */; };
+		966D160B226C7673005F5D77 /* ImageWithLabels.m in Sources */ = {isa = PBXBuildFile; fileRef = 966D1609226C7673005F5D77 /* ImageWithLabels.m */; };
+		966D160C226C7673005F5D77 /* ImageWithLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 966D160A226C7673005F5D77 /* ImageWithLabel.m */; };
+		966D1610226CB1FD005F5D77 /* KNPayManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 966D160F226CB1FD005F5D77 /* KNPayManager.m */; };
+		966D161D226CBD48005F5D77 /* KNPaypp.m in Sources */ = {isa = PBXBuildFile; fileRef = 966D1612226CBD48005F5D77 /* KNPaypp.m */; };
+		966D161E226CBD48005F5D77 /* AlipaySDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 966D1614226CBD48005F5D77 /* AlipaySDK.bundle */; };
+		966D161F226CBD48005F5D77 /* AlipaySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 966D1615226CBD48005F5D77 /* AlipaySDK.framework */; };
+		966D1620226CBD48005F5D77 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = 966D161A226CBD48005F5D77 /* README.txt */; };
+		966D1621226CBD48005F5D77 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 966D161C226CBD48005F5D77 /* libWeChatSDK.a */; };
+		966D1624226CD20E005F5D77 /* KNBHomeCompanyHouseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 966D1623226CD20E005F5D77 /* KNBHomeCompanyHouseViewController.m */; };
+		966D1627226CD221005F5D77 /* KNBHomeCompanyAreaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 966D1626226CD221005F5D77 /* KNBHomeCompanyAreaViewController.m */; };
 		96811885224F497C00E4A622 /* KNBDesignSketchDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96811884224F497C00E4A622 /* KNBDesignSketchDetailViewController.m */; };
 		96811888224F5F7B00E4A622 /* KNBHomeOfferViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96811887224F5F7B00E4A622 /* KNBHomeOfferViewController.m */; };
 		9697FD52225597A900027AB3 /* UILabel+GHome.m in Sources */ = {isa = PBXBuildFile; fileRef = 9697FD34225597A900027AB3 /* UILabel+GHome.m */; };
@@ -637,6 +668,52 @@
 		966D15672268F34F005F5D77 /* KNBHomeChatModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNBHomeChatModel.m; sourceTree = "<group>"; };
 		966D15692268F8A7005F5D77 /* KNBHomeChatDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNBHomeChatDetailViewController.h; sourceTree = "<group>"; };
 		966D156A2268F8A7005F5D77 /* KNBHomeChatDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNBHomeChatDetailViewController.m; sourceTree = "<group>"; };
+		966D15C0226C4E81005F5D77 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		966D15C2226C4E8C005F5D77 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		966D15C4226C4F3A005F5D77 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		966D15C6226C4F44005F5D77 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		966D15C8226C4F5A005F5D77 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+		966D15CA226C4F69005F5D77 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		966D15CC226C4F80005F5D77 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		966D15CE226C4F8C005F5D77 /* Photos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Photos.framework; path = System/Library/Frameworks/Photos.framework; sourceTree = SDKROOT; };
+		966D15E0226C70F3005F5D77 /* UMSocialSDKResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = UMSocialSDKResources.bundle; sourceTree = "<group>"; };
+		966D15E1226C70F3005F5D77 /* UShareUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = UShareUI.framework; sourceTree = "<group>"; };
+		966D15E2226C70F3005F5D77 /* UMShare.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = UMShare.framework; sourceTree = "<group>"; };
+		966D15E3226C70F3005F5D77 /* UMCommon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = UMCommon.framework; sourceTree = "<group>"; };
+		966D15E5226C70F3005F5D77 /* UMAnalytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = UMAnalytics.framework; sourceTree = "<group>"; };
+		966D15E8226C70F3005F5D77 /* libSocialSMS.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libSocialSMS.a; sourceTree = "<group>"; };
+		966D15E9226C70F3005F5D77 /* UMSocialSmsHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMSocialSmsHandler.h; sourceTree = "<group>"; };
+		966D15EB226C70F3005F5D77 /* libSocialWeChat.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libSocialWeChat.a; sourceTree = "<group>"; };
+		966D15EC226C70F3005F5D77 /* UMSocialWechatHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMSocialWechatHandler.h; sourceTree = "<group>"; };
+		966D15EE226C70F3005F5D77 /* libSocialSina.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libSocialSina.a; sourceTree = "<group>"; };
+		966D15EF226C70F3005F5D77 /* UMSocialSinaHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMSocialSinaHandler.h; sourceTree = "<group>"; };
+		966D15F1226C70F3005F5D77 /* UMSocialQQHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMSocialQQHandler.h; sourceTree = "<group>"; };
+		966D15F2226C70F3005F5D77 /* libSocialQQ.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libSocialQQ.a; sourceTree = "<group>"; };
+		966D15F4226C70F3005F5D77 /* UMSocialSDKPromptResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = UMSocialSDKPromptResources.bundle; sourceTree = "<group>"; };
+		966D15F5226C70F3005F5D77 /* libUMSocialLog.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libUMSocialLog.a; sourceTree = "<group>"; };
+		966D1601226C71C7005F5D77 /* KNUMManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KNUMManager.m; sourceTree = "<group>"; };
+		966D1602226C71C7005F5D77 /* KNUMManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KNUMManager.h; sourceTree = "<group>"; };
+		966D1604226C7668005F5D77 /* ShareView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareView.m; sourceTree = "<group>"; };
+		966D1605226C7669005F5D77 /* ShareView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareView.h; sourceTree = "<group>"; };
+		966D1607226C7673005F5D77 /* ImageWithLabels.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageWithLabels.h; sourceTree = "<group>"; };
+		966D1608226C7673005F5D77 /* ImageWithLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageWithLabel.h; sourceTree = "<group>"; };
+		966D1609226C7673005F5D77 /* ImageWithLabels.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageWithLabels.m; sourceTree = "<group>"; };
+		966D160A226C7673005F5D77 /* ImageWithLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageWithLabel.m; sourceTree = "<group>"; };
+		966D160E226CB1FD005F5D77 /* KNPayManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KNPayManager.h; sourceTree = "<group>"; };
+		966D160F226CB1FD005F5D77 /* KNPayManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KNPayManager.m; sourceTree = "<group>"; };
+		966D1612226CBD48005F5D77 /* KNPaypp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KNPaypp.m; sourceTree = "<group>"; };
+		966D1614226CBD48005F5D77 /* AlipaySDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AlipaySDK.bundle; sourceTree = "<group>"; };
+		966D1615226CBD48005F5D77 /* AlipaySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AlipaySDK.framework; sourceTree = "<group>"; };
+		966D1616226CBD48005F5D77 /* KNPaypp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KNPaypp.h; sourceTree = "<group>"; };
+		966D1618226CBD48005F5D77 /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
+		966D1619226CBD48005F5D77 /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiObject.h; sourceTree = "<group>"; };
+		966D161A226CBD48005F5D77 /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
+		966D161B226CBD48005F5D77 /* WechatAuthSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WechatAuthSDK.h; sourceTree = "<group>"; };
+		966D161C226CBD48005F5D77 /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
+		966D1622226CD20E005F5D77 /* KNBHomeCompanyHouseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNBHomeCompanyHouseViewController.h; sourceTree = "<group>"; };
+		966D1623226CD20E005F5D77 /* KNBHomeCompanyHouseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNBHomeCompanyHouseViewController.m; sourceTree = "<group>"; };
+		966D1625226CD221005F5D77 /* KNBHomeCompanyAreaViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNBHomeCompanyAreaViewController.h; sourceTree = "<group>"; };
+		966D1626226CD221005F5D77 /* KNBHomeCompanyAreaViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNBHomeCompanyAreaViewController.m; sourceTree = "<group>"; };
 		96811883224F497C00E4A622 /* KNBDesignSketchDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNBDesignSketchDetailViewController.h; sourceTree = "<group>"; };
 		96811884224F497C00E4A622 /* KNBDesignSketchDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNBDesignSketchDetailViewController.m; sourceTree = "<group>"; };
 		96811886224F5F7B00E4A622 /* KNBHomeOfferViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNBHomeOfferViewController.h; sourceTree = "<group>"; };
@@ -839,7 +916,26 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				966D15CF226C4F8C005F5D77 /* Photos.framework in Frameworks */,
+				966D15FC226C70F3005F5D77 /* libSocialWeChat.a in Frameworks */,
+				966D161F226CBD48005F5D77 /* AlipaySDK.framework in Frameworks */,
+				966D15F8226C70F3005F5D77 /* UMShare.framework in Frameworks */,
+				966D1600226C70F3005F5D77 /* libUMSocialLog.a in Frameworks */,
+				966D15CD226C4F80005F5D77 /* ImageIO.framework in Frameworks */,
+				966D15CB226C4F69005F5D77 /* libz.tbd in Frameworks */,
+				966D15C9226C4F5B005F5D77 /* libc++.tbd in Frameworks */,
+				966D15F7226C70F3005F5D77 /* UShareUI.framework in Frameworks */,
+				966D15C7226C4F44005F5D77 /* CoreTelephony.framework in Frameworks */,
+				966D15FA226C70F3005F5D77 /* UMAnalytics.framework in Frameworks */,
+				966D15C5226C4F3A005F5D77 /* SystemConfiguration.framework in Frameworks */,
+				966D15C3226C4E8C005F5D77 /* CoreGraphics.framework in Frameworks */,
+				966D15FD226C70F3005F5D77 /* libSocialSina.a in Frameworks */,
+				966D1621226CBD48005F5D77 /* libWeChatSDK.a in Frameworks */,
+				966D15F9226C70F3005F5D77 /* UMCommon.framework in Frameworks */,
+				966D15C1226C4E81005F5D77 /* libsqlite3.tbd in Frameworks */,
+				966D15FB226C70F3005F5D77 /* libSocialSMS.a in Frameworks */,
 				DECCDD5E4E647B48B4169D6B /* libPods-FishFinishing.a in Frameworks */,
+				966D15FE226C70F3005F5D77 /* libSocialQQ.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1308,8 +1404,6 @@
 				961C531F225486BD0089E997 /* KNBHomeCompanyDetailViewController.m */,
 				96E7E0B6225ADB0900188DD1 /* KNBHomeCompanyListViewController.h */,
 				96E7E0B7225ADB0900188DD1 /* KNBHomeCompanyListViewController.m */,
-				18AB25FE2268A38D0044930D /* KNBHomeCompanyTagsViewController.h */,
-				18AB25FF2268A38D0044930D /* KNBHomeCompanyTagsViewController.m */,
 				966D155E2268F2DE005F5D77 /* KNBHomeChatViewController.h */,
 				966D155F2268F2DE005F5D77 /* KNBHomeChatViewController.m */,
 				966D15692268F8A7005F5D77 /* KNBHomeChatDetailViewController.h */,
@@ -1329,6 +1423,12 @@
 				966AA552224A0ACB00EDBF5F /* DesignSketchViewController.m */,
 				96811883224F497C00E4A622 /* KNBDesignSketchDetailViewController.h */,
 				96811884224F497C00E4A622 /* KNBDesignSketchDetailViewController.m */,
+				18AB25FE2268A38D0044930D /* KNBHomeCompanyTagsViewController.h */,
+				18AB25FF2268A38D0044930D /* KNBHomeCompanyTagsViewController.m */,
+				966D1622226CD20E005F5D77 /* KNBHomeCompanyHouseViewController.h */,
+				966D1623226CD20E005F5D77 /* KNBHomeCompanyHouseViewController.m */,
+				966D1625226CD221005F5D77 /* KNBHomeCompanyAreaViewController.h */,
+				966D1626226CD221005F5D77 /* KNBHomeCompanyAreaViewController.m */,
 			);
 			path = DesignSketchVC;
 			sourceTree = "<group>";
@@ -1477,6 +1577,155 @@
 			path = DesignSketchModel;
 			sourceTree = "<group>";
 		};
+		966D156C226C44DC005F5D77 /* KNUM */ = {
+			isa = PBXGroup;
+			children = (
+				966D1602226C71C7005F5D77 /* KNUMManager.h */,
+				966D1601226C71C7005F5D77 /* KNUMManager.m */,
+			);
+			path = KNUM;
+			sourceTree = "<group>";
+		};
+		966D15D0226C6C67005F5D77 /* ShareVC */ = {
+			isa = PBXGroup;
+			children = (
+				966D1608226C7673005F5D77 /* ImageWithLabel.h */,
+				966D160A226C7673005F5D77 /* ImageWithLabel.m */,
+				966D1607226C7673005F5D77 /* ImageWithLabels.h */,
+				966D1609226C7673005F5D77 /* ImageWithLabels.m */,
+				966D1605226C7669005F5D77 /* ShareView.h */,
+				966D1604226C7668005F5D77 /* ShareView.m */,
+			);
+			path = ShareVC;
+			sourceTree = "<group>";
+		};
+		966D15DE226C70F3005F5D77 /* UMSocial */ = {
+			isa = PBXGroup;
+			children = (
+				966D15DF226C70F3005F5D77 /* UMSocialUI */,
+				966D15E2226C70F3005F5D77 /* UMShare.framework */,
+				966D15E3226C70F3005F5D77 /* UMCommon.framework */,
+				966D15E4226C70F3005F5D77 /* analytics_ios_5.5.1 */,
+				966D15E6226C70F3005F5D77 /* SocialLibraries */,
+				966D15F3226C70F3005F5D77 /* UMSocialSDKPlugin */,
+			);
+			path = UMSocial;
+			sourceTree = "<group>";
+		};
+		966D15DF226C70F3005F5D77 /* UMSocialUI */ = {
+			isa = PBXGroup;
+			children = (
+				966D15E0226C70F3005F5D77 /* UMSocialSDKResources.bundle */,
+				966D15E1226C70F3005F5D77 /* UShareUI.framework */,
+			);
+			path = UMSocialUI;
+			sourceTree = "<group>";
+		};
+		966D15E4226C70F3005F5D77 /* analytics_ios_5.5.1 */ = {
+			isa = PBXGroup;
+			children = (
+				966D15E5226C70F3005F5D77 /* UMAnalytics.framework */,
+			);
+			path = analytics_ios_5.5.1;
+			sourceTree = "<group>";
+		};
+		966D15E6226C70F3005F5D77 /* SocialLibraries */ = {
+			isa = PBXGroup;
+			children = (
+				966D15E7226C70F3005F5D77 /* SMS */,
+				966D15EA226C70F3005F5D77 /* WeChat */,
+				966D15ED226C70F3005F5D77 /* Sina */,
+				966D15F0226C70F3005F5D77 /* QQ */,
+			);
+			path = SocialLibraries;
+			sourceTree = "<group>";
+		};
+		966D15E7226C70F3005F5D77 /* SMS */ = {
+			isa = PBXGroup;
+			children = (
+				966D15E8226C70F3005F5D77 /* libSocialSMS.a */,
+				966D15E9226C70F3005F5D77 /* UMSocialSmsHandler.h */,
+			);
+			path = SMS;
+			sourceTree = "<group>";
+		};
+		966D15EA226C70F3005F5D77 /* WeChat */ = {
+			isa = PBXGroup;
+			children = (
+				966D15EB226C70F3005F5D77 /* libSocialWeChat.a */,
+				966D15EC226C70F3005F5D77 /* UMSocialWechatHandler.h */,
+			);
+			path = WeChat;
+			sourceTree = "<group>";
+		};
+		966D15ED226C70F3005F5D77 /* Sina */ = {
+			isa = PBXGroup;
+			children = (
+				966D15EE226C70F3005F5D77 /* libSocialSina.a */,
+				966D15EF226C70F3005F5D77 /* UMSocialSinaHandler.h */,
+			);
+			path = Sina;
+			sourceTree = "<group>";
+		};
+		966D15F0226C70F3005F5D77 /* QQ */ = {
+			isa = PBXGroup;
+			children = (
+				966D15F1226C70F3005F5D77 /* UMSocialQQHandler.h */,
+				966D15F2226C70F3005F5D77 /* libSocialQQ.a */,
+			);
+			path = QQ;
+			sourceTree = "<group>";
+		};
+		966D15F3226C70F3005F5D77 /* UMSocialSDKPlugin */ = {
+			isa = PBXGroup;
+			children = (
+				966D15F4226C70F3005F5D77 /* UMSocialSDKPromptResources.bundle */,
+				966D15F5226C70F3005F5D77 /* libUMSocialLog.a */,
+			);
+			path = UMSocialSDKPlugin;
+			sourceTree = "<group>";
+		};
+		966D160D226CB1A7005F5D77 /* PayVC */ = {
+			isa = PBXGroup;
+			children = (
+				966D160E226CB1FD005F5D77 /* KNPayManager.h */,
+				966D160F226CB1FD005F5D77 /* KNPayManager.m */,
+			);
+			path = PayVC;
+			sourceTree = "<group>";
+		};
+		966D1611226CBD48005F5D77 /* KNPaypp */ = {
+			isa = PBXGroup;
+			children = (
+				966D1612226CBD48005F5D77 /* KNPaypp.m */,
+				966D1613226CBD48005F5D77 /* AliPay */,
+				966D1616226CBD48005F5D77 /* KNPaypp.h */,
+				966D1617226CBD48005F5D77 /* WXPay */,
+			);
+			path = KNPaypp;
+			sourceTree = "<group>";
+		};
+		966D1613226CBD48005F5D77 /* AliPay */ = {
+			isa = PBXGroup;
+			children = (
+				966D1614226CBD48005F5D77 /* AlipaySDK.bundle */,
+				966D1615226CBD48005F5D77 /* AlipaySDK.framework */,
+			);
+			path = AliPay;
+			sourceTree = "<group>";
+		};
+		966D1617226CBD48005F5D77 /* WXPay */ = {
+			isa = PBXGroup;
+			children = (
+				966D1618226CBD48005F5D77 /* WXApi.h */,
+				966D1619226CBD48005F5D77 /* WXApiObject.h */,
+				966D161A226CBD48005F5D77 /* README.txt */,
+				966D161B226CBD48005F5D77 /* WechatAuthSDK.h */,
+				966D161C226CBD48005F5D77 /* libWeChatSDK.a */,
+			);
+			path = WXPay;
+			sourceTree = "<group>";
+		};
 		9697FD30225597A900027AB3 /* GHDropMenu */ = {
 			isa = PBXGroup;
 			children = (
@@ -1615,6 +1864,8 @@
 		96B097FF2249C6D800154643 /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				966D1611226CBD48005F5D77 /* KNPaypp */,
+				966D15DE226C70F3005F5D77 /* UMSocial */,
 				1877F30C22686C960092207E /* KNBDataEmpty */,
 				189A6B8722606B1C007C6CC1 /* PrintBeautifulLog */,
 				189A6B7F22606B01007C6CC1 /* CustomAlert */,
@@ -1649,6 +1900,7 @@
 		96B098032249C87D00154643 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				966D156C226C44DC005F5D77 /* KNUM */,
 				189A6B7B22606ABB007C6CC1 /* KNAlertView */,
 				18B8DA4A22601FB700D18BC4 /* KNBUserInfo */,
 				966AA514224A00D700EDBF5F /* KNBGuidePage */,
@@ -1937,6 +2189,8 @@
 		96B098DC2249D8EB00154643 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				966D160D226CB1A7005F5D77 /* PayVC */,
+				966D15D0226C6C67005F5D77 /* ShareVC */,
 				966AA54D224A0A8800EDBF5F /* MeVC */,
 				966AA54C224A0A6100EDBF5F /* RecruitmentVC */,
 				966AA54B224A0A0000EDBF5F /* OrderFinishingVC */,
@@ -2047,6 +2301,14 @@
 		A4870966EDC8814BA5EEA211 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				966D15CE226C4F8C005F5D77 /* Photos.framework */,
+				966D15CC226C4F80005F5D77 /* ImageIO.framework */,
+				966D15CA226C4F69005F5D77 /* libz.tbd */,
+				966D15C8226C4F5A005F5D77 /* libc++.tbd */,
+				966D15C6226C4F44005F5D77 /* CoreTelephony.framework */,
+				966D15C4226C4F3A005F5D77 /* SystemConfiguration.framework */,
+				966D15C2226C4E8C005F5D77 /* CoreGraphics.framework */,
+				966D15C0226C4E81005F5D77 /* libsqlite3.tbd */,
 				7A4C03A400C3DD905C0BF54B /* libPods-FishFinishing.a */,
 				90338EC7CEBA9DC800248FF3 /* libPods-FishFinishingTests.a */,
 			);
@@ -2075,6 +2337,8 @@
 				18D8D664225DCC5400532E52 /* Sources */,
 				18D8D665225DCC5400532E52 /* Frameworks */,
 				18D8D666225DCC5400532E52 /* Resources */,
+				8039CE336EC9A514C74980DD /* [CP] Embed Pods Frameworks */,
+				75F25AD7C6D27ADF2CCA33F0 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -2095,6 +2359,7 @@
 				96B097DC2249C69100154643 /* Frameworks */,
 				96B097DD2249C69100154643 /* Resources */,
 				577688FDCBAB851C60F8264D /* [CP] Copy Pods Resources */,
+				4BEF091F424EBB4E21430DD2 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -2166,6 +2431,7 @@
 				961C532522548E050089E997 /* KNBHomeCompanyHeaderTableViewCell.xib in Resources */,
 				961C53102253583F0089E997 /* LCDM2N.TTF in Resources */,
 				964926BD225C948D000BBC7E /* KNBRecruitmentShowTableViewCell.xib in Resources */,
+				966D15FF226C70F3005F5D77 /* UMSocialSDKPromptResources.bundle in Resources */,
 				961C533422548E730089E997 /* KNBHomeCompanyCaseTableViewCell.xib in Resources */,
 				1868A6A32265C819005546BB /* KNBCity.plist in Resources */,
 				96E5541C224CCD4200D025C4 /* KNBMe.plist in Resources */,
@@ -2176,6 +2442,7 @@
 				96E7E0CB225B2E4D00188DD1 /* KNBOrderTextfieldTableViewCell.xib in Resources */,
 				966AA51A224A00D700EDBF5F /* KNBStartPage.plist in Resources */,
 				961C5318225462070089E997 /* KNBDSFreeOrderEnterTableViewCell.xib in Resources */,
+				966D1620226CBD48005F5D77 /* README.txt in Resources */,
 				18B3B045226475790058AE4F /* KNBRecruitmentDomainTableViewCell.xib in Resources */,
 				961C531D225462EF0089E997 /* KNBDSFreeOrderRedEnterTableViewCell.xib in Resources */,
 				1866530C22696CA1004C176F /* KNBHomeCompanyCaseSubCollectionViewCell.xib in Resources */,
@@ -2184,6 +2451,7 @@
 				96B097EF2249C69300154643 /* Assets.xcassets in Resources */,
 				96E55417224CB54D00D025C4 /* KNBDesignSketchCollectionSectionView.xib in Resources */,
 				961C530B2252194E0089E997 /* KNBHomeDesignSketchSubTableViewCell.xib in Resources */,
+				966D161E226CBD48005F5D77 /* AlipaySDK.bundle in Resources */,
 				961C52FE2251A8E50089E997 /* KNBDSFreeOrderNameTableViewCell.xib in Resources */,
 				966D15652268F2F4005F5D77 /* KNBHomeChatTableViewCell.xib in Resources */,
 				964926B0225C7F21000BBC7E /* BRPickerView.bundle in Resources */,
@@ -2199,12 +2467,32 @@
 				961C52EF2251A8450089E997 /* KNBDSFreeOrderNewHouseTableViewCell.xib in Resources */,
 				96E7E0D0225B2E6600188DD1 /* KNBOrderAddressTableViewCell.xib in Resources */,
 				96E7E0BD225ADDD000188DD1 /* KNBHomeCompanyListHeaderView.xib in Resources */,
+				966D15F6226C70F3005F5D77 /* UMSocialSDKResources.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		4BEF091F424EBB4E21430DD2 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FishFinishing/Pods-FishFinishing-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		577688FDCBAB851C60F8264D /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -2213,22 +2501,22 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-FishFinishing/Pods-FishFinishing-resources.sh",
+				"${SRCROOT}/Pods/Target Support Files/Pods-FishFinishing/Pods-FishFinishing-resources.sh",
 				"${PODS_ROOT}/IQKeyboardManager/IQKeyboardManager/Resources/IQKeyboardManager.bundle",
 				"${PODS_ROOT}/LCProgressHUD/LCProgressHUD/LCProgressHUD.bundle",
 				"${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle",
+				"${PODS_ROOT}/Pingpp/lib/Pingpp.bundle",
+				"${PODS_ROOT}/PingppAlipaySDK/AlipaySDK.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/IQKeyboardManager.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/LCProgressHUD.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MJRefresh.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FishFinishing/Pods-FishFinishing-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FishFinishing/Pods-FishFinishing-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		6534D17BAEB707B40E5E71A3 /* [CP] Check Pods Manifest.lock */ = {
@@ -2251,6 +2539,44 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		75F25AD7C6D27ADF2CCA33F0 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FishFinishingTests/Pods-FishFinishingTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8039CE336EC9A514C74980DD /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FishFinishingTests/Pods-FishFinishingTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		9F154E08BFB26A5AC1F0BF04 /* [CP] Check Pods Manifest.lock */ = {
@@ -2295,6 +2621,7 @@
 				961C533322548E730089E997 /* KNBHomeCompanyCaseTableViewCell.m in Sources */,
 				961C52F32251A8710089E997 /* KNBDSFreeOrderAddressTableViewCell.m in Sources */,
 				961C5317225462070089E997 /* KNBDSFreeOrderEnterTableViewCell.m in Sources */,
+				966D1610226CB1FD005F5D77 /* KNPayManager.m in Sources */,
 				966AA546224A033000EDBF5F /* XHLaunchAdConfiguration.m in Sources */,
 				1877F30722682F7D0092207E /* KNBHomeCategoryCollectionViewCell.m in Sources */,
 				1866531722699DDB004C176F /* KNBHomeCompanyEditDetailViewController.m in Sources */,
@@ -2337,6 +2664,8 @@
 				966AA544224A033000EDBF5F /* XHLaunchAdDownloader.m in Sources */,
 				96B098CD2249D68D00154643 /* EXTRuntimeExtensions.m in Sources */,
 				96B098B52249CC1000154643 /* NSString+Size.m in Sources */,
+				966D1606226C7669005F5D77 /* ShareView.m in Sources */,
+				966D1627226CD221005F5D77 /* KNBHomeCompanyAreaViewController.m in Sources */,
 				186EE2D92266FF2100E71241 /* KNBHomeMessageListApi.m in Sources */,
 				187A6A72225ECE74006CA2B0 /* KNBRecruitmentTypeApi.m in Sources */,
 				961C5320225486BD0089E997 /* KNBHomeCompanyDetailViewController.m in Sources */,
@@ -2390,6 +2719,7 @@
 				96B098B32249CC1000154643 /* NSString+Empty.m in Sources */,
 				96B0989D2249CC1000154643 /* UILabel+Space.m in Sources */,
 				96B098B42249CC1000154643 /* NSString+MD5.m in Sources */,
+				966D160B226C7673005F5D77 /* ImageWithLabels.m in Sources */,
 				96B098AA2249CC1000154643 /* KNBScrollTextView.m in Sources */,
 				96B098A62249CC1000154643 /* UIButton+ArrayButton.m in Sources */,
 				966D155D2268D6E2005F5D77 /* RFPhotoScrollerView.m in Sources */,
@@ -2407,6 +2737,7 @@
 				966AA542224A033000EDBF5F /* XHLaunchAd.m in Sources */,
 				964926AC225C7F21000BBC7E /* BRDatePickerView.m in Sources */,
 				961C532422548E050089E997 /* KNBHomeCompanyHeaderTableViewCell.m in Sources */,
+				966D1624226CD20E005F5D77 /* KNBHomeCompanyHouseViewController.m in Sources */,
 				1866530722695D64004C176F /* KNBMeSetViewController.m in Sources */,
 				186EE2FE226702A100E71241 /* KNBPayOrderStatusApi.m in Sources */,
 				18B8DA4D22601FB700D18BC4 /* KNBUserInfo.m in Sources */,
@@ -2481,6 +2812,7 @@
 				96FDB4CF224B62D6005844E7 /* KNBLoginViewController.m in Sources */,
 				187A6A7F225ED27F006CA2B0 /* KNBOrderServerTypeApi.m in Sources */,
 				186EE2D62266F43400E71241 /* KNBOrderUnitApi.m in Sources */,
+				966D161D226CBD48005F5D77 /* KNPaypp.m in Sources */,
 				96B098AE2249CC1000154643 /* UIImageView+KNBImage.m in Sources */,
 				96B098352249CB8800154643 /* KNBBaseRequestAccessory.m in Sources */,
 				964926C1225C94A2000BBC7E /* KNBRecruitmentPayTableViewCell.m in Sources */,
@@ -2497,11 +2829,13 @@
 				9697FD6222559BC700027AB3 /* GHWaterFallLabel.m in Sources */,
 				186EE2F4226701C600E71241 /* KNBOrderModifyPowerApi.m in Sources */,
 				189A6B7A22606094007C6CC1 /* KNBHomeCityHeaderView.m in Sources */,
+				966D1603226C71C7005F5D77 /* KNUMManager.m in Sources */,
 				1868A694226560D1005546BB /* BRTagsPickerView.m in Sources */,
 				189A6B8E2260702E007C6CC1 /* KNBHomeBannerModel.m in Sources */,
 				18B3B04922648E870058AE4F /* KNBRecruitmentIntroTableViewCell.m in Sources */,
 				1868A6A12265C15C005546BB /* KNBAddressPickerView.m in Sources */,
 				9697FD54225597A900027AB3 /* NSArray+Bounds.m in Sources */,
+				966D160C226C7673005F5D77 /* ImageWithLabel.m in Sources */,
 				966AA577224A1E4F00EDBF5F /* TAAbstractDotView.m in Sources */,
 				96B098BD2249CC1000154643 /* UITextField+Shake.m in Sources */,
 				966AA553224A0ACB00EDBF5F /* DesignSketchViewController.m in Sources */,
@@ -2708,11 +3042,34 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = NJNULN45M9;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/FishFinishing/Library/UMSocial/UMSocialUI",
+					"$(PROJECT_DIR)/FishFinishing/Library/UMSocial",
+					"$(PROJECT_DIR)/FishFinishing/Library/UMSocial/analytics_ios_5.5.1",
+					"$(PROJECT_DIR)/FishFinishing/Library/UMSocial_6.9.4",
+					"$(PROJECT_DIR)/FishFinishing/Library/UMMobile_5.5.0",
+					"$(PROJECT_DIR)/FishFinishing/Library/UMSocial_6.9.4/UMSocialUI/Resource",
+					"$(PROJECT_DIR)/FishFinishing/Library/KNPaypp/AliPay",
+				);
 				GCC_PREFIX_HEADER = "FishFinishing/Supporting Files/FishFinishing.pch";
 				INFOPLIST_FILE = "FishFinishing/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/FishFinishing/Library/UMSocial/SocialLibraries/SMS",
+					"$(PROJECT_DIR)/FishFinishing/Library/UMSocial/SocialLibraries/WeChat",
+					"$(PROJECT_DIR)/FishFinishing/Library/UMSocial/SocialLibraries/Sina",
+					"$(PROJECT_DIR)/FishFinishing/Library/UMSocial/SocialLibraries/QQ",
+					"$(PROJECT_DIR)/FishFinishing/Library/UMSocial/UMSocialSDKPlugin",
+					"$(PROJECT_DIR)/FishFinishing/Library/UMSocial_6.9.4/SocialLibraries/SMS",
+					"$(PROJECT_DIR)/FishFinishing/Library/UMSocial_6.9.4/SocialLibraries/WeChat",
+					"$(PROJECT_DIR)/FishFinishing/Library/UMSocial_6.9.4/SocialLibraries/Sina",
+					"$(PROJECT_DIR)/FishFinishing/Library/UMSocial_6.9.4/SocialLibraries/QQ",
+					"$(PROJECT_DIR)/FishFinishing/Library/KNPaypp/WXPay",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.winfoc.FishFinishing;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2729,11 +3086,34 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = NJNULN45M9;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/FishFinishing/Library/UMSocial/UMSocialUI",
+					"$(PROJECT_DIR)/FishFinishing/Library/UMSocial",
+					"$(PROJECT_DIR)/FishFinishing/Library/UMSocial/analytics_ios_5.5.1",
+					"$(PROJECT_DIR)/FishFinishing/Library/UMSocial_6.9.4",
+					"$(PROJECT_DIR)/FishFinishing/Library/UMMobile_5.5.0",
+					"$(PROJECT_DIR)/FishFinishing/Library/UMSocial_6.9.4/UMSocialUI/Resource",
+					"$(PROJECT_DIR)/FishFinishing/Library/KNPaypp/AliPay",
+				);
 				GCC_PREFIX_HEADER = "FishFinishing/Supporting Files/FishFinishing.pch";
 				INFOPLIST_FILE = "FishFinishing/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/FishFinishing/Library/UMSocial/SocialLibraries/SMS",
+					"$(PROJECT_DIR)/FishFinishing/Library/UMSocial/SocialLibraries/WeChat",
+					"$(PROJECT_DIR)/FishFinishing/Library/UMSocial/SocialLibraries/Sina",
+					"$(PROJECT_DIR)/FishFinishing/Library/UMSocial/SocialLibraries/QQ",
+					"$(PROJECT_DIR)/FishFinishing/Library/UMSocial/UMSocialSDKPlugin",
+					"$(PROJECT_DIR)/FishFinishing/Library/UMSocial_6.9.4/SocialLibraries/SMS",
+					"$(PROJECT_DIR)/FishFinishing/Library/UMSocial_6.9.4/SocialLibraries/WeChat",
+					"$(PROJECT_DIR)/FishFinishing/Library/UMSocial_6.9.4/SocialLibraries/Sina",
+					"$(PROJECT_DIR)/FishFinishing/Library/UMSocial_6.9.4/SocialLibraries/QQ",
+					"$(PROJECT_DIR)/FishFinishing/Library/KNPaypp/WXPay",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.winfoc.FishFinishing;
 				PRODUCT_NAME = "$(TARGET_NAME)";

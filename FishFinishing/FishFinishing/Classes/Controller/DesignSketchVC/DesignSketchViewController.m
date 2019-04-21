@@ -17,6 +17,8 @@
 #import "KNBDesignSketchModel.h"
 #import <CQTopBarViewController.h>
 #import "KNBHomeCompanyTagsViewController.h"
+#import "KNBHomeCompanyHouseViewController.h"
+#import "KNBHomeCompanyAreaViewController.h"
 
 @interface DesignSketchViewController ()<UICollectionViewDelegate, UICollectionViewDataSource>
 //滑动区域
@@ -65,11 +67,11 @@
     self.naviView.titleNaviLabel.textColor = [UIColor blackColor];
     self.view.backgroundColor = [UIColor knBgColor];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(InfoNotificationAction:) name:NSStringFromClass([KNBHomeCompanyTagsViewController class]) object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(InfoNotificationAction:) name:NSStringFromClass([KNBHomeCompanyTagsViewController class]) object:nil];
     self.topBar = [[CQTopBarViewController alloc] init];
     self.topBar.segmentFrame = CGRectMake(0, KNB_NAV_HEIGHT, KNB_SCREEN_WIDTH, 50);
     self.topBar.sectionTitles = @[@"风格",@"户型",@"面积"];
-    self.topBar.pageViewClasses = @[[KNBHomeCompanyTagsViewController class],[KNBHomeCompanyTagsViewController class],[KNBHomeCompanyTagsViewController class]];
+    self.topBar.pageViewClasses = @[[KNBHomeCompanyTagsViewController class],[KNBHomeCompanyHouseViewController class],[KNBHomeCompanyAreaViewController class]];
     self.topBar.segmentlineColor = [UIColor whiteColor];
     self.topBar.segmentImage = @"knb_home_icon_down";
     self.topBar.selectSegmentImage = @"knb_home_icon_up";

@@ -13,7 +13,6 @@
 #import "KNBMainConfigModel.h"
 #import <AFNetworking.h>
 //#import "KNBRemindUpdate.h"
-//#import "KNUMManager.h"
 #import "KNGetUserLoaction.h"
 #import "NSString+MD5.h"
 //#import "KNPaypp.h"
@@ -59,7 +58,8 @@ KNB_DEFINE_SINGLETON_FOR_CLASS(KNBAppManager);
     [self configureRequestFilters];
     // 定位
     [[KNGetUserLoaction shareInstance] startLocation];
-    
+    //配置友盟分享
+    [KNUMManager shareInstance];
     //开启键盘控制
     [IQKeyboardManager sharedManager].enable = YES;
     [IQKeyboardManager sharedManager].shouldResignOnTouchOutside = YES;

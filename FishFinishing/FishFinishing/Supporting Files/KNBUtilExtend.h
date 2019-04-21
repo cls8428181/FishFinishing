@@ -52,6 +52,14 @@ typedef NS_ENUM(NSUInteger, KNBRecorderType) {
     KNBRecorderVideo      //视频
 };
 
+/*
+ * 支付相关
+ */
+typedef NS_ENUM(NSUInteger, KNBGetChargeType) {
+    KNBGetChargeTypeRecruitment,       //商家入驻
+    KNBGetChargeTypeBuyService         //购买服务
+};
+
 typedef NS_ENUM(NSInteger, KNBOrderPayType) {
     KNBOrderPayTypeNone = -1,
     KNBOrderPayTypeWX,     //微信

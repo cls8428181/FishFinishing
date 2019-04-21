@@ -37,6 +37,6 @@
                           @"ip" : _ip
                           }; //字典
     [self.baseMuDic addEntriesFromDictionary:dic];
-    return self.appendSecretDic;
+    return self.baseMuDic;
 }
 @end

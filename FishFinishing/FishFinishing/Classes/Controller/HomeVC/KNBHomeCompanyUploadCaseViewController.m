@@ -12,6 +12,10 @@
 #import "KNBHomeUploadCaseTableViewCell.h"
 #import "KNBRecruitmentAddCaseApi.h"
 #import "KNBRecruitmentTypeModel.h"
+#import "KNBOrderUnitApi.h"
+#import "KNBOrderStyleApi.h"
+#import "BRChoicePickerView.h"
+#import "BRStringPickerView.h"
 
 @interface KNBHomeCompanyUploadCaseViewController ()
 //图片数组
@@ -50,6 +54,7 @@
 
 - (void)addUI {
     [self.view addSubview:self.knGroupTableView];
+    self.knGroupTableView.backgroundColor = [UIColor colorWithHex:0xfafafa];
 }
 
 #pragma mark - tableview delegate & dataSource
@@ -85,15 +90,91 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return indexPath.section == 0 ? [KNBOrderDownTableViewCell cellHeight] :[KNBHomeUploadCaseTableViewCell cellHeight:self.imgsArray.count];
+    return indexPath.section == 0 ? [KNBOrderDownTableViewCell cellHeight] :[KNBHomeUploadCaseTableViewCell cellHeight:self.imgsArray.count] + 100;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     return 10;
 }
 
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    UIView *sectionView = [[UIView alloc] init];
+    sectionView.backgroundColor = [UIColor colorWithHex:0xf2f2f2];
+    return sectionView;
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.section == 0) {
+        if (indexPath.row == 1) {
+            [self unitRequest];
+        }
+        if (indexPath.row == 2) {
+            [self finishingStyleRequest];
+        }
+    }
+}
+
+//请求户型数据
+- (void)unitRequest {
+    KNBOrderUnitApi *api = [[KNBOrderUnitApi alloc] init];
+    api.hudString = @"";
+    KNB_WS(weakSelf);
+    [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *_Nonnull request) {
+        if (api.requestSuccess) {
+            NSDictionary *dic = request.responseObject[@"list"];
+            NSArray *modelArray = [KNBRecruitmentUnitModel changeResponseJSONObject:dic];
+            [BRChoicePickerView showTagsPickerWithTitle:@"选择户型" dataSource:modelArray resultBlock:^(id selectValue) {
+                NSArray *tempArray = (NSArray *)selectValue;
+                KNBOrderDownTableViewCell *cell = [weakSelf.knGroupTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]];
+                [cell setButtonTitle:[NSString stringWithFormat:@"%ld室、%ld厅、%ld厨、%ld卫、%ld阳台",
+                                      [tempArray[0] integerValue],
+                                      [tempArray[1] integerValue],
+                                      [tempArray[2] integerValue],
+                                      [tempArray[3] integerValue],
+                                      [tempArray[4] integerValue]
+                                      ]];
+                weakSelf.houseString = [NSString stringWithFormat:@"%ld室%ld厅%ld厨%ld卫%ld阳台",
+                                                  [tempArray[0] integerValue],
+                                                  [tempArray[1] integerValue],
+                                                  [tempArray[2] integerValue],
+                                                  [tempArray[3] integerValue],
+                                                  [tempArray[4] integerValue]
+                                                  ];
+            } cancelBlock:^{
+                
+            }];
+        } else {
+            [weakSelf requestSuccess:NO requestEnd:NO];
+        }
+    } failure:^(__kindof YTKBaseRequest *_Nonnull request) {
+        [weakSelf requestSuccess:NO requestEnd:NO];
+    }];
     
+}
+//请求装修风格数据
+- (void)finishingStyleRequest {
+    KNBOrderStyleApi *api = [[KNBOrderStyleApi alloc] init];
+    api.hudString = @"";
+    KNB_WS(weakSelf);
+    [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *_Nonnull request) {
+        if (api.requestSuccess) {
+            NSDictionary *dic = request.responseObject[@"list"];
+            NSMutableArray *modelArray = [KNBRecruitmentTypeModel changeResponseJSONObject:dic];
+            NSMutableArray *titleArray = [NSMutableArray array];
+            for (KNBRecruitmentTypeModel *model in modelArray) {
+                [titleArray addObject:model.catName];
+            }
+            [BRStringPickerView showStringPickerWithTitle:@"选择风格" dataSource:titleArray defaultSelValue:nil resultBlock:^(id selectValue) {
+                KNBOrderDownTableViewCell *cell = [weakSelf.knGroupTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:0]];
+                [cell setButtonTitle:selectValue];
+                weakSelf.styleModel.catName = selectValue;
+            }];
+        } else {
+            [weakSelf requestSuccess:NO requestEnd:NO];
+        }
+    } failure:^(__kindof YTKBaseRequest *_Nonnull request) {
+        [weakSelf requestSuccess:NO requestEnd:NO];
+    }];
 }
 
 #pragma mark - Event Response

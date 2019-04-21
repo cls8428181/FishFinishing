@@ -8,8 +8,7 @@
 
 #import "KNBBaseViewController.h"
 #import <LCProgressHUD.h>
-
-
+#import "NSString+HTML.h"
 
 @interface KNBBaseViewController ()
 
@@ -190,6 +189,25 @@
     // 隐藏时间
     knGroupTableViewHeader.lastUpdatedTimeLabel.hidden = YES;
     self.knGroupTableView.mj_header = knGroupTableViewHeader;
+}
+
+- (void)shareMessages:(NSArray *)messages isActionType:(BOOL)isActionType shareButtonBlock:(void (^)(NSInteger platformType, BOOL success))shareButtonBlock {
+    if (messages.count == 3) {
+        NSString *sharTitle = [messages[0] stringByConvertingHTMLToPlainText];
+        NSString *shareContent = [messages[1] stringByDecodingHTMLEntities];
+        
+        [[KNUMManager shareInstance] showShareViewWithShareInfoTitle:sharTitle shareImageName:@"knb_default_user" desc:shareContent shareUrl:@"http://baidu.com" currentViewController:self];
+    }
+}
+
+//- (void)shareMessages:(NSArray *)messages
+//              channel:(NSString *)channel
+//             callBack:(void (^)(NSString *channel, BOOL result))callBack {
+//    [[KNUMManager shareInstance] shareDetail:messages channel:channel controller:self completeBlock:callBack];
+//}
+
+- (BOOL)isLogin {
+    return [KNBUserInfo shareInstance].isLogin;
 }
 
 @end

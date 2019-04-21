@@ -15,6 +15,10 @@ target 'FishFinishing' do
     pod 'IQKeyboardManager'
     pod 'HMSegmentedControl'
     pod 'CQTopBar'
+    pod 'pop'
+    pod 'Pingpp', '~> 2.2.10'
+    pod 'Pingpp/Alipay'
+    pod 'Pingpp/Wx'
 end
 
 target 'FishFinishingTests' do

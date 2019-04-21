@@ -78,7 +78,7 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row == self.dataArray.count) {
         KNBHomeCompanyCaseAddCollectionViewCell *cell = [KNBHomeCompanyCaseAddCollectionViewCell cellWithCollectionView:collectionView indexPath:indexPath];
-//        cell.iconImageView.image = KNBImages(@"knb_me_tianjia_white");
+        cell.iconImageView.image = KNBImages(@"knb_me_tianjia_white");
         return cell;
     } else {
         UIImage *image = self.dataArray[indexPath.row];

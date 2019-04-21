@@ -105,7 +105,10 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+    if (indexPath.section == 3) {
+        [[KNBUserInfo shareInstance] logout];
+        [KNB_AppDelegate.navController popToRootViewControllerAnimated:NO];
+    }
 }
 
 #pragma mark - Event Response

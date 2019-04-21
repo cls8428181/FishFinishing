@@ -7,10 +7,13 @@
 //
 
 #import "KNBBaseViewController.h"
+#import "KNBRecruitmentModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface KNBRecruitmentPayViewController : KNBBaseViewController
+
+@property (nonatomic, strong) KNBRecruitmentModel *recruitmentModel;
 
 @end
 

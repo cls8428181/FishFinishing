@@ -7,12 +7,15 @@
 //
 
 #import "KNBMeHeaderView.h"
+#import <UIImageView+WebCache.h>
 
 @interface KNBMeHeaderView ()
 //头像
 @property (nonatomic, strong) UIImageView *portraitImageView;
 //姓名
 @property (nonatomic, strong) UILabel *nameLabel;
+//登陆按钮
+@property (nonatomic, strong) UIButton *loginButton;
 //聊天按钮
 @property (nonatomic, strong) UIButton *chatButton;
 //设置按钮
@@ -33,6 +36,7 @@
         [self addSubview:self.adButton];
         [self addSubview:self.portraitImageView];
         [self addSubview:self.nameLabel];
+        [self addSubview:self.loginButton];
         [self addSubview:self.setButton];
         [self addSubview:self.chatButton];
         self.backgroundColor = [UIColor whiteColor];
@@ -61,6 +65,10 @@
         make.centerX.equalTo(weakSelf);
         make.top.equalTo(weakSelf.portraitImageView.mas_bottom).mas_offset(15);;
     }];
+    [self.loginButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.left.right.equalTo(weakSelf.portraitImageView);
+        make.bottom.equalTo(weakSelf.nameLabel);
+    }];
     [self.setButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(-12);
         make.top.mas_equalTo(35);
@@ -78,6 +86,10 @@
 
 - (void)chatButtonAction:(UIButton *)button {
     !self.chatButtonBlock ?: self.chatButtonBlock();
+}
+
+- (void)loginButtinAction {
+    !self.loginButtonBlock ?: self.loginButtonBlock();
 }
 
 #pragma mark - lazy load
@@ -100,7 +112,11 @@
 - (UIImageView *)portraitImageView {
     if (!_portraitImageView) {
         _portraitImageView = [[UIImageView alloc] init];
-        _portraitImageView.image = KNBImages(@"knb_default_user");
+        if ([KNBUserInfo shareInstance].isLogin) {
+            [_portraitImageView sd_setImageWithURL:[NSURL URLWithString:[KNBUserInfo shareInstance].portrait] placeholderImage:KNBImages(@"knb_default_user")];
+        } else {
+            _portraitImageView.image = KNBImages(@"knb_default_user");
+        }
     }
     return _portraitImageView;
 }
@@ -109,10 +125,23 @@
     if (!_nameLabel) {
         _nameLabel = [[UILabel alloc] init];
         _nameLabel.font = [UIFont boldSystemFontOfSize:18];
-        _nameLabel.text = @"张三";
         _nameLabel.textColor = [UIColor whiteColor];
+        if ([KNBUserInfo shareInstance].isLogin) {
+            _nameLabel.text = [KNBUserInfo shareInstance].userName;
+        } else {
+            _nameLabel.text = @"请登录";
+        }
+
     }
     return _nameLabel;
+}
+
+- (UIButton *)loginButton {
+    if (!_loginButton) {
+        _loginButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_loginButton addTarget:self action:@selector(loginButtinAction) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _loginButton;
 }
 
 - (UIButton *)chatButton {

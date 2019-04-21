@@ -15,7 +15,8 @@ typedef void (^KNMJHeaderLoadCompleteBlock)(NSInteger page);
 
 
 @interface KNBBaseViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
-
+// 是否登陆过
+@property (nonatomic, assign) BOOL isLogin;
 @property (nonatomic, strong) UITableView *knbTableView;
 @property (nonatomic, strong) UITableView *knGroupTableView;
 @property (nonatomic, strong) NSMutableArray *dataArray;
@@ -51,5 +52,26 @@ typedef void (^KNMJHeaderLoadCompleteBlock)(NSInteger page);
  */
 - (void)requestSuccess:(BOOL)success requestEnd:(BOOL)end;
 
+/**
+ 分享的信息
+ 
+ @param messages @[@"标题"，@“简介”，@“链接”]
+ @param isActionType 是不是美臀活动
+ @param shareButtonBlock 分享成功需要跳转
+ 
+ */
+- (void)shareMessages:(NSArray *)messages isActionType:(BOOL)isActionType shareButtonBlock:(void (^)(NSInteger platformType, BOOL success))shareButtonBlock;
+
+
+/**
+ 分享信息
+ 
+ @param messages @[@"标题"，@“简介”，@“链接”]
+ @param channel 分享渠道
+ @param callBack 分享结果回调 分享回调的渠道
+ */
+- (void)shareMessages:(NSArray *)messages
+              channel:(NSString *)channel
+             callBack:(void (^)(NSString *channel, BOOL result))callBack;
 
 @end

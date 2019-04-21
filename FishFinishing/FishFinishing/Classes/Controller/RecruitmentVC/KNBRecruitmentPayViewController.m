@@ -11,6 +11,7 @@
 #import "KNBRecruitmentShowTableViewCell.h"
 #import "KNBRecruitmentPayTableViewCell.h"
 #import "KNBRecruitmentProtocolTableViewCell.h"
+#import "KNPayManager.h"
 
 @interface KNBRecruitmentPayViewController ()
 
@@ -93,26 +94,19 @@
         KNBRecruitmentShowTableViewCell *typeCell = (KNBRecruitmentShowTableViewCell *)cell;
         typeCell.iconImageView.hidden = YES;
         typeCell.titleLabel.text = @"费用总计:";
-        typeCell.describeLabel.text = @"998元";
+        typeCell.describeLabel.text = self.recruitmentModel.priceModel.price;
     } else if (indexPath.section == 3) {
         if (indexPath.row == 0) {
             cell = [KNBRecruitmentPayTableViewCell cellWithTableView:tableView payType:@"支付宝"];
             KNBRecruitmentPayTableViewCell *typeCell = (KNBRecruitmentPayTableViewCell *)cell;
             typeCell.selectButtonBlock = ^(UIButton * _Nonnull button) {
-                KNBRecruitmentPayTableViewCell *payCell = [tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:3]];
-                button.selected = !button.isSelected;
-                payCell.selectButton.selected = !button.isSelected;
-                weakSelf.isAlipy = button.isSelected;
             };
 
         } else {
             cell = [KNBRecruitmentPayTableViewCell cellWithTableView:tableView payType:@"微信"];
             KNBRecruitmentPayTableViewCell *typeCell = (KNBRecruitmentPayTableViewCell *)cell;
             typeCell.selectButtonBlock = ^(UIButton * _Nonnull button) {
-                KNBRecruitmentPayTableViewCell *payCell = [tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:3]];
-                button.selected = !button.isSelected;
-                payCell.selectButton.selected = !button.isSelected;
-                weakSelf.isAlipy = !button.isSelected;
+
             };
         }
         
@@ -142,7 +136,23 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+    if (indexPath.section == 3) {
+        KNBRecruitmentPayTableViewCell *alipyCell = [tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:3]];
+        KNBRecruitmentPayTableViewCell *wechatCell = [tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:3]];
+        if (indexPath.row == 0) {
+            if (!self.isAlipy) {
+                alipyCell.selectButton.selected = YES;
+                wechatCell.selectButton.selected = NO;
+                self.isAlipy = YES;
+            }
+        } else {
+            if (self.isAlipy) {
+                alipyCell.selectButton.selected = NO;
+                wechatCell.selectButton.selected = YES;
+                self.isAlipy = NO;
+            }
+        }
+    }
 }
 
 #pragma mark - Event Response
@@ -156,12 +166,20 @@
 #pragma mark - Getters And Setters
 /* getter和setter全部都放在最后*/
 - (KNBRecruitmentPayFooterView *)footerView {
+    KNB_WS(weakSelf);
     if (!_footerView) {
-        KNB_WS(weakSelf);
         _footerView = [[KNBRecruitmentPayFooterView alloc] init];
         _footerView.frame = CGRectMake(0, 0, KNB_SCREEN_WIDTH, 80);
         _footerView.enterButtonBlock = ^{
-
+            if (weakSelf.isAlipy) {
+                [KNPayManager payWithOrderId:@"订单编号" payPrice:[weakSelf.recruitmentModel.priceModel.price doubleValue] payMethod:KN_PayCodeAlipay controller:weakSelf chargeType:KNBGetChargeTypeRecruitment completeBlock:^(BOOL success, id errorMsg, NSInteger errorCode) {
+                    
+                }];
+            } else {
+                [KNPayManager payWithOrderId:@"订单编号" payPrice:[weakSelf.recruitmentModel.priceModel.price doubleValue] payMethod:KN_PayCodeWX controller:weakSelf chargeType:KNBGetChargeTypeBuyService completeBlock:^(BOOL success, id errorMsg, NSInteger errorCode) {
+                    
+                }];
+            }
         };
     }
     return _footerView;

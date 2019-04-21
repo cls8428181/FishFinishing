@@ -139,12 +139,15 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-- (void)collectButtonAction {
-    
-}
+//- (void)collectButtonAction {
+//
+//}
 
 - (void)shareButtonAction {
-    
+    NSString *urlStr = @"http://baidu.com";
+    NSString *name = @"效果图详情";
+    NSString *describeStr = @"这是效果图详情";
+    [self shareMessages:@[ name, describeStr, urlStr ] isActionType:NO shareButtonBlock:nil];
 }
 
 - (void)orderButtonAction {
