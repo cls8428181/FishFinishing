@@ -7,6 +7,11 @@
 //
 
 #import "KNBDSFreeOrderNewHouseTableViewCell.h"
+@interface KNBDSFreeOrderNewHouseTableViewCell ()
+
+@property (weak, nonatomic) IBOutlet UIButton *newHouseButton;
+@property (weak, nonatomic) IBOutlet UIButton *oldHouseButton;
+@end
 
 @implementation KNBDSFreeOrderNewHouseTableViewCell
 
@@ -31,11 +36,19 @@
 
 - (IBAction)newHouseButtonAction:(id)sender {
     UIButton *button = (UIButton *)sender;
-    button.selected = !button.isSelected;
+    if (!self.isNewHouse) {
+        button.selected = YES;
+        self.oldHouseButton.selected = NO;
+        self.isNewHouse = YES;
+    }
 }
 - (IBAction)oldHouseButtonAction:(id)sender {
     UIButton *button = (UIButton *)sender;
-    button.selected = !button.isSelected;
+    if (self.isNewHouse) {
+        self.newHouseButton.selected = NO;
+        button.selected = YES;
+        self.isNewHouse = NO;
+    }
 }
 
 @end

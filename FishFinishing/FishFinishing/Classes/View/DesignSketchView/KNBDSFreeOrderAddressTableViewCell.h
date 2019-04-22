@@ -20,6 +20,8 @@ NS_ASSUME_NONNULL_BEGIN
  cell 高度
  */
 + (CGFloat)cellHeight;
+
+- (void)setProvinceName:(NSString *)provinceName cityName:(NSString *)cityName areaName:(NSString *)areaName;
 @end
 
 NS_ASSUME_NONNULL_END

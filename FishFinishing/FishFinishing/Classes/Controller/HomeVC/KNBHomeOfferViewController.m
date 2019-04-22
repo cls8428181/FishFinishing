@@ -16,6 +16,11 @@
 #import "KNBDSFreeOrderPhoneTableViewCell.h"
 #import "KNBDSFreeOrderFooterView.h"
 #import "KNBDSFreeOrderEnterTableViewCell.h"
+#import "KNBAddressPickerView.h"
+//#import "BRAddressModel.h"
+#import "KNBHomeBespokeApi.h"
+#import "KNBOrderModel.h"
+#import "KNBCityModel.h"
 
 @interface KNBHomeOfferViewController ()
 //背景
@@ -30,6 +35,7 @@
 @property (nonatomic, strong) KNBDesignSketchFreeOrderHeaderView *headerView;
 //footer view
 @property (nonatomic, strong) KNBDSFreeOrderFooterView *footerView;
+@property (nonatomic, strong) KNBOrderModel *orderModel;
 @end
 
 @implementation KNBHomeOfferViewController
@@ -153,6 +159,16 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    KNB_WS(weakSelf);
+    if (indexPath.row == 1) {
+        [KNBAddressPickerView showAddressPickerWithDefaultSelected:nil resultBlock:^(KNBCityModel *province, KNBCityModel *city, KNBCityModel *area) {
+            KNBDSFreeOrderAddressTableViewCell *cell = [weakSelf.knbTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]];
+            [cell setProvinceName:province.name cityName:city.name areaName:area.name];
+            weakSelf.orderModel.province_id = [province.code integerValue];
+            weakSelf.orderModel.city_id = [city.code integerValue];
+            weakSelf.orderModel.area_id = [area.code integerValue];
+        }];
+    }
     if (indexPath.row == 5) {
         [LCProgressHUD showMessage:@"您的装修方案预约成功"];
     }

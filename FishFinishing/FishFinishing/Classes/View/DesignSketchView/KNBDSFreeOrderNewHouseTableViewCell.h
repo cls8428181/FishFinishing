@@ -13,6 +13,11 @@ NS_ASSUME_NONNULL_BEGIN
 @interface KNBDSFreeOrderNewHouseTableViewCell : UITableViewCell
 
 /**
+ 是不是新房
+ */
+@property (nonatomic, assign) BOOL isNewHouse;
+
+/**
  cell 创建
  */
 + (instancetype)cellWithTableView:(UITableView *)tableView;

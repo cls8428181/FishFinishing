@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -23,19 +23,24 @@
                         <rect key="frame" x="12" y="5" width="102" height="74.5"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="省" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s2L-0C-Cmh">
-                                <rect key="frame" x="12" y="29" width="15" height="17"/>
+                                <rect key="frame" x="12" y="29" width="62" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" red="0.50196078430000002" green="0.50196078430000002" blue="0.50196078430000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="knb_design_down" translatesAutoresizingMaskIntoConstraints="NO" id="VMa-wf-tt2">
-                                <rect key="frame" x="85" y="34.5" width="11" height="6"/>
+                                <rect key="frame" x="86" y="34.5" width="10" height="6"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="6" id="WZR-do-0qC"/>
+                                    <constraint firstAttribute="width" constant="10" id="udh-73-xd2"/>
+                                </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.94901960784313721" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="s2L-0C-Cmh" firstAttribute="centerY" secondItem="VZt-Xh-vrR" secondAttribute="centerY" id="6gr-dj-D5B"/>
                             <constraint firstItem="s2L-0C-Cmh" firstAttribute="leading" secondItem="VZt-Xh-vrR" secondAttribute="leading" constant="12" id="7q1-HV-hnl"/>
+                            <constraint firstItem="VMa-wf-tt2" firstAttribute="leading" secondItem="s2L-0C-Cmh" secondAttribute="trailing" constant="12" id="e8y-xi-jzX"/>
                             <constraint firstItem="VMa-wf-tt2" firstAttribute="centerY" secondItem="VZt-Xh-vrR" secondAttribute="centerY" id="jxc-Wa-XS6"/>
                             <constraint firstAttribute="trailing" secondItem="VMa-wf-tt2" secondAttribute="trailing" constant="6" id="xJH-LS-8Sl"/>
                         </constraints>
@@ -48,18 +53,23 @@
                         <rect key="frame" x="126" y="5" width="102" height="74.5"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="市" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JVj-RX-oaN">
-                                <rect key="frame" x="12" y="29" width="15" height="17"/>
+                                <rect key="frame" x="12" y="29" width="62" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" red="0.50196078430000002" green="0.50196078430000002" blue="0.50196078430000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="knb_design_down" translatesAutoresizingMaskIntoConstraints="NO" id="rPc-J3-fHO">
-                                <rect key="frame" x="85" y="34.5" width="11" height="6"/>
+                                <rect key="frame" x="86" y="34.5" width="10" height="6"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="6" id="4zx-Tc-x8a"/>
+                                    <constraint firstAttribute="width" constant="10" id="uQe-kb-MY9"/>
+                                </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.94901960780000005" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="JVj-RX-oaN" firstAttribute="centerY" secondItem="kjm-mY-47b" secondAttribute="centerY" id="JEj-D9-v35"/>
+                            <constraint firstItem="rPc-J3-fHO" firstAttribute="leading" secondItem="JVj-RX-oaN" secondAttribute="trailing" constant="12" id="S3c-Zt-2XR"/>
                             <constraint firstItem="JVj-RX-oaN" firstAttribute="leading" secondItem="kjm-mY-47b" secondAttribute="leading" constant="12" id="T3D-WX-j23"/>
                             <constraint firstAttribute="trailing" secondItem="rPc-J3-fHO" secondAttribute="trailing" constant="6" id="ZI0-mu-49B"/>
                             <constraint firstItem="rPc-J3-fHO" firstAttribute="centerY" secondItem="kjm-mY-47b" secondAttribute="centerY" id="uQ2-1s-vCx"/>
@@ -73,18 +83,23 @@
                         <rect key="frame" x="240" y="5" width="102" height="74.5"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="区/县" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mvh-tj-0fE">
-                                <rect key="frame" x="12" y="29" width="34" height="17"/>
+                                <rect key="frame" x="12" y="29" width="62" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" red="0.50196078430000002" green="0.50196078430000002" blue="0.50196078430000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="knb_design_down" translatesAutoresizingMaskIntoConstraints="NO" id="DUb-Yd-Mob">
-                                <rect key="frame" x="85" y="34.5" width="11" height="6"/>
+                                <rect key="frame" x="86" y="34.5" width="10" height="6"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="6" id="Gao-Yb-RnK"/>
+                                    <constraint firstAttribute="width" constant="10" id="twH-Oy-B98"/>
+                                </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.94901960780000005" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="mvh-tj-0fE" firstAttribute="centerY" secondItem="8ac-7l-25w" secondAttribute="centerY" id="Wop-1B-LMK"/>
+                            <constraint firstItem="DUb-Yd-Mob" firstAttribute="leading" secondItem="mvh-tj-0fE" secondAttribute="trailing" constant="12" id="em6-h5-Ay2"/>
                             <constraint firstItem="DUb-Yd-Mob" firstAttribute="centerY" secondItem="8ac-7l-25w" secondAttribute="centerY" id="kkp-e7-MDM"/>
                             <constraint firstItem="mvh-tj-0fE" firstAttribute="leading" secondItem="8ac-7l-25w" secondAttribute="leading" constant="12" id="qBQ-f2-tFD"/>
                             <constraint firstAttribute="trailing" secondItem="DUb-Yd-Mob" secondAttribute="trailing" constant="6" id="tRf-Zo-65G"/>
@@ -111,10 +126,15 @@
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
+            <connections>
+                <outlet property="areaLabel" destination="mvh-tj-0fE" id="UsS-qo-Xhx"/>
+                <outlet property="cityLabel" destination="JVj-RX-oaN" id="Fy1-S9-I1V"/>
+                <outlet property="provinceLabel" destination="s2L-0C-Cmh" id="lJY-Rh-wyZ"/>
+            </connections>
             <point key="canvasLocation" x="156.80000000000001" y="158.77061469265368"/>
         </tableViewCell>
     </objects>
     <resources>
-        <image name="knb_design_down" width="11.5" height="6.5"/>
+        <image name="knb_design_down" width="10" height="6"/>
     </resources>
 </document>

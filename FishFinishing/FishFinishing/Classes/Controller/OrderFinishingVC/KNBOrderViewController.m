@@ -263,7 +263,7 @@
             if (indexPath.row == 0) {
                 [self finishingStyleRequest];
             } else {
-                [BRStringPickerView showStringPickerWithTitle:@"选择档次" dataSource:@[@"低",@"中",@"高",@"豪华"] defaultSelValue:nil resultBlock:^(id selectValue) {
+                [BRStringPickerView showStringPickerWithTitle:@"选择档次" dataSource:@[@"低",@"中",@"高"] defaultSelValue:nil resultBlock:^(id selectValue) {
                     KNBOrderDownTableViewCell *cell = [weakSelf.knGroupTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:3]];
                     [cell setButtonTitle:selectValue];
                     weakSelf.orderModel.level = selectValue;
@@ -341,35 +341,32 @@
 
 //请求擅长领域数据
 - (void)bestDomainRequest {
-//    KNBRecruitmentDomainApi *api = [[KNBRecruitmentDomainApi alloc] initWithCatId:[self.recruitmentModel.typeModel.typeId integerValue]];
-//    api.hudString = @"";
+    KNBRecruitmentDomainApi *api = [[KNBRecruitmentDomainApi alloc] initWithCatId:[self.recruitmentModel.typeModel.typeId integerValue]];
+    api.hudString = @"";
     KNB_WS(weakSelf);
-//    [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *_Nonnull request) {
-//        if (api.requestSuccess) {
-//            NSDictionary *dic = request.responseObject[@"list"];
-//            NSMutableArray *modelArray = [KNBRecruitmentTypeModel changeResponseJSONObject:dic];
-//            NSMutableArray *dataArray = [NSMutableArray array];
-//            for (int i = 0; i < modelArray.count; i++) {
-//                KNBRecruitmentTypeModel *model = modelArray[i];
-//                [dataArray addObject:model.tagName];
-//            }
-//            [BRStringPickerView showStringPickerWithTitle:@"选择擅长领域" dataSource:dataArray defaultSelValue:nil resultBlock:^(id selectValue) {
-//            }];
-//        } else {
-//            [weakSelf requestSuccess:NO requestEnd:NO];
-//        }
-//    } failure:^(__kindof YTKBaseRequest *_Nonnull request) {
-//        [weakSelf requestSuccess:NO requestEnd:NO];
-//    }];
-    [BRTagsPickerView showTagsPickerWithTitle:@"擅长领域" dataSource:@[@"装修",@"漂亮",@"大的方",@"漂亮漂亮",@"大漂亮漂亮方"] defaultSelValue:nil resultBlock:^(id selectValue) {
-        KNBRecruitmentDomainTableViewCell *cell = [weakSelf.knGroupTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:2]];
-        [cell setTagsViewDataSource:selectValue];
-    } cancelBlock:^{
-        
-    } maximumNumberBlock:^{
-        [LCProgressHUD showMessage:@"您最多只能选择三个标签哦"];
+    [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *_Nonnull request) {
+        if (api.requestSuccess) {
+            NSDictionary *dic = request.responseObject[@"list"];
+            NSMutableArray *modelArray = [KNBRecruitmentTypeModel changeResponseJSONObject:dic];
+            NSMutableArray *dataArray = [NSMutableArray array];
+            for (int i = 0; i < modelArray.count; i++) {
+                KNBRecruitmentTypeModel *model = modelArray[i];
+                [dataArray addObject:model.tagName];
+            }
+            [BRTagsPickerView showTagsPickerWithTitle:@"擅长领域" dataSource:dataArray defaultSelValue:nil resultBlock:^(id selectValue) {
+                KNBRecruitmentDomainTableViewCell *cell = [weakSelf.knGroupTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:2]];
+                [cell setTagsViewDataSource:selectValue];
+            } cancelBlock:^{
+                
+            } maximumNumberBlock:^{
+                [LCProgressHUD showMessage:@"您最多只能选择三个标签哦"];
+            }];
+        } else {
+            [weakSelf requestSuccess:NO requestEnd:NO];
+        }
+    } failure:^(__kindof YTKBaseRequest *_Nonnull request) {
+        [weakSelf requestSuccess:NO requestEnd:NO];
     }];
-    
 }
 
 //请求选择服务数据
