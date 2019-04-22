@@ -143,15 +143,23 @@
 //}
 
 - (void)shareButtonAction {
-    NSString *urlStr = @"http://baidu.com";
-    NSString *name = @"效果图详情";
-    NSString *describeStr = @"这是效果图详情";
-    [self shareMessages:@[ name, describeStr, urlStr ] isActionType:NO shareButtonBlock:nil];
+    if ([KNBUserInfo shareInstance].isLogin) {
+        NSString *urlStr = @"http://baidu.com";
+        NSString *name = @"效果图详情";
+        NSString *describeStr = @"这是效果图详情";
+        [self shareMessages:@[ name, describeStr, urlStr ] isActionType:NO shareButtonBlock:nil];
+    } else {
+        [LCProgressHUD showMessage:@"您还未登录,请先登录"];
+    }
 }
 
 - (void)orderButtonAction {
-    KNBHomeOfferViewController *offerVC = [[KNBHomeOfferViewController alloc] init];
-    [self.navigationController pushViewController:offerVC animated:YES];
+    if ([KNBUserInfo shareInstance].isLogin) {
+        KNBHomeOfferViewController *offerVC = [[KNBHomeOfferViewController alloc] init];
+        [self.navigationController pushViewController:offerVC animated:YES];
+    } else {
+        [LCProgressHUD showMessage:@"您还未登录,请先登录"];
+    }
 }
 
 #pragma mark - Getters And Setters

@@ -12,6 +12,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface KNBHomeUploadCaseTableViewCell : UITableViewCell
 
+/**
+ 图片数组
+ */
+@property (nonatomic, strong) NSMutableArray *dataArray;
+
 @property (nonatomic, strong) UITextView *describeText;
 
 /**

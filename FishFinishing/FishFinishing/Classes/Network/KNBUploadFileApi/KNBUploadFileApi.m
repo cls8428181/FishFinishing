@@ -135,7 +135,10 @@
 }
 
 - (id)requestArgument {
-    return self.appendSecretDic;
+    return @{
+        @"img" : [self->_image dealImageMaxFileSize:600],
+        @"token" : _token
+    };
 }
 
 - (AFConstructingBlock)constructingBodyBlock {

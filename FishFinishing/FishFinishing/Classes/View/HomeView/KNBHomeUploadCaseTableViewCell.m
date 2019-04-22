@@ -11,12 +11,11 @@
 #import "KNBHomeUploadCaseCollectionViewCell.h"
 #import <Photos/Photos.h>
 #import "KNBAlertRemind.h"
+#import "UITextView+ZWPlaceHolder.h"
 
 @interface KNBHomeUploadCaseTableViewCell ()<UICollectionViewDelegate, UICollectionViewDataSource,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 @property (nonatomic, strong) UILabel *titleLabel;
-@property (nonatomic, strong) UILabel *placeholder;
 @property (nonatomic, strong) UICollectionView *collectionView;
-@property (nonatomic, strong) NSMutableArray *dataArray;
 @end
 
 @implementation KNBHomeUploadCaseTableViewCell
@@ -37,7 +36,6 @@
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         [self.contentView addSubview:self.titleLabel];
         [self.contentView addSubview:self.describeText];
-        [self.describeText addSubview:self.placeholder];
         [self.contentView addSubview:self.collectionView];
     }
     return self;
@@ -55,9 +53,6 @@
         make.top.equalTo(weakSelf.titleLabel.mas_bottom).mas_offset(12);
         make.right.mas_equalTo(-12);
         make.height.mas_equalTo(50);
-    }];
-    [self.placeholder mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.center.equalTo(weakSelf.describeText);
     }];
     [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(12);
@@ -211,19 +206,9 @@
 - (UITextView *)describeText {
     if (!_describeText) {
         _describeText = [[UITextView alloc] init];
+        _describeText.zw_placeHolder = @"50字以内";
     }
     return _describeText;
-}
-
-- (UILabel *)placeholder {
-    if (!_placeholder) {
-        _placeholder = [[UILabel alloc] init];
-        _placeholder.text = @"50字以内";
-        _placeholder.font = [UIFont systemFontOfSize:12];
-        _placeholder.textColor = [UIColor colorWithHex:0xb3b3b3];
-        _placeholder.contentMode = UIViewContentModeTop;
-    }
-    return _placeholder;
 }
 
 - (UICollectionView *)collectionView {

@@ -16,6 +16,7 @@
 #import "KNBOrderStyleApi.h"
 #import "BRChoicePickerView.h"
 #import "BRStringPickerView.h"
+#import "KNBUploadFileApi.h"
 
 @interface KNBHomeCompanyUploadCaseViewController ()
 //图片数组
@@ -187,18 +188,31 @@
 
 - (void)saveAction {
     if ([self checkInfoComplete]) {
-        KNBRecruitmentAddCaseApi *api = [[KNBRecruitmentAddCaseApi alloc] initWithToken:[KNBUserInfo shareInstance].token title:self.desribeString styleId:[self.styleModel.typeId integerValue] acreage:[self.areaString doubleValue] apartment:self.houseString imgs:self.imgString];
-        api.hudString = @"";
-        KNB_WS(weakSelf);
-        [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *_Nonnull request) {
-            if (api.requestSuccess) {
-                [weakSelf.navigationController popViewControllerAnimated:YES];
-                !weakSelf.saveSuccessBlock ?: weakSelf.saveSuccessBlock();
-            } else {
-                [LCProgressHUD showMessage:@"保存失败,请重新保存"];
+        
+        //上传图片
+        [KNBUploadFileApi uploadWithRequests:self.imgsArray token:[KNBUserInfo shareInstance].token complete:^(NSArray *fileUrls) {
+            if (!isNullArray(fileUrls)) {
+                NSString *imgsUrl = @"";
+                for (NSString *imgUrl in fileUrls) {
+                    imgsUrl = [imgsUrl stringByAppendingString:imgUrl];
+                    imgsUrl = [imgsUrl stringByAppendingString:@","];
+                }
+                KNBRecruitmentAddCaseApi *api = [[KNBRecruitmentAddCaseApi alloc] initWithToken:[KNBUserInfo shareInstance].token title:self.desribeString styleId:[self.styleModel.typeId integerValue] acreage:[self.areaString doubleValue] apartment:self.houseString imgs:imgsUrl];
+                api.hudString = @"";
+                KNB_WS(weakSelf);
+                [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *_Nonnull request) {
+                    if (api.requestSuccess) {
+                        [weakSelf.navigationController popViewControllerAnimated:YES];
+                        !weakSelf.saveSuccessBlock ?: weakSelf.saveSuccessBlock();
+                    } else {
+                        [LCProgressHUD showMessage:@"保存失败,请重新保存"];
+                    }
+                } failure:^(__kindof YTKBaseRequest *_Nonnull request) {
+                    [LCProgressHUD showMessage:@"保存失败,请重新保存"];
+                }];
             }
-        } failure:^(__kindof YTKBaseRequest *_Nonnull request) {
-            [LCProgressHUD showMessage:@"保存失败,请重新保存"];
+        } failure:^(NSArray *failRequests, NSArray *successFileUrls) {
+            [LCProgressHUD showMessage:@"图片上传失败"];
         }];
     }
 }
@@ -208,11 +222,13 @@
     KNBOrderDownTableViewCell *houseCell = [self.knGroupTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]];
     KNBHomeUploadCaseTableViewCell *caseCell = [self.knGroupTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:1]];
     if (isNullStr(areaCell.describeTextField.text) || isNullStr(houseCell.describeButton.titleLabel.text) || isNullStr(caseCell.describeText.text)) {
+        [LCProgressHUD showMessage:@"信息填写不完整"];
         return NO;
     }
     self.areaString = areaCell.describeTextField.text;
     self.houseString = houseCell.describeButton.titleLabel.text;
     self.desribeString = caseCell.describeText.text;
+    self.imgsArray = caseCell.dataArray;
     return YES;
 }
 
