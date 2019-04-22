@@ -7,7 +7,6 @@
 //
 
 #import "KNBHomeCompanyCaseSubCollectionViewCell.h"
-#import <UIImageView+WebCache.h>
 #import "NSDate+BTAddition.h"
 
 @interface KNBHomeCompanyCaseSubCollectionViewCell ()

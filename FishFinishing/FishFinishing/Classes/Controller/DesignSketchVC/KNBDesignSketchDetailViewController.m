@@ -9,7 +9,6 @@
 #import "KNBDesignSketchDetailViewController.h"
 #import "RFPhotoScrollerView.h"
 #import "KNBRecruitmentCaseDetailApi.h"
-#import <UIImageView+WebCache.h>
 #import "KNBHomeOfferViewController.h"
 
 @interface KNBDesignSketchDetailViewController ()

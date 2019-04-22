@@ -7,11 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "KNBRecruitmentTypeModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface KNBHomeCompanyTagsViewController : UIViewController
-
+@property (nonatomic, strong) KNBRecruitmentTypeModel *model;
+@property (nonatomic, assign) NSInteger areaId;
+@property (nonatomic, assign) BOOL isDesign;
 @end
 
 NS_ASSUME_NONNULL_END

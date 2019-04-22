@@ -7,9 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "KNBRecruitmentTypeModel.h"
 
 @interface CQTopBarViewController : UIViewController
 
+//风格模型
+@property (nonatomic, strong) KNBRecruitmentTypeModel *model;
+//市编号
+@property (nonatomic, assign) NSInteger areaId;
+//效果图
+@property (nonatomic, assign) BOOL isDesign;
 /**
  * 修改segment文字
  * indexes:需要修改第几个文字

@@ -12,7 +12,7 @@
 #import "KNBHomeCategoryTableViewCell.h"
 #import "KNBHomeDesignSketchTableViewCell.h"
 #import "KNBHomeSectionView.h"
-#import "KNBSearchView.h"
+#import "KNBHomeSearchView.h"
 #import "KNBHomeTableView.h"
 #import "KNBHomeSubView.h"
 #import <HMSegmentedControl.h>
@@ -29,6 +29,9 @@
 #import "KNBRecruitmentServiceListApi.h"
 #import "KNBHomeServiceModel.h"
 #import "KNBHomeChatViewController.h"
+#import "KNBHomeRecommendCaseApi.h"
+#import "KNBHomeRecommendCaseModel.h"
+#import "KNBSearchViewController.h"
 
 static CGFloat const kHeaderViewHeight = 50.0f;
 
@@ -38,13 +41,15 @@ static CGFloat const kHeaderViewHeight = 50.0f;
 // 轮播图数据
 @property (nonatomic, strong) NSArray *bannerArray;
 //搜索
-@property (nonatomic, strong) KNBSearchView *searchView;
+@property (nonatomic, strong) KNBHomeSearchView *searchView;
 //主tableview
 @property (strong ,nonatomic) KNBHomeTableView *mainTableView;
 //子 scrollview
 @property (strong ,nonatomic) KNBHomeSubView *subView;
 //子 scrollview 的顶部选择
 @property (strong ,nonatomic) HMSegmentedControl *segmentedControl;
+//推荐装修案例列表数据
+@property (nonatomic, strong) NSMutableArray *recommendCaseArray;
 //分类数据
 @property (nonatomic, strong) NSArray *categoryArray;
 //标题数据
@@ -102,6 +107,9 @@ static CGFloat const kHeaderViewHeight = 50.0f;
     } failure:^(__kindof YTKBaseRequest *_Nonnull request) {
         [weakSelf requestSuccess:NO requestEnd:NO];
     }];
+    
+    //请求推荐装修案例列表
+    [self recommendCaseRequest:1];
     
     KNBRecruitmentTypeApi *typeApi = [[KNBRecruitmentTypeApi alloc] init];
     [LCProgressHUD showLoading:@""];
@@ -169,6 +177,12 @@ static CGFloat const kHeaderViewHeight = 50.0f;
         };
     } else if (indexPath.section == 1) {
         cell = [KNBHomeDesignSketchTableViewCell cellWithTableView:tableView];
+        KNBHomeDesignSketchTableViewCell *blockCell = (KNBHomeDesignSketchTableViewCell *)cell;
+        blockCell.modelArray = self.recommendCaseArray;
+        blockCell.selectIndexBlock = ^(NSInteger index) {
+            [weakSelf recommendCaseRequest:index+1];
+        };
+
     } else {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"subCell"];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -227,6 +241,7 @@ static CGFloat const kHeaderViewHeight = 50.0f;
 
 #pragma mark - private method
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+
     // 导航栏处理
     CGFloat yOffset = scrollView.contentOffset.y;
     if (yOffset < 0.0) {
@@ -262,6 +277,27 @@ static CGFloat const kHeaderViewHeight = 50.0f;
             KNB_PerformOnMainThread(^{
                 [weakSelf.subView reloadTableViewAtIndex:index dataSource:modelArray];
             });
+        } else {
+            [weakSelf requestSuccess:NO requestEnd:NO];
+        }
+    } failure:^(__kindof YTKBaseRequest *_Nonnull request) {
+        [weakSelf requestSuccess:NO requestEnd:NO];
+    }];
+}
+
+- (void)recommendCaseRequest:(NSInteger)type {
+    KNBHomeRecommendCaseApi *api = [[KNBHomeRecommendCaseApi alloc] initWithType:type];
+    api.hudString = @"";
+    KNB_WS(weakSelf);
+    [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *_Nonnull request) {
+        if (api.requestSuccess) {
+            NSDictionary *dic = request.responseObject[@"list"];
+            NSArray *modelArray = [KNBHomeRecommendCaseModel changeResponseJSONObject:dic];
+            [weakSelf.recommendCaseArray removeAllObjects];
+            [weakSelf.recommendCaseArray addObjectsFromArray:modelArray];
+            KNBHomeDesignSketchTableViewCell *cell = [weakSelf.mainTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:1]];
+//            [cell.collectionView reloadData];
+            [weakSelf.mainTableView reloadData];
         } else {
             [weakSelf requestSuccess:NO requestEnd:NO];
         }
@@ -321,7 +357,7 @@ static CGFloat const kHeaderViewHeight = 50.0f;
         [_segmentedControl setIndexChangeBlock:^(NSInteger index) {
             if (weakSelf.subView.contentView) {
                 [weakSelf serviceListRequest:index];
-                [weakSelf.subView.contentView setContentOffset:CGPointMake(KNB_SCREEN_WIDTH*index, 0) animated:YES];
+                [weakSelf.subView.contentView setContentOffset:CGPointMake(KNB_SCREEN_WIDTH*index, 0) animated:NO];
             }
         }];
     }
@@ -348,10 +384,10 @@ static CGFloat const kHeaderViewHeight = 50.0f;
     }
 }
 
-- (KNBSearchView *)searchView {
+- (KNBHomeSearchView *)searchView {
     KNB_WS(weakSelf);
     if (!_searchView) {
-        _searchView = [[KNBSearchView alloc] initWithFrame:CGRectMake(0, 0, KNB_SCREEN_WIDTH, KNB_NAV_HEIGHT)];
+        _searchView = [[KNBHomeSearchView alloc] initWithFrame:CGRectMake(0, 0, KNB_SCREEN_WIDTH, KNB_NAV_HEIGHT)];
         _searchView.chatButtonBlock = ^{
             if ([KNBUserInfo shareInstance].isLogin) {
                 KNBHomeChatViewController *chatVC = [[KNBHomeChatViewController alloc] init];
@@ -359,7 +395,10 @@ static CGFloat const kHeaderViewHeight = 50.0f;
             } else {
                 [LCProgressHUD showMessage:@"您还未登录,请先登录"];
             }
-
+        };
+        _searchView.touchBlock = ^{
+            KNBSearchViewController *searchVC = [[KNBSearchViewController alloc] init];
+            [weakSelf.navigationController pushViewController:searchVC animated:YES];
         };
     }
     return _searchView;
@@ -370,5 +409,12 @@ static CGFloat const kHeaderViewHeight = 50.0f;
         _titleArray = [NSArray array];
     }
     return _titleArray;
+}
+
+- (NSMutableArray *)recommendCaseArray {
+    if (!_recommendCaseArray) {
+        _recommendCaseArray = [NSMutableArray array];
+    }
+    return _recommendCaseArray;
 }
 @end

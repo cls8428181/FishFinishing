@@ -64,6 +64,11 @@ extern NSString *const KNBHome_MassageDetail;
  * 获取消息数量
  */
 extern NSString *const KNBHome_MassageNum;
+/**
+ * 获取装修案例推荐列表
+ */
+extern NSString *const KNBHome_RecommendCase;
+
 
 #pragma mark - 入驻商家
 /**

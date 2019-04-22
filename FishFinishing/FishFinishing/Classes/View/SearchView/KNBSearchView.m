@@ -1,205 +1,200 @@
 //
 //  KNBSearchView.m
-//  FishFinishing
+//  KenuoTraining
 //
-//  Created by 常立山 on 2019/3/26.
-//  Copyright © 2019 常立山. All rights reserved.
+//  Created by 常立山 on 2018/7/18.
+//  Copyright © 2018年 Robert. All rights reserved.
 //
 
 #import "KNBSearchView.h"
-#import "NSString+Contain.h"
-#import "NSString+Size.h"
-#import "KNBHomeCityListViewController.h"
-#import "KNAlertView.h"
 
-//高度
-CGFloat KNBSearchViewHeight = 44;
 
-@interface KNBSearchView ()
-//搜索图片
-@property (nonatomic, strong) UIImageView *searchImageView;
-//搜索文字
-@property (nonatomic, strong) UILabel *searchLabel;
-//左边城市选择背景
-@property (nonatomic, strong) UIImageView *chooseCityView;
-//右边聊天按钮
-@property (nonatomic, strong) UIButton *chatButton;
-//默认城市名称
-@property (nonatomic, copy) NSString *defaultCityName;
+@interface KNBSearchView () <UISearchBarDelegate>
+
+@property (nonatomic, strong) UIButton *backButton;
+//是否有返回按钮
+@property (nonatomic, assign) BOOL isHaveBackBtn;
+//是否有取消按钮
+@property (nonatomic, assign) BOOL isHaveCancleBtn;
+@property (nonatomic, assign) BOOL searchBarSearch;
+@property (nonatomic, strong) UIView *bottomLine;
+@property (nonatomic, assign) BOOL isNavView;
+
 @end
+
 
 @implementation KNBSearchView
 
-#pragma mark - life cycle
-- (instancetype)initWithFrame:(CGRect)frame {
+- (instancetype)initWithFrame:(CGRect)frame isNavView:(BOOL)isNavView isHaveBackButton:(BOOL)isHaveBack isHaveCancleButton:(BOOL)isHaveCancle style:(KNBSearchViewStyle)style {
     if (self = [super initWithFrame:frame]) {
+        _style = style;
+        _isHaveBackBtn = isHaveBack;
+        _isHaveCancleBtn = isHaveCancle;
+        _isNavView = isNavView;
+        if (style == KNBSearchViewStyleWhite) {
+            self.backgroundColor = [UIColor whiteColor];
+        } else {
+            self.backgroundColor = KNB_NAV_COLOR;
+        }
         [self configView];
     }
     return self;
 }
 
 - (void)configView {
-    [self addSubview:self.chooseCityView];
-    [self addSubview:self.chooseCityButton];
-    [self addSubview:self.chatButton];
-    [self addSubview:self.searchBgView];
-    self.backgroundColor = [UIColor colorWithHex:0x0096e6];
-    KNB_WS(weakSelf);
-    self.defaultCityName = [KNGetUserLoaction shareInstance].cityName;
-    [self changeButtontTitle:self.defaultCityName];
-    [KNGetUserLoaction shareInstance].completeBlock = ^(NSString *cityName) {
-        if (![weakSelf.defaultCityName isEqualToString:cityName]) {
-            [weakSelf remindChangeCityName:cityName];
-        }
-    };
+    if (self.isHaveBackBtn) {
+        [self addSubview:self.backButton];
+    }
+    if (self.style == KNBSearchViewStyleWhite) {
+        [self addSubview:self.bottomLine];
+    }
+    [self addSubview:self.searchBar];
+    if (self.isHaveCancleBtn) {
+        [self addSubview:self.cancelButton];
+    }
 }
 
-- (void)layoutSubviews {
-    [super layoutSubviews];
+#pragma mark - Layout
++ (BOOL)requiresConstraintBasedLayout {
+    return YES;
+}
+
+- (void)updateConstraints {
     KNB_WS(weakSelf);
-    [self.chooseCityView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(weakSelf);
-        make.top.mas_equalTo(KNB_StatusBar_H + 12);
-        make.width.mas_equalTo(60);
-    }];
-    [self.chooseCityButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.center.equalTo(weakSelf.chooseCityView);
-        make.width.mas_equalTo(55);
-        make.height.mas_equalTo(36);
-    }];
-    [self.chatButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(KNB_StatusBar_H + 12);
-        make.right.mas_equalTo(-25);
-    }];
-    [self.searchBgView mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(weakSelf.chooseCityView.mas_right).mas_offset(10);
-        make.right.equalTo(weakSelf.chatButton.mas_left).mas_offset(-10);
-        make.centerY.equalTo(weakSelf.chooseCityView);
+
+    if (self.isHaveBackBtn) {
+        [self.backButton mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_offset(0);
+            make.top.mas_equalTo(weakSelf.isNavView ? KNB_StatusBar_H : 10);
+            make.width.mas_equalTo(44);
+            make.height.mas_equalTo(44);
+        }];
+    }
+
+    [self.searchBar mas_remakeConstraints:^(MASConstraintMaker *make) {
+        //有返回按钮
+        if (weakSelf.isHaveBackBtn) {
+            make.left.mas_equalTo(weakSelf.backButton.mas_right).mas_offset(0);
+            make.width.mas_equalTo(weakSelf.isHaveCancleBtn ? KNB_SCREEN_WIDTH - 114 : KNB_SCREEN_WIDTH - 68);
+        } else { //无返回按钮
+            make.left.mas_equalTo(12);
+            make.width.mas_equalTo(weakSelf.isHaveCancleBtn ? KNB_SCREEN_WIDTH - 77 : KNB_SCREEN_WIDTH - 24);
+        }
+        make.top.mas_equalTo((weakSelf.isNavView ? KNB_StatusBar_H : 3) + 7);
         make.height.mas_equalTo(30);
     }];
-    [self.searchImageView mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(weakSelf.searchBgView.mas_left).offset(15);
-        make.centerY.mas_equalTo(weakSelf.searchBgView.mas_centerY);
-    }];
-    [self.searchLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(weakSelf.searchImageView.mas_right).offset(10);
-        make.centerY.mas_equalTo(weakSelf.searchBgView.mas_centerY);
-    }];
+
+    if (self.isHaveCancleBtn) {
+        [self.cancelButton mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(weakSelf.searchBar.mas_right).offset(15);
+            make.centerY.mas_equalTo(weakSelf.searchBar.mas_centerY);
+            make.width.mas_equalTo(40);
+            make.height.mas_equalTo(44);
+        }];
+    }
+
+    if (self.style == KNBSearchViewStyleWhite) {
+        [self.bottomLine mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.right.bottom.mas_equalTo(weakSelf);
+            make.height.mas_offset(1);
+        }];
+    }
+
+    [super updateConstraints];
 }
 
-- (void)touchSearchBgViewAction:(UITapGestureRecognizer *)gr {
-    if (self.touchBlock) {
-        self.touchBlock();
+- (void)touchBackButtonAction:(UIButton *)sender {
+    if (self.backBlock) {
+        self.backBlock();
     }
 }
 
-- (void)chooseCityButtonAction:(UIButton *)button {
-    KNB_WS(weakSelf);
-    KNBHomeCityListViewController *cityListVC = [[KNBHomeCityListViewController alloc] init];
-    cityListVC.cityBlock = ^(NSString *cityName, NSString *areaId) {
-        [[KNGetUserLoaction shareInstance] saveUserCityName:cityName areaId:areaId];
-        weakSelf.defaultCityName = cityName;
-        [weakSelf changeButtontTitle:cityName];
-    };
-    KNBNavgationController *nav = [[KNBNavgationController alloc] initWithRootViewController:cityListVC];
-    [KNB_AppDelegate.navController presentViewController:nav animated:YES completion:nil];
-}
-
-- (void)changeButtontTitle:(NSString *)cityName {
-    self.defaultCityName = cityName;
-    cityName = [cityName replaceString:@"市" withString:@""];
-    CGFloat btnW = [cityName widthWithFont:[UIFont systemFontOfSize:14] constrainedToHeight:20];
-    if (btnW >= 35) {
-        btnW = 35;
-    }
-    [self.chooseCityButton setImageEdgeInsets:UIEdgeInsetsMake(0, 5, 0, btnW)];
-    [self.chooseCityButton setTitle:cityName forState:UIControlStateNormal];
-    [KNGetUserLoaction shareInstance].selectCityName = cityName;
-}
-
-//提醒用户是否切换城市
-- (void)remindChangeCityName:(NSString *)cityName {
-    KNB_WS(weakSelf);
-    KNAlertView *alterView = [[KNAlertView alloc] initAlterTitle:nil];
-    alterView.attributedString = [[KNGetUserLoaction shareInstance] remidTitle:cityName];
-    alterView.alterBlock = ^(NSInteger selectIndex) {
-        if (selectIndex == 1) {
-            [[KNGetUserLoaction shareInstance] saveUserCityName:cityName areaId:nil];
-            [weakSelf changeButtontTitle:cityName];
+- (void)cancelButtonAction:(UIButton *)button {
+    if (_isHaveBackBtn) {
+        if (self.searchBarSearch) {
+            [self searchBarCancelButtonClicked:self.searchBar];
         }
-    };
-    [alterView showAlterView];
+    }
+    !self.backBlock ?: self.backBlock();
 }
 
-- (void)chatButtonAction {
-    !self.chatButtonBlock ?: self.chatButtonBlock();
+#pragma mark - UISearchBarDelegate
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+    if (_delegate && [_delegate respondsToSelector:@selector(searchView:startSearchWithSearchText:)]) {
+        [_delegate searchView:self startSearchWithSearchText:searchBar.text];
+    }
 }
 
+- (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar {
+    if (_delegate && [_delegate respondsToSelector:@selector(searchViewSearchBarBeginEditing)]) {
+        [_delegate searchViewSearchBarBeginEditing];
+    }
+    return YES;
+}
+
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
+    self.searchBarSearch = NO;
+    searchBar.text = nil;
+    [searchBar resignFirstResponder];
+}
+- (BOOL)searchBar:(UISearchBar *)searchBar shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
+    self.searchBarSearch = YES;
+    return YES;
+}
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
+    if (_delegate && [_delegate respondsToSelector:@selector(searchViewSearchBarTextDidChange:)]) {
+        [_delegate searchViewSearchBarTextDidChange:searchText];
+    }
+}
 #pragma mark - Setter
-
-- (UIView *)searchBgView {
-    if (!_searchBgView) {
-        _searchBgView = [[UIView alloc] init];
-        _searchBgView.backgroundColor = [UIColor colorWithRed:200/255.0 green:200/255.0 blue:200/255.0 alpha:0.6];
-        _searchBgView.layer.cornerRadius = 15;
-        _searchBgView.layer.masksToBounds = YES;
-        [_searchBgView addSubview:self.searchImageView];
-        [_searchBgView addSubview:self.searchLabel];
-        
-        UITapGestureRecognizer *tapGR = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(touchSearchBgViewAction:)];
-        [_searchBgView addGestureRecognizer:tapGR];
+- (UIButton *)backButton {
+    if (!_backButton) {
+        _backButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        if (self.style == KNBSearchViewStyleWhite) {
+            [_backButton setImage:[UIImage imageNamed:@"smart_btn_Return"] forState:UIControlStateNormal];
+        } else {
+            [_backButton setImage:[UIImage imageNamed:@"icon_return"] forState:UIControlStateNormal];
+        }
+        [_backButton addTarget:self action:@selector(touchBackButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     }
-    return _searchBgView;
+    return _backButton;
 }
 
-- (UIImageView *)searchImageView {
-    if (!_searchImageView) {
-        _searchImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"knb_home_search"]];
+- (KNBSearchBar *)searchBar {
+    if (!_searchBar) {
+        if (self.style == KNBSearchViewStyleWhite) {
+            _searchBar = [[KNBSearchBar alloc] initWithbBackgroudColor:[UIColor colorWithHex:0xebebeb] borderColor:[UIColor colorWithHex:0xebebeb]];
+        } else {
+            _searchBar = [[KNBSearchBar alloc] initWithbBackgroudColor:[UIColor whiteColor] borderColor:[UIColor whiteColor]];
+        }
+        _searchBar.delegate = self;
     }
-    return _searchImageView;
+    return _searchBar;
 }
 
-- (UILabel *)searchLabel {
-    if (!_searchLabel) {
-        _searchLabel = [[UILabel alloc] init];
-        _searchLabel.font = [UIFont systemFontOfSize:12];
-        _searchLabel.textColor = [UIColor whiteColor];
-        _searchLabel.textAlignment = NSTextAlignmentLeft;
-        _searchLabel.text = @"猜猜我的预算能装成什么样?";
+- (UIButton *)cancelButton {
+    if (!_cancelButton) {
+        _cancelButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        _cancelButton.titleLabel.font = [UIFont systemFontOfSize:14];
+        [_cancelButton setTitle:@"取消" forState:UIControlStateNormal];
+        if (self.style == KNBSearchViewStyleWhite) {
+            [_cancelButton setTitleColor:[UIColor colorWithHex:0x666666] forState:UIControlStateNormal];
+            [_cancelButton setTitleColor:[UIColor colorWithHex:0x666666] forState:UIControlStateHighlighted];
+        } else {
+            [_cancelButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+            [_cancelButton setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
+        }
+
+        [_cancelButton addTarget:self action:@selector(cancelButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     }
-    return _searchLabel;
+    return _cancelButton;
 }
 
-- (UIImageView *)chooseCityView {
-    if (!_chooseCityView) {
-        _chooseCityView = [[UIImageView alloc] init];
-        _chooseCityView.image = KNBImages(@"knb_home_locationbg");
+- (UIView *)bottomLine {
+    if (!_bottomLine) {
+        _bottomLine = [[UIView alloc] init];
+        _bottomLine.backgroundColor = [UIColor colorWithHex:0xeeeeee];
     }
-    return _chooseCityView;
+    return _bottomLine;
 }
-
-- (UIButton *)chooseCityButton {
-    if (!_chooseCityButton) {
-        _chooseCityButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        UIImage *image = [UIImage imageNamed:@"knb_home_location"];
-        [_chooseCityButton setImage:image forState:UIControlStateNormal];
-        [_chooseCityButton setTitle:@"北京" forState:UIControlStateNormal];
-        _chooseCityButton.titleLabel.font = [UIFont systemFontOfSize:14.f];
-        [_chooseCityButton addTarget:self action:@selector(chooseCityButtonAction:) forControlEvents:UIControlEventTouchUpInside];
-        [_chooseCityButton setTitleEdgeInsets:UIEdgeInsetsMake(0, 5, 0, 0)];
-        [self changeButtontTitle:self.defaultCityName];
-        _chooseCityButton.titleLabel.lineBreakMode = NSLineBreakByTruncatingTail;
-    }
-    return _chooseCityButton;
-}
-
-- (UIButton *)chatButton {
-    if (!_chatButton) {
-        _chatButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_chatButton setImage:KNBImages(@"knb_home_news") forState:UIControlStateNormal];
-        [_chatButton addTarget:self action:@selector(chatButtonAction) forControlEvents:UIControlEventTouchUpInside];
-    }
-    return _chatButton;
-}
-
 @end

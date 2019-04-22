@@ -8,7 +8,6 @@
 
 #import "KNBDesignSketchCollectionViewCell.h"
 #import "NSDate+BTAddition.h"
-#import <UIImageView+WebCache.h>
 
 @interface KNBDesignSketchCollectionViewCell ()
 

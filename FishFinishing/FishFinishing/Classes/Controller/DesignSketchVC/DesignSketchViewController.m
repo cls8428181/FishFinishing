@@ -10,12 +10,11 @@
 //views
 #import "KNBDesignSketchCollectionViewCell.h"
 #import "KNBDesignSketchCollectionSectionView.h"
-#import "KNBSortView.h"
 #import "KNBRecruitmentCaseListApi.h"
 //controllers
 #import "KNBDesignSketchDetailViewController.h"
 #import "KNBDesignSketchModel.h"
-#import <CQTopBarViewController.h>
+#import "CQTopBarViewController.h"
 #import "KNBHomeCompanyTagsViewController.h"
 #import "KNBHomeCompanyHouseViewController.h"
 #import "KNBHomeCompanyAreaViewController.h"
@@ -23,11 +22,11 @@
 @interface DesignSketchViewController ()<UICollectionViewDelegate, UICollectionViewDataSource>
 //滑动区域
 @property (nonatomic, strong) UICollectionView *collectionView;
-//筛选弹框
-@property (nonatomic, strong) KNBSortView *sortView;
 //顶部下拉筛选
 @property (nonatomic, strong) KNBDesignSketchCollectionSectionView *sectionView;
 @property (nonatomic, strong) CQTopBarViewController *topBar;
+//网络请求
+@property (nonatomic, strong) KNBRecruitmentCaseListApi *api;
 
 @end
 
@@ -67,10 +66,14 @@
     self.naviView.titleNaviLabel.textColor = [UIColor blackColor];
     self.view.backgroundColor = [UIColor knBgColor];
     
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(InfoNotificationAction:) name:NSStringFromClass([KNBHomeCompanyTagsViewController class]) object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(TagsNotificationAction:) name:NSStringFromClass([KNBHomeCompanyTagsViewController class]) object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(HouseNotificationAction:) name:NSStringFromClass([KNBHomeCompanyHouseViewController class]) object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(AreaNotificationAction:) name:NSStringFromClass([KNBHomeCompanyAreaViewController class]) object:nil];
+
     self.topBar = [[CQTopBarViewController alloc] init];
     self.topBar.segmentFrame = CGRectMake(0, KNB_NAV_HEIGHT, KNB_SCREEN_WIDTH, 50);
     self.topBar.sectionTitles = @[@"风格",@"户型",@"面积"];
+    self.topBar.isDesign = YES;
     self.topBar.pageViewClasses = @[[KNBHomeCompanyTagsViewController class],[KNBHomeCompanyHouseViewController class],[KNBHomeCompanyAreaViewController class]];
     self.topBar.segmentlineColor = [UIColor whiteColor];
     self.topBar.segmentImage = @"knb_home_icon_down";
@@ -85,26 +88,18 @@
 }
 
 - (void)addUI {
-//    [self.view addSubview:self.collectionView];
 }
 
 - (void)fetchData {
-    KNBRecruitmentCaseListApi *api = [[KNBRecruitmentCaseListApi alloc] init];
-//    api.page = 1;
-//    api.limit = 10;
-//    api.city_name = [KNGetUserLoaction shareInstance].cityName;
-//    api.style_id = 1;
-//    api.apartment = @"";
-//    api.min_area = 0.00;
-//    api.max_area = 99.99;
-    api.hudString = @"";
+
     KNB_WS(weakSelf);
-    [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *_Nonnull request) {
-        if (api.requestSuccess) {
+    [self.api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *_Nonnull request) {
+        if (weakSelf.api.requestSuccess) {
+            [weakSelf.dataArray removeAllObjects];
             NSDictionary *dic = request.responseObject[@"list"];
             NSArray *modelArray = [KNBDesignSketchModel changeResponseJSONObject:dic];
-            [self.dataArray addObjectsFromArray:modelArray];
-            [self.collectionView reloadData];
+            [weakSelf.dataArray addObjectsFromArray:modelArray];
+            [weakSelf.collectionView reloadData];
         } else {
             [weakSelf requestSuccess:NO requestEnd:NO];
         }
@@ -133,31 +128,6 @@
     return CGSizeMake(170, 192);
 }
 
-- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
-    KNB_WS(weakSelf);
-    self.sectionView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"KNBDesignSketchCollectionSectionView" forIndexPath:indexPath];
-    self.sectionView.optionCompleteBlock = ^(KNBDesignSketchCollectionSectionView * _Nonnull optionView, KNBOptionViewButtonType type) {
-        switch (type) {
-            case KNBOptionViewButtonType_Style: {
-                if (weakSelf.sortView.height == 0.0) {
-                    [weakSelf.sortView showSortViewWithSortTag:0];
-                }
-                break;
-            }
-            case KNBOptionViewButtonType_Type: {
-                break;
-            }
-            case KNBOptionViewButtonType_Area: {
-                break;
-            }
-            default:
-                break;
-        }
-    };
-    [self.view insertSubview:self.sortView belowSubview:self.sectionView];
-    return self.sectionView;
-}
-
 //cell的点击事件
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     KNBDesignSketchModel *model = self.dataArray[indexPath.row];
@@ -170,6 +140,67 @@
 /*
  *  所有button、gestureRecognizer的响应事件都放在这个区域里面，不要到处乱放。
  */
+- (void)TagsNotificationAction:(NSNotification *)notification {
+    KNBRecruitmentTypeModel *model = notification.userInfo[@"model"];
+    [self.topBar topBarReplaceObjectsAtIndexes:0 withObjects:model.catName];
+    self.api.style_id = [model.typeId integerValue];
+    [self fetchData];
+}
+
+- (void)HouseNotificationAction:(NSNotification *)notification {
+    NSArray *tempArray = notification.userInfo[@"houseArray"];
+    NSString *houseStr = @"";
+    NSString *apartment = @"";
+    apartment = [apartment stringByAppendingString:@"["];
+    if ([tempArray[0] integerValue] != 0) {
+        houseStr = [houseStr stringByAppendingString:[NSString stringWithFormat:@"%ld室、",[tempArray[0] integerValue]]];
+        apartment = [apartment stringByAppendingString:[NSString stringWithFormat:@"[1,%ld],",[tempArray[0] integerValue]]];
+    }
+    if ([tempArray[1] integerValue] != 0) {
+        houseStr = [houseStr stringByAppendingString:[NSString stringWithFormat:@"%ld厅、",[tempArray[1] integerValue]]];
+        apartment = [apartment stringByAppendingString:[NSString stringWithFormat:@"[2,%ld],",[tempArray[1] integerValue]]];
+    }
+    if ([tempArray[2] integerValue] != 0) {
+        houseStr = [houseStr stringByAppendingString:[NSString stringWithFormat:@"%ld厨、",[tempArray[2] integerValue]]];
+        apartment = [apartment stringByAppendingString:[NSString stringWithFormat:@"[3,%ld],",[tempArray[2] integerValue]]];
+    }
+    if ([tempArray[3] integerValue] != 0) {
+        houseStr = [houseStr stringByAppendingString:[NSString stringWithFormat:@"%ld卫、",[tempArray[3] integerValue]]];
+        apartment = [apartment stringByAppendingString:[NSString stringWithFormat:@"[4,%ld],",[tempArray[3] integerValue]]];
+    }
+    if ([tempArray[4] integerValue] != 0) {
+        houseStr = [houseStr stringByAppendingString:[NSString stringWithFormat:@"%ld阳台",[tempArray[4] integerValue]]];
+        apartment = [apartment stringByAppendingString:[NSString stringWithFormat:@"[5,%ld]",[tempArray[0] integerValue]]];
+    }
+    if ([[houseStr substringFromIndex:[houseStr length]-1] isEqualToString:@"、"]) {
+        houseStr = [houseStr substringToIndex:[houseStr length]-1];
+    }
+    if ([[apartment substringFromIndex:[apartment length]-1] isEqualToString:@","]) {
+        apartment = [apartment substringToIndex:[apartment length]-1];
+    }
+    apartment = [apartment stringByAppendingString:@"]"];
+    [self.topBar topBarReplaceObjectsAtIndexes:1 withObjects:houseStr];
+    self.api.apartment = apartment;
+    [self fetchData];
+}
+
+- (void)AreaNotificationAction:(NSNotification *)notification {
+    NSString *titleString = notification.userInfo[@"text"];
+    [self.topBar topBarReplaceObjectsAtIndexes:2 withObjects:titleString];
+    if ([titleString containsString:@"全部"]) {
+        self.api.min_area = 0.00;
+        self.api.max_area = 999.00;
+    } else if ([titleString containsString:@"以上"]) {
+        self.api.min_area = 120.00;
+        self.api.max_area = 999.00;
+    } else {
+        NSArray *strArray = [titleString componentsSeparatedByString:@"-"];
+        self.api.min_area = [strArray.firstObject doubleValue];
+        self.api.max_area = [strArray.lastObject doubleValue];
+    }
+    [self fetchData];
+}
+
 
 #pragma mark - Getters And Setters
 /* getter和setter全部都放在最后*/
@@ -187,23 +218,17 @@
         _collectionView.delegate = self;
         _collectionView.dataSource = self;
         [_collectionView registerNib:[UINib nibWithNibName:@"KNBDesignSketchCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"KNBDesignSketchCollectionViewCell"];
-        [_collectionView registerNib:[UINib nibWithNibName:@"KNBDesignSketchCollectionSectionView" bundle:nil] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"KNBDesignSketchCollectionSectionView"];
     }
     return _collectionView;
 }
 
-- (KNBSortView *)sortView {
-    if (!_sortView) {
-        _sortView = [[KNBSortView alloc] initWithFrame:CGRectMake(0, KNB_NAV_HEIGHT + 50, KNB_SCREEN_WIDTH, 0) sortArr:@[ @"地中海风格", @"美式风格", @"中式风格", @"最受欢迎" ] superView:self.collectionView optionView:_sectionView];
-        KNB_WS(weakSelf);
-        _sortView.sortClicked = ^(NSInteger sortTag) {
-//            weakSelf.selctSortTag = sortTag;
-//            [weakSelf getAllDataArrayWithSortTag:sortTag];
-//            [weakSelf.sortView showSortViewWithSortTag:sortTag];
-//            [weakSelf requestLocalDataWith:1];
-        };
+- (KNBRecruitmentCaseListApi *)api {
+    if (!_api) {
+        _api = [[KNBRecruitmentCaseListApi alloc] init];
+        _api.city_name = [KNGetUserLoaction shareInstance].cityName;
+        _api.hudString = @"";
     }
-    return _sortView;
+    return _api;
 }
 
 @end

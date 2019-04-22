@@ -7,7 +7,6 @@
 //
 
 #import "KNBMeHeaderView.h"
-#import <UIImageView+WebCache.h>
 
 @interface KNBMeHeaderView ()
 //头像

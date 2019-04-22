@@ -8,10 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "KNBHomeServiceModel.h"
+#import "KNBHomeRecommendCaseModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface KNBHomeDesignSketchSubTableViewCell : UICollectionViewCell
+@property (nonatomic, strong) KNBHomeRecommendCaseModel *model;
 /**
  cell 创建
  */

@@ -11,7 +11,6 @@
 #import "KNBOrderDownTableViewCell.h"
 #import "KNBRecruitmentPortraitTableViewCell.h"
 #import "KNBRecruitmentEnterTableViewCell.h"
-#import <UIImageView+WebCache.h>
 
 @interface KNBMeSetViewController ()
 

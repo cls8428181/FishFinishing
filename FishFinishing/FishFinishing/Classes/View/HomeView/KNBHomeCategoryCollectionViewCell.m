@@ -7,7 +7,6 @@
 //
 
 #import "KNBHomeCategoryCollectionViewCell.h"
-#import <UIImageView+WebCache.h>
 
 @interface KNBHomeCategoryCollectionViewCell ()
 @property (weak, nonatomic) IBOutlet UIImageView *iconImageView;

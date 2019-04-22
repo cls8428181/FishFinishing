@@ -12,18 +12,26 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="235" id="KGk-i7-Jjw" customClass="KNBHomeDesignSketchSubTableViewCell">
-            <rect key="frame" x="0.0" y="0.0" width="388" height="235"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="190" id="KGk-i7-Jjw" customClass="KNBHomeDesignSketchSubTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="321" height="190"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="388" height="234.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="321" height="189.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="knb_home_effect" translatesAutoresizingMaskIntoConstraints="NO" id="nbP-2y-2ob">
-                        <rect key="frame" x="0.0" y="0.0" width="388" height="234.5"/>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="knb_default_style" translatesAutoresizingMaskIntoConstraints="NO" id="nbP-2y-2ob">
+                        <rect key="frame" x="0.0" y="0.0" width="321" height="189.5"/>
                     </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="风格" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3gP-nI-9Qf">
+                        <rect key="frame" x="289" y="168.5" width="27" height="16"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
+                    <constraint firstAttribute="bottom" secondItem="3gP-nI-9Qf" secondAttribute="bottom" constant="5" id="C9F-ci-lJT"/>
+                    <constraint firstAttribute="trailing" secondItem="3gP-nI-9Qf" secondAttribute="trailing" constant="5" id="DCY-I1-U85"/>
                     <constraint firstAttribute="trailing" secondItem="nbP-2y-2ob" secondAttribute="trailing" id="Hna-54-u8w"/>
                     <constraint firstAttribute="bottom" secondItem="nbP-2y-2ob" secondAttribute="bottom" id="dUY-u1-528"/>
                     <constraint firstItem="nbP-2y-2ob" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="gz3-O6-amp"/>
@@ -31,10 +39,14 @@
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
-            <point key="canvasLocation" x="94.400000000000006" y="132.68365817091455"/>
+            <connections>
+                <outlet property="iconImageView" destination="nbP-2y-2ob" id="fz0-9L-9ek"/>
+                <outlet property="titleLabel" destination="3gP-nI-9Qf" id="mWO-DX-dXk"/>
+            </connections>
+            <point key="canvasLocation" x="40.799999999999997" y="112.44377811094454"/>
         </tableViewCell>
     </objects>
     <resources>
-        <image name="knb_home_effect" width="134" height="159"/>
+        <image name="knb_default_style" width="130" height="155"/>
     </resources>
 </document>

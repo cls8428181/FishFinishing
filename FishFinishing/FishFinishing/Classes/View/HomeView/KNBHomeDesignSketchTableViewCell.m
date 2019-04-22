@@ -11,12 +11,14 @@
 #import <HMSegmentedControl.h>
 //views
 #import "KNBHomeDesignSketchSubTableViewCell.h"
+#import "KNBHomeRecommendCaseModel.h"
+#import "KNBHomeCompanyDetailViewController.h"
+#import "KNBHomeServiceModel.h"
 
 @interface KNBHomeDesignSketchTableViewCell () <UICollectionViewDelegate, UICollectionViewDataSource>
 //头部滑动视图
 @property (nonatomic, strong) HMSegmentedControl *segmentedControl;
-//滑动区域
-@property (nonatomic, strong) UICollectionView *collectionView;
+
 
 @end
 
@@ -61,7 +63,7 @@
 #pragma mark - private method
 
 + (CGFloat)cellHeight {
-    return 220;
+    return 240;
 }
 
 #pragma mark - System Delegate
@@ -70,23 +72,29 @@
 }
 //每一组有多少个cell
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return 5;
+    return self.modelArray.count;
 }
 //每一个cell是什么
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    KNBHomeRecommendCaseModel *model = self.modelArray[indexPath.row];
     KNBHomeDesignSketchSubTableViewCell *cell = [KNBHomeDesignSketchSubTableViewCell cellWithCollectionView:collectionView indexPath:indexPath];
+    cell.backgroundColor = [UIColor colorWithHex:0xf2f2f2];
+    cell.model = model;
     return cell;
 }
 //定义每一个cell的大小
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    return CGSizeMake(133, 155);
+    return CGSizeMake(130, 155);
 }
 
 //cell的点击事件
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    DesignSketchViewController *vc = [[DesignSketchViewController alloc] init];
-    vc.isTabbar = NO;
-    [[[self getCurrentViewController] navigationController] pushViewController:vc animated:YES];
+    KNBHomeRecommendCaseModel *model = self.modelArray[indexPath.row];
+    KNBHomeServiceModel *serviceModel = [[KNBHomeServiceModel alloc] init];
+    serviceModel.serviceId = model.caseId;
+    KNBHomeCompanyDetailViewController *detailVC = [[KNBHomeCompanyDetailViewController alloc] init];
+    detailVC.model = serviceModel;
+    [[[self getCurrentViewController] navigationController] pushViewController:detailVC animated:YES];
 }
 
 - (UIViewController *)getCurrentViewController{
@@ -102,7 +110,7 @@
 #pragma mark - lazy load
 - (HMSegmentedControl *)segmentedControl {
     if (!_segmentedControl) {
-        _segmentedControl = [[HMSegmentedControl alloc] initWithSectionTitles:@[ @"风格", @"户型", @"空间", @"局部" ]];
+        _segmentedControl = [[HMSegmentedControl alloc] initWithSectionTitles:@[ @"风格", @"户型", @"空间"]];
         _segmentedControl.titleTextAttributes = @{NSForegroundColorAttributeName : [UIColor blackColor], NSFontAttributeName : [UIFont systemFontOfSize:15.0]};
         _segmentedControl.selectedTitleTextAttributes = @{NSForegroundColorAttributeName : [UIColor colorWithHex:0x009fe8], NSFontAttributeName : [UIFont systemFontOfSize:15.0]};
         _segmentedControl.selectionIndicatorColor = [UIColor colorWithHex:0x009fe8];
@@ -112,7 +120,7 @@
         _segmentedControl.selectionIndicatorEdgeInsets = UIEdgeInsetsMake(0, 8, 0, 15);
         KNB_WS(weakSelf);
         [_segmentedControl setIndexChangeBlock:^(NSInteger index) {
-            [weakSelf.collectionView reloadData];
+            !weakSelf.selectIndexBlock ?: weakSelf.selectIndexBlock(index);
         }];
     }
     return _segmentedControl;
@@ -132,6 +140,11 @@
         [_collectionView registerClass:[KNBHomeDesignSketchSubTableViewCell class] forCellWithReuseIdentifier:@"KNBHomeDesignSketchSubTableViewCell"];
     }
     return _collectionView;
+}
+
+- (void)setModelArray:(NSArray *)modelArray {
+    _modelArray = modelArray;
+    [self.collectionView reloadData];
 }
 
 @end

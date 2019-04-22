@@ -31,6 +31,8 @@ NSString *const KNBHome_SingleArea = @"/Api/Default/getregion"; //获取单独�
 NSString *const KNBHome_MassageList = @"/Api/Default/getMassageList"; //获取消息列表
 NSString *const KNBHome_MassageDetail = @"/Api/Default/getMassage"; //获取消息详情
 NSString *const KNBHome_MassageNum = @"/Api/Default/getMassageNum"; //获取消息数量
+NSString *const KNBHome_RecommendCase = @"/Api/Facilitator/getRecommendCase"; //获取装修案例推荐列表
+
 
 #pragma mark - 入驻商家
 NSString *const KNBRecruitment_Type = @"/Api/Facilitator/getcat";          //入驻商家类型

@@ -14,7 +14,6 @@ target 'FishFinishing' do
     pod 'MJRefresh'
     pod 'IQKeyboardManager'
     pod 'HMSegmentedControl'
-    pod 'CQTopBar'
     pod 'pop'
     pod 'Pingpp', '~> 2.2.10'
     pod 'Pingpp/Alipay'

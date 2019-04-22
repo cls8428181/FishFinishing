@@ -175,15 +175,15 @@
         for (int i = 0; i < self.dataArray.count; i++) {
             KNBChoiceTableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0]];
             if ( [cell.titleLabel.text isEqualToString:@"卧室"]) {
-                bedroomNum = bedroomNum + 1;
+                bedroomNum = bedroomNum + [cell.numTextField.text integerValue];
             } else if ( [cell.titleLabel.text isEqualToString:@"客厅"] ||  [cell.titleLabel.text isEqualToString:@"餐厅"]) {
-                hallNum = hallNum + 1;
+                hallNum = hallNum + [cell.numTextField.text integerValue];
             }else if ( [cell.titleLabel.text isEqualToString:@"厨房"]) {
-                kitchenNum = kitchenNum + 1;
+                kitchenNum = kitchenNum + [cell.numTextField.text integerValue];
             } else if ( [cell.titleLabel.text isEqualToString:@"卫生间"]) {
-                toiletNum = toiletNum + 1;
+                toiletNum = toiletNum + [cell.numTextField.text integerValue];
             } else {
-                balconyNum = balconyNum + 1;
+                balconyNum = balconyNum + [cell.numTextField.text integerValue];
             }
         }
         NSArray *tempArray = @[

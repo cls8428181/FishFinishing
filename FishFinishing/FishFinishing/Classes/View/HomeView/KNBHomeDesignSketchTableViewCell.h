@@ -11,6 +11,10 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface KNBHomeDesignSketchTableViewCell : UITableViewCell
+@property (nonatomic, copy) void (^selectIndexBlock)(NSInteger index);
+//滑动区域
+@property (nonatomic, strong) UICollectionView *collectionView;
+@property (nonatomic, strong) NSArray *modelArray;
 
 /**
  cell 创建

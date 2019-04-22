@@ -13,8 +13,9 @@
 #import "KNBRecruitmentServiceListApi.h"
 #import "KNBHomeServiceModel.h"
 #import "KNBCompanyListTagsView.h"
-#import <CQTopBarViewController.h>
+#import "CQTopBarViewController.h"
 #import "KNBHomeCompanyTagsViewController.h"
+#import "KNBCityModel.h"
 
 @interface KNBHomeCompanyListViewController ()
 //header view
@@ -22,6 +23,8 @@
 // 空页面
 @property (nonatomic, strong) KNBDataEmptySet *emptySet;
 @property (nonatomic, strong) CQTopBarViewController *topBar;
+@property (nonatomic, strong) NSArray *cityArray;
+@property (nonatomic, strong) KNBRecruitmentServiceListApi *serviceApi;
 
 @end
 
@@ -42,21 +45,20 @@
 - (void)configuration {
     [self.naviView addLeftBarItemImageName:@"knb_back_black" target:self sel:@selector(backAction)];
     self.view.backgroundColor = [UIColor knBgColor];
-//    self.knbTableView.tableHeaderView = self.headerView;
 }
 
 - (void)addUI {
     [self.view addSubview:self.emptySet];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(InfoNotificationAction:) name:NSStringFromClass([KNBHomeCompanyTagsViewController class]) object:nil];
-    self.topBar = [[CQTopBarViewController alloc] init];
-    self.topBar.segmentFrame = CGRectMake(0, KNB_NAV_HEIGHT, KNB_SCREEN_WIDTH, 50);
-    self.topBar.sectionTitles = @[@"风格",@"区域"];
-    self.topBar.pageViewClasses = @[[KNBHomeCompanyTagsViewController class],[KNBHomeCompanyTagsViewController class]];
-    self.topBar.segmentlineColor = [UIColor whiteColor];
-    self.topBar.segmentImage = @"knb_home_icon_down";
-    self.topBar.selectSegmentImage = @"knb_home_icon_up";
-    self.topBar.selectedTitleTextColor = [UIColor colorWithHex:0x0096e6];
+    self.topBar.model = self.model;
+    for (KNBCityModel *provinceModel in self.cityArray) {
+        for (KNBCityModel *cityModel in provinceModel.cityList) {
+            if ([cityModel.name isEqual:[KNGetUserLoaction shareInstance].cityName]) {
+                self.topBar.areaId = [cityModel.code integerValue];
+            }
+        }
+    }
     [self addChildViewController:self.topBar];
     [self.view addSubview:self.topBar.view];
     [self.topBar.footerView addSubview:self.knbTableView];
@@ -65,20 +67,28 @@
 }
 
 - (void)InfoNotificationAction:(NSNotification *)notification{
-    [self.topBar topBarReplaceObjectsAtIndexes:1 withObjects:notification.userInfo[@"text"]];
+    [self.topBar topBarReplaceObjectsAtIndexes:[notification.userInfo[@"index"] integerValue] withObjects:notification.userInfo[@"text"]];
+    if ([notification.userInfo[@"index"] isEqualToString:@"0"]) {
+        for (KNBRecruitmentTypeModel *model in self.model.childList) {
+            if ([model.catName isEqualToString:notification.userInfo[@"text"]]) {
+                self.serviceApi.cat_id = [model.typeId integerValue];
+            }
+        }
+    } else {
+        self.serviceApi.area_name = notification.userInfo[@"text"];
+    }
+    [self fetchData];
 }
 
 - (void)fetchData {
-    KNBRecruitmentServiceListApi *serviceApi = [[KNBRecruitmentServiceListApi alloc] initWithLng:[KNGetUserLoaction shareInstance].lng lat:[KNGetUserLoaction shareInstance].lat];
-    serviceApi.cat_parent_id = [self.model.typeId integerValue];
-    serviceApi.page = 1;
-    serviceApi.limit = 10;
+
     KNB_WS(weakSelf);
-    [serviceApi startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *_Nonnull request) {
-        if (serviceApi.requestSuccess) {
+    [self.serviceApi startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *_Nonnull request) {
+        if (weakSelf.serviceApi.requestSuccess) {
+            [weakSelf.dataArray removeAllObjects];
             NSDictionary *dic = request.responseObject[@"list"];
             NSArray *modelArray = [KNBHomeServiceModel changeResponseJSONObject:dic];
-            [self.dataArray addObjectsFromArray:modelArray];
+            [weakSelf.dataArray addObjectsFromArray:modelArray];
             [weakSelf requestSuccess:YES requestEnd:YES];
         } else {
             [weakSelf requestSuccess:NO requestEnd:NO];
@@ -131,30 +141,13 @@
 
 #pragma mark - Getters And Setters
 /* getter和setter全部都放在最后*/
-- (KNBHomeCompanyListHeaderView *)headerView {
-    KNB_WS(weakSelf);
-    if (!_headerView) {
-        _headerView = [[NSBundle mainBundle] loadNibNamed:@"KNBHomeCompanyListHeaderView" owner:nil options:nil].lastObject;
-        _headerView.frame = CGRectMake(0, 0, KNB_SCREEN_WIDTH, 50);
-        _headerView.leftButtonBlock = ^{
-            [KNBCompanyListTagsView showTagsPickerWithDataSource:@[@"1",@"2"] superView:weakSelf.headerView resultBlock:^(id selectValue) {
-                
-            } cancelBlock:^{
-                
-            }];
-        };
-        _headerView.middleButtonBlock = ^{
-            
-        };
-    }
-    return _headerView;
-}
-
 - (void)setModel:(KNBRecruitmentTypeModel *)model {
     _model = model;
     self.naviView.title = model.catName;
     if ([model.catName isEqualToString:@"装修工人"]) {
-        [self.headerView.leftButton setTitle:@"工种" forState: UIControlStateNormal];
+        self.topBar.sectionTitles = @[@"工种",@"区域"];
+    } else {
+        self.topBar.sectionTitles = @[@"风格",@"区域"];
     }
     if ([model.catName isEqualToString:@"设计师"]) {
         self.headerView.middleButton.hidden = YES;
@@ -169,6 +162,38 @@
         _emptySet.hidden = YES;
     }
     return _emptySet;
+}
+
+- (NSArray *)cityArray {
+    if (!_cityArray) {
+        NSString *filePath =[[NSBundle mainBundle] pathForResource:@"KNBCity" ofType:@"plist"];
+        NSArray *dataSource = [NSArray arrayWithContentsOfFile:filePath];
+        _cityArray = [KNBCityModel changeResponseJSONObject:dataSource];
+    }
+    return _cityArray;
+}
+
+- (KNBRecruitmentServiceListApi *)serviceApi {
+    if (!_serviceApi) {
+        _serviceApi = [[KNBRecruitmentServiceListApi alloc] initWithLng:[KNGetUserLoaction shareInstance].lng lat:[KNGetUserLoaction shareInstance].lat];
+        _serviceApi.cat_parent_id = [self.model.typeId integerValue];
+        _serviceApi.page = 1;
+        _serviceApi.limit = 10;
+    }
+    return _serviceApi;
+}
+
+- (CQTopBarViewController *)topBar {
+    if (!_topBar) {
+        _topBar = [[CQTopBarViewController alloc] init];
+        _topBar.segmentFrame = CGRectMake(0, KNB_NAV_HEIGHT, KNB_SCREEN_WIDTH, 50);
+        _topBar.pageViewClasses = @[[KNBHomeCompanyTagsViewController class],[KNBHomeCompanyTagsViewController class]];
+        _topBar.segmentlineColor = [UIColor whiteColor];
+        _topBar.segmentImage = @"knb_home_icon_down";
+        _topBar.selectSegmentImage = @"knb_home_icon_up";
+        _topBar.selectedTitleTextColor = [UIColor colorWithHex:0x0096e6];
+    }
+    return _topBar;
 }
 
 @end

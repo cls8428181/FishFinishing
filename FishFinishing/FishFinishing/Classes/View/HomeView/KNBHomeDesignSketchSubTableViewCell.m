@@ -8,6 +8,12 @@
 
 #import "KNBHomeDesignSketchSubTableViewCell.h"
 
+@interface KNBHomeDesignSketchSubTableViewCell ()
+@property (weak, nonatomic) IBOutlet UIImageView *iconImageView;
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+
+@end
+
 @implementation KNBHomeDesignSketchSubTableViewCell
 
 #pragma mark - life cycle
@@ -28,6 +34,17 @@
 #pragma mark - private method
 + (CGFloat)cellHeight {
     return 160;
+}
+
+- (void)setModel:(KNBHomeRecommendCaseModel *)model {
+    [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:model.img] placeholderImage:KNBImages(@"knb_default_style")];
+    if ([model.type isEqualToString:@"1"]) {
+        self.titleLabel.text = model.style_name;
+    } else if ([model.type isEqualToString:@"2"]) {
+        self.titleLabel.text = model.apart;
+    } else {
+        self.titleLabel.text = model.acreage;
+    }
 }
 
 @end

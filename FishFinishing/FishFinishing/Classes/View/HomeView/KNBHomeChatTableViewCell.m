@@ -8,7 +8,6 @@
 
 #import "KNBHomeChatTableViewCell.h"
 #import "NSDate+BTAddition.h"
-#import <UIImageView+WebCache.h>
 
 @interface KNBHomeChatTableViewCell ()
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;

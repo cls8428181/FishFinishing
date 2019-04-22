@@ -26,7 +26,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.naviView.title = @"城市列表";
-    [self.naviView addLeftBarItemImageName:@"knbNavbar_black_back" target:self sel:@selector(leftButtonAction:)];
+    [self.naviView addLeftBarItemImageName:@"knb_back_black" target:self sel:@selector(leftButtonAction:)];
     self.knbTableView.rowHeight = 38;
     [self.view addSubview:self.knbTableView];
     if (self.headerType == KNHomeCityHeaderCustom) {

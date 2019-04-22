@@ -1,28 +1,55 @@
 //
 //  KNBSearchView.h
-//  FishFinishing
+//  KenuoTraining
 //
-//  Created by 常立山 on 2019/3/26.
-//  Copyright © 2019 常立山. All rights reserved.
+//  Created by 常立山 on 2018/7/18.
+//  Copyright © 2018年 Robert. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
+#import "KNBSearchBar.h"
+@class KNBSearchView;
 
-typedef void (^KNBSearchViewTouchBlock)(void);
+typedef NS_ENUM(NSInteger, KNBSearchViewStyle) {
+    KNBSearchViewStyleDefault,
+    KNBSearchViewStyleWhite
+};
 
-// 搜索视图高度 44
-extern CGFloat KNBSearchViewHeight;
+typedef void (^KNBSearchViewBlock)(void);
 
-NS_ASSUME_NONNULL_BEGIN
+@protocol KNBSearchViewDelegate <NSObject>
 
-@interface KNBSearchView : UIView
-@property (nonatomic, copy) void (^chatButtonBlock)(void);
-/**
- 左边城市选择按钮
- */
-@property (nonatomic, strong) UIButton *chooseCityButton;
-@property (nonatomic, strong) UIView *searchBgView;
-@property (nonatomic, copy) KNBSearchViewTouchBlock touchBlock;
+- (void)searchView:(KNBSearchView *)searchView startSearchWithSearchText:(NSString *)searchText;
+
+@optional
+//开始编辑时回调
+- (void)searchViewSearchBarBeginEditing;
+//搜索内容改变
+- (void)searchViewSearchBarTextDidChange:(NSString *)searchText;
+
 @end
 
-NS_ASSUME_NONNULL_END
+
+@interface KNBSearchView : UIView
+
+@property (nonatomic, strong) KNBSearchBar *searchBar;
+
+@property (nonatomic, strong) UIButton *cancelButton;
+
+@property (nonatomic, weak) id<KNBSearchViewDelegate> delegate;
+
+@property (nonatomic, assign) KNBSearchViewStyle style;
+
+@property (nonatomic, copy) KNBSearchViewBlock backBlock;
+
+/**
+ 创建搜索视图
+
+ @param isNavView 是否是NavigationView
+ @param isHaveBack 是否有返回按钮
+ @param isHaveCancle 是否有取消按钮
+ @param style 搜索视图的主题
+ */
+- (instancetype)initWithFrame:(CGRect)frame isNavView:(BOOL)isNavView isHaveBackButton:(BOOL)isHaveBack isHaveCancleButton:(BOOL)isHaveCancle style:(KNBSearchViewStyle)style;
+
+@end

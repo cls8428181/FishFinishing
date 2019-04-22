@@ -7,7 +7,6 @@
 //
 
 #import "RFPhotoScrollerView.h"
-#import <UIImageView+WebCache.h>
 #define kScreenWidth [UIScreen mainScreen].bounds.size.width
 #define kScreenHeight [UIScreen mainScreen].bounds.size.height
 @interface RFPhotoScrollerView()<UIScrollViewDelegate>

@@ -10,7 +10,6 @@
 #import "XHLaunchAdManager.h"
 #import "XHLaunchAd.h"
 #import "KNWebViewController.h"
-#import "UIImageView+WebCache.h"
 #import "KNBMainConfigModel.h"
 #import "AppDelegate.h"
 

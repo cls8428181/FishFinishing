@@ -8,7 +8,6 @@
 
 #import "KNBHomeCompanyHeaderTableViewCell.h"
 #import "FMTagsView.h"
-#import <UIImageView+WebCache.h>
 
 @interface KNBHomeCompanyHeaderTableViewCell ()
 //标签背景

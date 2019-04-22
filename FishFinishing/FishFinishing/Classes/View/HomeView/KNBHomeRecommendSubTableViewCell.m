@@ -7,7 +7,6 @@
 //
 
 #import "KNBHomeRecommendSubTableViewCell.h"
-#import <UIImageView+WebCache.h>
 #import "FMTagsView.h"
 #import "KNBHomeOfferViewController.h"
 

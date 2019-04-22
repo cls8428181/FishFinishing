@@ -8,12 +8,16 @@
 
 #import "OrderFinishingViewController.h"
 #import "KNBOrderViewController.h"
+#import "KNBHomeBannerApi.h"
+#import "KNBHomeBannerModel.h"
 
 @interface OrderFinishingViewController ()
 //背景
 @property (nonatomic, strong) UIImageView *bgView;
 //立即预约
 @property (nonatomic, strong) UIButton *enterButton;
+//数据
+@property (nonatomic, strong) KNBHomeBannerModel *model;
 @end
 
 @implementation OrderFinishingViewController
@@ -61,7 +65,20 @@
 }
 
 - (void)fetchData {
-
+    KNBHomeBannerApi *api = [[KNBHomeBannerApi alloc] initWithVari:@"appointment_banner" cityName:[KNGetUserLoaction shareInstance].cityName];
+    api.hudString = @"";
+    KNB_WS(weakSelf);
+    [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *_Nonnull request) {
+        if (api.requestSuccess) {
+            NSDictionary *dic = request.responseObject[@"list"];
+            NSArray *modelArray = [KNBHomeBannerModel changeResponseJSONObject:dic];
+            weakSelf.model = modelArray.firstObject;
+            KNB_PerformOnMainThread(^{
+                [weakSelf.bgView sd_setImageWithURL:[NSURL URLWithString:weakSelf.model.img] placeholderImage:KNBImages(@"knb_default_style")];
+            });
+        }
+    } failure:^(__kindof YTKBaseRequest *_Nonnull request) {
+    }];
 }
 
 
@@ -85,7 +102,7 @@
 - (UIImageView *)bgView {
     if (!_bgView) {
         _bgView = [[UIImageView alloc] init];
-        _bgView.image = KNBImages(@"knb_order_bg");
+        _bgView.image = KNBImages(@"knb_default_style");
     }
     return _bgView;
 }
