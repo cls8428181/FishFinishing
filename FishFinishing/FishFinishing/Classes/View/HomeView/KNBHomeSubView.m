@@ -41,10 +41,11 @@
     }
 }
 
-- (void)reloadTableViewAtIndex:(NSInteger)index dataSource:(NSArray *)dataSource {
+- (void)reloadTableViewAtIndex:(NSInteger)index dataSource:(NSArray *)dataSource title:(nonnull NSString *)title {
     for (UIView *view in self.contentView.subviews) {
         if (view.tag == 10000 + index) {
             KNBHomeSubTableView *tableView = (KNBHomeSubTableView *)view;
+            tableView.title = title;
             [tableView reloadTableView:dataSource];
         }
     }

@@ -20,7 +20,7 @@ typedef void (^contentViewScrollEvent)(NSInteger);
 
 - (instancetype)initWithFrame:(CGRect)frame index:(NSInteger)index dataSource:(NSArray *)dataSrouce;
 
-- (void)reloadTableViewAtIndex:(NSInteger)index dataSource:(NSArray *)dataSource;
+- (void)reloadTableViewAtIndex:(NSInteger)index dataSource:(NSArray *)dataSource title:(NSString *)title;
 
 @end
 

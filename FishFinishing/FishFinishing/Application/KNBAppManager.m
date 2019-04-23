@@ -15,7 +15,7 @@
 //#import "KNBRemindUpdate.h"
 #import "KNGetUserLoaction.h"
 #import "NSString+MD5.h"
-//#import "KNPaypp.h"
+#import "KNPaypp.h"
 #import "YTKNetworkConfig.h"
 #import <YTKNetworkAgent.h>
 //#import "KNBPushNoticeModel.h"
@@ -52,6 +52,8 @@ KNB_DEFINE_SINGLETON_FOR_CLASS(KNBAppManager);
     [self configVistorRole];
     // 配置数据库路径
 //    [self configureCoreDataPath];
+    // 配置微信支付
+    [KNPaypp registerWxApp:KN_WXUrlScheme];
     // 判断网络状态
     [self configureNetReachability];
     // 网络请求配置

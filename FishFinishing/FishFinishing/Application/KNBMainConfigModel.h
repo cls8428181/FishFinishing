@@ -35,6 +35,10 @@ extern NSString *const KNBLogin_Binding;
  */
 extern NSString *const KNBLogin_Modify;
 /**
+ * 修改用户信息
+ */
+extern NSString *const KNBLogin_ModifyUserInfo;
+/**
  * 登录
  */
 extern NSString *const KNBLogin_Login;

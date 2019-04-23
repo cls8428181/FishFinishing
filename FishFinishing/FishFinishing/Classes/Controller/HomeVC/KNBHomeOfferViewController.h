@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface KNBHomeOfferViewController : KNBBaseViewController
-
+@property (nonatomic, assign) NSInteger faceId;
 @end
 
 NS_ASSUME_NONNULL_END

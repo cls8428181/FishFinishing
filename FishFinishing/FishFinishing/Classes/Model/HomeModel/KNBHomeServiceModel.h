@@ -78,6 +78,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *created_at;
 
 /**
+ 服务商类型
+ */
+@property (nonatomic, copy) NSString *type;
+
+/**
  案例数据
  */
 @property (nonatomic, strong) NSArray<KNBHomeServiceModel *> *caseList;

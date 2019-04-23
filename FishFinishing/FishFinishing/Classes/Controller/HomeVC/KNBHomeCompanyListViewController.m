@@ -128,6 +128,7 @@
     KNBHomeCompanyDetailViewController *detailVC = [[KNBHomeCompanyDetailViewController alloc] init];
     detailVC.isEdit = NO;
     detailVC.model = model;
+    detailVC.naviView.title = self.naviView.title;
     [self.navigationController pushViewController:detailVC animated:YES];
 }
 

@@ -13,6 +13,18 @@ NS_ASSUME_NONNULL_BEGIN
 @interface KNBRecruitmentAddCaseApi : KNBBaseRequest
 
 /**
+ 上传类型 默认值是1
+ 1：案列
+ 2：产品
+ */
+@property (nonatomic, assign) NSInteger type;
+
+/**
+ 简介
+ */
+@property (nonatomic, copy) NSString *remark;
+
+/**
  添加装修案例
 
  @param token 用户登录标识
@@ -22,6 +34,16 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (instancetype)initWithToken:(NSString *)token title:(NSString *)title styleId:(NSInteger)styleId acreage:(double)acreage apartment:(NSString *)apartment imgs:(NSString *)imgs;
 
+
+/**
+ 添加产品
+
+ @param token 用户登录标识
+ @param title 名称
+ @param price 价格
+ @param unit 单位
+ */
+- (instancetype)initWithToken:(NSString *)token title:(NSString *)title price:(NSString *)price imgs:(NSString *)imgs;
 @end
 
 NS_ASSUME_NONNULL_END

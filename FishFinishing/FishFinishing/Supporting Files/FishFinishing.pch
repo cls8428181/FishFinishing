@@ -55,6 +55,7 @@
 #import "KNUMManager.h"
 #import <Pingpp.h>
 #import <UIImageView+WebCache.h>
+#import <UIButton+WebCache.h>
 
 // 环境配置 0：本地测试 1:正式环境 2:线上测试
 #define KNB_ENV_TYPE 2
@@ -87,7 +88,7 @@
 #define KN_PayCodeWX @"wx" // 微信
 #define KN_PayCodeAlipay @"alipay" // 支付宝
 #define KN_AlpiyUrlScheme  @"KNPayUrl002"
-#define KN_WXUrlScheme  @"wxfd961ca17ae513c5"
+#define KN_WXUrlScheme  @"wx59d8ae90819ba21f"
 
 // 导航服务器地址
 #define KN_NaviServerUrl  @"https://import.idengyun.com:8082"

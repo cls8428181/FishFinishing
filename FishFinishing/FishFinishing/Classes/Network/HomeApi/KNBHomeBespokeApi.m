@@ -24,9 +24,10 @@
     NSString *_name;                      //联系人
     NSString *_mobile;                    //联系电话
     NSString *_decorate_cat;           //新房旧房
+    NSInteger _type;                       //1.报价 2.装修
     
 }
-- (instancetype)initWithfacId:(NSInteger)faceId facName:(NSString *)faceName catId:(NSInteger)catId userId:(NSString *)userId areaInfo:(NSString *)areaInfo houseInfo:(NSString *)houseInfo community:(NSString *)community provinceId:(NSInteger)provinceId cityId:(NSInteger)cityId areaId:(NSInteger)areaId decorateStyle:(NSString *)decorateStyle decorateGrade:(NSString *)decorateGrade name:(NSString *)name mobile:(NSString *)mobile decorateCat:(NSString *)decorateCat {
+- (instancetype)initWithfacId:(NSInteger)faceId facName:(NSString *)faceName catId:(NSInteger)catId userId:(NSString *)userId areaInfo:(NSString *)areaInfo houseInfo:(NSString *)houseInfo community:(NSString *)community provinceId:(NSInteger)provinceId cityId:(NSInteger)cityId areaId:(NSInteger)areaId decorateStyle:(NSString *)decorateStyle decorateGrade:(NSString *)decorateGrade name:(NSString *)name mobile:(NSString *)mobile decorateCat:(NSString *)decorateCat type:(NSInteger)type {
     if (self = [super init]) {
         _fac_id = faceId;
         _fac_name = faceName;
@@ -43,6 +44,7 @@
         _name = name;
         _mobile = mobile;
         _decorate_cat = decorateCat;
+        _type = type;
     }
     return self;
 }
@@ -53,23 +55,24 @@
 
 - (id)requestArgument {
     NSDictionary *dic = @{
-                          @"fac_id" : @(_fac_id),
-                          @"fac_name" : _fac_name,
-                          @"cat_id" : @(_cat_id),
-                          @"user_id" : _user_id,
-                          @"area_info" : _area_info,
-                          @"house_info" : _house_info,
-                          @"community" : _community,
+                          @"fac_id" : @(_fac_id) ?: @(0),
+                          @"fac_name" : _fac_name ?: @"",
+                          @"cat_id" : @(_cat_id) ?: @(0),
+                          @"user_id" : _user_id ?: @"",
+                          @"area_info" : _area_info ?: @"",
+                          @"house_info" : _house_info ?: @"",
+                          @"community" : _community ?: @"",
                           @"province_id" : @(_province_id),
                           @"city_id" : @(_city_id),
                           @"area_id" : @(_area_id),
-                          @"decorate_style" : _decorate_style,
-                          @"decorate_grade" : _decorate_grade,
-                          @"name" : _name,
-                          @"mobile" : _mobile,
-                          @"mobile" : _mobile
+                          @"decorate_style" : _decorate_style ?: @"",
+                          @"decorate_grade" : _decorate_grade ?: @"",
+                          @"name" : _name ?: @"",
+                          @"mobile" : _mobile ?: @"",
+                          @"decorate_cat" : _decorate_cat ?: @"",
+                          @"type" : @(_type) ? : @(1)
                           }; //字典
     [self.baseMuDic addEntriesFromDictionary:dic];
-    return self.appendSecretDic;
+    return self.baseMuDic;
 }
 @end

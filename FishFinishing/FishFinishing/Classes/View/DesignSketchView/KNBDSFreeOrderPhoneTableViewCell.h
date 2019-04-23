@@ -11,6 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface KNBDSFreeOrderPhoneTableViewCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UITextField *detailTextField;
 /**
  cell 创建
  */

@@ -9,10 +9,6 @@
 #import "KNBMeHeaderView.h"
 
 @interface KNBMeHeaderView ()
-//头像
-@property (nonatomic, strong) UIImageView *portraitImageView;
-//姓名
-@property (nonatomic, strong) UILabel *nameLabel;
 //登陆按钮
 @property (nonatomic, strong) UIButton *loginButton;
 //聊天按钮
@@ -116,6 +112,8 @@
         } else {
             _portraitImageView.image = KNBImages(@"knb_default_user");
         }
+        _portraitImageView.layer.masksToBounds = YES;
+        _portraitImageView.layer.cornerRadius = 75/2;
     }
     return _portraitImageView;
 }

@@ -15,9 +15,13 @@
 #import "KNBRecruitmentDetailApi.h"
 #import "KNBHomeServiceModel.h"
 #import "KNBHomeCompanyEditDetailViewController.h"
+#import "KNBHomeOfferViewController.h"
+#import "KNBHomeDesignViewController.h"
+#import "KNBHomeWorkerViewController.h"
 
 @interface KNBHomeCompanyDetailViewController ()
 @property (nonatomic, strong) KNBHomeServiceModel *currentModel;
+@property (nonatomic, strong) UIButton *enterButton;
 @end
 
 @implementation KNBHomeCompanyDetailViewController
@@ -45,17 +49,21 @@
 
 #pragma mark - Utils
 - (void)configuration {
-    self.naviView.title = @"装修公司";
     [self.naviView addLeftBarItemImageName:@"knb_back_black" target:self sel:@selector(backAction)];
     if (self.isEdit) {
         [self.naviView addRightBarItemImageName:@"knb_me_bianji" target:self sel:@selector(editButtonAction)];
     }
     self.view.backgroundColor = [UIColor knBgColor];
-    
+    if (!self.isEdit) {
+        self.knGroupTableView.frame = CGRectMake(0, KNB_NAV_HEIGHT, KNB_SCREEN_WIDTH, KNB_SCREEN_HEIGHT - KNB_TAB_HEIGHT - KNB_NAV_HEIGHT);
+    }
 }
 
 - (void)addUI {
     [self.view addSubview:self.knGroupTableView];
+    if (!self.isEdit) {
+        [self.view addSubview:self.enterButton];
+    }
 }
 
 - (void)fetchData {
@@ -142,6 +150,32 @@
     [self.navigationController pushViewController:editVC animated:YES];
 }
 
+- (void)enterButtonAction {
+    if ([self.naviView.title isEqualToString:@"设计师"]) {
+        KNBHomeDesignViewController *designVC = [[KNBHomeDesignViewController alloc] init];
+        designVC.faceId = [self.model.serviceId integerValue];
+        [self.navigationController pushViewController:designVC animated:YES];
+    } else if ([self.naviView.title isEqualToString:@"装修工人"] || [self.naviView.title isEqualToString:@"装修工长"]) {
+        KNBHomeWorkerViewController *workerVC = [[KNBHomeWorkerViewController alloc] init];
+        workerVC.faceId = [self.model.serviceId integerValue];
+        [self.navigationController pushViewController:workerVC animated:YES];
+    } else {
+        KNBHomeOfferViewController *offerVC = [[KNBHomeOfferViewController alloc] init];
+        offerVC.faceId = [self.model.serviceId integerValue];
+        [self.navigationController pushViewController:offerVC animated:YES];
+    }
+}
+
 #pragma mark - Getters And Setters
 /* getter和setter全部都放在最后*/
+- (UIButton *)enterButton {
+    if (!_enterButton) {
+        _enterButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        _enterButton.frame = CGRectMake(0, KNB_SCREEN_HEIGHT - KNB_TAB_HEIGHT, KNB_SCREEN_WIDTH, KNB_TAB_HEIGHT);
+        [_enterButton setTitle:[self.naviView.title isEqualToString:@"家居建材"] ? @"立即购买" : @"立即预约" forState:UIControlStateNormal];
+        [_enterButton setBackgroundColor:[UIColor colorWithHex:0xf5701b]];
+        [_enterButton addTarget:self action:@selector(enterButtonAction) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _enterButton;
+}
 @end

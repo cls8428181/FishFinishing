@@ -16,8 +16,14 @@
 #import "KNBDSFreeOrderRedEnterTableViewCell.h"
 #import "KNBDSFreeOrderFooterView.h"
 #import "DesignSketchViewController.h"
+#import "KNBRecruitmentDetailApi.h"
+#import "KNBHomeServiceModel.h"
+#import "KNBAddressPickerView.h"
 //utils
 #import "KNBButton.h"
+#import "KNBOrderModel.h"
+#import "KNBHomeBespokeApi.h"
+#import "KNBOrderAlertView.h"
 
 @interface KNBHomeDesignViewController ()
 @property (nonatomic, strong) UIScrollView *bgView;
@@ -47,7 +53,7 @@
 @property (nonatomic, strong) UIView *headerView;
 //footer view
 @property (nonatomic, strong) KNBDSFreeOrderFooterView *footerView;
-
+@property (nonatomic, strong) KNBOrderModel *orderModel;
 @end
 
 @implementation KNBHomeDesignViewController
@@ -75,17 +81,23 @@
         make.top.mas_equalTo(KNB_NAV_HEIGHT);
         make.left.right.bottom.equalTo(weakSelf.view);
     }];
-    [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(12);
-        make.top.mas_equalTo(22);
-    }];
-    [self.titleButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.equalTo(weakSelf.titleLabel);
-        make.left.equalTo(weakSelf.titleLabel.mas_right).mas_offset(15);
-    }];
+    if (self.faceId) {
+        [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(12);
+            make.top.mas_equalTo(22);
+        }];
+        [self.titleButton mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerY.equalTo(weakSelf.titleLabel);
+            make.left.equalTo(weakSelf.titleLabel.mas_right).mas_offset(15);
+        }];
+    }
     [self.adImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.mas_equalTo(weakSelf.view);
-        make.top.equalTo(weakSelf.titleButton.mas_bottom).mas_offset(12);
+        if (weakSelf.faceId) {
+            make.top.equalTo(weakSelf.titleButton.mas_bottom).mas_offset(12);
+        } else {
+            make.top.equalTo(weakSelf.naviView.mas_bottom).mas_offset(12);
+        }
         make.height.mas_equalTo(138);
     }];
     [self.middleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -151,14 +163,20 @@
     self.knbTableView.layer.shadowRadius = 5;
     self.knbTableView.clipsToBounds = false;
     self.knbTableView.scrollEnabled = NO;
-    self.knbTableView.frame = CGRectMake(12, 370, KNB_SCREEN_WIDTH - 24, 315);
+    if (self.faceId) {
+        self.knbTableView.frame = CGRectMake(12, 370, KNB_SCREEN_WIDTH - 24, 315);
+    } else {
+        self.knbTableView.frame = CGRectMake(12, 310, KNB_SCREEN_WIDTH - 24, 315);
+    }
     self.footerView.frame = CGRectMake(12, CGRectGetMaxY(self.knbTableView.frame), KNB_SCREEN_WIDTH - 24, 38);
 }
 
 - (void)addUI {
     [self.view addSubview:self.bgView];
-    [self.bgView addSubview:self.titleLabel];
-    [self.bgView addSubview:self.titleButton];
+    if (self.faceId) {
+        [self.bgView addSubview:self.titleLabel];
+        [self.bgView addSubview:self.titleButton];
+    }
     [self.bgView addSubview:self.adImageView];
     [self.bgView addSubview:self.middleLabel];
     [self.bgView addSubview:self.phoneButton];
@@ -174,7 +192,23 @@
 }
 
 - (void)fetchData {
-    
+    if (self.faceId) {
+        KNBRecruitmentDetailApi *api = [[KNBRecruitmentDetailApi alloc] initWithfacId:self.faceId];
+        api.hudString = @"";
+        KNB_WS(weakSelf);
+        [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *_Nonnull request) {
+            if (api.requestSuccess) {
+                NSDictionary *dic = request.responseObject[@"list"];
+                KNBHomeServiceModel *model = [KNBHomeServiceModel changeResponseJSONObject:dic];
+                [weakSelf.titleButton setTitle:model.name forState:UIControlStateNormal];
+                [weakSelf.titleButton sd_setImageWithURL:[NSURL URLWithString:model.logo] forState:UIControlStateNormal];
+            } else {
+                [weakSelf requestSuccess:NO requestEnd:NO];
+            }
+        } failure:^(__kindof YTKBaseRequest *_Nonnull request) {
+            [weakSelf requestSuccess:NO requestEnd:NO];
+        }];
+    }
 }
 
 #pragma mark - tableview delegate & dataSource
@@ -214,7 +248,40 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+    KNB_WS(weakSelf);
+    if (indexPath.row == 1) {
+        [KNBAddressPickerView showAddressPickerWithDefaultSelected:nil resultBlock:^(KNBCityModel *province, KNBCityModel *city, KNBCityModel *area) {
+            KNBDSFreeOrderAddressTableViewCell *cell = [weakSelf.knbTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]];
+            [cell setProvinceName:province.name cityName:city.name areaName:area.name];
+            weakSelf.orderModel.province_id = [province.code integerValue];
+            weakSelf.orderModel.city_id = [city.code integerValue];
+            weakSelf.orderModel.area_id = [area.code integerValue];
+        }];
+    }
+    if (indexPath.row == 5) {
+        KNBDSFreeOrderNewHouseTableViewCell *houseCell = [weakSelf.knbTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+        KNBDSFreeOrderAreaTableViewCell *areaCell = [weakSelf.knbTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:0]];
+        KNBDSFreeOrderNameTableViewCell *nameCell = [weakSelf.knbTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:3 inSection:0]];
+        KNBDSFreeOrderPhoneTableViewCell *phoneCell = [weakSelf.knbTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:4 inSection:0]];
+        self.orderModel.decorate_cat = houseCell.isNewHouse ? @"新房装修" : @"旧房翻新";
+        self.orderModel.area_info = areaCell.detailTextField.text;
+        self.orderModel.name = nameCell.detailTextField.text;
+        self.orderModel.mobile = phoneCell.detailTextField.text;
+        KNBHomeBespokeApi *api = [[KNBHomeBespokeApi alloc] initWithfacId:self.faceId ?: 0 facName:self.faceId ? self.titleButton.titleLabel.text : @"" catId:[self.orderModel.typeModel.selectSubModel.typeId integerValue] userId:@"" areaInfo:self.orderModel.area_info houseInfo:self.orderModel.house_info community:self.orderModel.community provinceId:self.orderModel.province_id cityId:self.orderModel.city_id areaId:self.orderModel.area_id decorateStyle:self.orderModel.style decorateGrade:self.orderModel.level name:self.orderModel.name mobile:self.orderModel.mobile decorateCat:self.orderModel.decorate_cat type:1];
+        api.hudString = @"";
+        KNB_WS(weakSelf);
+        [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *_Nonnull request) {
+            if (api.requestSuccess) {
+                [KNBOrderAlertView showAlertViewCompleteBlock:^{
+                    [weakSelf.navigationController popViewControllerAnimated:YES];
+                }];
+            } else {
+                [weakSelf requestSuccess:NO requestEnd:NO];
+            }
+        } failure:^(__kindof YTKBaseRequest *_Nonnull request) {
+            [weakSelf requestSuccess:NO requestEnd:NO];
+        }];
+    }
 }
 
 #pragma mark - Event Response

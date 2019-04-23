@@ -13,7 +13,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface KNBHomeCompanyDetailViewController : KNBBaseViewController
 @property (nonatomic, strong) KNBHomeServiceModel *model;
-
 /**
  能否编辑
  */

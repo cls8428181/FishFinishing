@@ -27,6 +27,6 @@
                           @"case_id" : @(_case_id)
                           }; //字典
     [self.baseMuDic addEntriesFromDictionary:dic];
-    return self.appendSecretDic;
+    return self.baseMuDic;
 }
 @end

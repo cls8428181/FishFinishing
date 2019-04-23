@@ -22,6 +22,7 @@ NSString *const KNBLogin_SendCode = @"/Api/Index/sendcode"; //发送验证码
 NSString *const KNBLogin_ThirdParty = @"/Api/Index/thirdlogin"; //第三方登录
 NSString *const KNBLogin_Binding = @"/Api/Index/binding";        //绑定手机号
 NSString *const KNBLogin_Modify = @"/Api/Index/changepwd";   //修改密码
+NSString *const KNBLogin_ModifyUserInfo = @"/Api/Index/modify";//修改用户信息
 NSString *const KNBLogin_Login = @"/Api/Index/login";              //登录
 
 #pragma mark - 首页

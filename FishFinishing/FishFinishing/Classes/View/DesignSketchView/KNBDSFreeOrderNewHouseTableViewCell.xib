@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -24,6 +24,10 @@
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Voy-Ez-4sX">
                                 <rect key="frame" x="104" y="49" width="67" height="17"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="67" id="4oA-fk-MlT"/>
+                                    <constraint firstAttribute="height" constant="17" id="orm-Ij-rCQ"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="-10" maxY="0.0"/>
                                 <state key="normal" title="旧房翻新" image="knb_design_unselected">
@@ -36,6 +40,10 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bbr-0K-JMS">
                                 <rect key="frame" x="12" y="49" width="67" height="17"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="17" id="gtX-Ne-atA"/>
+                                    <constraint firstAttribute="width" constant="67" id="lDX-uz-Rbi"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="-10" maxY="0.0"/>
                                 <state key="normal" title="新房装修" image="knb_design_unselected">
@@ -69,14 +77,14 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
             <connections>
-                <outlet property="newHouseButton" destination="bbr-0K-JMS" id="Abz-Rv-uNy"/>
+                <outlet property="houseButton" destination="bbr-0K-JMS" id="Q6f-YB-lTv"/>
                 <outlet property="oldHouseButton" destination="Voy-Ez-4sX" id="b7J-M0-rck"/>
             </connections>
             <point key="canvasLocation" x="104.8" y="90.854572713643179"/>
         </tableViewCell>
     </objects>
     <resources>
-        <image name="knb_design_selected" width="9" height="9.5"/>
-        <image name="knb_design_unselected" width="9.5" height="9.5"/>
+        <image name="knb_design_selected" width="9" height="9"/>
+        <image name="knb_design_unselected" width="9" height="9"/>
     </resources>
 </document>

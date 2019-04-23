@@ -166,8 +166,13 @@ static CGFloat const kHeaderViewHeight = 50.0f;
         [blockCell reloadCollectionView];
         blockCell.selectItemAtIndexBlock = ^(NSInteger index) {
             if (index == 0) {
-                KNBHomeOfferViewController *offerVC = [[KNBHomeOfferViewController alloc] init];
-                [weakSelf.navigationController pushViewController:offerVC animated:YES];
+                if ([KNBUserInfo shareInstance].isLogin) {
+                    KNBHomeOfferViewController *offerVC = [[KNBHomeOfferViewController alloc] init];
+                    [weakSelf.navigationController pushViewController:offerVC animated:YES];
+                } else {
+                    [LCProgressHUD showMessage:@"您还未登录,请先登录"];
+                }
+
             } else {
                 KNBRecruitmentTypeModel *model = weakSelf.categoryArray[index - 1];
                 KNBHomeCompanyListViewController *workerVC = [[KNBHomeCompanyListViewController alloc] init];
@@ -275,7 +280,7 @@ static CGFloat const kHeaderViewHeight = 50.0f;
             NSArray *modelArray = [KNBHomeServiceModel changeResponseJSONObject:dic];
             self.serviceArray = modelArray;
             KNB_PerformOnMainThread(^{
-                [weakSelf.subView reloadTableViewAtIndex:index dataSource:modelArray];
+                [weakSelf.subView reloadTableViewAtIndex:index dataSource:modelArray title:weakSelf.titleArray[index]];
             });
         } else {
             [weakSelf requestSuccess:NO requestEnd:NO];
@@ -287,7 +292,6 @@ static CGFloat const kHeaderViewHeight = 50.0f;
 
 - (void)recommendCaseRequest:(NSInteger)type {
     KNBHomeRecommendCaseApi *api = [[KNBHomeRecommendCaseApi alloc] initWithType:type];
-    api.hudString = @"";
     KNB_WS(weakSelf);
     [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *_Nonnull request) {
         if (api.requestSuccess) {
@@ -296,8 +300,7 @@ static CGFloat const kHeaderViewHeight = 50.0f;
             [weakSelf.recommendCaseArray removeAllObjects];
             [weakSelf.recommendCaseArray addObjectsFromArray:modelArray];
             KNBHomeDesignSketchTableViewCell *cell = [weakSelf.mainTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:1]];
-//            [cell.collectionView reloadData];
-            [weakSelf.mainTableView reloadData];
+            [cell.collectionView reloadData];
         } else {
             [weakSelf requestSuccess:NO requestEnd:NO];
         }

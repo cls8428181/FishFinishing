@@ -13,6 +13,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface KNBHomeSubTableView : UIView<UITableViewDelegate,UITableViewDataSource>
 
+/**
+ 标题
+ */
+@property (nonatomic, copy) NSString *title;
+
 @property (nonatomic, copy) void(^didSelectRowAtIndexPath)(NSIndexPath *indexPath);
 
 @property (strong ,nonatomic) KNBHomeTableView *tableView;

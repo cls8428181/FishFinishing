@@ -21,7 +21,6 @@
 @interface KNBHomeCompanyUploadCaseViewController ()
 //图片数组
 @property (nonatomic, strong) NSMutableArray *imgsArray;
-@property (nonatomic, strong) NSMutableArray *imgsUrlArray;
 //面积
 @property (nonatomic, copy) NSString *areaString;
 //户型
@@ -30,8 +29,6 @@
 @property (nonatomic, strong) KNBRecruitmentTypeModel *styleModel;
 //案例描述
 @property (nonatomic, copy) NSString *desribeString;
-//图片参数
-@property (nonatomic, copy) NSString *imgString;
 @end
 
 @implementation KNBHomeCompanyUploadCaseViewController
@@ -198,6 +195,7 @@
                     imgsUrl = [imgsUrl stringByAppendingString:@","];
                 }
                 KNBRecruitmentAddCaseApi *api = [[KNBRecruitmentAddCaseApi alloc] initWithToken:[KNBUserInfo shareInstance].token title:self.desribeString styleId:[self.styleModel.typeId integerValue] acreage:[self.areaString doubleValue] apartment:self.houseString imgs:imgsUrl];
+                api.remark = self.desribeString;
                 api.hudString = @"";
                 KNB_WS(weakSelf);
                 [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *_Nonnull request) {
@@ -234,14 +232,4 @@
 
 #pragma mark - Getters And Setters
 /* getter和setter全部都放在最后*/
-- (NSString *)imgString {
-    NSString *string = nil;
-    for (NSString *img in self.imgsUrlArray) {
-        string = [string stringByAppendingString:img];
-        string = [string stringByAppendingString:@","];
-    }
-    return [string substringToIndex:[string length]-1];
-}
-
-
 @end

@@ -156,6 +156,7 @@
 - (void)orderButtonAction {
     if ([KNBUserInfo shareInstance].isLogin) {
         KNBHomeOfferViewController *offerVC = [[KNBHomeOfferViewController alloc] init];
+        offerVC.faceId = [self.model.caseId integerValue];
         [self.navigationController pushViewController:offerVC animated:YES];
     } else {
         [LCProgressHUD showMessage:@"您还未登录,请先登录"];

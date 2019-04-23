@@ -67,6 +67,11 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (nonatomic, copy) NSString *mobile;
 
+/**
+ 新房装修 or 旧房装修
+ */
+@property (nonatomic, copy) NSString *decorate_cat;
+
 @end
 
 NS_ASSUME_NONNULL_END

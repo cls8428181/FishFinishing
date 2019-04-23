@@ -23,6 +23,12 @@
 @implementation MeViewController
 
 #pragma mark - life cycle
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self.headerView.portraitImageView sd_setImageWithURL:[NSURL URLWithString:[KNBUserInfo shareInstance].portrait] placeholderImage:KNBImages(@"knb_default_user")];
+    self.headerView.nameLabel.text = [KNBUserInfo shareInstance].userName ?: @"未登录";
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     

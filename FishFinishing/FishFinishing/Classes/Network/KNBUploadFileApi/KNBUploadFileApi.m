@@ -134,9 +134,12 @@
     return [[KNBMainConfigModel shareInstance] getRequestUrlWithKey:KNB_UploadFile];
 }
 
+- (YTKRequestMethod)requestMethod {
+    return YTKRequestMethodPOST;
+}
+
 - (id)requestArgument {
     return @{
-        @"img" : [self->_image dealImageMaxFileSize:600],
         @"token" : _token
     };
 }
@@ -144,10 +147,10 @@
 - (AFConstructingBlock)constructingBodyBlock {
     if (_image) {
         return ^(id<AFMultipartFormData> formData) {
-            NSData *data = [self->_image dealImageMaxFileSize:600];
-            //            NSData *data = UIImageJPEGRepresentation(_image, 0.9);
+//            NSData *data = [self->_image dealImageMaxFileSize:600];
+            NSData *data = UIImageJPEGRepresentation(_image, 0.9);
             NSString *name = @"image.jpg";
-            NSString *formKey = @"image";
+            NSString *formKey = @"img";
             NSString *type = @"image/jpeg";
             [formData appendPartWithFileData:data name:formKey fileName:name mimeType:type];
         };

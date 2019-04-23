@@ -13,6 +13,7 @@
 #import "KNBRecruitmentDelCaseApi.h"
 #import "KNBHomeCompanyCaseAddCollectionViewCell.h"
 #import "KNBHomeCompanyUploadCaseViewController.h"
+#import "KNBHomeUploadProductViewController.h"
 
 @interface KNBHomeCompanyCaseTableViewCell ()<UICollectionViewDelegate, UICollectionViewDataSource>
 //滑动区域
@@ -59,11 +60,11 @@
 }
 //每一组有多少个cell
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return self.dataArray.count + 1;
+    return self.isEdit ? self.dataArray.count + 1 : self.dataArray.count;
 }
 //每一个cell是什么
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.row == self.dataArray.count) {
+    if (indexPath.row == self.dataArray.count && self.isEdit) {
         KNBHomeCompanyCaseAddCollectionViewCell *cell = [KNBHomeCompanyCaseAddCollectionViewCell cellWithCollectionView:collectionView indexPath:indexPath];
         return cell;
     } else {
@@ -86,13 +87,19 @@
 
 //cell的点击事件
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.row == self.dataArray.count) {
-        KNBHomeCompanyUploadCaseViewController *addCaseVC = [[KNBHomeCompanyUploadCaseViewController alloc] init];
-        [[[self getCurrentViewController] navigationController] pushViewController:addCaseVC animated:YES];
+    if (indexPath.row == self.dataArray.count && self.isEdit) {
+        if ([self.model.type isEqualToString:@"0"]) {
+            KNBHomeUploadProductViewController *productVC = [[KNBHomeUploadProductViewController alloc] init];
+            [[[self getCurrentViewController] navigationController] pushViewController:productVC animated:YES];
+        } else {
+            KNBHomeCompanyUploadCaseViewController *addCaseVC = [[KNBHomeCompanyUploadCaseViewController alloc] init];
+            [[[self getCurrentViewController] navigationController] pushViewController:addCaseVC animated:YES];
+        }
     } else {
         KNBHomeServiceModel *cellModel = self.dataArray[indexPath.row];
         KNBDesignSketchModel *model  = [[KNBDesignSketchModel alloc] init];
         model.caseId = cellModel.serviceId;
+        
         model.name = self.model.name;
         model.img = self.model.logo;
         KNBDesignSketchDetailViewController *detailVC = [[KNBDesignSketchDetailViewController alloc] init];

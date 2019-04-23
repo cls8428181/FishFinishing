@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		185F1A18226EE5AA000F6E9C /* KNBHomeWorkerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 185F1A17226EE5AA000F6E9C /* KNBHomeWorkerViewController.m */; };
+		185F1A1B226EEB5C000F6E9C /* KNBOrderAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 185F1A19226EEB5C000F6E9C /* KNBOrderAlertView.m */; };
+		185F1A1E226EFE3A000F6E9C /* KNBHomeUploadProductViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 185F1A1D226EFE3A000F6E9C /* KNBHomeUploadProductViewController.m */; };
+		185F1A21226F0F15000F6E9C /* KNBLoginModifyUserInfoApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 185F1A20226F0F15000F6E9C /* KNBLoginModifyUserInfoApi.m */; };
 		186652F922694DEB004C176F /* KNBMeAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 186652F822694DEB004C176F /* KNBMeAboutViewController.m */; };
 		186652FD22694F5C004C176F /* KNBMeAboutTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 186652FB22694F5C004C176F /* KNBMeAboutTableViewCell.m */; };
 		186652FE22694F5C004C176F /* KNBMeAboutTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 186652FC22694F5C004C176F /* KNBMeAboutTableViewCell.xib */; };
@@ -342,6 +346,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		185F1A16226EE5AA000F6E9C /* KNBHomeWorkerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNBHomeWorkerViewController.h; sourceTree = "<group>"; };
+		185F1A17226EE5AA000F6E9C /* KNBHomeWorkerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNBHomeWorkerViewController.m; sourceTree = "<group>"; };
+		185F1A19226EEB5C000F6E9C /* KNBOrderAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KNBOrderAlertView.m; sourceTree = "<group>"; };
+		185F1A1A226EEB5C000F6E9C /* KNBOrderAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KNBOrderAlertView.h; sourceTree = "<group>"; };
+		185F1A1C226EFE3A000F6E9C /* KNBHomeUploadProductViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNBHomeUploadProductViewController.h; sourceTree = "<group>"; };
+		185F1A1D226EFE3A000F6E9C /* KNBHomeUploadProductViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNBHomeUploadProductViewController.m; sourceTree = "<group>"; };
+		185F1A1F226F0F15000F6E9C /* KNBLoginModifyUserInfoApi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNBLoginModifyUserInfoApi.h; sourceTree = "<group>"; };
+		185F1A20226F0F15000F6E9C /* KNBLoginModifyUserInfoApi.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNBLoginModifyUserInfoApi.m; sourceTree = "<group>"; };
 		186652F722694DEB004C176F /* KNBMeAboutViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNBMeAboutViewController.h; sourceTree = "<group>"; };
 		186652F822694DEB004C176F /* KNBMeAboutViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNBMeAboutViewController.m; sourceTree = "<group>"; };
 		186652FA22694F5C004C176F /* KNBMeAboutTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNBMeAboutTableViewCell.h; sourceTree = "<group>"; };
@@ -1091,6 +1103,8 @@
 		189A6B7B22606ABB007C6CC1 /* KNAlertView */ = {
 			isa = PBXGroup;
 			children = (
+				185F1A1A226EEB5C000F6E9C /* KNBOrderAlertView.h */,
+				185F1A19226EEB5C000F6E9C /* KNBOrderAlertView.m */,
 				18B3B039226452540058AE4F /* KNBAlertRemind.h */,
 				18B3B03A226452540058AE4F /* KNBAlertRemind.m */,
 				189A6B7C22606ABB007C6CC1 /* KNAlertView.h */,
@@ -1214,6 +1228,8 @@
 				18A090EC225EC92E001ED33F /* KNBLoginModifyApi.m */,
 				18A090EE225EC989001ED33F /* KNBLoginLoginApi.h */,
 				18A090EF225EC989001ED33F /* KNBLoginLoginApi.m */,
+				185F1A1F226F0F15000F6E9C /* KNBLoginModifyUserInfoApi.h */,
+				185F1A20226F0F15000F6E9C /* KNBLoginModifyUserInfoApi.m */,
 			);
 			path = LoginApi;
 			sourceTree = "<group>";
@@ -1465,6 +1481,8 @@
 				96811887224F5F7B00E4A622 /* KNBHomeOfferViewController.m */,
 				961C5311225363AC0089E997 /* KNBHomeDesignViewController.h */,
 				961C5312225363AC0089E997 /* KNBHomeDesignViewController.m */,
+				185F1A16226EE5AA000F6E9C /* KNBHomeWorkerViewController.h */,
+				185F1A17226EE5AA000F6E9C /* KNBHomeWorkerViewController.m */,
 				961C531E225486BD0089E997 /* KNBHomeCompanyDetailViewController.h */,
 				961C531F225486BD0089E997 /* KNBHomeCompanyDetailViewController.m */,
 				96E7E0B6225ADB0900188DD1 /* KNBHomeCompanyListViewController.h */,
@@ -1475,6 +1493,8 @@
 				966D156A2268F8A7005F5D77 /* KNBHomeChatDetailViewController.m */,
 				1866531222699C66004C176F /* KNBHomeCompanyUploadCaseViewController.h */,
 				1866531322699C66004C176F /* KNBHomeCompanyUploadCaseViewController.m */,
+				185F1A1C226EFE3A000F6E9C /* KNBHomeUploadProductViewController.h */,
+				185F1A1D226EFE3A000F6E9C /* KNBHomeUploadProductViewController.m */,
 				1866531522699DDB004C176F /* KNBHomeCompanyEditDetailViewController.h */,
 				1866531622699DDB004C176F /* KNBHomeCompanyEditDetailViewController.m */,
 			);
@@ -2703,6 +2723,7 @@
 				189A6B8222606B01007C6CC1 /* CustomIOSAlertView.m in Sources */,
 				186EE2E22266FFFF00E71241 /* KNBRecruitmentCatChildApi.m in Sources */,
 				9661F9F7226D50BA00DD6C51 /* KNBHomeRecommendCaseModel.m in Sources */,
+				185F1A1B226EEB5C000F6E9C /* KNBOrderAlertView.m in Sources */,
 				18B3B03F22645F750058AE4F /* KNBRecruitmentEnterTableViewCell.m in Sources */,
 				1868A6982265B072005546BB /* KNBOrderModel.m in Sources */,
 				96B098E42249E45000154643 /* NJKWebViewProgressView.m in Sources */,
@@ -2745,6 +2766,7 @@
 				961C5320225486BD0089E997 /* KNBHomeCompanyDetailViewController.m in Sources */,
 				1866530B22696CA1004C176F /* KNBHomeCompanyCaseSubCollectionViewCell.m in Sources */,
 				9697FD53225597A900027AB3 /* NSString+Arc4random.m in Sources */,
+				185F1A21226F0F15000F6E9C /* KNBLoginModifyUserInfoApi.m in Sources */,
 				187C9559225EC685006FD01A /* KNBLoginBindingApi.m in Sources */,
 				96B098312249CB8800154643 /* KNBBaseRequest.m in Sources */,
 				18D599B8225F1D4B00B5177D /* KNBRecruitmentCaseDetailApi.m in Sources */,
@@ -2753,6 +2775,7 @@
 				96E7E0BB225ADD5900188DD1 /* KNBHomeCompanyListHeaderView.m in Sources */,
 				96B098BA2249CC1000154643 /* CALayer+Transition.m in Sources */,
 				96327510226DA3E10080C650 /* KNBSearchBar.m in Sources */,
+				185F1A18226EE5AA000F6E9C /* KNBHomeWorkerViewController.m in Sources */,
 				961C530A2252194E0089E997 /* KNBHomeDesignSketchSubTableViewCell.m in Sources */,
 				96B098332249CB8800154643 /* KNBBaseViewController.m in Sources */,
 				966D15642268F2F4005F5D77 /* KNBHomeChatTableViewCell.m in Sources */,
@@ -2924,6 +2947,7 @@
 				9697FD5C225597A900027AB3 /* GHDropMenuFilterInputItem.m in Sources */,
 				18B3B03B226452540058AE4F /* KNBAlertRemind.m in Sources */,
 				964926BC225C948D000BBC7E /* KNBRecruitmentShowTableViewCell.m in Sources */,
+				185F1A1E226EFE3A000F6E9C /* KNBHomeUploadProductViewController.m in Sources */,
 				96B098B12249CC1000154643 /* NSString+Contain.m in Sources */,
 				966169B7224DAB6400FB2D01 /* KNBMeHeaderView.m in Sources */,
 				966AA575224A1E4F00EDBF5F /* TAPageControl.m in Sources */,

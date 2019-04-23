@@ -161,7 +161,7 @@
             KNBRecruitmentEnterTableViewCell *typeCell = (KNBRecruitmentEnterTableViewCell *)cell;
             typeCell.type = KNBRecruitmentEnterTypeOrder;
             typeCell.selectButtonBlock = ^(UIButton * _Nonnull button) {
-                
+                [weakSelf enterOrderFinishing];
             };
         }
     } else {//商家入驻
@@ -209,11 +209,7 @@
             KNBRecruitmentEnterTableViewCell *typeCell = (KNBRecruitmentEnterTableViewCell *)cell;
             typeCell.type = KNBRecruitmentEnterTypeRecruitment;
             typeCell.selectButtonBlock = ^(UIButton * _Nonnull button) {
-                if (weakSelf.VCType == KNBOrderVCTypeOrderFinishing) {
-                    [weakSelf enterOrderFinishing];
-                } else {
-                    [weakSelf enterRecruitment];
-                }
+                [weakSelf enterRecruitment];
             };
         }
     }
@@ -628,7 +624,7 @@
         [LCProgressHUD showMessage:@"电话不能为空"];
         return;
     }
-    KNBHomeBespokeApi *api = [[KNBHomeBespokeApi alloc] initWithfacId:1 facName:[NSNull null] catId:[self.orderModel.typeModel.selectSubModel.typeId integerValue] userId:@"" areaInfo:self.orderModel.area_info houseInfo:self.orderModel.house_info community:self.orderModel.community provinceId:self.orderModel.province_id cityId:self.orderModel.city_id areaId:self.orderModel.area_id decorateStyle:self.orderModel.style decorateGrade:self.orderModel.level name:self.orderModel.name mobile:self.orderModel.mobile decorateCat:[NSNull null]];
+    KNBHomeBespokeApi *api = [[KNBHomeBespokeApi alloc] initWithfacId:1 facName:[NSNull null] catId:[self.orderModel.typeModel.selectSubModel.typeId integerValue] userId:@"" areaInfo:self.orderModel.area_info houseInfo:self.orderModel.house_info community:self.orderModel.community provinceId:self.orderModel.province_id cityId:self.orderModel.city_id areaId:self.orderModel.area_id decorateStyle:self.orderModel.style decorateGrade:self.orderModel.level name:self.orderModel.name mobile:self.orderModel.mobile decorateCat:[NSNull null] type:2];
     api.hudString = @"";
     KNB_WS(weakSelf);
     [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *_Nonnull request) {
@@ -675,6 +671,13 @@
         _recruitmentModel = [[KNBRecruitmentModel alloc] init];
     }
     return _recruitmentModel;
+}
+
+- (KNBOrderModel *)orderModel {
+    if (!_orderModel) {
+        _orderModel = [[KNBOrderModel alloc] init];
+    }
+    return _orderModel;
 }
 
 @end

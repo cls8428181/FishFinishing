@@ -254,11 +254,11 @@
 #pragma mark - Event Response
 - (void)backAction {
     [self.verinumView timerControll:NO];
-    if (self.navigationController.viewControllers.count == 1) {
-        [self.navigationController dismissViewControllerAnimated:YES completion:nil];
-    } else {
-        [self.navigationController popViewControllerAnimated:YES];
-    }
+//    if (self.navigationController.viewControllers.count == 1) {
+        [self dismissViewControllerAnimated:YES completion:nil];
+//    } else {
+//        [self.navigationController popViewControllerAnimated:YES];
+//    }
 }
 //登录or确定
 - (void)sureButtonClick:(KNBButton *)sender {
@@ -394,19 +394,19 @@
 - (void)userRegisterClick:(KNBButton *)sender {
     KNBLoginViewController *registerVC = [[KNBLoginViewController alloc] init];
     registerVC.vcType = KNBLoginTypeRegister;
-    [self.navigationController pushViewController:registerVC animated:YES];
+    [self.navigationController presentViewController:registerVC animated:YES completion:nil];
 }
 //密码重置
 - (void)findClick:(KNBButton *)sender {
     KNBLoginViewController *findVC = [[KNBLoginViewController alloc] init];
     findVC.vcType = KNBLoginTypeFindPassword;
-    [self.navigationController pushViewController:findVC animated:YES];
+    [self.navigationController presentViewController:findVC animated:YES completion:nil];
 }
 //已有账号
 - (void)loginClick:(KNBButton *)sender {
-    KNBLoginViewController *findVC = [[KNBLoginViewController alloc] init];
-    findVC.vcType = KNBLoginTypeLogin;
-    [self.navigationController pushViewController:findVC animated:YES];
+    KNBLoginViewController *loginVC = [[KNBLoginViewController alloc] init];
+    loginVC.vcType = KNBLoginTypeLogin;
+    [self.navigationController presentViewController:loginVC animated:YES completion:nil];
 }
 //获取验证码
 - (void)getVerifyCodeRequest {
