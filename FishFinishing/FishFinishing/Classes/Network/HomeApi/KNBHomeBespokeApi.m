@@ -27,7 +27,7 @@
     NSInteger _type;                       //1.报价 2.装修
     
 }
-- (instancetype)initWithfacId:(NSInteger)faceId facName:(NSString *)faceName catId:(NSInteger)catId userId:(NSString *)userId areaInfo:(NSString *)areaInfo houseInfo:(NSString *)houseInfo community:(NSString *)community provinceId:(NSInteger)provinceId cityId:(NSInteger)cityId areaId:(NSInteger)areaId decorateStyle:(NSString *)decorateStyle decorateGrade:(NSString *)decorateGrade name:(NSString *)name mobile:(NSString *)mobile decorateCat:(NSString *)decorateCat type:(NSInteger)type {
+- (instancetype)initWithFacId:(NSInteger)faceId facName:(NSString *)faceName catId:(NSInteger)catId userId:(NSString *)userId areaInfo:(NSString *)areaInfo houseInfo:(NSString *)houseInfo community:(NSString *)community provinceId:(NSInteger)provinceId cityId:(NSInteger)cityId areaId:(NSInteger)areaId decorateStyle:(NSString *)decorateStyle decorateGrade:(NSString *)decorateGrade name:(NSString *)name mobile:(NSString *)mobile decorateCat:(NSString *)decorateCat type:(NSInteger)type {
     if (self = [super init]) {
         _fac_id = faceId;
         _fac_name = faceName;

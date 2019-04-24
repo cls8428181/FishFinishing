@@ -37,7 +37,7 @@ typedef void (^KNBUploadFailBlock)(NSArray *failRequests, NSArray *successFileUr
  @param image 图片
  @param token 用户登录标识
  */
-- (instancetype)initWithImage:(UIImage *)image token:(NSString *)token;
+- (instancetype)initWithImage:(UIImage *)image;
 
 /**
  *  批量上传

@@ -75,14 +75,13 @@
     if (!_baseMuDic) {
         _baseMuDic = [NSMutableDictionary dictionary];
     }
-//    NSString *userToken = [KNBUserInfo shareInstance].userToken;
-//    NSString *user_id = [KNBUserInfo shareInstance].userId;
-//    NSDictionary *dic = @{ @"user_token" : userToken ?: @"",
-//                           @"nowu_id" : user_id ?: @"",
-//                           @"client" : @"ios",
-//                           @"company_id" : @([KNBUserInfo shareInstance].roleFranchisee_id),
-//                           @"ver_num" : KNB_APP_VERSION };
-//    [_baseMuDic addEntriesFromDictionary:dic];
+    NSString *userToken = [KNBUserInfo shareInstance].token;
+    NSInteger user_id = [[KNBUserInfo shareInstance].userId integerValue];
+    NSDictionary *dic = @{
+                          @"token" : userToken ?: @"",
+                           @"user_id" : @(user_id) ?: @(0),
+                           };
+    [_baseMuDic addEntriesFromDictionary:dic];
     return _baseMuDic;
 }
 

@@ -15,6 +15,12 @@
 			<key>imageName</key>
 			<string>knb_me_icon_receiving</string>
 		</dict>
+		<dict>
+			<key>title</key>
+			<string>预约订单</string>
+			<key>imageName</key>
+			<string>knb_me_order</string>
+		</dict>
 	</array>
 	<array>
 		<dict>

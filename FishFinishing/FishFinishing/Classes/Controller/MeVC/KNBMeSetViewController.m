@@ -143,11 +143,11 @@
     KNBOrderTextfieldTableViewCell *nameCell = (KNBOrderTextfieldTableViewCell *)[self.knGroupTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
     KNBRecruitmentPortraitTableViewCell *iconCell = (KNBRecruitmentPortraitTableViewCell *)[self.knGroupTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:1]];
     //上传图片
-    KNBUploadFileApi *fileApi = [[KNBUploadFileApi alloc] initWithImage:iconCell.iconImageView.image token:[KNBUserInfo shareInstance].token];
+    KNBUploadFileApi *fileApi = [[KNBUploadFileApi alloc] initWithImage:iconCell.iconImageView.image];
     [fileApi startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *_Nonnull request) {
         if (fileApi.requestSuccess) {
             NSString *imgString = request.responseObject[@"imgurl"];
-            KNBLoginModifyUserInfoApi *api = [[KNBLoginModifyUserInfoApi alloc] initWithToken:[KNBUserInfo shareInstance].token portraitImg:imgString nickName:nameCell.describeTextField.text];
+            KNBLoginModifyUserInfoApi *api = [[KNBLoginModifyUserInfoApi alloc] initWithPortraitImg:imgString nickName:nameCell.describeTextField.text];
             KNB_WS(weakSelf);
             [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *_Nonnull request) {
                 if (api.requestSuccess) {

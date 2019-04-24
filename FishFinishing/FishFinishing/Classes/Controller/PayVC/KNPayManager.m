@@ -22,7 +22,7 @@
          completeBlock:(void (^)(BOOL success, id errorMsg, NSInteger errorCode))complete {
     
     if ([payMethod isEqualToString:KN_PayCodeWX]) {
-        KNBPayWechatApi *api = [[KNBPayWechatApi alloc] initWithToken:[KNBUserInfo shareInstance].token payment:payPrice type:type == KNBGetChargeTypeRecruitment ? @"1" : @"2"];
+        KNBPayWechatApi *api = [[KNBPayWechatApi alloc] initWithPayment:payPrice type:type == KNBGetChargeTypeRecruitment ? @"1" : @"2"];
         api.hudString = @"";
         [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *_Nonnull request) {
             if (api.requestSuccess) {
@@ -39,7 +39,7 @@
             }
         }];
     } else {
-        KNBPayAlipyApi *api = [[KNBPayAlipyApi alloc] initWithToken:[KNBUserInfo shareInstance].token payment:payPrice type:type == KNBGetChargeTypeRecruitment ? @"1" : @"2"];
+        KNBPayAlipyApi *api = [[KNBPayAlipyApi alloc] initWithPayment:payPrice type:type == KNBGetChargeTypeRecruitment ? @"1" : @"2"];
         api.hudString = @"";
         [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *_Nonnull request) {
             if (api.requestSuccess) {

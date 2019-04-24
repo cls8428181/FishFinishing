@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface KNBHomeBespokeApi : KNBBaseRequest
 
-- (instancetype)initWithfacId:(NSInteger)faceId facName:(NSString *)faceName catId:(NSInteger)catId userId:(NSString *)userId areaInfo:(NSString *)areaInfo houseInfo:(NSString *)houseInfo community:(NSString *)community provinceId:(NSInteger)provinceId cityId:(NSInteger)cityId areaId:(NSInteger)areaId decorateStyle:(NSString *)decorateStyle decorateGrade:(NSString *)decorateGrade name:(NSString *)name mobile:(NSString *)mobile decorateCat:(NSString *)decorateCat type:(NSInteger)type;
+- (instancetype)initWithFacId:(NSInteger)faceId facName:(NSString *)faceName catId:(NSInteger)catId userId:(NSString *)userId areaInfo:(NSString *)areaInfo houseInfo:(NSString *)houseInfo community:(NSString *)community provinceId:(NSInteger)provinceId cityId:(NSInteger)cityId areaId:(NSInteger)areaId decorateStyle:(NSString *)decorateStyle decorateGrade:(NSString *)decorateGrade name:(NSString *)name mobile:(NSString *)mobile decorateCat:(NSString *)decorateCat type:(NSInteger)type;
 
 @end
 

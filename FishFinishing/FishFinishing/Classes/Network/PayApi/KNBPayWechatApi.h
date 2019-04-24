@@ -17,7 +17,8 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (nonatomic, copy) NSString *ip;
 
-- (instancetype)initWithToken:(NSString *)token payment:(double)payment type:(NSString *)type;
+- (instancetype)initWithPayment:(double)payment type:(NSString *)type;
+
 @end
 
 NS_ASSUME_NONNULL_END

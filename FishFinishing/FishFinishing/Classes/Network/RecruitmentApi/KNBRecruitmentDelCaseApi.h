@@ -15,10 +15,9 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  删除装修案例
 
- @param token 用户登录标识
  @param caseId 装修案列编号
  */
-- (instancetype)initWithToken:(NSString *)token caseId:(NSInteger)caseId;
+- (instancetype)initWithCaseId:(NSInteger)caseId;
 
 @end
 

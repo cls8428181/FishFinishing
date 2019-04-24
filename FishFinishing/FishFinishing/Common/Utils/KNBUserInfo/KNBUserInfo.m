@@ -34,6 +34,8 @@ static NSString *const KNB_USER_TOKEN = @"token";
 static NSString *const KNB_USER_TOKENOUTTIME = @"token_out_time";
 static NSString *const KNB_USER_OPENID = @"openid";
 static NSString *const KNB_USER_REGISTERTYPE = @"reg_type";
+static NSString *const KNB_USER_FACID = @"fac_id";
+static NSString *const KNB_USER_FACNAME = @"fac_name";
 static NSString *const KNB_USER_CACHETOKEN = @"KNB_USER_CACHETOKEN";
 
 @implementation KNBUserInfo
@@ -195,6 +197,18 @@ KNB_DEFINE_SINGLETON_FOR_CLASS(KNBUserInfo);
 
 - (NSString *)registerType {
     return [self.userInfo objectForKey:KNB_USER_REGISTERTYPE];
+}
+
+- (NSString *)fac_id {
+    return [self.userInfo objectForKey:KNB_USER_FACID];
+}
+
+- (NSString *)fac_name {
+    return [self.userInfo objectForKey:KNB_USER_FACNAME];
+}
+
+- (BOOL)isService {
+    return (isNullStr(self.fac_id) || [self.fac_id isEqualToString:@"0"]) ? NO : YES;
 }
 
 @end

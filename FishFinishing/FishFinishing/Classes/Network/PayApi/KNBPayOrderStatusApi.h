@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface KNBPayOrderStatusApi : KNBBaseRequest
 
-- (instancetype)initWithToken:(NSString *)token orderid:(NSString *)orderid;
+- (instancetype)initWithOrderid:(NSString *)orderid;
 
 @end
 

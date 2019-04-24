@@ -21,7 +21,6 @@
 #import "KNBRecruitmentDomainApi.h"
 #import "KNBRecruitmentCostApi.h"
 #import "KNBRecruitmentModel.h"
-#import "KNBRecruitmentPriceModel.h"
 #import "KNBRecruitmentPortraitTableViewCell.h"
 #import "KNBRecruitmentEnterTableViewCell.h"
 #import "KNBRecruitmentDomainTableViewCell.h"
@@ -280,7 +279,7 @@
             self.recruitmentModel.typeModel ? [self showPriceRequest] : [LCProgressHUD showMessage:@"请先选择入驻类型"];
 
         } else if (indexPath.section == 4) {
-            [self chooseServiceRequest];
+            self.recruitmentModel.typeModel ? [self chooseServiceRequest] : [LCProgressHUD showMessage:@"请先选择入驻类型"];
         }
     }
 }
@@ -343,10 +342,10 @@
     [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *_Nonnull request) {
         if (api.requestSuccess) {
             NSDictionary *dic = request.responseObject[@"list"];
-            NSMutableArray *modelArray = [KNBRecruitmentTypeModel changeResponseJSONObject:dic];
+            NSMutableArray *modelArray = [KNBRecruitmentDomainModel changeResponseJSONObject:dic];
             NSMutableArray *dataArray = [NSMutableArray array];
             for (int i = 0; i < modelArray.count; i++) {
-                KNBRecruitmentTypeModel *model = modelArray[i];
+                KNBRecruitmentDomainModel *model = modelArray[i];
                 [dataArray addObject:model.tagName];
             }
             [BRTagsPickerView showTagsPickerWithTitle:@"擅长领域" dataSource:dataArray defaultSelValue:nil resultBlock:^(id selectValue) {
@@ -367,35 +366,31 @@
 
 //请求选择服务数据
 - (void)chooseServiceRequest {
-    //    KNBRecruitmentDomainApi *api = [[KNBRecruitmentDomainApi alloc] initWithCatId:[self.recruitmentModel.typeModel.typeId integerValue]];
-    //    api.hudString = @"";
+    KNBOrderServerTypeApi *api = [[KNBOrderServerTypeApi alloc] initWithCatId:[self.recruitmentModel.typeModel.typeId integerValue]];
+    api.hudString = @"";
     KNB_WS(weakSelf);
-    //    [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *_Nonnull request) {
-    //        if (api.requestSuccess) {
-    //            NSDictionary *dic = request.responseObject[@"list"];
-    //            NSMutableArray *modelArray = [KNBRecruitmentTypeModel changeResponseJSONObject:dic];
-    //            NSMutableArray *dataArray = [NSMutableArray array];
-    //            for (int i = 0; i < modelArray.count; i++) {
-    //                KNBRecruitmentTypeModel *model = modelArray[i];
-    //                [dataArray addObject:model.tagName];
-    //            }
-    //            [BRStringPickerView showStringPickerWithTitle:@"选择擅长领域" dataSource:dataArray defaultSelValue:nil resultBlock:^(id selectValue) {
-    //            }];
-    //        } else {
-    //            [weakSelf requestSuccess:NO requestEnd:NO];
-    //        }
-    //    } failure:^(__kindof YTKBaseRequest *_Nonnull request) {
-    //        [weakSelf requestSuccess:NO requestEnd:NO];
-    //    }];
-    [BRTagsPickerView showTagsPickerWithTitle:@"服务选择" dataSource:@[@"装修",@"漂亮",@"大的方",@"漂亮漂亮",@"大漂亮漂亮方"] defaultSelValue:nil resultBlock:^(id selectValue) {
-        KNBRecruitmentDomainTableViewCell *cell = [weakSelf.knGroupTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:4]];
-        [cell setTagsViewDataSource:selectValue];
-    } cancelBlock:^{
-        
-    } maximumNumberBlock:^{
-        [LCProgressHUD showMessage:@"您最多只能选择三个标签哦"];
+    [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *_Nonnull request) {
+        if (api.requestSuccess) {
+            NSDictionary *dic = request.responseObject[@"list"];
+            NSMutableArray *modelArray = [KNBRecruitmentTypeModel changeResponseJSONObject:dic];
+            NSMutableArray *titleArray = [NSMutableArray array];
+            for (KNBRecruitmentTypeModel *model in modelArray) {
+                [titleArray addObject:model.serviceName];
+            }
+            [BRTagsPickerView showTagsPickerWithTitle:@"服务选择" dataSource:titleArray defaultSelValue:nil resultBlock:^(id selectValue) {
+                KNBRecruitmentDomainTableViewCell *cell = [weakSelf.knGroupTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:4]];
+                [cell setTagsViewDataSource:selectValue];
+            } cancelBlock:^{
+                
+            } maximumNumberBlock:^{
+                [LCProgressHUD showMessage:@"您最多只能选择三个标签哦"];
+            }];
+        } else {
+            [weakSelf requestSuccess:NO requestEnd:NO];
+        }
+    } failure:^(__kindof YTKBaseRequest *_Nonnull request) {
+        [weakSelf requestSuccess:NO requestEnd:NO];
     }];
-    
 }
 
 //请求入驻费用数据
@@ -410,12 +405,16 @@
             NSMutableArray *dataArray = [NSMutableArray array];
             for (int i = 0; i < modelArray.count; i++) {
                 KNBRecruitmentCostModel *model = modelArray[i];
-                
-                [dataArray addObject:[NSString stringWithFormat:@"%@元/年",model.price]];
+                [dataArray addObject:[NSString stringWithFormat:@"%@",model.name]];
             }
             [BRStringPickerView showStringPickerWithTitle:@"选择费用" dataSource:dataArray defaultSelValue:nil resultBlock:^(id selectValue) {
                 KNBOrderDownTableViewCell *cell = [weakSelf.knGroupTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:3]];
                 [cell setButtonTitle:selectValue];
+                for (KNBRecruitmentCostModel *model in modelArray) {
+                    if ([model.name isEqualToString:selectValue]) {
+                        weakSelf.recruitmentModel.priceModel = model;
+                    }
+                }
             }];
         } else {
             [weakSelf requestSuccess:NO requestEnd:NO];
@@ -427,27 +426,7 @@
 
 //请求服务类型数据
 - (void)serverTypeRequest {
-    KNBOrderServerTypeApi *api = [[KNBOrderServerTypeApi alloc] init];
-    api.hudString = @"";
-    KNB_WS(weakSelf);
-    [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *_Nonnull request) {
-        if (api.requestSuccess) {
-            NSDictionary *dic = request.responseObject[@"list"];
-            NSMutableArray *modelArray = [KNBRecruitmentTypeModel changeResponseJSONObject:dic];
-            NSMutableArray *titleArray = [NSMutableArray array];
-            for (KNBRecruitmentTypeModel *model in modelArray) {
-                [titleArray addObject:model.serviceName];
-            }
-            [BRStringPickerView showStringPickerWithTitle:@"选择服务" dataSource:titleArray defaultSelValue:nil resultBlock:^(id selectValue) {
-                KNBOrderDownTableViewCell *cell = [weakSelf.knGroupTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
-                [cell setButtonTitle:selectValue];
-            }];
-        } else {
-            [weakSelf requestSuccess:NO requestEnd:NO];
-        }
-    } failure:^(__kindof YTKBaseRequest *_Nonnull request) {
-        [weakSelf requestSuccess:NO requestEnd:NO];
-    }];
+
 }
 
 //立即入驻
@@ -624,7 +603,7 @@
         [LCProgressHUD showMessage:@"电话不能为空"];
         return;
     }
-    KNBHomeBespokeApi *api = [[KNBHomeBespokeApi alloc] initWithfacId:1 facName:[NSNull null] catId:[self.orderModel.typeModel.selectSubModel.typeId integerValue] userId:@"" areaInfo:self.orderModel.area_info houseInfo:self.orderModel.house_info community:self.orderModel.community provinceId:self.orderModel.province_id cityId:self.orderModel.city_id areaId:self.orderModel.area_id decorateStyle:self.orderModel.style decorateGrade:self.orderModel.level name:self.orderModel.name mobile:self.orderModel.mobile decorateCat:[NSNull null] type:2];
+    KNBHomeBespokeApi *api = [[KNBHomeBespokeApi alloc] initWithFacId:0 facName:@"" catId:[self.orderModel.typeModel.selectSubModel.typeId integerValue] userId:@"" areaInfo:self.orderModel.area_info houseInfo:self.orderModel.house_info community:self.orderModel.community provinceId:self.orderModel.province_id cityId:self.orderModel.city_id areaId:self.orderModel.area_id decorateStyle:self.orderModel.style decorateGrade:self.orderModel.level name:self.orderModel.name mobile:self.orderModel.mobile decorateCat:@"" type:2];
     api.hudString = @"";
     KNB_WS(weakSelf);
     [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *_Nonnull request) {

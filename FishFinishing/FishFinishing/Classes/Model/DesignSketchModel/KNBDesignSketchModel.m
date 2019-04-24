@@ -17,6 +17,10 @@
              @"img" : @"img",
              @"browse_num" : @"browse_num",
              @"created_at" : @"created_at",
+             @"style_name" : @"style_name",
+             @"acreage" : @"acreage",
+             @"apart" : @"apart",
+             @"remark" : @"remark"
              };
 }
 

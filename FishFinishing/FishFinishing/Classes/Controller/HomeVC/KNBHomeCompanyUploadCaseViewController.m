@@ -194,7 +194,7 @@
                     imgsUrl = [imgsUrl stringByAppendingString:imgUrl];
                     imgsUrl = [imgsUrl stringByAppendingString:@","];
                 }
-                KNBRecruitmentAddCaseApi *api = [[KNBRecruitmentAddCaseApi alloc] initWithToken:[KNBUserInfo shareInstance].token title:self.desribeString styleId:[self.styleModel.typeId integerValue] acreage:[self.areaString doubleValue] apartment:self.houseString imgs:imgsUrl];
+                KNBRecruitmentAddCaseApi *api = [[KNBRecruitmentAddCaseApi alloc] initWithTitle:self.desribeString styleId:[self.styleModel.typeId integerValue] acreage:[self.areaString doubleValue] apartment:self.houseString imgs:imgsUrl];
                 api.remark = self.desribeString;
                 api.hudString = @"";
                 KNB_WS(weakSelf);

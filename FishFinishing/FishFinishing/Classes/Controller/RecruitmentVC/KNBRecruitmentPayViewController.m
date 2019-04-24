@@ -76,19 +76,26 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = nil;
-    KNB_WS(weakSelf);
     if (indexPath.section == 0) {
         cell = [KNBRecruitmentShowTableViewCell cellWithTableView:tableView];
         KNBRecruitmentShowTableViewCell *typeCell = (KNBRecruitmentShowTableViewCell *)cell;
         typeCell.iconImageView.hidden = NO;
         typeCell.titleLabel.text = @"入驻类型:";
-        typeCell.describeLabel.text = @"装修公司";
+        typeCell.describeLabel.text = self.recruitmentModel.typeModel.catName;
     } else if (indexPath.section == 1) {
         cell = [KNBRecruitmentShowTableViewCell cellWithTableView:tableView];
         KNBRecruitmentShowTableViewCell *typeCell = (KNBRecruitmentShowTableViewCell *)cell;
         typeCell.iconImageView.hidden = YES;
         typeCell.titleLabel.text = @"展示时间:";
-        typeCell.describeLabel.text = @"1年";
+        NSString *timeString = @"";
+        if ([self.recruitmentModel.priceModel.termType isEqualToString:@"year"]) {
+            timeString = [NSString stringWithFormat:@"%@年",self.recruitmentModel.priceModel.term];
+        } else if ([self.recruitmentModel.priceModel.termType isEqualToString:@"month"]) {
+            timeString = [NSString stringWithFormat:@"%@月",self.recruitmentModel.priceModel.term];
+        } else {
+            timeString = [NSString stringWithFormat:@"%@日",self.recruitmentModel.priceModel.term];
+        }
+        typeCell.describeLabel.text = timeString;
     } else if (indexPath.section == 2) {
         cell = [KNBRecruitmentShowTableViewCell cellWithTableView:tableView];
         KNBRecruitmentShowTableViewCell *typeCell = (KNBRecruitmentShowTableViewCell *)cell;

@@ -9,14 +9,12 @@
 #import "KNBLoginModifyUserInfoApi.h"
 
 @implementation KNBLoginModifyUserInfoApi {
-    NSString *_token;
     NSString *_portrait_img;
     NSString *_nickname;
 }
 
-- (instancetype)initWithToken:(NSString *)token portraitImg:(NSString *)portraitImg nickName:(NSString *)nickName {
+- (instancetype)initWithPortraitImg:(NSString *)portraitImg nickName:(NSString *)nickName {
     if (self = [super init]) {
-        _token = token;
         _portrait_img = portraitImg;
         _nickname = nickName;
     }
@@ -29,7 +27,6 @@
 
 - (id)requestArgument {
     NSDictionary *dic = @{
-                          @"token" : _token,
                           @"portrait_img" : _portrait_img,
                           @"nickname" : _nickname
                           };

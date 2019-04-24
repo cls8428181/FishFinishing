@@ -17,9 +17,8 @@ NS_ASSUME_NONNULL_BEGIN
 
  @param mobile 手机号码
  @param code 验证码
- @param token 用户登录标识
  */
-- (instancetype)initWithMobile:(NSString *)mobile code:(NSString *)code token:(NSString *)token;
+- (instancetype)initWithMobile:(NSString *)mobile code:(NSString *)code;
 
 @end
 

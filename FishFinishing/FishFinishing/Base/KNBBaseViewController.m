@@ -45,6 +45,8 @@
         _knbTableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
         _knbTableView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
         _knbTableView.scrollIndicatorInsets = _knbTableView.contentInset;
+    } else {
+        self.automaticallyAdjustsScrollViewInsets = NO;
     }
 }
 

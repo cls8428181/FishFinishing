@@ -95,7 +95,6 @@
     KNBHomeCompanyDetailViewController *detailVC = [[KNBHomeCompanyDetailViewController alloc] init];
     detailVC.isEdit = NO;
     detailVC.model = serviceModel;
-//    detailVC.vcType = [model.type integerValue];
     [[[self getCurrentViewController] navigationController] pushViewController:detailVC animated:YES];
 }
 

@@ -11,16 +11,14 @@
 @implementation KNBLoginModifyApi {
     NSString *_mobile;
     NSString *_code;
-    NSString *_token;
     NSString *_password;
     NSString *_repassword;
 }
 
-- (instancetype)initWithMobile:(NSString *)mobile code:(NSString *)code token:(NSString *)token password:(NSString *)password repassword:(NSString *)repassword {
+- (instancetype)initWithMobile:(NSString *)mobile code:(NSString *)code password:(NSString *)password repassword:(NSString *)repassword {
     if (self = [super init]) {
         _mobile = mobile;
         _code = code;
-        _token = token;
         _password = password;
         _repassword = repassword;
     }
@@ -35,7 +33,6 @@
     NSDictionary *dic = @{
                           @"mobile" : _mobile,
                           @"code" : _code,
-                          @"token" : _token,
                           @"password" : _password,
                           @"repassword" : _repassword
                           };

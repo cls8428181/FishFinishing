@@ -60,10 +60,6 @@ static CGFloat const kHeaderViewHeight = 50.0f;
 
 @implementation HomeViewController
 #pragma mark - life cycle
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -77,6 +73,13 @@ static CGFloat const kHeaderViewHeight = 50.0f;
 
 #pragma mark - Utils
 - (void)configuration {
+    if (@available(iOS 11.0, *)) {
+        self.mainTableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+        self.mainTableView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
+        self.mainTableView.scrollIndicatorInsets = self.mainTableView.contentInset;
+    } else {
+        self.automaticallyAdjustsScrollViewInsets = NO;
+    }
     self.view.backgroundColor = [UIColor knBgColor];
     [self.naviView removeFromSuperview];
 }

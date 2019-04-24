@@ -374,7 +374,7 @@
 }
 //找回密码
 - (void)findPassswordRequest {
-    KNBLoginModifyApi *api = [[KNBLoginModifyApi alloc] initWithMobile:self.mobileTextView.textField.text code:self.verinumView.textField.text token:@"" password:self.passwordSetView.textField.text repassword:self.passwordEnterView.textField.text];
+    KNBLoginModifyApi *api = [[KNBLoginModifyApi alloc] initWithMobile:self.mobileTextView.textField.text code:self.verinumView.textField.text password:self.passwordSetView.textField.text repassword:self.passwordEnterView.textField.text];
     api.hudString = @"";
     KNB_WS(weakSelf);
     [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *_Nonnull request) {

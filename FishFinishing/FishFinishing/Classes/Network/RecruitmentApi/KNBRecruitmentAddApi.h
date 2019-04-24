@@ -15,7 +15,6 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  添加入驻商家
 
- @param token 用户登录标识
  @param catId cat_id
  @param cityName 城市
  @param tagId 擅长领域编号
@@ -29,7 +28,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param remark 描述
  @param costId 入驻费用编号
  */
-- (instancetype)initWithToken:(NSString *)token catId:(NSInteger)catId cityName:(NSString *)cityName tagId:(NSString *)tagId logo:
+- (instancetype)initWithCatId:(NSInteger)catId cityName:(NSString *)cityName tagId:(NSString *)tagId logo:
 (NSString *)logo serviceId:(NSString *)serviceId lng:(NSString *)lng lat:(NSString *)lat Name:(NSString *)name  phone:(NSString *)phone address:(NSString *)address remark:(NSString *)remark costId:(NSInteger)costId;
 @end
 

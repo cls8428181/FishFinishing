@@ -135,7 +135,20 @@ static NSString *const KNB_LoginDate = @"LoginDate";
  */
 @property (nonatomic, copy, readonly) NSString *registerType;
 
+/**
+ 服务商 id
+ */
+@property (nonatomic, copy, readonly) NSString *fac_id;
 
+/**
+ 服务商名称
+ */
+@property (nonatomic, copy, readonly) NSString *fac_name;
+
+/**
+ 是否是服务商
+ */
+@property (nonatomic, assign, readonly) BOOL isService;
 
 /**
  修改密码成功

@@ -9,7 +9,6 @@
 #import "KNBRecruitmentAddApi.h"
 
 @implementation KNBRecruitmentAddApi {
-    NSString *_token;
     NSInteger _cat_id;
     NSString *_city_name;
     NSString *_tag_id;
@@ -24,10 +23,9 @@
     NSInteger _cost_id;
 }
 
-- (instancetype)initWithToken:(NSString *)token catId:(NSInteger)catId cityName:(NSString *)cityName tagId:(NSString *)tagId logo:
+- (instancetype)initWithCatId:(NSInteger)catId cityName:(NSString *)cityName tagId:(NSString *)tagId logo:
 (NSString *)logo serviceId:(NSString *)serviceId lng:(NSString *)lng lat:(NSString *)lat Name:(NSString *)name  phone:(NSString *)phone address:(NSString *)address remark:(NSString *)remark costId:(NSInteger)costId  {
     if (self = [super init]) {
-        _token = token;
         _cat_id = catId;
         _city_name = cityName;
         _tag_id = tagId;
@@ -50,7 +48,6 @@
 
 - (id)requestArgument {
     NSDictionary *dic = @{
-                          @"token" : _token,
                           @"cat_id" : @(_cat_id),
                           @"city_name" : _city_name,
                           @"tag_id" : _tag_id,

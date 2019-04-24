@@ -9,7 +9,6 @@
 #import "KNBRecruitmentAddCaseApi.h"
 
 @implementation KNBRecruitmentAddCaseApi {
-    NSString *_token;
     NSString *_title;
     NSInteger _style_id;
     double _acreage;
@@ -18,9 +17,8 @@
     NSString *_price;
 }
 
-- (instancetype)initWithToken:(NSString *)token title:(NSString *)title styleId:(NSInteger)styleId acreage:(double)acreage apartment:(NSString *)apartment imgs:(NSString *)imgs {
+- (instancetype)initWithTitle:(NSString *)title styleId:(NSInteger)styleId acreage:(double)acreage apartment:(NSString *)apartment imgs:(NSString *)imgs {
     if (self = [super init]) {
-        _token = token;
         _title = title;
         _style_id = styleId;
         _acreage = acreage;
@@ -31,9 +29,8 @@
     return self;
 }
 
-- (instancetype)initWithToken:(NSString *)token title:(NSString *)title price:(NSString *)price imgs:(NSString *)imgs {
+- (instancetype)initWithTitle:(NSString *)title price:(NSString *)price imgs:(NSString *)imgs {
     if (self = [super init]) {
-        _token = token;
         _title = title;
         _price = price;
         _imgs = imgs;
@@ -48,7 +45,6 @@
 
 - (id)requestArgument {
     NSDictionary *dic = @{
-                          @"token" : _token,
                           @"type" : @(_type) ?: @(1),
                           @"title" : _title,
                           @"style_id" : @(_style_id),

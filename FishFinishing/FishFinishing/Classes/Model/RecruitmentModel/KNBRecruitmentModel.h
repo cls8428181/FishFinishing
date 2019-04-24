@@ -8,7 +8,6 @@
 
 #import "KNBBaseModel.h"
 #import "KNBRecruitmentTypeModel.h"
-#import "KNBRecruitmentPriceModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -62,7 +61,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  入住费用
  */
-@property (nonatomic, strong) KNBRecruitmentPriceModel *priceModel;
+@property (nonatomic, strong) KNBRecruitmentCostModel *priceModel;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -15,6 +15,8 @@
 #import "KNBMeSetViewController.h"
 #import "KNBHomeChatViewController.h"
 #import "KNBLoginViewController.h"
+#import "KNBMeOrderViewController.h"
+#import "KNBOrderViewController.h"
 
 @interface MeViewController ()
 @property (nonatomic, strong) KNBMeHeaderView *headerView;
@@ -105,13 +107,26 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if ([KNBUserInfo shareInstance].isLogin) {
-        if (indexPath.section == 0 && indexPath.row == 0) {
-            KNBHomeServiceModel *model = [[KNBHomeServiceModel alloc] init];
-            model.serviceId = @"1";
-            KNBHomeCompanyDetailViewController *detailVC = [[KNBHomeCompanyDetailViewController alloc] init];
-            detailVC.isEdit = YES;
-            detailVC.model = model;
-            [self.navigationController pushViewController:detailVC animated:YES];
+        if (indexPath.section == 0) {
+            if ( indexPath.row == 0) {
+                if ([KNBUserInfo shareInstance].isService) {
+                    KNBHomeCompanyDetailViewController *detailVC = [[KNBHomeCompanyDetailViewController alloc] init];
+                    detailVC.isEdit = YES;
+                    [self.navigationController pushViewController:detailVC animated:YES];
+                } else {
+                    KNBOrderViewController *orderVC = [[KNBOrderViewController alloc] init];
+                    orderVC.VCType = KNBOrderVCTypeRecruitment;
+                    [self.navigationController pushViewController:orderVC animated:YES];
+                }
+
+            }
+            if (indexPath.row == 1) {
+                
+            }
+            if (indexPath.row == 2) {
+                KNBMeOrderViewController *orderVC = [[KNBMeOrderViewController alloc] init];
+                [self.navigationController pushViewController:orderVC animated:YES];
+            }
         }
         if (indexPath.section == 1) {
             NSString *urlStr = @"http://baidu.com";

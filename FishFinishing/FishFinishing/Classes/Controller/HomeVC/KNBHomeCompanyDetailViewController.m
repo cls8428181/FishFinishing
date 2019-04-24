@@ -67,7 +67,7 @@
 }
 
 - (void)fetchData {
-    KNBRecruitmentDetailApi *api = [[KNBRecruitmentDetailApi alloc] initWithfacId:[self.model.serviceId integerValue]];
+    KNBRecruitmentDetailApi *api = [[KNBRecruitmentDetailApi alloc] initWithfacId:self.model ? [self.model.serviceId integerValue] : [[KNBUserInfo shareInstance].fac_id integerValue]];
     api.hudString = @"";
     KNB_WS(weakSelf);
     [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *_Nonnull request) {

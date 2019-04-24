@@ -32,7 +32,7 @@
 
     for (NSDictionary *dic in array) {
 //        KNBRecorderType type = [dic[KNBPublishContentItemType] integerValue];
-        KNBUploadFileApi *api = [[KNBUploadFileApi alloc] initWithImage:dic[KNBPublishContentItemOriginImage] token:token];
+        KNBUploadFileApi *api = [[KNBUploadFileApi alloc] initWithImage:dic[KNBPublishContentItemOriginImage]];
         [apiArray addObject:api];
     }
 
@@ -75,7 +75,7 @@
     NSMutableArray *muArray = [NSMutableArray array];
     for (id req in requests) {
         if ([req isKindOfClass:[UIImage class]]) {
-            KNBUploadFileApi *api = [[KNBUploadFileApi alloc] initWithImage:req token:token];
+            KNBUploadFileApi *api = [[KNBUploadFileApi alloc] initWithImage:req];
             [muArray addObject:api];
         } else {
             [muArray addObject:req];
@@ -118,10 +118,9 @@
     }];
 }
 
-- (instancetype)initWithImage:(UIImage *)image token:(NSString *)token {
+- (instancetype)initWithImage:(UIImage *)image {
     if (self = [super init]) {
         _image = image;
-        _token = token;
     }
     return self;
 }
@@ -138,17 +137,11 @@
     return YTKRequestMethodPOST;
 }
 
-- (id)requestArgument {
-    return @{
-        @"token" : _token
-    };
-}
-
 - (AFConstructingBlock)constructingBodyBlock {
     if (_image) {
         return ^(id<AFMultipartFormData> formData) {
 //            NSData *data = [self->_image dealImageMaxFileSize:600];
-            NSData *data = UIImageJPEGRepresentation(_image, 0.9);
+            NSData *data = UIImageJPEGRepresentation(self->_image, 0.9);
             NSString *name = @"image.jpg";
             NSString *formKey = @"img";
             NSString *type = @"image/jpeg";

@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface KNBPayAlipyApi : KNBBaseRequest
 
-- (instancetype)initWithToken:(NSString *)token payment:(double)payment type:(NSString *)type;
+- (instancetype)initWithPayment:(double)payment type:(NSString *)type;
 
 @end
 

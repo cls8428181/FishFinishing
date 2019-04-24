@@ -9,13 +9,11 @@
 #import "KNBRecruitmentDelCaseApi.h"
 
 @implementation KNBRecruitmentDelCaseApi {
-    NSString *_token;
     NSInteger _case_id;
 }
 
-- (instancetype)initWithToken:(NSString *)token caseId:(NSInteger)caseId {
+- (instancetype)initWithCaseId:(NSInteger)caseId {
     if (self = [super init]) {
-        _token = token;
         _case_id = caseId;
     }
     return self;
@@ -27,7 +25,6 @@
 
 - (id)requestArgument {
     NSDictionary *dic = @{
-                          @"token" : _token,
                           @"case_id" : @(_case_id),
                           };
     [self.baseMuDic addEntriesFromDictionary:dic];

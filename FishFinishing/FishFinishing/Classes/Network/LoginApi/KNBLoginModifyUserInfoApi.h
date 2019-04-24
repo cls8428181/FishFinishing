@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  修改用户信息
  */
-- (instancetype)initWithToken:(NSString *)token portraitImg:(NSString *)portraitImg nickName:(NSString *)nickName;
+- (instancetype)initWithPortraitImg:(NSString *)portraitImg nickName:(NSString *)nickName;
 
 @end
 

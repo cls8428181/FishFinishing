@@ -9,14 +9,10 @@
 #import "KNBPayOrderStatusApi.h"
 
 @implementation KNBPayOrderStatusApi {
-    NSString *_token;
-    NSInteger _user_id;
     NSString *_orderid;
 }
-- (instancetype)initWithToken:(NSString *)token orderid:(NSString *)orderid {
+- (instancetype)initWithOrderid:(NSString *)orderid {
     if (self = [super init]) {
-        _token = token;
-        _user_id = [[KNBUserInfo shareInstance].userId integerValue];
         _orderid = orderid;
     }
     return self;
@@ -28,8 +24,6 @@
 
 - (id)requestArgument {
     NSDictionary *dic = @{
-                          @"token" : _token,
-                          @"user_id" : @(_user_id),
                           @"orderid" : _orderid
                           }; //字典
     [self.baseMuDic addEntriesFromDictionary:dic];

@@ -11,14 +11,12 @@
 @implementation KNBLoginBindingApi {
     NSString *_mobile;
     NSString *_code;
-    NSString *_token;
 }
 
-- (instancetype)initWithMobile:(NSString *)mobile code:(NSString *)code token:(NSString *)token {
+- (instancetype)initWithMobile:(NSString *)mobile code:(NSString *)code {
     if (self = [super init]) {
         _mobile = mobile;
         _code = code;
-        _token = token;
     }
     return self;
 }
@@ -31,7 +29,6 @@
     NSDictionary *dic = @{
                           @"mobile" : _mobile,
                           @"code" : _code,
-                          @"token" : _token
                           };
     [self.baseMuDic addEntriesFromDictionary:dic];
     return self.baseMuDic;

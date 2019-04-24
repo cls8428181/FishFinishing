@@ -8,25 +8,10 @@
 
 #import "KNBRecruitmentModifyDetailApi.h"
 
-@implementation KNBRecruitmentModifyDetailApi {
-    NSString *_token;
-}
-- (instancetype)initWithToken:(NSString *)token {
-    if (self = [super init]) {
-        _token = token;
-    }
-    return self;
-}
+@implementation KNBRecruitmentModifyDetailApi
 
 - (NSString *)requestUrl {
     return [[KNBMainConfigModel shareInstance] getRequestUrlWithKey:KNBRecruitment_GetModify];
 }
 
-- (id)requestArgument {
-    NSDictionary *dic = @{
-                          @"token" : _token ?: @""
-                          }; //字典
-    [self.baseMuDic addEntriesFromDictionary:dic];
-    return self.baseMuDic;
-}
 @end

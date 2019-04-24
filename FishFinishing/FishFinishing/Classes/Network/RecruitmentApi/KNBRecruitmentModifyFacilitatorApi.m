@@ -8,15 +8,7 @@
 
 #import "KNBRecruitmentModifyFacilitatorApi.h"
 
-@implementation KNBRecruitmentModifyFacilitatorApi {
-    NSString *_token;
-}
-- (instancetype)initWithToken:(NSString *)token {
-    if (self = [super init]) {
-        _token = token;
-    }
-    return self;
-}
+@implementation KNBRecruitmentModifyFacilitatorApi
 
 - (NSString *)requestUrl {
     return [[KNBMainConfigModel shareInstance] getRequestUrlWithKey:KNBRecruitment_GetModify];
@@ -24,7 +16,6 @@
 
 - (id)requestArgument {
     NSDictionary *dic = @{
-                          @"token" : _token,
                           @"cat_id" : @(_cat_id),
                           @"area_name" : _area_name,
                           @"tag_id" : _tag_id,

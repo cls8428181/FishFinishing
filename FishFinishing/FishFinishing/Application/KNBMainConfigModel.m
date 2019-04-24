@@ -33,6 +33,8 @@ NSString *const KNBHome_MassageList = @"/Api/Default/getMassageList"; //获取�
 NSString *const KNBHome_MassageDetail = @"/Api/Default/getMassage"; //获取消息详情
 NSString *const KNBHome_MassageNum = @"/Api/Default/getMassageNum"; //获取消息数量
 NSString *const KNBHome_RecommendCase = @"/Api/Facilitator/getRecommendCase"; //获取装修案例推荐列表
+NSString *const KNBHome_DispatchList = @"/Api/Default/getDispatchList"; //获取预约订单列表
+NSString *const KNBHome_DispatchStatus = @"/Api/Default/setDispatch";   //设置预约订单状态
 
 
 #pragma mark - 入驻商家

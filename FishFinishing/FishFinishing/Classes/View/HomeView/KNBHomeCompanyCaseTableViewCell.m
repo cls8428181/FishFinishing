@@ -120,7 +120,7 @@
 
 - (void)deleteCaseRequest:(NSInteger)index {
     KNBHomeServiceModel *cellModel = self.dataArray[index];
-    KNBRecruitmentDelCaseApi *api = [[KNBRecruitmentDelCaseApi alloc] initWithToken:[KNBUserInfo shareInstance].token caseId:[cellModel.serviceId integerValue]];
+    KNBRecruitmentDelCaseApi *api = [[KNBRecruitmentDelCaseApi alloc] initWithCaseId:[cellModel.serviceId integerValue]];
     api.hudString = @"";
     KNB_WS(weakSelf);
     [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *_Nonnull request) {

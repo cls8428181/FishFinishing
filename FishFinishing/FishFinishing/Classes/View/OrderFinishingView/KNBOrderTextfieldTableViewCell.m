@@ -55,6 +55,12 @@
     } else if (type == KNBOrderTextFieldTypeShopPhone) {
         self.titleLabel.text = @"商家电话:";
         self.describeTextField.placeholder = @"请输入商家电话";
+    } else if (type == KNBOrderTextFieldTypeProductName) {
+        self.titleLabel.text = @"产品名称:";
+        self.describeTextField.placeholder = @"请输入产品名称";
+    } else if (type == KNBOrderTextFieldTypeProductPrice) {
+        self.titleLabel.text = @"产品价格:";
+        self.describeTextField.placeholder = @"请输入产品价格";
     } else {
         self.titleLabel.text = @"联系电话:";
         self.describeTextField.placeholder = @"请输入联系电话";

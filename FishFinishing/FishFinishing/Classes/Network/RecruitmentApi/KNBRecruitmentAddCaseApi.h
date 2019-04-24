@@ -27,23 +27,19 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  添加装修案例
 
- @param token 用户登录标识
  @param title 案列描述
  @param styleId 装修风格编号
  @param acreage 面积
  */
-- (instancetype)initWithToken:(NSString *)token title:(NSString *)title styleId:(NSInteger)styleId acreage:(double)acreage apartment:(NSString *)apartment imgs:(NSString *)imgs;
-
+- (instancetype)initWithTitle:(NSString *)title styleId:(NSInteger)styleId acreage:(double)acreage apartment:(NSString *)apartment imgs:(NSString *)imgs;
 
 /**
  添加产品
 
- @param token 用户登录标识
  @param title 名称
  @param price 价格
- @param unit 单位
  */
-- (instancetype)initWithToken:(NSString *)token title:(NSString *)title price:(NSString *)price imgs:(NSString *)imgs;
+- (instancetype)initWithTitle:(NSString *)title price:(NSString *)price imgs:(NSString *)imgs;
 @end
 
 NS_ASSUME_NONNULL_END

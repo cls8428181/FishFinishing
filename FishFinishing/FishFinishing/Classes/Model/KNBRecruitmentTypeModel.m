@@ -57,3 +57,19 @@
              };
 }
 @end
+
+@implementation KNBRecruitmentDomainModel
++ (NSDictionary *)JSONKeyPathsByPropertyKey {
+    return @{
+             @"typeId" : @"id",
+             @"tagName" : @"tag_name",
+             @"creater" : @"creater",
+             @"createdAt" : @"created_at",
+             @"updater" : @"updater",
+             @"updatedAt" : @"updated_at",
+             };
+}
+
+
+@end
+

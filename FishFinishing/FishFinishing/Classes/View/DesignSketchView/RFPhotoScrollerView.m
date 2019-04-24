@@ -35,7 +35,7 @@
 //        [self addGestureRecognizer:tap];
 
         // 页码显示
-        UILabel *pageLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(frame) - KNB_TAB_HEIGHT - 70, kScreenWidth, 20)];
+        UILabel *pageLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 100, kScreenWidth, 20)];
         _pageLabel = pageLabel;
         pageLabel.textAlignment = NSTextAlignmentCenter;
         pageLabel.textColor = [UIColor whiteColor];

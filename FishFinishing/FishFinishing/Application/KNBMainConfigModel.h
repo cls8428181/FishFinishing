@@ -72,6 +72,14 @@ extern NSString *const KNBHome_MassageNum;
  * 获取装修案例推荐列表
  */
 extern NSString *const KNBHome_RecommendCase;
+/**
+ * 获取预约订单列表
+ */
+extern NSString *const KNBHome_DispatchList;
+/**
+ * 设置预约订单状态
+ */
+extern NSString *const KNBHome_DispatchStatus;
 
 
 #pragma mark - 入驻商家

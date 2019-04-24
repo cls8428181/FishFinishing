@@ -68,7 +68,7 @@
 }
 
 - (void)fetchData {
-    KNBRecruitmentModifyDetailApi *api = [[KNBRecruitmentModifyDetailApi alloc] initWithToken:[KNBUserInfo shareInstance].token];
+    KNBRecruitmentModifyDetailApi *api = [[KNBRecruitmentModifyDetailApi alloc] init];
     api.hudString = @"";
     KNB_WS(weakSelf);
     [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *_Nonnull request) {

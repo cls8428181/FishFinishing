@@ -22,11 +22,6 @@ NS_ASSUME_NONNULL_BEGIN
  选择的子类型模型
  */
 @property (nonatomic, strong) KNBRecruitmentTypeModel *selectSubModel;
-
-/**
- 擅长领域标签
- */
-@property (nonatomic, copy) NSString *tagName;
 @property (nonatomic, copy) NSString *pid;
 @property (nonatomic, copy) NSString *img;
 @property (nonatomic, copy) NSString *sort;
@@ -42,7 +37,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *serviceName;
 @end
 
-
+#pragma mark - 装修费用
 @interface KNBRecruitmentCostModel : KNBRecruitmentTypeModel
 @property (nonatomic, copy) NSString *name;
 
@@ -55,7 +50,17 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *remark;
 @end
 
+#pragma mark - 装修户型
 @interface KNBRecruitmentUnitModel : KNBRecruitmentTypeModel
 @property (nonatomic, copy) NSString *name;
 @end
+
+#pragma mark - 擅长领域
+@interface KNBRecruitmentDomainModel : KNBRecruitmentTypeModel
+/**
+ 擅长领域标签
+ */
+@property (nonatomic, copy) NSString *tagName;
+@end
+
 NS_ASSUME_NONNULL_END

@@ -8,10 +8,13 @@
 
 #import "KNBOrderServerTypeApi.h"
 
-@implementation KNBOrderServerTypeApi
+@implementation KNBOrderServerTypeApi {
+    NSInteger _catId;
+}
 
-- (instancetype)init {
+- (instancetype)initWithCatId:(NSInteger)catId {
     if (self = [super init]) {
+        _catId = catId;
     }
     return self;
 }
@@ -19,5 +22,14 @@
 - (NSString *)requestUrl {
     return [[KNBMainConfigModel shareInstance] getRequestUrlWithKey:KNBOrder_ServerType];
 }
+
+- (id)requestArgument {
+    NSDictionary *dic = @{
+                          @"cat_id" : @(_catId),
+                          };
+    [self.baseMuDic addEntriesFromDictionary:dic];
+    return self.baseMuDic;
+}
+
 
 @end

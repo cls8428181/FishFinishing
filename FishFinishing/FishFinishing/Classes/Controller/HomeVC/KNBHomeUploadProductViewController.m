@@ -110,7 +110,7 @@
                     imgsUrl = [imgsUrl stringByAppendingString:@","];
                 }
                 imgsUrl = [imgsUrl substringToIndex:[imgsUrl length]-1];
-                KNBRecruitmentAddCaseApi *api = [[KNBRecruitmentAddCaseApi alloc] initWithToken:[KNBUserInfo shareInstance].token title:self.productNameStr price:self.productPriceStr imgs:imgsUrl];
+                KNBRecruitmentAddCaseApi *api = [[KNBRecruitmentAddCaseApi alloc] initWithTitle:self.productNameStr price:self.productPriceStr imgs:imgsUrl];
                 api.hudString = @"";
                 KNB_WS(weakSelf);
                 [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *_Nonnull request) {
