@@ -8,6 +8,7 @@
 
 #import "KNBBaseModel.h"
 #import "KNBRecruitmentTypeModel.h"
+#import "KNBHomeServiceModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -17,6 +18,11 @@ NS_ASSUME_NONNULL_BEGIN
  选择的入驻类型
  */
 @property (nonatomic, strong) KNBRecruitmentTypeModel *typeModel;
+
+/**
+ 选择的入驻类型
+ */
+@property (nonatomic, strong) KNBHomeServiceModel *serviceModel;
 
 /**
  商家名称

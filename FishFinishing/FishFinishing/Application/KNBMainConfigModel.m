@@ -52,6 +52,7 @@ NSString *const KNBRecruitment_GetModify = @"/Api/Facilitator/getModify";   //�
 NSString *const KNBRecruitment_ModifyFacilitator = @"/Api/Facilitator/modifyFacilitator";   //修改服务商信息
 NSString *const KNBRecruitment_IncreaseBrowse = @"/Api/Facilitator/increaseBrowse";   //增加装修案列浏览量
 NSString *const KNBRecruitment_Getlist = @"/Api/Facilitator/getlist";   //获取服务商列表
+NSString *const KNBRecruitment_StickTime = @"/Api/Facilitator/getStickTime";   //获取置顶剩余时间
 
 #pragma mark - 免费预约
 NSString *const KNBOrder_ServerType = @"/Api/Facilitator/getservice";   //免费预约服务类型

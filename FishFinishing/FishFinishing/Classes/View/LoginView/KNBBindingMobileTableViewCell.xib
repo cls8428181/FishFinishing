@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="125" id="KGk-i7-Jjw" customClass="KNBBindingMobileTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="382" height="125"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="382" height="124.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="手机号:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fPI-2R-fmp">
+                        <rect key="frame" x="12" y="54" width="47" height="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入您的手机号" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zIZ-6e-8YE">
+                        <rect key="frame" x="89" y="54" width="281" height="17"/>
+                        <color key="textColor" red="0.50196078431372548" green="0.50196078431372548" blue="0.50196078431372548" alpha="1" colorSpace="calibratedRGB"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                    </textField>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="fPI-2R-fmp" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="12" id="3lF-xy-Vnn"/>
+                    <constraint firstItem="zIZ-6e-8YE" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="A9F-P4-0X3"/>
+                    <constraint firstItem="fPI-2R-fmp" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="TQA-Oj-aL2"/>
+                    <constraint firstAttribute="trailing" secondItem="zIZ-6e-8YE" secondAttribute="trailing" constant="12" id="qB9-DK-Z3B"/>
+                    <constraint firstItem="zIZ-6e-8YE" firstAttribute="leading" secondItem="fPI-2R-fmp" secondAttribute="trailing" constant="30" id="wif-XP-x86"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
+            <connections>
+                <outlet property="detailTextField" destination="zIZ-6e-8YE" id="FeC-dm-lCO"/>
+            </connections>
+            <point key="canvasLocation" x="182.40000000000001" y="148.87556221889056"/>
+        </tableViewCell>
+    </objects>
+</document>

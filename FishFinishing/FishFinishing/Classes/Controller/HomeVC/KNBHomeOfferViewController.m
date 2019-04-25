@@ -17,13 +17,14 @@
 #import "KNBDSFreeOrderFooterView.h"
 #import "KNBDSFreeOrderEnterTableViewCell.h"
 #import "KNBAddressPickerView.h"
-//#import "BRAddressModel.h"
 #import "KNBHomeBespokeApi.h"
 #import "KNBOrderModel.h"
 #import "KNBCityModel.h"
 #import "KNBRecruitmentDetailApi.h"
 #import "KNBHomeServiceModel.h"
 #import "KNBOrderAlertView.h"
+#import "UIImage+Resize.h"
+#import "UIButton+Style.h"
 
 @interface KNBHomeOfferViewController ()
 //背景
@@ -56,13 +57,6 @@
     [self fetchData];
 }
 
-
--(void)viewDidLayoutSubviews{
-    [super viewDidLayoutSubviews];
-    self.bgView.frame = CGRectMake(0, KNB_NAV_HEIGHT, KNB_SCREEN_WIDTH, KNB_SCREEN_HEIGHT - KNB_NAV_HEIGHT);
-    self.bgView.contentSize = CGSizeMake(KNB_SCREEN_WIDTH, 720);
-}
-
 #pragma mark - Setup UI Constraints
 /*
  *  在这里添加UIView的约束布局相关代码
@@ -71,7 +65,8 @@
     KNB_WS(weakSelf);
     [self.bgView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(KNB_NAV_HEIGHT);
-        make.left.right.bottom.equalTo(weakSelf.view);
+        make.left.right.equalTo(weakSelf.view);
+        make.height.mas_equalTo(KNB_SCREEN_HEIGHT - KNB_NAV_HEIGHT);
     }];
     if (self.faceId) {
         [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -93,12 +88,6 @@
         make.right.mas_equalTo(-12);
         make.height.mas_equalTo(90);
     }];
-//    [self.knbTableView mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.top.equalTo(weakSelf.adImageView.mas_bottom).mas_offset(12);
-//        make.left.mas_equalTo(12);
-//        make.right.mas_equalTo(-12);
-//        make.height.mas_equalTo(530);
-//    }];
 }
 
 #pragma mark - Utils
@@ -114,7 +103,6 @@
     self.knbTableView.layer.shadowOpacity = 0.5;
     self.knbTableView.layer.shadowRadius = 5;
     self.knbTableView.clipsToBounds = false;
-    self.bgView.scrollEnabled = YES;
     self.knbTableView.scrollEnabled = NO;
     if (self.faceId) {
         self.knbTableView.frame = CGRectMake(12, 160, KNB_SCREEN_WIDTH - 24, 530);
@@ -146,7 +134,12 @@
                 NSDictionary *dic = request.responseObject[@"list"];
                 KNBHomeServiceModel *model = [KNBHomeServiceModel changeResponseJSONObject:dic];
                 [weakSelf.titleButton setTitle:model.name forState:UIControlStateNormal];
-                [weakSelf.titleButton sd_setImageWithURL:[NSURL URLWithString:model.logo] forState:UIControlStateNormal];
+                [weakSelf.titleButton sd_setImageWithURL:[NSURL URLWithString:model.logo] forState:UIControlStateNormal completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+                    UIImage *refined = [UIImage imageWithCGImage:image.CGImage scale:3 orientation:image.imageOrientation];
+                    refined = [refined resizedImage:CGSizeMake(38, 38) interpolationQuality:0];
+                    [weakSelf.titleButton setImage:refined forState:UIControlStateNormal];
+                    [weakSelf.titleButton layoutButtonWithEdgeInsetsStyle:GLButtonEdgeInsetsStyleLeft imageTitleSpace:5];
+                }];
             } else {
                 [weakSelf requestSuccess:NO requestEnd:NO];
             }
@@ -295,6 +288,8 @@
         [_titleButton setImage:KNBImages(@"knb_default_user") forState:UIControlStateNormal];
         [_titleButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         _titleButton.titleLabel.font = [UIFont systemFontOfSize:14];
+        _titleButton.imageView.layer.masksToBounds = YES;
+        _titleButton.imageView.layer.cornerRadius = 19;
     }
     return _titleButton;
 }

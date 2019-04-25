@@ -19,11 +19,12 @@
 #import "KNBRecruitmentDetailApi.h"
 #import "KNBHomeServiceModel.h"
 #import "KNBAddressPickerView.h"
-//utils
+#import "UIImage+Resize.h"
 #import "KNBButton.h"
 #import "KNBOrderModel.h"
 #import "KNBHomeBespokeApi.h"
 #import "KNBOrderAlertView.h"
+#import "UIButton+Style.h"
 
 @interface KNBHomeWorkerViewController ()
 @property (nonatomic, strong) UIScrollView *bgView;
@@ -201,7 +202,12 @@
                 NSDictionary *dic = request.responseObject[@"list"];
                 KNBHomeServiceModel *model = [KNBHomeServiceModel changeResponseJSONObject:dic];
                 [weakSelf.titleButton setTitle:model.name forState:UIControlStateNormal];
-                [weakSelf.titleButton sd_setImageWithURL:[NSURL URLWithString:model.logo] forState:UIControlStateNormal];
+                [weakSelf.titleButton sd_setImageWithURL:[NSURL URLWithString:model.logo] forState:UIControlStateNormal completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+                    UIImage *refined = [UIImage imageWithCGImage:image.CGImage scale:3 orientation:image.imageOrientation];
+                    refined = [refined resizedImage:CGSizeMake(38, 38) interpolationQuality:0];
+                    [weakSelf.titleButton setImage:refined forState:UIControlStateNormal];
+                    [weakSelf.titleButton layoutButtonWithEdgeInsetsStyle:GLButtonEdgeInsetsStyleLeft imageTitleSpace:5];
+                }];
             } else {
                 [weakSelf requestSuccess:NO requestEnd:NO];
             }
@@ -346,6 +352,8 @@
         [_titleButton setImage:KNBImages(@"knb_default_user") forState:UIControlStateNormal];
         [_titleButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         _titleButton.titleLabel.font = [UIFont systemFontOfSize:14];
+        _titleButton.imageView.layer.masksToBounds = YES;
+        _titleButton.imageView.layer.cornerRadius = 19;
     }
     return _titleButton;
 }

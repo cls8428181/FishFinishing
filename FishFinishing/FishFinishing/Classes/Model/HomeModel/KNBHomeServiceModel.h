@@ -13,6 +13,11 @@ NS_ASSUME_NONNULL_BEGIN
 @interface KNBHomeServiceModel : KNBBaseModel
 
 /**
+ 类型 id
+ */
+@property (nonatomic, copy) NSString *cat_id;
+
+/**
  距离
  */
 @property (nonatomic, copy) NSString *distance;
@@ -81,6 +86,16 @@ NS_ASSUME_NONNULL_BEGIN
  服务商类型
  */
 @property (nonatomic, copy) NSString *type;
+
+/**
+ 服务商类型名称
+ */
+@property (nonatomic, copy) NSString *parent_cat_name;
+
+/**
+ 是否置顶   0 未置顶 1 置顶
+ */
+@property (nonatomic, copy) NSString *is_stick;
 
 /**
  案例数据

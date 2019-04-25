@@ -139,6 +139,11 @@ extern NSString *const KNBRecruitment_IncreaseBrowse;
  * 获取服务商列表
  */
 extern NSString *const KNBRecruitment_Getlist;
+/**
+ * 获取置顶剩余时间
+ */
+extern NSString *const KNBRecruitment_StickTime;
+
 
 #pragma mark - 免费预约
 /**

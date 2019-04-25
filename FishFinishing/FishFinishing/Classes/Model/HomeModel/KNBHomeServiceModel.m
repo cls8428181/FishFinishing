@@ -11,6 +11,7 @@
 @implementation KNBHomeServiceModel
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
     return @{
+             @"cat_id" : @"cat_id",
              @"serviceId" : @"id",
              @"distance" : @"distance",
              @"name" : @"name",
@@ -24,7 +25,9 @@
              @"title" : @"title",
              @"browse_num" : @"browse_num",
              @"remark" : @"remark",
-             @"created_at" : @"created_at"
+             @"created_at" : @"created_at",
+             @"parent_cat_name" : @"parent_cat_name",
+             @"is_stick" : @"is_stick"
              };
 }
 

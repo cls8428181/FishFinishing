@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionReusableView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="U6b-Vx-4bR" customClass="KNBHomeBuyTopFooterView">
+            <rect key="frame" x="0.0" y="0.0" width="416" height="205"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jW5-Ho-Kwz">
+                    <rect key="frame" x="13" y="0.0" width="390" height="192"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="置顶规则" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tEJ-uA-cAd">
+                            <rect key="frame" x="13" y="25" width="364" height="17"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1.置顶服务增加曝光量，更容易引起用户关注。 " lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Um-gb-iff">
+                            <rect key="frame" x="13" y="61" width="364" height="17"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2.置顶信息将依轮播的方式，更新置顶排序，让每条置顶信息获得更平均的展示机会。" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gca-nm-Hqr">
+                            <rect key="frame" x="13" y="97" width="364" height="33.5"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3.置顶服务购买立即生效。" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DOL-AL-d5s">
+                            <rect key="frame" x="13" y="149.5" width="364" height="17"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="DOL-AL-d5s" secondAttribute="trailing" constant="13" id="3zI-Hs-Gko"/>
+                        <constraint firstItem="DOL-AL-d5s" firstAttribute="top" secondItem="gca-nm-Hqr" secondAttribute="bottom" constant="19" id="6Zt-bE-HNy"/>
+                        <constraint firstItem="gca-nm-Hqr" firstAttribute="leading" secondItem="jW5-Ho-Kwz" secondAttribute="leading" constant="13" id="7ld-eH-bKm"/>
+                        <constraint firstItem="DOL-AL-d5s" firstAttribute="leading" secondItem="jW5-Ho-Kwz" secondAttribute="leading" constant="13" id="Byz-K9-vso"/>
+                        <constraint firstItem="2Um-gb-iff" firstAttribute="leading" secondItem="jW5-Ho-Kwz" secondAttribute="leading" constant="13" id="GdM-cq-pwd"/>
+                        <constraint firstAttribute="trailing" secondItem="tEJ-uA-cAd" secondAttribute="trailing" constant="13" id="SDV-XR-1x3"/>
+                        <constraint firstItem="tEJ-uA-cAd" firstAttribute="leading" secondItem="jW5-Ho-Kwz" secondAttribute="leading" constant="13" id="Tes-pg-B5w"/>
+                        <constraint firstAttribute="trailing" secondItem="2Um-gb-iff" secondAttribute="trailing" constant="13" id="Z8o-jF-xPG"/>
+                        <constraint firstItem="tEJ-uA-cAd" firstAttribute="top" secondItem="jW5-Ho-Kwz" secondAttribute="top" constant="25" id="bh4-C6-kIX"/>
+                        <constraint firstAttribute="trailing" secondItem="gca-nm-Hqr" secondAttribute="trailing" constant="13" id="fnn-FS-ynW"/>
+                        <constraint firstItem="2Um-gb-iff" firstAttribute="top" secondItem="tEJ-uA-cAd" secondAttribute="bottom" constant="19" id="gZZ-BU-DsY"/>
+                        <constraint firstItem="gca-nm-Hqr" firstAttribute="top" secondItem="2Um-gb-iff" secondAttribute="bottom" constant="19" id="jqg-Kc-bem"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="9Gg-ye-v9C" firstAttribute="trailing" secondItem="jW5-Ho-Kwz" secondAttribute="trailing" constant="13" id="6h4-yb-6HM"/>
+                <constraint firstItem="jW5-Ho-Kwz" firstAttribute="top" secondItem="9Gg-ye-v9C" secondAttribute="top" id="85y-x9-N7v"/>
+                <constraint firstItem="9Gg-ye-v9C" firstAttribute="bottom" secondItem="jW5-Ho-Kwz" secondAttribute="bottom" constant="13" id="AUU-ef-w9d"/>
+                <constraint firstItem="jW5-Ho-Kwz" firstAttribute="leading" secondItem="9Gg-ye-v9C" secondAttribute="leading" constant="13" id="Kab-IC-yeO"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="9Gg-ye-v9C"/>
+            <point key="canvasLocation" x="209.59999999999999" y="224.4377811094453"/>
+        </collectionReusableView>
+    </objects>
+</document>

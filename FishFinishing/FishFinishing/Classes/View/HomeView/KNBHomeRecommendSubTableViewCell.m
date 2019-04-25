@@ -26,6 +26,9 @@
 @property (weak, nonatomic) IBOutlet UIImageView *leftCase;
 @property (weak, nonatomic) IBOutlet UIImageView *middleCase;
 @property (weak, nonatomic) IBOutlet UIImageView *rightCase;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *heightConstraints;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *widthConstraints;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *topConstraints;
 
 @end
 
@@ -151,6 +154,16 @@
         if (i == 2) {
             [self.rightCase sd_setImageWithURL:[NSURL URLWithString:caseModel.img] placeholderImage:KNBImages(@"knb_default_case")];
         }
+    }
+    
+    if ([model.parent_cat_name containsString:@"设计"]) {
+        [self.orderButton setTitle:@"预约设计" forState:UIControlStateNormal];
+    }
+    
+    if ([model.parent_cat_name containsString:@"家居"] || [model.parent_cat_name containsString:@"建材"]) {
+        self.orderButton.hidden = YES;
+    } else {
+        self.orderButton.hidden = NO;
     }
 }
 @end

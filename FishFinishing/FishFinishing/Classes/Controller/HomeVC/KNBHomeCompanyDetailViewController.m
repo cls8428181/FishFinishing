@@ -18,6 +18,7 @@
 #import "KNBHomeOfferViewController.h"
 #import "KNBHomeDesignViewController.h"
 #import "KNBHomeWorkerViewController.h"
+#import "KNBHomeBuyTopViewController.h"
 
 @interface KNBHomeCompanyDetailViewController ()
 @property (nonatomic, strong) KNBHomeServiceModel *currentModel;
@@ -95,6 +96,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = nil;
+    KNB_WS(weakSelf);
     if (indexPath.section == 0) {
         cell = [KNBHomeCompanyHeaderTableViewCell cellWithTableView:tableView];
         KNBHomeCompanyHeaderTableViewCell *blockCell = (KNBHomeCompanyHeaderTableViewCell *)cell;
@@ -103,6 +105,11 @@
         cell = [KNBHomeCompanyServerTableViewCell cellWithTableView:tableView];
         KNBHomeCompanyServerTableViewCell *blockCell = (KNBHomeCompanyServerTableViewCell *)cell;
         blockCell.model = self.currentModel;
+        blockCell.topButtonBlock = ^{
+            KNBHomeBuyTopViewController *topVC = [[KNBHomeBuyTopViewController alloc] init];
+            topVC.model = self.model;
+            [weakSelf.navigationController pushViewController:topVC animated:YES];
+        };
     } else if (indexPath.section == 2) {
         cell = [KNBHomeCompanyIntroTableViewCell cellWithTableView:tableView];
         KNBHomeCompanyIntroTableViewCell *blockCell = (KNBHomeCompanyIntroTableViewCell *)cell;
@@ -120,7 +127,8 @@
     if (indexPath.section == 0) {
         return [KNBHomeCompanyHeaderTableViewCell cellHeight];
     } else if (indexPath.section == 1) {
-        return [KNBHomeCompanyServerTableViewCell cellHeight];
+//        return [self.currentModel.is_stick isEqualToString:@"0"] ? 210 : 100;
+        return 210;
     } else if (indexPath.section == 2) {
         return [KNBHomeCompanyIntroTableViewCell cellHeight];
     } else {

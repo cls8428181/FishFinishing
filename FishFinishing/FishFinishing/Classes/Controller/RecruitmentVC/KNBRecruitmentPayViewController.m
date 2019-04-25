@@ -81,7 +81,7 @@
         KNBRecruitmentShowTableViewCell *typeCell = (KNBRecruitmentShowTableViewCell *)cell;
         typeCell.iconImageView.hidden = NO;
         typeCell.titleLabel.text = @"入驻类型:";
-        typeCell.describeLabel.text = self.recruitmentModel.typeModel.catName;
+        typeCell.describeLabel.text = self.recruitmentModel.typeModel.catName ?: self.recruitmentModel.serviceModel.parent_cat_name;
     } else if (indexPath.section == 1) {
         cell = [KNBRecruitmentShowTableViewCell cellWithTableView:tableView];
         KNBRecruitmentShowTableViewCell *typeCell = (KNBRecruitmentShowTableViewCell *)cell;

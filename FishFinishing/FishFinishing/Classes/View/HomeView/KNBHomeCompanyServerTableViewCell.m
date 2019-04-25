@@ -14,6 +14,8 @@
 @property (weak, nonatomic) IBOutlet UIView *tagBgView;
 //标签视图
 @property (nonatomic, strong) FMTagsView *tagView;
+@property (weak, nonatomic) IBOutlet UIButton *topButton;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *topConstraints;
 @end
 
 @implementation KNBHomeCompanyServerTableViewCell
@@ -41,12 +43,15 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     [self.tagBgView addSubview:self.tagView];
-    self.tagView.tagsArray = @[@"装修",@"漂亮",@"大方"];
 }
 
 #pragma mark - private method
 + (CGFloat)cellHeight {
     return 100;
+}
+
+- (IBAction)topButtonAction:(id)sender {
+    !self.topButtonBlock ?: self.topButtonBlock();
 }
 
 #pragma mark - lazy load
@@ -76,5 +81,12 @@
 - (void)setModel:(KNBHomeServiceModel *)model {
     NSArray *array = [model.service componentsSeparatedByString:@","]; //分割字符串
     self.tagView.tagsArray = array;
+//    if ([model.is_stick isEqualToString:@"0"]) {
+//        self.topConstraints.constant = 145;
+//        self.topButton.hidden = NO;
+//    } else {
+//        self.topConstraints.constant = 15;
+//        self.topButton.hidden = YES;
+//    }
 }
 @end

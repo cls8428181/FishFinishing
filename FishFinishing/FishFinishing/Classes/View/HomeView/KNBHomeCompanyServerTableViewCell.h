@@ -13,6 +13,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface KNBHomeCompanyServerTableViewCell : UITableViewCell
 @property (nonatomic, strong) KNBHomeServiceModel *model;
+@property (nonatomic, copy) void (^topButtonBlock)(void);
+
 /**
  cell 创建
  */

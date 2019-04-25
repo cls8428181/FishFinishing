@@ -79,10 +79,17 @@
 
 - (void)setModel:(KNBHomeServiceModel *)model {
     [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:model.logo] placeholderImage:KNBImages(@"knb_default_user")];
+    self.iconImageView.layer.masksToBounds = YES;
+    self.iconImageView.layer.cornerRadius = 45;
     self.nameLabel.text = model.name;
     self.addressLabel.text = model.address;
     NSArray *array = [model.tag componentsSeparatedByString:@","]; //分割字符串
     self.tagView.tagsArray = array;
+    if ([model.is_stick isEqualToString:@"0"]) {
+        self.topImageView.image = KNBImages(@"knb_home_weizhiding");
+    } else {
+        self.topImageView.image = KNBImages(@"knb_home_yizhiding");
+    }
 }
 
 @end
