@@ -320,9 +320,6 @@
 		966DD6672281CC5000F0F68F /* KNBHomeCompanyStyleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 966DD6662281CC5000F0F68F /* KNBHomeCompanyStyleViewController.m */; };
 		966DD66A2281CC6200F0F68F /* KNBHomeCompanyCityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 966DD6692281CC6200F0F68F /* KNBHomeCompanyCityViewController.m */; };
 		966DD66D2281CC7400F0F68F /* KNBHomeCompanyOtherViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 966DD66C2281CC7400F0F68F /* KNBHomeCompanyOtherViewController.m */; };
-		966DD6702283474A00F0F68F /* KNBMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 966DD66F2283474A00F0F68F /* KNBMapViewController.m */; };
-		966DD6742283496F00F0F68F /* cityModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 966DD6722283496F00F0F68F /* cityModel.m */; };
-		966DD6752283496F00F0F68F /* serach_Map.png in Resources */ = {isa = PBXBuildFile; fileRef = 966DD6732283496F00F0F68F /* serach_Map.png */; };
 		96811885224F497C00E4A622 /* KNBDesignSketchDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96811884224F497C00E4A622 /* KNBDesignSketchDetailViewController.m */; };
 		96811888224F5F7B00E4A622 /* KNBHomeOfferViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96811887224F5F7B00E4A622 /* KNBHomeOfferViewController.m */; };
 		9697FD52225597A900027AB3 /* UILabel+GHome.m in Sources */ = {isa = PBXBuildFile; fileRef = 9697FD34225597A900027AB3 /* UILabel+GHome.m */; };
@@ -1012,11 +1009,6 @@
 		966DD6692281CC6200F0F68F /* KNBHomeCompanyCityViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNBHomeCompanyCityViewController.m; sourceTree = "<group>"; };
 		966DD66B2281CC7400F0F68F /* KNBHomeCompanyOtherViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNBHomeCompanyOtherViewController.h; sourceTree = "<group>"; };
 		966DD66C2281CC7400F0F68F /* KNBHomeCompanyOtherViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNBHomeCompanyOtherViewController.m; sourceTree = "<group>"; };
-		966DD66E2283474A00F0F68F /* KNBMapViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNBMapViewController.h; sourceTree = "<group>"; };
-		966DD66F2283474A00F0F68F /* KNBMapViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNBMapViewController.m; sourceTree = "<group>"; };
-		966DD6712283496F00F0F68F /* cityModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cityModel.h; sourceTree = "<group>"; };
-		966DD6722283496F00F0F68F /* cityModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = cityModel.m; sourceTree = "<group>"; };
-		966DD6732283496F00F0F68F /* serach_Map.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = serach_Map.png; sourceTree = "<group>"; };
 		96811883224F497C00E4A622 /* KNBDesignSketchDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNBDesignSketchDetailViewController.h; sourceTree = "<group>"; };
 		96811884224F497C00E4A622 /* KNBDesignSketchDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNBDesignSketchDetailViewController.m; sourceTree = "<group>"; };
 		96811886224F5F7B00E4A622 /* KNBHomeOfferViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNBHomeOfferViewController.h; sourceTree = "<group>"; };
@@ -2074,11 +2066,6 @@
 				966AA558224A0AEB00EDBF5F /* RecruitmentViewController.m */,
 				1854B8D222732374009821B8 /* KNBPayProtocolViewController.h */,
 				1854B8D322732374009821B8 /* KNBPayProtocolViewController.m */,
-				966DD66E2283474A00F0F68F /* KNBMapViewController.h */,
-				966DD66F2283474A00F0F68F /* KNBMapViewController.m */,
-				966DD6712283496F00F0F68F /* cityModel.h */,
-				966DD6722283496F00F0F68F /* cityModel.m */,
-				966DD6732283496F00F0F68F /* serach_Map.png */,
 			);
 			path = RecruitmentVC;
 			sourceTree = "<group>";
@@ -3146,7 +3133,6 @@
 				18D4D7302271AD5A000C1022 /* KNBHomeBuyTopFooterView.xib in Resources */,
 				186652FE22694F5C004C176F /* KNBMeAboutTableViewCell.xib in Resources */,
 				18B3B04022645F750058AE4F /* KNBRecruitmentEnterTableViewCell.xib in Resources */,
-				966DD6752283496F00F0F68F /* serach_Map.png in Resources */,
 				966169BC224DAB7600FB2D01 /* KNBMeTableViewCell.xib in Resources */,
 				961C52EF2251A8450089E997 /* KNBDSFreeOrderNewHouseTableViewCell.xib in Resources */,
 				96E7E0D0225B2E6600188DD1 /* KNBOrderAddressTableViewCell.xib in Resources */,
@@ -3420,7 +3406,6 @@
 				1873D5B62264179C006ED859 /* BRLinkagePickerView.m in Sources */,
 				96B098BE2249CC1000154643 /* NSDate+BTAddition.m in Sources */,
 				186EE2F1226701A200E71241 /* KNBRecruitmentServiceListApi.m in Sources */,
-				966DD6742283496F00F0F68F /* cityModel.m in Sources */,
 				964926AF225C7F21000BBC7E /* BRAddressModel.m in Sources */,
 				1868A6AB2265DEBB005546BB /* KNBChoiceTableViewCell.m in Sources */,
 				96B098D22249D6F700154643 /* KNGetUserLoaction.m in Sources */,
@@ -3447,7 +3432,6 @@
 				966AA513224A009600EDBF5F /* KNBWelcomeViewController.m in Sources */,
 				182F5A7822811A7B00E8B323 /* KNBHomeUploadCaseFooterView.m in Sources */,
 				966AA556224A0ADD00EDBF5F /* OrderFinishingViewController.m in Sources */,
-				966DD6702283474A00F0F68F /* KNBMapViewController.m in Sources */,
 				96327508226D6FEE0080C650 /* CQTopBarSegment.m in Sources */,
 				18B3B044226475790058AE4F /* KNBRecruitmentDomainTableViewCell.m in Sources */,
 				966AA540224A033000EDBF5F /* XHLaunchImageView.m in Sources */,

@@ -51,7 +51,7 @@
     if ([openString isEqualToString:@"1"] && isEdit) {
         return 210;
     } else {
-        return 100;
+        return 85;
     }
 }
 

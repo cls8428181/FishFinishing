@@ -124,14 +124,15 @@ static CGFloat const kHeaderViewHeight = 50.0f;
 }
 
 - (void)addMJRefreshFootView {
-    self.subView.tableView.tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
+    KNB_WS(weakSelf);
+    MJRefreshBackNormalFooter *tableViewFooter = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+        weakSelf.requestPage += 1;
+        [weakSelf serviceListRequest:self.segmentedControl.selectedSegmentIndex page:self.requestPage];
+    }];
+    self.subView.tableView.tableView.mj_footer = tableViewFooter;
+    // 设置自动切换透明度(在导航栏下面自动隐藏)
+    tableViewFooter.automaticallyChangeAlpha = YES;
 }
-
-- (void)loadMoreData {
-    self.requestPage += 1;
-    [self serviceListRequest:self.segmentedControl.selectedSegmentIndex page:self.requestPage];
-}
-
 
 - (void)fetchData {
     [LCProgressHUD showLoading:@""];
@@ -180,7 +181,6 @@ static CGFloat const kHeaderViewHeight = 50.0f;
     [self.mainTableView.mj_header endRefreshing];
     
     if (end) {
-        [self.mainTableView.mj_footer endRefreshingWithNoMoreData];
         [self.mainTableView reloadData];
         return;
     }
@@ -337,18 +337,11 @@ static CGFloat const kHeaderViewHeight = 50.0f;
             [LCProgressHUD hide];
             NSDictionary *dic = request.responseObject[@"list"];
             NSArray *modelArray = [KNBHomeServiceModel changeResponseJSONObject:dic];
-            
-            if (page == 1) {
-                [weakSelf.subView.tableView.dataArray removeAllObjects];
-            }
-            [weakSelf.subView.tableView.dataArray addObjectsFromArray:modelArray];
             self.serviceArray = modelArray;
-            
+            [weakSelf.subView reloadTableViewAtIndex:index dataSource:modelArray title:weakSelf.titleArray[index] page:page];
             if (modelArray.count < 10) {
-                [self.subView.tableView.tableView.mj_footer endRefreshing];
-                [self.subView.tableView.tableView.mj_footer endRefreshingWithNoMoreData];
+                weakSelf.requestPage = 1;
             }
-            [weakSelf.subView reloadTableViewAtIndex:index dataSource:modelArray title:weakSelf.titleArray[index]];
         } else {
             [weakSelf requestSuccess:NO requestEnd:NO];
         }
@@ -437,7 +430,6 @@ static CGFloat const kHeaderViewHeight = 50.0f;
         _segmentedControl.segmentEdgeInset = UIEdgeInsetsMake(0, 10, 0, 10);
         KNB_WS(weakSelf);
         [_segmentedControl setIndexChangeBlock:^(NSInteger index) {
-            
             if (weakSelf.subView.contentView) {
                 [weakSelf serviceListRequest:index page:1];
             }

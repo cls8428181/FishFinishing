@@ -201,7 +201,7 @@
     } else if (indexPath.section == 2 && indexPath.row == 2) {
         !isNullStr(self.model.parent_cat_name) ? [self bestDomainRequest] : [LCProgressHUD showMessage:@"请先选择入驻类型"];
 
-    } else {
+    } else if (indexPath.section == 3) {
         [self chooseServiceRequest];
         
     }

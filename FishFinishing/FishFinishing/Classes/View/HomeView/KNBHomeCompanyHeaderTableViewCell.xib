@@ -26,14 +26,17 @@
                             <constraint firstAttribute="height" constant="90" id="Hsu-5H-1YZ"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="良工装饰" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G4g-FI-1Ds">
-                        <rect key="frame" x="127" y="29" width="57.5" height="17"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="50" placeholderIntrinsicHeight="17" text="良工装饰" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G4g-FI-1Ds">
+                        <rect key="frame" x="127" y="29" width="50" height="17"/>
+                        <constraints>
+                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="50" id="HyT-VM-Jas"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="knb_home_icon_rz" translatesAutoresizingMaskIntoConstraints="NO" id="714-i5-YAn">
-                        <rect key="frame" x="194.5" y="33.5" width="20" height="8"/>
+                        <rect key="frame" x="187" y="30.5" width="35" height="14"/>
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="knb_home_icon_posi" translatesAutoresizingMaskIntoConstraints="NO" id="oJe-wc-vI3">
                         <rect key="frame" x="127" y="56.5" width="9" height="12"/>
@@ -42,13 +45,13 @@
                         <rect key="frame" x="127" y="79.5" width="245" height="23.5"/>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="地址" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vaS-lq-Ukf">
-                        <rect key="frame" x="142" y="55" width="25" height="14.5"/>
+                        <rect key="frame" x="142" y="55" width="230" height="14.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" red="0.50196078431372548" green="0.50196078431372548" blue="0.50196078431372548" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="knb_home_yizhiding" translatesAutoresizingMaskIntoConstraints="NO" id="eJt-Qf-aHc">
-                        <rect key="frame" x="224.5" y="31.5" width="24" height="12"/>
+                        <rect key="frame" x="232" y="31.5" width="24" height="12"/>
                     </imageView>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CUi-W8-Pr5">
                         <rect key="frame" x="13" y="172.5" width="358" height="60"/>
@@ -108,6 +111,7 @@
                     <constraint firstAttribute="bottom" secondItem="CUi-W8-Pr5" secondAttribute="bottom" constant="15" id="E1C-7N-roQ"/>
                     <constraint firstItem="714-i5-YAn" firstAttribute="centerY" secondItem="G4g-FI-1Ds" secondAttribute="centerY" id="MIt-aE-MOB"/>
                     <constraint firstItem="oJe-wc-vI3" firstAttribute="centerY" secondItem="vaS-lq-Ukf" secondAttribute="centerY" id="QUS-ZK-IZo"/>
+                    <constraint firstAttribute="trailing" secondItem="vaS-lq-Ukf" secondAttribute="trailing" constant="12" id="Qay-se-NE3"/>
                     <constraint firstItem="wi9-yg-jHC" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="12" id="RgT-99-JRv"/>
                     <constraint firstItem="vaS-lq-Ukf" firstAttribute="leading" secondItem="G4g-FI-1Ds" secondAttribute="leading" constant="15" id="TTB-2w-Z8H"/>
                     <constraint firstItem="CUi-W8-Pr5" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="13" id="UDj-1n-R8X"/>
@@ -131,6 +135,7 @@
                 <outlet property="enterLabel" destination="rVa-Cv-811" id="cGh-SU-mFd"/>
                 <outlet property="experienceTimeLabel" destination="zcj-Vb-QbJ" id="EwO-no-eOl"/>
                 <outlet property="iconImageView" destination="wi9-yg-jHC" id="xmf-vK-eKm"/>
+                <outlet property="maxSpace" destination="HyT-VM-Jas" id="gkH-oe-xMA"/>
                 <outlet property="nameLabel" destination="G4g-FI-1Ds" id="YIF-pc-MEG"/>
                 <outlet property="tagBgView" destination="WWW-vy-9Gc" id="dPu-hE-h0l"/>
                 <outlet property="topImageView" destination="eJt-Qf-aHc" id="z7v-jP-LPa"/>
@@ -141,7 +146,7 @@
     <resources>
         <image name="knb_default_user" width="39" height="39"/>
         <image name="knb_home_icon_posi" width="9.5" height="12.5"/>
-        <image name="knb_home_icon_rz" width="20.5" height="8"/>
+        <image name="knb_home_icon_rz" width="35" height="14"/>
         <image name="knb_home_yizhiding" width="24" height="12"/>
         <image name="knb_recruitment_jiantou" width="5" height="10"/>
         <image name="knb_recruitment_shengji" width="350" height="60"/>

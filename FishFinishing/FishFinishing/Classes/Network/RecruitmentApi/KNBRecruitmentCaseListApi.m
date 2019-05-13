@@ -24,7 +24,7 @@
         dic = @{
                 @"page" : @(_page) ?: @(1),
                 @"limit" : @(_limit) ?: @(10),
-                @"city_name" : _city_name ?: @"",
+                @"city_name" : _city_name ?: [KNGetUserLoaction shareInstance].cityName,
                 @"lng" : @([[KNGetUserLoaction shareInstance].lng doubleValue]),
                 @"lat" : @([[KNGetUserLoaction shareInstance].lat doubleValue]),
                 @"style_id" : @(_style_id) ?: @(0),

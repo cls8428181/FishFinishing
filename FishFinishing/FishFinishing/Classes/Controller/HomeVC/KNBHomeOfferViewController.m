@@ -262,8 +262,8 @@
 - (void)beginTimer {
     if (_timer == nil) {
         __weak typeof(self) weakSelf = self;
-        self.timer = [NSTimer eoc_scheduledTimerWithTimeInterval:0.1 block:^{
-            weakSelf.headerView.numLabel.text = [NSString stringWithFormat:@"%ld",(long)self.index++];
+        self.timer = [NSTimer eoc_scheduledTimerWithTimeInterval:0.01 block:^{
+            weakSelf.headerView.numLabel.text = [NSString stringWithFormat:@"%ld",13257 + (long)self.index++];
         } repeats:YES];
     }
 }

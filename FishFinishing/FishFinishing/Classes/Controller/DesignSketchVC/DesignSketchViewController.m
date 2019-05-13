@@ -34,6 +34,12 @@
 @implementation DesignSketchViewController
 
 #pragma mark - life cycle
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self fetchData:1];
+    
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -43,7 +49,6 @@
     
     [self settingConstraints];
     
-    [self fetchData:1];
 }
 
 #pragma mark - Setup UI Constraints
@@ -72,20 +77,13 @@
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(HouseNotificationAction:) name:NSStringFromClass([KNBHomeCompanyHouseViewController class]) object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(AreaNotificationAction:) name:NSStringFromClass([KNBHomeCompanyAreaViewController class]) object:nil];
         
-        self.topBar = [[CQTopBarViewController alloc] init];
-        self.topBar.segmentFrame = CGRectMake(0, KNB_NAV_HEIGHT, KNB_SCREEN_WIDTH, 50);
-        self.topBar.sectionTitles = @[@"风格",@"户型",@"面积"];
-        self.topBar.isDesign = YES;
-        self.topBar.pageViewClasses = @[[KNBHomeCompanyTagsViewController class],[KNBHomeCompanyHouseViewController class],[KNBHomeCompanyAreaViewController class]];
-        self.topBar.segmentlineColor = [UIColor whiteColor];
-        self.topBar.segmentImage = @"knb_home_icon_down";
-        self.topBar.selectSegmentImage = @"knb_home_icon_up";
-        self.topBar.selectedTitleTextColor = [UIColor colorWithHex:0x0096e6];
         [self addChildViewController:self.topBar];
         [self.view addSubview:self.topBar.view];
         [self.topBar.footerView addSubview:self.collectionView];
         [self.view bringSubviewToFront:self.naviView];
-        self.collectionView.frame = CGRectMake(0, 0, KNB_SCREEN_WIDTH, KNB_SCREEN_HEIGHT - KNB_NAV_HEIGHT - 50);
+        self.topBar.footerView.frame = CGRectMake(0, KNB_NAV_HEIGHT + 50, KNB_SCREEN_WIDTH, KNB_SCREEN_HEIGHT - KNB_NAV_HEIGHT - KNB_TAB_HEIGHT - 50);
+        self.collectionView.frame = CGRectMake(0, KNB_NAV_HEIGHT + 50, KNB_SCREEN_WIDTH, KNB_SCREEN_HEIGHT - KNB_NAV_HEIGHT - KNB_TAB_HEIGHT- 50);
+
     } else {
         [self.view addSubview:self.collectionView];
         self.collectionView.frame = CGRectMake(0, KNB_NAV_HEIGHT, KNB_SCREEN_WIDTH, KNB_SCREEN_HEIGHT - KNB_NAV_HEIGHT);
@@ -114,7 +112,7 @@
                 [weakSelf.dataArray removeAllObjects];
             }
             [weakSelf.dataArray addObjectsFromArray:modelArray];
-            [weakSelf requestSuccess:YES requestEnd:modelArray.count<10];
+            [weakSelf requestSuccess:YES requestEnd:modelArray.count == 0];
 
         } else {
             [weakSelf requestSuccess:NO requestEnd:NO];
@@ -226,21 +224,6 @@
         self.api.max_area = [model.max_area doubleValue];
     }
     [self fetchData:1];
-    
-//    NSString *titleString = notification.userInfo[@"text"];
-//    [self.topBar topBarReplaceObjectsAtIndexes:2 withObjects:titleString];
-//    if ([titleString containsString:@"全部"]) {
-//        self.api.min_area = 0.00;
-//        self.api.max_area = 999.00;
-//    } else if ([titleString containsString:@"以上"]) {
-//        self.api.min_area = 120.00;
-//        self.api.max_area = 999.00;
-//    } else {
-//        NSArray *strArray = [titleString componentsSeparatedByString:@"-"];
-//        self.api.min_area = [strArray.firstObject doubleValue];
-//        self.api.max_area = [strArray.lastObject doubleValue];
-//    }
-//    [self fetchData:1];
 }
 
 
@@ -253,6 +236,7 @@
         layout.minimumLineSpacing = 10;
         if (self.isTabbar) {
             layout.headerReferenceSize = CGSizeMake(KNB_SCREEN_WIDTH, 50); //头视图的大小
+            layout.footerReferenceSize = CGSizeMake(KNB_SCREEN_WIDTH, KNB_TAB_HEIGHT); //底部视图的大小
         }
         layout.sectionInset = UIEdgeInsetsMake(10, 12, 10, 12);
         layout.scrollDirection = UICollectionViewScrollDirectionVertical;
@@ -273,13 +257,13 @@
     KNB_WS(weakSelf);
     if (!_api) {
         _api = [[KNBRecruitmentCaseListApi alloc] init];
-        _api.city_name = [KNGetUserLoaction shareInstance].cityName;
         _api.hudString = @"";
         _api.style_id = weakSelf.style_id ?: 0;
         _api.apartment_id = weakSelf.apartment_id ?: 0;
         _api.min_area = weakSelf.min_area ?: 0;
         _api.max_area = weakSelf.max_area ?: 9999;
     }
+    _api.city_name = [KNGetUserLoaction shareInstance].cityName;
     return _api;
 }
 

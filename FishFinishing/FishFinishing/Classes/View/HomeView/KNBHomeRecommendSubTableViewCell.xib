@@ -30,14 +30,21 @@
                             <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="19"/>
                         </userDefinedRuntimeAttributes>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="装饰设计" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bwf-CD-5lp">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="65.5" placeholderIntrinsicHeight="19.5" text="装饰设计" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bwf-CD-5lp">
                         <rect key="frame" x="60" y="25" width="65.5" height="19.5"/>
+                        <constraints>
+                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="65.5" id="uW8-cg-lDQ"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="knb_home_icon_rz" translatesAutoresizingMaskIntoConstraints="NO" id="o7B-JC-lNG">
                         <rect key="frame" x="135.5" y="28" width="35" height="14"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="35" id="XdS-fA-8Wm"/>
+                            <constraint firstAttribute="height" constant="14" id="zUA-Wj-4fU"/>
+                        </constraints>
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="252" verticalHuggingPriority="251" image="knb_home_icon_posi" translatesAutoresizingMaskIntoConstraints="NO" id="7Fh-QU-4nn">
                         <rect key="frame" x="60" y="54.5" width="9" height="12"/>
@@ -111,6 +118,10 @@
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="knb_home_icon_zd" translatesAutoresizingMaskIntoConstraints="NO" id="Mh1-wL-7eT">
                         <rect key="frame" x="180.5" y="30.5" width="20" height="9"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="9" id="DlV-rX-RwY"/>
+                            <constraint firstAttribute="width" constant="20" id="yAN-GB-1RO"/>
+                        </constraints>
                     </imageView>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c6x-cX-UEB">
                         <rect key="frame" x="12" y="249.5" width="500" height="1"/>
@@ -215,6 +226,7 @@
                 <outlet property="distanceLabel" destination="4mX-oM-hmx" id="7g6-qr-eFR"/>
                 <outlet property="iconImageView" destination="HIa-Xo-MwE" id="Xt0-ra-dCl"/>
                 <outlet property="leftCase" destination="7qM-7d-U19" id="rSh-BG-dln"/>
+                <outlet property="maxSpace" destination="uW8-cg-lDQ" id="v6C-1h-WBY"/>
                 <outlet property="middleCase" destination="Q5K-z3-LId" id="xv8-Li-8vc"/>
                 <outlet property="mobileButton" destination="1So-QH-vyD" id="noX-7Z-x7B"/>
                 <outlet property="mobileImageView" destination="t7C-Uf-IZH" id="YAR-Xs-OiJ"/>

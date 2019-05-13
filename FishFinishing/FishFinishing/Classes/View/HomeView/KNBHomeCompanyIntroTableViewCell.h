@@ -22,7 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  cell 高度
  */
-+ (CGFloat)cellHeight;
++ (CGFloat)cellHeight:(KNBHomeServiceModel *)model;
 @end
 
 NS_ASSUME_NONNULL_END

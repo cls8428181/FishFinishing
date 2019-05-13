@@ -12,6 +12,7 @@
 #import "KNBHomeDesignViewController.h"
 #import "KNBHomeWorkerViewController.h"
 #import "KNBDesignSketchDetailViewController.h"
+#import "NSString+Size.h"
 
 @interface KNBHomeRecommendSubTableViewCell ()
 //标签背景
@@ -33,6 +34,7 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *heightConstraints;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *widthConstraints;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *topConstraints;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *maxSpace;
 
 @end
 
@@ -164,7 +166,7 @@
 
 #pragma mark - private method
 + (CGFloat)cellHeight {
-    return 200;
+    return 205;
 }
 
 #pragma mark - lazy load
@@ -204,6 +206,12 @@
         distance = [NSString stringWithFormat:@"%ld m",[model.distance integerValue]];
     }
     self.distanceLabel.text = distance;
+    
+    CGFloat distanceWidth = [distance widthWithFont:[UIFont systemFontOfSize:11] constrainedToHeight:12];
+    
+    //计算名称最大长度
+    self.maxSpace.constant = KNB_SCREEN_WIDTH - 158 - distanceWidth;
+    
     NSArray *tagsArray = [model.tag componentsSeparatedByString:@","];
     self.tagView.tagsArray = tagsArray;
     for (int i = 0 ; i < model.caseList.count; i++) {
@@ -243,6 +251,8 @@
         self.topImageView.hidden = NO;
         self.topImageView.image = KNBImages(@"knb_home_zhiding");
     }
+    
+    
 }
 
 @end

@@ -24,6 +24,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *experienceTimeLabel;
 @property (weak, nonatomic) IBOutlet UIView *adView;
 @property (weak, nonatomic) IBOutlet UILabel *enterLabel;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *maxSpace;
 
 @end
 
@@ -97,13 +98,17 @@
     self.iconImageView.layer.masksToBounds = YES;
     self.iconImageView.layer.cornerRadius = 45;
     self.nameLabel.text = model.name;
-   CGFloat width  = [model.name widthWithFont:[UIFont systemFontOfSize:14] constrainedToHeight:16];
-    if (width + 205 > KNB_SCREEN_WIDTH) {
-        width = KNB_SCREEN_WIDTH - 205;
-        [self.nameLabel mas_updateConstraints:^(MASConstraintMaker *make) {
-            make.width.mas_equalTo(width);
-        }];
-    }
+//   CGFloat width  = [model.name widthWithFont:[UIFont systemFontOfSize:14] constrainedToHeight:16];
+//    if (width + 205 > KNB_SCREEN_WIDTH) {
+//        width = KNB_SCREEN_WIDTH - 205;
+//        [self.nameLabel mas_updateConstraints:^(MASConstraintMaker *make) {
+//            make.width.mas_equalTo(width);
+//        }];
+//    }
+    
+    //计算名称最大长度
+    self.maxSpace.constant = KNB_SCREEN_WIDTH - 218;
+    
     self.addressLabel.text = model.address;
     NSArray *array = [model.tag componentsSeparatedByString:@","]; //分割字符串
     self.tagView.tagsArray = array;

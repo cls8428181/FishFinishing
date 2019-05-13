@@ -30,7 +30,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (instancetype)initWithFrame:(CGRect)frame dataSource:(nonnull NSArray *)dataSrouce;
 
-- (void)reloadTableView:(NSArray *)dataArray;
+- (void)reloadTableView:(NSArray *)dataSource page:(NSInteger)page;
 
 @end
 

@@ -82,9 +82,9 @@
             NSArray *modelArray = [KNBHomeBannerModel changeResponseJSONObject:dic];
             weakSelf.model = modelArray.firstObject;
             CGSize size = [UIImage getImageSizeWithURL:[NSURL URLWithString:weakSelf.model.img]];
-            weakSelf.bgView.contentSize = CGSizeMake(KNB_SCREEN_WIDTH/size.width * size.width, KNB_SCREEN_HEIGHT/size.height * size.height);
+            weakSelf.bgView.contentSize = CGSizeMake(KNB_SCREEN_WIDTH, KNB_SCREEN_WIDTH * size.height/size.width);
             [weakSelf.bgView addSubview:weakSelf.bgImageView];
-            weakSelf.bgImageView.frame = CGRectMake(0, 0, KNB_SCREEN_WIDTH/size.width * size.width, KNB_SCREEN_HEIGHT/size.height * size.height);
+            weakSelf.bgImageView.frame = CGRectMake(0, 0, KNB_SCREEN_WIDTH, KNB_SCREEN_WIDTH * size.height/size.width);
             [weakSelf.bgImageView sd_setImageWithURL:[NSURL URLWithString:weakSelf.model.img] placeholderImage:KNBImages(@"knb_default_style")];
         }
     } failure:^(__kindof YTKBaseRequest *_Nonnull request) {

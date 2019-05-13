@@ -7,6 +7,7 @@
 //
 
 #import "KNBHomeCompanyIntroTableViewCell.h"
+#import "NSString+Size.h"
 
 @interface KNBHomeCompanyIntroTableViewCell ()
 @property (weak, nonatomic) IBOutlet UILabel *contentLabel;
@@ -28,8 +29,9 @@
 }
 
 #pragma mark - private method
-+ (CGFloat)cellHeight {
-    return 185;
++ (CGFloat)cellHeight:(KNBHomeServiceModel *)model {
+    CGFloat height = [model.remark heightWithFont:[UIFont systemFontOfSize:14] constrainedToWidth:KNB_SCREEN_WIDTH - 24];
+    return 62 + height;
 }
 
 - (void)awakeFromNib {

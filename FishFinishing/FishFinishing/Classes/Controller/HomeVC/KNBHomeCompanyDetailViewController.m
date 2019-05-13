@@ -154,9 +154,9 @@
     } else if (indexPath.section == 1) {
         return [KNBHomeCompanyServerTableViewCell cellHeight:self.isEdit];
     } else if (indexPath.section == 2) {
-        return [KNBHomeCompanyIntroTableViewCell cellHeight];
+        return [KNBHomeCompanyIntroTableViewCell cellHeight:self.currentModel];
     } else {
-        return [KNBHomeCompanyCaseTableViewCell cellHeight:self.currentModel.caseList.count];
+        return [KNBHomeCompanyCaseTableViewCell cellHeight:self.currentModel.caseList.count isEdit:self.isEdit];
     }
 }
 

@@ -25,8 +25,9 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
+        [self.dataArray removeAllObjects];
         self.tableView.frame = self.bounds;
-        self.dataArray = dataSrouce;
+        [self.dataArray addObjectsFromArray:dataSrouce];
         [self addSubview:self.tableView];
         [self addSubview:self.emptySet];
     }
@@ -50,11 +51,6 @@
 #pragma mark - tableviewe delegate & datasource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     self.emptySet.dataArray = self.dataArray;
-//    if (isNullArray(self.dataArray)) {
-//        self.footerView.hidden = YES;
-//    } else {
-//        self.footerView.hidden = NO;
-//    }
     return self.dataArray.count;
 }
 
@@ -98,8 +94,18 @@
 }
 
 
-- (void)reloadTableView:(NSArray *)dataArray {
-    self.dataArray = dataArray;
+- (void)reloadTableView:(NSArray *)dataSource page:(NSInteger)page {
+    [self.tableView.mj_footer resetNoMoreData];
+    if (page == 1) {
+        [self.dataArray removeAllObjects];
+        [self.tableView scrollRectToVisible:CGRectMake(0,0,1,1) animated:YES];
+        [self.tableView setContentOffset:CGPointZero animated:YES];
+    }
+    [self.dataArray addObjectsFromArray:dataSource];
+    if (dataSource.count < 10) {
+        [self.tableView.mj_footer endRefreshing];
+        [self.tableView.mj_footer endRefreshingWithNoMoreData];
+    }
     [self.tableView reloadData];
 }
 
@@ -112,6 +118,13 @@
         _emptySet.center = CGPointMake(KNB_SCREEN_WIDTH/2, 200);
     }
     return _emptySet;
+}
+
+- (NSMutableArray *)dataArray {
+    if (!_dataArray) {
+        _dataArray = [NSMutableArray array];
+    }
+    return _dataArray;
 }
 //
 //- (KNBOrderFooterView *)footerView {

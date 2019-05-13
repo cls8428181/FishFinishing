@@ -30,7 +30,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  cell 高度
  */
-+ (CGFloat)cellHeight:(NSInteger)count;
++ (CGFloat)cellHeight:(NSInteger)count isEdit:(BOOL)isEdit;
 @end
 
 NS_ASSUME_NONNULL_END

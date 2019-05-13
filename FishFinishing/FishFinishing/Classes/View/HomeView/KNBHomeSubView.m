@@ -41,9 +41,9 @@
     }
 }
 
-- (void)reloadTableViewAtIndex:(NSInteger)index dataSource:(NSArray *)dataSource title:(nonnull NSString *)title {
+- (void)reloadTableViewAtIndex:(NSInteger)index dataSource:(NSArray *)dataSource title:(nonnull NSString *)title page:(NSInteger)page {
     self.tableView.title = title;
-    [self.tableView reloadTableView:dataSource];
+    [self.tableView reloadTableView:dataSource page:page];
 }
 
 @end

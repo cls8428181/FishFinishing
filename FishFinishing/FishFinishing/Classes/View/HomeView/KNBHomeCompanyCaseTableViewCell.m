@@ -52,8 +52,20 @@
 }
 
 #pragma mark - private method
-+ (CGFloat)cellHeight:(NSInteger)count {
-    return 220 *(count /2 + 1);
++ (CGFloat)cellHeight:(NSInteger)count isEdit:(BOOL)isEdit {
+    if (count == 0) {
+        return 200;
+    }
+    if (count %2 == 0) {
+        if (isEdit) {
+            return 220 *(count /2 + 1);
+        } else {
+            return 220 *count /2;
+        }
+    } else {
+        return 220 *(count /2 + 1);
+    }
+
 }
 
 #pragma mark - collectionview delegate & dataSource

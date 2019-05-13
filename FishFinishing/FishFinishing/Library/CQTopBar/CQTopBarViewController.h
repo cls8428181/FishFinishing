@@ -13,6 +13,7 @@
 
 //风格模型
 @property (nonatomic, strong) KNBRecruitmentTypeModel *model;
+@property (nonatomic, assign) BOOL isTabbar;
 //市编号
 @property (nonatomic, assign) NSInteger areaId;
 //效果图
