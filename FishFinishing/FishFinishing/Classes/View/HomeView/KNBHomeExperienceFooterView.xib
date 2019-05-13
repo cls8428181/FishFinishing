@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionReusableView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="U6b-Vx-4bR" customClass="KNBHomeExperienceFooterView">
+            <rect key="frame" x="0.0" y="0.0" width="380" height="211"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NkR-uB-NoU">
+                    <rect key="frame" x="90" y="68" width="200" height="30"/>
+                    <color key="backgroundColor" red="1" green="0.40392156862745099" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="200" id="2iZ-Bg-8lZ"/>
+                        <constraint firstAttribute="height" constant="30" id="feW-jY-Yk8"/>
+                    </constraints>
+                    <state key="normal" title="马上升级">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="15"/>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="upgradeButtonAction:" destination="U6b-Vx-4bR" eventType="touchUpInside" id="Q7j-5l-ulb"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NP0-aN-Cfc">
+                    <rect key="frame" x="146.5" y="120" width="87" height="20"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <state key="normal" title="联系客服" image="knb_experience_kefu">
+                        <color key="titleColor" red="0.30196078431372547" green="0.30196078431372547" blue="0.30196078431372547" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="serviceButtonAction:" destination="U6b-Vx-4bR" eventType="touchUpInside" id="xB2-rh-ZPM"/>
+                    </connections>
+                </button>
+            </subviews>
+            <constraints>
+                <constraint firstItem="NP0-aN-Cfc" firstAttribute="top" secondItem="NkR-uB-NoU" secondAttribute="bottom" constant="22" id="3PC-6t-009"/>
+                <constraint firstItem="NkR-uB-NoU" firstAttribute="top" secondItem="9Gg-ye-v9C" secondAttribute="top" constant="24" id="8qU-P0-hvG"/>
+                <constraint firstItem="NP0-aN-Cfc" firstAttribute="centerX" secondItem="9Gg-ye-v9C" secondAttribute="centerX" id="JiS-vx-7Np"/>
+                <constraint firstItem="NkR-uB-NoU" firstAttribute="centerX" secondItem="9Gg-ye-v9C" secondAttribute="centerX" id="tMG-EM-R7Z"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="9Gg-ye-v9C"/>
+            <connections>
+                <outlet property="serviceButton" destination="NP0-aN-Cfc" id="C7i-Vi-vMr"/>
+                <outlet property="upgradeButton" destination="NkR-uB-NoU" id="zPV-Qk-oNl"/>
+            </connections>
+            <point key="canvasLocation" x="175.36231884057972" y="165.73660714285714"/>
+        </collectionReusableView>
+    </objects>
+    <resources>
+        <image name="knb_experience_kefu" width="21" height="19"/>
+    </resources>
+</document>
