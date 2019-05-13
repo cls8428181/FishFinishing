@@ -11,7 +11,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface KNBLoginBindingPhoneViewController : KNBBaseViewController
-
+@property (nonatomic, copy) void (^bindingComplete)(void);
+- (instancetype)initWithDataSource:(NSDictionary *)dic;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -33,9 +33,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) NSInteger style_id;
 
 /**
- 户型
+ 户型编号
  */
-@property (nonatomic, copy) NSString *apartment;
+@property (nonatomic, assign) NSInteger apartment_id;
 
 /**
  最小面积数
@@ -46,6 +46,11 @@ NS_ASSUME_NONNULL_BEGIN
  最大面积数
  */
 @property (nonatomic, assign) double max_area;
+
+/**
+ 搜索内容
+ */
+@property (nonatomic, copy) NSString *search;
 
 @end
 

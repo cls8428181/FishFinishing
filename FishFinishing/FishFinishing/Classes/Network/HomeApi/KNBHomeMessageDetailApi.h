@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface KNBHomeMessageDetailApi : KNBBaseRequest
 
-- (instancetype)initWithPage:(NSInteger)page limit:(NSInteger)limit;
+- (instancetype)initWithMessageId:(NSInteger)messageId;
 
 @end
 

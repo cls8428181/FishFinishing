@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface KNBHomeUploadCaseTableViewCell : UITableViewCell
 
+@property (nonatomic, copy) void (^addCaseBlock)(NSMutableArray *imgsArray);
+
 /**
  图片数组
  */
@@ -22,7 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  cell 创建
  */
-+ (instancetype)cellWithTableView:(UITableView *)tableView;
++ (instancetype)cellWithTableView:(UITableView *)tableView dataArray:(NSMutableArray *)heightArray;
 
 /**
  cell 高度

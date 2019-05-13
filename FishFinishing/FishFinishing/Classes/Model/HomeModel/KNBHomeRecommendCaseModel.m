@@ -12,14 +12,17 @@
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
     return @{
              @"caseId" : @"id",
-             @"type" : @"type",
-             @"case_id" : @"case_id",
-             @"title" : @"title",
-             @"acreage" : @"acreage",
-             @"apartment" : @"apartment",
-             @"style_name" : @"style_name",
+             @"name" : @"name",
+             @"cat_name" : @"cat_name",
+             @"sort" : @"sort",
+             @"enable" : @"enable",
+             @"creater" : @"creater",
+             @"creater_at" : @"creater_at",
              @"img" : @"img",
-             @"apart" : @"apart"
+             @"updater" : @"updater",
+             @"updater_at" : @"updater_at",
+             @"min_area" : @"min_area",
+             @"max_area" : @"max_area"
              };
 }
 

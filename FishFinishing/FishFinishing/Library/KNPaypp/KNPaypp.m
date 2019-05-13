@@ -241,8 +241,7 @@
                 completion(payError.errMsg, payError);
             }
         } else {
-            NSData *jsonData = [(NSString *)charge dataUsingEncoding:NSUTF8StringEncoding];
-            NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:nil];
+            NSDictionary *dict = [NSDictionary dictionaryWithDictionary:charge];
             if (dict) {
                 PayReq *req = [[PayReq alloc] init];
                 req.partnerId = dict[@"partnerid"];
@@ -307,7 +306,7 @@
             }
             NSLog(@"授权结果 authCode = %@", authCode ?: @"");
         }];
-    } else if ([urlHost isEqualToString:@"pay"]) {
+    } else {
         return [WXApi handleOpenURL:url delegate:[KNPayWxRes shareInstance]];
     }
     return NO;

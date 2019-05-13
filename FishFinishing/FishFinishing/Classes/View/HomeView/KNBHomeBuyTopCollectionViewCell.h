@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface KNBHomeBuyTopCollectionViewCell : UICollectionViewCell
 
 @property (nonatomic, strong) KNBRecruitmentCostModel *model;
+
 + (instancetype)cellWithCollectionView:(UICollectionView *)collectionView indexPath:(NSIndexPath *)indexPath;
 
 @end

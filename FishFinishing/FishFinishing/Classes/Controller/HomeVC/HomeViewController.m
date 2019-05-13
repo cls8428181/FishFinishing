@@ -32,6 +32,11 @@
 #import "KNBHomeRecommendCaseApi.h"
 #import "KNBHomeRecommendCaseModel.h"
 #import "KNBSearchViewController.h"
+#import "KNBOrderStyleApi.h"
+#import "KNBOrderUnitApi.h"
+#import "KNBOrderAreaRangeApi.h"
+#import <AFNetworking.h>
+#import "KNBMeAboutViewController.h"
 
 static CGFloat const kHeaderViewHeight = 50.0f;
 
@@ -56,6 +61,8 @@ static CGFloat const kHeaderViewHeight = 50.0f;
 @property (nonatomic, strong) NSArray *titleArray;
 //服务商数据
 @property (nonatomic, strong) NSArray *serviceArray;
+//客服按钮
+@property (nonatomic, strong) UIButton *serviceButton;
 @end
 
 @implementation HomeViewController
@@ -66,8 +73,15 @@ static CGFloat const kHeaderViewHeight = 50.0f;
     [self configuration];
     
     [self addUI];
-    
-    [self fetchData];
+    //监听网络
+    AFNetworkReachabilityManager *netManager = [AFNetworkReachabilityManager sharedManager];
+    [netManager startMonitoring];  //开始监听
+    [netManager setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status){
+        if ((status == AFNetworkReachabilityStatusReachableViaWWAN)||(status == AFNetworkReachabilityStatusReachableViaWiFi)){
+            [self fetchData];
+        }
+        
+    }];
 
 }
 
@@ -88,10 +102,39 @@ static CGFloat const kHeaderViewHeight = 50.0f;
     [self.view addSubview:self.mainTableView];
     [self.view addSubview:self.searchView];
     [self.view bringSubviewToFront:self.searchView];
+    [self.view addSubview:self.serviceButton];
+    [self.view bringSubviewToFront:self.serviceButton];
     self.searchView.backgroundColor=[[UIColor colorWithHex:0x0096e6] colorWithAlphaComponent:0];
+    [self addMJRefreshHeaderView];
+    [self addMJRefreshFootView];
 }
 
+- (void)addMJRefreshHeaderView {
+    KNB_WS(weakSelf);
+    MJRefreshNormalHeader *knbTableViewHeader = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        [weakSelf.mainTableView.mj_footer resetNoMoreData];
+        weakSelf.requestPage = 1;
+        [weakSelf fetchData];
+    }];
+    // 设置自动切换透明度(在导航栏下面自动隐藏)
+    knbTableViewHeader.automaticallyChangeAlpha = YES;
+    // 隐藏时间
+    knbTableViewHeader.lastUpdatedTimeLabel.hidden = YES;
+    self.mainTableView.mj_header = knbTableViewHeader;
+}
+
+- (void)addMJRefreshFootView {
+    self.subView.tableView.tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
+}
+
+- (void)loadMoreData {
+    self.requestPage += 1;
+    [self serviceListRequest:self.segmentedControl.selectedSegmentIndex page:self.requestPage];
+}
+
+
 - (void)fetchData {
+    [LCProgressHUD showLoading:@""];
     KNBHomeBannerApi *api = [[KNBHomeBannerApi alloc] initWithVari:@"index_banner" cityName:[KNGetUserLoaction shareInstance].cityName];
     KNB_WS(weakSelf);
     [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *_Nonnull request) {
@@ -103,7 +146,7 @@ static CGFloat const kHeaderViewHeight = 50.0f;
             }
             weakSelf.cycleScrollView.imageURLStringsGroup = tempArray;
             weakSelf.mainTableView.tableHeaderView = weakSelf.cycleScrollView;
-            [weakSelf.mainTableView reloadData];
+            [weakSelf requestSuccess:YES requestEnd:YES];
         } else {
             [weakSelf requestSuccess:NO requestEnd:NO];
         }
@@ -115,18 +158,15 @@ static CGFloat const kHeaderViewHeight = 50.0f;
     [self recommendCaseRequest:1];
     
     KNBRecruitmentTypeApi *typeApi = [[KNBRecruitmentTypeApi alloc] init];
-    [LCProgressHUD showLoading:@""];
     [typeApi startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *_Nonnull request) {
         if (typeApi.requestSuccess) {
             NSDictionary *dic = request.responseObject[@"list"];
             NSArray *modelArray = [KNBRecruitmentTypeModel changeResponseJSONObject:dic];
             weakSelf.categoryArray = modelArray;
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                [weakSelf serviceListRequest:0];
+                [weakSelf serviceListRequest:0 page:1];
             });
-            KNB_PerformOnMainThread(^{
-                [weakSelf.mainTableView reloadData];
-            });
+            [weakSelf requestSuccess:YES requestEnd:YES];
         } else {
             [weakSelf requestSuccess:NO requestEnd:NO];
         }
@@ -167,14 +207,11 @@ static CGFloat const kHeaderViewHeight = 50.0f;
         cell = [KNBHomeCategoryTableViewCell cellWithTableView:tableView dataSource:self.categoryArray];
         KNBHomeCategoryTableViewCell *blockCell = (KNBHomeCategoryTableViewCell *)cell;
         [blockCell reloadCollectionView];
+        //类型按钮的选择
         blockCell.selectItemAtIndexBlock = ^(NSInteger index) {
             if (index == 0) {
-                if ([KNBUserInfo shareInstance].isLogin) {
-                    KNBHomeOfferViewController *offerVC = [[KNBHomeOfferViewController alloc] init];
-                    [weakSelf.navigationController pushViewController:offerVC animated:YES];
-                } else {
-                    [LCProgressHUD showMessage:@"您还未登录,请先登录"];
-                }
+                KNBHomeOfferViewController *offerVC = [[KNBHomeOfferViewController alloc] init];
+                [weakSelf.navigationController pushViewController:offerVC animated:YES];
 
             } else {
                 KNBRecruitmentTypeModel *model = weakSelf.categoryArray[index - 1];
@@ -182,6 +219,21 @@ static CGFloat const kHeaderViewHeight = 50.0f;
                 workerVC.model = model;
                 [weakSelf.navigationController pushViewController:workerVC animated:YES];
             }
+        };
+        //广告图点击
+        blockCell.adButtonBlock = ^{
+//            if ([KNBUserInfo shareInstance].isLogin) {
+                KNBHomeOfferViewController *offerVC = [[KNBHomeOfferViewController alloc] init];
+                [weakSelf.navigationController pushViewController:offerVC animated:YES];
+//            } else {
+//                [KNBAlertRemind alterWithTitle:@"" message:@"您还未登录,请先登录" buttonTitles:@[@"去登录",@"取消"] handler:^(NSInteger index, NSString *title) {
+//                    if ([title isEqualToString:@"去登录"]) {
+//                        KNBLoginViewController *loginVC = [[KNBLoginViewController alloc] init];
+//                        loginVC.vcType = KNBLoginTypeLogin;
+//                        [weakSelf presentViewController:loginVC animated:YES completion:nil];
+//                    }
+//                }];
+//            }
         };
     } else if (indexPath.section == 1) {
         cell = [KNBHomeDesignSketchTableViewCell cellWithTableView:tableView];
@@ -213,16 +265,16 @@ static CGFloat const kHeaderViewHeight = 50.0f;
     } else if (indexPath.section == 1) {
         return [KNBHomeDesignSketchTableViewCell cellHeight];
     } else {
-        return isNullArray(self.categoryArray) ? CGFLOAT_MIN : self.subView.bounds.size.height + 50;
+        return isNullArray(self.categoryArray) ? CGFLOAT_MIN : self.subView.bounds.size.height + 60;
     }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-    return CGFLOAT_MIN;
+    return 10;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return section == 0 ? 10 : 40;
+    return section == 0 ? CGFLOAT_MIN : 30;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
@@ -235,6 +287,10 @@ static CGFloat const kHeaderViewHeight = 50.0f;
         sectionView.titleLabel.text = @"附近装修推荐";
     }
     return sectionView;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
+    return nil;
 }
 
 // !!!: 悬停的位置
@@ -269,11 +325,11 @@ static CGFloat const kHeaderViewHeight = 50.0f;
     self.searchView.backgroundColor=[[UIColor colorWithHex:0x0096e6] colorWithAlphaComponent:alpha];
 }
 
-- (void)serviceListRequest:(NSInteger)index {
+- (void)serviceListRequest:(NSInteger)index page:(NSInteger)page {
     KNBRecruitmentServiceListApi *serviceApi = [[KNBRecruitmentServiceListApi alloc] initWithLng:[KNGetUserLoaction shareInstance].lng lat:[KNGetUserLoaction shareInstance].lat];
     KNBRecruitmentTypeModel *model = self.categoryArray[index];
     serviceApi.cat_parent_id = [model.typeId integerValue];
-    serviceApi.page = 1;
+    serviceApi.page = page;
     serviceApi.limit = 10;
     KNB_WS(weakSelf);
     [serviceApi startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *_Nonnull request) {
@@ -281,10 +337,18 @@ static CGFloat const kHeaderViewHeight = 50.0f;
             [LCProgressHUD hide];
             NSDictionary *dic = request.responseObject[@"list"];
             NSArray *modelArray = [KNBHomeServiceModel changeResponseJSONObject:dic];
+            
+            if (page == 1) {
+                [weakSelf.subView.tableView.dataArray removeAllObjects];
+            }
+            [weakSelf.subView.tableView.dataArray addObjectsFromArray:modelArray];
             self.serviceArray = modelArray;
-            KNB_PerformOnMainThread(^{
-                [weakSelf.subView reloadTableViewAtIndex:index dataSource:modelArray title:weakSelf.titleArray[index]];
-            });
+            
+            if (modelArray.count < 10) {
+                [self.subView.tableView.tableView.mj_footer endRefreshing];
+                [self.subView.tableView.tableView.mj_footer endRefreshingWithNoMoreData];
+            }
+            [weakSelf.subView reloadTableViewAtIndex:index dataSource:modelArray title:weakSelf.titleArray[index]];
         } else {
             [weakSelf requestSuccess:NO requestEnd:NO];
         }
@@ -294,7 +358,14 @@ static CGFloat const kHeaderViewHeight = 50.0f;
 }
 
 - (void)recommendCaseRequest:(NSInteger)type {
-    KNBHomeRecommendCaseApi *api = [[KNBHomeRecommendCaseApi alloc] initWithType:type];
+    KNBBaseRequest *api = nil;
+    if (type == 1) {
+        api = [[KNBOrderStyleApi alloc] init];
+    } else if (type == 2) {
+        api = [[KNBOrderUnitApi alloc] init];
+    } else {
+        api = [[KNBOrderAreaRangeApi alloc] init];
+    }
     KNB_WS(weakSelf);
     [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *_Nonnull request) {
         if (api.requestSuccess) {
@@ -320,11 +391,16 @@ static CGFloat const kHeaderViewHeight = 50.0f;
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+- (void)serviceButtonAction {
+    KNBMeAboutViewController *aboutVC = [[KNBMeAboutViewController alloc] init];
+    [self.navigationController pushViewController:aboutVC animated:YES];
+}
+
 #pragma mark - Getters And Setters
 /* getter和setter全部都放在最后*/
 - (SDCycleScrollView *)cycleScrollView {
     if (!_cycleScrollView) {
-        _cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, KNB_SCREEN_WIDTH, KNB_SCREEN_WIDTH * 245 / 375) delegate:nil placeholderImage:[UIImage imageNamed:@"knb_home_banner"]];
+        _cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, KNB_SCREEN_WIDTH, KNB_SCREEN_WIDTH * 245 / 375 + KNB_StatusBar_H) delegate:nil placeholderImage:[UIImage imageNamed:@"knb_home_banner"]];
         _cycleScrollView.delegate = self;
         _cycleScrollView.backgroundColor = [UIColor whiteColor];
         _cycleScrollView.pageControlAliment = SDCycleScrollViewPageContolAlimentCenter;
@@ -338,7 +414,7 @@ static CGFloat const kHeaderViewHeight = 50.0f;
 
 -(KNBHomeSubView *)subView{
     if (!_subView) {
-        _subView = [[KNBHomeSubView alloc] initWithFrame:CGRectMake(0, 50, KNB_SCREEN_WIDTH, self.mainTableView.frame.size.height-kHeaderViewHeight - KNB_TAB_HEIGHT - 50) index:self.titleArray.count dataSource:self.serviceArray];
+        _subView = [[KNBHomeSubView alloc] initWithFrame:CGRectMake(0, 50, KNB_SCREEN_WIDTH, self.mainTableView.frame.size.height-kHeaderViewHeight - KNB_TAB_HEIGHT - 45) index:self.titleArray.count dataSource:self.serviceArray];
         KNB_WS(weakSelf);
         _subView.scrollEventBlock = ^(NSInteger row) {
             weakSelf.segmentedControl.selectedSegmentIndex = row;
@@ -357,13 +433,13 @@ static CGFloat const kHeaderViewHeight = 50.0f;
         _segmentedControl.selectionIndicatorHeight = 2.0;
         _segmentedControl.selectionStyle = HMSegmentedControlSelectionStyleTextWidthStripe;
         _segmentedControl.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationDown;
-        _segmentedControl.selectionIndicatorEdgeInsets = UIEdgeInsetsMake(0, 20, 0, 40);
-        _segmentedControl.segmentEdgeInset = UIEdgeInsetsMake(0, 0, 0, 20);
+        _segmentedControl.selectionIndicatorEdgeInsets = UIEdgeInsetsMake(0, 20, -10, 40);
+        _segmentedControl.segmentEdgeInset = UIEdgeInsetsMake(0, 10, 0, 10);
         KNB_WS(weakSelf);
         [_segmentedControl setIndexChangeBlock:^(NSInteger index) {
+            
             if (weakSelf.subView.contentView) {
-                [weakSelf serviceListRequest:index];
-                [weakSelf.subView.contentView setContentOffset:CGPointMake(KNB_SCREEN_WIDTH*index, 0) animated:NO];
+                [weakSelf serviceListRequest:index page:1];
             }
         }];
     }
@@ -380,8 +456,19 @@ static CGFloat const kHeaderViewHeight = 50.0f;
         _mainTableView.showsVerticalScrollIndicator = NO;
         _mainTableView.type = KNBHomeTableViewTypeMain;
         _mainTableView.tableHeaderView = self.cycleScrollView;
+        _mainTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     }
     return _mainTableView;
+}
+
+- (UIButton *)serviceButton {
+    if (!_serviceButton) {
+        _serviceButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        _serviceButton.frame = CGRectMake(KNB_SCREEN_WIDTH - 40, KNB_SCREEN_HEIGHT - 300, 40, 40);
+        [_serviceButton setImage:KNBImages(@"knb_home_kefu") forState:UIControlStateNormal];
+        [_serviceButton addTarget:self action:@selector(serviceButtonAction) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _serviceButton;
 }
 
 - (void)setBannerArray:(NSArray *)bannerArray{
@@ -395,12 +482,8 @@ static CGFloat const kHeaderViewHeight = 50.0f;
     if (!_searchView) {
         _searchView = [[KNBHomeSearchView alloc] initWithFrame:CGRectMake(0, 0, KNB_SCREEN_WIDTH, KNB_NAV_HEIGHT)];
         _searchView.chatButtonBlock = ^{
-            if ([KNBUserInfo shareInstance].isLogin) {
-                KNBHomeChatViewController *chatVC = [[KNBHomeChatViewController alloc] init];
-                [weakSelf.navigationController pushViewController:chatVC animated:YES];
-            } else {
-                [LCProgressHUD showMessage:@"您还未登录,请先登录"];
-            }
+            KNBHomeChatViewController *chatVC = [[KNBHomeChatViewController alloc] init];
+            [weakSelf.navigationController pushViewController:chatVC animated:YES];
         };
         _searchView.touchBlock = ^{
             KNBSearchViewController *searchVC = [[KNBSearchViewController alloc] init];

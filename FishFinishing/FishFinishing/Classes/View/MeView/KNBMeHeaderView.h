@@ -18,6 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) void (^settingButtonBlock)(void);
 @property (nonatomic, copy) void (^chatButtonBlock)(void);
 @property (nonatomic, copy) void (^loginButtonBlock)(void);
+@property (nonatomic, copy) void (^adButtonBlock)(void);
 
 @end
 

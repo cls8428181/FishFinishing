@@ -7,23 +7,34 @@
 //
 
 #import "KNBRecruitmentModel.h"
+#import "KNBRecruitmentTypeModel.h"
 
 @implementation KNBRecruitmentModel
-- (void)setTypeModel:(KNBRecruitmentTypeModel *)typeModel {
-    _typeModel = typeModel;
-    _typeModel.typeId = typeModel.typeId;
-    _typeModel.catName = typeModel.catName;
-    _typeModel.selectSubModel = typeModel.selectSubModel;
-    _typeModel.pid = typeModel.pid;
-    _typeModel.img = typeModel.img;
-    _typeModel.sort = typeModel.sort;
-    _typeModel.enable = typeModel.enable;
-    _typeModel.creater = typeModel.creater;
-    _typeModel.createdAt = typeModel.createdAt;
-    _typeModel.updater = typeModel.updater;
-    _typeModel.updatedAt = typeModel.updatedAt;
-    _typeModel.childList = typeModel.childList;
-    _typeModel.serviceName = typeModel.serviceName;
+
+- (NSString *)domainId {
+    if (!_domainId) {
+        NSString *domain = @"";
+        for (KNBRecruitmentDomainModel *model in self.domainList) {
+            domain = [domain stringByAppendingString:model.typeId];
+            domain = [domain stringByAppendingString:@","];
+        }
+        domain = [domain substringToIndex:[domain length]-1];
+        _domainId = domain;
+    }
+    return _domainId;
+}
+
+- (NSString *)serviceId {
+    if (!_serviceId) {
+        NSString *service = @"";
+        for (KNBRecruitmentTypeModel *model in self.serviceList) {
+            service = [service stringByAppendingString:model.typeId];
+            service = [service stringByAppendingString:@","];
+        }
+        service = [service substringToIndex:[service length]-1];
+        _serviceId = service;
+    }
+    return _serviceId;
 }
 
 @end

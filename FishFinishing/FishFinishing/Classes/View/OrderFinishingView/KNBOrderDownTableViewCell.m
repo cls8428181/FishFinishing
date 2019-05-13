@@ -67,7 +67,7 @@
     }
     
     [self.describeButton setTitleEdgeInsets:UIEdgeInsetsMake(0, -self.describeButton.imageView.bounds.size.width - 15, 0, self.describeButton.imageView.bounds.size.width + 15)];
-    [self.describeButton setImageEdgeInsets:UIEdgeInsetsMake(0, self.describeButton.titleLabel.bounds.size.width - 5, 0, -self.describeButton.titleLabel.bounds.size.width + 5)];
+    [self.describeButton setImageEdgeInsets:UIEdgeInsetsMake(0, self.describeButton.titleLabel.bounds.size.width - 5, 0, -self.describeButton.titleLabel.bounds.size.width)];
 }
 
 @end

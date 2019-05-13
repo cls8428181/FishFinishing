@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface KNBDesignSketchFreeOrderHeaderView : UIView
 
+@property (weak, nonatomic) IBOutlet UILabel *numLabel;
+
 @end
 
 NS_ASSUME_NONNULL_END

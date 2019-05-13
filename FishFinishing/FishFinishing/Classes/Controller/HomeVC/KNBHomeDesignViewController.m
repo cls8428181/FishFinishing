@@ -300,7 +300,10 @@
 }
 
 - (void)shareAction {
-    
+    NSString *urlStr = @"http://dayuapp.idayu.cn/Home/design.html";
+    NSString *name = @"大鱼装修";
+    NSString *describeStr = @"大鱼装修";
+    [self shareMessages:@[ name, describeStr, urlStr ] isActionType:NO shareButtonBlock:nil];
 }
 
 #pragma mark - Getters And Setters
@@ -312,6 +315,7 @@
     }
     return _bgView;
 }
+
 - (UIImageView *)adImageView {
     if (!_adImageView) {
         _adImageView = [[UIImageView alloc] init];

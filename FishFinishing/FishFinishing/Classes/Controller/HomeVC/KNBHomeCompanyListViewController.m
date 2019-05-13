@@ -14,7 +14,9 @@
 #import "KNBHomeServiceModel.h"
 #import "KNBCompanyListTagsView.h"
 #import "CQTopBarViewController.h"
-#import "KNBHomeCompanyTagsViewController.h"
+#import "KNBHomeCompanyStyleViewController.h"
+#import "KNBHomeCompanyCityViewController.h"
+#import "KNBHomeCompanyOtherViewController.h"
 #import "KNBCityModel.h"
 
 @interface KNBHomeCompanyListViewController ()
@@ -38,7 +40,7 @@
     
     [self addUI];
     
-    [self fetchData];
+    [self fetchData:1];
 }
 
 #pragma mark - Utils
@@ -50,7 +52,9 @@
 - (void)addUI {
     [self.view addSubview:self.emptySet];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(InfoNotificationAction:) name:NSStringFromClass([KNBHomeCompanyTagsViewController class]) object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(InfoNotificationAction:) name:NSStringFromClass([KNBHomeCompanyStyleViewController class]) object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(InfoNotificationAction:) name:NSStringFromClass([KNBHomeCompanyCityViewController class]) object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(InfoNotificationAction:) name:NSStringFromClass([KNBHomeCompanyOtherViewController class]) object:nil];
     self.topBar.model = self.model;
     for (KNBCityModel *provinceModel in self.cityArray) {
         for (KNBCityModel *cityModel in provinceModel.cityList) {
@@ -64,32 +68,64 @@
     [self.topBar.footerView addSubview:self.knbTableView];
     self.knbTableView.frame = CGRectMake(0, 0, KNB_SCREEN_WIDTH, KNB_SCREEN_HEIGHT - KNB_NAV_HEIGHT - 50);
     [self.view bringSubviewToFront:self.naviView];
+    
+    KNB_WS(weakSelf);
+    [self addMJRefreshHeadView:^(NSInteger page) {
+        [weakSelf fetchData:page];
+    }];
+    [self addMJRefreshFootView:^(NSInteger page) {
+        [weakSelf fetchData:page];
+    }];
 }
 
 - (void)InfoNotificationAction:(NSNotification *)notification{
-    [self.topBar topBarReplaceObjectsAtIndexes:[notification.userInfo[@"index"] integerValue] withObjects:notification.userInfo[@"text"]];
     if ([notification.userInfo[@"index"] isEqualToString:@"0"]) {
-        for (KNBRecruitmentTypeModel *model in self.model.childList) {
-            if ([model.catName isEqualToString:notification.userInfo[@"text"]]) {
-                self.serviceApi.cat_id = [model.typeId integerValue];
+        if ([notification.userInfo[@"text"] isEqualToString:@"全部"]) {
+            [self.topBar topBarReplaceObjectsAtIndexes:[notification.userInfo[@"index"] integerValue] withObjects:[self.model.catName isEqualToString:@"装修工人"] ? @"工种" : @"风格"];
+
+            self.serviceApi.cat_id = 0;
+        } else {
+            [self.topBar topBarReplaceObjectsAtIndexes:[notification.userInfo[@"index"] integerValue] withObjects:notification.userInfo[@"text"]];
+            for (KNBRecruitmentTypeModel *model in self.model.childList) {
+                if ([model.catName isEqualToString:notification.userInfo[@"text"]]) {
+                    self.serviceApi.cat_id = [model.typeId integerValue];
+                }
             }
         }
+    } else if ([notification.userInfo[@"index"] isEqualToString:@"1"]) {
+        if ([notification.userInfo[@"text"] isEqualToString:@"全部"]) {
+            [self.topBar topBarReplaceObjectsAtIndexes:[notification.userInfo[@"index"] integerValue] withObjects:@"区域"];
+
+            self.serviceApi.area_name = @"";
+        } else {
+            [self.topBar topBarReplaceObjectsAtIndexes:[notification.userInfo[@"index"] integerValue] withObjects:notification.userInfo[@"text"]];
+
+            self.serviceApi.area_name = notification.userInfo[@"text"];
+        }
     } else {
-        self.serviceApi.area_name = notification.userInfo[@"text"];
+        [self.topBar topBarReplaceObjectsAtIndexes:[notification.userInfo[@"index"] integerValue] withObjects:notification.userInfo[@"text"]];
+        if ([notification.userInfo[@"text"] isEqualToString:@"预约数量"]) {
+            self.serviceApi.order = 1;
+        } else {
+            self.serviceApi.order = 2;
+        }
     }
-    [self fetchData];
+    [self fetchData:1];
 }
 
-- (void)fetchData {
+- (void)fetchData:(NSInteger)page {
 
     KNB_WS(weakSelf);
+    self.serviceApi.page = page;
     [self.serviceApi startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *_Nonnull request) {
         if (weakSelf.serviceApi.requestSuccess) {
-            [weakSelf.dataArray removeAllObjects];
             NSDictionary *dic = request.responseObject[@"list"];
             NSArray *modelArray = [KNBHomeServiceModel changeResponseJSONObject:dic];
+            if (page == 1) {
+                [weakSelf.dataArray removeAllObjects];
+            }
             [weakSelf.dataArray addObjectsFromArray:modelArray];
-            [weakSelf requestSuccess:YES requestEnd:YES];
+            [weakSelf requestSuccess:YES requestEnd:modelArray.count<10];
         } else {
             [weakSelf requestSuccess:NO requestEnd:NO];
         }
@@ -146,9 +182,9 @@
     _model = model;
     self.naviView.title = model.catName;
     if ([model.catName isEqualToString:@"装修工人"]) {
-        self.topBar.sectionTitles = @[@"工种",@"区域"];
+        self.topBar.sectionTitles = @[@"工种",@"区域",@"其他"];
     } else {
-        self.topBar.sectionTitles = @[@"风格",@"区域"];
+        self.topBar.sectionTitles = @[@"风格",@"区域",@"其他"];
     }
     if ([model.catName isEqualToString:@"设计师"]) {
         self.headerView.middleButton.hidden = YES;
@@ -188,7 +224,7 @@
     if (!_topBar) {
         _topBar = [[CQTopBarViewController alloc] init];
         _topBar.segmentFrame = CGRectMake(0, KNB_NAV_HEIGHT, KNB_SCREEN_WIDTH, 50);
-        _topBar.pageViewClasses = @[[KNBHomeCompanyTagsViewController class],[KNBHomeCompanyTagsViewController class]];
+        _topBar.pageViewClasses = @[[KNBHomeCompanyStyleViewController class],[KNBHomeCompanyCityViewController class],[KNBHomeCompanyOtherViewController class]];
         _topBar.segmentlineColor = [UIColor whiteColor];
         _topBar.segmentImage = @"knb_home_icon_down";
         _topBar.selectSegmentImage = @"knb_home_icon_up";

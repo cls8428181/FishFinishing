@@ -29,6 +29,7 @@
     NSDictionary *dic = @{
                           @"mobile" : _mobile,
                           @"code" : _code,
+                          @"token" : _token
                           };
     [self.baseMuDic addEntriesFromDictionary:dic];
     return self.baseMuDic;

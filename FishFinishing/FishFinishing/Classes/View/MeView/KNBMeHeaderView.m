@@ -43,7 +43,7 @@
     [super layoutSubviews];
     KNB_WS(weakSelf);
     [self.bgImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.height.mas_equalTo(KNB_SCREEN_WIDTH * 170/375);
+        make.height.mas_equalTo(KNB_SCREEN_WIDTH * 170/375 + KNB_StatusBar_H);
         make.top.left.right.equalTo(weakSelf);
     }];
     [self.adButton mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -53,12 +53,12 @@
     }];
     [self.portraitImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(weakSelf);
-        make.top.equalTo(weakSelf).mas_offset(50);
+        make.top.equalTo(weakSelf).mas_offset(70);
         make.width.height.mas_equalTo(75);
     }];
     [self.nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(weakSelf);
-        make.top.equalTo(weakSelf.portraitImageView.mas_bottom).mas_offset(15);;
+        make.top.equalTo(weakSelf.portraitImageView.mas_bottom).mas_offset(15);
     }];
     [self.loginButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.left.right.equalTo(weakSelf.portraitImageView);
@@ -67,10 +67,14 @@
     [self.setButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(-12);
         make.top.mas_equalTo(35);
+        make.width.mas_equalTo(44);
+        make.height.mas_equalTo(44);
     }];
     [self.chatButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(weakSelf.setButton.mas_left).mas_offset(-20);
+        make.right.equalTo(weakSelf.setButton.mas_left).mas_offset(0);
         make.top.mas_equalTo(35);
+        make.width.mas_equalTo(44);
+        make.height.mas_equalTo(44);
     }];
 }
 
@@ -87,6 +91,11 @@
     !self.loginButtonBlock ?: self.loginButtonBlock();
 }
 
+- (void)adButtinAction {
+    !self.adButtonBlock ?: self.adButtonBlock();
+
+}
+
 #pragma mark - lazy load
 - (UIImageView *)bgImageView {
     if (!_bgImageView) {
@@ -100,6 +109,7 @@
     if (!_adButton) {
         _adButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [_adButton setImage:[UIImage imageNamed:@"knb_me_banner"] forState:UIControlStateNormal];
+        [_adButton addTarget:self action:@selector(adButtinAction) forControlEvents:UIControlEventTouchUpInside];
     }
     return _adButton;
 }
@@ -124,7 +134,7 @@
         _nameLabel.font = [UIFont boldSystemFontOfSize:18];
         _nameLabel.textColor = [UIColor whiteColor];
         if ([KNBUserInfo shareInstance].isLogin) {
-            _nameLabel.text = [KNBUserInfo shareInstance].userName;
+            _nameLabel.text = [KNBUserInfo shareInstance].nickName;
         } else {
             _nameLabel.text = @"请登录";
         }

@@ -46,8 +46,13 @@
 }
 
 #pragma mark - private method
-+ (CGFloat)cellHeight {
-    return 100;
++ (CGFloat)cellHeight:(BOOL)isEdit {
+    NSString *openString = [[NSUserDefaults standardUserDefaults] objectForKey:@"OpenPayment"];
+    if ([openString isEqualToString:@"1"] && isEdit) {
+        return 210;
+    } else {
+        return 100;
+    }
 }
 
 - (IBAction)topButtonAction:(id)sender {
@@ -81,12 +86,15 @@
 - (void)setModel:(KNBHomeServiceModel *)model {
     NSArray *array = [model.service componentsSeparatedByString:@","]; //分割字符串
     self.tagView.tagsArray = array;
-//    if ([model.is_stick isEqualToString:@"0"]) {
-//        self.topConstraints.constant = 145;
-//        self.topButton.hidden = NO;
-//    } else {
-//        self.topConstraints.constant = 15;
-//        self.topButton.hidden = YES;
-//    }
+    
+    NSString *openString = [[NSUserDefaults standardUserDefaults] objectForKey:@"OpenPayment"];
+    if ([openString isEqualToString:@"1"] && self.isEdit) {
+        self.topConstraints.constant = 145;
+        self.topButton.hidden = NO;
+    } else {
+        self.topConstraints.constant = 15;
+        self.topButton.hidden = YES;
+    }
+
 }
 @end

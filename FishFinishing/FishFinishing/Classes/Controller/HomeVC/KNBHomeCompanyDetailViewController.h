@@ -9,10 +9,19 @@
 #import "KNBBaseViewController.h"
 #import "KNBHomeServiceModel.h"
 
+typedef NS_ENUM(NSInteger, KNBHomeCompanyDetailType) {
+    KNBHomeCompanyDetailTypeMe = 0,      //自己
+    KNBHomeCompanyDetailTypeOther        //其他人
+};
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface KNBHomeCompanyDetailViewController : KNBBaseViewController
+
 @property (nonatomic, strong) KNBHomeServiceModel *model;
+
+@property (nonatomic, assign) KNBHomeCompanyDetailType vcType;
+
 /**
  能否编辑
  */

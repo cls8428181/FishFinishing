@@ -42,6 +42,12 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (nonatomic, assign) NSInteger cat_id;
 
+/**
+ 1：预约数量
+ 2：案列数量
+ */
+@property (nonatomic, assign) NSInteger order;
+
 - (instancetype)initWithLng:(NSString *)lng lat:(NSString *)lat;
 
 @end

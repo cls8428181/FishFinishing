@@ -41,6 +41,11 @@ static NSString *const KNB_LoginDate = @"LoginDate";
 @property (nonatomic, copy, readonly) NSString *userName;
 
 /**
+ 昵称
+ */
+@property (nonatomic, copy, readonly) NSString *nickName;
+
+/**
  密码
  */
 @property (nonatomic, copy, readonly) NSString *password;
@@ -146,9 +151,19 @@ static NSString *const KNB_LoginDate = @"LoginDate";
 @property (nonatomic, copy, readonly) NSString *fac_name;
 
 /**
+ 极光推送 ID
+ */
+@property (nonatomic, copy, readonly) NSString *registrationID;
+
+/**
  是否是服务商
  */
 @property (nonatomic, assign, readonly) BOOL isService;
+
+/**
+ 是否是体验版
+ */
+@property (nonatomic, copy, readonly) NSString *isExperience;
 
 /**
  修改密码成功

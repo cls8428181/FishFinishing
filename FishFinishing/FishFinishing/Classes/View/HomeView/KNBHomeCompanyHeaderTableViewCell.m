@@ -8,6 +8,8 @@
 
 #import "KNBHomeCompanyHeaderTableViewCell.h"
 #import "FMTagsView.h"
+#import "NSString+Size.h"
+#import "NSDate+BTAddition.h"
 
 @interface KNBHomeCompanyHeaderTableViewCell ()
 //标签背景
@@ -18,6 +20,10 @@
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *addressLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *topImageView;
+@property (weak, nonatomic) IBOutlet UIButton *adButton;
+@property (weak, nonatomic) IBOutlet UILabel *experienceTimeLabel;
+@property (weak, nonatomic) IBOutlet UIView *adView;
+@property (weak, nonatomic) IBOutlet UILabel *enterLabel;
 
 @end
 
@@ -48,9 +54,18 @@
     [self.tagBgView addSubview:self.tagView];
 }
 
+- (IBAction)adButtonAction:(id)sender {
+    !self.adButtonBlock ?: self.adButtonBlock();
+}
+
 #pragma mark - private method
-+ (CGFloat)cellHeight {
-    return 130;
++ (CGFloat)cellHeight:(BOOL)isEdit {
+    NSString *openString = [[NSUserDefaults standardUserDefaults] objectForKey:@"OpenPayment"];
+    if ([openString isEqualToString:@"1"] && isEdit) {
+        return 210;
+    } else {
+        return 130;
+    }
 }
 
 #pragma mark - lazy load
@@ -82,6 +97,13 @@
     self.iconImageView.layer.masksToBounds = YES;
     self.iconImageView.layer.cornerRadius = 45;
     self.nameLabel.text = model.name;
+   CGFloat width  = [model.name widthWithFont:[UIFont systemFontOfSize:14] constrainedToHeight:16];
+    if (width + 205 > KNB_SCREEN_WIDTH) {
+        width = KNB_SCREEN_WIDTH - 205;
+        [self.nameLabel mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.width.mas_equalTo(width);
+        }];
+    }
     self.addressLabel.text = model.address;
     NSArray *array = [model.tag componentsSeparatedByString:@","]; //分割字符串
     self.tagView.tagsArray = array;
@@ -90,6 +112,26 @@
     } else {
         self.topImageView.image = KNBImages(@"knb_home_yizhiding");
     }
+    
+    NSString *openString = [[NSUserDefaults standardUserDefaults] objectForKey:@"OpenPayment"];
+    if ([openString isEqualToString:@"1"] && self.isEdit) {
+        self.adView.hidden = NO;
+    } else {
+        self.adView.hidden = YES;
+    }
+    
+    NSInteger time = [NSDate getDifferenceByDate:[NSDate transformFromTimestamp:model.due_time]];
+    if (time < 0) {
+        time = 0;
+    }
+    if ([model.is_experience isEqualToString:@"1"]) {
+        self.experienceTimeLabel.text = [NSString stringWithFormat:@"%ld天后入驻到期[体验版]",(long)time];
+        self.enterLabel.text = @"马上升级";
+    } else {
+        self.experienceTimeLabel.text = [NSString stringWithFormat:@"%ld天后入驻到期[正式版]",(long)time];
+        self.enterLabel.text = @"马上续费";
+    }
+    
 }
 
 @end

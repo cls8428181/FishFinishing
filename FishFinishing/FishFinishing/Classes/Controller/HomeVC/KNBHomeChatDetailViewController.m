@@ -7,6 +7,7 @@
 //
 
 #import "KNBHomeChatDetailViewController.h"
+#import "KNBHomeMessageDetailApi.h"
 
 @interface KNBHomeChatDetailViewController ()
 
@@ -37,47 +38,32 @@
 
 #pragma mark - Utils
 - (void)configuration {
-    self.naviView.title = @"消息详情";
+    self.naviView.title = self.model.title;
     [self.naviView addLeftBarItemImageName:@"knb_back_black" target:self sel:@selector(backAction)];
     self.view.backgroundColor = [UIColor knBgColor];
-    
+    self.showDocumentTitle = NO;
 }
 
 - (void)addUI {
-//    [self.view addSubview:self.knGroupTableView];
+    [self.view addSubview:self.webView];
 }
 
 - (void)fetchData {
-    
+    KNBHomeMessageDetailApi *api = [[KNBHomeMessageDetailApi alloc] initWithMessageId:[self.model.caseId integerValue]];
+    api.hudString = @"";
+    KNB_WS(weakSelf);
+    [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *_Nonnull request) {
+        if (api.requestSuccess) {
+            NSDictionary *dic = request.responseObject[@"list"];
+            KNBHomeChatDetailModel *model= [KNBHomeChatDetailModel changeResponseJSONObject:dic];
+             [weakSelf.webView loadHTMLString:model.content baseURL:nil];
+        } else {
+            [LCProgressHUD showMessage:api.errMessage];
+        }
+    } failure:^(__kindof YTKBaseRequest *_Nonnull request) {
+        [LCProgressHUD showMessage:api.errMessage];
+    }];
 }
-
-#pragma mark - tableview delegate & dataSource
-//- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-//    return self.dataArray.count;
-//}
-//
-//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-//    return 1;
-//}
-//
-//- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-//    <#CellClass#> *model = self.dataArray[indexPath.section];
-//    <#CellClass#> *cell = [<#CellClass#> cellWithTableView:tableView];
-//    cell.model = model;
-//    return cell;
-//}
-//
-//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-//    return [<#CellClass#> cellHeight];
-//}
-//
-//- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-//    return 10;
-//}
-//
-//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-//
-//}
 
 #pragma mark - Event Response
 /*

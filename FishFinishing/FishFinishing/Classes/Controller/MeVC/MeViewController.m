@@ -17,6 +17,11 @@
 #import "KNBLoginViewController.h"
 #import "KNBMeOrderViewController.h"
 #import "KNBOrderViewController.h"
+#import "KNBMeModifyInfoViewController.h"
+#import "KNBGetCollocationApi.h"
+#import "KNBHomeOfferViewController.h"
+#import "KNBMeRecruitmentAlertView.h"
+#import "KNBRecruitmentModifyDetailApi.h"
 
 @interface MeViewController ()
 @property (nonatomic, strong) KNBMeHeaderView *headerView;
@@ -28,7 +33,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self.headerView.portraitImageView sd_setImageWithURL:[NSURL URLWithString:[KNBUserInfo shareInstance].portrait] placeholderImage:KNBImages(@"knb_default_user")];
-    self.headerView.nameLabel.text = [KNBUserInfo shareInstance].userName ?: @"未登录";
+    self.headerView.nameLabel.text = [KNBUserInfo shareInstance].nickName ?: @"未登录";
 }
 
 - (void)viewDidLoad {
@@ -38,17 +43,7 @@
     
     [self addUI];
     
-    [self settingConstraints];
-    
     [self fetchData];
-}
-
-#pragma mark - Setup UI Constraints
-/*
- *  在这里添加UIView的约束布局相关代码
- */
-- (void)settingConstraints {
-    KNB_WS(weakSelf);
 }
 
 #pragma mark - Utils
@@ -106,41 +101,97 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if ([KNBUserInfo shareInstance].isLogin) {
+    KNB_WS(weakSelf);
         if (indexPath.section == 0) {
             if ( indexPath.row == 0) {
-                if ([KNBUserInfo shareInstance].isService) {
-                    KNBHomeCompanyDetailViewController *detailVC = [[KNBHomeCompanyDetailViewController alloc] init];
-                    detailVC.isEdit = YES;
-                    [self.navigationController pushViewController:detailVC animated:YES];
+                if ([KNBUserInfo shareInstance].isLogin) {
+                    KNBRecruitmentModifyDetailApi *api = [[KNBRecruitmentModifyDetailApi alloc] init];
+                    KNB_WS(weakSelf);
+                    [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *_Nonnull request) {
+                        if (api.requestSuccess) {
+                            NSDictionary *dic = request.responseObject[@"list"];
+                            KNBHomeServiceModel *serviceModel = [KNBHomeServiceModel changeResponseJSONObject:dic];
+                            KNBHomeCompanyDetailViewController *detailVC = [[KNBHomeCompanyDetailViewController alloc] init];
+                            detailVC.model = serviceModel;
+                            detailVC.isEdit = YES;
+                            [weakSelf.navigationController pushViewController:detailVC animated:YES];
+                        } else {
+                            [KNBMeRecruitmentAlertView showAlertViewRecruitmentBlock:^{
+                                KNBOrderViewController *orderVC = [[KNBOrderViewController alloc] init];
+                                orderVC.VCType = KNBOrderVCTypeRecruitment;
+                                orderVC.isExperience = NO;
+                                [weakSelf.navigationController pushViewController:orderVC animated:YES];
+                            } experienceBlock:^{
+                                KNBOrderViewController *orderVC = [[KNBOrderViewController alloc] init];
+                                orderVC.VCType = KNBOrderVCTypeRecruitment;
+                                orderVC.isExperience = YES;
+                                [weakSelf.navigationController pushViewController:orderVC animated:YES];
+                            }];
+                        }
+                    } failure:^(__kindof YTKBaseRequest *_Nonnull request) {
+                        [LCProgressHUD showMessage:api.errMessage];
+                    }];
+                    
                 } else {
-                    KNBOrderViewController *orderVC = [[KNBOrderViewController alloc] init];
-                    orderVC.VCType = KNBOrderVCTypeRecruitment;
-                    [self.navigationController pushViewController:orderVC animated:YES];
+                    [KNBAlertRemind alterWithTitle:@"" message:@"您还未登录,请先登录" buttonTitles:@[@"去登录",@"取消"] handler:^(NSInteger index, NSString *title) {
+                        if ([title isEqualToString:@"去登录"]) {
+                            KNBLoginViewController *loginVC = [[KNBLoginViewController alloc] init];
+                            loginVC.vcType = KNBLoginTypeLogin;
+                            [weakSelf presentViewController:loginVC animated:YES completion:nil];
+                        }
+                    }];
                 }
-
             }
             if (indexPath.row == 1) {
-                
+                NSURL *url = [NSURL URLWithString:@"test://"];
+                if ([[UIApplication sharedApplication] canOpenURL:url]) {
+                    [[UIApplication sharedApplication] openURL:url options:nil completionHandler:nil];
+                    
+                }else{
+                    NSLog(@"没有安装应用");
+                    KNBGetCollocationApi *api = [[KNBGetCollocationApi alloc] initWithKey:@"app_download_url"];
+                    api.hudString = @"";
+                    [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *_Nonnull request) {
+                        if (api.requestSuccess) {
+                            NSDictionary *dic = request.responseObject[@"list"];
+                            NSString *downString = dic[@"iphone_app_url"];
+                            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:downString] options:nil completionHandler:nil];
+                        }
+                    } failure:^(__kindof YTKBaseRequest *_Nonnull request) {
+                    }];
+                }
             }
             if (indexPath.row == 2) {
-                KNBMeOrderViewController *orderVC = [[KNBMeOrderViewController alloc] init];
-                [self.navigationController pushViewController:orderVC animated:YES];
+                if ([KNBUserInfo shareInstance].isLogin) {
+                    if (isNullStr([KNBUserInfo shareInstance].fac_id)) {
+                        [LCProgressHUD showMessage:@"您还未入驻,请先成为入驻商家"];
+                    } else {
+                        KNBMeOrderViewController *orderVC = [[KNBMeOrderViewController alloc] init];
+                        [self.navigationController pushViewController:orderVC animated:YES];
+                    }
+                } else {
+                    KNB_WS(weakSelf);
+                    [KNBAlertRemind alterWithTitle:@"" message:@"您还未登录,请先登录" buttonTitles:@[@"去登录",@"取消"] handler:^(NSInteger index, NSString *title) {
+                        if ([title isEqualToString:@"去登录"]) {
+                            KNBLoginViewController *loginVC = [[KNBLoginViewController alloc] init];
+                            loginVC.vcType = KNBLoginTypeLogin;
+                            [weakSelf presentViewController:loginVC animated:YES completion:nil];
+                        }
+                    }];
+                }
             }
         }
         if (indexPath.section == 1) {
-            NSString *urlStr = @"http://baidu.com";
-            NSString *name = @"效果图详情";
-            NSString *describeStr = @"这是效果图详情";
+            NSString *urlStr = @"http://dayuapp.idayu.cn/Home/download.html";
+            NSString *name = @"大鱼装修";
+            NSString *describeStr = @"大鱼装修";
             [self shareMessages:@[ name, describeStr, urlStr ] isActionType:NO shareButtonBlock:nil];
         }
         if (indexPath.section == 2 && indexPath.row == 0) {
             KNBMeAboutViewController *aboutVC = [[KNBMeAboutViewController alloc] init];
             [self.navigationController pushViewController:aboutVC animated:YES];
         }
-    } else {
-        [LCProgressHUD showMessage:@"您还未登录,请先登录"];
-    }
+
 
 }
 
@@ -158,30 +209,40 @@
     KNB_WS(weakSelf);
     if (!_headerView) {
         _headerView = [[KNBMeHeaderView alloc] init];
-        _headerView.frame = CGRectMake(0, 0, KNB_SCREEN_WIDTH, KNB_SCREEN_WIDTH * 170/375 + 140);
+        _headerView.frame = CGRectMake(0, 0, KNB_SCREEN_WIDTH, KNB_SCREEN_WIDTH * 170/375 + KNB_StatusBar_H + 140);
         _headerView.settingButtonBlock = ^{
             if ([KNBUserInfo shareInstance].isLogin) {
                 KNBMeSetViewController *setVC = [[KNBMeSetViewController alloc] init];
                 [weakSelf.navigationController pushViewController:setVC animated:YES];
             } else {
-                [LCProgressHUD showMessage:@"您还未登录,请先登录"];
+                [KNBAlertRemind alterWithTitle:@"" message:@"您还未登录,请先登录" buttonTitles:@[@"去登录",@"取消"] handler:^(NSInteger index, NSString *title) {
+                    if ([title isEqualToString:@"去登录"]) {
+                        KNBLoginViewController *loginVC = [[KNBLoginViewController alloc] init];
+                        loginVC.vcType = KNBLoginTypeLogin;
+                        [weakSelf presentViewController:loginVC animated:YES completion:nil];
+                    }
+                }];
             }
 
         };
         _headerView.chatButtonBlock = ^{
-            if ([KNBUserInfo shareInstance].isLogin) {
-                KNBHomeChatViewController *chatVC = [[KNBHomeChatViewController alloc] init];
-                [weakSelf.navigationController pushViewController:chatVC animated:YES];
-            } else {
-                [LCProgressHUD showMessage:@"您还未登录,请先登录"];
-            }
+            KNBHomeChatViewController *chatVC = [[KNBHomeChatViewController alloc] init];
+            [weakSelf.navigationController pushViewController:chatVC animated:YES];
         };
         _headerView.loginButtonBlock = ^{
-            if (![KNBUserInfo shareInstance].isLogin) {
+            if ([KNBUserInfo shareInstance].isLogin) {
+                KNBMeModifyInfoViewController *infoVC = [[KNBMeModifyInfoViewController alloc] init];
+                [weakSelf.navigationController pushViewController:infoVC animated:YES];
+            } else {
                 KNBLoginViewController *loginVC = [[KNBLoginViewController alloc] init];
                 loginVC.vcType = KNBLoginTypeLogin;
                 [weakSelf presentViewController:loginVC animated:YES completion:nil];
             }
+        };
+        _headerView.adButtonBlock = ^{
+            KNBHomeOfferViewController *offerVC = [[KNBHomeOfferViewController alloc] init];
+            offerVC.faceId = [[KNBUserInfo shareInstance].fac_id integerValue] ?: 0;
+            [weakSelf.navigationController pushViewController:offerVC animated:YES];
         };
     }
     return _headerView;

@@ -7,6 +7,55 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		182F5A7822811A7B00E8B323 /* KNBHomeUploadCaseFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 182F5A7722811A7B00E8B323 /* KNBHomeUploadCaseFooterView.m */; };
+		183C56162283B4E80054217D /* KNBMeOrderOtherTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 183C56142283B4E80054217D /* KNBMeOrderOtherTableViewCell.m */; };
+		183C56172283B4E80054217D /* KNBMeOrderOtherTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 183C56152283B4E80054217D /* KNBMeOrderOtherTableViewCell.xib */; };
+		183E04B32280155C009EA112 /* KNBOrderCheckApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 183E04B22280155C009EA112 /* KNBOrderCheckApi.m */; };
+		183E04B622803E55009EA112 /* KNBLoginUserInfoApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 183E04B522803E55009EA112 /* KNBLoginUserInfoApi.m */; };
+		1849CE2422851AE50064D439 /* MPNoResultHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1849CE1A22851AE50064D439 /* MPNoResultHeadView.m */; };
+		1849CE2522851AE50064D439 /* MPAddNewAddressVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1849CE1B22851AE50064D439 /* MPAddNewAddressVC.m */; };
+		1849CE2622851AE50064D439 /* MPBaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1849CE1D22851AE50064D439 /* MPBaseTableViewController.m */; };
+		1849CE2722851AE50064D439 /* MPFindNearAddressViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1849CE1F22851AE50064D439 /* MPFindNearAddressViewModel.m */; };
+		1849CE2822851AE50064D439 /* MPMapView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1849CE2022851AE50064D439 /* MPMapView.m */; };
+		1849CE2922851AE50064D439 /* MPFindFriendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1849CE2222851AE50064D439 /* MPFindFriendCell.m */; };
+		1849CE2A22851AE50064D439 /* MPFindNearAddressVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1849CE2322851AE50064D439 /* MPFindNearAddressVC.m */; };
+		1849CE7522851EA90064D439 /* WXBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1849CE2E22851EA50064D439 /* WXBaseModel.m */; };
+		1849CE7622851EA90064D439 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 1849CE3222851EA60064D439 /* LICENSE */; };
+		1849CE7722851EA90064D439 /* XHRefreshControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 1849CE3722851EA60064D439 /* XHRefreshControl.m */; };
+		1849CE7822851EA90064D439 /* XHSystemCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1849CE3C22851EA60064D439 /* XHSystemCollectionViewController.m */; };
+		1849CE7922851EA90064D439 /* XHSystemRefreshCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1849CE3D22851EA60064D439 /* XHSystemRefreshCollectionViewController.m */; };
+		1849CE7A22851EA90064D439 /* XHPullRefreshTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1849CE4322851EA60064D439 /* XHPullRefreshTableViewController.m */; };
+		1849CE7B22851EA90064D439 /* XHPinterestPullRefreshTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1849CE4422851EA60064D439 /* XHPinterestPullRefreshTableViewController.m */; };
+		1849CE7C22851EA90064D439 /* XHJDPullRefreshTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1849CE4522851EA60064D439 /* XHJDPullRefreshTableViewController.m */; };
+		1849CE7D22851EA90064D439 /* XHBaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1849CE4622851EA60064D439 /* XHBaseTableViewController.m */; };
+		1849CE7E22851EA90064D439 /* XHFoundationCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 1849CE4822851EA60064D439 /* XHFoundationCommon.m */; };
+		1849CE7F22851EA90064D439 /* XHSysatemRefreshTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1849CE4A22851EA60064D439 /* XHSysatemRefreshTableViewController.m */; };
+		1849CE8022851EA90064D439 /* XHSystemTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1849CE4B22851EA60064D439 /* XHSystemTableViewController.m */; };
+		1849CE8122851EA90064D439 /* XHActivityIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1849CE4F22851EA60064D439 /* XHActivityIndicatorView.m */; };
+		1849CE8222851EA90064D439 /* XHCircularProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1849CE5122851EA60064D439 /* XHCircularProgressView.m */; };
+		1849CE8322851EA90064D439 /* XHActivityCircleIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1849CE5522851EA60064D439 /* XHActivityCircleIndicatorView.m */; };
+		1849CE8422851EA90064D439 /* XHLoadMoreView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1849CE5722851EA60064D439 /* XHLoadMoreView.m */; };
+		1849CE8522851EA90064D439 /* XHRefreshActivityIndicatorContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1849CE5922851EA60064D439 /* XHRefreshActivityIndicatorContainerView.m */; };
+		1849CE8622851EA90064D439 /* XHJDRefreshView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1849CE5B22851EA60064D439 /* XHJDRefreshView.m */; };
+		1849CE8722851EA90064D439 /* XHRefreshCircleContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1849CE5C22851EA60064D439 /* XHRefreshCircleContainerView.m */; };
+		1849CE8822851EA90064D439 /* XHCircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1849CE5E22851EA60064D439 /* XHCircleView.m */; };
+		1849CE8922851EA90064D439 /* XHPinterestRefreshView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1849CE5F22851EA60064D439 /* XHPinterestRefreshView.m */; };
+		1849CE8A22851EA90064D439 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 1849CE6122851EA60064D439 /* README.md */; };
+		1849CE8B22851EA90064D439 /* XYString.m in Sources */ = {isa = PBXBuildFile; fileRef = 1849CE6422851EA60064D439 /* XYString.m */; };
+		1849CE8C22851EA90064D439 /* UIViewExt.m in Sources */ = {isa = PBXBuildFile; fileRef = 1849CE6622851EA70064D439 /* UIViewExt.m */; };
+		1849CE8D22851EA90064D439 /* UIImage+MP.m in Sources */ = {isa = PBXBuildFile; fileRef = 1849CE6822851EA70064D439 /* UIImage+MP.m */; };
+		1849CE8E22851EA90064D439 /* SQActionSheetView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1849CE6B22851EA70064D439 /* SQActionSheetView.m */; };
+		1849CE8F22851EA90064D439 /* UISearchBar+MP.m in Sources */ = {isa = PBXBuildFile; fileRef = 1849CE6D22851EA70064D439 /* UISearchBar+MP.m */; };
+		1849CE9022851EA90064D439 /* UIButton+Block.m in Sources */ = {isa = PBXBuildFile; fileRef = 1849CE6E22851EA80064D439 /* UIButton+Block.m */; };
+		1849CE9122851EA90064D439 /* RequestViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1849CE6F22851EA80064D439 /* RequestViewModel.m */; };
+		1849CE9222851EA90064D439 /* UIScrollView+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = 1849CE7122851EA80064D439 /* UIScrollView+Addition.m */; };
+		1849CE9322851EA90064D439 /* MKMapView+ZoomLevel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1849CE7322851EA90064D439 /* MKMapView+ZoomLevel.m */; };
+		1854B8D422732374009821B8 /* KNBPayProtocolViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1854B8D322732374009821B8 /* KNBPayProtocolViewController.m */; };
+		1857ED87227EDEB7008E9668 /* KNBHomeCompanyExperienceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1857ED86227EDEB7008E9668 /* KNBHomeCompanyExperienceViewController.m */; };
+		1857ED8B227EE080008E9668 /* KNBHomeExperienceHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1857ED89227EE080008E9668 /* KNBHomeExperienceHeaderView.m */; };
+		1857ED8C227EE080008E9668 /* KNBHomeExperienceHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1857ED8A227EE080008E9668 /* KNBHomeExperienceHeaderView.xib */; };
+		1857ED90227EE094008E9668 /* KNBHomeExperienceFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1857ED8E227EE094008E9668 /* KNBHomeExperienceFooterView.m */; };
+		1857ED91227EE094008E9668 /* KNBHomeExperienceFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1857ED8F227EE094008E9668 /* KNBHomeExperienceFooterView.xib */; };
 		185F1A18226EE5AA000F6E9C /* KNBHomeWorkerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 185F1A17226EE5AA000F6E9C /* KNBHomeWorkerViewController.m */; };
 		185F1A1B226EEB5C000F6E9C /* KNBOrderAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 185F1A19226EEB5C000F6E9C /* KNBOrderAlertView.m */; };
 		185F1A1E226EFE3A000F6E9C /* KNBHomeUploadProductViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 185F1A1D226EFE3A000F6E9C /* KNBHomeUploadProductViewController.m */; };
@@ -26,6 +75,9 @@
 		1866531B2269A0D3004C176F /* KNBHomeUploadCaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 186653192269A0D3004C176F /* KNBHomeUploadCaseTableViewCell.m */; };
 		186653202269A104004C176F /* KNBHomeUploadCaseCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1866531E2269A104004C176F /* KNBHomeUploadCaseCollectionViewCell.m */; };
 		186653212269A104004C176F /* KNBHomeUploadCaseCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1866531F2269A104004C176F /* KNBHomeUploadCaseCollectionViewCell.xib */; };
+		186757A32283DA190063DEC9 /* KNBRecruitmentShowApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 186757A22283DA190063DEC9 /* KNBRecruitmentShowApi.m */; };
+		186757A9228428B30063DEC9 /* KNBOrderModifyPowerApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 186757A8228428B30063DEC9 /* KNBOrderModifyPowerApi.m */; };
+		186757AC228428CC0063DEC9 /* KNBOrderCheckCaseNumApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 186757AB228428CC0063DEC9 /* KNBOrderCheckCaseNumApi.m */; };
 		1868A694226560D1005546BB /* BRTagsPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1868A693226560D1005546BB /* BRTagsPickerView.m */; };
 		1868A6982265B072005546BB /* KNBOrderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1868A6972265B072005546BB /* KNBOrderModel.m */; };
 		1868A69B2265B525005546BB /* KNBOrderAreaApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 1868A69A2265B525005546BB /* KNBOrderAreaApi.m */; };
@@ -35,6 +87,8 @@
 		1868A6A72265DA98005546BB /* BRChoicePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1868A6A62265DA98005546BB /* BRChoicePickerView.m */; };
 		1868A6AB2265DEBB005546BB /* KNBChoiceTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1868A6A92265DEBB005546BB /* KNBChoiceTableViewCell.m */; };
 		1868A6AC2265DEBB005546BB /* KNBChoiceTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1868A6AA2265DEBB005546BB /* KNBChoiceTableViewCell.xib */; };
+		18697B1822729CB10076FFBA /* KNBGetCollocationApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 18697B1722729CB10076FFBA /* KNBGetCollocationApi.m */; };
+		18697B1B22729E0B0076FFBA /* KNBMeAboutModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18697B1A22729E0B0076FFBA /* KNBMeAboutModel.m */; };
 		186EE2D62266F43400E71241 /* KNBOrderUnitApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 186EE2D52266F43400E71241 /* KNBOrderUnitApi.m */; };
 		186EE2D92266FF2100E71241 /* KNBHomeMessageListApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 186EE2D82266FF2100E71241 /* KNBHomeMessageListApi.m */; };
 		186EE2DC2266FF3300E71241 /* KNBHomeMessageDetailApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 186EE2DB2266FF3300E71241 /* KNBHomeMessageDetailApi.m */; };
@@ -45,7 +99,6 @@
 		186EE2EB2267015D00E71241 /* KNBRecruitmentModifyFacilitatorApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 186EE2EA2267015D00E71241 /* KNBRecruitmentModifyFacilitatorApi.m */; };
 		186EE2EE2267017500E71241 /* KNBRecruitmentIncreaseBrowseApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 186EE2ED2267017500E71241 /* KNBRecruitmentIncreaseBrowseApi.m */; };
 		186EE2F1226701A200E71241 /* KNBRecruitmentServiceListApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 186EE2F0226701A200E71241 /* KNBRecruitmentServiceListApi.m */; };
-		186EE2F4226701C600E71241 /* KNBOrderModifyPowerApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 186EE2F3226701C600E71241 /* KNBOrderModifyPowerApi.m */; };
 		186EE2F8226701F400E71241 /* KNBPayWechatApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 186EE2F7226701F400E71241 /* KNBPayWechatApi.m */; };
 		186EE2FB2267029200E71241 /* KNBPayAlipyApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 186EE2FA2267029200E71241 /* KNBPayAlipyApi.m */; };
 		186EE2FE226702A100E71241 /* KNBPayOrderStatusApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 186EE2FD226702A100E71241 /* KNBPayOrderStatusApi.m */; };
@@ -53,6 +106,7 @@
 		1873D5B62264179C006ED859 /* BRLinkagePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1873D5B52264179C006ED859 /* BRLinkagePickerView.m */; };
 		1873D5BA22643889006ED859 /* KNBRecruitmentPortraitTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1873D5B822643889006ED859 /* KNBRecruitmentPortraitTableViewCell.m */; };
 		1873D5BB22643889006ED859 /* KNBRecruitmentPortraitTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1873D5B922643889006ED859 /* KNBRecruitmentPortraitTableViewCell.xib */; };
+		18769FB8228174F000BB713A /* KNBOrderAreaRangeApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 18769FB7228174F000BB713A /* KNBOrderAreaRangeApi.m */; };
 		1877F2FD226800E60092207E /* KNBHomeTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1877F2FC226800E60092207E /* KNBHomeTableView.m */; };
 		1877F300226806900092207E /* KNBHomeSubTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1877F2FF226806900092207E /* KNBHomeSubTableView.m */; };
 		1877F303226807EF0092207E /* KNBHomeSubView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1877F302226807EF0092207E /* KNBHomeSubView.m */; };
@@ -77,6 +131,8 @@
 		187B609A22701A27000AA05E /* KNBMeOrderAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 187B609922701A27000AA05E /* KNBMeOrderAlertView.m */; };
 		187B609D227066E3000AA05E /* KNBMeOrderStatusApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 187B609C227066E3000AA05E /* KNBMeOrderStatusApi.m */; };
 		187C9559225EC685006FD01A /* KNBLoginBindingApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 187C9558225EC685006FD01A /* KNBLoginBindingApi.m */; };
+		187EBC4522745B0200F6E324 /* KNBJPushApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 187EBC4422745B0200F6E324 /* KNBJPushApi.m */; };
+		188360A02277D0F800F81A88 /* KNBPushManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1883609F2277D0F800F81A88 /* KNBPushManager.m */; };
 		188441D42271488900402B7F /* KNBLoginBindingPhoneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 188441D32271488900402B7F /* KNBLoginBindingPhoneViewController.m */; };
 		188441D822714A0200402B7F /* KNBBindingMobileTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 188441D622714A0200402B7F /* KNBBindingMobileTableViewCell.m */; };
 		188441D922714A0200402B7F /* KNBBindingMobileTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 188441D722714A0200402B7F /* KNBBindingMobileTableViewCell.xib */; };
@@ -125,6 +181,8 @@
 		18D8D66B225DCC5400532E52 /* FishFinishingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D8D66A225DCC5400532E52 /* FishFinishingTests.m */; };
 		18D8D677225DDCD800532E52 /* KNBLoginSendCodeApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D8D676225DDCD800532E52 /* KNBLoginSendCodeApi.m */; };
 		18D8D67A225DF28700532E52 /* KNBLoginThirdPartyApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D8D679225DF28700532E52 /* KNBLoginThirdPartyApi.m */; };
+		18F32923227E8C7B008B5B57 /* KNBMeRecruitmentAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F32922227E8C7B008B5B57 /* KNBMeRecruitmentAlertView.m */; };
+		18F439A822769FCD00E64048 /* KNBMeModifyInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F439A722769FCD00E64048 /* KNBMeModifyInfoViewController.m */; };
 		961C52EA2251A56F0089E997 /* KNBDesignSketchFreeOrderHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 961C52E92251A56F0089E997 /* KNBDesignSketchFreeOrderHeaderView.m */; };
 		961C52EE2251A8450089E997 /* KNBDSFreeOrderNewHouseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 961C52EC2251A8450089E997 /* KNBDSFreeOrderNewHouseTableViewCell.m */; };
 		961C52EF2251A8450089E997 /* KNBDSFreeOrderNewHouseTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 961C52ED2251A8450089E997 /* KNBDSFreeOrderNewHouseTableViewCell.xib */; };
@@ -259,6 +317,12 @@
 		966D1621226CBD48005F5D77 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 966D161C226CBD48005F5D77 /* libWeChatSDK.a */; };
 		966D1624226CD20E005F5D77 /* KNBHomeCompanyHouseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 966D1623226CD20E005F5D77 /* KNBHomeCompanyHouseViewController.m */; };
 		966D1627226CD221005F5D77 /* KNBHomeCompanyAreaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 966D1626226CD221005F5D77 /* KNBHomeCompanyAreaViewController.m */; };
+		966DD6672281CC5000F0F68F /* KNBHomeCompanyStyleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 966DD6662281CC5000F0F68F /* KNBHomeCompanyStyleViewController.m */; };
+		966DD66A2281CC6200F0F68F /* KNBHomeCompanyCityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 966DD6692281CC6200F0F68F /* KNBHomeCompanyCityViewController.m */; };
+		966DD66D2281CC7400F0F68F /* KNBHomeCompanyOtherViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 966DD66C2281CC7400F0F68F /* KNBHomeCompanyOtherViewController.m */; };
+		966DD6702283474A00F0F68F /* KNBMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 966DD66F2283474A00F0F68F /* KNBMapViewController.m */; };
+		966DD6742283496F00F0F68F /* cityModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 966DD6722283496F00F0F68F /* cityModel.m */; };
+		966DD6752283496F00F0F68F /* serach_Map.png in Resources */ = {isa = PBXBuildFile; fileRef = 966DD6732283496F00F0F68F /* serach_Map.png */; };
 		96811885224F497C00E4A622 /* KNBDesignSketchDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96811884224F497C00E4A622 /* KNBDesignSketchDetailViewController.m */; };
 		96811888224F5F7B00E4A622 /* KNBHomeOfferViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96811887224F5F7B00E4A622 /* KNBHomeOfferViewController.m */; };
 		9697FD52225597A900027AB3 /* UILabel+GHome.m in Sources */ = {isa = PBXBuildFile; fileRef = 9697FD34225597A900027AB3 /* UILabel+GHome.m */; };
@@ -369,6 +433,107 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		182F5A7622811A7B00E8B323 /* KNBHomeUploadCaseFooterView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNBHomeUploadCaseFooterView.h; sourceTree = "<group>"; };
+		182F5A7722811A7B00E8B323 /* KNBHomeUploadCaseFooterView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNBHomeUploadCaseFooterView.m; sourceTree = "<group>"; };
+		183C56132283B4E80054217D /* KNBMeOrderOtherTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNBMeOrderOtherTableViewCell.h; sourceTree = "<group>"; };
+		183C56142283B4E80054217D /* KNBMeOrderOtherTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNBMeOrderOtherTableViewCell.m; sourceTree = "<group>"; };
+		183C56152283B4E80054217D /* KNBMeOrderOtherTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KNBMeOrderOtherTableViewCell.xib; sourceTree = "<group>"; };
+		183E04B12280155C009EA112 /* KNBOrderCheckApi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNBOrderCheckApi.h; sourceTree = "<group>"; };
+		183E04B22280155C009EA112 /* KNBOrderCheckApi.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNBOrderCheckApi.m; sourceTree = "<group>"; };
+		183E04B422803E55009EA112 /* KNBLoginUserInfoApi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNBLoginUserInfoApi.h; sourceTree = "<group>"; };
+		183E04B522803E55009EA112 /* KNBLoginUserInfoApi.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNBLoginUserInfoApi.m; sourceTree = "<group>"; };
+		1849CE1522851AE50064D439 /* MPMapView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPMapView.h; sourceTree = "<group>"; };
+		1849CE1622851AE50064D439 /* MPFindNearAddressViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPFindNearAddressViewModel.h; sourceTree = "<group>"; };
+		1849CE1822851AE50064D439 /* MPNoResultHeadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPNoResultHeadView.h; sourceTree = "<group>"; };
+		1849CE1922851AE50064D439 /* MPAddNewAddressVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPAddNewAddressVC.h; sourceTree = "<group>"; };
+		1849CE1A22851AE50064D439 /* MPNoResultHeadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPNoResultHeadView.m; sourceTree = "<group>"; };
+		1849CE1B22851AE50064D439 /* MPAddNewAddressVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPAddNewAddressVC.m; sourceTree = "<group>"; };
+		1849CE1C22851AE50064D439 /* MPFindFriendCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPFindFriendCell.h; sourceTree = "<group>"; };
+		1849CE1D22851AE50064D439 /* MPBaseTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPBaseTableViewController.m; sourceTree = "<group>"; };
+		1849CE1E22851AE50064D439 /* MPFindNearAddressVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPFindNearAddressVC.h; sourceTree = "<group>"; };
+		1849CE1F22851AE50064D439 /* MPFindNearAddressViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPFindNearAddressViewModel.m; sourceTree = "<group>"; };
+		1849CE2022851AE50064D439 /* MPMapView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPMapView.m; sourceTree = "<group>"; };
+		1849CE2122851AE50064D439 /* MPBaseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPBaseTableViewController.h; sourceTree = "<group>"; };
+		1849CE2222851AE50064D439 /* MPFindFriendCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPFindFriendCell.m; sourceTree = "<group>"; };
+		1849CE2322851AE50064D439 /* MPFindNearAddressVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPFindNearAddressVC.m; sourceTree = "<group>"; };
+		1849CE2C22851EA50064D439 /* UIScrollView+Addition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+Addition.h"; sourceTree = "<group>"; };
+		1849CE2E22851EA50064D439 /* WXBaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXBaseModel.m; sourceTree = "<group>"; };
+		1849CE2F22851EA50064D439 /* WXBaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXBaseModel.h; sourceTree = "<group>"; };
+		1849CE3022851EA50064D439 /* RequestViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestViewModel.h; sourceTree = "<group>"; };
+		1849CE3222851EA60064D439 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		1849CE3522851EA60064D439 /* XHRefreshControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHRefreshControl.h; sourceTree = "<group>"; };
+		1849CE3622851EA60064D439 /* XHRefreshControlHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHRefreshControlHeader.h; sourceTree = "<group>"; };
+		1849CE3722851EA60064D439 /* XHRefreshControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHRefreshControl.m; sourceTree = "<group>"; };
+		1849CE3A22851EA60064D439 /* XHSystemCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHSystemCollectionViewController.h; sourceTree = "<group>"; };
+		1849CE3B22851EA60064D439 /* XHSystemRefreshCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHSystemRefreshCollectionViewController.h; sourceTree = "<group>"; };
+		1849CE3C22851EA60064D439 /* XHSystemCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHSystemCollectionViewController.m; sourceTree = "<group>"; };
+		1849CE3D22851EA60064D439 /* XHSystemRefreshCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHSystemRefreshCollectionViewController.m; sourceTree = "<group>"; };
+		1849CE3F22851EA60064D439 /* XHPinterestPullRefreshTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHPinterestPullRefreshTableViewController.h; sourceTree = "<group>"; };
+		1849CE4022851EA60064D439 /* XHBaseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHBaseTableViewController.h; sourceTree = "<group>"; };
+		1849CE4122851EA60064D439 /* XHJDPullRefreshTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHJDPullRefreshTableViewController.h; sourceTree = "<group>"; };
+		1849CE4222851EA60064D439 /* XHFoundationCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHFoundationCommon.h; sourceTree = "<group>"; };
+		1849CE4322851EA60064D439 /* XHPullRefreshTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHPullRefreshTableViewController.m; sourceTree = "<group>"; };
+		1849CE4422851EA60064D439 /* XHPinterestPullRefreshTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHPinterestPullRefreshTableViewController.m; sourceTree = "<group>"; };
+		1849CE4522851EA60064D439 /* XHJDPullRefreshTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHJDPullRefreshTableViewController.m; sourceTree = "<group>"; };
+		1849CE4622851EA60064D439 /* XHBaseTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHBaseTableViewController.m; sourceTree = "<group>"; };
+		1849CE4722851EA60064D439 /* XHPullRefreshTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHPullRefreshTableViewController.h; sourceTree = "<group>"; };
+		1849CE4822851EA60064D439 /* XHFoundationCommon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHFoundationCommon.m; sourceTree = "<group>"; };
+		1849CE4A22851EA60064D439 /* XHSysatemRefreshTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHSysatemRefreshTableViewController.m; sourceTree = "<group>"; };
+		1849CE4B22851EA60064D439 /* XHSystemTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHSystemTableViewController.m; sourceTree = "<group>"; };
+		1849CE4C22851EA60064D439 /* XHSysatemRefreshTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHSysatemRefreshTableViewController.h; sourceTree = "<group>"; };
+		1849CE4D22851EA60064D439 /* XHSystemTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHSystemTableViewController.h; sourceTree = "<group>"; };
+		1849CE4F22851EA60064D439 /* XHActivityIndicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHActivityIndicatorView.m; sourceTree = "<group>"; };
+		1849CE5022851EA60064D439 /* XHJDRefreshView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHJDRefreshView.h; sourceTree = "<group>"; };
+		1849CE5122851EA60064D439 /* XHCircularProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHCircularProgressView.m; sourceTree = "<group>"; };
+		1849CE5222851EA60064D439 /* XHRefreshActivityIndicatorContainerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHRefreshActivityIndicatorContainerView.h; sourceTree = "<group>"; };
+		1849CE5322851EA60064D439 /* XHCircleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHCircleView.h; sourceTree = "<group>"; };
+		1849CE5422851EA60064D439 /* XHPinterestRefreshView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHPinterestRefreshView.h; sourceTree = "<group>"; };
+		1849CE5522851EA60064D439 /* XHActivityCircleIndicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHActivityCircleIndicatorView.m; sourceTree = "<group>"; };
+		1849CE5622851EA60064D439 /* XHRefreshCircleContainerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHRefreshCircleContainerView.h; sourceTree = "<group>"; };
+		1849CE5722851EA60064D439 /* XHLoadMoreView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHLoadMoreView.m; sourceTree = "<group>"; };
+		1849CE5822851EA60064D439 /* XHActivityIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHActivityIndicatorView.h; sourceTree = "<group>"; };
+		1849CE5922851EA60064D439 /* XHRefreshActivityIndicatorContainerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHRefreshActivityIndicatorContainerView.m; sourceTree = "<group>"; };
+		1849CE5A22851EA60064D439 /* XHCircularProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHCircularProgressView.h; sourceTree = "<group>"; };
+		1849CE5B22851EA60064D439 /* XHJDRefreshView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHJDRefreshView.m; sourceTree = "<group>"; };
+		1849CE5C22851EA60064D439 /* XHRefreshCircleContainerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHRefreshCircleContainerView.m; sourceTree = "<group>"; };
+		1849CE5D22851EA60064D439 /* XHActivityCircleIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHActivityCircleIndicatorView.h; sourceTree = "<group>"; };
+		1849CE5E22851EA60064D439 /* XHCircleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHCircleView.m; sourceTree = "<group>"; };
+		1849CE5F22851EA60064D439 /* XHPinterestRefreshView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHPinterestRefreshView.m; sourceTree = "<group>"; };
+		1849CE6022851EA60064D439 /* XHLoadMoreView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHLoadMoreView.h; sourceTree = "<group>"; };
+		1849CE6122851EA60064D439 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		1849CE6322851EA60064D439 /* XYString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYString.h; sourceTree = "<group>"; };
+		1849CE6422851EA60064D439 /* XYString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYString.m; sourceTree = "<group>"; };
+		1849CE6622851EA70064D439 /* UIViewExt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIViewExt.m; sourceTree = "<group>"; };
+		1849CE6722851EA70064D439 /* UIViewExt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIViewExt.h; sourceTree = "<group>"; };
+		1849CE6822851EA70064D439 /* UIImage+MP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+MP.m"; sourceTree = "<group>"; };
+		1849CE6A22851EA70064D439 /* SQActionSheetView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQActionSheetView.h; sourceTree = "<group>"; };
+		1849CE6B22851EA70064D439 /* SQActionSheetView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQActionSheetView.m; sourceTree = "<group>"; };
+		1849CE6C22851EA70064D439 /* UISearchBar+MP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UISearchBar+MP.h"; sourceTree = "<group>"; };
+		1849CE6D22851EA70064D439 /* UISearchBar+MP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UISearchBar+MP.m"; sourceTree = "<group>"; };
+		1849CE6E22851EA80064D439 /* UIButton+Block.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+Block.m"; sourceTree = "<group>"; };
+		1849CE6F22851EA80064D439 /* RequestViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequestViewModel.m; sourceTree = "<group>"; };
+		1849CE7022851EA80064D439 /* MKMapView+ZoomLevel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MKMapView+ZoomLevel.h"; sourceTree = "<group>"; };
+		1849CE7122851EA80064D439 /* UIScrollView+Addition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+Addition.m"; sourceTree = "<group>"; };
+		1849CE7222851EA80064D439 /* UIImage+MP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+MP.h"; sourceTree = "<group>"; };
+		1849CE7322851EA90064D439 /* MKMapView+ZoomLevel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MKMapView+ZoomLevel.m"; sourceTree = "<group>"; };
+		1849CE7422851EA90064D439 /* UIButton+Block.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+Block.h"; sourceTree = "<group>"; };
+		1849CE9522851F040064D439 /* MPUserDefaultsHead.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPUserDefaultsHead.h; sourceTree = "<group>"; };
+		1849CE9622851F040064D439 /* wh_Head.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wh_Head.h; sourceTree = "<group>"; };
+		1849CE9722851F040064D439 /* defines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = defines.h; sourceTree = "<group>"; };
+		1849CE9822851F040064D439 /* ColorHead.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorHead.h; sourceTree = "<group>"; };
+		1849CE9922851F040064D439 /* MPNslogHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPNslogHeader.h; sourceTree = "<group>"; };
+		1849CE9B22851F040064D439 /* CONST.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CONST.h; sourceTree = "<group>"; };
+		1849CE9C22851F630064D439 /* KNBMapHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNBMapHeader.h; sourceTree = "<group>"; };
+		1854B8D222732374009821B8 /* KNBPayProtocolViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNBPayProtocolViewController.h; sourceTree = "<group>"; };
+		1854B8D322732374009821B8 /* KNBPayProtocolViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNBPayProtocolViewController.m; sourceTree = "<group>"; };
+		1857ED85227EDEB7008E9668 /* KNBHomeCompanyExperienceViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNBHomeCompanyExperienceViewController.h; sourceTree = "<group>"; };
+		1857ED86227EDEB7008E9668 /* KNBHomeCompanyExperienceViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNBHomeCompanyExperienceViewController.m; sourceTree = "<group>"; };
+		1857ED88227EE080008E9668 /* KNBHomeExperienceHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNBHomeExperienceHeaderView.h; sourceTree = "<group>"; };
+		1857ED89227EE080008E9668 /* KNBHomeExperienceHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNBHomeExperienceHeaderView.m; sourceTree = "<group>"; };
+		1857ED8A227EE080008E9668 /* KNBHomeExperienceHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KNBHomeExperienceHeaderView.xib; sourceTree = "<group>"; };
+		1857ED8D227EE094008E9668 /* KNBHomeExperienceFooterView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNBHomeExperienceFooterView.h; sourceTree = "<group>"; };
+		1857ED8E227EE094008E9668 /* KNBHomeExperienceFooterView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNBHomeExperienceFooterView.m; sourceTree = "<group>"; };
+		1857ED8F227EE094008E9668 /* KNBHomeExperienceFooterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KNBHomeExperienceFooterView.xib; sourceTree = "<group>"; };
 		185F1A16226EE5AA000F6E9C /* KNBHomeWorkerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNBHomeWorkerViewController.h; sourceTree = "<group>"; };
 		185F1A17226EE5AA000F6E9C /* KNBHomeWorkerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNBHomeWorkerViewController.m; sourceTree = "<group>"; };
 		185F1A19226EEB5C000F6E9C /* KNBOrderAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KNBOrderAlertView.m; sourceTree = "<group>"; };
@@ -403,6 +568,12 @@
 		1866531D2269A104004C176F /* KNBHomeUploadCaseCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNBHomeUploadCaseCollectionViewCell.h; sourceTree = "<group>"; };
 		1866531E2269A104004C176F /* KNBHomeUploadCaseCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNBHomeUploadCaseCollectionViewCell.m; sourceTree = "<group>"; };
 		1866531F2269A104004C176F /* KNBHomeUploadCaseCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KNBHomeUploadCaseCollectionViewCell.xib; sourceTree = "<group>"; };
+		186757A12283DA190063DEC9 /* KNBRecruitmentShowApi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNBRecruitmentShowApi.h; sourceTree = "<group>"; };
+		186757A22283DA190063DEC9 /* KNBRecruitmentShowApi.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNBRecruitmentShowApi.m; sourceTree = "<group>"; };
+		186757A7228428B30063DEC9 /* KNBOrderModifyPowerApi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNBOrderModifyPowerApi.h; sourceTree = "<group>"; };
+		186757A8228428B30063DEC9 /* KNBOrderModifyPowerApi.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNBOrderModifyPowerApi.m; sourceTree = "<group>"; };
+		186757AA228428CC0063DEC9 /* KNBOrderCheckCaseNumApi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNBOrderCheckCaseNumApi.h; sourceTree = "<group>"; };
+		186757AB228428CC0063DEC9 /* KNBOrderCheckCaseNumApi.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNBOrderCheckCaseNumApi.m; sourceTree = "<group>"; };
 		1868A692226560D1005546BB /* BRTagsPickerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BRTagsPickerView.h; sourceTree = "<group>"; };
 		1868A693226560D1005546BB /* BRTagsPickerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BRTagsPickerView.m; sourceTree = "<group>"; };
 		1868A6962265B072005546BB /* KNBOrderModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNBOrderModel.h; sourceTree = "<group>"; };
@@ -419,6 +590,10 @@
 		1868A6A82265DEBB005546BB /* KNBChoiceTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNBChoiceTableViewCell.h; sourceTree = "<group>"; };
 		1868A6A92265DEBB005546BB /* KNBChoiceTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNBChoiceTableViewCell.m; sourceTree = "<group>"; };
 		1868A6AA2265DEBB005546BB /* KNBChoiceTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KNBChoiceTableViewCell.xib; sourceTree = "<group>"; };
+		18697B1622729CB10076FFBA /* KNBGetCollocationApi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNBGetCollocationApi.h; sourceTree = "<group>"; };
+		18697B1722729CB10076FFBA /* KNBGetCollocationApi.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNBGetCollocationApi.m; sourceTree = "<group>"; };
+		18697B1922729E0B0076FFBA /* KNBMeAboutModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNBMeAboutModel.h; sourceTree = "<group>"; };
+		18697B1A22729E0B0076FFBA /* KNBMeAboutModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNBMeAboutModel.m; sourceTree = "<group>"; };
 		186EE2D42266F43400E71241 /* KNBOrderUnitApi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNBOrderUnitApi.h; sourceTree = "<group>"; };
 		186EE2D52266F43400E71241 /* KNBOrderUnitApi.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNBOrderUnitApi.m; sourceTree = "<group>"; };
 		186EE2D72266FF2100E71241 /* KNBHomeMessageListApi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNBHomeMessageListApi.h; sourceTree = "<group>"; };
@@ -439,8 +614,6 @@
 		186EE2ED2267017500E71241 /* KNBRecruitmentIncreaseBrowseApi.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNBRecruitmentIncreaseBrowseApi.m; sourceTree = "<group>"; };
 		186EE2EF226701A200E71241 /* KNBRecruitmentServiceListApi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNBRecruitmentServiceListApi.h; sourceTree = "<group>"; };
 		186EE2F0226701A200E71241 /* KNBRecruitmentServiceListApi.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNBRecruitmentServiceListApi.m; sourceTree = "<group>"; };
-		186EE2F2226701C600E71241 /* KNBOrderModifyPowerApi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNBOrderModifyPowerApi.h; sourceTree = "<group>"; };
-		186EE2F3226701C600E71241 /* KNBOrderModifyPowerApi.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNBOrderModifyPowerApi.m; sourceTree = "<group>"; };
 		186EE2F6226701F400E71241 /* KNBPayWechatApi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNBPayWechatApi.h; sourceTree = "<group>"; };
 		186EE2F7226701F400E71241 /* KNBPayWechatApi.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNBPayWechatApi.m; sourceTree = "<group>"; };
 		186EE2F92267029200E71241 /* KNBPayAlipyApi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNBPayAlipyApi.h; sourceTree = "<group>"; };
@@ -454,6 +627,8 @@
 		1873D5B722643889006ED859 /* KNBRecruitmentPortraitTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNBRecruitmentPortraitTableViewCell.h; sourceTree = "<group>"; };
 		1873D5B822643889006ED859 /* KNBRecruitmentPortraitTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNBRecruitmentPortraitTableViewCell.m; sourceTree = "<group>"; };
 		1873D5B922643889006ED859 /* KNBRecruitmentPortraitTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KNBRecruitmentPortraitTableViewCell.xib; sourceTree = "<group>"; };
+		18769FB6228174F000BB713A /* KNBOrderAreaRangeApi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNBOrderAreaRangeApi.h; sourceTree = "<group>"; };
+		18769FB7228174F000BB713A /* KNBOrderAreaRangeApi.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNBOrderAreaRangeApi.m; sourceTree = "<group>"; };
 		1877F2FB226800E60092207E /* KNBHomeTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNBHomeTableView.h; sourceTree = "<group>"; };
 		1877F2FC226800E60092207E /* KNBHomeTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNBHomeTableView.m; sourceTree = "<group>"; };
 		1877F2FE226806900092207E /* KNBHomeSubTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNBHomeSubTableView.h; sourceTree = "<group>"; };
@@ -500,6 +675,11 @@
 		187B609C227066E3000AA05E /* KNBMeOrderStatusApi.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNBMeOrderStatusApi.m; sourceTree = "<group>"; };
 		187C9557225EC685006FD01A /* KNBLoginBindingApi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNBLoginBindingApi.h; sourceTree = "<group>"; };
 		187C9558225EC685006FD01A /* KNBLoginBindingApi.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNBLoginBindingApi.m; sourceTree = "<group>"; };
+		187EBC412274508100F6E324 /* FishFinishing.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FishFinishing.entitlements; sourceTree = "<group>"; };
+		187EBC4322745B0200F6E324 /* KNBJPushApi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNBJPushApi.h; sourceTree = "<group>"; };
+		187EBC4422745B0200F6E324 /* KNBJPushApi.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNBJPushApi.m; sourceTree = "<group>"; };
+		1883609E2277D0F800F81A88 /* KNBPushManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNBPushManager.h; sourceTree = "<group>"; };
+		1883609F2277D0F800F81A88 /* KNBPushManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNBPushManager.m; sourceTree = "<group>"; };
 		188441D22271488900402B7F /* KNBLoginBindingPhoneViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNBLoginBindingPhoneViewController.h; sourceTree = "<group>"; };
 		188441D32271488900402B7F /* KNBLoginBindingPhoneViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNBLoginBindingPhoneViewController.m; sourceTree = "<group>"; };
 		188441D522714A0200402B7F /* KNBBindingMobileTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNBBindingMobileTableViewCell.h; sourceTree = "<group>"; };
@@ -586,6 +766,10 @@
 		18D8D676225DDCD800532E52 /* KNBLoginSendCodeApi.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNBLoginSendCodeApi.m; sourceTree = "<group>"; };
 		18D8D678225DF28700532E52 /* KNBLoginThirdPartyApi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNBLoginThirdPartyApi.h; sourceTree = "<group>"; };
 		18D8D679225DF28700532E52 /* KNBLoginThirdPartyApi.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNBLoginThirdPartyApi.m; sourceTree = "<group>"; };
+		18F32921227E8C7B008B5B57 /* KNBMeRecruitmentAlertView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNBMeRecruitmentAlertView.h; sourceTree = "<group>"; };
+		18F32922227E8C7B008B5B57 /* KNBMeRecruitmentAlertView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNBMeRecruitmentAlertView.m; sourceTree = "<group>"; };
+		18F439A622769FCD00E64048 /* KNBMeModifyInfoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNBMeModifyInfoViewController.h; sourceTree = "<group>"; };
+		18F439A722769FCD00E64048 /* KNBMeModifyInfoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNBMeModifyInfoViewController.m; sourceTree = "<group>"; };
 		250E20706DF350D6DFABC34B /* Pods-FishFinishing.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FishFinishing.release.xcconfig"; path = "Pods/Target Support Files/Pods-FishFinishing/Pods-FishFinishing.release.xcconfig"; sourceTree = "<group>"; };
 		2A005F4211F7C68C8953E2D2 /* Pods-FishFinishing.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FishFinishing.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FishFinishing/Pods-FishFinishing.debug.xcconfig"; sourceTree = "<group>"; };
 		7A4C03A400C3DD905C0BF54B /* libPods-FishFinishing.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FishFinishing.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -822,6 +1006,17 @@
 		966D1623226CD20E005F5D77 /* KNBHomeCompanyHouseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNBHomeCompanyHouseViewController.m; sourceTree = "<group>"; };
 		966D1625226CD221005F5D77 /* KNBHomeCompanyAreaViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNBHomeCompanyAreaViewController.h; sourceTree = "<group>"; };
 		966D1626226CD221005F5D77 /* KNBHomeCompanyAreaViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNBHomeCompanyAreaViewController.m; sourceTree = "<group>"; };
+		966DD6652281CC5000F0F68F /* KNBHomeCompanyStyleViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNBHomeCompanyStyleViewController.h; sourceTree = "<group>"; };
+		966DD6662281CC5000F0F68F /* KNBHomeCompanyStyleViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNBHomeCompanyStyleViewController.m; sourceTree = "<group>"; };
+		966DD6682281CC6200F0F68F /* KNBHomeCompanyCityViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNBHomeCompanyCityViewController.h; sourceTree = "<group>"; };
+		966DD6692281CC6200F0F68F /* KNBHomeCompanyCityViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNBHomeCompanyCityViewController.m; sourceTree = "<group>"; };
+		966DD66B2281CC7400F0F68F /* KNBHomeCompanyOtherViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNBHomeCompanyOtherViewController.h; sourceTree = "<group>"; };
+		966DD66C2281CC7400F0F68F /* KNBHomeCompanyOtherViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNBHomeCompanyOtherViewController.m; sourceTree = "<group>"; };
+		966DD66E2283474A00F0F68F /* KNBMapViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNBMapViewController.h; sourceTree = "<group>"; };
+		966DD66F2283474A00F0F68F /* KNBMapViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNBMapViewController.m; sourceTree = "<group>"; };
+		966DD6712283496F00F0F68F /* cityModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cityModel.h; sourceTree = "<group>"; };
+		966DD6722283496F00F0F68F /* cityModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = cityModel.m; sourceTree = "<group>"; };
+		966DD6732283496F00F0F68F /* serach_Map.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = serach_Map.png; sourceTree = "<group>"; };
 		96811883224F497C00E4A622 /* KNBDesignSketchDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNBDesignSketchDetailViewController.h; sourceTree = "<group>"; };
 		96811884224F497C00E4A622 /* KNBDesignSketchDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNBDesignSketchDetailViewController.m; sourceTree = "<group>"; };
 		96811886224F5F7B00E4A622 /* KNBHomeOfferViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNBHomeOfferViewController.h; sourceTree = "<group>"; };
@@ -1050,6 +1245,215 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1849CE1422851AE50064D439 /* KNBMapChooseView */ = {
+			isa = PBXGroup;
+			children = (
+				1849CE9422851F040064D439 /* Pch */,
+				1849CE2B22851E990064D439 /* Utils */,
+				1849CE2122851AE50064D439 /* MPBaseTableViewController.h */,
+				1849CE1D22851AE50064D439 /* MPBaseTableViewController.m */,
+				1849CE1C22851AE50064D439 /* MPFindFriendCell.h */,
+				1849CE2222851AE50064D439 /* MPFindFriendCell.m */,
+				1849CE1E22851AE50064D439 /* MPFindNearAddressVC.h */,
+				1849CE2322851AE50064D439 /* MPFindNearAddressVC.m */,
+				1849CE1622851AE50064D439 /* MPFindNearAddressViewModel.h */,
+				1849CE1F22851AE50064D439 /* MPFindNearAddressViewModel.m */,
+				1849CE1522851AE50064D439 /* MPMapView.h */,
+				1849CE2022851AE50064D439 /* MPMapView.m */,
+				1849CE1722851AE50064D439 /* NoSearchView */,
+			);
+			path = KNBMapChooseView;
+			sourceTree = "<group>";
+		};
+		1849CE1722851AE50064D439 /* NoSearchView */ = {
+			isa = PBXGroup;
+			children = (
+				1849CE1922851AE50064D439 /* MPAddNewAddressVC.h */,
+				1849CE1B22851AE50064D439 /* MPAddNewAddressVC.m */,
+				1849CE1822851AE50064D439 /* MPNoResultHeadView.h */,
+				1849CE1A22851AE50064D439 /* MPNoResultHeadView.m */,
+			);
+			path = NoSearchView;
+			sourceTree = "<group>";
+		};
+		1849CE2B22851E990064D439 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				1849CE2D22851EA50064D439 /* basemodel */,
+				1849CE7022851EA80064D439 /* MKMapView+ZoomLevel.h */,
+				1849CE7322851EA90064D439 /* MKMapView+ZoomLevel.m */,
+				1849CE3022851EA50064D439 /* RequestViewModel.h */,
+				1849CE6F22851EA80064D439 /* RequestViewModel.m */,
+				1849CE6922851EA70064D439 /* SQActionSheetView */,
+				1849CE7422851EA90064D439 /* UIButton+Block.h */,
+				1849CE6E22851EA80064D439 /* UIButton+Block.m */,
+				1849CE7222851EA80064D439 /* UIImage+MP.h */,
+				1849CE6822851EA70064D439 /* UIImage+MP.m */,
+				1849CE2C22851EA50064D439 /* UIScrollView+Addition.h */,
+				1849CE7122851EA80064D439 /* UIScrollView+Addition.m */,
+				1849CE6C22851EA70064D439 /* UISearchBar+MP.h */,
+				1849CE6D22851EA70064D439 /* UISearchBar+MP.m */,
+				1849CE6522851EA70064D439 /* viewFrame */,
+				1849CE3122851EA60064D439 /* XHRefreshControl */,
+				1849CE6222851EA60064D439 /* XYString */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		1849CE2D22851EA50064D439 /* basemodel */ = {
+			isa = PBXGroup;
+			children = (
+				1849CE2E22851EA50064D439 /* WXBaseModel.m */,
+				1849CE2F22851EA50064D439 /* WXBaseModel.h */,
+			);
+			path = basemodel;
+			sourceTree = "<group>";
+		};
+		1849CE3122851EA60064D439 /* XHRefreshControl */ = {
+			isa = PBXGroup;
+			children = (
+				1849CE3222851EA60064D439 /* LICENSE */,
+				1849CE3322851EA60064D439 /* RefreshControl */,
+				1849CE6122851EA60064D439 /* README.md */,
+			);
+			path = XHRefreshControl;
+			sourceTree = "<group>";
+		};
+		1849CE3322851EA60064D439 /* RefreshControl */ = {
+			isa = PBXGroup;
+			children = (
+				1849CE3422851EA60064D439 /* Manager */,
+				1849CE3822851EA60064D439 /* Controllers */,
+				1849CE4E22851EA60064D439 /* Views */,
+			);
+			path = RefreshControl;
+			sourceTree = "<group>";
+		};
+		1849CE3422851EA60064D439 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				1849CE3522851EA60064D439 /* XHRefreshControl.h */,
+				1849CE3622851EA60064D439 /* XHRefreshControlHeader.h */,
+				1849CE3722851EA60064D439 /* XHRefreshControl.m */,
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
+		1849CE3822851EA60064D439 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				1849CE3922851EA60064D439 /* SystemCollectionViewController */,
+				1849CE3E22851EA60064D439 /* CustomTableViewController */,
+				1849CE4922851EA60064D439 /* SystemTableViewController */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		1849CE3922851EA60064D439 /* SystemCollectionViewController */ = {
+			isa = PBXGroup;
+			children = (
+				1849CE3A22851EA60064D439 /* XHSystemCollectionViewController.h */,
+				1849CE3B22851EA60064D439 /* XHSystemRefreshCollectionViewController.h */,
+				1849CE3C22851EA60064D439 /* XHSystemCollectionViewController.m */,
+				1849CE3D22851EA60064D439 /* XHSystemRefreshCollectionViewController.m */,
+			);
+			path = SystemCollectionViewController;
+			sourceTree = "<group>";
+		};
+		1849CE3E22851EA60064D439 /* CustomTableViewController */ = {
+			isa = PBXGroup;
+			children = (
+				1849CE3F22851EA60064D439 /* XHPinterestPullRefreshTableViewController.h */,
+				1849CE4022851EA60064D439 /* XHBaseTableViewController.h */,
+				1849CE4122851EA60064D439 /* XHJDPullRefreshTableViewController.h */,
+				1849CE4222851EA60064D439 /* XHFoundationCommon.h */,
+				1849CE4322851EA60064D439 /* XHPullRefreshTableViewController.m */,
+				1849CE4422851EA60064D439 /* XHPinterestPullRefreshTableViewController.m */,
+				1849CE4522851EA60064D439 /* XHJDPullRefreshTableViewController.m */,
+				1849CE4622851EA60064D439 /* XHBaseTableViewController.m */,
+				1849CE4722851EA60064D439 /* XHPullRefreshTableViewController.h */,
+				1849CE4822851EA60064D439 /* XHFoundationCommon.m */,
+			);
+			path = CustomTableViewController;
+			sourceTree = "<group>";
+		};
+		1849CE4922851EA60064D439 /* SystemTableViewController */ = {
+			isa = PBXGroup;
+			children = (
+				1849CE4A22851EA60064D439 /* XHSysatemRefreshTableViewController.m */,
+				1849CE4B22851EA60064D439 /* XHSystemTableViewController.m */,
+				1849CE4C22851EA60064D439 /* XHSysatemRefreshTableViewController.h */,
+				1849CE4D22851EA60064D439 /* XHSystemTableViewController.h */,
+			);
+			path = SystemTableViewController;
+			sourceTree = "<group>";
+		};
+		1849CE4E22851EA60064D439 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				1849CE4F22851EA60064D439 /* XHActivityIndicatorView.m */,
+				1849CE5022851EA60064D439 /* XHJDRefreshView.h */,
+				1849CE5122851EA60064D439 /* XHCircularProgressView.m */,
+				1849CE5222851EA60064D439 /* XHRefreshActivityIndicatorContainerView.h */,
+				1849CE5322851EA60064D439 /* XHCircleView.h */,
+				1849CE5422851EA60064D439 /* XHPinterestRefreshView.h */,
+				1849CE5522851EA60064D439 /* XHActivityCircleIndicatorView.m */,
+				1849CE5622851EA60064D439 /* XHRefreshCircleContainerView.h */,
+				1849CE5722851EA60064D439 /* XHLoadMoreView.m */,
+				1849CE5822851EA60064D439 /* XHActivityIndicatorView.h */,
+				1849CE5922851EA60064D439 /* XHRefreshActivityIndicatorContainerView.m */,
+				1849CE5A22851EA60064D439 /* XHCircularProgressView.h */,
+				1849CE5B22851EA60064D439 /* XHJDRefreshView.m */,
+				1849CE5C22851EA60064D439 /* XHRefreshCircleContainerView.m */,
+				1849CE5D22851EA60064D439 /* XHActivityCircleIndicatorView.h */,
+				1849CE5E22851EA60064D439 /* XHCircleView.m */,
+				1849CE5F22851EA60064D439 /* XHPinterestRefreshView.m */,
+				1849CE6022851EA60064D439 /* XHLoadMoreView.h */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		1849CE6222851EA60064D439 /* XYString */ = {
+			isa = PBXGroup;
+			children = (
+				1849CE6322851EA60064D439 /* XYString.h */,
+				1849CE6422851EA60064D439 /* XYString.m */,
+			);
+			path = XYString;
+			sourceTree = "<group>";
+		};
+		1849CE6522851EA70064D439 /* viewFrame */ = {
+			isa = PBXGroup;
+			children = (
+				1849CE6622851EA70064D439 /* UIViewExt.m */,
+				1849CE6722851EA70064D439 /* UIViewExt.h */,
+			);
+			path = viewFrame;
+			sourceTree = "<group>";
+		};
+		1849CE6922851EA70064D439 /* SQActionSheetView */ = {
+			isa = PBXGroup;
+			children = (
+				1849CE6A22851EA70064D439 /* SQActionSheetView.h */,
+				1849CE6B22851EA70064D439 /* SQActionSheetView.m */,
+			);
+			path = SQActionSheetView;
+			sourceTree = "<group>";
+		};
+		1849CE9422851F040064D439 /* Pch */ = {
+			isa = PBXGroup;
+			children = (
+				1849CE9522851F040064D439 /* MPUserDefaultsHead.h */,
+				1849CE9622851F040064D439 /* wh_Head.h */,
+				1849CE9722851F040064D439 /* defines.h */,
+				1849CE9822851F040064D439 /* ColorHead.h */,
+				1849CE9922851F040064D439 /* MPNslogHeader.h */,
+				1849CE9B22851F040064D439 /* CONST.h */,
+				1849CE9C22851F630064D439 /* KNBMapHeader.h */,
+			);
+			path = Pch;
+			sourceTree = "<group>";
+		};
 		1868A691226560AF005546BB /* TagsPickerView */ = {
 			isa = PBXGroup;
 			children = (
@@ -1144,6 +1548,12 @@
 				186EE2F0226701A200E71241 /* KNBRecruitmentServiceListApi.m */,
 				18D4D7312271B4BE000C1022 /* KNBTopRemainingTimeApi.h */,
 				18D4D7322271B4BE000C1022 /* KNBTopRemainingTimeApi.m */,
+				186757A12283DA190063DEC9 /* KNBRecruitmentShowApi.h */,
+				186757A22283DA190063DEC9 /* KNBRecruitmentShowApi.m */,
+				186757A7228428B30063DEC9 /* KNBOrderModifyPowerApi.h */,
+				186757A8228428B30063DEC9 /* KNBOrderModifyPowerApi.m */,
+				186757AA228428CC0063DEC9 /* KNBOrderCheckCaseNumApi.h */,
+				186757AB228428CC0063DEC9 /* KNBOrderCheckCaseNumApi.m */,
 			);
 			path = RecruitmentApi;
 			sourceTree = "<group>";
@@ -1159,8 +1569,10 @@
 				1868A69A2265B525005546BB /* KNBOrderAreaApi.m */,
 				186EE2D42266F43400E71241 /* KNBOrderUnitApi.h */,
 				186EE2D52266F43400E71241 /* KNBOrderUnitApi.m */,
-				186EE2F2226701C600E71241 /* KNBOrderModifyPowerApi.h */,
-				186EE2F3226701C600E71241 /* KNBOrderModifyPowerApi.m */,
+				183E04B12280155C009EA112 /* KNBOrderCheckApi.h */,
+				183E04B22280155C009EA112 /* KNBOrderCheckApi.m */,
+				18769FB6228174F000BB713A /* KNBOrderAreaRangeApi.h */,
+				18769FB7228174F000BB713A /* KNBOrderAreaRangeApi.m */,
 			);
 			path = OrderFinishingApi;
 			sourceTree = "<group>";
@@ -1170,6 +1582,8 @@
 			children = (
 				187B609122701689000AA05E /* KNBMeOrderModel.h */,
 				187B609222701689000AA05E /* KNBMeOrderModel.m */,
+				18697B1922729E0B0076FFBA /* KNBMeAboutModel.h */,
+				18697B1A22729E0B0076FFBA /* KNBMeAboutModel.m */,
 			);
 			path = MeModel;
 			sourceTree = "<group>";
@@ -1181,8 +1595,19 @@
 				187B6096227016AC000AA05E /* KNBMeOrderApi.m */,
 				187B609B227066E3000AA05E /* KNBMeOrderStatusApi.h */,
 				187B609C227066E3000AA05E /* KNBMeOrderStatusApi.m */,
+				18697B1622729CB10076FFBA /* KNBGetCollocationApi.h */,
+				18697B1722729CB10076FFBA /* KNBGetCollocationApi.m */,
 			);
 			path = MeApi;
+			sourceTree = "<group>";
+		};
+		187EBC4222745AC400F6E324 /* JPushApi */ = {
+			isa = PBXGroup;
+			children = (
+				187EBC4322745B0200F6E324 /* KNBJPushApi.h */,
+				187EBC4422745B0200F6E324 /* KNBJPushApi.m */,
+			);
+			path = JPushApi;
 			sourceTree = "<group>";
 		};
 		189A6B7B22606ABB007C6CC1 /* KNAlertView */ = {
@@ -1196,6 +1621,8 @@
 				189A6B7D22606ABB007C6CC1 /* KNAlertView.m */,
 				187B609822701A27000AA05E /* KNBMeOrderAlertView.h */,
 				187B609922701A27000AA05E /* KNBMeOrderAlertView.m */,
+				18F32921227E8C7B008B5B57 /* KNBMeRecruitmentAlertView.h */,
+				18F32922227E8C7B008B5B57 /* KNBMeRecruitmentAlertView.m */,
 			);
 			path = KNAlertView;
 			sourceTree = "<group>";
@@ -1292,6 +1719,7 @@
 		18D8D65D225DBB3F00532E52 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				187EBC4222745AC400F6E324 /* JPushApi */,
 				187B609422701693000AA05E /* MeApi */,
 				186EE2F5226701D500E71241 /* PayApi */,
 				18D599B2225F0E6F00B5177D /* KNBUploadFileApi */,
@@ -1320,6 +1748,8 @@
 				18A090EF225EC989001ED33F /* KNBLoginLoginApi.m */,
 				185F1A1F226F0F15000F6E9C /* KNBLoginModifyUserInfoApi.h */,
 				185F1A20226F0F15000F6E9C /* KNBLoginModifyUserInfoApi.m */,
+				183E04B422803E55009EA112 /* KNBLoginUserInfoApi.h */,
+				183E04B522803E55009EA112 /* KNBLoginUserInfoApi.m */,
 			);
 			path = LoginApi;
 			sourceTree = "<group>";
@@ -1486,6 +1916,9 @@
 				187B608B227001E1000AA05E /* KNBMeOrderTableViewCell.h */,
 				187B608C227001E1000AA05E /* KNBMeOrderTableViewCell.m */,
 				187B608D227001E1000AA05E /* KNBMeOrderTableViewCell.xib */,
+				183C56132283B4E80054217D /* KNBMeOrderOtherTableViewCell.h */,
+				183C56142283B4E80054217D /* KNBMeOrderOtherTableViewCell.m */,
+				183C56152283B4E80054217D /* KNBMeOrderOtherTableViewCell.xib */,
 			);
 			path = MeView;
 			sourceTree = "<group>";
@@ -1580,8 +2013,16 @@
 				185F1A17226EE5AA000F6E9C /* KNBHomeWorkerViewController.m */,
 				961C531E225486BD0089E997 /* KNBHomeCompanyDetailViewController.h */,
 				961C531F225486BD0089E997 /* KNBHomeCompanyDetailViewController.m */,
+				1857ED85227EDEB7008E9668 /* KNBHomeCompanyExperienceViewController.h */,
+				1857ED86227EDEB7008E9668 /* KNBHomeCompanyExperienceViewController.m */,
 				96E7E0B6225ADB0900188DD1 /* KNBHomeCompanyListViewController.h */,
 				96E7E0B7225ADB0900188DD1 /* KNBHomeCompanyListViewController.m */,
+				966DD6652281CC5000F0F68F /* KNBHomeCompanyStyleViewController.h */,
+				966DD6662281CC5000F0F68F /* KNBHomeCompanyStyleViewController.m */,
+				966DD6682281CC6200F0F68F /* KNBHomeCompanyCityViewController.h */,
+				966DD6692281CC6200F0F68F /* KNBHomeCompanyCityViewController.m */,
+				966DD66B2281CC7400F0F68F /* KNBHomeCompanyOtherViewController.h */,
+				966DD66C2281CC7400F0F68F /* KNBHomeCompanyOtherViewController.m */,
 				966D155E2268F2DE005F5D77 /* KNBHomeChatViewController.h */,
 				966D155F2268F2DE005F5D77 /* KNBHomeChatViewController.m */,
 				966D15692268F8A7005F5D77 /* KNBHomeChatDetailViewController.h */,
@@ -1631,8 +2072,13 @@
 			children = (
 				966AA557224A0AEB00EDBF5F /* RecruitmentViewController.h */,
 				966AA558224A0AEB00EDBF5F /* RecruitmentViewController.m */,
-				964926B2225C8F32000BBC7E /* KNBRecruitmentPayViewController.h */,
-				964926B3225C8F32000BBC7E /* KNBRecruitmentPayViewController.m */,
+				1854B8D222732374009821B8 /* KNBPayProtocolViewController.h */,
+				1854B8D322732374009821B8 /* KNBPayProtocolViewController.m */,
+				966DD66E2283474A00F0F68F /* KNBMapViewController.h */,
+				966DD66F2283474A00F0F68F /* KNBMapViewController.m */,
+				966DD6712283496F00F0F68F /* cityModel.h */,
+				966DD6722283496F00F0F68F /* cityModel.m */,
+				966DD6732283496F00F0F68F /* serach_Map.png */,
 			);
 			path = RecruitmentVC;
 			sourceTree = "<group>";
@@ -1649,6 +2095,8 @@
 				1866530622695D64004C176F /* KNBMeSetViewController.m */,
 				187B6088226FFF30000AA05E /* KNBMeOrderViewController.h */,
 				187B6089226FFF30000AA05E /* KNBMeOrderViewController.m */,
+				18F439A622769FCD00E64048 /* KNBMeModifyInfoViewController.h */,
+				18F439A722769FCD00E64048 /* KNBMeModifyInfoViewController.m */,
 			);
 			path = MeVC;
 			sourceTree = "<group>";
@@ -1708,10 +2156,10 @@
 				961C53072252194E0089E997 /* KNBHomeDesignSketchSubTableViewCell.h */,
 				961C53082252194E0089E997 /* KNBHomeDesignSketchSubTableViewCell.m */,
 				961C53092252194E0089E997 /* KNBHomeDesignSketchSubTableViewCell.xib */,
-				966AA583224A2DA200EDBF5F /* KNBHomeRecommendTableViewCell.h */,
-				966AA584224A2DA200EDBF5F /* KNBHomeRecommendTableViewCell.m */,
 				96FDB4C5224B17D7005844E7 /* KNBHomeSectionView.h */,
 				96FDB4C6224B17D7005844E7 /* KNBHomeSectionView.m */,
+				966AA583224A2DA200EDBF5F /* KNBHomeRecommendTableViewCell.h */,
+				966AA584224A2DA200EDBF5F /* KNBHomeRecommendTableViewCell.m */,
 				96FDB4C8224B553F005844E7 /* KNBHomeRecommendSubTableViewCell.h */,
 				96FDB4C9224B553F005844E7 /* KNBHomeRecommendSubTableViewCell.m */,
 				96FDB4CA224B553F005844E7 /* KNBHomeRecommendSubTableViewCell.xib */,
@@ -1738,6 +2186,8 @@
 				1866531D2269A104004C176F /* KNBHomeUploadCaseCollectionViewCell.h */,
 				1866531E2269A104004C176F /* KNBHomeUploadCaseCollectionViewCell.m */,
 				1866531F2269A104004C176F /* KNBHomeUploadCaseCollectionViewCell.xib */,
+				182F5A7622811A7B00E8B323 /* KNBHomeUploadCaseFooterView.h */,
+				182F5A7722811A7B00E8B323 /* KNBHomeUploadCaseFooterView.m */,
 				96E7E0B9225ADD5900188DD1 /* KNBHomeCompanyListHeaderView.h */,
 				96E7E0BA225ADD5900188DD1 /* KNBHomeCompanyListHeaderView.m */,
 				96E7E0BC225ADDD000188DD1 /* KNBHomeCompanyListHeaderView.xib */,
@@ -1759,6 +2209,12 @@
 				18D4D72C2271AD5A000C1022 /* KNBHomeBuyTopFooterView.h */,
 				18D4D72D2271AD5A000C1022 /* KNBHomeBuyTopFooterView.m */,
 				18D4D72E2271AD5A000C1022 /* KNBHomeBuyTopFooterView.xib */,
+				1857ED88227EE080008E9668 /* KNBHomeExperienceHeaderView.h */,
+				1857ED89227EE080008E9668 /* KNBHomeExperienceHeaderView.m */,
+				1857ED8A227EE080008E9668 /* KNBHomeExperienceHeaderView.xib */,
+				1857ED8D227EE094008E9668 /* KNBHomeExperienceFooterView.h */,
+				1857ED8E227EE094008E9668 /* KNBHomeExperienceFooterView.m */,
+				1857ED8F227EE094008E9668 /* KNBHomeExperienceFooterView.xib */,
 			);
 			path = HomeView;
 			sourceTree = "<group>";
@@ -1883,8 +2339,8 @@
 		966D160D226CB1A7005F5D77 /* PayVC */ = {
 			isa = PBXGroup;
 			children = (
-				966D160E226CB1FD005F5D77 /* KNPayManager.h */,
-				966D160F226CB1FD005F5D77 /* KNPayManager.m */,
+				964926B2225C8F32000BBC7E /* KNBRecruitmentPayViewController.h */,
+				964926B3225C8F32000BBC7E /* KNBRecruitmentPayViewController.m */,
 			);
 			path = PayVC;
 			sourceTree = "<group>";
@@ -2012,6 +2468,7 @@
 		96B097E12249C69100154643 /* FishFinishing */ = {
 			isa = PBXGroup;
 			children = (
+				187EBC412274508100F6E324 /* FishFinishing.entitlements */,
 				96B097FB2249C6B100154643 /* Application */,
 				96B0981D2249CB8800154643 /* Base */,
 				96B097FD2249C6C200154643 /* Classes */,
@@ -2031,6 +2488,10 @@
 				966AA50E2249FFC200EDBF5F /* KNBAppManager.m */,
 				96B098C32249D55F00154643 /* KNBMainConfigModel.h */,
 				96B098C22249D55400154643 /* KNBMainConfigModel.m */,
+				1883609E2277D0F800F81A88 /* KNBPushManager.h */,
+				1883609F2277D0F800F81A88 /* KNBPushManager.m */,
+				966D160E226CB1FD005F5D77 /* KNPayManager.h */,
+				966D160F226CB1FD005F5D77 /* KNPayManager.m */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -2096,6 +2557,7 @@
 		96B098032249C87D00154643 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				1849CE1422851AE50064D439 /* KNBMapChooseView */,
 				966D156C226C44DC005F5D77 /* KNUM */,
 				189A6B7B22606ABB007C6CC1 /* KNAlertView */,
 				18B8DA4A22601FB700D18BC4 /* KNBUserInfo */,
@@ -2547,8 +3009,6 @@
 				18D8D664225DCC5400532E52 /* Sources */,
 				18D8D665225DCC5400532E52 /* Frameworks */,
 				18D8D666225DCC5400532E52 /* Resources */,
-				8039CE336EC9A514C74980DD /* [CP] Embed Pods Frameworks */,
-				75F25AD7C6D27ADF2CCA33F0 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -2569,7 +3029,6 @@
 				96B097DC2249C69100154643 /* Frameworks */,
 				96B097DD2249C69100154643 /* Resources */,
 				577688FDCBAB851C60F8264D /* [CP] Copy Pods Resources */,
-				4BEF091F424EBB4E21430DD2 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -2596,6 +3055,11 @@
 					};
 					96B097DE2249C69100154643 = {
 						CreatedOnToolsVersion = 10.1;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -2634,9 +3098,12 @@
 				961C530D225351160089E997 /* KNBDesignSketchFreeOrderHeaderView.xib in Resources */,
 				187B608F227001E1000AA05E /* KNBMeOrderTableViewCell.xib in Resources */,
 				961C53032251A8FC0089E997 /* KNBDSFreeOrderPhoneTableViewCell.xib in Resources */,
+				1849CE7622851EA90064D439 /* LICENSE in Resources */,
 				1866531122699A83004C176F /* KNBHomeCompanyCaseAddCollectionViewCell.xib in Resources */,
 				961C52F92251A8C00089E997 /* KNBDSFreeOrderAreaTableViewCell.xib in Resources */,
+				1857ED91227EE094008E9668 /* KNBHomeExperienceFooterView.xib in Resources */,
 				964926C2225C94A2000BBC7E /* KNBRecruitmentPayTableViewCell.xib in Resources */,
+				1857ED8C227EE080008E9668 /* KNBHomeExperienceHeaderView.xib in Resources */,
 				966AA519224A00D700EDBF5F /* KNBStartPageView.xib in Resources */,
 				961C532A22548E210089E997 /* KNBHomeCompanyServerTableViewCell.xib in Resources */,
 				961C532522548E050089E997 /* KNBHomeCompanyHeaderTableViewCell.xib in Resources */,
@@ -2651,6 +3118,7 @@
 				18B3B04A22648E870058AE4F /* KNBRecruitmentIntroTableViewCell.xib in Resources */,
 				96B097F22249C69300154643 /* LaunchScreen.storyboard in Resources */,
 				188441DE22714A2100402B7F /* KNBBindingCodeTableViewCell.xib in Resources */,
+				1849CE8A22851EA90064D439 /* README.md in Resources */,
 				96E7E0CB225B2E4D00188DD1 /* KNBOrderTextfieldTableViewCell.xib in Resources */,
 				966AA51A224A00D700EDBF5F /* KNBStartPage.plist in Resources */,
 				961C5318225462070089E997 /* KNBDSFreeOrderEnterTableViewCell.xib in Resources */,
@@ -2678,11 +3146,13 @@
 				18D4D7302271AD5A000C1022 /* KNBHomeBuyTopFooterView.xib in Resources */,
 				186652FE22694F5C004C176F /* KNBMeAboutTableViewCell.xib in Resources */,
 				18B3B04022645F750058AE4F /* KNBRecruitmentEnterTableViewCell.xib in Resources */,
+				966DD6752283496F00F0F68F /* serach_Map.png in Resources */,
 				966169BC224DAB7600FB2D01 /* KNBMeTableViewCell.xib in Resources */,
 				961C52EF2251A8450089E997 /* KNBDSFreeOrderNewHouseTableViewCell.xib in Resources */,
 				96E7E0D0225B2E6600188DD1 /* KNBOrderAddressTableViewCell.xib in Resources */,
 				96E7E0BD225ADDD000188DD1 /* KNBHomeCompanyListHeaderView.xib in Resources */,
 				966D15F6226C70F3005F5D77 /* UMSocialSDKResources.bundle in Resources */,
+				183C56172283B4E80054217D /* KNBMeOrderOtherTableViewCell.xib in Resources */,
 				18D4D72B2271AD45000C1022 /* KNBHomeBuyTopHeaderView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2690,25 +3160,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		4BEF091F424EBB4E21430DD2 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FishFinishing/Pods-FishFinishing-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		577688FDCBAB851C60F8264D /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -2717,7 +3168,10 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-FishFinishing/Pods-FishFinishing-resources.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-FishFinishing/Pods-FishFinishing-resources.sh",
+				"${PODS_ROOT}/EBBannerView/EBBannerView/Classes/EBBannerView.xib",
+				"${PODS_ROOT}/EBBannerView/EBBannerView/Classes/EBBannerViewController.xib",
+				"${PODS_ROOT}/EBBannerView/EBBannerView/Classes/EBMuteDetector.mp3",
 				"${PODS_ROOT}/IQKeyboardManager/IQKeyboardManager/Resources/IQKeyboardManager.bundle",
 				"${PODS_ROOT}/LCProgressHUD/LCProgressHUD/LCProgressHUD.bundle",
 				"${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle",
@@ -2728,11 +3182,18 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/EBBannerView.nib",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/EBBannerViewController.nib",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/EBMuteDetector.mp3",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/IQKeyboardManager.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/LCProgressHUD.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MJRefresh.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Pingpp.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AlipaySDK.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FishFinishing/Pods-FishFinishing-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FishFinishing/Pods-FishFinishing-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		6534D17BAEB707B40E5E71A3 /* [CP] Check Pods Manifest.lock */ = {
@@ -2755,44 +3216,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		75F25AD7C6D27ADF2CCA33F0 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FishFinishingTests/Pods-FishFinishingTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		8039CE336EC9A514C74980DD /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FishFinishingTests/Pods-FishFinishingTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		9F154E08BFB26A5AC1F0BF04 /* [CP] Check Pods Manifest.lock */ = {
@@ -2838,28 +3261,38 @@
 				961C52F32251A8710089E997 /* KNBDSFreeOrderAddressTableViewCell.m in Sources */,
 				961C5317225462070089E997 /* KNBDSFreeOrderEnterTableViewCell.m in Sources */,
 				966D1610226CB1FD005F5D77 /* KNPayManager.m in Sources */,
+				1849CE2722851AE50064D439 /* MPFindNearAddressViewModel.m in Sources */,
 				966AA546224A033000EDBF5F /* XHLaunchAdConfiguration.m in Sources */,
 				1877F30722682F7D0092207E /* KNBHomeCategoryCollectionViewCell.m in Sources */,
 				96327514226DA5E30080C650 /* UIView+Utils.m in Sources */,
 				187B609D227066E3000AA05E /* KNBMeOrderStatusApi.m in Sources */,
 				187B609322701689000AA05E /* KNBMeOrderModel.m in Sources */,
 				1866531722699DDB004C176F /* KNBHomeCompanyEditDetailViewController.m in Sources */,
+				966DD6672281CC5000F0F68F /* KNBHomeCompanyStyleViewController.m in Sources */,
 				96B098972249CC1000154643 /* UIImage+WaterMark.m in Sources */,
 				96B098B02249CC1000154643 /* NSString+Trim.m in Sources */,
 				18D8D677225DDCD800532E52 /* KNBLoginSendCodeApi.m in Sources */,
 				189A6B8222606B01007C6CC1 /* CustomIOSAlertView.m in Sources */,
 				186EE2E22266FFFF00E71241 /* KNBRecruitmentCatChildApi.m in Sources */,
+				1849CE8D22851EA90064D439 /* UIImage+MP.m in Sources */,
 				9661F9F7226D50BA00DD6C51 /* KNBHomeRecommendCaseModel.m in Sources */,
+				1857ED8B227EE080008E9668 /* KNBHomeExperienceHeaderView.m in Sources */,
 				185F1A1B226EEB5C000F6E9C /* KNBOrderAlertView.m in Sources */,
 				18B3B03F22645F750058AE4F /* KNBRecruitmentEnterTableViewCell.m in Sources */,
+				1849CE7722851EA90064D439 /* XHRefreshControl.m in Sources */,
 				1868A6982265B072005546BB /* KNBOrderModel.m in Sources */,
+				1849CE8622851EA90064D439 /* XHJDRefreshView.m in Sources */,
+				1849CE8022851EA90064D439 /* XHSystemTableViewController.m in Sources */,
 				96B098E42249E45000154643 /* NJKWebViewProgressView.m in Sources */,
 				18B2C24C22718F98006E0DAA /* UIButton+Style.m in Sources */,
 				964926AB225C7F21000BBC7E /* BRStringPickerView.m in Sources */,
 				18AB25FD226894D00044930D /* KNBCompanyListTagsView.m in Sources */,
 				96B098C42249D56000154643 /* KNBMainConfigModel.m in Sources */,
+				966DD66D2281CC7400F0F68F /* KNBHomeCompanyOtherViewController.m in Sources */,
+				18697B1B22729E0B0076FFBA /* KNBMeAboutModel.m in Sources */,
 				9697FD5A225597A900027AB3 /* GHDropMenuWaterFallCell.m in Sources */,
 				96B098A52249CC1000154643 /* UIButton+Indicator.m in Sources */,
+				1854B8D422732374009821B8 /* KNBPayProtocolViewController.m in Sources */,
 				966AA550224A0AB300EDBF5F /* HomeViewController.m in Sources */,
 				96E7E0C5225B2E2100188DD1 /* KNBOrderDownTableViewCell.m in Sources */,
 				966AA574224A1E4F00EDBF5F /* TADotView.m in Sources */,
@@ -2867,16 +3300,21 @@
 				1868A69E2265C001005546BB /* KNBCityModel.m in Sources */,
 				18B8DA502260449800D18BC4 /* KNBHomeCityListViewController.m in Sources */,
 				966AA576224A1E4F00EDBF5F /* TAAnimatedDotView.m in Sources */,
+				1849CE8F22851EA90064D439 /* UISearchBar+MP.m in Sources */,
 				187A6A75225ECF36006CA2B0 /* KNBRecruitmentCostApi.m in Sources */,
 				96B098E32249E45000154643 /* NJKWebViewProgress.m in Sources */,
+				186757A32283DA190063DEC9 /* KNBRecruitmentShowApi.m in Sources */,
+				1849CE2922851AE50064D439 /* MPFindFriendCell.m in Sources */,
 				966AA547224A033000EDBF5F /* XHLaunchAdCache.m in Sources */,
 				1866530122695277004C176F /* KNBMeAboutHeaderView.m in Sources */,
 				96E5541A224CBEFD00D025C4 /* KNBSortView.m in Sources */,
 				189A6B9422607D9E007C6CC1 /* KNBRecruitmentTypeModel.m in Sources */,
 				1873D5BA22643889006ED859 /* KNBRecruitmentPortraitTableViewCell.m in Sources */,
+				1849CE8C22851EA90064D439 /* UIViewExt.m in Sources */,
 				961C5313225363AC0089E997 /* KNBHomeDesignViewController.m in Sources */,
 				1877F30F22686C960092207E /* KNBDataEmptySet.m in Sources */,
 				18AB26002268A38D0044930D /* KNBHomeCompanyTagsViewController.m in Sources */,
+				966DD66A2281CC6200F0F68F /* KNBHomeCompanyCityViewController.m in Sources */,
 				966AA55C224A0B9F00EDBF5F /* MeViewController.m in Sources */,
 				96327507226D6FEE0080C650 /* CQTopBarViewController.m in Sources */,
 				96B098302249CB8800154643 /* KNBBaseModel.m in Sources */,
@@ -2894,27 +3332,39 @@
 				187A6A72225ECE74006CA2B0 /* KNBRecruitmentTypeApi.m in Sources */,
 				961C5320225486BD0089E997 /* KNBHomeCompanyDetailViewController.m in Sources */,
 				1866530B22696CA1004C176F /* KNBHomeCompanyCaseSubCollectionViewCell.m in Sources */,
+				183C56162283B4E80054217D /* KNBMeOrderOtherTableViewCell.m in Sources */,
 				187B6097227016AC000AA05E /* KNBMeOrderApi.m in Sources */,
 				9697FD53225597A900027AB3 /* NSString+Arc4random.m in Sources */,
 				185F1A21226F0F15000F6E9C /* KNBLoginModifyUserInfoApi.m in Sources */,
+				1849CE7822851EA90064D439 /* XHSystemCollectionViewController.m in Sources */,
 				187C9559225EC685006FD01A /* KNBLoginBindingApi.m in Sources */,
 				96B098312249CB8800154643 /* KNBBaseRequest.m in Sources */,
+				1849CE2A22851AE50064D439 /* MPFindNearAddressVC.m in Sources */,
 				18D599B8225F1D4B00B5177D /* KNBRecruitmentCaseDetailApi.m in Sources */,
+				1849CE7A22851EA90064D439 /* XHPullRefreshTableViewController.m in Sources */,
 				964926B4225C8F32000BBC7E /* KNBRecruitmentPayViewController.m in Sources */,
 				186EE2EB2267015D00E71241 /* KNBRecruitmentModifyFacilitatorApi.m in Sources */,
 				96E7E0BB225ADD5900188DD1 /* KNBHomeCompanyListHeaderView.m in Sources */,
 				96B098BA2249CC1000154643 /* CALayer+Transition.m in Sources */,
 				96327510226DA3E10080C650 /* KNBSearchBar.m in Sources */,
 				185F1A18226EE5AA000F6E9C /* KNBHomeWorkerViewController.m in Sources */,
+				1857ED90227EE094008E9668 /* KNBHomeExperienceFooterView.m in Sources */,
 				961C530A2252194E0089E997 /* KNBHomeDesignSketchSubTableViewCell.m in Sources */,
+				1849CE9222851EA90064D439 /* UIScrollView+Addition.m in Sources */,
 				96B098332249CB8800154643 /* KNBBaseViewController.m in Sources */,
+				1849CE7C22851EA90064D439 /* XHJDPullRefreshTableViewController.m in Sources */,
 				966D15642268F2F4005F5D77 /* KNBHomeChatTableViewCell.m in Sources */,
 				966D156B2268F8A7005F5D77 /* KNBHomeChatDetailViewController.m in Sources */,
 				96FDB4D3224B68F9005844E7 /* KNBLoginInputView.m in Sources */,
 				96B098D62249D73200154643 /* KNBNavigationView.m in Sources */,
+				1849CE8222851EA90064D439 /* XHCircularProgressView.m in Sources */,
+				186757AC228428CC0063DEC9 /* KNBOrderCheckCaseNumApi.m in Sources */,
+				1849CE7D22851EA90064D439 /* XHBaseTableViewController.m in Sources */,
 				186EE301226702B200E71241 /* KNBHomeBespokeApi.m in Sources */,
 				96B0989E2249CC1000154643 /* UILabel+AutoSize.m in Sources */,
+				183E04B32280155C009EA112 /* KNBOrderCheckApi.m in Sources */,
 				96B098A22249CC1000154643 /* UIButton+ImageAndTitle.m in Sources */,
+				1849CE2522851AE50064D439 /* MPAddNewAddressVC.m in Sources */,
 				96B098342249CB8800154643 /* KNBNavgationController.m in Sources */,
 				966AA50F2249FFC200EDBF5F /* KNBAppManager.m in Sources */,
 				966AA572224A1E4F00EDBF5F /* UIView+SDExtension.m in Sources */,
@@ -2938,9 +3388,12 @@
 				964926B1225C7F21000BBC7E /* BRAddressPickerView.m in Sources */,
 				966AA559224A0AEB00EDBF5F /* RecruitmentViewController.m in Sources */,
 				96B098AC2249CC1000154643 /* UIImageView+FaceAwareFill.m in Sources */,
+				1849CE8822851EA90064D439 /* XHCircleView.m in Sources */,
 				18D8D661225DBB7E00532E52 /* KNBLoginRegisterApi.m in Sources */,
+				18697B1822729CB10076FFBA /* KNBGetCollocationApi.m in Sources */,
 				18A090F7225ECAA8001ED33F /* KNBHomeAllAreaApi.m in Sources */,
 				96B0982E2249CB8800154643 /* KNOCJSModel.m in Sources */,
+				1849CE9022851EA90064D439 /* UIButton+Block.m in Sources */,
 				96E7E0B8225ADB0900188DD1 /* KNBHomeCompanyListViewController.m in Sources */,
 				961C532E22548E4D0089E997 /* KNBHomeCompanyIntroTableViewCell.m in Sources */,
 				966AA53E224A033000EDBF5F /* XHLaunchAdView.m in Sources */,
@@ -2951,9 +3404,11 @@
 				96B0989D2249CC1000154643 /* UILabel+Space.m in Sources */,
 				96B098B42249CC1000154643 /* NSString+MD5.m in Sources */,
 				18D4D7212271A426000C1022 /* KNBHomeBuyTopViewController.m in Sources */,
+				18769FB8228174F000BB713A /* KNBOrderAreaRangeApi.m in Sources */,
 				966D160B226C7673005F5D77 /* ImageWithLabels.m in Sources */,
 				96B098AA2249CC1000154643 /* KNBScrollTextView.m in Sources */,
 				96B098A62249CC1000154643 /* UIButton+ArrayButton.m in Sources */,
+				1849CE2822851AE50064D439 /* MPMapView.m in Sources */,
 				966D155D2268D6E2005F5D77 /* RFPhotoScrollerView.m in Sources */,
 				96B0989B2249CC1000154643 /* UIImage+RoundedCorner.m in Sources */,
 				96B098AF2249CC1000154643 /* AlivcStringDrawing.m in Sources */,
@@ -2963,12 +3418,14 @@
 				1873D5B62264179C006ED859 /* BRLinkagePickerView.m in Sources */,
 				96B098BE2249CC1000154643 /* NSDate+BTAddition.m in Sources */,
 				186EE2F1226701A200E71241 /* KNBRecruitmentServiceListApi.m in Sources */,
+				966DD6742283496F00F0F68F /* cityModel.m in Sources */,
 				964926AF225C7F21000BBC7E /* BRAddressModel.m in Sources */,
 				1868A6AB2265DEBB005546BB /* KNBChoiceTableViewCell.m in Sources */,
 				96B098D22249D6F700154643 /* KNGetUserLoaction.m in Sources */,
 				966AA542224A033000EDBF5F /* XHLaunchAd.m in Sources */,
 				18D4D7332271B4BE000C1022 /* KNBTopRemainingTimeApi.m in Sources */,
 				964926AC225C7F21000BBC7E /* BRDatePickerView.m in Sources */,
+				18F32923227E8C7B008B5B57 /* KNBMeRecruitmentAlertView.m in Sources */,
 				961C532422548E050089E997 /* KNBHomeCompanyHeaderTableViewCell.m in Sources */,
 				96327506226D6FEE0080C650 /* CQTopBarSegmentCell.m in Sources */,
 				966D1624226CD20E005F5D77 /* KNBHomeCompanyHouseViewController.m in Sources */,
@@ -2978,13 +3435,17 @@
 				186EE2EE2267017500E71241 /* KNBRecruitmentIncreaseBrowseApi.m in Sources */,
 				966AA541224A033000EDBF5F /* XHLaunchAdConst.m in Sources */,
 				966AA53D224A033000EDBF5F /* XHLaunchAdManager.m in Sources */,
+				1857ED87227EDEB7008E9668 /* KNBHomeCompanyExperienceViewController.m in Sources */,
 				18D599B5225F0E9000B5177D /* KNBUploadFileApi.m in Sources */,
 				96B098A02249CC1000154643 /* UIResponder+Router.m in Sources */,
 				96327504226D6FEE0080C650 /* CQTopBarView.m in Sources */,
 				189A6B8A22606B1D007C6CC1 /* PrintBeautifulLog.m in Sources */,
+				1849CE8522851EA90064D439 /* XHRefreshActivityIndicatorContainerView.m in Sources */,
 				96B0989A2249CC1000154643 /* UIImage+Alpha.m in Sources */,
 				966AA513224A009600EDBF5F /* KNBWelcomeViewController.m in Sources */,
+				182F5A7822811A7B00E8B323 /* KNBHomeUploadCaseFooterView.m in Sources */,
 				966AA556224A0ADD00EDBF5F /* OrderFinishingViewController.m in Sources */,
+				966DD6702283474A00F0F68F /* KNBMapViewController.m in Sources */,
 				96327508226D6FEE0080C650 /* CQTopBarSegment.m in Sources */,
 				18B3B044226475790058AE4F /* KNBRecruitmentDomainTableViewCell.m in Sources */,
 				966AA540224A033000EDBF5F /* XHLaunchImageView.m in Sources */,
@@ -2994,6 +3455,7 @@
 				186EE2DC2266FF3300E71241 /* KNBHomeMessageDetailApi.m in Sources */,
 				96B0989F2249CC1000154643 /* UILabel+YBAttributeTextTapAction.m in Sources */,
 				18A090FA225ECAE0001ED33F /* KNBHomeSingleAreaApi.m in Sources */,
+				183E04B622803E55009EA112 /* KNBLoginUserInfoApi.m in Sources */,
 				96B098A42249CC1000154643 /* UIButton+EnlargeArea.m in Sources */,
 				189A6B9A22608EE4007C6CC1 /* KNBRecruitmentPriceModel.m in Sources */,
 				186EE2DF2266FF4600E71241 /* KNBHomeMessageNumApi.m in Sources */,
@@ -3007,9 +3469,12 @@
 				1866531022699A83004C176F /* KNBHomeCompanyCaseAddCollectionViewCell.m in Sources */,
 				96B097F52249C69300154643 /* main.m in Sources */,
 				18A090F4225EC9B4001ED33F /* KNBHomeBannerApi.m in Sources */,
+				188360A02277D0F800F81A88 /* KNBPushManager.m in Sources */,
 				96327505226D6FEE0080C650 /* CQSegmentTitleImage.m in Sources */,
 				96B098A92249CC1000154643 /* UITextView+ZWPlaceHolder.m in Sources */,
 				1877F30B226857790092207E /* KNBHomeServiceModel.m in Sources */,
+				1849CE8722851EA90064D439 /* XHRefreshCircleContainerView.m in Sources */,
+				18F439A822769FCD00E64048 /* KNBMeModifyInfoViewController.m in Sources */,
 				1877F2FD226800E60092207E /* KNBHomeTableView.m in Sources */,
 				9697FD57225597A900027AB3 /* GHDropMenu.m in Sources */,
 				966AA543224A033000EDBF5F /* XHLaunchAdController.m in Sources */,
@@ -3023,28 +3488,36 @@
 				186EE2FB2267029200E71241 /* KNBPayAlipyApi.m in Sources */,
 				187A6A85225ED49E006CA2B0 /* KNBRecruitmentDetailApi.m in Sources */,
 				1877F303226807EF0092207E /* KNBHomeSubView.m in Sources */,
+				1849CE7E22851EA90064D439 /* XHFoundationCommon.m in Sources */,
 				966AA51B224A00D700EDBF5F /* KNBStartPageView.m in Sources */,
 				96327511226DA3E10080C650 /* KNBSearchView.m in Sources */,
 				18D4D72A2271AD45000C1022 /* KNBHomeBuyTopHeaderView.m in Sources */,
 				96B098A82249CC1000154643 /* UIView+Frame.m in Sources */,
 				187A6A8B225ED4E6006CA2B0 /* KNBRecruitmentDelCaseApi.m in Sources */,
 				966AA573224A1E4F00EDBF5F /* SDCollectionViewCell.m in Sources */,
+				1849CE9122851EA90064D439 /* RequestViewModel.m in Sources */,
 				186EE2E82267014800E71241 /* KNBRecruitmentModifyDetailApi.m in Sources */,
+				186757A9228428B30063DEC9 /* KNBOrderModifyPowerApi.m in Sources */,
 				9697FD59225597A900027AB3 /* GHDropMenuFilterSingleInputItem.m in Sources */,
+				1849CE9322851EA90064D439 /* MKMapView+ZoomLevel.m in Sources */,
 				18B2C24922718B22006E0DAA /* UIImage+Size.m in Sources */,
 				9632750B226DA1F30080C650 /* KNBSearchViewController.m in Sources */,
 				966AA560224A1ADC00EDBF5F /* KNBHomeSearchView.m in Sources */,
 				9697FD52225597A900027AB3 /* UILabel+GHome.m in Sources */,
 				964926C6225C94C6000BBC7E /* KNBRecruitmentProtocolTableViewCell.m in Sources */,
+				1849CE2422851AE50064D439 /* MPNoResultHeadView.m in Sources */,
 				96FDB4CB224B553F005844E7 /* KNBHomeRecommendSubTableViewCell.m in Sources */,
 				96B098AD2249CC1000154643 /* UIImageView+Addition.m in Sources */,
 				1866531B2269A0D3004C176F /* KNBHomeUploadCaseTableViewCell.m in Sources */,
 				961C532922548E210089E997 /* KNBHomeCompanyServerTableViewCell.m in Sources */,
 				9697FD55225597A900027AB3 /* UIView+Extension.m in Sources */,
 				1866531422699C66004C176F /* KNBHomeCompanyUploadCaseViewController.m in Sources */,
+				1849CE7522851EA90064D439 /* WXBaseModel.m in Sources */,
 				187A6A78225ECF82006CA2B0 /* KNBRecruitmentDomainApi.m in Sources */,
+				1849CE7922851EA90064D439 /* XHSystemRefreshCollectionViewController.m in Sources */,
 				1868A69B2265B525005546BB /* KNBOrderAreaApi.m in Sources */,
 				964926AE225C7F21000BBC7E /* BRBaseView.m in Sources */,
+				187EBC4522745B0200F6E324 /* KNBJPushApi.m in Sources */,
 				9697FD5E225597A900027AB3 /* GHDropMenuModel.m in Sources */,
 				966AA53C224A033000EDBF5F /* FLAnimatedImageView.m in Sources */,
 				966AA53B224A033000EDBF5F /* FLAnimatedImage.m in Sources */,
@@ -3061,8 +3534,10 @@
 				96B098352249CB8800154643 /* KNBBaseRequestAccessory.m in Sources */,
 				964926C1225C94A2000BBC7E /* KNBRecruitmentPayTableViewCell.m in Sources */,
 				961C53062251A9310089E997 /* KNBDSFreeOrderFooterView.m in Sources */,
+				1849CE8B22851EA90064D439 /* XYString.m in Sources */,
 				96E7E0C0225B1F1100188DD1 /* KNBOrderViewController.m in Sources */,
 				96B098A72249CC1000154643 /* UIColor+Hex.m in Sources */,
+				1849CE8E22851EA90064D439 /* SQActionSheetView.m in Sources */,
 				96811888224F5F7B00E4A622 /* KNBHomeOfferViewController.m in Sources */,
 				96B0989C2249CC1000154643 /* UIImage+Resize.m in Sources */,
 				961C52F82251A8C00089E997 /* KNBDSFreeOrderAreaTableViewCell.m in Sources */,
@@ -3071,24 +3546,29 @@
 				96B098AB2249CC1000154643 /* NSURL+Video.m in Sources */,
 				96E7E0CF225B2E6600188DD1 /* KNBOrderAddressTableViewCell.m in Sources */,
 				9697FD6222559BC700027AB3 /* GHWaterFallLabel.m in Sources */,
-				186EE2F4226701C600E71241 /* KNBOrderModifyPowerApi.m in Sources */,
 				189A6B7A22606094007C6CC1 /* KNBHomeCityHeaderView.m in Sources */,
 				966D1603226C71C7005F5D77 /* KNUMManager.m in Sources */,
 				1868A694226560D1005546BB /* BRTagsPickerView.m in Sources */,
 				189A6B8E2260702E007C6CC1 /* KNBHomeBannerModel.m in Sources */,
 				18B3B04922648E870058AE4F /* KNBRecruitmentIntroTableViewCell.m in Sources */,
+				1849CE2622851AE50064D439 /* MPBaseTableViewController.m in Sources */,
 				1868A6A12265C15C005546BB /* KNBAddressPickerView.m in Sources */,
 				9697FD54225597A900027AB3 /* NSArray+Bounds.m in Sources */,
 				966D160C226C7673005F5D77 /* ImageWithLabel.m in Sources */,
+				1849CE7F22851EA90064D439 /* XHSysatemRefreshTableViewController.m in Sources */,
 				966AA577224A1E4F00EDBF5F /* TAAbstractDotView.m in Sources */,
+				1849CE8322851EA90064D439 /* XHActivityCircleIndicatorView.m in Sources */,
 				96B098BD2249CC1000154643 /* UITextField+Shake.m in Sources */,
 				966AA553224A0ACB00EDBF5F /* DesignSketchViewController.m in Sources */,
 				9697FD5C225597A900027AB3 /* GHDropMenuFilterInputItem.m in Sources */,
 				18B3B03B226452540058AE4F /* KNBAlertRemind.m in Sources */,
+				1849CE8422851EA90064D439 /* XHLoadMoreView.m in Sources */,
+				1849CE8122851EA90064D439 /* XHActivityIndicatorView.m in Sources */,
 				964926BC225C948D000BBC7E /* KNBRecruitmentShowTableViewCell.m in Sources */,
 				185F1A1E226EFE3A000F6E9C /* KNBHomeUploadProductViewController.m in Sources */,
 				96B098B12249CC1000154643 /* NSString+Contain.m in Sources */,
 				966169B7224DAB6400FB2D01 /* KNBMeHeaderView.m in Sources */,
+				1849CE7B22851EA90064D439 /* XHPinterestPullRefreshTableViewController.m in Sources */,
 				966AA575224A1E4F00EDBF5F /* TAPageControl.m in Sources */,
 				966AA586224A2DA200EDBF5F /* KNBHomeRecommendTableViewCell.m in Sources */,
 				9697FD5F225597A900027AB3 /* GHDropMenuFilterSectionHeader.m in Sources */,
@@ -3100,6 +3580,7 @@
 				18D8D67A225DF28700532E52 /* KNBLoginThirdPartyApi.m in Sources */,
 				96E7E0CA225B2E4D00188DD1 /* KNBOrderTextfieldTableViewCell.m in Sources */,
 				961C531C225462EF0089E997 /* KNBDSFreeOrderRedEnterTableViewCell.m in Sources */,
+				1849CE8922851EA90064D439 /* XHPinterestRefreshView.m in Sources */,
 				189A6B7E22606ABB007C6CC1 /* KNAlertView.m in Sources */,
 				187B608A226FFF30000AA05E /* KNBMeOrderViewController.m in Sources */,
 				96B098BC2249CC1000154643 /* KNBTextField.m in Sources */,
@@ -3287,9 +3768,10 @@
 			baseConfigurationReference = 2A005F4211F7C68C8953E2D2 /* Pods-FishFinishing.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = NJNULN45M9;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = 5T4H25QLTN;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/FishFinishing/Library/UMSocial/UMSocialUI",
@@ -3302,6 +3784,7 @@
 				);
 				GCC_PREFIX_HEADER = "FishFinishing/Supporting Files/FishFinishing.pch";
 				INFOPLIST_FILE = "FishFinishing/Supporting Files/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -3319,9 +3802,9 @@
 					"$(PROJECT_DIR)/FishFinishing/Library/UMSocial_6.9.4/SocialLibraries/QQ",
 					"$(PROJECT_DIR)/FishFinishing/Library/KNPaypp/WXPay",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.winfoc.FishFinishing;
+				PRODUCT_BUNDLE_IDENTIFIER = com.winfoc.bigfish;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = bigfish;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -3331,9 +3814,10 @@
 			baseConfigurationReference = 250E20706DF350D6DFABC34B /* Pods-FishFinishing.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = NJNULN45M9;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = 5T4H25QLTN;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/FishFinishing/Library/UMSocial/UMSocialUI",
@@ -3346,6 +3830,7 @@
 				);
 				GCC_PREFIX_HEADER = "FishFinishing/Supporting Files/FishFinishing.pch";
 				INFOPLIST_FILE = "FishFinishing/Supporting Files/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -3363,9 +3848,9 @@
 					"$(PROJECT_DIR)/FishFinishing/Library/UMSocial_6.9.4/SocialLibraries/QQ",
 					"$(PROJECT_DIR)/FishFinishing/Library/KNPaypp/WXPay",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.winfoc.FishFinishing;
+				PRODUCT_BUNDLE_IDENTIFIER = com.winfoc.bigfish;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = bigfish;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

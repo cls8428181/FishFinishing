@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -40,16 +40,26 @@
                                 <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SGj-VU-SoA">
+                                <rect key="frame" x="10" y="0.0" width="25" height="32"/>
+                                <state key="normal" image="knb_me_weituijian"/>
+                                <state key="selected" image="knb_me_tuijian"/>
+                                <connections>
+                                    <action selector="showButtonAction:" destination="gTV-IL-0wX" eventType="touchUpInside" id="RzP-cP-5nk"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstItem="EaI-jE-2Fg" firstAttribute="leading" secondItem="roE-tt-tKt" secondAttribute="leading" constant="5" id="0WZ-g9-Eki"/>
                             <constraint firstItem="O2o-Uz-cHe" firstAttribute="leading" secondItem="roE-tt-tKt" secondAttribute="leading" id="0l5-vC-kgu"/>
+                            <constraint firstItem="SGj-VU-SoA" firstAttribute="leading" secondItem="O2o-Uz-cHe" secondAttribute="leading" constant="10" id="7Qo-9j-8Ai"/>
                             <constraint firstItem="EaI-jE-2Fg" firstAttribute="top" secondItem="O2o-Uz-cHe" secondAttribute="bottom" constant="5" id="96d-kX-cmx"/>
                             <constraint firstItem="O2o-Uz-cHe" firstAttribute="top" secondItem="roE-tt-tKt" secondAttribute="top" id="BAa-Gu-xxw"/>
                             <constraint firstAttribute="trailing" secondItem="UQC-LG-Bh1" secondAttribute="trailing" constant="5" id="BCa-9T-6W9"/>
                             <constraint firstAttribute="bottom" secondItem="UQC-LG-Bh1" secondAttribute="bottom" constant="5" id="OLV-8I-pIB"/>
                             <constraint firstAttribute="trailing" secondItem="EaI-jE-2Fg" secondAttribute="trailing" constant="5" id="dgR-j8-nwD"/>
                             <constraint firstAttribute="trailing" secondItem="O2o-Uz-cHe" secondAttribute="trailing" id="hxk-X6-CRv"/>
+                            <constraint firstItem="SGj-VU-SoA" firstAttribute="top" secondItem="O2o-Uz-cHe" secondAttribute="top" id="woj-Yw-VGI"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="boolean" keyPath="layer.maskToBounds" value="YES"/>
@@ -83,6 +93,7 @@
                 <outlet property="bgView" destination="roE-tt-tKt" id="uYY-BJ-yCB"/>
                 <outlet property="deleteButton" destination="3pF-Yu-8sS" id="kfp-U1-10d"/>
                 <outlet property="iconImageView" destination="O2o-Uz-cHe" id="NrZ-FM-M2b"/>
+                <outlet property="showButton" destination="SGj-VU-SoA" id="5pl-yg-0h0"/>
                 <outlet property="timeLabel" destination="UQC-LG-Bh1" id="BTg-Hj-pJO"/>
                 <outlet property="titleLabel" destination="EaI-jE-2Fg" id="DE8-Fj-fFA"/>
             </connections>
@@ -91,5 +102,7 @@
     </objects>
     <resources>
         <image name="knb_me_shanchu" width="19" height="19"/>
+        <image name="knb_me_tuijian" width="26" height="32"/>
+        <image name="knb_me_weituijian" width="25" height="32"/>
     </resources>
 </document>

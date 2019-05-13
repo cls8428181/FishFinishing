@@ -14,10 +14,12 @@
 #import "KNBHomeCompanyCaseAddCollectionViewCell.h"
 #import "KNBHomeCompanyUploadCaseViewController.h"
 #import "KNBHomeUploadProductViewController.h"
+#import "KNBOrderCheckCaseNumApi.h"
 
 @interface KNBHomeCompanyCaseTableViewCell ()<UICollectionViewDelegate, UICollectionViewDataSource>
 //滑动区域
 @property (nonatomic, strong) UICollectionView *collectionView;
+@property (weak, nonatomic) IBOutlet UILabel *topLabel;
 @property (nonatomic, strong) NSArray *dataArray;
 @end
 
@@ -87,19 +89,37 @@
 
 //cell的点击事件
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    KNB_WS(weakSelf);
     if (indexPath.row == self.dataArray.count && self.isEdit) {
-        if ([self.model.type isEqualToString:@"0"]) {
-            KNBHomeUploadProductViewController *productVC = [[KNBHomeUploadProductViewController alloc] init];
-            [[[self getCurrentViewController] navigationController] pushViewController:productVC animated:YES];
-        } else {
-            KNBHomeCompanyUploadCaseViewController *addCaseVC = [[KNBHomeCompanyUploadCaseViewController alloc] init];
-            [[[self getCurrentViewController] navigationController] pushViewController:addCaseVC animated:YES];
-        }
+        KNBOrderCheckCaseNumApi *api = [[KNBOrderCheckCaseNumApi alloc] init];
+        api.hudString = @"";
+        [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *_Nonnull request) {
+            if (api.requestSuccess) {
+                if ([weakSelf.model.share_id isEqualToString:@"0"]) {
+                    KNBHomeUploadProductViewController *productVC = [[KNBHomeUploadProductViewController alloc] init];
+                    productVC.imgsCount = weakSelf.dataArray.count;
+                    productVC.saveSuccessBlock = ^{
+                        !weakSelf.addCaseBlock ?: weakSelf.addCaseBlock();
+                    };
+                    [[[weakSelf getCurrentViewController] navigationController] pushViewController:productVC animated:YES];
+                } else {
+                    KNBHomeCompanyUploadCaseViewController *addCaseVC = [[KNBHomeCompanyUploadCaseViewController alloc] init];
+                    addCaseVC.imgsCount = self.dataArray.count;
+                    addCaseVC.saveSuccessBlock = ^{
+                        !weakSelf.addCaseBlock ?: weakSelf.addCaseBlock();
+                    };
+                    [[[weakSelf getCurrentViewController] navigationController] pushViewController:addCaseVC animated:YES];
+                }
+            } else {
+                [LCProgressHUD showMessage:api.errMessage];
+            }
+        } failure:^(__kindof YTKBaseRequest *_Nonnull request) {
+            [LCProgressHUD showMessage:api.errMessage];
+        }];
     } else {
         KNBHomeServiceModel *cellModel = self.dataArray[indexPath.row];
         KNBDesignSketchModel *model  = [[KNBDesignSketchModel alloc] init];
         model.caseId = cellModel.serviceId;
-        
         model.name = self.model.name;
         model.img = self.model.logo;
         KNBDesignSketchDetailViewController *detailVC = [[KNBDesignSketchDetailViewController alloc] init];
@@ -121,8 +141,6 @@
 - (void)deleteCaseRequest:(NSInteger)index {
     KNBHomeServiceModel *cellModel = self.dataArray[index];
     KNBRecruitmentDelCaseApi *api = [[KNBRecruitmentDelCaseApi alloc] initWithCaseId:[cellModel.serviceId integerValue]];
-    api.hudString = @"";
-    KNB_WS(weakSelf);
     [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *_Nonnull request) {
         if (api.requestSuccess) {
             NSMutableArray *tempArray = [NSMutableArray arrayWithArray:self.dataArray];
@@ -161,6 +179,13 @@
 - (void)setModel:(KNBHomeServiceModel *)model {
     _model = model;
     self.dataArray = model.caseList;
+    
+    if ([model.share_id isEqualToString:@"0"]) {
+        self.topLabel.text = @"产品";
+    } else {
+        self.topLabel.text = @"案例";
+    }
+    
     [self.collectionView reloadData];
 }
 @end

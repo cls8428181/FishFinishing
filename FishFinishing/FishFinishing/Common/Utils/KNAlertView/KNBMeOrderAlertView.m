@@ -8,6 +8,7 @@
 
 #import "KNBMeOrderAlertView.h"
 #import "KNBMeOrderStatusApi.h"
+#import "UIButton+Style.h"
 
 @interface KNBMeOrderAlertView ()
 @property (nonatomic, strong) UILabel *titleLabel;
@@ -19,6 +20,8 @@
 @property (nonatomic, copy) EnterActionBlock enterBlock;
 @property (nonatomic, copy) EnterActionBlock deleteBlock;
 @property (nonatomic, strong) KNBMeOrderModel *model;
+//模型在数组中的位置记录
+@property (nonatomic, assign) NSInteger index;
 @end
 
 @implementation KNBMeOrderAlertView
@@ -54,6 +57,7 @@
     } else {
         KNB_WS(weakSelf);
         [weakSelf.coverView removeFromSuperview];
+        !self.enterBlock ?: self.enterBlock();
     }
 }
 
@@ -84,7 +88,6 @@
 }
 
 - (void)enterButtonAction {
-//    !self.enterBlock ?: self.enterBlock();
     NSString *telephoneNumber = self.model.mobile;
     NSMutableString * str=[[NSMutableString alloc] initWithFormat:@"tel:%@",telephoneNumber];
     UIApplication *application = [UIApplication sharedApplication];
@@ -101,7 +104,19 @@
 }
 
 - (void)signButtonAction:(UIButton *)button {
-    if (!button.isSelected) {
+    if (button.isSelected) {
+        KNBMeOrderStatusApi *api = [[KNBMeOrderStatusApi alloc] initDispatchId:[self.model.orderId integerValue] sign:0];
+        api.hudString = @"";
+        [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *_Nonnull request) {
+            if (api.requestSuccess) {
+                button.selected = NO;
+            } else {
+                [LCProgressHUD showMessage:api.errMessage];
+            }
+        } failure:^(__kindof YTKBaseRequest *_Nonnull request) {
+            [LCProgressHUD showMessage:api.errMessage];
+        }];
+    } else {
         KNBMeOrderStatusApi *api = [[KNBMeOrderStatusApi alloc] initDispatchId:[self.model.orderId integerValue] sign:1];
         api.hudString = @"";
         [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *_Nonnull request) {
@@ -196,6 +211,7 @@
         [_signButton setImage:KNBImages(@"knb_me_weibiaoji") forState:UIControlStateNormal];
         [_signButton setImage:KNBImages(@"knb_me_biaoji") forState:UIControlStateSelected];
         [_signButton addTarget:self action:@selector(signButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+        [_signButton layoutButtonWithEdgeInsetsStyle:GLButtonEdgeInsetsStyleLeft imageTitleSpace:10];
     }
     return _signButton;
 }
@@ -212,5 +228,6 @@
 - (void)setModel:(KNBMeOrderModel *)model {
     _model = model;
     self.titleLabel.text = [NSString stringWithFormat:@"%@     %@",model.name,model.mobile];
+    self.signButton.selected = [model.sign isEqualToString:@"1"];
 }
 @end

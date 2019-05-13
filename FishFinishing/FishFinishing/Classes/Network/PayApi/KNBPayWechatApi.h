@@ -17,6 +17,11 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (nonatomic, copy) NSString *ip;
 
+/**
+ 费用 id
+ */
+@property (nonatomic, assign) NSInteger costId;
+
 - (instancetype)initWithPayment:(double)payment type:(NSString *)type;
 
 @end

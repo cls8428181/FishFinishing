@@ -174,12 +174,12 @@
     [self.provinceModelArr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         KNBCityModel *model = obj;
         if ([model.name isEqualToString:selectProvinceName]) {
-            _provinceIndex = idx;
+            self->_provinceIndex = idx;
             weakSelf.selectProvinceModel = model;
             *stop = YES;
         } else {
             if (idx == weakSelf.provinceModelArr.count - 1) {
-                _provinceIndex = 0;
+                self->_provinceIndex = 0;
                 weakSelf.selectProvinceModel = [weakSelf.provinceModelArr firstObject];
             }
         }
@@ -189,12 +189,12 @@
         [self.cityModelArr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             KNBCityModel *model = obj;
             if ([model.name isEqualToString:selectCityName]) {
-                _cityIndex = idx;
+                self->_cityIndex = idx;
                 weakSelf.selectCityModel = model;
                 *stop = YES;
             } else {
                 if (idx == weakSelf.cityModelArr.count - 1) {
-                    _cityIndex = 0;
+                    self->_cityIndex = 0;
                     weakSelf.selectCityModel = [weakSelf.cityModelArr firstObject];
                 }
             }
@@ -380,8 +380,16 @@
                 [self.pickerView reloadComponent:2];
                 [self.pickerView selectRow:0 inComponent:2 animated:YES];
                 self.selectProvinceModel = self.provinceModelArr[_provinceIndex];
-                self.selectCityModel = self.cityModelArr[0];
-                self.selectAreaModel = self.areaModelArr[0];
+                if (!isNullArray(self.cityModelArr)) {
+                    self.selectCityModel = self.cityModelArr[0];
+                } else {
+                    self.selectCityModel = nil;
+                }
+                if (!isNullArray(self.areaModelArr)) {
+                    self.selectAreaModel = self.areaModelArr[0];
+                } else {
+                    self.selectAreaModel = nil;
+                }
             }
                 break;
             default:

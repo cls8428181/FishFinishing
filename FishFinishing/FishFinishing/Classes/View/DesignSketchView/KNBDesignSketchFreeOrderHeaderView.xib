@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -18,66 +18,72 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="KNBDesignSketchFreeOrderHeaderView">
-            <rect key="frame" x="0.0" y="0.0" width="445" height="242"/>
+            <rect key="frame" x="0.0" y="0.0" width="463" height="243"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="您家的装修" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gr7-Cg-sII">
-                    <rect key="frame" x="119" y="23" width="107" height="26"/>
+                    <rect key="frame" x="128" y="23" width="107" height="26"/>
                     <fontDescription key="fontDescription" type="system" pointSize="21"/>
                     <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="预算多少 ?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9aK-B1-hL3">
-                    <rect key="frame" x="226" y="23" width="101" height="26"/>
+                    <rect key="frame" x="235" y="23" width="101" height="26"/>
                     <fontDescription key="fontDescription" type="system" pointSize="21"/>
                     <color key="textColor" red="0.094117647058823528" green="0.59607843137254901" blue="0.8901960784313725" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10秒估算装修报价" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HHD-Zq-GCo">
-                    <rect key="frame" x="164.5" y="58" width="116" height="17"/>
+                    <rect key="frame" x="173.5" y="58" width="116" height="17"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <color key="textColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="knb_design_display_bg" translatesAutoresizingMaskIntoConstraints="NO" id="6kv-cl-0MV">
-                    <rect key="frame" x="13" y="90" width="419" height="58"/>
+                    <rect key="frame" x="13" y="90" width="437" height="58"/>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="158888" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MVm-8g-Yy7">
-                    <rect key="frame" x="290" y="95" width="112" height="38"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MVm-8g-Yy7">
+                    <rect key="frame" x="401" y="105" width="19" height="38"/>
                     <fontDescription key="fontDescription" name="LCDMono2Normal" family="LCDMono2" pointSize="36"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="元" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tdk-k2-tSC">
-                    <rect key="frame" x="407" y="116" width="15" height="17"/>
+                    <rect key="frame" x="425" y="116" width="15" height="17"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="人工费  :  ? 元" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cyG-rb-EYA">
-                    <rect key="frame" x="128.5" y="162" width="88" height="17"/>
+                    <rect key="frame" x="137.5" y="162" width="88" height="17"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="设计费  :  ? 元" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W95-4a-6QY">
-                    <rect key="frame" x="128.5" y="189" width="88" height="17"/>
+                    <rect key="frame" x="137.5" y="189" width="88" height="17"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="材料费  :  ? 元" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tec-Pw-se0">
-                    <rect key="frame" x="235.5" y="162" width="88" height="17"/>
+                    <rect key="frame" x="244.5" y="162" width="88" height="17"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="质检费  :  ? 元" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pf8-X7-qoc">
-                    <rect key="frame" x="235.5" y="189" width="88" height="17"/>
+                    <rect key="frame" x="244.5" y="189" width="88" height="17"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="knb_offer_leftline" translatesAutoresizingMaskIntoConstraints="NO" id="BgT-op-UIH">
+                    <rect key="frame" x="111.5" y="65.5" width="52" height="2"/>
+                </imageView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="knb_offer_rightline" translatesAutoresizingMaskIntoConstraints="NO" id="BVz-n4-ez9">
+                    <rect key="frame" x="299.5" y="65.5" width="52" height="2"/>
+                </imageView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
@@ -91,24 +97,33 @@
                 <constraint firstItem="6kv-cl-0MV" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="13" id="Ffn-ve-Mjc"/>
                 <constraint firstItem="W95-4a-6QY" firstAttribute="top" secondItem="cyG-rb-EYA" secondAttribute="bottom" constant="10" id="L7g-0H-JT3"/>
                 <constraint firstItem="9aK-B1-hL3" firstAttribute="leading" secondItem="gr7-Cg-sII" secondAttribute="trailing" id="PKS-Dy-jJ9"/>
+                <constraint firstItem="MVm-8g-Yy7" firstAttribute="centerY" secondItem="6kv-cl-0MV" secondAttribute="centerY" constant="5" id="QU1-tl-ERt"/>
                 <constraint firstItem="cyG-rb-EYA" firstAttribute="top" secondItem="6kv-cl-0MV" secondAttribute="bottom" constant="14" id="RhV-cJ-DKX"/>
                 <constraint firstItem="tdk-k2-tSC" firstAttribute="leading" secondItem="MVm-8g-Yy7" secondAttribute="trailing" constant="5" id="TqZ-jm-QNz"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="6kv-cl-0MV" secondAttribute="trailing" constant="13" id="Whq-WW-cfg"/>
                 <constraint firstItem="tec-Pw-se0" firstAttribute="leading" secondItem="cyG-rb-EYA" secondAttribute="trailing" constant="19" id="Z2I-KA-GjE"/>
                 <constraint firstItem="pf8-X7-qoc" firstAttribute="leading" secondItem="W95-4a-6QY" secondAttribute="trailing" constant="19" id="azJ-2R-MQR"/>
                 <constraint firstItem="HHD-Zq-GCo" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="bbc-wg-CQi"/>
-                <constraint firstItem="MVm-8g-Yy7" firstAttribute="bottom" secondItem="tdk-k2-tSC" secondAttribute="bottom" id="dVW-JT-Je2"/>
+                <constraint firstItem="BVz-n4-ez9" firstAttribute="centerY" secondItem="HHD-Zq-GCo" secondAttribute="centerY" id="chu-Gd-PrW"/>
                 <constraint firstItem="9aK-B1-hL3" firstAttribute="centerY" secondItem="gr7-Cg-sII" secondAttribute="centerY" id="g05-wh-dYK"/>
+                <constraint firstItem="HHD-Zq-GCo" firstAttribute="leading" secondItem="BgT-op-UIH" secondAttribute="trailing" constant="10" id="iPf-yE-Zjh"/>
                 <constraint firstItem="6kv-cl-0MV" firstAttribute="top" secondItem="HHD-Zq-GCo" secondAttribute="bottom" constant="15" id="k3Z-jh-hjZ"/>
                 <constraint firstItem="pf8-X7-qoc" firstAttribute="top" secondItem="tec-Pw-se0" secondAttribute="bottom" constant="10" id="kzv-e5-Evu"/>
+                <constraint firstItem="BgT-op-UIH" firstAttribute="centerY" secondItem="HHD-Zq-GCo" secondAttribute="centerY" id="v2L-OT-iBB"/>
                 <constraint firstItem="HHD-Zq-GCo" firstAttribute="top" secondItem="gr7-Cg-sII" secondAttribute="bottom" constant="9" id="xSy-2h-Yj6"/>
+                <constraint firstItem="BVz-n4-ez9" firstAttribute="leading" secondItem="HHD-Zq-GCo" secondAttribute="trailing" constant="10" id="y7Z-P9-YDH"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
-            <point key="canvasLocation" x="186.40000000000001" y="-50.374812593703155"/>
+            <connections>
+                <outlet property="numLabel" destination="MVm-8g-Yy7" id="N7Q-Hh-oHy"/>
+            </connections>
+            <point key="canvasLocation" x="453.60000000000002" y="-101.19940029985008"/>
         </view>
     </objects>
     <resources>
         <image name="knb_design_display_bg" width="325" height="58.5"/>
+        <image name="knb_offer_leftline" width="52.5" height="2.5"/>
+        <image name="knb_offer_rightline" width="52.5" height="2.5"/>
     </resources>
 </document>

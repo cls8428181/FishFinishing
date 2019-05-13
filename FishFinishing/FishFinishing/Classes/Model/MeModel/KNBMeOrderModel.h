@@ -38,6 +38,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *house_info;
 
 /**
+ 面积信息
+ */
+@property (nonatomic, copy) NSString *area_info;
+
+/**
  风格
  */
 @property (nonatomic, copy) NSString *decorate_style;
@@ -46,6 +51,11 @@ NS_ASSUME_NONNULL_BEGIN
  档次
  */
 @property (nonatomic, copy) NSString *decorate_grade;
+
+/**
+ 新房 or 旧房
+ */
+@property (nonatomic, copy) NSString *decorate_cat;
 
 /**
  省
@@ -76,6 +86,11 @@ NS_ASSUME_NONNULL_BEGIN
  创建时间
  */
 @property (nonatomic, copy) NSString *created_at;
+
+/**
+ 1.报价 2.装修
+ */
+@property (nonatomic, copy) NSString *type;
 
 @end
 

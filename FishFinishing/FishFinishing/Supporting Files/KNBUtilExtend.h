@@ -334,4 +334,17 @@ CG_INLINE NSString *KNB_CurrentMonth() {
     return [formatter stringFromDate:[NSDate date]];
 }
 
+CG_INLINE NSString *WebURLEncode(NSString * str)
+{
+    NSString *charactersToEscape = @"#[]@!$'()*+,;\"<>%{}|^~`";
+    NSCharacterSet *allowedCharacters = [[NSCharacterSet characterSetWithCharactersInString:charactersToEscape] invertedSet];
+    NSString *encodedUrl = [[str description] stringByAddingPercentEncodingWithAllowedCharacters:allowedCharacters];
+    return encodedUrl;
+}
+
+CG_INLINE NSString *WebURLDecodedString(NSString * str)
+{
+    return [str stringByRemovingPercentEncoding];
+}
+
 #endif /* KNBUtilExtend_h */

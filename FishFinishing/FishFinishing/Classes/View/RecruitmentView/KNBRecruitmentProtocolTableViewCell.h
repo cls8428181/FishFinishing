@@ -16,7 +16,10 @@ NS_ASSUME_NONNULL_BEGIN
  选择按钮的回调
  */
 @property (nonatomic, copy) void(^selectButtonBlock)(UIButton *button);
-
+/**
+ 查看协议的回调
+ */
+@property (nonatomic, copy) void(^protocolButtonBlock)(void);
 /**
  cell 创建
  */

@@ -11,6 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface KNBRecruitmentIntroTableViewCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UITextView *contentTextView;
 /**
  cell 创建
  */

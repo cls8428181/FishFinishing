@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -20,36 +20,34 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lHT-BS-ySk">
-                        <rect key="frame" x="12" y="10" width="357" height="114.5"/>
+                        <rect key="frame" x="12" y="5" width="357" height="119.5"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Voy-Ez-4sX">
-                                <rect key="frame" x="104" y="49" width="67" height="17"/>
+                                <rect key="frame" x="125" y="38" width="88" height="44"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="67" id="4oA-fk-MlT"/>
-                                    <constraint firstAttribute="height" constant="17" id="orm-Ij-rCQ"/>
+                                    <constraint firstAttribute="width" constant="88" id="4oA-fk-MlT"/>
+                                    <constraint firstAttribute="height" constant="44" id="orm-Ij-rCQ"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="-10" maxY="0.0"/>
-                                <state key="normal" title="旧房翻新" image="knb_design_unselected">
+                                <state key="normal" title="旧房翻新" image="knb_offer_kong">
                                     <color key="titleColor" red="0.50196078430000002" green="0.50196078430000002" blue="0.50196078430000002" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
-                                <state key="selected" image="knb_design_selected"/>
+                                <state key="selected" image="knb_offer_hover"/>
                                 <connections>
                                     <action selector="oldHouseButtonAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="HSb-6c-Qq8"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bbr-0K-JMS">
-                                <rect key="frame" x="12" y="49" width="67" height="17"/>
+                                <rect key="frame" x="12" y="38" width="88" height="44"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="17" id="gtX-Ne-atA"/>
-                                    <constraint firstAttribute="width" constant="67" id="lDX-uz-Rbi"/>
+                                    <constraint firstAttribute="height" constant="44" id="gtX-Ne-atA"/>
+                                    <constraint firstAttribute="width" constant="88" id="lDX-uz-Rbi"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="-10" maxY="0.0"/>
-                                <state key="normal" title="新房装修" image="knb_design_unselected">
+                                <state key="normal" title="新房装修" image="knb_offer_kong">
                                     <color key="titleColor" red="0.50196078430000002" green="0.50196078430000002" blue="0.50196078430000002" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
-                                <state key="selected" image="knb_design_selected"/>
+                                <state key="selected" image="knb_offer_hover"/>
                                 <connections>
                                     <action selector="newHouseButtonAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="P7S-VT-4HF"/>
                                 </connections>
@@ -71,7 +69,7 @@
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="lHT-BS-ySk" secondAttribute="trailing" constant="12" id="WTM-Df-ft2"/>
                     <constraint firstAttribute="bottom" secondItem="lHT-BS-ySk" secondAttribute="bottom" constant="5" id="XZE-Rk-Ts6"/>
-                    <constraint firstItem="lHT-BS-ySk" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="cQC-mz-a74"/>
+                    <constraint firstItem="lHT-BS-ySk" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="cQC-mz-a74"/>
                     <constraint firstItem="lHT-BS-ySk" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="12" id="fCd-wj-XBG"/>
                 </constraints>
             </tableViewCellContentView>
@@ -84,7 +82,7 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="knb_design_selected" width="9" height="9"/>
-        <image name="knb_design_unselected" width="9" height="9"/>
+        <image name="knb_offer_hover" width="10" height="10"/>
+        <image name="knb_offer_kong" width="10" height="10"/>
     </resources>
 </document>

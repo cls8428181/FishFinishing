@@ -37,17 +37,20 @@ typedef void (^KNUMManagerCompleteBlock)(BOOL success);
                   currentViewController:(UIViewController *)currentViewController;
 /**
  * 友盟分享
- * @parame shareImageName 传nil时 为本地默认图
  */
 - (void)showShareViewWithShareInfoTitle:(NSString *)title
                              shareImage:(UIImage *)shareImage
                                    desc:(NSString *)desc
                                shareUrl:(NSString *)shareUrl
                   currentViewController:(UIViewController *)currentViewController;
+
 /**
- * 智能测肤 结果分
+ 图片分享
  */
-- (void)shareSmartResultsAnalys:(UIViewController *)controller andAnalysID:(NSInteger)analysID andUserPhone:(NSString *)UserPhone;
+- (void)showShareViewWithShareInfoTitle:(NSString *)title
+                             shareImage:(UIImage *)shareImage
+                                   desc:(NSString *)desc
+                  currentViewController:(UIViewController *)currentViewController;
 
 /**转发的方法*/
 - (void)shareWebPage:(UIViewController *)controller toPlatformType:(UMSocialPlatformType)platformType withTitle:(NSString *)title url:(NSString *)url descr:(NSString *)desc shareImageName:(NSString *)shareImageName withTransmit:(BOOL)transmit;

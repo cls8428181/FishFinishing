@@ -9,14 +9,12 @@
 #import "KNBHomeMessageDetailApi.h"
 
 @implementation KNBHomeMessageDetailApi {
-    NSInteger _page;
-    NSInteger _limit;
+    NSInteger _message_id;
 }
 
-- (instancetype)initWithPage:(NSInteger)page limit:(NSInteger)limit {
+- (instancetype)initWithMessageId:(NSInteger)messageId {
     if (self = [super init]) {
-        _page = page;
-        _limit = limit;
+        _message_id = messageId;
     }
     return self;
 }
@@ -27,8 +25,7 @@
 
 - (id)requestArgument {
     NSDictionary *dic = @{
-                          @"page" : @(_page),
-                          @"limit" : @(_limit)
+                          @"massage_id" : @(_message_id)
                           }; //字典
     [self.baseMuDic addEntriesFromDictionary:dic];
     return self.baseMuDic;

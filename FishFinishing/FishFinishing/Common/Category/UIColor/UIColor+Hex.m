@@ -85,7 +85,7 @@
 }
 
 + (UIColor *)knMainColor {
-    return [UIColor colorWithRed:0 / 255.0 green:150 / 255.0 blue:230 / 255.0 alpha:1.0];
+    return [UIColor colorWithHex:0x0096e6];
 }
 
 //0x666666

@@ -29,6 +29,7 @@
 - (id)requestArgument {
     NSDictionary *dic = @{
                           @"payment" : @(_payment),
+                          @"cost_id" : @(_costId),
                           @"type" : _type
                           }; //字典
     [self.baseMuDic addEntriesFromDictionary:dic];

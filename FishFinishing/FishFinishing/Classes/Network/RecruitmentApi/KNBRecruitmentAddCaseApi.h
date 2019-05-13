@@ -31,7 +31,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param styleId 装修风格编号
  @param acreage 面积
  */
-- (instancetype)initWithTitle:(NSString *)title styleId:(NSInteger)styleId acreage:(double)acreage apartment:(NSString *)apartment imgs:(NSString *)imgs;
+- (instancetype)initWithTitle:(NSString *)title styleId:(NSInteger)styleId acreage:(double)acreage apartmentId:(NSInteger)apartmentId imgs:(NSString *)imgs;
 
 /**
  添加产品

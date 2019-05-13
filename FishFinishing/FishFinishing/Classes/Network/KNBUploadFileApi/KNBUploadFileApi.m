@@ -137,6 +137,12 @@
     return YTKRequestMethodPOST;
 }
 
+//- (id)requestArgument {
+//    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+//    [manager.requestSerializer setValue:[KNBUserInfo shareInstance].token forHTTPHeaderField:@"token"];
+//    return self.baseMuDic;
+//}
+
 - (AFConstructingBlock)constructingBodyBlock {
     if (_image) {
         return ^(id<AFMultipartFormData> formData) {

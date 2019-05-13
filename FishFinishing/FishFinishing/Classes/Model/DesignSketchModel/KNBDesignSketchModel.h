@@ -24,9 +24,14 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *name;
 
 /**
- 服务商头像
+ 案例头像
  */
 @property (nonatomic, copy) NSString *img;
+
+/**
+ 服务商头像
+ */
+@property (nonatomic, copy) NSString *logo;
 @property (nonatomic, copy) NSString *browse_num;
 @property (nonatomic, copy) NSString *created_at;
 
@@ -43,12 +48,37 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  户型
  */
-@property (nonatomic, copy) NSString *apart;
+@property (nonatomic, copy) NSString *apart_name;
 
 /**
  描述
  */
 @property (nonatomic, copy) NSString *remark;
+
+/**
+ 类型
+ */
+@property (nonatomic, copy) NSString *parent_cat_name;
+
+/**
+ 类型id
+ */
+@property (nonatomic, copy) NSString *cat_parent_id;
+
+/**
+ 子类型
+ */
+@property (nonatomic, copy) NSString *cat_name;
+
+/**
+ 子类型id
+ */
+@property (nonatomic, copy) NSString *cat_id;
+
+/**
+ 电话
+ */
+@property (nonatomic, copy) NSString *telephone;
 @property (nonatomic, strong) NSArray<KNBDesignSketchModel *> *imgs;
 @end
 

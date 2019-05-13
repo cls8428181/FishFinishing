@@ -14,7 +14,6 @@
 #import "KNBHomeCompanyListViewController.h"
 
 @interface KNBHomeSubTableView ()
-@property (nonatomic, strong) NSArray *dataArray;
 // 空页面
 @property (nonatomic, strong) KNBDataEmptySet *emptySet;
 @property (nonatomic, strong) KNBOrderFooterView *footerView;
@@ -41,9 +40,9 @@
         _tableView.delegate = self;
         _tableView.dataSource = self;
         _tableView.showsVerticalScrollIndicator = NO;
-        _tableView.tableFooterView = [UIView new];
         _tableView.type = KNBHomeTableViewTypeSub;
-        _tableView.tableFooterView = self.footerView;
+        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+//        _tableView.tableFooterView = self.footerView;
     }
     return _tableView;
 }
@@ -51,11 +50,11 @@
 #pragma mark - tableviewe delegate & datasource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     self.emptySet.dataArray = self.dataArray;
-    if (isNullArray(self.dataArray)) {
-        self.footerView.hidden = YES;
-    } else {
-        self.footerView.hidden = NO;
-    }
+//    if (isNullArray(self.dataArray)) {
+//        self.footerView.hidden = YES;
+//    } else {
+//        self.footerView.hidden = NO;
+//    }
     return self.dataArray.count;
 }
 
@@ -114,22 +113,22 @@
     }
     return _emptySet;
 }
-
-- (KNBOrderFooterView *)footerView {
-    KNB_WS(weakSelf);
-    if (!_footerView) {
-        _footerView = [[KNBOrderFooterView alloc] initWithButtonTitle:@"查看更多"];
-        _footerView.frame = CGRectMake(0, 0, KNB_SCREEN_WIDTH, 50);
-        _footerView.enterButtonBlock = ^{
-            KNBHomeCompanyListViewController *listVC = [[KNBHomeCompanyListViewController alloc] init];
-            KNBRecruitmentTypeModel *model = [[KNBRecruitmentTypeModel alloc] init];
-            model.catName = @"装修公司";
-            model.typeId = @"1";
-            listVC.model = model;
-            [[[weakSelf getCurrentViewController] navigationController] pushViewController:listVC animated:YES];
-        };
-    }
-    return _footerView;
-}
+//
+//- (KNBOrderFooterView *)footerView {
+//    KNB_WS(weakSelf);
+//    if (!_footerView) {
+//        _footerView = [[KNBOrderFooterView alloc] initWithButtonTitle:@"查看更多"];
+//        _footerView.frame = CGRectMake(0, 0, KNB_SCREEN_WIDTH, 50);
+//        _footerView.enterButtonBlock = ^{
+//            KNBHomeCompanyListViewController *listVC = [[KNBHomeCompanyListViewController alloc] init];
+//            KNBRecruitmentTypeModel *model = [[KNBRecruitmentTypeModel alloc] init];
+//            model.catName = @"装修公司";
+//            model.typeId = @"1";
+//            listVC.model = model;
+//            [[[weakSelf getCurrentViewController] navigationController] pushViewController:listVC animated:YES];
+//        };
+//    }
+//    return _footerView;
+//}
 
 @end

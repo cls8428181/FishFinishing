@@ -128,7 +128,7 @@
         [self.timeButton mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.centerY.mas_equalTo(self.textField.mas_centerY);
             make.right.mas_equalTo(0);
-            make.height.mas_equalTo(11.5);
+            make.height.mas_equalTo(40);
             make.width.mas_equalTo(60);
         }];
     } else {
@@ -223,7 +223,7 @@
 - (UIView *)lineView {
     if (!_lineView) {
         _lineView = [[UIView alloc] init];
-        _lineView.backgroundColor = [UIColor whiteColor];
+        _lineView.backgroundColor = [UIColor colorWithHex:0xffffff];
     }
     return _lineView;
 }
@@ -248,7 +248,7 @@
     if (!_timeButton) {
         _timeButton = [KNBButton buttonWithType:UIButtonTypeCustom];
         [_timeButton setTitle:@"获取验证码" forState:UIControlStateNormal];
-        _timeButton.titleLabel.font = KNBFont(11);
+        _timeButton.titleLabel.font = KNBFont(13);
         [_timeButton setTitleColor:[UIColor colorWithHex:0x009fe8] forState:UIControlStateNormal];
         [_timeButton addTarget:self action:@selector(selectVeriNumClick:) forControlEvents:UIControlEventTouchUpInside];
         _timeButton.titleLabel.textAlignment = NSTextAlignmentRight;

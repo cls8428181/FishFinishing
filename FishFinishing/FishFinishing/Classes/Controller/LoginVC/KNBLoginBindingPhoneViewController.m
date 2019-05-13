@@ -14,10 +14,18 @@
 #import "KNBLoginBindingApi.h"
 
 @interface KNBLoginBindingPhoneViewController ()
+@property (nonatomic, strong) NSDictionary *dic;
 
 @end
 
 @implementation KNBLoginBindingPhoneViewController
+
+- (instancetype)initWithDataSource:(NSDictionary *)dic  {
+    if (self = [super init]) {
+        _dic = dic;
+    }
+    return self;
+}
 
 #pragma mark - life cycle
 - (void)viewDidLoad {
@@ -26,18 +34,8 @@
     [self configuration];
     
     [self addUI];
-    
-    [self settingConstraints];
-    
+        
     [self fetchData];
-}
-
-#pragma mark - Setup UI Constraints
-/*
- *  在这里添加UIView的约束布局相关代码
- */
-- (void)settingConstraints {
-    KNB_WS(weakSelf);
 }
 
 #pragma mark - Utils
@@ -139,13 +137,15 @@
     }
 
     KNBLoginBindingApi *api = [[KNBLoginBindingApi alloc] initWithMobile:mobileCell.detailTextField.text code:codeCell.codeTextField.text];
+    api.token = self.dic[@"token"];
     api.hudString = @"";
     KNB_WS(weakSelf);
     [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *_Nonnull request) {
         if (api.requestSuccess) {
             NSDictionary *dic = request.responseObject[@"list"];
             [[KNBUserInfo shareInstance] updateUserInfo:dic];
-            [weakSelf.navigationController popViewControllerAnimated:YES];
+            [weakSelf dismissViewControllerAnimated:YES completion:nil];
+            !self.bindingComplete ?: self.bindingComplete();
         } else {
             [LCProgressHUD showMessage:api.errMessage];
         }
@@ -162,7 +162,7 @@
 - (void)backAction {
     KNBBindingCodeTableViewCell *codeCell = [self.knGroupTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:1]];
     [codeCell timerControll:NO];
-    [self.navigationController popViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

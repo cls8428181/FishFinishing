@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface KNBHomeRecommendSubTableViewCell : UITableViewCell
 @property (nonatomic, strong) KNBHomeServiceModel *model;
+
 /**
  cell 创建
  */

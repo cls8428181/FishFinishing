@@ -13,7 +13,7 @@
 
 + (NSString *)transformFromTimestamp:(NSString *)timestamp {
     NSString * timeStampString = timestamp;
-    NSTimeInterval _interval=[timeStampString doubleValue] / 1000.0;
+    NSTimeInterval _interval=[timeStampString doubleValue];
     NSDate *date = [NSDate dateWithTimeIntervalSince1970:_interval];
     NSDateFormatter *objDateformat = [[NSDateFormatter alloc] init];
     [objDateformat setDateFormat:@"yyyy-MM-dd"];
@@ -679,4 +679,63 @@
     // 返回处理后的结果
     return [dateFmt stringFromDate:msgDate];
 }
+
++ (NSInteger)getDifferenceByDate:(NSString *)date {
+    
+    //获得当前时间
+    
+    NSDate *now = [NSDate date];
+    
+    //实例化一个NSDateFormatter对象
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    
+    //设定时间格式
+    
+    [dateFormatter setDateFormat:@"YYYY-MM-dd"];
+    
+    NSDate *newDate = [dateFormatter dateFromString:date];
+    
+    NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+    
+    unsigned int unitFlags = NSCalendarUnitDay;
+    
+    NSDateComponents *comps = [gregorian components:unitFlags fromDate:now  toDate:newDate  options:0];
+    
+    return [comps day];
+    
+//下面这种方法从00:00:00开始计算
+//
+//#pragma clang diagnostic push
+//
+//#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+//
+//    NSCalendar *gregorian = [[NSCalendar alloc]
+//
+//                             initWithCalendarIdentifier:NSGregorianCalendar];
+//
+//    [gregorian setFirstWeekday:2];
+//
+//    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+//
+//    [dateFormatter setDateFormat:@"YYYY-MM-dd"];
+//
+//    NSDate *fromDate;
+//
+//    NSDate *toDate;
+//
+//    [gregorian rangeOfUnit:NSDayCalendarUnit startDate:&fromDate interval:NULL forDate:[dateFormatter dateFromString:date]];
+//
+//    [gregorian rangeOfUnit:NSDayCalendarUnit startDate:&toDate interval:NULL forDate:[NSDate date]];
+//
+//    NSDateComponents *dayComponents = [gregorian components:NSDayCalendarUnit fromDate:fromDate toDate:toDate options:0];
+//
+//#pragma clang diagnostic pop
+//
+//
+//
+//    return [dayComponents day];
+//
+}
+
 @end

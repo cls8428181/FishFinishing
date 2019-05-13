@@ -7,6 +7,7 @@
 //
 
 #import "KNBUserInfo.h"
+#import "KNBPushManager.h"
 //#import "DateTools.h"
 static NSString *const KNB_USER_LOGINSUCCESS = @"KNB_USER_LOGINSUCCESS";
 // 版本更新判断是否重新登录
@@ -15,6 +16,7 @@ static NSString *const KNB_USER_SIGNIN = @"KNB_USERSIGNIN";
 static NSString *const KNB_USER_INFO = @"KNB_USER_INFO";
 static NSString *const KNB_USER_ID = @"id";
 static NSString *const KNB_USER_USERNAME = @"username";
+static NSString *const KNB_USER_NICKNAME = @"nickname";
 static NSString *const KNB_USER_PASSWORD = @"password";
 static NSString *const KNB_USER_PORTRAIT = @"portrait_img";
 static NSString *const KNB_USER_SEX = @"sex";
@@ -36,6 +38,8 @@ static NSString *const KNB_USER_OPENID = @"openid";
 static NSString *const KNB_USER_REGISTERTYPE = @"reg_type";
 static NSString *const KNB_USER_FACID = @"fac_id";
 static NSString *const KNB_USER_FACNAME = @"fac_name";
+static NSString *const KNB_USER_JPUSHID = @"registrationID";
+static NSString *const KNB_USER_EXPERIENCE = @"is_experience";
 static NSString *const KNB_USER_CACHETOKEN = @"KNB_USER_CACHETOKEN";
 
 @implementation KNBUserInfo
@@ -66,6 +70,7 @@ KNB_DEFINE_SINGLETON_FOR_CLASS(KNBUserInfo);
     if (update && !isNullStr(dic[KNB_USER_TOKEN])) { // 缓存一份userToken
         [[NSUserDefaults standardUserDefaults] setObject:dic[KNB_USER_TOKEN] forKey:KNB_USER_CACHETOKEN];
     }
+    [[KNBPushManager shareInstance] settingRegistrationID];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
@@ -121,6 +126,10 @@ KNB_DEFINE_SINGLETON_FOR_CLASS(KNBUserInfo);
 
 - (NSString *)userName {
     return [self.userInfo objectForKey:KNB_USER_USERNAME];
+}
+
+- (NSString *)nickName {
+    return [self.userInfo objectForKey:KNB_USER_NICKNAME];
 }
 
 - (NSString *)password {
@@ -207,8 +216,17 @@ KNB_DEFINE_SINGLETON_FOR_CLASS(KNBUserInfo);
     return [self.userInfo objectForKey:KNB_USER_FACNAME];
 }
 
+- (NSString *)registrationID {
+    return [[NSUserDefaults standardUserDefaults] objectForKey:KNB_USER_JPUSHID];
+}
+
+
 - (BOOL)isService {
     return (isNullStr(self.fac_id) || [self.fac_id isEqualToString:@"0"]) ? NO : YES;
+}
+
+- (NSString *)isExperience {
+    return [self.userInfo objectForKey:KNB_USER_EXPERIENCE];
 }
 
 @end

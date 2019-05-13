@@ -18,6 +18,12 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (nonatomic, copy) NSString *title;
 
+/**
+ 数据源
+ */
+@property (nonatomic, strong) NSMutableArray *dataArray;
+
+
 @property (nonatomic, copy) void(^didSelectRowAtIndexPath)(NSIndexPath *indexPath);
 
 @property (strong ,nonatomic) KNBHomeTableView *tableView;

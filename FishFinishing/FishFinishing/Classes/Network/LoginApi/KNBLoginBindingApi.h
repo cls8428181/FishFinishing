@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface KNBLoginBindingApi : KNBBaseRequest
 
+@property (nonatomic, copy) NSString *token;
+
 /**
  手机号绑定
 

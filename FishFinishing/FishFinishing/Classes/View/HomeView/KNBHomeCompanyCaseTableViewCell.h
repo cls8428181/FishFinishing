@@ -12,6 +12,9 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface KNBHomeCompanyCaseTableViewCell : UITableViewCell
+
+@property (nonatomic, copy) void (^addCaseBlock)(void);
+
 @property (nonatomic, strong) KNBHomeServiceModel *model;
 
 /**

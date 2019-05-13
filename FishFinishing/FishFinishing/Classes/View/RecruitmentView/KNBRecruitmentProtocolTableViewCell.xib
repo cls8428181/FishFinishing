@@ -12,44 +12,53 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="KNBRecruitmentProtocolTableViewCell">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="70" id="KGk-i7-Jjw" customClass="KNBRecruitmentProtocolTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="538" height="70"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="538" height="69.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="我已阅读并接受《入驻支付协议》" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nug-3Y-92v">
-                        <rect key="frame" x="34" y="16.5" width="138" height="11"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="9"/>
-                        <color key="textColor" red="0.50196078430000002" green="0.50196078430000002" blue="0.50196078430000002" alpha="1" colorSpace="calibratedRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GZ6-s1-Lzy">
-                        <rect key="frame" x="12" y="11" width="12" height="22"/>
+                        <rect key="frame" x="0.0" y="13" width="44" height="44"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="44" id="dO1-qY-uTB"/>
+                            <constraint firstAttribute="height" constant="44" id="wJr-s9-WLB"/>
+                        </constraints>
                         <state key="normal" image="knb_pay_unagree"/>
                         <state key="selected" image="knb_pay_agree"/>
                         <connections>
                             <action selector="selectButtonAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="lkW-3H-zB3"/>
                         </connections>
                     </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SMK-mQ-TBc">
+                        <rect key="frame" x="44" y="23.5" width="138" height="23"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="9"/>
+                        <state key="normal" title="我已阅读并接受《入驻支付协议》">
+                            <color key="titleColor" red="0.50196078431372548" green="0.50196078431372548" blue="0.50196078431372548" alpha="1" colorSpace="calibratedRGB"/>
+                        </state>
+                        <connections>
+                            <action selector="protocolButtonAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="xaw-Aj-j1a"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="GZ6-s1-Lzy" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="12" id="1M6-Ia-uFa"/>
+                    <constraint firstItem="GZ6-s1-Lzy" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="1M6-Ia-uFa"/>
                     <constraint firstItem="GZ6-s1-Lzy" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="49M-RR-Yie"/>
-                    <constraint firstItem="nug-3Y-92v" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="SCt-4z-QBd"/>
-                    <constraint firstItem="nug-3Y-92v" firstAttribute="leading" secondItem="GZ6-s1-Lzy" secondAttribute="trailing" constant="10" id="YEy-rz-2oc"/>
+                    <constraint firstItem="SMK-mQ-TBc" firstAttribute="centerY" secondItem="GZ6-s1-Lzy" secondAttribute="centerY" id="KPj-qr-BWp"/>
+                    <constraint firstItem="SMK-mQ-TBc" firstAttribute="leading" secondItem="GZ6-s1-Lzy" secondAttribute="trailing" id="r2E-mw-777"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
             <connections>
                 <outlet property="agreeButton" destination="GZ6-s1-Lzy" id="E7O-2o-Jy0"/>
+                <outlet property="protocolButton" destination="SMK-mQ-TBc" id="J0O-zh-pug"/>
             </connections>
-            <point key="canvasLocation" x="129.59999999999999" y="127.736131934033"/>
+            <point key="canvasLocation" x="457.60000000000002" y="177.21139430284859"/>
         </tableViewCell>
     </objects>
     <resources>
-        <image name="knb_pay_agree" width="12.5" height="12.5"/>
-        <image name="knb_pay_unagree" width="12.5" height="12.5"/>
+        <image name="knb_pay_agree" width="12" height="12"/>
+        <image name="knb_pay_unagree" width="12" height="12"/>
     </resources>
 </document>

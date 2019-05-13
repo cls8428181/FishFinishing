@@ -16,14 +16,17 @@ NS_ASSUME_NONNULL_BEGIN
  ID
  */
 @property (nonatomic, copy) NSString *caseId;
-@property (nonatomic, copy) NSString *type;
-@property (nonatomic, copy) NSString *case_id;
-@property (nonatomic, copy) NSString *title;
-@property (nonatomic, copy) NSString *acreage;
-@property (nonatomic, copy) NSString *apartment;
-@property (nonatomic, copy) NSString *style_name;
+@property (nonatomic, copy) NSString *name;
+@property (nonatomic, copy) NSString *cat_name;
+@property (nonatomic, copy) NSString *sort;
+@property (nonatomic, copy) NSString *enable;
+@property (nonatomic, copy) NSString *creater;
+@property (nonatomic, copy) NSString *creater_at;
 @property (nonatomic, copy) NSString *img;
-@property (nonatomic, copy) NSString *apart;
+@property (nonatomic, copy) NSString *updater;
+@property (nonatomic, copy) NSString *updater_at;
+@property (nonatomic, copy) NSString *min_area;
+@property (nonatomic, copy) NSString *max_area;
 
 @end
 

@@ -19,6 +19,9 @@
 #import "KNBHomeDesignViewController.h"
 #import "KNBHomeWorkerViewController.h"
 #import "KNBHomeBuyTopViewController.h"
+#import "KNBHomeCompanyExperienceViewController.h"
+#import "KNBRecruitmentModifyDetailApi.h"
+#import "KNBOrderModifyPowerApi.h"
 
 @interface KNBHomeCompanyDetailViewController ()
 @property (nonatomic, strong) KNBHomeServiceModel *currentModel;
@@ -35,17 +38,7 @@
     
     [self addUI];
     
-    [self settingConstraints];
-    
     [self fetchData];
-}
-
-#pragma mark - Setup UI Constraints
-/*
- *  在这里添加UIView的约束布局相关代码
- */
-- (void)settingConstraints {
-    KNB_WS(weakSelf);
 }
 
 #pragma mark - Utils
@@ -54,7 +47,9 @@
     if (self.isEdit) {
         [self.naviView addRightBarItemImageName:@"knb_me_bianji" target:self sel:@selector(editButtonAction)];
     }
-    self.view.backgroundColor = [UIColor knBgColor];
+    self.view.backgroundColor = [UIColor whiteColor];
+    self.knGroupTableView.backgroundColor = [UIColor whiteColor];
+    self.naviView.title = self.model.parent_cat_name;
     if (!self.isEdit) {
         self.knGroupTableView.frame = CGRectMake(0, KNB_NAV_HEIGHT, KNB_SCREEN_WIDTH, KNB_SCREEN_HEIGHT - KNB_TAB_HEIGHT - KNB_NAV_HEIGHT);
     }
@@ -68,21 +63,41 @@
 }
 
 - (void)fetchData {
-    KNBRecruitmentDetailApi *api = [[KNBRecruitmentDetailApi alloc] initWithfacId:self.model ? [self.model.serviceId integerValue] : [[KNBUserInfo shareInstance].fac_id integerValue]];
-    api.hudString = @"";
-    KNB_WS(weakSelf);
-    [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *_Nonnull request) {
-        if (api.requestSuccess) {
-            NSDictionary *dic = request.responseObject[@"list"];
-            KNBHomeServiceModel *model = [KNBHomeServiceModel changeResponseJSONObject:dic];
-            weakSelf.currentModel = model;
+    if (self.isEdit) {
+        KNBRecruitmentModifyDetailApi *api = [[KNBRecruitmentModifyDetailApi alloc] init];
+        KNB_WS(weakSelf);
+        [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *_Nonnull request) {
+            if (api.requestSuccess) {
+                NSDictionary *dic = request.responseObject[@"list"];
+                KNBHomeServiceModel *model = [KNBHomeServiceModel changeResponseJSONObject:dic];
+                weakSelf.currentModel = model;
+                [weakSelf requestSuccess:YES requestEnd:YES];
+            } else {
+                weakSelf.currentModel = weakSelf.model;
+                [weakSelf requestSuccess:YES requestEnd:YES];
+            }
+        } failure:^(__kindof YTKBaseRequest *_Nonnull request) {
+            weakSelf.currentModel = weakSelf.model;
             [weakSelf requestSuccess:YES requestEnd:YES];
-        } else {
-            [weakSelf requestSuccess:NO requestEnd:NO];
-        }
-    } failure:^(__kindof YTKBaseRequest *_Nonnull request) {
-        [weakSelf requestSuccess:NO requestEnd:NO];
-    }];
+        }];
+    } else {
+        KNBRecruitmentDetailApi *api = [[KNBRecruitmentDetailApi alloc] initWithfacId:self.model ? [self.model.serviceId integerValue] : [[KNBUserInfo shareInstance].fac_id integerValue]];
+        KNB_WS(weakSelf);
+        [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *_Nonnull request) {
+            if (api.requestSuccess) {
+                NSDictionary *dic = request.responseObject[@"list"];
+                KNBHomeServiceModel *model = [KNBHomeServiceModel changeResponseJSONObject:dic];
+                weakSelf.currentModel = model;
+                [weakSelf requestSuccess:YES requestEnd:YES];
+            } else {
+                weakSelf.currentModel = weakSelf.model;
+                [weakSelf requestSuccess:YES requestEnd:YES];
+            }
+        } failure:^(__kindof YTKBaseRequest *_Nonnull request) {
+            weakSelf.currentModel = weakSelf.model;
+            [weakSelf requestSuccess:YES requestEnd:YES];
+        }];
+    }
 }
 
 #pragma mark - tableview delegate & dataSource
@@ -100,14 +115,21 @@
     if (indexPath.section == 0) {
         cell = [KNBHomeCompanyHeaderTableViewCell cellWithTableView:tableView];
         KNBHomeCompanyHeaderTableViewCell *blockCell = (KNBHomeCompanyHeaderTableViewCell *)cell;
+        blockCell.isEdit = self.isEdit;
         blockCell.model = self.currentModel;
+        blockCell.adButtonBlock = ^{
+            KNBHomeCompanyExperienceViewController *experienceVC = [[KNBHomeCompanyExperienceViewController alloc] init];
+            experienceVC.model = weakSelf.model;
+            [weakSelf.navigationController pushViewController:experienceVC animated:YES];
+        };
     } else if (indexPath.section == 1) {
         cell = [KNBHomeCompanyServerTableViewCell cellWithTableView:tableView];
         KNBHomeCompanyServerTableViewCell *blockCell = (KNBHomeCompanyServerTableViewCell *)cell;
+        blockCell.isEdit = self.isEdit;
         blockCell.model = self.currentModel;
         blockCell.topButtonBlock = ^{
             KNBHomeBuyTopViewController *topVC = [[KNBHomeBuyTopViewController alloc] init];
-            topVC.model = self.model;
+            topVC.model = weakSelf.model;
             [weakSelf.navigationController pushViewController:topVC animated:YES];
         };
     } else if (indexPath.section == 2) {
@@ -117,6 +139,9 @@
     } else {
         cell = [KNBHomeCompanyCaseTableViewCell cellWithTableView:tableView];
         KNBHomeCompanyCaseTableViewCell *blockCell = (KNBHomeCompanyCaseTableViewCell *)cell;
+        blockCell.addCaseBlock = ^{
+            [weakSelf fetchData];
+        };
         blockCell.model = self.currentModel;
         blockCell.isEdit = self.isEdit;
     }
@@ -125,10 +150,9 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
-        return [KNBHomeCompanyHeaderTableViewCell cellHeight];
+        return [KNBHomeCompanyHeaderTableViewCell cellHeight:self.isEdit];
     } else if (indexPath.section == 1) {
-//        return [self.currentModel.is_stick isEqualToString:@"0"] ? 210 : 100;
-        return 210;
+        return [KNBHomeCompanyServerTableViewCell cellHeight:self.isEdit];
     } else if (indexPath.section == 2) {
         return [KNBHomeCompanyIntroTableViewCell cellHeight];
     } else {
@@ -141,8 +165,10 @@
     return 10;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    UIView *view = [UIView new];
+    view.backgroundColor = [UIColor colorWithHex:0xf2f2f2];
+    return view;
 }
 
 #pragma mark - Event Response
@@ -154,8 +180,21 @@
 }
 
 - (void)editButtonAction {
-    KNBHomeCompanyEditDetailViewController *editVC = [[KNBHomeCompanyEditDetailViewController alloc] init];
-    [self.navigationController pushViewController:editVC animated:YES];
+    KNBOrderModifyPowerApi *api = [[KNBOrderModifyPowerApi alloc] init];
+    api.hudString = @"";
+    KNB_WS(weakSelf);
+    [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *_Nonnull request) {
+        if (api.requestSuccess) {
+            KNBHomeCompanyEditDetailViewController *editVC = [[KNBHomeCompanyEditDetailViewController alloc] init];
+            editVC.model = weakSelf.currentModel;
+            [weakSelf.navigationController pushViewController:editVC animated:YES];
+        } else {
+            [LCProgressHUD showMessage:api.errMessage];
+        }
+    } failure:^(__kindof YTKBaseRequest *_Nonnull request) {
+        [LCProgressHUD showMessage:api.errMessage];
+    }];
+
 }
 
 - (void)enterButtonAction {

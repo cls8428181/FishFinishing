@@ -12,6 +12,8 @@
 typedef void (^EnterActionBlock)(void);
 typedef void (^DeleteActionBlock)(void);
 
+static NSString *KNBMEORDERID = @"KNBMeOrderViewController";
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface KNBMeOrderAlertView : UIView

@@ -40,15 +40,25 @@
                     <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="knb_me_recommend" translatesAutoresizingMaskIntoConstraints="NO" id="Kgl-KZ-bvB">
                         <rect key="frame" x="102.5" y="0.0" width="21" height="21"/>
                     </imageView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OYu-WU-IFu">
+                        <rect key="frame" x="13" y="108.5" width="385" height="1"/>
+                        <color key="backgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.94901960784313721" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="UCO-K6-MMA"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <constraints>
                     <constraint firstItem="Fp2-KO-7Eh" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="685-ST-DoX"/>
                     <constraint firstItem="Kgl-KZ-bvB" firstAttribute="leading" secondItem="oXx-sZ-uTx" secondAttribute="trailing" id="BeW-4z-Nak"/>
                     <constraint firstItem="Bc6-EZ-aZB" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="K9o-8s-Gry"/>
+                    <constraint firstAttribute="bottom" secondItem="OYu-WU-IFu" secondAttribute="bottom" id="N3D-8S-Tq0"/>
                     <constraint firstItem="oXx-sZ-uTx" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Q4O-3E-lb8"/>
                     <constraint firstItem="Bc6-EZ-aZB" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="13" id="RaL-nf-aRI"/>
                     <constraint firstAttribute="trailing" secondItem="Fp2-KO-7Eh" secondAttribute="trailing" constant="13" id="XTU-HB-HmK"/>
+                    <constraint firstAttribute="trailing" secondItem="OYu-WU-IFu" secondAttribute="trailing" constant="13" id="f4D-PV-tLP"/>
                     <constraint firstItem="oXx-sZ-uTx" firstAttribute="leading" secondItem="Bc6-EZ-aZB" secondAttribute="trailing" constant="15" id="fX2-Qb-WIY"/>
+                    <constraint firstItem="OYu-WU-IFu" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="13" id="feA-n4-DZX"/>
                     <constraint firstItem="prc-0f-48Y" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="iMa-oi-Xxz"/>
                     <constraint firstItem="Kgl-KZ-bvB" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="kYq-Hb-Pws"/>
                     <constraint firstItem="Fp2-KO-7Eh" firstAttribute="leading" secondItem="prc-0f-48Y" secondAttribute="trailing" constant="10" id="z6q-bb-cyd"/>
@@ -65,7 +75,7 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="KNBMe_2" width="17.5" height="19"/>
+        <image name="KNBMe_2" width="17" height="19"/>
         <image name="knb_me_arrows" width="8" height="13"/>
         <image name="knb_me_recommend" width="21" height="21"/>
     </resources>

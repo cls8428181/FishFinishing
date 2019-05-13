@@ -12,8 +12,13 @@
 #import "XHLaunchAdManager.h"
 #import "CALayer+Transition.h"
 #import "KNBLoginViewController.h"
+#import "KNPaypp.h"
+#import <JPUSHService.h>
+#import <UserNotifications/UserNotifications.h>
+#import "KNBPushManager.h"
+#import <AlipaySDK/AlipaySDK.h>
 
-@interface AppDelegate ()<KNBWelcomeVCDelegate>
+@interface AppDelegate ()<KNBWelcomeVCDelegate,JPUSHRegisterDelegate,UNUserNotificationCenterDelegate>
 
 @end
 
@@ -25,10 +30,13 @@
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
+    //配置极光推送
+    [[KNBPushManager shareInstance] configureJPush:launchOptions];
     // 配置文件
     [[KNBAppManager shareInstance] configureThird];
     //引导页
     [self showPageGuideView];
+
     return YES;
 }
 
@@ -60,6 +68,17 @@
     loginVC.vcType = KNBLoginTypeLogin;
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:loginVC];
     [self.navController presentViewController:nav animated:NO completion:nil];
+}
+
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+    [[KNBPushManager shareInstance] registerDeviceToken:deviceToken];
+}
+    
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
+    
+    [[KNBPushManager shareInstance] handleRemoteNotification:userInfo];
+    // Required, iOS 7 Support
+    completionHandler(UIBackgroundFetchResultNewData);
 }
 
 #pragma mark-- KNBWelcomeVCDelegate
@@ -98,6 +117,26 @@
     [self saveContext];
 }
 
+- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options {
+    BOOL payResult = [KNPaypp handleOpenURL:url withCompletion:^(NSString *result, KNPayppError *error) {
+        
+    }];
+    BOOL umResult = [[UMSocialManager defaultManager] handleOpenURL:url];
+    if (payResult || umResult) {
+        return YES;
+    }
+    return NO;
+    
+}
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
+    BOOL payResult = [KNPaypp handleOpenURL:url withCompletion:nil];
+    BOOL umResult = [[UMSocialManager defaultManager] handleOpenURL:url];
+    if (payResult || umResult) {
+        return YES;
+    }
+    return NO;
+}
 
 #pragma mark - Core Data stack
 

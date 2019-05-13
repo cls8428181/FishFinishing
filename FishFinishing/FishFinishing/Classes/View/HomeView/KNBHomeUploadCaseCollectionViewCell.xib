@@ -23,10 +23,10 @@
                         <rect key="frame" x="10" y="10" width="366" height="193"/>
                     </imageView>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HpR-G1-5SV">
-                        <rect key="frame" x="363" y="5" width="18" height="18"/>
+                        <rect key="frame" x="352" y="-10" width="44" height="44"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="18" id="a82-P2-xkq"/>
-                            <constraint firstAttribute="height" constant="18" id="bay-7d-god"/>
+                            <constraint firstAttribute="width" constant="44" id="a82-P2-xkq"/>
+                            <constraint firstAttribute="height" constant="44" id="bay-7d-god"/>
                         </constraints>
                         <state key="normal" image="knb_me_shanchu"/>
                         <connections>
@@ -37,8 +37,8 @@
             </view>
             <constraints>
                 <constraint firstItem="1EA-Ci-C90" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="10" id="8Tq-6P-94k"/>
-                <constraint firstAttribute="trailing" secondItem="HpR-G1-5SV" secondAttribute="trailing" constant="5" id="EGb-Uh-QSX"/>
-                <constraint firstItem="HpR-G1-5SV" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="5" id="fdb-rB-o2B"/>
+                <constraint firstAttribute="trailing" secondItem="HpR-G1-5SV" secondAttribute="trailing" constant="-10" id="EGb-Uh-QSX"/>
+                <constraint firstItem="HpR-G1-5SV" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="-10" id="fdb-rB-o2B"/>
                 <constraint firstAttribute="trailing" secondItem="1EA-Ci-C90" secondAttribute="trailing" constant="10" id="t7k-kj-BZE"/>
                 <constraint firstItem="1EA-Ci-C90" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="10" id="xoL-6g-nB7"/>
                 <constraint firstAttribute="bottom" secondItem="1EA-Ci-C90" secondAttribute="bottom" constant="10" id="z1n-UT-jC1"/>

@@ -18,6 +18,7 @@
 #import "KNBHomeCompanyTagsViewController.h"
 #import "KNBHomeCompanyHouseViewController.h"
 #import "KNBHomeCompanyAreaViewController.h"
+#import "KNBHomeRecommendCaseModel.h"
 
 @interface DesignSketchViewController ()<UICollectionViewDelegate, UICollectionViewDataSource>
 //滑动区域
@@ -42,7 +43,7 @@
     
     [self settingConstraints];
     
-    [self fetchData];
+    [self fetchData:1];
 }
 
 #pragma mark - Setup UI Constraints
@@ -66,46 +67,102 @@
     self.naviView.titleNaviLabel.textColor = [UIColor blackColor];
     self.view.backgroundColor = [UIColor knBgColor];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(TagsNotificationAction:) name:NSStringFromClass([KNBHomeCompanyTagsViewController class]) object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(HouseNotificationAction:) name:NSStringFromClass([KNBHomeCompanyHouseViewController class]) object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(AreaNotificationAction:) name:NSStringFromClass([KNBHomeCompanyAreaViewController class]) object:nil];
-
-    self.topBar = [[CQTopBarViewController alloc] init];
-    self.topBar.segmentFrame = CGRectMake(0, KNB_NAV_HEIGHT, KNB_SCREEN_WIDTH, 50);
-    self.topBar.sectionTitles = @[@"风格",@"户型",@"面积"];
-    self.topBar.isDesign = YES;
-    self.topBar.pageViewClasses = @[[KNBHomeCompanyTagsViewController class],[KNBHomeCompanyHouseViewController class],[KNBHomeCompanyAreaViewController class]];
-    self.topBar.segmentlineColor = [UIColor whiteColor];
-    self.topBar.segmentImage = @"knb_home_icon_down";
-    self.topBar.selectSegmentImage = @"knb_home_icon_up";
-    self.topBar.selectedTitleTextColor = [UIColor colorWithHex:0x0096e6];
-    [self addChildViewController:self.topBar];
-    [self.view addSubview:self.topBar.view];
-    [self.topBar.footerView addSubview:self.collectionView];
-    self.knbTableView.frame = CGRectMake(0, 0, KNB_SCREEN_WIDTH, KNB_SCREEN_HEIGHT - KNB_NAV_HEIGHT - 50);
-    [self.view bringSubviewToFront:self.naviView];
+    if (self.isTabbar) {
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(TagsNotificationAction:) name:@"DesignSketchViewController" object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(HouseNotificationAction:) name:NSStringFromClass([KNBHomeCompanyHouseViewController class]) object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(AreaNotificationAction:) name:NSStringFromClass([KNBHomeCompanyAreaViewController class]) object:nil];
+        
+        self.topBar = [[CQTopBarViewController alloc] init];
+        self.topBar.segmentFrame = CGRectMake(0, KNB_NAV_HEIGHT, KNB_SCREEN_WIDTH, 50);
+        self.topBar.sectionTitles = @[@"风格",@"户型",@"面积"];
+        self.topBar.isDesign = YES;
+        self.topBar.pageViewClasses = @[[KNBHomeCompanyTagsViewController class],[KNBHomeCompanyHouseViewController class],[KNBHomeCompanyAreaViewController class]];
+        self.topBar.segmentlineColor = [UIColor whiteColor];
+        self.topBar.segmentImage = @"knb_home_icon_down";
+        self.topBar.selectSegmentImage = @"knb_home_icon_up";
+        self.topBar.selectedTitleTextColor = [UIColor colorWithHex:0x0096e6];
+        [self addChildViewController:self.topBar];
+        [self.view addSubview:self.topBar.view];
+        [self.topBar.footerView addSubview:self.collectionView];
+        [self.view bringSubviewToFront:self.naviView];
+        self.collectionView.frame = CGRectMake(0, 0, KNB_SCREEN_WIDTH, KNB_SCREEN_HEIGHT - KNB_NAV_HEIGHT - 50);
+    } else {
+        [self.view addSubview:self.collectionView];
+        self.collectionView.frame = CGRectMake(0, KNB_NAV_HEIGHT, KNB_SCREEN_WIDTH, KNB_SCREEN_HEIGHT - KNB_NAV_HEIGHT);
+    }
+  
     
 }
 
 - (void)addUI {
+    KNB_WS(weakSelf);
+    [self addMJRefreshHeadView:^(NSInteger page) {
+        [weakSelf fetchData:page];
+    }];
+    [self addMJRefreshFootView:^(NSInteger page) {
+    }];
 }
 
-- (void)fetchData {
-
+- (void)fetchData:(NSInteger)page {
     KNB_WS(weakSelf);
+    self.api.page = page;
     [self.api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *_Nonnull request) {
         if (weakSelf.api.requestSuccess) {
-            [weakSelf.dataArray removeAllObjects];
             NSDictionary *dic = request.responseObject[@"list"];
             NSArray *modelArray = [KNBDesignSketchModel changeResponseJSONObject:dic];
+            if (page == 1) {
+                [weakSelf.dataArray removeAllObjects];
+            }
             [weakSelf.dataArray addObjectsFromArray:modelArray];
-            [weakSelf.collectionView reloadData];
+            [weakSelf requestSuccess:YES requestEnd:modelArray.count<10];
+
         } else {
             [weakSelf requestSuccess:NO requestEnd:NO];
         }
     } failure:^(__kindof YTKBaseRequest *_Nonnull request) {
         [weakSelf requestSuccess:NO requestEnd:NO];
     }];
+}
+
+- (void)requestSuccess:(BOOL)success requestEnd:(BOOL)end {
+    [self.collectionView.mj_header endRefreshing];
+    [self.collectionView.mj_footer endRefreshing];
+    
+    if (end) {
+        [self.collectionView.mj_footer endRefreshingWithNoMoreData];
+        [self.collectionView reloadData];
+        return;
+    }
+    if (!success && self.requestPage > 1) {
+        self.requestPage -= 1;
+    } else {
+        [self.collectionView reloadData];
+    }
+}
+
+- (void)addMJRefreshHeadView:(KNMJHeaderLoadCompleteBlock)completeBlock {
+    KNB_WS(weakSelf);
+    MJRefreshNormalHeader *knbTableViewHeader = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        [weakSelf.collectionView.mj_footer resetNoMoreData];
+        weakSelf.requestPage = 1;
+        if (completeBlock) {
+            completeBlock(1);
+        }
+    }];
+    // 设置自动切换透明度(在导航栏下面自动隐藏)
+    knbTableViewHeader.automaticallyChangeAlpha = YES;
+    // 隐藏时间
+    knbTableViewHeader.lastUpdatedTimeLabel.hidden = YES;
+    self.collectionView.mj_header = knbTableViewHeader;
+}
+
+- (void)addMJRefreshFootView:(KNMJFooterLoadCompleteBlock)completeBlock {
+    self.collectionView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
+}
+
+- (void)loadMoreData {
+    self.requestPage += 1;
+    [self fetchData:self.requestPage];
 }
 
 #pragma mark - collectionview delegate & dataSource
@@ -143,62 +200,47 @@
 - (void)TagsNotificationAction:(NSNotification *)notification {
     KNBRecruitmentTypeModel *model = notification.userInfo[@"model"];
     [self.topBar topBarReplaceObjectsAtIndexes:0 withObjects:model.catName];
-    self.api.style_id = [model.typeId integerValue];
-    [self fetchData];
+    if ([model.catName isEqualToString:@"全部"]) {
+        self.api.style_id = 0;
+    } else {
+        self.api.style_id = [model.typeId integerValue];
+    }
+    [self fetchData:1];
 }
 
 - (void)HouseNotificationAction:(NSNotification *)notification {
-    NSArray *tempArray = notification.userInfo[@"houseArray"];
-    NSString *houseStr = @"";
-    NSString *apartment = @"";
-    apartment = [apartment stringByAppendingString:@"["];
-    if ([tempArray[0] integerValue] != 0) {
-        houseStr = [houseStr stringByAppendingString:[NSString stringWithFormat:@"%ld室、",[tempArray[0] integerValue]]];
-        apartment = [apartment stringByAppendingString:[NSString stringWithFormat:@"[1,%ld],",[tempArray[0] integerValue]]];
-    }
-    if ([tempArray[1] integerValue] != 0) {
-        houseStr = [houseStr stringByAppendingString:[NSString stringWithFormat:@"%ld厅、",[tempArray[1] integerValue]]];
-        apartment = [apartment stringByAppendingString:[NSString stringWithFormat:@"[2,%ld],",[tempArray[1] integerValue]]];
-    }
-    if ([tempArray[2] integerValue] != 0) {
-        houseStr = [houseStr stringByAppendingString:[NSString stringWithFormat:@"%ld厨、",[tempArray[2] integerValue]]];
-        apartment = [apartment stringByAppendingString:[NSString stringWithFormat:@"[3,%ld],",[tempArray[2] integerValue]]];
-    }
-    if ([tempArray[3] integerValue] != 0) {
-        houseStr = [houseStr stringByAppendingString:[NSString stringWithFormat:@"%ld卫、",[tempArray[3] integerValue]]];
-        apartment = [apartment stringByAppendingString:[NSString stringWithFormat:@"[4,%ld],",[tempArray[3] integerValue]]];
-    }
-    if ([tempArray[4] integerValue] != 0) {
-        houseStr = [houseStr stringByAppendingString:[NSString stringWithFormat:@"%ld阳台",[tempArray[4] integerValue]]];
-        apartment = [apartment stringByAppendingString:[NSString stringWithFormat:@"[5,%ld]",[tempArray[0] integerValue]]];
-    }
-    if ([[houseStr substringFromIndex:[houseStr length]-1] isEqualToString:@"、"]) {
-        houseStr = [houseStr substringToIndex:[houseStr length]-1];
-    }
-    if ([[apartment substringFromIndex:[apartment length]-1] isEqualToString:@","]) {
-        apartment = [apartment substringToIndex:[apartment length]-1];
-    }
-    apartment = [apartment stringByAppendingString:@"]"];
-    [self.topBar topBarReplaceObjectsAtIndexes:1 withObjects:houseStr];
-    self.api.apartment = apartment;
-    [self fetchData];
+    KNBRecruitmentUnitModel *model = notification.userInfo[@"model"];
+    [self.topBar topBarReplaceObjectsAtIndexes:1 withObjects:isNullStr(model.catName) ? model.name : model.catName];
+    self.api.apartment_id = [model.houseId integerValue];
+    [self fetchData:1];
 }
 
 - (void)AreaNotificationAction:(NSNotification *)notification {
-    NSString *titleString = notification.userInfo[@"text"];
-    [self.topBar topBarReplaceObjectsAtIndexes:2 withObjects:titleString];
-    if ([titleString containsString:@"全部"]) {
-        self.api.min_area = 0.00;
-        self.api.max_area = 999.00;
-    } else if ([titleString containsString:@"以上"]) {
-        self.api.min_area = 120.00;
-        self.api.max_area = 999.00;
+    KNBHomeRecommendCaseModel *model = notification.userInfo[@"model"];
+    [self.topBar topBarReplaceObjectsAtIndexes:2 withObjects:model.name];
+    if ([model.name isEqualToString:@"全部"]) {
+        self.api.min_area = 0;
+        self.api.max_area = 9999;
     } else {
-        NSArray *strArray = [titleString componentsSeparatedByString:@"-"];
-        self.api.min_area = [strArray.firstObject doubleValue];
-        self.api.max_area = [strArray.lastObject doubleValue];
+        self.api.min_area = [model.min_area doubleValue];
+        self.api.max_area = [model.max_area doubleValue];
     }
-    [self fetchData];
+    [self fetchData:1];
+    
+//    NSString *titleString = notification.userInfo[@"text"];
+//    [self.topBar topBarReplaceObjectsAtIndexes:2 withObjects:titleString];
+//    if ([titleString containsString:@"全部"]) {
+//        self.api.min_area = 0.00;
+//        self.api.max_area = 999.00;
+//    } else if ([titleString containsString:@"以上"]) {
+//        self.api.min_area = 120.00;
+//        self.api.max_area = 999.00;
+//    } else {
+//        NSArray *strArray = [titleString componentsSeparatedByString:@"-"];
+//        self.api.min_area = [strArray.firstObject doubleValue];
+//        self.api.max_area = [strArray.lastObject doubleValue];
+//    }
+//    [self fetchData:1];
 }
 
 
@@ -209,7 +251,9 @@
         UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
         layout.minimumInteritemSpacing = 10;
         layout.minimumLineSpacing = 10;
-        layout.headerReferenceSize = CGSizeMake(KNB_SCREEN_WIDTH, 50); //头视图的大小
+        if (self.isTabbar) {
+            layout.headerReferenceSize = CGSizeMake(KNB_SCREEN_WIDTH, 50); //头视图的大小
+        }
         layout.sectionInset = UIEdgeInsetsMake(10, 12, 10, 12);
         layout.scrollDirection = UICollectionViewScrollDirectionVertical;
         _collectionView = [[UICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:layout];
@@ -218,17 +262,40 @@
         _collectionView.delegate = self;
         _collectionView.dataSource = self;
         [_collectionView registerNib:[UINib nibWithNibName:@"KNBDesignSketchCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"KNBDesignSketchCollectionViewCell"];
+        if (@available(iOS 11.0, *)) {
+            _collectionView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+        }
     }
     return _collectionView;
 }
 
 - (KNBRecruitmentCaseListApi *)api {
+    KNB_WS(weakSelf);
     if (!_api) {
         _api = [[KNBRecruitmentCaseListApi alloc] init];
         _api.city_name = [KNGetUserLoaction shareInstance].cityName;
         _api.hudString = @"";
+        _api.style_id = weakSelf.style_id ?: 0;
+        _api.apartment_id = weakSelf.apartment_id ?: 0;
+        _api.min_area = weakSelf.min_area ?: 0;
+        _api.max_area = weakSelf.max_area ?: 9999;
     }
     return _api;
+}
+
+- (CQTopBarViewController *)topBar {
+    if (!_topBar) {
+        _topBar = [[CQTopBarViewController alloc] init];
+        _topBar.segmentFrame = CGRectMake(0, KNB_NAV_HEIGHT, KNB_SCREEN_WIDTH, 50);
+        _topBar.sectionTitles = @[@"风格",@"户型",@"面积"];
+        _topBar.pageViewClasses = @[[KNBHomeCompanyTagsViewController class],[KNBHomeCompanyHouseViewController class],[KNBHomeCompanyAreaViewController class]];
+        _topBar.isDesign = YES;
+        _topBar.segmentlineColor = [UIColor whiteColor];
+        _topBar.segmentImage = @"knb_home_icon_down";
+        _topBar.selectSegmentImage = @"knb_home_icon_up";
+        _topBar.selectedTitleTextColor = [UIColor colorWithHex:0x0096e6];
+    }
+    return _topBar;
 }
 
 @end

@@ -59,22 +59,11 @@
         self.themeColor = themeColor;
         self.resultBlock = resultBlock;
         self.cancelBlock = cancelBlock;
-        [self configDataSource:dataSource];
+        self.dataArray = dataSource;
         self.selectRow = 0;
         [self initUI];
     }
     return self;
-}
-
-#pragma mark - 设置数据源
-- (void)configDataSource:(id)dataSource {
-    // 2. 给数据源赋值
-    NSMutableArray *dataArray = [NSMutableArray array];
-    for (KNBRecruitmentUnitModel *model in dataSource) {
-        [dataArray addObject:model.name];
-    }
-    self.dataArray = dataArray;
-    // 4. 给选择器设置默认值
 }
 
 #pragma mark - tableview delegate
@@ -87,14 +76,19 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    KNBChoiceTableViewCell *cell = [KNBChoiceTableViewCell cellWithTableView:tableView title:self.dataArray[indexPath.row]];
+    KNBRecruitmentUnitModel *model = self.dataArray[indexPath.row];
+    KNBChoiceTableViewCell *cell = [KNBChoiceTableViewCell cellWithTableView:tableView title:model.name];
 
     return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 50;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    KNBRecruitmentUnitModel *model = self.dataArray[indexPath.row];
+    self.selectValue = model.name;
 }
 
 #pragma mark - 初始化子视图
@@ -167,32 +161,13 @@
     [self dismissWithAnimation:YES];
     // 点击确定按钮后，执行block回调
     if(_resultBlock) {
-        NSInteger bedroomNum = 0;
-        NSInteger hallNum = 0;
-        NSInteger kitchenNum = 0;
-        NSInteger toiletNum = 0;
-        NSInteger balconyNum = 0;
         for (int i = 0; i < self.dataArray.count; i++) {
-            KNBChoiceTableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0]];
-            if ( [cell.titleLabel.text isEqualToString:@"卧室"]) {
-                bedroomNum = bedroomNum + [cell.numTextField.text integerValue];
-            } else if ( [cell.titleLabel.text isEqualToString:@"客厅"] ||  [cell.titleLabel.text isEqualToString:@"餐厅"]) {
-                hallNum = hallNum + [cell.numTextField.text integerValue];
-            }else if ( [cell.titleLabel.text isEqualToString:@"厨房"]) {
-                kitchenNum = kitchenNum + [cell.numTextField.text integerValue];
-            } else if ( [cell.titleLabel.text isEqualToString:@"卫生间"]) {
-                toiletNum = toiletNum + [cell.numTextField.text integerValue];
-            } else {
-                balconyNum = balconyNum + [cell.numTextField.text integerValue];
+            KNBRecruitmentUnitModel *model = self.dataArray[i];
+            if ([self.selectValue isEqualToString:model.name]) {
+                NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:model,@"model", nil];
+                _resultBlock(dict);
             }
         }
-        NSArray *tempArray = @[
-                               @(bedroomNum),
-                               @(hallNum),
-                               @(kitchenNum),
-                               @(toiletNum),
-                               @(balconyNum)];
-        _resultBlock(tempArray);
     }
 }
 

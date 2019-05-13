@@ -10,10 +10,14 @@
 #import "KNBOrderViewController.h"
 #import "KNBHomeBannerApi.h"
 #import "KNBHomeBannerModel.h"
+#import "KNBLoginViewController.h"
+#import "UIImage+Size.h"
+#import "KNBOrderCheckApi.h"
 
 @interface OrderFinishingViewController ()
 //背景
-@property (nonatomic, strong) UIImageView *bgView;
+@property (nonatomic, strong) UIScrollView *bgView;
+@property (nonatomic, strong) UIImageView *bgImageView;
 //立即预约
 @property (nonatomic, strong) UIButton *enterButton;
 //数据
@@ -56,7 +60,11 @@
 - (void)configuration {
     [self.naviView removeFromSuperview];
     self.view.backgroundColor = [UIColor knBgColor];
-    
+    if (@available(iOS 11.0, *)) {
+        self.bgView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+    }else {
+        self.automaticallyAdjustsScrollViewInsets = NO;
+    }
 }
 
 - (void)addUI {
@@ -73,9 +81,11 @@
             NSDictionary *dic = request.responseObject[@"list"];
             NSArray *modelArray = [KNBHomeBannerModel changeResponseJSONObject:dic];
             weakSelf.model = modelArray.firstObject;
-            KNB_PerformOnMainThread(^{
-                [weakSelf.bgView sd_setImageWithURL:[NSURL URLWithString:weakSelf.model.img] placeholderImage:KNBImages(@"knb_default_style")];
-            });
+            CGSize size = [UIImage getImageSizeWithURL:[NSURL URLWithString:weakSelf.model.img]];
+            weakSelf.bgView.contentSize = CGSizeMake(KNB_SCREEN_WIDTH/size.width * size.width, KNB_SCREEN_HEIGHT/size.height * size.height);
+            [weakSelf.bgView addSubview:weakSelf.bgImageView];
+            weakSelf.bgImageView.frame = CGRectMake(0, 0, KNB_SCREEN_WIDTH/size.width * size.width, KNB_SCREEN_HEIGHT/size.height * size.height);
+            [weakSelf.bgImageView sd_setImageWithURL:[NSURL URLWithString:weakSelf.model.img] placeholderImage:KNBImages(@"knb_default_style")];
         }
     } failure:^(__kindof YTKBaseRequest *_Nonnull request) {
     }];
@@ -87,24 +97,49 @@
  *  所有button、gestureRecognizer的响应事件都放在这个区域里面，不要到处乱放。
  */
 - (void)enterButtonAction:(UIButton *)button {
+    KNB_WS(weakSelf);
     if ([KNBUserInfo shareInstance].isLogin) {
-        KNBOrderViewController *orderVC = [[KNBOrderViewController alloc] init];
-        orderVC.VCType = KNBOrderVCTypeOrderFinishing;
-        [self.navigationController pushViewController:orderVC animated:YES];
+        KNBOrderCheckApi *api = [[KNBOrderCheckApi alloc] init];
+        api.hudString = @"";
+        KNB_WS(weakSelf);
+        [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *_Nonnull request) {
+            if (api.requestSuccess) {
+                KNBOrderViewController *orderVC = [[KNBOrderViewController alloc] init];
+                orderVC.VCType = KNBOrderVCTypeOrderFinishing;
+                [weakSelf.navigationController pushViewController:orderVC animated:YES];
+            } else {
+                [LCProgressHUD showMessage:api.errMessage];
+            }
+        } failure:^(__kindof YTKBaseRequest *_Nonnull request) {
+            [LCProgressHUD showMessage:api.errMessage];
+        }];
+
     } else {
-        [LCProgressHUD showMessage:@"您还未登录,请先登录"];
+        [KNBAlertRemind alterWithTitle:@"" message:@"您还未登录,请先登录" buttonTitles:@[@"去登录",@"取消"] handler:^(NSInteger index, NSString *title) {
+            if ([title isEqualToString:@"去登录"]) {
+                KNBLoginViewController *loginVC = [[KNBLoginViewController alloc] init];
+                loginVC.vcType = KNBLoginTypeLogin;
+                [weakSelf presentViewController:loginVC animated:YES completion:nil];
+            }
+        }];
     }
 
 }
 
 #pragma mark - Getters And Setters
 /* getter和setter全部都放在最后*/
-- (UIImageView *)bgView {
+- (UIScrollView *)bgView {
     if (!_bgView) {
-        _bgView = [[UIImageView alloc] init];
-        _bgView.image = KNBImages(@"knb_default_style");
+        _bgView = [[UIScrollView alloc] init];
     }
     return _bgView;
+}
+
+- (UIImageView *)bgImageView {
+    if (!_bgImageView) {
+        _bgImageView = [[UIImageView alloc] init];
+    }
+    return _bgImageView;
 }
 
 - (UIButton *)enterButton {

@@ -110,12 +110,12 @@ const NSInteger KNTabBarButtonTitleLabelTag = 666;
         button.imageEdgeInsets = UIEdgeInsetsMake(0, 0, KNB_TAB_IMAGEMARGIN, 0);
         CGFloat buttonWith = KNB_SCREEN_WIDTH / selectImgCount;
         button.adjustsImageWhenHighlighted = NO;
-        CGRect titleLabelFrame = CGRectMake(0, 35, buttonWith, 20);
+        CGRect titleLabelFrame = CGRectMake(0, 30, buttonWith, 20);
         if (i == 2) {
             CGFloat plusX = buttonWith * i;
             CGFloat plusY = - 25;
             button.frame = CGRectMake(plusX, plusY, buttonWith, KNB_TAB_HEIGHT + 15);
-            titleLabelFrame = CGRectMake(0, 60, buttonWith, 20);
+            titleLabelFrame = CGRectMake(0, 55, buttonWith, 20);
         } else {
             button.frame = CGRectMake(buttonWith * i, 0, buttonWith, KNB_TAB_HEIGHT);
         }
@@ -125,7 +125,7 @@ const NSInteger KNTabBarButtonTitleLabelTag = 666;
         titleLabel.textAlignment = NSTextAlignmentCenter;
         titleLabel.text = self.titlesArray[i];
         titleLabel.textColor = self.titleDefaultColor;
-        titleLabel.font = [UIFont systemFontOfSize:10.0];
+        titleLabel.font = [UIFont systemFontOfSize:12.0];
         [button addSubview:titleLabel];
 
 //        if (i == [KNBUserInfo shareInstance].userInterestPageSelectIndex) {

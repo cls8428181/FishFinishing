@@ -7,11 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "KNBMeAboutModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface KNBMeAboutFooterView : UIView
-
+@property (nonatomic, strong) KNBMeAboutModel *model;
 @end
 
 NS_ASSUME_NONNULL_END

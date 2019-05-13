@@ -151,9 +151,9 @@
     if (!_backButton) {
         _backButton = [UIButton buttonWithType:UIButtonTypeCustom];
         if (self.style == KNBSearchViewStyleWhite) {
-            [_backButton setImage:[UIImage imageNamed:@"smart_btn_Return"] forState:UIControlStateNormal];
+            [_backButton setImage:[UIImage imageNamed:@"knb_back_black"] forState:UIControlStateNormal];
         } else {
-            [_backButton setImage:[UIImage imageNamed:@"icon_return"] forState:UIControlStateNormal];
+            [_backButton setImage:[UIImage imageNamed:@"knb_back_black"] forState:UIControlStateNormal];
         }
         [_backButton addTarget:self action:@selector(touchBackButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     }

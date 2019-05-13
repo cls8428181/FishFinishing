@@ -305,4 +305,12 @@
  */
 + (NSString *)timeStr:(long long)timestamp;
 
+/*
+ 
+ *某日和当前日期相隔多少天
+ 
+ */
+
++ (NSInteger)getDifferenceByDate:(NSString *)date;
+
 @end

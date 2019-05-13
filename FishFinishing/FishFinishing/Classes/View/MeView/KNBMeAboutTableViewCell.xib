@@ -62,12 +62,8 @@
                             <constraint firstItem="pbN-S2-h5V" firstAttribute="top" secondItem="Yzq-WC-qyH" secondAttribute="top" constant="14" id="zDH-Gy-SNc"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="boolean" value="YES">
-                                <string key="keyPath" base64-UTF8="YES">
-bGF5ZXIQLm1hc2tUb0JvdW5kcw
-</string>
-                            </userDefinedRuntimeAttribute>
                             <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="5"/>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                         </userDefinedRuntimeAttributes>
                     </view>
                 </subviews>

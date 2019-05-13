@@ -11,6 +11,7 @@
 @interface KNBRecruitmentProtocolTableViewCell ()
 
 @property (weak, nonatomic) IBOutlet UIButton *agreeButton;
+@property (weak, nonatomic) IBOutlet UIButton *protocolButton;
 
 @end
 
@@ -33,6 +34,9 @@
 
 - (IBAction)selectButtonAction:(id)sender {
     !self.selectButtonBlock ?: self.selectButtonBlock(sender);
+}
+- (IBAction)protocolButtonAction:(id)sender {
+    !self.protocolButtonBlock ?: self.protocolButtonBlock();
 }
 
 @end

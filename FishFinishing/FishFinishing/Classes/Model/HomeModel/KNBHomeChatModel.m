@@ -21,3 +21,17 @@
              };
 }
 @end
+
+@implementation KNBHomeChatDetailModel
++ (NSDictionary *)JSONKeyPathsByPropertyKey {
+    return @{
+             @"caseId" : @"id",
+             @"title" : @"title",
+             @"content" : @"content",
+             @"img" : @"img",
+             @"browse_num" : @"browse_num",
+             @"created_at" : @"created_at",
+             @"subTitle" : @"sub_title"
+             };
+}
+@end

@@ -197,8 +197,18 @@
     if (messages.count == 3) {
         NSString *sharTitle = [messages[0] stringByConvertingHTMLToPlainText];
         NSString *shareContent = [messages[1] stringByDecodingHTMLEntities];
+        NSString *shareUrl = [messages[2] stringByConvertingHTMLToPlainText];
+
+        [[KNUMManager shareInstance] showShareViewWithShareInfoTitle:sharTitle shareImageName:@"" desc:shareContent shareUrl:shareUrl currentViewController:self];
+    }
+}
+
+- (void)shareImageWithMessages:(NSArray *)messages image:(UIImage *)image shareButtonBlock:(void (^)(NSInteger platformType, BOOL success))shareButtonBlock {
+    if (messages.count == 2) {
+        NSString *sharTitle = [messages[0] stringByConvertingHTMLToPlainText];
+        NSString *shareContent = [messages[1] stringByDecodingHTMLEntities];
         
-        [[KNUMManager shareInstance] showShareViewWithShareInfoTitle:sharTitle shareImageName:@"knb_default_user" desc:shareContent shareUrl:@"http://baidu.com" currentViewController:self];
+        [[KNUMManager shareInstance] showShareViewWithShareInfoTitle:sharTitle shareImage:image desc:shareContent currentViewController:self];
     }
 }
 

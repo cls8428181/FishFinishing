@@ -7,12 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "KNBHomeSubTableView.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface KNBHomeSubView : UIView<UIScrollViewDelegate>
 
 typedef void (^contentViewScrollEvent)(NSInteger);
+
+@property (nonatomic, strong) KNBHomeSubTableView *tableView;
 
 @property (strong ,nonatomic) UIScrollView *contentView;
 

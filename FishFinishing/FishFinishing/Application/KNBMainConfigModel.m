@@ -15,6 +15,8 @@ NSString *const KNB_ADJumpUrl = @"ad_url";                //启动广告跳转ur
 NSString *const KNB_BaseUrlKey = @"base_url";            //基本Url
 NSString *const KN_Version = @"version";                     // 版本号
 NSString *const KNB_UploadFile = @"/Api/Facilitator/uploadImage";   // 上传图片
+NSString *const KNB_GetCollocation = @"/Api/Default/getCollocation";   // 获取配置信息
+NSString *const KNB_RegistrationId = @"/Api/Index/setRegistrationId";   // 设置极光推送 token
 
 #pragma mark - 登录
 NSString *const KNBLogin_Register = @"/Api/Index/register";       //注册
@@ -24,6 +26,7 @@ NSString *const KNBLogin_Binding = @"/Api/Index/binding";        //绑定手机�
 NSString *const KNBLogin_Modify = @"/Api/Index/changepwd";   //修改密码
 NSString *const KNBLogin_ModifyUserInfo = @"/Api/Index/modify";//修改用户信息
 NSString *const KNBLogin_Login = @"/Api/Index/login";              //登录
+NSString *const KNBLogin_UserInfo = @"/Api/Index/getUserInfo";        //返回用户信息
 
 #pragma mark - 首页
 NSString *const KNBHome_Banner = @"/Api/Default/getbanner";      //获取 banner 图
@@ -53,14 +56,19 @@ NSString *const KNBRecruitment_ModifyFacilitator = @"/Api/Facilitator/modifyFaci
 NSString *const KNBRecruitment_IncreaseBrowse = @"/Api/Facilitator/increaseBrowse";   //增加装修案列浏览量
 NSString *const KNBRecruitment_Getlist = @"/Api/Facilitator/getlist";   //获取服务商列表
 NSString *const KNBRecruitment_StickTime = @"/Api/Facilitator/getStickTime";   //获取置顶剩余时间
+NSString *const KNBRecruitment_DefaultShow = @"/Api/Facilitator/setDefaultShow";   //推荐
+
 
 #pragma mark - 免费预约
-NSString *const KNBOrder_ServerType = @"/Api/Facilitator/getservice";   //免费预约服务类型
-NSString *const KNBOrder_Style = @"/Api/Facilitator/getStyle";               //装修风格
-NSString *const KNBOrder_Area = @"/Api/Default/getarea";                    //获取所有省市区
-NSString *const KNBOrder_Unit = @"/Api/Facilitator/getApartment";        //获取户型
-NSString *const KNBOrder_ModifyPower = @"/Api/Facilitator/judgeModifyPower";        //检查是否有修改权限
-NSString *const KNBOrder_Bespoke = @"/Api/Default/bespoke";        //免费预约
+NSString *const KNBOrder_ServerType = @"/Api/Facilitator/getservice";            //免费预约服务类型
+NSString *const KNBOrder_Style = @"/Api/Facilitator/getStyle";                   //装修风格
+NSString *const KNBOrder_Area = @"/Api/Default/getarea";                         //获取所有省市区
+NSString *const KNBOrder_Unit = @"/Api/Facilitator/getApartment";                //获取户型
+NSString *const KNBOrder_AreaRange = @"/Api/Facilitator/getAreaRange";           //获取面积
+NSString *const KNBOrder_ModifyPower = @"/Api/Facilitator/judgeModifyPower";     //检查是否有修改权限
+NSString *const KNBOrder_CheckCaseNum = @"/Api/Facilitator/checkCaseNum";        //检查能否上传案例或产品
+NSString *const KNBOrder_Bespoke = @"/Api/Default/bespoke";                      //免费预约
+NSString *const KNBOrder_CheckBespoke = @"/Api/Default/checkBespoke";            //免费预约
 
 #pragma mark - 支付相关
 NSString *const KNBOrder_WechatPay = @"/Api/Payment/createOrderByWeiXin";        //微信支付统一下单接口

@@ -11,6 +11,7 @@
 
 @interface KNBRecruitmentDomainTableViewCell () <FMTagsViewDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *describeLabel;
 @property (weak, nonatomic) IBOutlet UIView *tagsView;
 //标签视图
 @property (nonatomic, strong) FMTagsView *tagView;
@@ -36,13 +37,15 @@
 - (void)setType:(KNBRecruitmentDomainType)type {
     if (type == KNBRecruitmentDomainTypeDefault) {
         self.titleLabel.text = @"擅长领域:";
+        self.describeLabel.text = @"请选择擅长领域";
     } else {
         self.titleLabel.text = @"服务选择:";
+        self.describeLabel.text = @"请选择服务";
     }
 }
 
 - (void)setTagsViewDataSource:(NSArray *)dataArray {
-    
+    self.describeLabel.hidden = YES;
     [self.tagsView addSubview:self.tagView];
     NSMutableArray *tempArray = [NSMutableArray array];
     for (NSString *string in dataArray) {
@@ -55,6 +58,7 @@
     [self.tagView removeTagAtIndex:index];
     if (isNullArray(self.tagView.tagsArray)) {
         [self.tagView removeFromSuperview];
+        self.describeLabel.hidden = NO;
     }
 }
 

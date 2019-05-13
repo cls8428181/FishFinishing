@@ -178,14 +178,19 @@
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
     if (component == 0) {
         self.selectRow = row;
+        [self.selectValueArr removeAllObjects];
         KNBRecruitmentTypeModel *model = self.dataArray[self.selectRow];
         [self.selectValueArr insertObject:model atIndex:0];
         [self.selectValueArr insertObject:model.childList.firstObject atIndex:1];
         [pickerView reloadComponent:1];
+        [pickerView selectRow:0 inComponent:1 animated:NO];
     } else {
         KNBRecruitmentTypeModel *model = self.dataArray[self.selectRow];
         if (self.selectValueArr.count == 0) {
             [self.selectValueArr insertObject:model atIndex:0];
+        }
+        if (self.selectValueArr.count > 1) {
+            [self.selectValueArr removeLastObject];
         }
         [self.selectValueArr insertObject:model.childList[row] atIndex:1];
     }
@@ -258,6 +263,11 @@
     [self dismissWithAnimation:YES];
     // 点击确定按钮后，执行block回调
     if(_resultBlock) {
+        if (isNullArray(self.selectValueArr)) {
+            KNBRecruitmentTypeModel *model = self.dataArray[0];
+            [self.selectValueArr insertObject:model atIndex:0];
+            [self.selectValueArr insertObject:model.childList.firstObject atIndex:1];
+        }
         _resultBlock(self.selectValueArr);
     }
 }

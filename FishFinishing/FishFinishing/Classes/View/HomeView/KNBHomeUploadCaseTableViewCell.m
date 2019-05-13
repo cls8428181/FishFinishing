@@ -21,7 +21,7 @@
 @implementation KNBHomeUploadCaseTableViewCell
 
 #pragma mark - life cycle
-+ (instancetype)cellWithTableView:(UITableView *)tableView {
++ (instancetype)cellWithTableView:(UITableView *)tableView dataArray:(NSMutableArray *)heightArray {
     static NSString *ID = @"KNBHomeUploadCaseTableViewCell";
     KNBHomeUploadCaseTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
     if (!cell) {
@@ -29,6 +29,10 @@
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.backgroundColor = [UIColor colorWithHex:0xfafafa];
+    if (!isNullArray(heightArray)) {
+        [cell.dataArray removeAllObjects];
+        [cell.dataArray addObjectsFromArray:heightArray];
+    }
     return cell;
 }
 
@@ -177,6 +181,7 @@
     KNB_WS(weakSelf);
     UIImage *newPhoto = [info objectForKey:@"UIImagePickerControllerEditedImage"];
     [self.dataArray addObject:newPhoto];
+    !self.addCaseBlock ?: self.addCaseBlock(self.dataArray);
     [[self getCurrentViewController] dismissViewControllerAnimated:YES completion:^{
         [weakSelf.collectionView reloadData];
     }];
@@ -237,5 +242,4 @@
     }
     return _dataArray;
 }
-
 @end

@@ -16,6 +16,7 @@
 #import "KNBDSFreeOrderPhoneTableViewCell.h"
 #import "KNBDSFreeOrderFooterView.h"
 #import "KNBDSFreeOrderEnterTableViewCell.h"
+#import "NSTimer+EOCBlocksSupport.h"
 #import "KNBAddressPickerView.h"
 #import "KNBHomeBespokeApi.h"
 #import "KNBOrderModel.h"
@@ -35,16 +36,25 @@
 @property (nonatomic, strong) UILabel *titleLabel;
 //服务商按钮
 @property (nonatomic, strong) UIButton *titleButton;
+// 定时器
+@property (nonatomic, strong) NSTimer *timer;
 //header view
 @property (nonatomic, strong) KNBDesignSketchFreeOrderHeaderView *headerView;
 //footer view
 @property (nonatomic, strong) KNBDSFreeOrderFooterView *footerView;
 @property (nonatomic, strong) KNBOrderModel *orderModel;
+//计数
+@property (nonatomic, assign) NSInteger index;
 @end
 
 @implementation KNBHomeOfferViewController
 
 #pragma mark - life cycle
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    self.bgView.contentSize = CGSizeMake(KNB_SCREEN_WIDTH,730);
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -57,6 +67,10 @@
     [self fetchData];
 }
 
+- (void)dealloc{
+    [self destoryTimer];
+}
+
 #pragma mark - Setup UI Constraints
 /*
  *  在这里添加UIView的约束布局相关代码
@@ -65,8 +79,7 @@
     KNB_WS(weakSelf);
     [self.bgView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(KNB_NAV_HEIGHT);
-        make.left.right.equalTo(weakSelf.view);
-        make.height.mas_equalTo(KNB_SCREEN_HEIGHT - KNB_NAV_HEIGHT);
+        make.left.right.bottom.equalTo(weakSelf.view);
     }];
     if (self.faceId) {
         [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -83,7 +96,7 @@
         if (weakSelf.faceId) {
             make.top.equalTo(weakSelf.titleButton.mas_bottom).mas_offset(12);
         } else {
-            make.top.equalTo(weakSelf.naviView.mas_bottom).mas_offset(12);
+            make.top.equalTo(weakSelf.bgView.mas_bottom).mas_offset(12);
         }
         make.right.mas_equalTo(-12);
         make.height.mas_equalTo(90);
@@ -94,7 +107,7 @@
 - (void)configuration {
     self.naviView.title = @"免费获取装修预算";
     [self.naviView addLeftBarItemImageName:@"knb_back_black" target:self sel:@selector(backAction)];
-    [self.naviView addRightBarItemImageName:@"knb_design_share" target:self sel:@selector(shareAction)];
+    [self.naviView addRightBarItemImageName:@"knb_icon_share" target:self sel:@selector(shareAction)];
     self.naviView.titleNaviLabel.textColor = [UIColor blackColor];
     self.view.backgroundColor = [UIColor whiteColor];
     self.knbTableView.backgroundColor = [UIColor whiteColor];
@@ -104,10 +117,11 @@
     self.knbTableView.layer.shadowRadius = 5;
     self.knbTableView.clipsToBounds = false;
     self.knbTableView.scrollEnabled = NO;
+    self.index = 0;
     if (self.faceId) {
         self.knbTableView.frame = CGRectMake(12, 160, KNB_SCREEN_WIDTH - 24, 530);
     } else {
-        self.knbTableView.frame = CGRectMake(12, KNB_NAV_HEIGHT + 12, KNB_SCREEN_WIDTH - 24, 530);
+        self.knbTableView.frame = CGRectMake(12, KNB_NAV_HEIGHT + 30, KNB_SCREEN_WIDTH - 24, 530);
     }
     self.footerView.frame = CGRectMake(12, CGRectGetMaxY(self.knbTableView.frame) + 5, KNB_SCREEN_WIDTH - 24, 38);
 }
@@ -122,6 +136,7 @@
     [self.bgView addSubview:self.knbTableView];
     [self.bgView addSubview:self.footerView];
     self.knbTableView.tableHeaderView = self.headerView;
+    [self beginTimer];
 }
 
 - (void)fetchData {
@@ -235,7 +250,29 @@
 }
 
 - (void)shareAction {
-    
+    NSString *urlStr = @"http://dayuapp.idayu.cn/Home/quote.html";
+    NSString *name = @"大鱼装修";
+    NSString *describeStr = @"大鱼装修";
+    [self shareMessages:@[ name, describeStr, urlStr ] isActionType:NO shareButtonBlock:nil];
+}
+
+/**
+ *  开始计时
+ */
+- (void)beginTimer {
+    if (_timer == nil) {
+        __weak typeof(self) weakSelf = self;
+        self.timer = [NSTimer eoc_scheduledTimerWithTimeInterval:0.1 block:^{
+            weakSelf.headerView.numLabel.text = [NSString stringWithFormat:@"%ld",(long)self.index++];
+        } repeats:YES];
+    }
+}
+
+- (void)destoryTimer {
+    if (_timer != nil) {
+        [_timer invalidate];
+        _timer = nil;
+    }
 }
 
 #pragma mark - Getters And Setters
@@ -243,7 +280,6 @@
 - (UIScrollView *)bgView {
     if (!_bgView) {
         _bgView = [[UIScrollView alloc] init];
-        _bgView.contentSize = CGSizeMake(KNB_SCREEN_WIDTH,740);
     }
     return _bgView;
 }
@@ -259,7 +295,7 @@
 - (KNBDesignSketchFreeOrderHeaderView *)headerView {
     if (!_headerView) {
         _headerView = [[NSBundle mainBundle] loadNibNamed:@"KNBDesignSketchFreeOrderHeaderView" owner:nil options:nil].lastObject;
-        _headerView.frame = CGRectMake(0, 0, KNB_SCREEN_WIDTH, 205);
+        _headerView.frame = CGRectMake(0, 0, KNB_SCREEN_WIDTH, 210);
     }
     return _headerView;
 }

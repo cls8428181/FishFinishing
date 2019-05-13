@@ -12,17 +12,17 @@
     NSString *_title;
     NSInteger _style_id;
     double _acreage;
-    NSString *_apartment;
+    NSInteger _apartment_id;
     NSString *_imgs;
     NSString *_price;
 }
 
-- (instancetype)initWithTitle:(NSString *)title styleId:(NSInteger)styleId acreage:(double)acreage apartment:(NSString *)apartment imgs:(NSString *)imgs {
+- (instancetype)initWithTitle:(NSString *)title styleId:(NSInteger)styleId acreage:(double)acreage apartmentId:(NSInteger)apartmentId imgs:(NSString *)imgs {
     if (self = [super init]) {
         _title = title;
         _style_id = styleId;
         _acreage = acreage;
-        _apartment = apartment;
+        _apartment_id = apartmentId;
         _imgs = imgs;
         _type = 1;
     }
@@ -49,7 +49,7 @@
                           @"title" : _title,
                           @"style_id" : @(_style_id),
                           @"acreage" : @(_acreage),
-                          @"apartment" : _apartment,
+                          @"apartment_id" : @(_apartment_id),
                           @"remark" : _remark ?: @"",
                           @"price" : _price ?: @"",
                           @"imgs" : _imgs

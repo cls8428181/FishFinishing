@@ -24,7 +24,7 @@
 
 - (id)requestArgument {
     NSDictionary *dic = @{
-                          @"_fac_id" : @(_fac_id)
+                          @"fac_id" : @(_fac_id)
                           }; //字典
     [self.baseMuDic addEntriesFromDictionary:dic];
     return self.baseMuDic;

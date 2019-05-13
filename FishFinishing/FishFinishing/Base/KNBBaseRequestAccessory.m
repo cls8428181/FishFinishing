@@ -11,6 +11,7 @@
 #import <LCProgressHUD.h>
 #import "AppDelegate.h"
 #import "KNBBaseRequest.h"
+#import "KNBLoginViewController.h"
 
 
 @implementation KNBBaseRequestAccessory
@@ -31,19 +32,20 @@
 
 - (void)requestDidStop:(id)request {
     KNBBaseRequest *baseRequest = (KNBBaseRequest *)request;
-//    if ([KNBUserInfo shareInstance].userInfo && baseRequest.getRequestStatuCode == KNTraingError_token && ![NSStringFromClass([request class]) isEqualToString:@"KNBMainConfigApi"]) {
-//        [LCProgressHUD hide];
-//        [[KNBUserInfo shareInstance] logout];
-//        [KNB_AppDelegate.navController popToRootViewControllerAnimated:NO];
-//        [KNB_TabBarVc turnToControllerIndex:[KNBUserInfo shareInstance].userInterestPageSelectIndex];
-//        KNBLoginViewController *logInVC = [[KNBLoginViewController alloc] init];
-//        UINavigationController *navigationVC = [[UINavigationController alloc] initWithRootViewController:logInVC];
-//        [KNB_AppDelegate.navController presentViewController:navigationVC animated:YES completion:nil];
-//        [KNBAlertRemind alterWithTitle:@"提示" message:@"登录信息已失效,请重新登录" buttonTitles:@[ @"知道了" ] handler:^(NSInteger index, NSString *title){
-//
-//        }];
-//        return;
-//    }
+    if ([KNBUserInfo shareInstance].userInfo && baseRequest.getRequestStatuCode == KNTraingError_token && [baseRequest.errMessage containsString:@"请重新登录"]) {
+        
+        [LCProgressHUD hide];
+        [[KNBUserInfo shareInstance] logout];
+        [KNB_AppDelegate.navController popToRootViewControllerAnimated:NO];
+        [KNB_TabBarVc turnToControllerIndex:KNB_AppDelegate.tabBarController.lastSelectIndex];
+        KNBLoginViewController *logInVC = [[KNBLoginViewController alloc] init];
+        UINavigationController *navigationVC = [[UINavigationController alloc] initWithRootViewController:logInVC];
+        [KNB_AppDelegate.navController presentViewController:navigationVC animated:YES completion:nil];
+        [KNBAlertRemind alterWithTitle:@"提示" message:@"登录信息已失效,请重新登录" buttonTitles:@[ @"知道了" ] handler:^(NSInteger index, NSString *title){
+
+        }];
+        return;
+    }
 
     if (baseRequest.needHud || !isNullStr(baseRequest.hudString) || baseRequest.hudString != nil) {
         //请求失败

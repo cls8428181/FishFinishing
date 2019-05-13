@@ -13,6 +13,8 @@
     return @{
              @"cat_id" : @"cat_id",
              @"serviceId" : @"id",
+             @"fac_id" : @"fac_id",
+             @"facilitator_id" : @"facilitator_id",
              @"distance" : @"distance",
              @"name" : @"name",
              @"logo" : @"logo",
@@ -27,7 +29,11 @@
              @"remark" : @"remark",
              @"created_at" : @"created_at",
              @"parent_cat_name" : @"parent_cat_name",
-             @"is_stick" : @"is_stick"
+             @"parent_cat_id" : @"cat_parent_id",
+             @"is_stick" : @"is_stick",
+             @"is_experience" : @"is_experience",
+             @"due_time" : @"due_time",
+             @"share_id" : @"share_id"
              };
 }
 

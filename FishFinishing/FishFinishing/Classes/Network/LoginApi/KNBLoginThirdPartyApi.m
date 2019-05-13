@@ -19,7 +19,15 @@
 - (instancetype)initWithOpenid:(NSString *)openid loginType:(KNBLoginThirdPartyType)loginType portrait:(NSString *)portrait nickName:(NSString *)nickName sex:(NSString *)sex {
     if (self = [super init]) {
         _openid = openid;
-        _login_type = (loginType == KNBLoginThirdPartyTypeWechat ? @"weixin" : (loginType == KNBLoginThirdPartyTypeBlog ? @"weibo" : @"qq"));
+        if (loginType == KNBLoginThirdPartyTypeWechat) {
+            _login_type = @"weixin";
+        }
+        if (loginType == KNBLoginThirdPartyTypeQQ) {
+            _login_type = @"qq";
+        }
+        if (loginType == KNBLoginThirdPartyTypeBlog) {
+            _login_type = @"weibo";
+        }
         _portrait_img = portrait;
         _nickname = nickName;
         _sex = sex;

@@ -12,7 +12,11 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface KNBHomeCompanyServerTableViewCell : UITableViewCell
+
 @property (nonatomic, strong) KNBHomeServiceModel *model;
+
+@property (nonatomic, assign) BOOL isEdit;
+
 @property (nonatomic, copy) void (^topButtonBlock)(void);
 
 /**
@@ -23,7 +27,8 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  cell 高度
  */
-+ (CGFloat)cellHeight;
++ (CGFloat)cellHeight:(BOOL)isEdit;
+
 @end
 
 NS_ASSUME_NONNULL_END

@@ -17,18 +17,24 @@
 #import "BRChoicePickerView.h"
 #import "BRStringPickerView.h"
 #import "KNBUploadFileApi.h"
+#import "KNBHomeUploadCaseFooterView.h"
 
 @interface KNBHomeCompanyUploadCaseViewController ()
 //图片数组
 @property (nonatomic, strong) NSMutableArray *imgsArray;
+//标题
+@property (nonatomic, copy) NSString *titleString;
 //面积
 @property (nonatomic, copy) NSString *areaString;
 //户型
-@property (nonatomic, copy) NSString *houseString;
+@property (nonatomic, assign) NSInteger houseId;
 //风格
 @property (nonatomic, strong) KNBRecruitmentTypeModel *styleModel;
 //案例描述
 @property (nonatomic, copy) NSString *desribeString;
+
+@property (nonatomic, strong) KNBHomeUploadCaseFooterView *footerView;
+
 @end
 
 @implementation KNBHomeCompanyUploadCaseViewController
@@ -53,15 +59,16 @@
 - (void)addUI {
     [self.view addSubview:self.knGroupTableView];
     self.knGroupTableView.backgroundColor = [UIColor colorWithHex:0xfafafa];
+    self.knGroupTableView.tableFooterView = self.footerView;
 }
 
 #pragma mark - tableview delegate & dataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 2;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return section == 0 ? 3 : 1;
+    return 4;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -70,8 +77,12 @@
         if (indexPath.row == 0) {
             cell = [KNBOrderTextfieldTableViewCell cellWithTableView:tableView];
             KNBOrderTextfieldTableViewCell *typeCell = (KNBOrderTextfieldTableViewCell *)cell;
-            typeCell.type = KNBOrderTextFieldTypeArea;
+            typeCell.type = KNBOrderTextFieldTypeTitle;
         } else if (indexPath.row == 1) {
+            cell = [KNBOrderTextfieldTableViewCell cellWithTableView:tableView];
+            KNBOrderTextfieldTableViewCell *typeCell = (KNBOrderTextfieldTableViewCell *)cell;
+            typeCell.type = KNBOrderTextFieldTypeArea;
+        } else if (indexPath.row == 2) {
             cell = [KNBOrderDownTableViewCell cellWithTableView:tableView];
             KNBOrderDownTableViewCell *typeCell = (KNBOrderDownTableViewCell *)cell;
             typeCell.type = KNBOrderDownTypeHouse;
@@ -80,15 +91,12 @@
             KNBOrderDownTableViewCell *typeCell = (KNBOrderDownTableViewCell *)cell;
             typeCell.type = KNBOrderDownTypeStyle;
         }
-    } else {
-        cell = [KNBHomeUploadCaseTableViewCell cellWithTableView:tableView];
-
     }
     return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return indexPath.section == 0 ? [KNBOrderDownTableViewCell cellHeight] :[KNBHomeUploadCaseTableViewCell cellHeight:self.imgsArray.count] + 100;
+    return [KNBOrderDownTableViewCell cellHeight];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
@@ -103,15 +111,14 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
-        if (indexPath.row == 1) {
+        if (indexPath.row == 2) {
             [self unitRequest];
         }
-        if (indexPath.row == 2) {
+        if (indexPath.row == 3) {
             [self finishingStyleRequest];
         }
     }
 }
-
 //请求户型数据
 - (void)unitRequest {
     KNBOrderUnitApi *api = [[KNBOrderUnitApi alloc] init];
@@ -121,25 +128,18 @@
         if (api.requestSuccess) {
             NSDictionary *dic = request.responseObject[@"list"];
             NSArray *modelArray = [KNBRecruitmentUnitModel changeResponseJSONObject:dic];
-            [BRChoicePickerView showTagsPickerWithTitle:@"选择户型" dataSource:modelArray resultBlock:^(id selectValue) {
-                NSArray *tempArray = (NSArray *)selectValue;
-                KNBOrderDownTableViewCell *cell = [weakSelf.knGroupTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]];
-                [cell setButtonTitle:[NSString stringWithFormat:@"%ld室、%ld厅、%ld厨、%ld卫、%ld阳台",
-                                      [tempArray[0] integerValue],
-                                      [tempArray[1] integerValue],
-                                      [tempArray[2] integerValue],
-                                      [tempArray[3] integerValue],
-                                      [tempArray[4] integerValue]
-                                      ]];
-                weakSelf.houseString = [NSString stringWithFormat:@"%ld室%ld厅%ld厨%ld卫%ld阳台",
-                                                  [tempArray[0] integerValue],
-                                                  [tempArray[1] integerValue],
-                                                  [tempArray[2] integerValue],
-                                                  [tempArray[3] integerValue],
-                                                  [tempArray[4] integerValue]
-                                                  ];
-            } cancelBlock:^{
-                
+            NSMutableArray *titleArray = [NSMutableArray array];
+            for (KNBRecruitmentUnitModel *model in modelArray) {
+                [titleArray addObject:model.name];
+            }
+            [BRStringPickerView showStringPickerWithTitle:@"选择户型" dataSource:titleArray defaultSelValue:nil resultBlock:^(id selectValue) {
+                KNBOrderDownTableViewCell *cell = [weakSelf.knGroupTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:0]];
+                [cell setButtonTitle:selectValue];
+                for (KNBRecruitmentUnitModel *model in modelArray) {
+                    if ([model.name isEqualToString:selectValue]) {
+                        weakSelf.houseId = [model.houseId integerValue];
+                    }
+                }
             }];
         } else {
             [weakSelf requestSuccess:NO requestEnd:NO];
@@ -163,9 +163,13 @@
                 [titleArray addObject:model.catName];
             }
             [BRStringPickerView showStringPickerWithTitle:@"选择风格" dataSource:titleArray defaultSelValue:nil resultBlock:^(id selectValue) {
-                KNBOrderDownTableViewCell *cell = [weakSelf.knGroupTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:0]];
+                KNBOrderDownTableViewCell *cell = [weakSelf.knGroupTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:3 inSection:0]];
                 [cell setButtonTitle:selectValue];
-                weakSelf.styleModel.catName = selectValue;
+                for (KNBRecruitmentTypeModel *model in modelArray) {
+                    if ([model.catName isEqualToString:selectValue]) {
+                        weakSelf.styleModel = model;
+                    }
+                }
             }];
         } else {
             [weakSelf requestSuccess:NO requestEnd:NO];
@@ -187,6 +191,7 @@
     if ([self checkInfoComplete]) {
         
         //上传图片
+        [LCProgressHUD showLoading:@""];
         [KNBUploadFileApi uploadWithRequests:self.imgsArray token:[KNBUserInfo shareInstance].token complete:^(NSArray *fileUrls) {
             if (!isNullArray(fileUrls)) {
                 NSString *imgsUrl = @"";
@@ -194,12 +199,13 @@
                     imgsUrl = [imgsUrl stringByAppendingString:imgUrl];
                     imgsUrl = [imgsUrl stringByAppendingString:@","];
                 }
-                KNBRecruitmentAddCaseApi *api = [[KNBRecruitmentAddCaseApi alloc] initWithTitle:self.desribeString styleId:[self.styleModel.typeId integerValue] acreage:[self.areaString doubleValue] apartment:self.houseString imgs:imgsUrl];
+                imgsUrl = [imgsUrl substringToIndex:[imgsUrl length]-1];
+                KNBRecruitmentAddCaseApi *api = [[KNBRecruitmentAddCaseApi alloc] initWithTitle:self.titleString styleId:[self.styleModel.typeId integerValue] acreage:[self.areaString doubleValue] apartmentId:self.houseId imgs:imgsUrl];
                 api.remark = self.desribeString;
-                api.hudString = @"";
                 KNB_WS(weakSelf);
                 [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *_Nonnull request) {
                     if (api.requestSuccess) {
+                        [LCProgressHUD hide];
                         [weakSelf.navigationController popViewControllerAnimated:YES];
                         !weakSelf.saveSuccessBlock ?: weakSelf.saveSuccessBlock();
                     } else {
@@ -216,20 +222,50 @@
 }
 
 - (BOOL)checkInfoComplete {
-    KNBOrderTextfieldTableViewCell *areaCell = [self.knGroupTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
-    KNBOrderDownTableViewCell *houseCell = [self.knGroupTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]];
-    KNBHomeUploadCaseTableViewCell *caseCell = [self.knGroupTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:1]];
-    if (isNullStr(areaCell.describeTextField.text) || isNullStr(houseCell.describeButton.titleLabel.text) || isNullStr(caseCell.describeText.text)) {
-        [LCProgressHUD showMessage:@"信息填写不完整"];
+    KNBOrderTextfieldTableViewCell *titleCell = [self.knGroupTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+    KNBOrderTextfieldTableViewCell *areaCell = [self.knGroupTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]];
+    KNBOrderDownTableViewCell *houseCell = [self.knGroupTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:0]];
+    KNBOrderDownTableViewCell *styleCell = [self.knGroupTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:3 inSection:0]];
+    self.imgsArray = self.footerView.dataArray;
+    if (isNullStr(titleCell.describeTextField.text)) {
+        [LCProgressHUD showMessage:@"题标为空"];
         return NO;
     }
+    if (isNullStr(areaCell.describeTextField.text)) {
+        [LCProgressHUD showMessage:@"面积为空"];
+        return NO;
+    }
+    if ([houseCell.describeButton.titleLabel.text isEqualToString:@"请选择户型"]) {
+        [LCProgressHUD showMessage:@"户型为空"];
+        return NO;
+    }
+    if ([styleCell.describeButton.titleLabel.text isEqualToString:@"请选择风格"]) {
+        [LCProgressHUD showMessage:@"风格为空"];
+        return NO;
+    }
+    if (isNullArray(self.imgsArray)) {
+        [LCProgressHUD showMessage:@"请至少上传一张图片"];
+        return NO;
+    }
+    self.titleString = titleCell.describeTextField.text;
     self.areaString = areaCell.describeTextField.text;
-    self.houseString = houseCell.describeButton.titleLabel.text;
-    self.desribeString = caseCell.describeText.text;
-    self.imgsArray = caseCell.dataArray;
+    self.desribeString = self.footerView.describeText.text;
     return YES;
 }
 
 #pragma mark - Getters And Setters
 /* getter和setter全部都放在最后*/
+- (KNBHomeUploadCaseFooterView *)footerView {
+    KNB_WS(weakSelf);
+    if (!_footerView) {
+        _footerView = [[KNBHomeUploadCaseFooterView alloc] init];
+        _footerView.titleLabel.text = @"案例描述:";
+        _footerView.imgsCount = weakSelf.imgsCount;
+        _footerView.frame = CGRectMake(0, 0, KNB_SCREEN_WIDTH, [KNBHomeUploadCaseTableViewCell cellHeight:self.imgsArray.count] + 100);
+        _footerView.addCaseBlock = ^(NSMutableArray * _Nonnull imgsArray) {
+            weakSelf.knGroupTableView.tableFooterView.height = [KNBHomeUploadCaseTableViewCell cellHeight:imgsArray.count] + 100;
+        };
+    }
+    return _footerView;
+}
 @end

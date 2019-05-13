@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface KNBRecruitmentCostApi : KNBBaseRequest
 
+@property (nonatomic, assign) NSInteger package_type;
 /**
  获取入驻费用
 

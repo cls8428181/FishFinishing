@@ -38,12 +38,10 @@
 
 - (void)setModel:(KNBHomeRecommendCaseModel *)model {
     [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:model.img] placeholderImage:KNBImages(@"knb_default_style")];
-    if ([model.type isEqualToString:@"1"]) {
-        self.titleLabel.text = model.style_name;
-    } else if ([model.type isEqualToString:@"2"]) {
-        self.titleLabel.text = model.apart;
+    if (isNullStr(model.cat_name)) {
+        self.titleLabel.text = model.name;
     } else {
-        self.titleLabel.text = model.acreage;
+        self.titleLabel.text = model.cat_name;
     }
 }
 

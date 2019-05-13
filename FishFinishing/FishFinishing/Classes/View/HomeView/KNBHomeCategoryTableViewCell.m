@@ -94,6 +94,10 @@
     [self.collectionView reloadData];
 }
 
+-(void)adButtonAction {
+    !self.adButtonBlock ?: self.adButtonBlock();
+}
+
 #pragma mark - lazy load
 - (UICollectionView *)collectionView {
     if (!_collectionView) {
@@ -117,6 +121,7 @@
     if (!_adButton) {
         _adButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [_adButton setImage:KNBImages(@"knb_home_ad") forState:UIControlStateNormal];
+        [_adButton addTarget:self action:@selector(adButtonAction) forControlEvents:UIControlEventTouchUpInside];
     }
     return _adButton;
 }

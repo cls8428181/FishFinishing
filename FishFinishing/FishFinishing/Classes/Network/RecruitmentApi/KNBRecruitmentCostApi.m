@@ -28,7 +28,8 @@
 - (id)requestArgument {
     NSDictionary *dic = @{
                           @"cat_id" : @(_cat_id),
-                          @"cost_type" : @(_cost_type)
+                          @"cost_type" : @(_cost_type),
+                          @"package_type" : @(_package_type) ?: @(0)
                           };
     [self.baseMuDic addEntriesFromDictionary:dic];
     return self.baseMuDic;

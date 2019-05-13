@@ -6,12 +6,13 @@
 //  Copyright © 2019 常立山. All rights reserved.
 //
 
-#import "KNBBaseViewController.h"
+#import "KNWebViewController.h"
+#import "KNBHomeChatModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface KNBHomeChatDetailViewController : KNBBaseViewController
-
+@interface KNBHomeChatDetailViewController : KNWebViewController
+@property (nonatomic, strong) KNBHomeChatModel *model;
 @end
 
 NS_ASSUME_NONNULL_END

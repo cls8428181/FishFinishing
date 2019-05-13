@@ -77,10 +77,18 @@
     }
     NSString *userToken = [KNBUserInfo shareInstance].token;
     NSInteger user_id = [[KNBUserInfo shareInstance].userId integerValue];
-    NSDictionary *dic = @{
-                          @"token" : userToken ?: @"",
-                           @"user_id" : @(user_id) ?: @(0),
-                           };
+    NSDictionary *dic = nil;
+    if (isNullStr(userToken)) {
+        dic = @{
+                @"user_id" : @(user_id) ?: @(0),
+                };
+    } else {
+        dic = @{
+                @"token" : userToken ?: @"",
+                @"user_id" : @(user_id) ?: @(0),
+                };
+    }
+
     [_baseMuDic addEntriesFromDictionary:dic];
     return _baseMuDic;
 }

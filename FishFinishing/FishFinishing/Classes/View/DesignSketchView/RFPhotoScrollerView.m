@@ -18,7 +18,6 @@
 @implementation RFPhotoScrollerView
 {
     NSArray *_imagesArray;
-    NSInteger _currentIndex;
     UILabel *_pageLabel;
     CGFloat _offset;
 }
@@ -35,7 +34,7 @@
 //        [self addGestureRecognizer:tap];
 
         // 页码显示
-        UILabel *pageLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 100, kScreenWidth, 20)];
+        UILabel *pageLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, KNB_NAV_HEIGHT, kScreenWidth, 20)];
         _pageLabel = pageLabel;
         pageLabel.textAlignment = NSTextAlignmentCenter;
         pageLabel.textColor = [UIColor whiteColor];

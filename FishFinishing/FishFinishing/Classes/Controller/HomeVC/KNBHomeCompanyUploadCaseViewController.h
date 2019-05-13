@@ -11,6 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface KNBHomeCompanyUploadCaseViewController : KNBBaseViewController
+@property (nonatomic, assign) NSInteger imgsCount;
 @property (nonatomic, copy) void (^saveSuccessBlock)(void);
 @end
 

@@ -12,13 +12,14 @@
 #import "AppDelegate.h"
 #import "KNBMainConfigModel.h"
 #import <AFNetworking.h>
-//#import "KNBRemindUpdate.h"
+#import <JPUSHService.h>
 #import "KNGetUserLoaction.h"
 #import "NSString+MD5.h"
 #import "KNPaypp.h"
 #import "YTKNetworkConfig.h"
 #import <YTKNetworkAgent.h>
-//#import "KNBPushNoticeModel.h"
+#import "KNBGetCollocationApi.h"
+#import <AMapFoundationKit/AMapFoundationKit.h>
 
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_10_0
 #import <UserNotifications/UserNotifications.h>
@@ -28,9 +29,10 @@
 #define kGtAppId @"hiTFn7zSlO7wz9LDRklFy4"
 #define kGtAppKey @"TO4lMW1FGT6b25knkS5vj6"
 #define kGtAppSecret @"uyrjpF2LmT7R8pBg9UK7w9"
+#define AMapKey @"de394abc7320a2062737a4897a209cfc"
 
 
-@interface KNBAppManager () <UNUserNotificationCenterDelegate>
+@interface KNBAppManager () <UNUserNotificationCenterDelegate,JPUSHRegisterDelegate>
 
 @end
 
@@ -48,128 +50,20 @@ KNB_DEFINE_SINGLETON_FOR_CLASS(KNBAppManager);
 }
 
 - (void)configureThird {
-    //游客登录配置
-    [self configVistorRole];
-    // 配置数据库路径
-//    [self configureCoreDataPath];
     // 配置微信支付
-    [KNPaypp registerWxApp:KN_WXUrlScheme];
-    // 判断网络状态
-    [self configureNetReachability];
+    [KNPaypp registerWxApp:KN_WeixinAppId];
     // 网络请求配置
     [self configureRequestFilters];
+    [self configureMainConfig];
     // 定位
     [[KNGetUserLoaction shareInstance] startLocation];
     //配置友盟分享
     [KNUMManager shareInstance];
+    
+    [self configureMapKit];
     //开启键盘控制
     [IQKeyboardManager sharedManager].enable = YES;
     [IQKeyboardManager sharedManager].shouldResignOnTouchOutside = YES;
-}
-
-#pragma mark-- VistorConfig
-/**
- 配置游客角色信息
- */
-- (void)configVistorRole {
-//    if ([KNBUserInfo shareInstance].isLogin) {
-//        return;
-//    }
-//    NSArray *role = [KNBUserInfo shareInstance].role;
-//    NSDictionary *currentRole = role[0];
-//    [[KNBUserInfo shareInstance] syncUserRoleInfo:currentRole];
-//    [[KNBUserInfo shareInstance] syncUserRoleCurrentOffice:currentRole[@"officeBean"][0]];
-}
-
-/**
- 数据库重命名方法
- */
-- (void)resetCoreDataName {
-//    NSString *userId = [KNBUserInfo shareInstance].userId;
-//    NSString *officeId = [KNBUserInfo shareInstance].officeId;
-//    if (isNullStr(userId) || isNullStr(officeId)) {
-//        return;
-//    }
-//    NSString *path = [KNB_PATH_LIBRARY stringByAppendingPathComponent:@"Application Support/KenuoTraining"];
-//    NSFileManager *fileManager = [NSFileManager defaultManager];
-//    NSArray *contents = [fileManager contentsOfDirectoryAtPath:path error:NULL];
-//    NSEnumerator *e = [contents objectEnumerator];
-//    // md5 加密 作为数据库名
-//    NSString *dbName = [[NSString stringWithFormat:@"%@%@", userId, officeId] MD5];
-//    NSString *filename;
-//    while ((filename = [e nextObject])) {
-//        if ([filename hasPrefix:userId]) {
-//            NSString *newName = [NSString stringWithFormat:@"%@.%@", dbName, filename.pathExtension];
-//            [fileManager moveItemAtPath:[NSString stringWithFormat:@"%@/%@", path, filename] toPath:[NSString stringWithFormat:@"%@/%@", path, newName] error:nil];
-//        }
-//    }
-//    [self configureCoreDataPath];
-}
-
-//#pragma mark - Configure CoreData
-//- (void)configureCoreDataPath {
-//    //3.0版本之后 本地数据库改为唯一数据库 md5 加密 作为数据库名称
-////    NSString *dbName = [@"KNBDataBase" MD5];
-////    [MagicalRecord cleanUp];
-////    NSString *sqlitName = [NSString stringWithFormat:@"%@.sqlite", dbName];
-////    [MagicalRecord setupCoreDataStackWithAutoMigratingSqliteStoreNamed:sqlitName];
-////    [MagicalRecord setLoggingLevel:MagicalRecordLoggingLevelOff];
-//
-//    /*3.1.0版本之后，本地数据库改为多个数据库，KNBDataBase md5加密作为未登录时记录数据库
-//      userId, officeId md5加密作为每个用户登录后用数据库
-//     */
-//    NSString *dbName;
-//    NSString *userId = [KNBUserInfo shareInstance].userId;
-//    NSString *officeId = [KNBUserInfo shareInstance].officeId;
-//    if ([userId isEqualToString:@"-1"] || [officeId isEqualToString:@"-1"]) {
-//        dbName = [NSString stringWithFormat:@"%@.sqlite", [@"KNBDataBase" MD5]];
-//    }else {
-//        dbName = [NSString stringWithFormat:@"%@.sqlite", [[NSString stringWithFormat:@"%@%@", userId, officeId] MD5]];
-//    }
-//
-//    if ([KNB_APP_VERSION isEqualToString:@"3.1.0"]) {
-//        NSString *path = [KNB_PATH_LIBRARY stringByAppendingPathComponent:@"Application Support/KenuoTraining"];
-//        NSFileManager *fileManager = [NSFileManager defaultManager];
-//        NSArray *contents = [fileManager contentsOfDirectoryAtPath:path error:NULL];
-//        NSEnumerator *e = [contents objectEnumerator];
-//        NSString *filename;
-//        while ((filename = [e nextObject])) {
-//            if ([filename hasPrefix:[NSString stringWithFormat:@"%@.sqlite", [@"KNBDataBase" MD5]]]) {
-//                NSString *newName = [NSString stringWithFormat:@"%@.%@", [dbName stringByDeletingPathExtension], filename.pathExtension];
-//                if (![newName isEqualToString:filename]) {
-//                    [fileManager moveItemAtPath:[NSString stringWithFormat:@"%@/%@", path, filename] toPath:[NSString stringWithFormat:@"%@/%@", path, newName] error:nil];
-//                }
-//            }
-//        }
-//    }
-//
-//    [MagicalRecord cleanUp];
-//    [MagicalRecord setupCoreDataStackWithAutoMigratingSqliteStoreNamed:dbName];
-//    [MagicalRecord setLoggingLevel:MagicalRecordLoggingLevelOff];
-//}
-
-#pragma mark - Configure NetWork
-- (void)configureNetReachability {
-    AFNetworkReachabilityManager *manager = [AFNetworkReachabilityManager sharedManager];
-    [manager startMonitoring];
-    [[AFNetworkReachabilityManager sharedManager] setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
-        switch (status) {
-            case AFNetworkReachabilityStatusUnknown:
-                NSLog(@"smart未知网络");
-                break;
-            case AFNetworkReachabilityStatusNotReachable:
-                NSLog(@"smart没有联网");
-                break;
-            case AFNetworkReachabilityStatusReachableViaWWAN:
-                NSLog(@"smart蜂窝数据");
-                break;
-            case AFNetworkReachabilityStatusReachableViaWiFi:
-                NSLog(@"smart无线");
-                break;
-            default:
-                break;
-        }
-    }];
 }
 
 - (void)configureRequestFilters {
@@ -186,44 +80,28 @@ KNB_DEFINE_SINGLETON_FOR_CLASS(KNBAppManager);
     config.securityPolicy = securityPolicy;
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.securityPolicy = securityPolicy;
-    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];    
     //服务端返回格式问题，后端返回的结果不是"application/json"，afn 的 jsonResponseSerializer 是不认的。这里做临时处理
     YTKNetworkAgent *agent = [YTKNetworkAgent sharedAgent];
     [agent setValue:[NSSet setWithObjects:@"application/json", @"text/plain", @"text/javascript", @"text/json",@"text/html", nil]
          forKeyPath:@"jsonResponseSerializer.acceptableContentTypes"];
-    
-//    KNBMainConfigApi *mainConfig = [[KNBMainConfigApi alloc] init];
-//    // 10014 token失效
-//    [mainConfig startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *request) {
-//        if (request.responseJSONObject && request.responseStatusCode == 200) {
-//            if (mainConfig.requestSuccess ||
-//                mainConfig.getRequestStatuCode == KNTraingError_token ||
-//                mainConfig.getRequestStatuCode == KNTraingError_update) {
-//                NSDictionary *interfaceDict = request.responseJSONObject[@"data"];
-//                //校验协议
-//                [self judgeProtocolStatus:interfaceDict[@"is_exist"]];
-//                //保存主配置接口
-//                [[KNBMainConfigModel shareInstance] regestMainConfig:request.responseJSONObject];
-//                [[KNBMainConfigModel shareInstance] newVersion];
-//            }
-//
-//            if (mainConfig.requestSuccess) {
-//                NSString *version = [[KNBMainConfigModel shareInstance] newVersion];
-//                [[KNBRemindUpdate shareInstance] remindUpdateApp:version];
-//            } else if (mainConfig.getRequestStatuCode == KNTraingError_update) { // 强制更新
-//                NSString *version = [[KNBMainConfigModel shareInstance] newVersion];
-//                [[KNBRemindUpdate shareInstance] remindForcedUpdate:version];
-//            }
-//            [[KNSmartUpDataNetWork shareInstance] getResultProblemList];
-//        }
-//    } failure:^(__kindof YTKBaseRequest *request) {
-//        NSLog(@"mainConfig failed");
-//    }];
 }
 
-#pragma mark - 文件加密和解密文件清除
-- (void)clearTmpSecretFilePath {
-//    [KNBFileEncrpt deleteTmpFile];
+- (void)configureMainConfig {
+    KNBGetCollocationApi *api = [[KNBGetCollocationApi alloc] initWithKey:@"System_setup"];
+    api.hudString = @"";
+    [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *_Nonnull request) {
+        if (api.requestSuccess) {
+            NSDictionary *dic = request.responseObject[@"list"];
+            NSString *openString = dic[@"is_open_payment"];
+            [[NSUserDefaults standardUserDefaults] setObject:openString forKey:@"OpenPayment"];
+        }
+    } failure:^(__kindof YTKBaseRequest *_Nonnull request) {
+    }];
+}
+
+- (void)configureMapKit {
+    [AMapServices sharedServices].apiKey = AMapKey;
 }
 
 #pragma mark - 用户通知(推送) _自定义方法
@@ -275,7 +153,6 @@ KNB_DEFINE_SINGLETON_FOR_CLASS(KNBAppManager);
 
 
 #pragma mark - UNUserNotificationCenterDelegate iOS 10中收到推送消息
-
 
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_10_0
 //  iOS 10: App在前台获取到通知
@@ -378,6 +255,36 @@ KNB_DEFINE_SINGLETON_FOR_CLASS(KNBAppManager);
 - (void)rcTurnViewController {
     [KNB_AppDelegate.navController popToRootViewControllerAnimated:NO];
     [KNB_AppDelegate.tabBarController turnToControllerIndex:2];
+}
+
+#pragma mark- JPUSHRegisterDelegate
+    // iOS 12 Support
+- (void)jpushNotificationCenter:(UNUserNotificationCenter *)center openSettingsForNotification:(UNNotification *)notification{
+    if (notification && [notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]) {
+        //从通知界面直接进入应用
+    }else{
+        //从通知设置界面进入应用
+    }
+}
+    
+    // iOS 10 Support
+- (void)jpushNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(NSInteger))completionHandler {
+    // Required
+    NSDictionary * userInfo = notification.request.content.userInfo;
+    if([notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]) {
+        [JPUSHService handleRemoteNotification:userInfo];
+    }
+    completionHandler(UNNotificationPresentationOptionAlert); // 需要执行这个方法，选择是否提醒用户，有 Badge、Sound、Alert 三种类型可以选择设置
+}
+    
+    // iOS 10 Support
+- (void)jpushNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void (^)(void))completionHandler {
+    // Required
+    NSDictionary * userInfo = response.notification.request.content.userInfo;
+    if([response.notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]) {
+        [JPUSHService handleRemoteNotification:userInfo];
+    }
+    completionHandler();  // 系统要求执行这个方法
 }
 
 @end

@@ -9,6 +9,9 @@
 #import "KNBHomeRecommendSubTableViewCell.h"
 #import "FMTagsView.h"
 #import "KNBHomeOfferViewController.h"
+#import "KNBHomeDesignViewController.h"
+#import "KNBHomeWorkerViewController.h"
+#import "KNBDesignSketchDetailViewController.h"
 
 @interface KNBHomeRecommendSubTableViewCell ()
 //标签背景
@@ -22,6 +25,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *topImageView;
 @property (weak, nonatomic) IBOutlet UIButton *orderButton;
 @property (weak, nonatomic) IBOutlet UIButton *mobileButton;
+@property (weak, nonatomic) IBOutlet UIImageView *mobileImageView;
 @property (weak, nonatomic) IBOutlet UILabel *distanceLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *leftCase;
 @property (weak, nonatomic) IBOutlet UIImageView *middleCase;
@@ -82,9 +86,25 @@
 }
 
 - (IBAction)orderButtonAction:(id)sender {
-    KNBHomeOfferViewController *offerVC  = [[KNBHomeOfferViewController alloc] init];
-    UIViewController *vc = [KNBHomeRecommendSubTableViewCell currentViewController];
-    [vc.navigationController pushViewController:offerVC animated:YES];
+    
+    if ([self.model.parent_cat_name isEqualToString:@"设计师"]) {
+        KNBHomeDesignViewController *designVC = [[KNBHomeDesignViewController alloc] init];
+        designVC.faceId = [self.model.serviceId integerValue];
+        UIViewController *vc = [KNBHomeRecommendSubTableViewCell currentViewController];
+        [vc.navigationController pushViewController:designVC animated:YES];
+    } else if ([self.model.parent_cat_name isEqualToString:@"装修工人"] || [self.model.parent_cat_name isEqualToString:@"装修工长"]) {
+        KNBHomeWorkerViewController *workerVC = [[KNBHomeWorkerViewController alloc] init];
+        workerVC.faceId = [self.model.serviceId integerValue];
+        UIViewController *vc = [KNBHomeRecommendSubTableViewCell currentViewController];
+        [vc.navigationController pushViewController:workerVC animated:YES];
+    } else {
+        KNBHomeOfferViewController *offerVC = [[KNBHomeOfferViewController alloc] init];
+        offerVC.faceId = [self.model.serviceId integerValue];
+        UIViewController *vc = [KNBHomeRecommendSubTableViewCell currentViewController];
+        [vc.navigationController pushViewController:offerVC animated:YES];
+    }
+
+
 }
 
 - (IBAction)mobileButtonAction:(id)sender {
@@ -99,9 +119,52 @@
     }];
 }
 
+- (IBAction)leftCaseButtonAction:(id)sender {
+    if (self.model.caseList.count > 0) {
+        KNBHomeServiceModel *caseModel = self.model.caseList[0];
+        KNBDesignSketchModel *model  = [[KNBDesignSketchModel alloc] init];
+        model.caseId = caseModel.serviceId;
+        model.name = self.model.name;
+        model.img = self.model.logo;
+        KNBDesignSketchDetailViewController *detailVC = [[KNBDesignSketchDetailViewController alloc] init];
+        detailVC.model = model;
+        UIViewController *vc = [KNBHomeRecommendSubTableViewCell currentViewController];
+        [vc.navigationController pushViewController:detailVC animated:YES];
+    }
+}
+
+- (IBAction)middleCaseButtonAction:(id)sender {
+    if (self.model.caseList.count > 1) {
+        KNBHomeServiceModel *caseModel = self.model.caseList[1];
+        KNBDesignSketchModel *model  = [[KNBDesignSketchModel alloc] init];
+        model.caseId = caseModel.serviceId;
+        model.name = self.model.name;
+        model.img = self.model.logo;
+        KNBDesignSketchDetailViewController *detailVC = [[KNBDesignSketchDetailViewController alloc] init];
+        detailVC.model = model;
+        UIViewController *vc = [KNBHomeRecommendSubTableViewCell currentViewController];
+        [vc.navigationController pushViewController:detailVC animated:YES];
+    }
+
+}
+
+- (IBAction)rightCaseButtonAction:(id)sender {
+    if (self.model.caseList.count > 2) {
+        KNBHomeServiceModel *caseModel = self.model.caseList[2];
+        KNBDesignSketchModel *model  = [[KNBDesignSketchModel alloc] init];
+        model.caseId = caseModel.serviceId;
+        model.name = self.model.name;
+        model.img = self.model.logo;
+        KNBDesignSketchDetailViewController *detailVC = [[KNBDesignSketchDetailViewController alloc] init];
+        detailVC.model = model;
+        UIViewController *vc = [KNBHomeRecommendSubTableViewCell currentViewController];
+        [vc.navigationController pushViewController:detailVC animated:YES];
+    }
+}
+
 #pragma mark - private method
 + (CGFloat)cellHeight {
-    return 195;
+    return 200;
 }
 
 #pragma mark - lazy load
@@ -162,8 +225,24 @@
     
     if ([model.parent_cat_name containsString:@"家居"] || [model.parent_cat_name containsString:@"建材"]) {
         self.orderButton.hidden = YES;
+        [self.mobileImageView mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.width.mas_equalTo(27);
+            make.height.mas_equalTo(27);
+        }];
     } else {
         self.orderButton.hidden = NO;
+        [self.mobileImageView mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.width.mas_equalTo(20);
+            make.height.mas_equalTo(20);
+        }];
+    }
+
+    if ([model.is_stick isEqualToString:@"0"]) {
+        self.topImageView.hidden = YES;
+    } else {
+        self.topImageView.hidden = NO;
+        self.topImageView.image = KNBImages(@"knb_home_zhiding");
     }
 }
+
 @end

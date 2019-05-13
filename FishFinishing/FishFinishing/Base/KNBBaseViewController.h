@@ -74,4 +74,9 @@ typedef void (^KNMJHeaderLoadCompleteBlock)(NSInteger page);
               channel:(NSString *)channel
              callBack:(void (^)(NSString *channel, BOOL result))callBack;
 
+/**
+ 分享图片
+ */
+- (void)shareImageWithMessages:(NSArray *)messages image:(UIImage *)image shareButtonBlock:(void (^)(NSInteger platformType, BOOL success))shareButtonBlock;
+
 @end

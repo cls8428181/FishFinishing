@@ -37,12 +37,13 @@
 @implementation KNBRecruitmentCostModel
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
     return @{
-             @"typeId" : @"id",
+             @"costId" : @"id",
              @"name" : @"name",
              @"price" : @"price",
              @"termType" : @"term_type",
              @"term" : @"term",
-             @"remark" : @"remark"
+             @"remark" : @"remark",
+             @"isRecommend" : @"is_recommend"
              };
 }
 @end
@@ -51,7 +52,7 @@
 @implementation KNBRecruitmentUnitModel
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
     return @{
-             @"typeId" : @"id",
+             @"houseId" : @"id",
              @"name" : @"name",
              @"sort" : @"sort",
              };

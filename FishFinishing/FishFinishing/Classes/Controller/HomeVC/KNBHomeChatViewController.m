@@ -25,18 +25,8 @@
     [self configuration];
     
     [self addUI];
-    
-    [self settingConstraints];
-    
+        
     [self fetchData];
-}
-
-#pragma mark - Setup UI Constraints
-/*
- *  在这里添加UIView的约束布局相关代码
- */
-- (void)settingConstraints {
-    KNB_WS(weakSelf);
 }
 
 #pragma mark - Utils
@@ -90,7 +80,9 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    KNBHomeChatModel *model = self.dataArray[indexPath.row];
     KNBHomeChatDetailViewController *detailVC = [[KNBHomeChatDetailViewController alloc] init];
+    detailVC.model = model;
     [self.navigationController pushViewController:detailVC animated:YES];
 }
 

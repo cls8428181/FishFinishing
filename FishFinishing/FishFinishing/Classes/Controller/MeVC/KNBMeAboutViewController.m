@@ -10,10 +10,13 @@
 #import "KNBMeAboutTableViewCell.h"
 #import "KNBMeAboutHeaderView.h"
 #import "KNBMeAboutFooterView.h"
+#import "KNBGetCollocationApi.h"
+#import "KNBMeAboutModel.h"
 
 @interface KNBMeAboutViewController ()
 @property (nonatomic, strong) KNBMeAboutHeaderView *headerView;
 @property (nonatomic, strong) KNBMeAboutFooterView *footerView;
+@property (nonatomic, strong) KNBMeAboutModel *model;
 @end
 
 @implementation KNBMeAboutViewController
@@ -50,11 +53,26 @@
 - (void)addUI {
     [self.view addSubview:self.knbTableView];
     self.knbTableView.tableHeaderView = self.headerView;
-    self.knbTableView.tableFooterView = self.footerView;
 }
 
 - (void)fetchData {
-    
+    KNBGetCollocationApi *api = [[KNBGetCollocationApi alloc] initWithKey:@"about_us_set"];
+    api.hudString = @"";
+    KNB_WS(weakSelf);
+    [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *_Nonnull request) {
+        if (api.requestSuccess) {
+            NSDictionary *dic = request.responseObject[@"list"];
+            KNBMeAboutModel *model = [KNBMeAboutModel changeResponseJSONObject:dic];
+            weakSelf.model = model;
+            weakSelf.knbTableView.tableFooterView = weakSelf.footerView;
+            weakSelf.footerView.model = model;
+            [weakSelf requestSuccess:YES requestEnd:YES];
+        } else {
+            [weakSelf requestSuccess:NO requestEnd:NO];
+        }
+    } failure:^(__kindof YTKBaseRequest *_Nonnull request) {
+        [weakSelf requestSuccess:NO requestEnd:NO];
+    }];
 }
 
 #pragma mark - tableview delegate & dataSource
@@ -71,15 +89,15 @@
     if (indexPath.row == 0) {
         cell.iconImageView.image = KNBImages(@"knb_me_weixin");
         cell.titleLabel.text = @"微信客服";
-        cell.detailLabel.text = @"18600000000";
+        cell.detailLabel.text = self.model.wechat_customer_service;
     } else if (indexPath.row == 1) {
         cell.iconImageView.image = KNBImages(@"knb_me_phone");
         cell.titleLabel.text = @"服务热线";
-        cell.detailLabel.text = @"18600000000";
+        cell.detailLabel.text = self.model.hotline;
     } else {
         cell.iconImageView.image = KNBImages(@"knb_me_time");
         cell.titleLabel.text = @"接待时间";
-        cell.detailLabel.text = @"18600000000";
+        cell.detailLabel.text = self.model.reception_time;
     }
     return cell;
 }
@@ -89,7 +107,26 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+    if (indexPath.row == 0) {
+        NSMutableString * str=[[NSMutableString alloc] initWithFormat:@"tel:%@",self.model.wechat_customer_service];
+        UIApplication *application = [UIApplication sharedApplication];
+        NSURL *URL = [NSURL URLWithString:str];
+        [application openURL:URL options:@{} completionHandler:^(BOOL success) {
+            //OpenSuccess = 选择 呼叫 为 1  选择 取消 为0
+            NSLog(@"OpenSuccess=%d",success);
+            
+        }];
+    }
+    if (indexPath.row == 1) {
+        NSMutableString * str=[[NSMutableString alloc] initWithFormat:@"tel:%@",self.model.hotline];
+        UIApplication *application = [UIApplication sharedApplication];
+        NSURL *URL = [NSURL URLWithString:str];
+        [application openURL:URL options:@{} completionHandler:^(BOOL success) {
+            //OpenSuccess = 选择 呼叫 为 1  选择 取消 为0
+            NSLog(@"OpenSuccess=%d",success);
+            
+        }];
+    }
 }
 
 #pragma mark - Event Response

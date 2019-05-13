@@ -14,6 +14,8 @@
 #import "KNBLoginModifyApi.h"
 #import "KNBLoginLoginApi.h"
 #import "KNBLoginThirdPartyApi.h"
+#import "KNBLoginBindingPhoneViewController.h"
+#import "KNBLoginThirdPartyApi.h"
 
 @interface KNBLoginViewController ()
 //背景
@@ -85,7 +87,7 @@
     }];
     //logo
     [self.logoButton mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(weakSelf.naviView.mas_bottom).mas_offset(40);
+        make.top.equalTo(weakSelf.naviView.mas_bottom).mas_offset(50);
         make.centerX.equalTo(weakSelf.view);
         make.width.mas_equalTo(70);
         make.height.mas_equalTo(95);
@@ -95,16 +97,16 @@
     if (self.vcType == KNBLoginTypeLogin) {
         //手机号码
         [self.mobileView mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(weakSelf.logoButton.mas_bottom).mas_offset(40);
+            make.top.equalTo(weakSelf.logoButton.mas_bottom).mas_offset(45);
             make.centerX.equalTo(weakSelf.view);
             make.width.mas_equalTo(250);
-            make.height.mas_equalTo(30);
+            make.height.mas_equalTo(40);
         }];
         [self.passwordView mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.top.mas_equalTo(weakSelf.mobileView.mas_bottom).mas_offset(20);
             make.centerX.equalTo(weakSelf.view);
             make.width.mas_equalTo(250);
-            make.height.mas_equalTo(30);
+            make.height.mas_equalTo(40);
         }];
         [self.findButton mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.top.mas_equalTo(weakSelf.passwordView.mas_bottom).offset(10);
@@ -117,22 +119,22 @@
         }];
         
         [self.wechatButton mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.bottom.equalTo(weakSelf.view).mas_offset(-70);
+            make.bottom.mas_equalTo(- KNB_TAB_HEIGHT - 50);
             make.centerX.equalTo(weakSelf.view);
         }];
         
         [self.qqButton mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.bottom.equalTo(weakSelf.view).mas_offset(-70);
+            make.centerY.equalTo(weakSelf.wechatButton);
             make.right.equalTo(weakSelf.wechatButton.mas_left).mas_offset(-50);
         }];
         
         [self.sinaButton mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.bottom.equalTo(weakSelf.view).mas_offset(-70);
+            make.centerY.equalTo(weakSelf.wechatButton);
             make.left.equalTo(weakSelf.wechatButton.mas_right).mas_offset(50);
         }];
         
         [self.middleLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.bottom.equalTo(weakSelf.wechatButton.mas_top).mas_offset(-35);
+            make.bottom.mas_equalTo(weakSelf.wechatButton.mas_top).mas_offset(-35);
             make.centerX.equalTo(weakSelf.view);
         }];
         
@@ -152,29 +154,29 @@
     
     } else {
         [self.mobileTextView mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(weakSelf.logoButton.mas_bottom).mas_offset(40);
+            make.top.equalTo(weakSelf.logoButton.mas_bottom).mas_offset(45);
             make.centerX.equalTo(weakSelf.view);
             make.width.mas_equalTo(250);
-            make.height.mas_equalTo(30);
+            make.height.mas_equalTo(40);
         }];
         [self.verinumView mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.top.mas_equalTo(weakSelf.mobileTextView.mas_bottom).mas_offset(20);
             make.centerX.equalTo(weakSelf.view);
             make.width.mas_equalTo(250);
-            make.height.mas_equalTo(30);
+            make.height.mas_equalTo(40);
         }];
         if (self.vcType == KNBLoginTypeRegister) {
             [self.passwordSetView mas_remakeConstraints:^(MASConstraintMaker *make) {
                 make.top.mas_equalTo(weakSelf.verinumView.mas_bottom).mas_offset(20);
                 make.centerX.equalTo(weakSelf.view);
                 make.width.mas_equalTo(250);
-                make.height.mas_equalTo(30);
+                make.height.mas_equalTo(40);
             }];
             [self.passwordEnterView mas_remakeConstraints:^(MASConstraintMaker *make) {
                 make.top.mas_equalTo(weakSelf.passwordSetView.mas_bottom).mas_offset(20);
                 make.centerX.equalTo(weakSelf.view);
                 make.width.mas_equalTo(250);
-                make.height.mas_equalTo(30);
+                make.height.mas_equalTo(40);
             }];
             [self.loginButton mas_remakeConstraints:^(MASConstraintMaker *make) {
                 make.top.mas_equalTo(weakSelf.passwordEnterView.mas_bottom).offset(10);
@@ -185,13 +187,13 @@
                 make.top.mas_equalTo(weakSelf.verinumView.mas_bottom).mas_offset(20);
                 make.centerX.equalTo(weakSelf.view);
                 make.width.mas_equalTo(250);
-                make.height.mas_equalTo(30);
+                make.height.mas_equalTo(40);
             }];
             [self.passwordEnterView mas_remakeConstraints:^(MASConstraintMaker *make) {
                 make.top.mas_equalTo(weakSelf.passwordNewView.mas_bottom).mas_offset(20);
                 make.centerX.equalTo(weakSelf.view);
                 make.width.mas_equalTo(250);
-                make.height.mas_equalTo(30);
+                make.height.mas_equalTo(40);
             }];
         }
     }
@@ -199,9 +201,9 @@
     //登录确认
     [self.sureButton mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.width.mas_equalTo(250);
-        make.centerX.mas_equalTo(self.view);
-        make.height.mas_equalTo(30);
-        make.top.mas_equalTo(self.lastView.mas_bottom).mas_offset(60);
+        make.centerX.mas_equalTo(weakSelf.view);
+        make.height.mas_equalTo(40);
+        make.top.mas_equalTo(weakSelf.lastView.mas_bottom).mas_offset(60);
     }];
 }
 
@@ -217,6 +219,7 @@
     }
     self.naviView.backgroundColor = [UIColor clearColor];
     [self.naviView addRightBarItemImageName:@"knb_login_close" target:self sel:@selector(backAction)];
+    self.naviView.titleNaviLabel.textColor = [UIColor whiteColor];
     [self.naviView removeLeftBarItem];
 }
 
@@ -255,7 +258,7 @@
 - (void)backAction {
     [self.verinumView timerControll:NO];
 //    if (self.navigationController.viewControllers.count == 1) {
-        [self dismissViewControllerAnimated:YES completion:nil];
+    [self dismissViewControllerAnimated:YES completion:nil];
 //    } else {
 //        [self.navigationController popViewControllerAnimated:YES];
 //    }
@@ -324,6 +327,7 @@
         if (api.requestSuccess) {
             NSDictionary *dic = request.responseObject[@"list"];
             [[KNBUserInfo shareInstance] registUserInfo:dic];
+            [LCProgressHUD showSuccess:@"登录成功"];
             [weakSelf dismissViewControllerAnimated:YES completion:nil];
             [weakSelf requestSuccess:YES requestEnd:YES];
         } else {
@@ -361,8 +365,10 @@
     KNB_WS(weakSelf);
     [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *_Nonnull request) {
         if (api.requestSuccess) {
+            NSDictionary *dic = request.responseObject[@"list"];
+            [[KNBUserInfo shareInstance] registUserInfo:dic];
             [LCProgressHUD showSuccess:@"注册成功"];
-            [weakSelf backAction];
+            [weakSelf dismissToRootViewController];
         } else {
             [LCProgressHUD showInfoMsg:api.errMessage];
             [[LCProgressHUD sharedHUD].customView setSize:CGSizeMake(25, 25)];
@@ -374,13 +380,13 @@
 }
 //找回密码
 - (void)findPassswordRequest {
-    KNBLoginModifyApi *api = [[KNBLoginModifyApi alloc] initWithMobile:self.mobileTextView.textField.text code:self.verinumView.textField.text password:self.passwordSetView.textField.text repassword:self.passwordEnterView.textField.text];
+    KNBLoginModifyApi *api = [[KNBLoginModifyApi alloc] initWithMobile:self.mobileTextView.textField.text code:self.verinumView.textField.text password:self.passwordNewView.textField.text repassword:self.passwordEnterView.textField.text];
     api.hudString = @"";
     KNB_WS(weakSelf);
     [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *_Nonnull request) {
         if (api.requestSuccess) {
             [LCProgressHUD showSuccess:@"修改成功"];
-            [weakSelf.navigationController popViewControllerAnimated:YES];
+            [weakSelf dismissViewControllerAnimated:YES completion:nil];
         } else {
             [LCProgressHUD showInfoMsg:api.errMessage];
             [[LCProgressHUD sharedHUD].customView setSize:CGSizeMake(25, 25)];
@@ -394,19 +400,19 @@
 - (void)userRegisterClick:(KNBButton *)sender {
     KNBLoginViewController *registerVC = [[KNBLoginViewController alloc] init];
     registerVC.vcType = KNBLoginTypeRegister;
-    [self.navigationController presentViewController:registerVC animated:YES completion:nil];
+    [self presentViewController:registerVC animated:YES completion:nil];
 }
 //密码重置
 - (void)findClick:(KNBButton *)sender {
     KNBLoginViewController *findVC = [[KNBLoginViewController alloc] init];
     findVC.vcType = KNBLoginTypeFindPassword;
-    [self.navigationController presentViewController:findVC animated:YES completion:nil];
+    [self presentViewController:findVC animated:YES completion:nil];
 }
 //已有账号
 - (void)loginClick:(KNBButton *)sender {
     KNBLoginViewController *loginVC = [[KNBLoginViewController alloc] init];
     loginVC.vcType = KNBLoginTypeLogin;
-    [self.navigationController presentViewController:loginVC animated:YES completion:nil];
+    [self presentViewController:loginVC animated:YES completion:nil];
 }
 //获取验证码
 - (void)getVerifyCodeRequest {
@@ -435,6 +441,77 @@
     [self.verinumView timerControll:startTimer];
 }
 
+- (void)qqThirdPartyLogin {
+    [[UMSocialManager defaultManager] getUserInfoWithPlatform:UMSocialPlatformType_QQ currentViewController:nil completion:^(id result, NSError *error) {
+        if (error) {
+        } else {
+            UMSocialUserInfoResponse *resp = result;
+            [self thirdPartyRequest:resp loginType:KNBLoginThirdPartyTypeQQ];
+            
+        }
+    }];
+}
+
+- (void)wechatThirdPartyLogin {
+    [[UMSocialManager defaultManager] getUserInfoWithPlatform:UMSocialPlatformType_WechatSession currentViewController:nil completion:^(id result, NSError *error) {
+        if (error) {
+        } else {
+            UMSocialUserInfoResponse *resp = result;
+            [self thirdPartyRequest:resp loginType:KNBLoginThirdPartyTypeWechat];
+ 
+        }
+    }];
+}
+
+- (void)sinaThirdPartyLogin {
+    [[UMSocialManager defaultManager] getUserInfoWithPlatform:UMSocialPlatformType_Sina currentViewController:nil completion:^(id result, NSError *error) {
+        if (error) {
+        } else {
+            UMSocialUserInfoResponse *resp = result;
+            [self thirdPartyRequest:resp loginType:KNBLoginThirdPartyTypeBlog];
+
+        }
+    }];
+}
+
+- (void)thirdPartyRequest:(UMSocialUserInfoResponse *)resp loginType:(KNBLoginThirdPartyType)loginType {
+    NSString *imageUrl = WebURLEncode(resp.iconurl);
+    KNBLoginThirdPartyApi *api = [[KNBLoginThirdPartyApi alloc] initWithOpenid:resp.openid loginType:loginType portrait:imageUrl nickName:resp.name sex:resp.unionGender];
+    api.hudString = @"";
+    KNB_WS(weakSelf);
+    [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *_Nonnull request) {
+        if (api.requestSuccess) {
+            NSDictionary *dic = request.responseObject[@"list"];
+            NSInteger status = [request.responseObject[@"status"] integerValue];
+            if (status == 0) {//未绑定
+                KNBLoginBindingPhoneViewController *bindingVC = [[KNBLoginBindingPhoneViewController alloc] initWithDataSource:dic];
+                bindingVC.bindingComplete = ^{
+                    [weakSelf dismissViewControllerAnimated:YES completion:nil];
+                };
+                [weakSelf presentViewController:bindingVC animated:YES completion:nil];
+            } else {
+                [[KNBUserInfo shareInstance] registUserInfo:dic];
+                [weakSelf dismissViewControllerAnimated:YES completion:nil];
+            }
+        } else {
+            [weakSelf requestSuccess:NO requestEnd:NO];
+        }
+    } failure:^(__kindof YTKBaseRequest *_Nonnull request) {
+        [weakSelf requestSuccess:NO requestEnd:NO];
+    }];
+}
+
+
+
+//切换到根视图
+-(void)dismissToRootViewController  {
+    UIViewController *vc = self;
+    while (vc.presentingViewController) {
+        vc = vc.presentingViewController;
+    }
+    [vc dismissViewControllerAnimated:YES completion:nil];
+}
+
 #pragma mark - lazy load
 - (UIImageView *)bgView {
     if (!_bgView) {
@@ -451,7 +528,7 @@
         [_logoButton sizeToFit];
         [_logoButton setTitle:@"大鱼装修" forState:UIControlStateNormal];
         _logoButton.titleLabel.font = [UIFont boldSystemFontOfSize:16];
-        [_logoButton verticalImageAndTitle:15 width:60 height:60];
+        [_logoButton verticalImageAndTitle:20 width:60 height:60];
         [_logoButton setUserInteractionEnabled  :NO];
     }
     return _logoButton;
@@ -517,7 +594,7 @@
         [_sureButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_sureButton setBackgroundColor:[UIColor colorWithHex:0x009fe8]];
         _sureButton.layer.masksToBounds = YES;
-        _sureButton.layer.cornerRadius = 15;
+        _sureButton.layer.cornerRadius = 20;
         [_sureButton addTarget:self action:@selector(sureButtonClick:) forControlEvents:UIControlEventTouchUpInside];
         if (self.vcType == KNBLoginTypeLogin) {
             [_sureButton setTitle:@"登录" forState:UIControlStateNormal];
@@ -584,6 +661,7 @@
     if (!_qqButton) {
         _qqButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [_qqButton setImage:KNBImages(@"knb_login_qq") forState:UIControlStateNormal];
+        [_qqButton addTarget:self action:@selector(qqThirdPartyLogin) forControlEvents:UIControlEventTouchUpInside];
     }
     return _qqButton;
 }
@@ -592,6 +670,8 @@
     if (!_wechatButton) {
         _wechatButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [_wechatButton setImage:KNBImages(@"knb_login_wechat") forState:UIControlStateNormal];
+        [_wechatButton addTarget:self action:@selector(wechatThirdPartyLogin) forControlEvents:UIControlEventTouchUpInside];
+
     }
     return _wechatButton;
 }
@@ -600,6 +680,7 @@
     if (!_sinaButton) {
         _sinaButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [_sinaButton setImage:KNBImages(@"knb_login_blog") forState:UIControlStateNormal];
+        [_sinaButton addTarget:self action:@selector(sinaThirdPartyLogin) forControlEvents:UIControlEventTouchUpInside];
     }
     return _sinaButton;
 }

@@ -13,13 +13,13 @@
 #import "KNBAddressPickerView.h"
 #import "BRStringPickerView.h"
 #import "BRLinkagePickerView.h"
-#import "KNBRecruitmentPayViewController.h"
 #import "KNBRecruitmentTypeApi.h"
 #import "KNBRecruitmentTypeModel.h"
 #import "KNBOrderServerTypeApi.h"
 #import "KNBRecruitmentDomainApi.h"
 #import "KNBRecruitmentCostApi.h"
 #import "KNBRecruitmentModel.h"
+#import "KNBHomeServiceModel.h"
 #import "KNBRecruitmentPortraitTableViewCell.h"
 #import "KNBRecruitmentEnterTableViewCell.h"
 #import "KNBRecruitmentDomainTableViewCell.h"
@@ -33,13 +33,17 @@
 #import "BRChoicePickerView.h"
 #import "KNBOrderUnitApi.h"
 #import "KNBHomeBespokeApi.h"
-#import "KNBRecruitmentPayViewController.h"
 #import "KNBRecruitmentModifyDetailApi.h"
 #import "KNBRecruitmentModifyFacilitatorApi.h"
+#import "UITextView+ZWPlaceHolder.h"
+#import "KNBUploadFileApi.h"
+#import "MPFindNearAddressVC.h"
 
-@interface KNBHomeCompanyEditDetailViewController ()<UIImagePickerControllerDelegate,UINavigationControllerDelegate>
+@interface KNBHomeCompanyEditDetailViewController ()<UIImagePickerControllerDelegate,UINavigationControllerDelegate,UITextFieldDelegate>
 //入驻商家模型
 @property (nonatomic, strong) KNBRecruitmentModel *recruitmentModel;
+//记录最后一个输入框
+@property (nonatomic, strong) UITextField *lastTextField;
 @end
 
 @implementation KNBHomeCompanyEditDetailViewController
@@ -68,21 +72,21 @@
 }
 
 - (void)fetchData {
-    KNBRecruitmentModifyDetailApi *api = [[KNBRecruitmentModifyDetailApi alloc] init];
-    api.hudString = @"";
-    KNB_WS(weakSelf);
-    [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *_Nonnull request) {
-        if (api.requestSuccess) {
-            NSDictionary *dic = request.responseObject[@"list"];
-            KNBRecruitmentModel *model = [KNBRecruitmentModel changeResponseJSONObject:dic];
-            weakSelf.recruitmentModel = model;
-            [weakSelf requestSuccess:YES requestEnd:YES];
-        } else {
-            [weakSelf requestSuccess:NO requestEnd:NO];
-        }
-    } failure:^(__kindof YTKBaseRequest *_Nonnull request) {
-        [weakSelf requestSuccess:NO requestEnd:NO];
-    }];
+//    KNBRecruitmentModifyDetailApi *api = [[KNBRecruitmentModifyDetailApi alloc] init];
+//    api.hudString = @"";
+//    KNB_WS(weakSelf);
+//    [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *_Nonnull request) {
+//        if (api.requestSuccess) {
+//            NSDictionary *dic = request.responseObject[@"list"];
+//            KNBHomeServiceModel *model = [KNBHomeServiceModel changeResponseJSONObject:dic];
+////            weakSelf.recruitmentModel = model;
+//            [weakSelf requestSuccess:YES requestEnd:YES];
+//        } else {
+//            [weakSelf requestSuccess:NO requestEnd:NO];
+//        }
+//    } failure:^(__kindof YTKBaseRequest *_Nonnull request) {
+//        [weakSelf requestSuccess:NO requestEnd:NO];
+//    }];
 }
 
 #pragma mark - tableview delegate & dataSource
@@ -102,19 +106,22 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = nil;
-    KNB_WS(weakSelf);
     if (indexPath.section == 0) {
         cell = [KNBOrderDownTableViewCell cellWithTableView:tableView];
         KNBOrderDownTableViewCell *typeCell = (KNBOrderDownTableViewCell *)cell;
         typeCell.type = KNBOrderDownTypeRecruitment;
-        
+        [typeCell setButtonTitle:self.model.parent_cat_name];
     } else if (indexPath.section == 1) {
         if (indexPath.row == 0) {
             cell = [KNBOrderTextfieldTableViewCell cellWithTableView:tableView];
             KNBOrderTextfieldTableViewCell *typeCell = (KNBOrderTextfieldTableViewCell *)cell;
             typeCell.type = KNBOrderTextFieldTypeShopName;
+            typeCell.describeTextField.delegate = self;
+            typeCell.describeTextField.text = self.model.name;
         } else {
             cell = [KNBRecruitmentPortraitTableViewCell cellWithTableView:tableView];
+            KNBRecruitmentPortraitTableViewCell *typeCell = (KNBRecruitmentPortraitTableViewCell *)cell;
+            [typeCell.iconImageView sd_setImageWithURL:[NSURL URLWithString:self.model.logo] placeholderImage:KNBImages(@"knb_default_user")];
         }
         
     } else if (indexPath.section == 2) {
@@ -122,27 +129,39 @@
             cell = [KNBOrderTextfieldTableViewCell cellWithTableView:tableView];
             KNBOrderTextfieldTableViewCell *typeCell = (KNBOrderTextfieldTableViewCell *)cell;
             typeCell.type = KNBOrderTextFieldTypeLocation;
+            typeCell.describeTextField.userInteractionEnabled = NO;
+            typeCell.describeTextField.text = self.model.address;
+            
         } else if (indexPath.row == 1) {
             cell = [KNBOrderTextfieldTableViewCell cellWithTableView:tableView];
             KNBOrderTextfieldTableViewCell *typeCell = (KNBOrderTextfieldTableViewCell *)cell;
             typeCell.type = KNBOrderTextFieldTypeShopPhone;
+            typeCell.describeTextField.delegate = self;
+            typeCell.describeTextField.text = self.model.telephone;
         } else {
             cell = [KNBRecruitmentDomainTableViewCell cellWithTableView:tableView];
             KNBRecruitmentDomainTableViewCell *typeCell = (KNBRecruitmentDomainTableViewCell *)cell;
+            typeCell.type = KNBRecruitmentDomainTypeDefault;
+            NSArray *tagsArray = [self.model.tag componentsSeparatedByString:@","];
+            [typeCell setTagsViewDataSource:tagsArray];
         }
     } else if (indexPath.section == 3) {
         cell = [KNBRecruitmentDomainTableViewCell cellWithTableView:tableView];
         KNBRecruitmentDomainTableViewCell *typeCell = (KNBRecruitmentDomainTableViewCell *)cell;
         typeCell.type = KNBRecruitmentDomainTypeService;
+        NSArray *tagsArray = [self.model.service componentsSeparatedByString:@","];
+        [typeCell setTagsViewDataSource:tagsArray];
     } else {
         cell = [KNBRecruitmentIntroTableViewCell cellWithTableView:tableView];
         KNBRecruitmentIntroTableViewCell *typeCell = (KNBRecruitmentIntroTableViewCell *)cell;
+        typeCell.contentTextView.text = self.model.remark;
+        typeCell.contentTextView.placeholder = @"请输入备注";
     }
     return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.section == 5) {
+    if (indexPath.section == 4) {
         return [KNBRecruitmentIntroTableViewCell cellHeight];
     }
     return 50;
@@ -159,15 +178,28 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    KNB_WS(weakSelf);
     if (indexPath.section == 0) {
-        [self recruitmentTypeRequest];
-        
+//        [self recruitmentTypeRequest];
     } else if (indexPath.section == 1 && indexPath.row == 1) {
         [self changePortrait];
+    } else if (indexPath.section == 2 && indexPath.row == 0) {
         
+        MPFindNearAddressVC *vc = [MPFindNearAddressVC new];
+        [vc setReturnBlock:^(NSString *city,NSString *area,NSString *name,NSString *address,CGFloat latitude,CGFloat longitude,NSString *phone,UIImage *img){
+            if (name) {
+                self.recruitmentModel.cityName = city;
+                self.recruitmentModel.areaName = area;
+                self.recruitmentModel.address = [NSString stringWithFormat:@"%@%@",name,address];
+                self.recruitmentModel.latitude = latitude;
+                self.recruitmentModel.longitude = longitude;
+                KNBOrderTextfieldTableViewCell *addressCell = [tableView cellForRowAtIndexPath:indexPath];
+                addressCell.describeTextField.text = [NSString stringWithFormat:@"%@%@",name,address];
+            }
+            
+        }];
+        [self.navigationController pushViewController:vc animated:YES];
     } else if (indexPath.section == 2 && indexPath.row == 2) {
-        self.recruitmentModel.typeModel ? [self bestDomainRequest] : [LCProgressHUD showMessage:@"请先选择入驻类型"];
+        !isNullStr(self.model.parent_cat_name) ? [self bestDomainRequest] : [LCProgressHUD showMessage:@"请先选择入驻类型"];
 
     } else {
         [self chooseServiceRequest];
@@ -183,6 +215,7 @@
     //定义一个newPhoto，用来存放我们选择的图片。
     UIImage *newPhoto = [info objectForKey:@"UIImagePickerControllerEditedImage"];
     iconCell.iconImageView.image = newPhoto;
+    self.recruitmentModel.iconImage = newPhoto;
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -222,66 +255,85 @@
 
 //请求擅长领域数据
 - (void)bestDomainRequest {
-    //    KNBRecruitmentDomainApi *api = [[KNBRecruitmentDomainApi alloc] initWithCatId:[self.recruitmentModel.typeModel.typeId integerValue]];
-    //    api.hudString = @"";
+    KNBRecruitmentDomainApi *api = [[KNBRecruitmentDomainApi alloc] initWithCatId:[self.model.parent_cat_id integerValue]];
+    api.hudString = @"";
     KNB_WS(weakSelf);
-    //    [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *_Nonnull request) {
-    //        if (api.requestSuccess) {
-    //            NSDictionary *dic = request.responseObject[@"list"];
-    //            NSMutableArray *modelArray = [KNBRecruitmentTypeModel changeResponseJSONObject:dic];
-    //            NSMutableArray *dataArray = [NSMutableArray array];
-    //            for (int i = 0; i < modelArray.count; i++) {
-    //                KNBRecruitmentTypeModel *model = modelArray[i];
-    //                [dataArray addObject:model.tagName];
-    //            }
-    //            [BRStringPickerView showStringPickerWithTitle:@"选择擅长领域" dataSource:dataArray defaultSelValue:nil resultBlock:^(id selectValue) {
-    //            }];
-    //        } else {
-    //            [weakSelf requestSuccess:NO requestEnd:NO];
-    //        }
-    //    } failure:^(__kindof YTKBaseRequest *_Nonnull request) {
-    //        [weakSelf requestSuccess:NO requestEnd:NO];
-    //    }];
-    [BRTagsPickerView showTagsPickerWithTitle:@"擅长领域" dataSource:@[@"装修",@"漂亮",@"大的方",@"漂亮漂亮",@"大漂亮漂亮方"] defaultSelValue:nil resultBlock:^(id selectValue) {
-        KNBRecruitmentDomainTableViewCell *cell = [weakSelf.knGroupTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:2]];
-        [cell setTagsViewDataSource:selectValue];
-    } cancelBlock:^{
-        
-    } maximumNumberBlock:^{
-        [LCProgressHUD showMessage:@"您最多只能选择三个标签哦"];
+    [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *_Nonnull request) {
+        if (api.requestSuccess) {
+            NSDictionary *dic = request.responseObject[@"list"];
+            NSMutableArray *modelArray = [KNBRecruitmentDomainModel changeResponseJSONObject:dic];
+            NSMutableArray *dataArray = [NSMutableArray array];
+            for (int i = 0; i < modelArray.count; i++) {
+                KNBRecruitmentDomainModel *model = modelArray[i];
+                [dataArray addObject:model.tagName];
+            }
+            [BRTagsPickerView showTagsPickerWithTitle:@"擅长领域" dataSource:dataArray defaultSelValue:nil resultBlock:^(id selectValue) {
+                KNBRecruitmentDomainTableViewCell *cell = [weakSelf.knGroupTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:2]];
+                NSMutableArray *domainArray = [NSMutableArray array];
+                for (int i = 0; i < modelArray.count; i++) {
+                    KNBRecruitmentDomainModel *model = modelArray[i];
+                    for (int j = 0; j < [selectValue count]; j++) {
+                        NSString *selectString = [selectValue objectAtIndex:j];
+                        if ([model.tagName isEqualToString:selectString]) {
+                            [domainArray addObject:model];
+                        }
+                    }
+                }
+                [cell setTagsViewDataSource:selectValue];
+                weakSelf.recruitmentModel.domainList = domainArray;
+            } cancelBlock:^{
+                
+            } maximumNumberBlock:^{
+                [LCProgressHUD showMessage:@"您最多只能选择三个标签哦"];
+            }];
+        } else {
+            [weakSelf requestSuccess:NO requestEnd:NO];
+        }
+    } failure:^(__kindof YTKBaseRequest *_Nonnull request) {
+        [weakSelf requestSuccess:NO requestEnd:NO];
     }];
     
 }
 
 //请求选择服务数据
 - (void)chooseServiceRequest {
-    //    KNBRecruitmentDomainApi *api = [[KNBRecruitmentDomainApi alloc] initWithCatId:[self.recruitmentModel.typeModel.typeId integerValue]];
-    //    api.hudString = @"";
+    KNBOrderServerTypeApi *api = [[KNBOrderServerTypeApi alloc] initWithCatId:[self.model.parent_cat_id integerValue]];
+    api.hudString = @"";
     KNB_WS(weakSelf);
-    //    [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *_Nonnull request) {
-    //        if (api.requestSuccess) {
-    //            NSDictionary *dic = request.responseObject[@"list"];
-    //            NSMutableArray *modelArray = [KNBRecruitmentTypeModel changeResponseJSONObject:dic];
-    //            NSMutableArray *dataArray = [NSMutableArray array];
-    //            for (int i = 0; i < modelArray.count; i++) {
-    //                KNBRecruitmentTypeModel *model = modelArray[i];
-    //                [dataArray addObject:model.tagName];
-    //            }
-    //            [BRStringPickerView showStringPickerWithTitle:@"选择擅长领域" dataSource:dataArray defaultSelValue:nil resultBlock:^(id selectValue) {
-    //            }];
-    //        } else {
-    //            [weakSelf requestSuccess:NO requestEnd:NO];
-    //        }
-    //    } failure:^(__kindof YTKBaseRequest *_Nonnull request) {
-    //        [weakSelf requestSuccess:NO requestEnd:NO];
-    //    }];
-    [BRTagsPickerView showTagsPickerWithTitle:@"服务选择" dataSource:@[@"装修",@"漂亮",@"大的方",@"漂亮漂亮",@"大漂亮漂亮方"] defaultSelValue:nil resultBlock:^(id selectValue) {
-        KNBRecruitmentDomainTableViewCell *cell = [weakSelf.knGroupTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:4]];
-        [cell setTagsViewDataSource:selectValue];
-    } cancelBlock:^{
-        
-    } maximumNumberBlock:^{
-        [LCProgressHUD showMessage:@"您最多只能选择三个标签哦"];
+    [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *_Nonnull request) {
+        if (api.requestSuccess) {
+            NSDictionary *dic = request.responseObject[@"list"];
+            NSMutableArray *modelArray = [KNBRecruitmentTypeModel changeResponseJSONObject:dic];
+            NSMutableArray *titleArray = [NSMutableArray array];
+            for (KNBRecruitmentTypeModel *model in modelArray) {
+                [titleArray addObject:model.serviceName];
+            }
+            [BRTagsPickerView showTagsPickerWithTitle:@"服务选择" dataSource:titleArray defaultSelValue:nil resultBlock:^(id selectValue) {
+                KNBRecruitmentDomainTableViewCell *cell = [weakSelf.knGroupTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:3]];
+                NSMutableArray *serviceArray = [NSMutableArray array];
+                for (int i = 0; i < modelArray.count; i++) {
+                    KNBRecruitmentTypeModel *model = modelArray[i];
+                    for (int j = 0; j < [selectValue count]; j++) {
+                        NSString *selectString = [selectValue objectAtIndex:j];
+                        if ([model.serviceName isEqualToString:selectString]) {
+                            [serviceArray addObject:model];
+                        }
+                    }
+                }
+                
+                [cell setTagsViewDataSource:selectValue];
+                weakSelf.recruitmentModel.serviceList = serviceArray;
+                
+            } cancelBlock:^{
+                
+            } maximumNumberBlock:^{
+                [LCProgressHUD showMessage:@"您最多只能选择三个标签哦"];
+            }];
+        } else {
+            [weakSelf requestSuccess:NO requestEnd:NO];
+        }
+    } failure:^(__kindof YTKBaseRequest *_Nonnull request) {
+        [weakSelf requestSuccess:NO requestEnd:NO];
     }];
     
 }
@@ -377,34 +429,123 @@
 }
 
 - (void)saveAction {
+
+    KNBRecruitmentIntroTableViewCell *introCell = [self.knGroupTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:4]];
+    self.recruitmentModel.remark = introCell.contentTextView.text;
+    if (self.recruitmentModel.iconImage) {
+        //上传图片
+        [LCProgressHUD showLoading:@""];
+        KNBUploadFileApi *fileApi = [[KNBUploadFileApi alloc] initWithImage:self.recruitmentModel.iconImage ?: KNBImages(@"knb_default_user")];
+        KNB_WS(weakSelf);
+        [fileApi startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *_Nonnull request) {
+            if (fileApi.requestSuccess) {
+                NSString *imgString = request.responseObject[@"imgurl"];
+                KNBRecruitmentModifyFacilitatorApi *api = [[KNBRecruitmentModifyFacilitatorApi alloc] init];
+                api.logo = imgString;
+                if (!isNullStr(weakSelf.recruitmentModel.name)) {
+                    api.name = weakSelf.recruitmentModel.name;
+                }
+                if (!isNullStr(weakSelf.recruitmentModel.address)) {
+                    api.address = weakSelf.recruitmentModel.address;
+                }
+                if (!isNullStr(weakSelf.recruitmentModel.telephone)) {
+                    api.telephone = weakSelf.recruitmentModel.telephone;
+                }
+                if (!isNullStr(weakSelf.recruitmentModel.remark)) {
+                    api.remark = weakSelf.recruitmentModel.remark;
+                }
+                if (!isNullArray(weakSelf.recruitmentModel.domainList)) {
+                    api.tag_id = weakSelf.recruitmentModel.domainId;
+                }
+                if (!isNullArray(weakSelf.recruitmentModel.serviceList)) {
+                    api.service_id = weakSelf.recruitmentModel.serviceId;
+                }
+                if (!isNullStr(weakSelf.recruitmentModel.address)) {
+                    api.area_name = weakSelf.recruitmentModel.areaName;
+                    api.lat = [NSString stringWithFormat:@"%f",weakSelf.recruitmentModel.latitude];
+                    api.lng = [NSString stringWithFormat:@"%f",weakSelf.recruitmentModel.longitude];
+                    api.address = weakSelf.recruitmentModel.address;
+                }
+                [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *_Nonnull request) {
+                    if (api.requestSuccess) {
+                        [LCProgressHUD hide];
+                        [weakSelf.navigationController popViewControllerAnimated:YES];
+                        [KNBAlertRemind alterWithTitle:@"提示" message:@"您已经提交修改申请,请等待审核" buttonTitles:@[ @"知道了" ] handler:^(NSInteger index, NSString *title){
+                            
+                        }];
+                    } else {
+                        [LCProgressHUD showMessage:api.errMessage];
+                    }
+                } failure:^(__kindof YTKBaseRequest *_Nonnull request) {
+                    [LCProgressHUD showMessage:api.errMessage];
+                }];
+            } else {
+                [LCProgressHUD showMessage:fileApi.errMessage];
+            }
+        } failure:^(__kindof YTKBaseRequest *_Nonnull request) {
+            [LCProgressHUD showMessage:fileApi.errMessage];
+        }];
+    } else {
+        KNBRecruitmentModifyFacilitatorApi *api = [[KNBRecruitmentModifyFacilitatorApi alloc] init];
+        if (!isNullStr(self.recruitmentModel.name)) {
+            api.name = self.recruitmentModel.name;
+        }
+        if (!isNullStr(self.recruitmentModel.address)) {
+            api.address = self.recruitmentModel.address;
+        }
+        if (!isNullStr(self.recruitmentModel.telephone)) {
+            api.telephone = self.recruitmentModel.telephone;
+        }
+        if (!isNullStr(self.recruitmentModel.remark)) {
+            api.remark = self.recruitmentModel.remark;
+        }
+        if (!isNullArray(self.recruitmentModel.domainList)) {
+            api.tag_id = self.recruitmentModel.domainId;
+        }
+        if (!isNullArray(self.recruitmentModel.serviceList)) {
+            api.service_id = self.recruitmentModel.serviceId;
+        }
+        api.hudString = @"";
+        KNB_WS(weakSelf);
+        [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *_Nonnull request) {
+            if (api.requestSuccess) {
+                [weakSelf.navigationController popViewControllerAnimated:YES];
+                [KNBAlertRemind alterWithTitle:@"提示" message:@"您已经提交修改申请,请等待审核" buttonTitles:@[ @"知道了" ] handler:^(NSInteger index, NSString *title){
+                    
+                }];
+            } else {
+                [LCProgressHUD showMessage:api.errMessage];
+            }
+        } failure:^(__kindof YTKBaseRequest *_Nonnull request) {
+            [LCProgressHUD showMessage:api.errMessage];
+        }];
+    }
+}
+
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+    [self.lastTextField resignFirstResponder];
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField {
+
     KNBOrderTextfieldTableViewCell *nameCell = [self.knGroupTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:1]];
     KNBOrderTextfieldTableViewCell *addressCell = [self.knGroupTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:2]];
     KNBOrderTextfieldTableViewCell *mobileCell = [self.knGroupTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1   inSection:2]];
-    KNBOrderTextfieldTableViewCell *introCell = [self.knGroupTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:4]];
-    self.recruitmentModel.name = nameCell.describeTextField.text;
-    self.recruitmentModel.address = addressCell.describeTextField.text;
-    self.recruitmentModel.telephone = mobileCell.describeTextField.text;
-    self.recruitmentModel.remark = introCell.describeTextField.text;
-    if (!self.recruitmentModel.typeModel) {
-        [LCProgressHUD showMessage:@"服务类型不能为空"];
-        return;
+    
+    if ([textField isEqual:nameCell.describeTextField]) {
+        self.recruitmentModel.name = textField.text;
     }
-    if (isNullStr(self.recruitmentModel.name)) {
-        [LCProgressHUD showMessage:@"商家名称不能为空"];
-        return;
+    if ([textField isEqual:addressCell.describeTextField]) {
+        self.recruitmentModel.address = textField.text;
     }
-    if (isNullStr(self.recruitmentModel.address)) {
-        [LCProgressHUD showMessage:@"位置不能为空"];
-        return;
+    if ([textField isEqual:mobileCell.describeTextField]) {
+        self.recruitmentModel.telephone = textField.text;
     }
-    if (isNullStr(self.recruitmentModel.telephone)) {
-        [LCProgressHUD showMessage:@"电话不能为空"];
-        return;
-    }
-    if (isNullStr(self.recruitmentModel.remark)) {
-        [LCProgressHUD showMessage:@"简介不能为空"];
-        return;
-    }
+    
+}
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
+    self.lastTextField = textField;
 }
 
 #pragma mark - Getters And Setters
@@ -415,4 +556,10 @@
     }
     return _recruitmentModel;
 }
+
+- (void)setModel:(KNBHomeServiceModel *)model {
+    _model = model;
+    [self.knGroupTableView reloadData];
+}
+
 @end

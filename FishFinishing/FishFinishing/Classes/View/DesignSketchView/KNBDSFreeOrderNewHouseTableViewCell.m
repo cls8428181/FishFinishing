@@ -27,6 +27,15 @@
     return cell;
 }
 
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    NSInteger space = 10;
+    self.oldHouseButton.imageEdgeInsets = UIEdgeInsetsMake(0, -space/2.0, 0, space/2.0);
+    self.oldHouseButton.titleEdgeInsets = UIEdgeInsetsMake(0, space/2.0, 0, -space/2.0);
+    self.houseButton.imageEdgeInsets = UIEdgeInsetsMake(0, -space/2.0, 0, space/2.0);
+    self.houseButton.titleEdgeInsets = UIEdgeInsetsMake(0, space/2.0, 0, -space/2.0);
+}
+
 #pragma mark - private method
 + (CGFloat)cellHeight {
     return 50;
@@ -44,11 +53,9 @@
 }
 - (IBAction)oldHouseButtonAction:(id)sender {
     UIButton *button = (UIButton *)sender;
-    if (self.isNewHouse) {
-        self.houseButton.selected = NO;
-        button.selected = YES;
-        self.isNewHouse = NO;
-    }
+    self.houseButton.selected = NO;
+    button.selected = YES;
+    self.isNewHouse = NO;
 }
 
 @end

@@ -130,14 +130,14 @@
         FMTagsView *tagView = [[FMTagsView alloc] init];
         tagView.frame = CGRectMake(0, kTopViewHeight + 5, self.alertView.frame.size.width, kPickerHeight);
         tagView.contentInsets = UIEdgeInsetsMake(13, 13, 13, 13);
-        tagView.tagInsets = UIEdgeInsetsMake(0.5, 8.5, 0.5, 9);
+        tagView.tagInsets = UIEdgeInsetsMake(0.5, 8, 0.5, 8);
         tagView.tagBorderWidth = 0.5;
         tagView.tagcornerRadius = 5;
         tagView.tagBorderColor = [UIColor colorWithHex:0xf2f2f2];
         tagView.tagSelectedBorderColor = [UIColor colorWithHex:0x0096e6];
         tagView.tagBackgroundColor = [UIColor colorWithHex:0xf2f2f2];
         tagView.tagSelectedBackgroundColor = [UIColor colorWithHex:0x0096e6];
-        tagView.interitemSpacing = 17;
+        tagView.interitemSpacing = 15;
         tagView.tagFont = KNBFont(14);
         tagView.tagTextColor = [UIColor colorWithHex:0x333333];
         tagView.allowsSelection = YES;

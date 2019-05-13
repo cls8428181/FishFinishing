@@ -18,6 +18,16 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *cat_id;
 
 /**
+ 服务商 id
+ */
+@property (nonatomic, copy) NSString *fac_id;
+
+/**
+ 案例中的服务商 id
+ */
+@property (nonatomic, copy) NSString *facilitator_id;
+
+/**
  距离
  */
 @property (nonatomic, copy) NSString *distance;
@@ -85,7 +95,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  服务商类型
  */
-@property (nonatomic, copy) NSString *type;
+@property (nonatomic, copy) NSString *share_id;
 
 /**
  服务商类型名称
@@ -93,9 +103,24 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *parent_cat_name;
 
 /**
+ 服务商类型id
+ */
+@property (nonatomic, copy) NSString *parent_cat_id;
+
+/**
  是否置顶   0 未置顶 1 置顶
  */
 @property (nonatomic, copy) NSString *is_stick;
+
+/**
+ 是否是体验版   0 不是体验版 1 体验版
+ */
+@property (nonatomic, copy) NSString *is_experience;
+
+/**
+ 到期时间
+ */
+@property (nonatomic, copy) NSString *due_time;
 
 /**
  案例数据

@@ -18,6 +18,13 @@ target 'FishFinishing' do
     pod 'Pingpp', '~> 2.2.10'
     pod 'Pingpp/Alipay'
     pod 'Pingpp/Wx'
+    pod 'JPush'
+    pod 'EBBannerView'
+#    pod 'AMap3DMap'
+    pod 'AMapLocation'
+    pod 'AMapSearch'
+#    pod 'BaiduMapKit' #百度地图SDK
+#    pod 'BMKLocationKit'
 end
 
 target 'FishFinishingTests' do

@@ -12,6 +12,7 @@
 #import "KNBRecruitmentAddCaseApi.h"
 #import "KNBRecruitmentTypeModel.h"
 #import "KNBUploadFileApi.h"
+#import "KNBHomeUploadCaseFooterView.h"
 
 @interface KNBHomeUploadProductViewController ()
 //图片数组
@@ -22,6 +23,10 @@
 @property (nonatomic, copy) NSString *productPriceStr;
 //案例描述
 @property (nonatomic, copy) NSString *desribeString;
+//图片数组
+@property (nonatomic, strong) NSMutableArray *heightArray;
+
+@property (nonatomic, strong) KNBHomeUploadCaseFooterView *footerView;
 @end
 
 @implementation KNBHomeUploadProductViewController
@@ -46,15 +51,16 @@
 - (void)addUI {
     [self.view addSubview:self.knGroupTableView];
     self.knGroupTableView.backgroundColor = [UIColor colorWithHex:0xfafafa];
+    self.knGroupTableView.tableFooterView = self.footerView;
 }
 
 #pragma mark - tableview delegate & dataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 2;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return section == 0 ? 2 : 1;
+    return 2;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -69,15 +75,12 @@
             KNBOrderTextfieldTableViewCell *typeCell = (KNBOrderTextfieldTableViewCell *)cell;
             typeCell.type = KNBOrderTextFieldTypeProductPrice;
         }
-    } else {
-        cell = [KNBHomeUploadCaseTableViewCell cellWithTableView:tableView];
-        
     }
     return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return indexPath.section == 0 ? [KNBOrderTextfieldTableViewCell cellHeight] :[KNBHomeUploadCaseTableViewCell cellHeight:self.imgsArray.count] + 100;
+    return indexPath.section == 0 ? [KNBOrderTextfieldTableViewCell cellHeight] :[KNBHomeUploadCaseTableViewCell cellHeight:self.heightArray.count] + 100;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
@@ -102,6 +105,7 @@
     if ([self checkInfoComplete]) {
         
         //上传图片
+        [LCProgressHUD showLoading:@""];
         [KNBUploadFileApi uploadWithRequests:self.imgsArray token:[KNBUserInfo shareInstance].token complete:^(NSArray *fileUrls) {
             if (!isNullArray(fileUrls)) {
                 NSString *imgsUrl = @"";
@@ -115,6 +119,7 @@
                 KNB_WS(weakSelf);
                 [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *_Nonnull request) {
                     if (api.requestSuccess) {
+                        [LCProgressHUD hide];
                         [weakSelf.navigationController popViewControllerAnimated:YES];
                         !weakSelf.saveSuccessBlock ?: weakSelf.saveSuccessBlock();
                     } else {
@@ -133,19 +138,39 @@
 - (BOOL)checkInfoComplete {
     KNBOrderTextfieldTableViewCell *nameCell = [self.knGroupTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
     KNBOrderTextfieldTableViewCell *priceCell = [self.knGroupTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]];
-    KNBHomeUploadCaseTableViewCell *caseCell = [self.knGroupTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:1]];
-    if (isNullStr(nameCell.describeTextField.text) || isNullStr(priceCell.describeTextField.text)) {
-        [LCProgressHUD showMessage:@"信息填写不完整"];
+    self.imgsArray = self.footerView.dataArray;
+    if (isNullStr(nameCell.describeTextField.text)) {
+        [LCProgressHUD showMessage:@"产品名称为空"];
+        return NO;
+    }
+    if (isNullStr(priceCell.describeTextField.text)) {
+        [LCProgressHUD showMessage:@"产品价格为空"];
+        return NO;
+    }
+    if (isNullArray(self.imgsArray)) {
+        [LCProgressHUD showMessage:@"请至少上传一张图片"];
         return NO;
     }
     self.productNameStr = nameCell.describeTextField.text;
     self.productPriceStr = priceCell.describeTextField.text;
-    self.desribeString = caseCell.describeText.text;
-    self.imgsArray = caseCell.dataArray;
+    self.desribeString = self.footerView.describeText.text;
     return YES;
 }
 
 #pragma mark - Getters And Setters
 /* getter和setter全部都放在最后*/
+- (KNBHomeUploadCaseFooterView *)footerView {
+    KNB_WS(weakSelf);
+    if (!_footerView) {
+        _footerView = [[KNBHomeUploadCaseFooterView alloc] init];
+        _footerView.titleLabel.text = @"产品描述:";
+        _footerView.imgsCount = weakSelf.imgsCount;
+        _footerView.frame = CGRectMake(0, 0, KNB_SCREEN_WIDTH, [KNBHomeUploadCaseTableViewCell cellHeight:self.imgsArray.count] + 100);
+        _footerView.addCaseBlock = ^(NSMutableArray * _Nonnull imgsArray) {
+            weakSelf.knGroupTableView.tableFooterView.height = [KNBHomeUploadCaseTableViewCell cellHeight:imgsArray.count] + 100;
+        };
+    }
+    return _footerView;
+}
 
 @end

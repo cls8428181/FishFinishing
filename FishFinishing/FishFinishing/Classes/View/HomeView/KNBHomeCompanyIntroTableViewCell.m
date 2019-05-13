@@ -32,6 +32,10 @@
     return 185;
 }
 
+- (void)awakeFromNib {
+    [super awakeFromNib];
+}
+
 - (void)setModel:(KNBHomeServiceModel *)model {
     self.contentLabel.text = model.remark;
 }

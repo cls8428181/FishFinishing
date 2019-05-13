@@ -16,6 +16,7 @@
              @"name" : @"name",
              @"portrait_img" : @"portrait_img",
              @"house_info" : @"house_info",
+             @"area_info" : @"area_info",
              @"decorate_style" : @"decorate_style",
              @"decorate_grade" : @"decorate_grade",
              @"province_name" : @"province_name",
@@ -23,7 +24,9 @@
              @"area_name" : @"area_name",
              @"community" : @"community",
              @"mobile" : @"mobile",
-             @"created_at" : @"created_at"
+             @"created_at" : @"created_at",
+             @"type" : @"type",
+             @"decorate_cat" : @"decorate_cat"
              };
 }
 @end

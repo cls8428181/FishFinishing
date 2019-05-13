@@ -25,6 +25,31 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) KNBHomeServiceModel *serviceModel;
 
 /**
+ 经度
+ */
+@property (nonatomic, assign) CGFloat longitude;
+
+/**
+ 纬度
+ */
+@property (nonatomic, assign) CGFloat latitude;
+
+/**
+ 区域名称
+ */
+@property (nonatomic, copy) NSString *areaName;
+
+/**
+ 城市名称
+ */
+@property (nonatomic, copy) NSString *cityName;
+
+/**
+ 头像
+ */
+@property (nonatomic, strong) UIImage *iconImage;
+
+/**
  商家名称
  */
 @property (nonatomic, copy) NSString *name;
@@ -50,6 +75,21 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSArray *domainList;
 
 /**
+ 擅长领域 Id
+ */
+@property (nonatomic, copy) NSString *domainId;
+
+/**
+ 服务选择
+ */
+@property (nonatomic, strong) NSArray *serviceList;
+
+/**
+ 服务选择 Id
+ */
+@property (nonatomic, copy) NSString *serviceId;
+
+/**
  擅长领域
  */
 @property (nonatomic, copy) NSString *tag;
@@ -63,6 +103,11 @@ NS_ASSUME_NONNULL_BEGIN
  简介
  */
 @property (nonatomic, copy) NSString *remark;
+
+/**
+ 简介
+ */
+@property (nonatomic, copy) NSString *orderId;
 
 /**
  入住费用

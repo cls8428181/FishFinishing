@@ -8,9 +8,9 @@
 
 #import "KNBHomeCityListViewController.h"
 #import "KNBMainConfigModel.h"
+#import "KNBSearchView.h"
 
-
-@interface KNBHomeCityListViewController ()
+@interface KNBHomeCityListViewController ()<UISearchBarDelegate, UISearchControllerDelegate, UISearchResultsUpdating>
 
 @property (nonatomic, strong) NSArray *sectionArray;
 
@@ -18,6 +18,11 @@
 
 @property (nonatomic, strong) KNBHomeCityHeaderView *cityHeadView;
 
+@property (nonatomic, strong) KNBSearchView *searchView;
+
+@property (nonatomic, assign) BOOL isSearchResult;
+//搜索数组
+@property (nonatomic, strong) NSMutableArray *searchArray;
 @end
 
 
@@ -25,10 +30,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.naviView.title = @"城市列表";
-    [self.naviView addLeftBarItemImageName:@"knb_back_black" target:self sel:@selector(leftButtonAction:)];
+    [self.naviView removeFromSuperview];
+    [self.view addSubview:self.searchView];
     self.knbTableView.rowHeight = 38;
     [self.view addSubview:self.knbTableView];
+    self.isSearchResult = NO;
     if (self.headerType == KNHomeCityHeaderCustom) {
         self.knbTableView.tableHeaderView = self.cityHeadView;
     } else {
@@ -45,12 +51,21 @@
 #pragma mark----- UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return self.sectionArray.count;
+    if (self.isSearchResult) {
+        return 1;
+    } else {
+        return self.sectionArray.count;
+    }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    NSArray *array = self.cityDataDic[self.sectionArray[section]];
-    return array.count;
+    if (self.isSearchResult) {
+        return self.searchArray.count;
+    } else {
+        NSArray *array = self.cityDataDic[self.sectionArray[section]];
+        return array.count;
+    }
+
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -60,8 +75,13 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
     }
     //设置cell的textLabel的文本
-    NSArray *cityArr = self.cityDataDic[self.sectionArray[indexPath.section]];
-    cell.textLabel.text = cityArr[indexPath.row][@"name"];
+    if (self.isSearchResult) {
+        cell.textLabel.text = self.searchArray[indexPath.row][@"name"];
+    } else {
+        NSArray *cityArr = self.cityDataDic[self.sectionArray[indexPath.section]];
+        cell.textLabel.text = cityArr[indexPath.row][@"name"];
+    }
+
     cell.textLabel.textColor = [UIColor knLightGrayColor];
     cell.textLabel.font = [UIFont systemFontOfSize:12.0];
     return cell;
@@ -69,8 +89,14 @@
 
 #pragma mark----- UITableViewDelegation
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSArray *cityArr = self.cityDataDic[self.sectionArray[indexPath.section]];
-    NSDictionary *cityDic = cityArr[indexPath.row];
+    NSDictionary *cityDic = nil;
+    if (self.isSearchResult) {
+        cityDic = self.searchArray[indexPath.row];
+    } else {
+        NSArray *cityArr = self.cityDataDic[self.sectionArray[indexPath.section]];
+        cityDic = cityArr[indexPath.row];
+    }
+
     if (self.cityBlock) {
         self.cityBlock(cityDic[@"name"], cityDic[@"id"]);
     }
@@ -86,7 +112,11 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 20.0;
+    if (self.isSearchResult) {
+        return CGFLOAT_MIN;
+    } else {
+        return 20.0;
+    }
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
@@ -97,6 +127,60 @@
     tableView.sectionIndexColor = [UIColor knLightGrayColor];
     return self.sectionArray;
 }
+
+#pragma mark - UISearchBarDelegate
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+    self.isSearchResult = YES;
+    for (int i = 0; i < self.sectionArray.count; i++) {
+        NSArray *cityArr = self.cityDataDic[self.sectionArray[i]];
+        for (int j = 0; j < cityArr.count; j++) {
+            NSDictionary *cityDic = cityArr[j];
+            if ([cityDic[@"name"] containsString:searchBar.text]) {
+                [self.searchArray addObject:cityDic];
+            }
+        }
+    }
+    [self.knbTableView reloadData];
+}
+
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
+    if (isNullStr(searchBar.text) && isNullStr(searchText)) {
+        [self.searchView.searchBar resignFirstResponder];
+        [self.searchArray removeAllObjects];
+        self.isSearchResult = NO;
+        self.knbTableView.tableHeaderView = self.cityHeadView;
+        [self.knbTableView reloadData];
+    } else {
+        self.isSearchResult = YES;
+        self.knbTableView.tableHeaderView = nil;
+        [self.searchArray removeAllObjects];
+        for (int i = 0; i < self.sectionArray.count; i++) {
+            NSArray *cityArr = self.cityDataDic[self.sectionArray[i]];
+            for (int j = 0; j < cityArr.count; j++) {
+                NSDictionary *cityDic = cityArr[j];
+                if ([cityDic[@"name"] containsString:searchText]) {
+                    [self.searchArray addObject:cityDic];
+                }
+            }
+        }
+        [self.knbTableView reloadData];
+    }
+}
+
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
+    [self.searchView.searchBar resignFirstResponder];
+    [self.searchArray removeAllObjects];
+    self.isSearchResult = NO;
+    [self.knbTableView reloadData];
+}
+
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+    [self.searchView.searchBar resignFirstResponder];
+}
+
+- (void)updateSearchResultsForSearchController:(UISearchController *)searchController {
+}
+
 
 #pragma mark----- Setter && Getter
 - (NSDictionary *)cityDataDic {
@@ -137,6 +221,26 @@
 - (void)setCurrentCity:(NSString *)currentCity {
     _currentCity = currentCity;
     self.cityHeadView.currentCityName = currentCity;
+}
+
+- (KNBSearchView *)searchView {
+    if (!_searchView) {
+        _searchView = [[KNBSearchView alloc] initWithFrame:CGRectMake(0, 0, KNB_SCREEN_WIDTH, KNB_NAV_HEIGHT  ) isNavView:YES isHaveBackButton:YES isHaveCancleButton:NO style:KNBSearchViewStyleWhite];
+        _searchView.searchBar.placeholder = @"搜索城市";
+        _searchView.searchBar.delegate = self;
+        KNB_WS(weakSelf);
+        _searchView.backBlock = ^() {
+            [weakSelf.navigationController dismissViewControllerAnimated:YES completion:nil];
+        };
+    }
+    return _searchView;
+}
+
+- (NSMutableArray *)searchArray {
+    if (!_searchArray) {
+        _searchArray = [NSMutableArray array];
+    }
+    return _searchArray;
 }
 
 @end

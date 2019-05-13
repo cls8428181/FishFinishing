@@ -12,11 +12,10 @@
 @interface KNBDesignSketchCollectionViewCell ()
 
 @property (weak, nonatomic) IBOutlet UIView *bgView;
-
 @property (weak, nonatomic) IBOutlet UIImageView *iconImageView;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
-@property (weak, nonatomic) IBOutlet UILabel *timeLabel;
-@property (weak, nonatomic) IBOutlet UILabel *countLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *userImageView;
+@property (weak, nonatomic) IBOutlet UILabel *userLabel;
 
 @end
 
@@ -52,9 +51,9 @@
 
 - (void)setModel:(KNBDesignSketchModel *)model {
     [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:model.img] placeholderImage:KNBImages(@"knb_default_user")];
-    self.timeLabel.text = [NSDate transformFromTimestamp:model.created_at];
-    self.titleLabel.text = model.name;
-    self.countLabel.text = model.browse_num;
+    [self.userImageView sd_setImageWithURL:[NSURL URLWithString:model.logo] placeholderImage:KNBImages(@"knb_default_user")];
+    self.titleLabel.text = model.title;
+    self.userLabel.text = model.name;
 }
 
 @end

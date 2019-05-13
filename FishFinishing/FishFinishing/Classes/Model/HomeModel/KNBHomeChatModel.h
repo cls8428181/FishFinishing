@@ -20,4 +20,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *subTitle;
 @end
 
+@interface KNBHomeChatDetailModel : KNBHomeChatModel
+@property (nonatomic, copy) NSString *content;
+@end
+
 NS_ASSUME_NONNULL_END

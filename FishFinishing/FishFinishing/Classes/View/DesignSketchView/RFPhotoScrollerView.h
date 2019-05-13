@@ -11,5 +11,6 @@
 
 
 @interface RFPhotoScrollerView : UIView
+@property (nonatomic, assign) NSInteger currentIndex;
 - (instancetype)initWithImagesArray:(NSArray *)imagesArray currentIndex:(NSInteger)currentIndex frame:(CGRect)frame;
 @end

@@ -9,7 +9,6 @@
 #import "KNBRecruitmentIntroTableViewCell.h"
 
 @interface KNBRecruitmentIntroTableViewCell ()
-@property (weak, nonatomic) IBOutlet UITextView *contentTextView;
 
 @end
 
@@ -28,5 +27,10 @@
 
 + (CGFloat)cellHeight {
     return 210;
+}
+
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    self.contentTextView.textContainerInset = UIEdgeInsetsMake(12, 16, 12, 16);
 }
 @end

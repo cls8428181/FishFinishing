@@ -47,6 +47,7 @@
                 [weakSelf.dataArray removeAllObjects];
                 NSDictionary *dic = request.responseObject[@"list"];
                 NSArray *modelArray = [KNBRecruitmentTypeModel changeResponseJSONObject:dic];
+                [weakSelf.dataArray addObject:@"全部"];
                 for (KNBRecruitmentTypeModel *model in modelArray) {
                     [weakSelf.dataArray addObject:model.catName];
                 }
@@ -63,6 +64,7 @@
             if (api.requestSuccess) {
                 NSDictionary *dic = request.responseObject[@"list"];
                 NSArray *modelArray = [KNBCityModel changeResponseJSONObject:dic];
+                [weakSelf.dataArray addObject:@"全部"];
                 for (KNBCityModel *model in modelArray) {
                     [weakSelf.dataArray addObject:model.name];
                 }
@@ -81,6 +83,7 @@
                 NSDictionary *dic = request.responseObject[@"list"];
                 NSArray *modelArray = [KNBRecruitmentTypeModel changeResponseJSONObject:dic];
                 weakSelf.modelArray = modelArray;
+                [weakSelf.dataArray addObject:@"全部"];
                 for (KNBRecruitmentTypeModel *model in modelArray) {
                     [weakSelf.dataArray addObject:model.catName];
                 }
@@ -93,30 +96,42 @@
 }
 
 - (NSInteger)getTagsViewHeight {
-    CGFloat tagsWidth = 10;
+    CGFloat tagsWidth = 0;
+    CGFloat space = 17;
     NSInteger lines = 1;
     for (NSString *name in self.dataArray) {
         CGFloat tagWidth = [name widthWithFont:[UIFont systemFontOfSize:14] constrainedToHeight:16] + 26;
         if (tagWidth < 75) {
             tagWidth = 75;
         }
-        if (tagsWidth + tagWidth > KNB_SCREEN_WIDTH) {
-            tagsWidth = 10;
+        if (tagsWidth + tagWidth + 20> KNB_SCREEN_WIDTH) {
+            tagsWidth = 0;
             lines++;
         }
-        tagsWidth = tagsWidth + tagWidth;
+        tagsWidth = tagWidth + space + tagsWidth;
     }
     return lines * 40 + 10;
 }
 
 - (void)tagsView:(FMTagsView *)tagsView didSelectTagAtIndex:(NSUInteger)index {
     if (self.isDesign) {
-        KNBRecruitmentTypeModel *model = self.modelArray[index];
+        KNBRecruitmentTypeModel *model = nil;
+        if (index == 0) {
+            model = [[KNBRecruitmentTypeModel alloc] init];
+            model.catName = @"全部";
+        } else {
+            model = self.modelArray[index - 1];
+        }
         NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:model,@"model", nil];
-        NSNotification *notification = [NSNotification notificationWithName:NSStringFromClass([KNBHomeCompanyTagsViewController class]) object:nil userInfo:dict];
+        NSNotification *notification = [NSNotification notificationWithName:@"DesignSketchViewController" object:nil userInfo:dict];
         [[NSNotificationCenter defaultCenter] postNotification:notification];
     } else {
-        NSString *selectString = self.dataArray[index];
+        NSString *selectString = nil;
+        if (index == 0) {
+            selectString = @"全部";
+        } else {
+            selectString = self.dataArray[index];
+        }
         NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:selectString,@"text",self.model ? @"0" : @"1",@"index", nil];
         NSNotification *notification = [NSNotification notificationWithName:NSStringFromClass([KNBHomeCompanyTagsViewController class]) object:nil userInfo:dict];
         [[NSNotificationCenter defaultCenter] postNotification:notification];

@@ -39,7 +39,18 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - 装修费用
 @interface KNBRecruitmentCostModel : KNBRecruitmentTypeModel
+@property (nonatomic, copy) NSString *costId;
 @property (nonatomic, copy) NSString *name;
+
+/**
+ 推荐
+ */
+@property (nonatomic, copy) NSString *isRecommend;
+
+/**
+ 是否选择
+ */
+@property (nonatomic, assign) BOOL isSelected;
 
 /**
  费用
@@ -52,6 +63,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - 装修户型
 @interface KNBRecruitmentUnitModel : KNBRecruitmentTypeModel
+@property (nonatomic, copy) NSString *houseId;
 @property (nonatomic, copy) NSString *name;
 @end
 

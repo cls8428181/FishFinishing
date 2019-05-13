@@ -12,8 +12,8 @@
 //views
 #import "KNBHomeDesignSketchSubTableViewCell.h"
 #import "KNBHomeRecommendCaseModel.h"
-#import "KNBHomeCompanyDetailViewController.h"
-#import "KNBHomeServiceModel.h"
+#import "DesignSketchViewController.h"
+#import "KNBDesignSketchModel.h"
 
 @interface KNBHomeDesignSketchTableViewCell () <UICollectionViewDelegate, UICollectionViewDataSource>
 //头部滑动视图
@@ -55,7 +55,7 @@
     
     [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.bottom.equalTo(weakSelf);
-        make.top.equalTo(weakSelf.segmentedControl.mas_bottom).mas_offset(1);
+        make.top.equalTo(weakSelf.segmentedControl.mas_bottom).mas_offset(0);
         make.width.mas_equalTo(KNB_SCREEN_WIDTH);
     }];
 }
@@ -63,7 +63,7 @@
 #pragma mark - private method
 
 + (CGFloat)cellHeight {
-    return 240;
+    return 220;
 }
 
 #pragma mark - System Delegate
@@ -90,11 +90,14 @@
 //cell的点击事件
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     KNBHomeRecommendCaseModel *model = self.modelArray[indexPath.row];
-    KNBHomeServiceModel *serviceModel = [[KNBHomeServiceModel alloc] init];
-    serviceModel.serviceId = model.caseId;
-    KNBHomeCompanyDetailViewController *detailVC = [[KNBHomeCompanyDetailViewController alloc] init];
-    detailVC.isEdit = NO;
-    detailVC.model = serviceModel;
+    
+    DesignSketchViewController *detailVC = [[DesignSketchViewController alloc] init];
+    detailVC.isTabbar = NO;
+    detailVC.style_id = isNullStr(model.cat_name) ? 0 : [model.caseId integerValue];
+    
+    detailVC.apartment_id = isNullStr(model.cat_name) ? (isNullStr(model.min_area) ? [model.caseId integerValue] : 0) : 0;
+    detailVC.min_area = isNullStr(model.min_area) ? 0 : [model.min_area doubleValue];
+    detailVC.max_area = isNullStr(model.max_area) ? 9999 : [model.max_area doubleValue];
     [[[self getCurrentViewController] navigationController] pushViewController:detailVC animated:YES];
 }
 
@@ -118,7 +121,7 @@
         _segmentedControl.selectionIndicatorHeight = 2.0;
         _segmentedControl.selectionStyle = HMSegmentedControlSelectionStyleTextWidthStripe;
         _segmentedControl.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationDown;
-        _segmentedControl.selectionIndicatorEdgeInsets = UIEdgeInsetsMake(0, 8, 0, 15);
+        _segmentedControl.selectionIndicatorEdgeInsets = UIEdgeInsetsMake(0, 8, -10, 15);
         KNB_WS(weakSelf);
         [_segmentedControl setIndexChangeBlock:^(NSInteger index) {
             !weakSelf.selectIndexBlock ?: weakSelf.selectIndexBlock(index);
@@ -133,6 +136,7 @@
         layout.minimumInteritemSpacing = 10;
         layout.minimumLineSpacing = 10;
         layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+        layout.sectionInset = UIEdgeInsetsMake(0, 0, 0, 10);
         _collectionView = [[UICollectionView alloc] initWithFrame:self.contentView.bounds collectionViewLayout:layout];
         _collectionView.showsHorizontalScrollIndicator = NO;
         _collectionView.backgroundColor = [UIColor whiteColor];

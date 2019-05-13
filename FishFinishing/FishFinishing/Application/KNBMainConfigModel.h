@@ -42,6 +42,19 @@ extern NSString *const KNBLogin_ModifyUserInfo;
  * 登录
  */
 extern NSString *const KNBLogin_Login;
+/**
+ * 获取配置信息
+ */
+extern NSString *const KNB_GetCollocation;
+/**
+ * 设置极光推送 token
+ */
+extern NSString *const KNB_RegistrationId;
+/**
+ * 返回用户信息
+ */
+extern NSString *const KNBLogin_UserInfo;
+
 
 #pragma mark - 首页
 /**
@@ -143,6 +156,10 @@ extern NSString *const KNBRecruitment_Getlist;
  * 获取置顶剩余时间
  */
 extern NSString *const KNBRecruitment_StickTime;
+/**
+ * 推荐
+ */
+extern NSString *const KNBRecruitment_DefaultShow;
 
 
 #pragma mark - 免费预约
@@ -163,9 +180,26 @@ extern NSString *const KNBOrder_Area;
  */
 extern NSString *const KNBOrder_Unit;
 /**
+ * 获取面积
+ */
+extern NSString *const KNBOrder_AreaRange;
+/**
+ * 免费预约
+ */
+extern NSString *const KNBOrder_Bespoke;
+/**
+ * 检查预约状态
+ */
+extern NSString *const KNBOrder_CheckBespoke;
+/**
  * 检查是否有修改权限
  */
 extern NSString *const KNBOrder_ModifyPower;
+/**
+ * 检查能否上传案例或产品
+ */
+extern NSString *const KNBOrder_CheckCaseNum;
+
 
 #pragma mark - 支付相关
 /**
@@ -180,11 +214,6 @@ extern NSString *const KNBOrder_OrderStatus;
  * 支付宝支付统一下单接口
  */
 extern NSString *const KNBOrder_AlipayPay;
-/**
- * 免费预约
- */
-extern NSString *const KNBOrder_Bespoke;
-
 
 @interface KNBMainConfigModel : NSObject
 

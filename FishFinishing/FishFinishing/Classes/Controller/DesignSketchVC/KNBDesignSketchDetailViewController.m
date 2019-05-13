@@ -9,7 +9,8 @@
 #import "KNBDesignSketchDetailViewController.h"
 #import "RFPhotoScrollerView.h"
 #import "KNBRecruitmentCaseDetailApi.h"
-#import "KNBHomeOfferViewController.h"
+#import "KNBLoginViewController.h"
+#import "KNBOrderViewController.h"
 
 @interface KNBDesignSketchDetailViewController ()
 //返回按钮
@@ -119,10 +120,12 @@
             NSDictionary *dic = request.responseObject[@"list"];
             KNBDesignSketchModel *model = [KNBDesignSketchModel changeResponseJSONObject:dic];
             weakSelf.titleLabel.text = model.title;
-            weakSelf.styleLabel.text = model.style_name;
-            weakSelf.houseLabel.text = model.apart;
-            weakSelf.areaLabel.text = [NSString stringWithFormat:@"%@㎡",model.acreage];
-            weakSelf.contentLabel.text = model.remark;
+            weakSelf.styleLabel.text = model.style_name ?: @"暂无风格信息";
+            weakSelf.houseLabel.text = model.apart_name ?: @"暂无户型信息";
+            weakSelf.areaLabel.text = [NSString stringWithFormat:@"%@㎡",model.acreage] ?: @"暂无面积信息";
+            weakSelf.contentLabel.text = model.remark ?: @"暂无简介信息";
+            weakSelf.orderButton.tag = [model.telephone integerValue];
+            weakSelf.model = model;
             NSMutableArray *imgsArray = [NSMutableArray array];
             NSArray *tempArray = dic[@"imgs"];
             for (NSString *string in tempArray) {
@@ -179,7 +182,6 @@
         make.top.equalTo(weakSelf.styleLabel.mas_bottom).mas_offset(10);
         make.left.mas_equalTo(12);
         make.right.mas_equalTo(-12);
-        make.bottom.mas_equalTo(KNB_TAB_HEIGHT + 10);
     }];
 }
 
@@ -192,24 +194,88 @@
 }
 
 - (void)shareButtonAction {
+    NSString *imgUrl = self.photosArray[self.scrollerView.currentIndex];
+    UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL: [NSURL URLWithString:imgUrl]]];
+    NSAttributedString *titleString = [[NSAttributedString alloc] initWithString:self.titleLabel.text attributes:@{NSFontAttributeName:[UIFont boldSystemFontOfSize:20]}];
+    NSAttributedString *styleString = [[NSAttributedString alloc] initWithString:self.styleLabel.text attributes:@{NSFontAttributeName:[UIFont boldSystemFontOfSize:20]}];
+    NSAttributedString *houseString = [[NSAttributedString alloc] initWithString:self.houseLabel.text attributes:@{NSFontAttributeName:[UIFont boldSystemFontOfSize:20]}];
+    NSAttributedString *areaString = [[NSAttributedString alloc] initWithString:self.areaLabel.text attributes:@{NSFontAttributeName:[UIFont boldSystemFontOfSize:20]}];
+    NSAttributedString *remarkString = [[NSAttributedString alloc] initWithString:self.contentLabel.text attributes:@{NSFontAttributeName:[UIFont boldSystemFontOfSize:20]}];
+    
+    UIImage *shareImage = [self combine:image title:titleString style:styleString house:houseString area:areaString remark:remarkString];
+    NSString *name = @"效果图详情";
+    NSString *describeStr = @"这是效果图详情";
+    [self shareImageWithMessages:@[name , describeStr] image:shareImage shareButtonBlock:^(NSInteger platformType, BOOL success) {
+        
+    }];
+}
+
+- (void)orderButtonAction:(UIButton *)button {
+    KNB_WS(weakSelf);
     if ([KNBUserInfo shareInstance].isLogin) {
-        NSString *urlStr = @"http://baidu.com";
-        NSString *name = @"效果图详情";
-        NSString *describeStr = @"这是效果图详情";
-        [self shareMessages:@[ name, describeStr, urlStr ] isActionType:NO shareButtonBlock:nil];
+        if ([button.titleLabel.text isEqualToString:@"立即预约"]) {
+            KNBOrderViewController *orderVC = [[KNBOrderViewController alloc] init];
+            orderVC.VCType = KNBOrderVCTypeOrderFinishing;
+            orderVC.isExperience = NO;
+            orderVC.isStyleEnable = NO;
+            orderVC.model = self.model;
+            [self.navigationController pushViewController:orderVC animated:YES];
+        } else {
+            NSMutableString * str=[[NSMutableString alloc] initWithFormat:@"tel:%ld",button.tag];
+            UIApplication *application = [UIApplication sharedApplication];
+            NSURL *URL = [NSURL URLWithString:str];
+            [application openURL:URL options:@{} completionHandler:^(BOOL success) {
+                //OpenSuccess = 选择 呼叫 为 1  选择 取消 为0
+                NSLog(@"OpenSuccess=%d",success);
+                
+            }];
+        }
     } else {
-        [LCProgressHUD showMessage:@"您还未登录,请先登录"];
+        [KNBAlertRemind alterWithTitle:@"" message:@"您还未登录,请先登录" buttonTitles:@[@"去登录",@"取消"] handler:^(NSInteger index, NSString *title) {
+            if ([title isEqualToString:@"去登录"]) {
+                KNBLoginViewController *loginVC = [[KNBLoginViewController alloc] init];
+                loginVC.vcType = KNBLoginTypeLogin;
+                [weakSelf presentViewController:loginVC animated:YES completion:nil];
+            }
+        }];
     }
 }
 
-- (void)orderButtonAction {
-    if ([KNBUserInfo shareInstance].isLogin) {
-        KNBHomeOfferViewController *offerVC = [[KNBHomeOfferViewController alloc] init];
-        offerVC.faceId = [self.model.caseId integerValue];
-        [self.navigationController pushViewController:offerVC animated:YES];
-    } else {
-        [LCProgressHUD showMessage:@"您还未登录,请先登录"];
-    }
+#pragma mark 合并图片
+- (UIImage *)combine:(UIImage *)image title:(NSAttributedString *)title style:(NSAttributedString *)style house:(NSAttributedString *)house area:(NSAttributedString *)area remark:(NSAttributedString *)remark {
+    //计算画布大小
+    CGFloat width = image.size.width;
+    CGFloat height = image.size.height + 150;
+    CGSize resultSize = CGSizeMake(width, height);
+    UIGraphicsBeginImageContext(resultSize);
+    
+    //图片
+    CGRect imageRect = CGRectMake(0, 0, resultSize.width, image.size.height);
+    [image drawInRect:imageRect];
+    
+    //标题
+    CGRect titleRect = CGRectMake(13, image.size.height + 15, resultSize.width, 25);
+    [title drawInRect:titleRect];
+    
+    //风格
+    CGRect styleRect = CGRectMake(13, image.size.height + 50, (KNB_SCREEN_WIDTH - 26)/3, 25);
+    [style drawInRect:styleRect];
+    
+    //户型
+    CGRect houseRect = CGRectMake((KNB_SCREEN_WIDTH - 26)/3 + 13, image.size.height + 50, (KNB_SCREEN_WIDTH - 26)/3, 25);
+    [house drawInRect:houseRect];
+    
+    //面积
+    CGRect areaRect = CGRectMake((KNB_SCREEN_WIDTH - 26)/3 * 2 + 13, image.size.height + 50, (KNB_SCREEN_WIDTH - 26)/3, 25);
+    [area drawInRect:areaRect];
+    
+    //简介
+    CGRect remarkRect = CGRectMake(13, image.size.height + 85, resultSize.width, 55);
+    [remark drawInRect:remarkRect];
+    
+    UIImage *resultImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return resultImage;
 }
 
 #pragma mark - Getters And Setters
@@ -234,7 +300,7 @@
 
 - (RFPhotoScrollerView *)scrollerView {
     if (!_scrollerView) {
-        _scrollerView = [[RFPhotoScrollerView alloc]initWithImagesArray:self.photosArray currentIndex:0 frame:CGRectMake(0, KNB_NAV_HEIGHT, KNB_SCREEN_WIDTH, KNB_SCREEN_HEIGHT - KNB_NAV_HEIGHT - KNB_TAB_HEIGHT)];
+        _scrollerView = [[RFPhotoScrollerView alloc]initWithImagesArray:self.photosArray currentIndex:0 frame:CGRectMake(0, 80, KNB_SCREEN_WIDTH, KNB_SCREEN_HEIGHT - KNB_TAB_HEIGHT - 180)];
     }
     return _scrollerView;
 }
@@ -331,7 +397,7 @@
         [_orderButton setBackgroundColor:[UIColor redColor]];
         [_orderButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         _orderButton.titleLabel.font = [UIFont systemFontOfSize:18];
-        [_orderButton addTarget:self action:@selector(orderButtonAction) forControlEvents:UIControlEventTouchUpInside];
+        [_orderButton addTarget:self action:@selector(orderButtonAction:) forControlEvents:UIControlEventTouchUpInside];
 
     }
     return _orderButton;
@@ -339,5 +405,9 @@
 
 - (void)setModel:(KNBDesignSketchModel *)model {
     _model = model;
+    if ([model.parent_cat_name containsString:@"家居"] || [model.parent_cat_name containsString:@"建材"]) {
+        [_orderButton setTitle:@"立即联系" forState:UIControlStateNormal];
+        _orderButton.tag = [model.telephone integerValue];
+    }
 }
 @end

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -26,17 +26,27 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="m²" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GRT-Su-2h3">
-                        <rect key="frame" x="95" y="13.5" width="213" height="17"/>
+                        <rect key="frame" x="95" y="13.5" width="215" height="17"/>
                         <nil key="textColor"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <textInputTraits key="textInputTraits"/>
                     </textField>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VuN-BF-gJY">
+                        <rect key="frame" x="13" y="42.5" width="294" height="1"/>
+                        <color key="backgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.94901960780000005" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="Frj-Ce-nQV"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="trailing" secondItem="GRT-Su-2h3" secondAttribute="trailing" constant="12" id="ISJ-bq-dJZ"/>
+                    <constraint firstAttribute="bottom" secondItem="VuN-BF-gJY" secondAttribute="bottom" id="5IU-18-v0S"/>
+                    <constraint firstItem="VuN-BF-gJY" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="13" id="8Lp-TP-Oav"/>
+                    <constraint firstAttribute="trailing" secondItem="GRT-Su-2h3" secondAttribute="trailing" constant="10" id="ISJ-bq-dJZ"/>
                     <constraint firstItem="uOj-j2-e0x" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="33" id="W5Y-Ye-AVt"/>
                     <constraint firstItem="uOj-j2-e0x" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="bxR-n4-s2u"/>
                     <constraint firstItem="GRT-Su-2h3" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="hmk-aT-ceh"/>
+                    <constraint firstAttribute="trailing" secondItem="VuN-BF-gJY" secondAttribute="trailing" constant="13" id="oFh-ed-JXw"/>
                     <constraint firstItem="GRT-Su-2h3" firstAttribute="leading" secondItem="uOj-j2-e0x" secondAttribute="trailing" constant="33" id="s3j-bK-xpk"/>
                 </constraints>
             </tableViewCellContentView>
@@ -45,6 +55,7 @@
                 <outlet property="describeTextField" destination="GRT-Su-2h3" id="z9X-ua-s8U"/>
                 <outlet property="titleLabel" destination="uOj-j2-e0x" id="ind-3T-4VN"/>
             </connections>
+            <point key="canvasLocation" x="41.600000000000001" y="46.776611694152926"/>
         </tableViewCell>
     </objects>
 </document>

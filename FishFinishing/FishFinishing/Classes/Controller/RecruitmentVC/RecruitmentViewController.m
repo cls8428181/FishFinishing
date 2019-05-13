@@ -10,19 +10,47 @@
 #import "KNBOrderViewController.h"
 #import "KNBHomeBannerApi.h"
 #import "KNBHomeBannerModel.h"
+#import "KNBLoginViewController.h"
+#import "KNBHomeCompanyDetailViewController.h"
+#import "UIImage+Size.h"
+#import "KNBRecruitmentModifyDetailApi.h"
+#import "KNBHomeServiceModel.h"
 
 @interface RecruitmentViewController ()
 //背景
-@property (nonatomic, strong) UIImageView *bgView;
+@property (nonatomic, strong) UIScrollView *bgView;
+@property (nonatomic, strong) UIImageView *bgImageView;
 //立即预约
 @property (nonatomic, strong) UIButton *enterButton;
 //数据
 @property (nonatomic, strong) KNBHomeBannerModel *model;
+@property (nonatomic, strong) KNBHomeServiceModel *serviceModel;
+
 @end
 
 @implementation RecruitmentViewController
 
 #pragma mark - life cycle
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    if ([KNBUserInfo shareInstance].isLogin) {
+        KNBRecruitmentModifyDetailApi *api = [[KNBRecruitmentModifyDetailApi alloc] init];
+        KNB_WS(weakSelf);
+        [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *_Nonnull request) {
+            if (api.requestSuccess) {
+                NSDictionary *dic = request.responseObject[@"list"];
+                KNBHomeServiceModel *serviceModel = [KNBHomeServiceModel changeResponseJSONObject:dic];
+                weakSelf.serviceModel = serviceModel;
+                [weakSelf.enterButton setTitle:@"入驻查看" forState:UIControlStateNormal];
+            } else {
+                weakSelf.serviceModel = nil;
+                [weakSelf.enterButton setTitle:@"立即入驻" forState:UIControlStateNormal];
+            }
+        } failure:^(__kindof YTKBaseRequest *_Nonnull request) {
+        }];
+    }
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -57,6 +85,11 @@
 - (void)configuration {
     [self.naviView removeFromSuperview];
     self.view.backgroundColor = [UIColor knBgColor];
+    if (@available(iOS 11.0, *)) {
+        self.bgView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+    }else {
+        self.automaticallyAdjustsScrollViewInsets = NO;
+    }
 }
 
 - (void)addUI {
@@ -73,9 +106,11 @@
             NSDictionary *dic = request.responseObject[@"list"];
             NSArray *modelArray = [KNBHomeBannerModel changeResponseJSONObject:dic];
             weakSelf.model = modelArray.firstObject;
-            KNB_PerformOnMainThread(^{
-                [weakSelf.bgView sd_setImageWithURL:[NSURL URLWithString:weakSelf.model.img] placeholderImage:KNBImages(@"knb_default_style")];
-            });
+            CGSize size = [UIImage getImageSizeWithURL:[NSURL URLWithString:weakSelf.model.img]];
+            weakSelf.bgView.contentSize = CGSizeMake(KNB_SCREEN_WIDTH/size.width * size.width, KNB_SCREEN_HEIGHT/size.height * size.height);
+            [weakSelf.bgView addSubview:weakSelf.bgImageView];
+            weakSelf.bgImageView.frame = CGRectMake(0, 0, KNB_SCREEN_WIDTH/size.width * size.width, KNB_SCREEN_HEIGHT/size.height * size.height);
+            [weakSelf.bgImageView sd_setImageWithURL:[NSURL URLWithString:weakSelf.model.img] placeholderImage:KNBImages(@"knb_default_style")];
         }
     } failure:^(__kindof YTKBaseRequest *_Nonnull request) {
     }];
@@ -87,29 +122,51 @@
  */
 - (void)enterButtonAction:(UIButton *)button {
     if ([KNBUserInfo shareInstance].isLogin) {
-        KNBOrderViewController *orderVC = [[KNBOrderViewController alloc] init];
-        orderVC.VCType = KNBOrderVCTypeRecruitment;
-        [self.navigationController pushViewController:orderVC animated:YES];
+        
+        if (self.serviceModel) {
+            KNBHomeCompanyDetailViewController *detailVC = [[KNBHomeCompanyDetailViewController alloc] init];
+            detailVC.model = self.serviceModel;
+            detailVC.isEdit = YES;
+            [self.navigationController pushViewController:detailVC animated:YES];
+        } else {
+            KNBOrderViewController *orderVC = [[KNBOrderViewController alloc] init];
+            orderVC.VCType = KNBOrderVCTypeRecruitment;
+            [self.navigationController pushViewController:orderVC animated:YES];
+        }
+        
     } else {
-        [LCProgressHUD showMessage:@"您还未登录,请先登录"];
+        KNB_WS(weakSelf);
+        [KNBAlertRemind alterWithTitle:@"" message:@"您还未登录,请先登录" buttonTitles:@[@"去登录",@"取消"] handler:^(NSInteger index, NSString *title) {
+            if ([title isEqualToString:@"去登录"]) {
+                KNBLoginViewController *loginVC = [[KNBLoginViewController alloc] init];
+                loginVC.vcType = KNBLoginTypeLogin;
+                [weakSelf presentViewController:loginVC animated:YES completion:nil];
+            }
+        }];
     }
 
 }
 
 #pragma mark - Getters And Setters
 /* getter和setter全部都放在最后*/
-- (UIImageView *)bgView {
+- (UIScrollView *)bgView {
     if (!_bgView) {
-        _bgView = [[UIImageView alloc] init];
-        _bgView.image = KNBImages(@"knb_default_style");
+        _bgView = [[UIScrollView alloc] init];
     }
     return _bgView;
+}
+
+- (UIImageView *)bgImageView {
+    if (!_bgImageView) {
+        _bgImageView = [[UIImageView alloc] init];
+    }
+    return _bgImageView;
 }
 
 - (UIButton *)enterButton {
     if (!_enterButton) {
         _enterButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_enterButton setTitle:@"立即入驻" forState:UIControlStateNormal];
+        [_enterButton setTitle:isNullStr([KNBUserInfo shareInstance].fac_id) ? @"立即入驻" : @"入驻查看" forState:UIControlStateNormal];
         [_enterButton setBackgroundColor:[UIColor colorWithHex:0x1898e3]];
         _enterButton.titleLabel.font = [UIFont systemFontOfSize:14];
         _enterButton.layer.masksToBounds = YES;

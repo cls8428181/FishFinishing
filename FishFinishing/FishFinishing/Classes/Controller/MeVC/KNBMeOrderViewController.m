@@ -11,6 +11,7 @@
 #import "KNBMeOrderModel.h"
 #import "KNBMeOrderApi.h"
 #import "KNBMeOrderAlertView.h"
+#import "KNBMeOrderOtherTableViewCell.h"
 
 @interface KNBMeOrderViewController ()
 
@@ -24,18 +25,8 @@
     [self configuration];
     
     [self addUI];
-    
-    [self settingConstraints];
-    
+        
     [self fetchData];
-}
-
-#pragma mark - Setup UI Constraints
-/*
- *  在这里添加UIView的约束布局相关代码
- */
-- (void)settingConstraints {
-    KNB_WS(weakSelf);
 }
 
 #pragma mark - Utils
@@ -79,9 +70,18 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    KNBMeOrderModel *model = self.dataArray[indexPath.section];
-    KNBMeOrderTableViewCell *cell = [KNBMeOrderTableViewCell cellWithTableView:tableView];
-    cell.model = model;
+    KNBMeOrderModel *model = self.dataArray[indexPath.row];
+    UITableViewCell *cell = nil;
+    if ([model.type isEqualToString:@"1"]) {
+        cell = [KNBMeOrderOtherTableViewCell cellWithTableView:tableView];
+        KNBMeOrderOtherTableViewCell *typeCell = (KNBMeOrderOtherTableViewCell *)cell;
+        typeCell.model = model;
+    } else {
+        cell = [KNBMeOrderTableViewCell cellWithTableView:tableView];
+        KNBMeOrderTableViewCell *typeCell = (KNBMeOrderTableViewCell *)cell;
+        typeCell.model = model;
+    }
+
     return cell;
 }
 
@@ -95,12 +95,11 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     KNB_WS(weakSelf);
-    KNBMeOrderModel *model = self.dataArray[indexPath.section];
+    KNBMeOrderModel *model = self.dataArray[indexPath.row];
     [KNBMeOrderAlertView showAlertViewWithModel:model CompleteBlock:^{
-        
+        [weakSelf fetchData];
     } deleteActionBlock:^{
-        [weakSelf.dataArray removeObjectAtIndex:indexPath.row];
-        [weakSelf.knbTableView reloadData];
+        [weakSelf fetchData];
     }];
 }
 

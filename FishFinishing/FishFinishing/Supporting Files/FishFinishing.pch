@@ -56,6 +56,7 @@
 #import <Pingpp.h>
 #import <UIImageView+WebCache.h>
 #import <UIButton+WebCache.h>
+#import "KNBAlertRemind.h"
 
 // 环境配置 0：本地测试 1:正式环境 2:线上测试
 #define KNB_ENV_TYPE 2
@@ -84,11 +85,11 @@
 #define KNBNewMessageCommingNotification @"KNBNewMessageCommingNotification"
 
 // 有关支付的配置信息
-#define KNPingpp_AppId @"app_S4iHOGGiX98K0GCS"
 #define KN_PayCodeWX @"wx" // 微信
 #define KN_PayCodeAlipay @"alipay" // 支付宝
-#define KN_AlpiyUrlScheme  @"KNPayUrl002"
-#define KN_WXUrlScheme  @"wx59d8ae90819ba21f"
+#define KN_AlipyUrlScheme  @"KNBAlipay"
+#define KN_WXUrlScheme  @"wx"
+#define KN_WeixinAppId  @"wx59d8ae90819ba21f"
 
 // 导航服务器地址
 #define KN_NaviServerUrl  @"https://import.idengyun.com:8082"
@@ -100,7 +101,7 @@
 #define KNB_SCREEN_ASPECT_RATIO_W(width) (KNB_SCREEN_HEIGHT / 667.0) * width
 
 typedef NS_ENUM(NSInteger, KNTraingErrorCode) {
-    KNTraingError_token = 10014, // token过期
+    KNTraingError_token = -1, // token过期
     KNTraingError_update = 10017,// 强制更新
 };
 //上传图片

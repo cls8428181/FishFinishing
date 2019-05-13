@@ -7,7 +7,10 @@
 //
 
 #import "KNBHomeSubView.h"
-#import "KNBHomeSubTableView.h"
+
+@interface KNBHomeSubView ()
+
+@end
 
 @implementation KNBHomeSubView
 
@@ -16,18 +19,15 @@
     self = [super initWithFrame:frame];
     if (self) {
         _contentView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height)];
-        _contentView.contentSize = CGSizeMake(frame.size.width*5, frame.size.height);
+        _contentView.contentSize = CGSizeMake(frame.size.width, frame.size.height);
         _contentView.pagingEnabled = YES;
         _contentView.bounces = YES;
         _contentView.delegate = self;
         _contentView.showsHorizontalScrollIndicator = NO;
         [self addSubview:_contentView];
         
-        for (int i=0; i<index; i++) {
-            KNBHomeSubTableView *aSubTable = [[KNBHomeSubTableView alloc] initWithFrame:CGRectMake(i*frame.size.width, 0, frame.size.width, frame.size.height) dataSource:dataSrouce];
-            aSubTable.tag = 10000 + i;
-            [_contentView addSubview:aSubTable];
-        }
+        _tableView = [[KNBHomeSubTableView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height) dataSource:dataSrouce];
+        [_contentView addSubview:_tableView];
         
     }
     return self;
@@ -42,13 +42,8 @@
 }
 
 - (void)reloadTableViewAtIndex:(NSInteger)index dataSource:(NSArray *)dataSource title:(nonnull NSString *)title {
-    for (UIView *view in self.contentView.subviews) {
-        if (view.tag == 10000 + index) {
-            KNBHomeSubTableView *tableView = (KNBHomeSubTableView *)view;
-            tableView.title = title;
-            [tableView reloadTableView:dataSource];
-        }
-    }
+    self.tableView.title = title;
+    [self.tableView reloadTableView:dataSource];
 }
 
 @end

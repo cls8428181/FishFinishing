@@ -91,7 +91,7 @@
  */
 - (NSString *)getTimeyyyymmdd:(NSString *)timestamp {
     NSString * timeStampString = timestamp;
-    NSTimeInterval _interval=[timeStampString doubleValue] / 1000.0;
+    NSTimeInterval _interval=[timeStampString doubleValue];
     NSDate *date = [NSDate dateWithTimeIntervalSince1970:_interval];
     NSDateFormatter *formatDay = [[NSDateFormatter alloc] init];
     formatDay.dateFormat = @"yyyy-MM-dd HH:mm:ss";
@@ -165,21 +165,18 @@
         if ([self.model.is_stick isEqualToString:@"0"]) {
             self.headerView.timeLabel.text = @"您还未开通置顶服务，立即开通获得更多资源！";
         } else {
-            KNBTopRemainingTimeApi *api = [[KNBTopRemainingTimeApi alloc] initWithFacId:[self.model.serviceId integerValue]];
-            api.hudString = @"";
+            KNBTopRemainingTimeApi *api = [[KNBTopRemainingTimeApi alloc] initWithFacId:[self.model.fac_id integerValue]];
             KNB_WS(weakSelf);
             [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *_Nonnull request) {
                 if (api.requestSuccess) {
                     NSDictionary *dic = request.responseObject[@"list"];
                     KNBHomeBuyTopModel *model = [KNBHomeBuyTopModel changeResponseJSONObject:dic];
                     // 倒计时的时间 测试数据
-                    NSString *deadlineStr = [self getTimeyyyymmdd:model.stick_due_time];
+                    NSString *deadlineStr = [weakSelf getTimeyyyymmdd:model.stick_due_time];
                     // 当前时间的时间戳
-                    NSString *nowStr = [self getCurrentTimeyyyymmdd];
+                    NSString *nowStr = [weakSelf getCurrentTimeyyyymmdd];
                     // 计算时间差值
-                    NSInteger secondsCountDown = [self getDateDifferenceWithNowDateStr:nowStr deadlineStr:deadlineStr];
-                    
-                    __weak __typeof(self) weakSelf = self;
+                    NSInteger secondsCountDown = [weakSelf getDateDifferenceWithNowDateStr:nowStr deadlineStr:deadlineStr];
                     
                     if (weakSelf.timer == nil) {
                         __block NSInteger timeout = secondsCountDown; // 倒计时时间
@@ -223,7 +220,6 @@
                         }
                     }
                     
-                } else {
                 }
             } failure:^(__kindof YTKBaseRequest *_Nonnull request) {
             }];
@@ -242,6 +238,7 @@
     self.recruitmentModel.priceModel = costModel;
     KNBRecruitmentPayViewController *payVC = [[KNBRecruitmentPayViewController alloc] init];
     payVC.recruitmentModel = self.recruitmentModel;
+    payVC.type = KNBPayVCTypeTop;
     [self.navigationController pushViewController:payVC animated:YES];
 }
 
@@ -279,4 +276,12 @@
     _model = model;
     self.recruitmentModel.serviceModel = model;
 }
+
+- (KNBRecruitmentModel *)recruitmentModel {
+    if (!_recruitmentModel) {
+        _recruitmentModel = [[KNBRecruitmentModel alloc] init];
+    }
+    return _recruitmentModel;
+}
+
 @end

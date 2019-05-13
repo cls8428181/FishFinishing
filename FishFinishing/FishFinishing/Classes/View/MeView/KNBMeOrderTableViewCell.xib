@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="178" id="KGk-i7-Jjw" customClass="KNBMeOrderTableViewCell">
-            <rect key="frame" x="0.0" y="0.0" width="445" height="178"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="112" id="KGk-i7-Jjw" customClass="KNBMeOrderTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="445" height="112"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="445" height="177.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="445" height="111.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="knb_default_user" translatesAutoresizingMaskIntoConstraints="NO" id="1cI-su-BAv">
@@ -25,6 +25,10 @@
                             <constraint firstAttribute="height" constant="38" id="7wo-Zc-xic"/>
                             <constraint firstAttribute="width" constant="38" id="D74-Tl-AdR"/>
                         </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                            <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="19"/>
+                        </userDefinedRuntimeAttributes>
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="knb_me_jiazhuanggeju" translatesAutoresizingMaskIntoConstraints="NO" id="ORq-kD-HGf">
                         <rect key="frame" x="59" y="47.5" width="11" height="10"/>
@@ -75,14 +79,14 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="knb_me_yilianxi" translatesAutoresizingMaskIntoConstraints="NO" id="pYM-qj-BCt">
-                        <rect key="frame" x="378" y="121.5" width="50" height="50"/>
+                        <rect key="frame" x="378" y="55.5" width="50" height="50"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="50" id="PP0-Ey-HPN"/>
                             <constraint firstAttribute="height" constant="50" id="fvE-3Z-hoq"/>
                         </constraints>
                     </imageView>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WqA-si-DOT">
-                        <rect key="frame" x="13" y="176.5" width="419" height="1"/>
+                        <rect key="frame" x="13" y="110.5" width="419" height="1"/>
                         <color key="backgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.94901960784313721" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="1" id="5nF-tz-P6K"/>
@@ -131,15 +135,15 @@
                 <outlet property="styleLabel" destination="Hg0-Ev-DmP" id="hff-6x-dCg"/>
                 <outlet property="timeLabel" destination="cGj-wh-Xy3" id="z9e-BN-HVu"/>
             </connections>
-            <point key="canvasLocation" x="232.80000000000001" y="171.81409295352324"/>
+            <point key="canvasLocation" x="232.80000000000001" y="142.1289355322339"/>
         </tableViewCell>
     </objects>
     <resources>
         <image name="knb_default_user" width="39" height="39"/>
-        <image name="knb_me_dingwei" width="9" height="12"/>
+        <image name="knb_me_dingwei" width="9.5" height="12.5"/>
         <image name="knb_me_jiazhuangdangci" width="12" height="10"/>
         <image name="knb_me_jiazhuanggeju" width="11" height="10"/>
-        <image name="knb_me_yilianxi" width="49" height="50"/>
-        <image name="knb_me_zhuangxiufengge" width="12" height="11"/>
+        <image name="knb_me_yilianxi" width="49.5" height="50"/>
+        <image name="knb_me_zhuangxiufengge" width="12.5" height="11.5"/>
     </resources>
 </document>

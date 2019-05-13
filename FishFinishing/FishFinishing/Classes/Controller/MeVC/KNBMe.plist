@@ -37,12 +37,6 @@
 			<key>imageName</key>
 			<string>knb_me_icon_about</string>
 		</dict>
-		<dict>
-			<key>title</key>
-			<string>版本更新</string>
-			<key>imageName</key>
-			<string>knb_me_icon_update</string>
-		</dict>
 	</array>
 </array>
 </plist>

@@ -27,7 +27,7 @@
 }
 
 + (CGFloat)cellHeight {
-    return 50;
+    return 90;
 }
 
 - (void)setType:(KNBRecruitmentEnterType)type {

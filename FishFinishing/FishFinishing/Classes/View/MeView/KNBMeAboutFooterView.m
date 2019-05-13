@@ -46,7 +46,7 @@
     if (!_topLabel) {
         _topLabel = [[UILabel alloc] init];
         _topLabel.font = [UIFont systemFontOfSize:12];
-        _topLabel.textColor = [UIColor colorWithHex:0xfffefe];
+        _topLabel.textColor = [UIColor colorWithHex:0xffffff alpha:0.5];
         _topLabel.textAlignment = NSTextAlignmentCenter;
         _topLabel.text = @"大鱼装修 版权所有";
     }
@@ -57,8 +57,9 @@
     if (!_middleLabel) {
         _middleLabel = [[UILabel alloc] init];
         _middleLabel.font = [UIFont systemFontOfSize:12];
-        _middleLabel.textColor = [UIColor colorWithHex:0xfffefe];
+        _middleLabel.textColor = [UIColor colorWithHex:0xffffff alpha:0.5];
         _middleLabel.textAlignment = NSTextAlignmentCenter;
+        _middleLabel.numberOfLines = 0;
         _middleLabel.text = @"Copyright © 2017­﹣2019 Dayuzhuangxiu.";
     }
     return _middleLabel;
@@ -68,11 +69,15 @@
     if (!_bottomLabel) {
         _bottomLabel = [[UILabel alloc] init];
         _bottomLabel.font = [UIFont systemFontOfSize:12];
-        _bottomLabel.textColor = [UIColor colorWithHex:0xfffefe];
+        _bottomLabel.textColor = [UIColor colorWithHex:0xffffff alpha:0.5];
         _bottomLabel.textAlignment = NSTextAlignmentCenter;
         _bottomLabel.text = @"All Rights Reserved. ";
     }
     return _bottomLabel;
+}
+
+- (void)setModel:(KNBMeAboutModel *)model {
+    self.middleLabel.text = model.copyright;
 }
 
 @end

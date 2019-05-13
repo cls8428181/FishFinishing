@@ -13,9 +13,13 @@ NS_ASSUME_NONNULL_BEGIN
 @interface KNBHomeCategoryTableViewCell : UITableViewCell
 
 /**
- 装修工人的回调
+ 类型选择的回调
  */
 @property (nonatomic, copy) void(^selectItemAtIndexBlock)(NSInteger index);
+/**
+ 广告图点击的回调
+ */
+@property (nonatomic, copy) void(^adButtonBlock)(void);
 
 /**
  cell 创建
