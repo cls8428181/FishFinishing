@@ -1,1 +1,0 @@
-../../../../PingppAlipaySDK/AlipaySDK.framework/Headers/AlipaySDK.h
