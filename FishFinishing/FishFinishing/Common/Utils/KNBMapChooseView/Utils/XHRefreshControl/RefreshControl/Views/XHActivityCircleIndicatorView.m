@@ -10,7 +10,7 @@
 
 static NSString* const kXHRotationAnimation = @"XHRotationAnimation";
 
-@interface XHActivityCircleIndicatorView ()
+@interface XHActivityCircleIndicatorView ()<CAAnimationDelegate>
 
 @property (nonatomic, strong) CALayer *standbyLayer;
 @property (nonatomic, strong) CALayer *animationLayer;

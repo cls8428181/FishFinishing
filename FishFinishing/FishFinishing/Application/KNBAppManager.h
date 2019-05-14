@@ -29,10 +29,10 @@ KNB_DEFINE_SINGLETON_FOR_HEADER(KNBAppManager);
  */
 - (void)configureCoreDataPath;
 
-
-/**
- 删除解密文件路径
- */
-- (void)clearTmpSecretFilePath;
+//
+///**
+// 删除解密文件路径
+// */
+//- (void)clearTmpSecretFilePath;
 
 @end

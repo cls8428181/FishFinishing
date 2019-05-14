@@ -78,6 +78,7 @@
     } else {
         cell = [KNBRecruitmentEnterTableViewCell cellWithTableView:tableView];
         KNBRecruitmentEnterTableViewCell *blockCell = (KNBRecruitmentEnterTableViewCell *)cell;
+        blockCell.type = KNBRecruitmentEnterTypeBinding;
         blockCell.selectButtonBlock = ^(UIButton * _Nonnull button) {
             [self bindingPhoneRequest];
         };
@@ -101,7 +102,7 @@
         [[LCProgressHUD sharedHUD].customView setSize:CGSizeMake(25, 25)];
         return;
     }
-    KNBLoginSendCodeApi *codeApi = [[KNBLoginSendCodeApi alloc] initWithMobile:mobileCell.detailTextField.text type:KNBLoginSendCodeTypeRegister];
+    KNBLoginSendCodeApi *codeApi = [[KNBLoginSendCodeApi alloc] initWithMobile:mobileCell.detailTextField.text type:KNBLoginSendCodeTypeBinding];
     
     KNB_WS(weakSelf);
     [codeApi startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *request) {
@@ -136,8 +137,7 @@
         return;
     }
 
-    KNBLoginBindingApi *api = [[KNBLoginBindingApi alloc] initWithMobile:mobileCell.detailTextField.text code:codeCell.codeTextField.text];
-    api.token = self.dic[@"token"];
+    KNBLoginBindingApi *api = [[KNBLoginBindingApi alloc] initWithMobile:mobileCell.detailTextField.text code:codeCell.codeTextField.text portrait:self.portrait nickName:self.nickName sex:self.sex openid:self.openId loginType:self.type];
     api.hudString = @"";
     KNB_WS(weakSelf);
     [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *_Nonnull request) {

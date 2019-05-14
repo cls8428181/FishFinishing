@@ -21,6 +21,8 @@ const NSInteger MTLManagedObjectAdapterErrorUnsupportedRelationshipClass = 6;
 const NSInteger MTLManagedObjectAdapterErrorUniqueFetchRequestFailed = 7;
 const NSInteger MTLManagedObjectAdapterErrorInvalidManagedObjectMapping = 8;
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
 // Performs the given block in the context's queue, if it has one.
 static id performInContext(NSManagedObjectContext *context, id (^block)(void)) {
 	if (context.concurrencyType == NSConfinementConcurrencyType) {

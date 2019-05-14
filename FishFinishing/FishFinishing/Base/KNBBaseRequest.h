@@ -51,7 +51,7 @@
 /**
  *  拼接加密秘钥
  */
-- (NSDictionary *)appendSecretDic;
+//- (NSDictionary *)appendSecretDic;
 
 /*
  * 获取缓存路径

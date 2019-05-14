@@ -18,7 +18,7 @@ typedef NS_ENUM(NSInteger, KNBAddressPickerMode) {
     KNBAddressPickerModeArea
 };
 
-typedef void(^KNBAddressResultBlock)(KNBCityModel *province, KNBCityModel *city, KNBCityModel *area);
+typedef void(^KNBAddressResultBlock)(KNBCityModel * _Nullable province, KNBCityModel * _Nullable city, KNBCityModel * _Nullable area);
 typedef void(^KNBAddressCancelBlock)(void);
 
 NS_ASSUME_NONNULL_BEGIN

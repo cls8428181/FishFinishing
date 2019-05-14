@@ -44,6 +44,8 @@ const NSInteger KNTabBarButtonTitleLabelTag = 666;
     [self creatViewControllers];
     [self.view addSubview:self.tabBarView];
 }
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -55,6 +57,7 @@ const NSInteger KNTabBarButtonTitleLabelTag = 666;
         self.navigationController.navigationBar.hidden = YES;
     }
 }
+#pragma clang diagnostic pop
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
     if ([keyPath isEqualToString:@"frame"]) {
@@ -71,7 +74,7 @@ const NSInteger KNTabBarButtonTitleLabelTag = 666;
 
 - (void)showUnread {
     NSString *unreadString;
-    NSInteger unreadCount;
+    NSInteger unreadCount = 0;
 //    if ([KNBUserInfo shareInstance].isLogin) {
 //        unreadCount = [[KNBPushManager shareInstance] unReadMessageCount];
 //    } else {

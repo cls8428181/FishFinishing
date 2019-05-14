@@ -27,6 +27,7 @@
 - (id)initWithTitle:(NSString *)title buttons:(NSArray<NSString *> *)buttons buttonClick:(void (^)(SQActionSheetView *, NSInteger))block{
     
     if (self = [super init]) {
+        KNB_WS(weakSelf);
         self.backgroundColor = [[UIColor blackColor]colorWithAlphaComponent:0.3];
         self.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
         _toolbarH = buttons.count*(ButtonHeight+LineHeight)+(buttons.count>1?Margin:0)+(title.length?TitleHeight:0);
@@ -54,20 +55,20 @@
             [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
             [button.titleLabel setFont:[UIFont systemFontOfSize:17]];
             button.tag = 101+idx;
-            [button addTarget:self action:@selector(buttonTouch:) forControlEvents:UIControlEventTouchUpInside];
+            [button addTarget:weakSelf action:@selector(buttonTouch:) forControlEvents:UIControlEventTouchUpInside];
             if (idx==buttons.count-1&&buttons.count>1) {
-                button.frame = (CGRect){0,buttonMinY+(ButtonHeight+LineHeight)*idx+Margin,CGRectGetWidth(self.frame),ButtonHeight};
+                button.frame = (CGRect){0,buttonMinY+(ButtonHeight+LineHeight)*idx+Margin,CGRectGetWidth(weakSelf.frame),ButtonHeight};
             }else{
-                button.frame = (CGRect){0,buttonMinY+(ButtonHeight+LineHeight)*idx,CGRectGetWidth(self.frame),ButtonHeight};
+                button.frame = (CGRect){0,buttonMinY+(ButtonHeight+LineHeight)*idx,CGRectGetWidth(weakSelf.frame),ButtonHeight};
             }
             
-            [_containerToolBar addSubview:button];
+            [weakSelf.containerToolBar addSubview:button];
             
             if (idx<buttons.count-2) {
                 UIView *view= [UIView new];
                 view.backgroundColor = LINECOLOR;
-                [_containerToolBar addSubview:view];
-                view.frame = CGRectMake(0, CGRectGetMaxY(button.frame), CGRectGetWidth(self.frame), LineHeight);
+                [weakSelf.containerToolBar addSubview:view];
+                view.frame = CGRectMake(0, CGRectGetMaxY(button.frame), CGRectGetWidth(weakSelf.frame), LineHeight);
             }
             
         }];
@@ -100,11 +101,11 @@
     
     [[UIApplication sharedApplication].keyWindow addSubview:self];
     [[UIApplication sharedApplication].keyWindow addSubview:_containerToolBar];
-
+    KNB_WS(weakSelf);
     self.alpha = 0;
     [UIView animateWithDuration:0.3 animations:^{
-        _containerToolBar.transform = CGAffineTransformMakeTranslation(0, -_toolbarH);
-        self.alpha = 1;
+        weakSelf.containerToolBar.transform = CGAffineTransformMakeTranslation(0, -weakSelf.toolbarH);
+        weakSelf.alpha = 1;
 
     } completion:^(BOOL finished) {
         
@@ -113,12 +114,13 @@
 }
 
 - (void)dismissView{
+    KNB_WS(weakSelf);
     [UIView animateWithDuration:0.3 animations:^{
-        _containerToolBar.transform = CGAffineTransformIdentity;
-        self.alpha = 0;
+        weakSelf.containerToolBar.transform = CGAffineTransformIdentity;
+        weakSelf.alpha = 0;
     } completion:^(BOOL finished) {
-        [self removeFromSuperview];
-        [_containerToolBar removeFromSuperview];
+        [weakSelf removeFromSuperview];
+        [weakSelf.containerToolBar removeFromSuperview];
     }];
 }
 

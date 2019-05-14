@@ -236,7 +236,8 @@
     NSLog(@"相差秒：%ld",(long)newSec);
     return newSec;
 }
-
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
 
 #pragma mark - 根据出生日期获取年龄
 + (NSInteger)ageWithDateOfBirth:(NSDate *)date;
@@ -261,7 +262,7 @@
     
     return iAge;
 }
-
+#pragma clang diagnostic pop
 
 #pragma mark - 根据经纬度计算两个位置之间的距离
 +(double)distanceBetweenOrderBylat1:(double)lat1 lat2:(double)lat2 lng1:(double)lng1 lng2:(double)lng2{

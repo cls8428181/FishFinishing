@@ -476,23 +476,26 @@
 
 - (void)thirdPartyRequest:(UMSocialUserInfoResponse *)resp loginType:(KNBLoginThirdPartyType)loginType {
     NSString *imageUrl = WebURLEncode(resp.iconurl);
-    KNBLoginThirdPartyApi *api = [[KNBLoginThirdPartyApi alloc] initWithOpenid:resp.openid loginType:loginType portrait:imageUrl nickName:resp.name sex:resp.unionGender];
-    api.hudString = @"";
+    KNBLoginThirdPartyApi *api = [[KNBLoginThirdPartyApi alloc] initWithOpenid:resp.openid loginType:loginType];
+//    api.hudString = @"";
     KNB_WS(weakSelf);
     [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *_Nonnull request) {
         if (api.requestSuccess) {
             NSDictionary *dic = request.responseObject[@"list"];
-            NSInteger status = [request.responseObject[@"status"] integerValue];
-            if (status == 0) {//未绑定
-                KNBLoginBindingPhoneViewController *bindingVC = [[KNBLoginBindingPhoneViewController alloc] initWithDataSource:dic];
-                bindingVC.bindingComplete = ^{
-                    [weakSelf dismissViewControllerAnimated:YES completion:nil];
-                };
-                [weakSelf presentViewController:bindingVC animated:YES completion:nil];
-            } else {
-                [[KNBUserInfo shareInstance] registUserInfo:dic];
+            [[KNBUserInfo shareInstance] registUserInfo:dic];
+            [weakSelf dismissViewControllerAnimated:YES completion:nil];
+        } else if (api.getRequestStatuCode == 2) {
+            NSDictionary *dic = request.responseObject[@"list"];
+            KNBLoginBindingPhoneViewController *bindingVC = [[KNBLoginBindingPhoneViewController alloc] initWithDataSource:dic];
+            bindingVC.openId = resp.openid;
+            bindingVC.type = loginType;
+            bindingVC.portrait = imageUrl;
+            bindingVC.nickName = resp.name;
+            bindingVC.sex = resp.unionGender;
+            bindingVC.bindingComplete = ^{
                 [weakSelf dismissViewControllerAnimated:YES completion:nil];
-            }
+            };
+            [weakSelf presentViewController:bindingVC animated:YES completion:nil];
         } else {
             [weakSelf requestSuccess:NO requestEnd:NO];
         }

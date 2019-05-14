@@ -23,11 +23,8 @@ NS_ASSUME_NONNULL_BEGIN
 
  @param openid 唯一标识
  @param loginType 第三方登录类型 weixin微信 weibo微博 qq
- @param portrait 头像
- @param nickName 昵称
- @param sex 性别
  */
-- (instancetype)initWithOpenid:(NSString *)openid loginType:(KNBLoginThirdPartyType)loginType portrait:(NSString *)portrait nickName:(NSString *)nickName sex:(NSString *)sex;
+- (instancetype)initWithOpenid:(NSString *)openid loginType:(KNBLoginThirdPartyType)loginType;
 @end
 
 NS_ASSUME_NONNULL_END

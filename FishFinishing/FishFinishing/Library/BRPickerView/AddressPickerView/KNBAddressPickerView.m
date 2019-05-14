@@ -205,12 +205,12 @@
         [self.areaModelArr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             KNBCityModel *model = obj;
             if ([model.name isEqualToString:selectAreaName]) {
-                _areaIndex = idx;
+                self->_areaIndex = idx;
                 weakSelf.selectAreaModel = model;
                 *stop = YES;
             } else {
                 if (idx == weakSelf.cityModelArr.count - 1) {
-                    _areaIndex = 0;
+                    self->_areaIndex = 0;
                     weakSelf.selectAreaModel = [weakSelf.areaModelArr firstObject];
                 }
             }

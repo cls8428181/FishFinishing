@@ -10,6 +10,8 @@
 #import "UIImage+Size.h"
 
 @implementation UIImage (Size)
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
 // 根据图片url获取图片尺寸
 +(CGSize)getImageSizeWithURL:(id)imageURL
 {
@@ -141,4 +143,5 @@
         }
     }
 }
+#pragma clang diagnostic pop
 @end

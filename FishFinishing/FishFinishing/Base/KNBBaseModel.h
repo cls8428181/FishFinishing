@@ -27,7 +27,6 @@
  @param dicate 搜索条件
  @param sortDes 排序条件
  @param page 分页（1开始）
- @return
  */
 + (NSArray *)searchWithPredicate:(NSPredicate *)dicate
                  sortDescription:(NSSortDescriptor *)sortDes
@@ -99,8 +98,6 @@
 /**
  *  设置用户头像
  *
- *  @param imgView
- *  @param str     地址
  */
 + (void)headImageView:(UIImageView *)imgView urlString:(NSString *)str;
 

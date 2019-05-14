@@ -12,16 +12,10 @@
 @interface NSTimer (EOCBlocksSupport)
 
 /**
- *  <#Description#>
- *
- *  @param interval <#interval description#>
- *  @param block    <#block description#>
- *  @param repeats  <#repeats description#>
- *
  *  @return return value description
  */
 + (NSTimer *)eoc_scheduledTimerWithTimeInterval:(NSTimeInterval)interval
-                                          block:(void (^)())block
+                                          block:(void (^)(void))block
                                         repeats:(BOOL)repeats;
 
 @end

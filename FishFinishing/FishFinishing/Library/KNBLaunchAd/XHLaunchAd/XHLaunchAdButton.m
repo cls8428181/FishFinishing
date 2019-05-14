@@ -128,7 +128,7 @@
             break;
         case SkipTypeTime:{
             self.hidden = NO;
-            self.timeLab.text = [NSString stringWithFormat:@"%ld %@",duration,DurationUnit];
+            self.timeLab.text = [NSString stringWithFormat:@"%ld %@",(long)duration,DurationUnit];
         }
             break;
         case SkipTypeText:{
@@ -138,12 +138,12 @@
             break;
         case SkipTypeTimeText:{
             self.hidden = NO;
-            self.timeLab.text = [NSString stringWithFormat:@"%ld %@",duration,SkipTitle];
+            self.timeLab.text = [NSString stringWithFormat:@"%ld %@",(long)duration,SkipTitle];
         }
             break;
         case SkipTypeRoundTime:{
             self.hidden = NO;
-            self.timeLab.text = [NSString stringWithFormat:@"%ld %@",duration,DurationUnit];
+            self.timeLab.text = [NSString stringWithFormat:@"%ld %@",(long)duration,DurationUnit];
         }
             break;
         case SkipTypeRoundText:{
@@ -153,7 +153,7 @@
             break;
         case SkipTypeRoundProgressTime:{
             self.hidden = NO;
-            self.timeLab.text = [NSString stringWithFormat:@"%ld %@",duration,DurationUnit];
+            self.timeLab.text = [NSString stringWithFormat:@"%ld %@",(long)duration,DurationUnit];
         }
             break;
         case SkipTypeRoundProgressText:{
@@ -167,6 +167,7 @@
 }
 
 -(void)startRoundDispathTimerWithDuration:(CGFloat )duration{
+    KNB_WS(weakSelf);
     NSTimeInterval period = 0.05;
     __block CGFloat roundDuration = duration;
     _roundTimer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0));
@@ -175,7 +176,7 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             if(roundDuration<=0){
                 self.roundLayer.strokeStart = 1;
-                DISPATCH_SOURCE_CANCEL_SAFE(_roundTimer);
+                DISPATCH_SOURCE_CANCEL_SAFE(weakSelf.roundTimer);
             }
             self.roundLayer.strokeStart += 1/(duration/period);
             roundDuration -= period;

@@ -32,7 +32,6 @@
 /**
  * 颜色转换 IOS中十六进制的颜色转换为UIColor
  *
- * @param color: (eg: #EFEFEF)
  */
 + (UIColor *)colorWithHexString:(NSString *)color;
 /**

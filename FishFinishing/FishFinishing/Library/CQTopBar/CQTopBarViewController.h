@@ -12,7 +12,7 @@
 @interface CQTopBarViewController : UIViewController
 
 //风格模型
-@property (nonatomic, strong) KNBRecruitmentTypeModel *model;
+@property (nonatomic, strong) KNBRecruitmentTypeModel * _Nullable model;
 @property (nonatomic, assign) BOOL isTabbar;
 //市编号
 @property (nonatomic, assign) NSInteger areaId;

@@ -7,12 +7,11 @@
 //
 
 #import "KNBBaseRequest.h"
+#import "KNBLoginThirdPartyApi.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface KNBLoginBindingApi : KNBBaseRequest
-
-@property (nonatomic, copy) NSString *token;
 
 /**
  手机号绑定
@@ -20,7 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param mobile 手机号码
  @param code 验证码
  */
-- (instancetype)initWithMobile:(NSString *)mobile code:(NSString *)code;
+- (instancetype)initWithMobile:(NSString *)mobile code:(NSString *)code portrait:(NSString *)portrait nickName:(NSString *)nickName sex:(NSString *)sex openid:(NSString *)openid loginType:(KNBLoginThirdPartyType)loginType;
 
 @end
 

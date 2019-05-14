@@ -7,7 +7,7 @@
 //
 
 #import "BRBaseView.h"
-typedef void(^BRStringResultBlock)(id selectValue);
+typedef void(^BRStringResultBlock)(id _Nullable selectValue);
 typedef void(^BRStringCancelBlock)(void);
 typedef void(^DidBeyondMaximumNumberBlock)(void);
 

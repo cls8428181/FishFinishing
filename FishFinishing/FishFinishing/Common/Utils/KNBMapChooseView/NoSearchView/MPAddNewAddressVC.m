@@ -40,15 +40,16 @@
     [okbtn setTitle:@"确定" forState:0];
     [okbtn setTitleColor:[UIColor lightGrayColor] forState:UIControlStateDisabled];
     okbtn.titleLabel.font = titleFont;
+    KNB_WS(weakSelf);
     [okbtn addActionHandler:^(NSInteger tag) {
-        if (self.returnBlock) {
-            CGPoint touchPoint = CGPointMake(ScreenWidth/2, _mapView.height/2);
+        if (weakSelf.returnBlock) {
+            CGPoint touchPoint = CGPointMake(ScreenWidth/2, weakSelf.mapView.height/2);
             CLLocationCoordinate2D coordinate =
-            [self.mapView convertPoint:touchPoint toCoordinateFromView:self.mapView];
+            [weakSelf.mapView convertPoint:touchPoint toCoordinateFromView:weakSelf.mapView];
           
-            self.returnBlock(_titleField.text,coordinate.latitude,coordinate.longitude);
+            weakSelf.returnBlock(weakSelf.titleField.text,coordinate.latitude,coordinate.longitude);
             
-            [self dismissViewControllerAnimated:YES completion:nil];
+            [weakSelf dismissViewControllerAnimated:YES completion:nil];
         }
         
     }];

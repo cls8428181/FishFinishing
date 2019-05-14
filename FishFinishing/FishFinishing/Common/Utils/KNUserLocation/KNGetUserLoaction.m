@@ -152,7 +152,8 @@ NSString *const KNSaveUserLocation = @"KNSaveUserLocation";
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
-
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
 - (void)searchShopAddress:(NSString *)address {
     if (!address || address.length == 0) {
         [LCProgressHUD showInfoMsg:@"地址不能为空!"];
@@ -167,6 +168,7 @@ NSString *const KNSaveUserLocation = @"KNSaveUserLocation";
         [LCProgressHUD showFailure:@"地址错误!无法打开!"];
     }
 }
+#pragma clang diagnostic pop
 
 #pragma mark - Getting && Setting
 

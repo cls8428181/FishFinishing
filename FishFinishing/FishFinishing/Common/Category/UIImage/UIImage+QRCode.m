@@ -42,7 +42,6 @@
 /**
  *  根据CIImage生成指定大小的UIImage
  *
- *  @param image CIImage
  *  @param size  图片宽度
  */
 + (UIImage *)createNonInterpolatedUIImageFormCIImage:(CIImage *)ciImage size:(CGSize)size {
@@ -100,7 +99,6 @@
     return image;
 }
 /*!
- * @function imageInsertedImage: insertImage:
  *
  * @abstract
  * 在二维码图上进行图片插入，如插入图为空，直接返回二维码图
@@ -135,8 +133,6 @@
 }
 
 /*!
- * @function imageOfRoundRectWithImage: radius:
- *
  * @abstract
  * 给传入的图片设置圆角后返回圆角图片
  */

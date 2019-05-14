@@ -283,7 +283,8 @@ static NSUInteger gcd(NSUInteger a, NSUInteger b)
     }
 }
 
-
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
 - (void)startAnimating
 {
     if (self.animatedImage) {

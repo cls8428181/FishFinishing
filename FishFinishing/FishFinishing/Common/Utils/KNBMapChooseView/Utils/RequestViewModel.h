@@ -10,8 +10,8 @@
 
 //为要声明的Block重新定义了一个名字
 typedef void (^DidSelectRowAtIndexPathBlock)(NSIndexPath *indexPath);
-typedef void (^ScrollViewDidScrollBlock)();
-typedef void (^ScrollViewWillBeginDraggingBlock)();
+typedef void (^ScrollViewDidScrollBlock)(void);
+typedef void (^ScrollViewWillBeginDraggingBlock)(void);
 
 @interface RequestViewModel : NSObject<UITableViewDelegate,UITableViewDataSource>
 

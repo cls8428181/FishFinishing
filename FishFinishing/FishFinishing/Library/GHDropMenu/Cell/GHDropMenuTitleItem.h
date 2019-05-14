@@ -17,8 +17,8 @@
  @param dropMenuModel GHDropMenuModel
  
  */
-- (void)dropMenuTitleItem: (GHDropMenuTitleItem *)item
-            dropMenuModel: (GHDropMenuModel *)dropMenuModel;
+- (void)dropMenuTitleItem: (GHDropMenuTitleItem *_Nullable)item
+            dropMenuModel: (GHDropMenuModel *_Nullable)dropMenuModel;
 
 @end
 

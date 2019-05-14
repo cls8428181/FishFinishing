@@ -141,6 +141,10 @@ static NSString *const VideoPlayStatus = @"status";
     _muted = muted;
     _videoPlayer.player.muted = muted;
 }
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+
 -(void)setVideoScalingMode:(MPMovieScalingMode)videoScalingMode{
     _videoScalingMode = videoScalingMode;
     switch (_videoScalingMode) {
@@ -164,6 +168,7 @@ static NSString *const VideoPlayStatus = @"status";
             break;
     }
 }
+#pragma clang diagnostic pop
 
 @end
 

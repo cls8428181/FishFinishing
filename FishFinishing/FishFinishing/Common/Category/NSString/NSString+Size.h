@@ -55,7 +55,6 @@
  @param font 文字大小
  @param width 约束宽度
  @param paragraphyStyle 文字段落样式
- @return
  */
 - (CGFloat)heightWithFont:(UIFont *)font
        constrainedToWidth:(CGFloat)width
@@ -79,7 +78,6 @@
  @param signFont ¥ 字体大小
  @param intFont 整数位字体大小
  @param floatFont 小数位字体大小
- @return
  */
 - (NSMutableAttributedString *)priceStringWithMoneySignsFont:(CGFloat)signFont intFont:(CGFloat)intFont floatFont:(CGFloat)floatFont;
 

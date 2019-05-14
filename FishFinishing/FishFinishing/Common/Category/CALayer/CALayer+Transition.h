@@ -61,7 +61,7 @@ typedef NS_ENUM(NSInteger, TransitionCurve) {
  *  转场动画
  *
  *  @param animType 转场动画类型
- *  @param subtype  转动动画方向
+ *  @param subType  转动动画方向
  *  @param curve    转动动画曲线
  *  @param duration 转动动画时长
  *

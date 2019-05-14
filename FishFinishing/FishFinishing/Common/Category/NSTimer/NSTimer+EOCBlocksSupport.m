@@ -12,7 +12,7 @@
 @implementation NSTimer (EOCBlocksSupport)
 
 + (NSTimer *)eoc_scheduledTimerWithTimeInterval:(NSTimeInterval)interval
-                                          block:(void (^)())block
+                                          block:(void (^)(void))block
                                         repeats:(BOOL)repeats {
     return [self scheduledTimerWithTimeInterval:interval target:self selector:@selector(eoc_blockInvoke:) userInfo:[block copy] repeats:repeats];
 }

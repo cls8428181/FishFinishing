@@ -56,17 +56,18 @@
 - (void)URLSession:(NSURLSession *)session
       downloadTask:(NSURLSessionDownloadTask *)downloadTask
 didFinishDownloadingToURL:(NSURL *)location {
+    KNB_WS(weakSelf);
     NSData *data = [NSData dataWithContentsOfURL:location];
     UIImage *image = [UIImage imageWithData:data];
     dispatch_async(dispatch_get_main_queue(), ^{
-        if (_completedBlock) {
-            _completedBlock(image,data, nil);
+        if (weakSelf.completedBlock) {
+            weakSelf.completedBlock(image,data, nil);
             // 防止重复调用
-            _completedBlock = nil;
+            weakSelf.completedBlock = nil;
         }
         //下载完成回调
-        if ([self.delegate respondsToSelector:@selector(downloadFinishWithURL:)]) {
-            [self.delegate downloadFinishWithURL:self.url];
+        if ([weakSelf.delegate respondsToSelector:@selector(downloadFinishWithURL:)]) {
+            [weakSelf.delegate downloadFinishWithURL:weakSelf.url];
         }
     });
     //销毁
@@ -85,11 +86,12 @@ didFinishDownloadingToURL:(NSURL *)location {
 - (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task didCompleteWithError:(NSError *)error {
     if (error){
         XHLaunchAdLog(@"error = %@",error);
+        KNB_WS(weakSelf);
         dispatch_async(dispatch_get_main_queue(), ^{
-            if (_completedBlock) {
-                _completedBlock(nil,nil, error);
+            if (weakSelf.completedBlock) {
+                weakSelf.completedBlock(nil,nil, error);
             }
-            _completedBlock = nil;
+            weakSelf.completedBlock = nil;
         });
     }
 }
@@ -135,23 +137,24 @@ didFinishDownloadingToURL:(NSURL *)location {
 - (void)URLSession:(NSURLSession *)session
       downloadTask:(NSURLSessionDownloadTask *)downloadTask
 didFinishDownloadingToURL:(NSURL *)location {
+    KNB_WS(weakSelf);
     NSError *error=nil;
     NSURL *toURL = [NSURL fileURLWithPath:[XHLaunchAdCache videoPathWithURL:self.url]];
     [[NSFileManager defaultManager] copyItemAtURL:location toURL:toURL error:&error];
     if(error)  XHLaunchAdLog(@"error = %@",error);
     dispatch_async(dispatch_get_main_queue(), ^{
-        if (_completedBlock) {
+        if (weakSelf.completedBlock) {
             if(!error){
-                _completedBlock(toURL,nil);
+                weakSelf.completedBlock(toURL,nil);
             }else{
-                _completedBlock(nil,error);
+                weakSelf.completedBlock(nil,error);
             }
             // 防止重复调用
-            _completedBlock = nil;
+            weakSelf.completedBlock = nil;
         }
         //下载完成回调
-        if ([self.delegate respondsToSelector:@selector(downloadFinishWithURL:)]) {
-            [self.delegate downloadFinishWithURL:self.url];
+        if ([weakSelf.delegate respondsToSelector:@selector(downloadFinishWithURL:)]) {
+            [weakSelf.delegate downloadFinishWithURL:self.url];
         }
     });
     [self.session invalidateAndCancel];
@@ -168,12 +171,13 @@ didFinishDownloadingToURL:(NSURL *)location {
 
 - (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task didCompleteWithError:(NSError *)error {
     if (error){
+        KNB_WS(weakSelf);
         XHLaunchAdLog(@"error = %@",error);
         dispatch_async(dispatch_get_main_queue(), ^{
-            if (_completedBlock) {
-                _completedBlock(nil, error);
+            if (weakSelf.completedBlock) {
+                weakSelf.completedBlock(nil, error);
             }
-            _completedBlock = nil;
+            weakSelf.completedBlock = nil;
         });
     }
 }

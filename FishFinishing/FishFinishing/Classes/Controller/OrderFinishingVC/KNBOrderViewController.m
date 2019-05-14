@@ -135,7 +135,6 @@
                 typeCell.describeTextField.delegate = self;
             } else {
                 cell = [KNBOrderAddressTableViewCell cellWithTableView:tableView];
-                KNBOrderAddressTableViewCell *typeCell = (KNBOrderAddressTableViewCell *)cell;
             }
             
         } else if (indexPath.section == 3) {

@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-static NSString *const kScrollStopNotificationName = @"scrollStop"; // 滚动停止通知
+static NSString * _Nullable const kScrollStopNotificationName = @"scrollStop"; // 滚动停止通知
 
 typedef NS_ENUM(NSInteger , KNBHomeTableViewType) {
     KNBHomeTableViewTypeMain,  // 父列表

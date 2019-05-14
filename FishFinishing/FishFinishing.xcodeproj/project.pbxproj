@@ -3763,9 +3763,6 @@
 					"$(PROJECT_DIR)/FishFinishing/Library/UMSocial/UMSocialUI",
 					"$(PROJECT_DIR)/FishFinishing/Library/UMSocial",
 					"$(PROJECT_DIR)/FishFinishing/Library/UMSocial/analytics_ios_5.5.1",
-					"$(PROJECT_DIR)/FishFinishing/Library/UMSocial_6.9.4",
-					"$(PROJECT_DIR)/FishFinishing/Library/UMMobile_5.5.0",
-					"$(PROJECT_DIR)/FishFinishing/Library/UMSocial_6.9.4/UMSocialUI/Resource",
 					"$(PROJECT_DIR)/FishFinishing/Library/KNPaypp/AliPay",
 				);
 				GCC_PREFIX_HEADER = "FishFinishing/Supporting Files/FishFinishing.pch";
@@ -3782,16 +3779,13 @@
 					"$(PROJECT_DIR)/FishFinishing/Library/UMSocial/SocialLibraries/Sina",
 					"$(PROJECT_DIR)/FishFinishing/Library/UMSocial/SocialLibraries/QQ",
 					"$(PROJECT_DIR)/FishFinishing/Library/UMSocial/UMSocialSDKPlugin",
-					"$(PROJECT_DIR)/FishFinishing/Library/UMSocial_6.9.4/SocialLibraries/SMS",
-					"$(PROJECT_DIR)/FishFinishing/Library/UMSocial_6.9.4/SocialLibraries/WeChat",
-					"$(PROJECT_DIR)/FishFinishing/Library/UMSocial_6.9.4/SocialLibraries/Sina",
-					"$(PROJECT_DIR)/FishFinishing/Library/UMSocial_6.9.4/SocialLibraries/QQ",
 					"$(PROJECT_DIR)/FishFinishing/Library/KNPaypp/WXPay",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.winfoc.bigfish;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = bigfish;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				WARNING_CFLAGS = "-Wdeprecated-declarations";
 			};
 			name = Debug;
 		};
@@ -3809,9 +3803,6 @@
 					"$(PROJECT_DIR)/FishFinishing/Library/UMSocial/UMSocialUI",
 					"$(PROJECT_DIR)/FishFinishing/Library/UMSocial",
 					"$(PROJECT_DIR)/FishFinishing/Library/UMSocial/analytics_ios_5.5.1",
-					"$(PROJECT_DIR)/FishFinishing/Library/UMSocial_6.9.4",
-					"$(PROJECT_DIR)/FishFinishing/Library/UMMobile_5.5.0",
-					"$(PROJECT_DIR)/FishFinishing/Library/UMSocial_6.9.4/UMSocialUI/Resource",
 					"$(PROJECT_DIR)/FishFinishing/Library/KNPaypp/AliPay",
 				);
 				GCC_PREFIX_HEADER = "FishFinishing/Supporting Files/FishFinishing.pch";
@@ -3828,16 +3819,13 @@
 					"$(PROJECT_DIR)/FishFinishing/Library/UMSocial/SocialLibraries/Sina",
 					"$(PROJECT_DIR)/FishFinishing/Library/UMSocial/SocialLibraries/QQ",
 					"$(PROJECT_DIR)/FishFinishing/Library/UMSocial/UMSocialSDKPlugin",
-					"$(PROJECT_DIR)/FishFinishing/Library/UMSocial_6.9.4/SocialLibraries/SMS",
-					"$(PROJECT_DIR)/FishFinishing/Library/UMSocial_6.9.4/SocialLibraries/WeChat",
-					"$(PROJECT_DIR)/FishFinishing/Library/UMSocial_6.9.4/SocialLibraries/Sina",
-					"$(PROJECT_DIR)/FishFinishing/Library/UMSocial_6.9.4/SocialLibraries/QQ",
 					"$(PROJECT_DIR)/FishFinishing/Library/KNPaypp/WXPay",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.winfoc.bigfish;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = bigfish;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				WARNING_CFLAGS = "-Wdeprecated-declarations";
 			};
 			name = Release;
 		};

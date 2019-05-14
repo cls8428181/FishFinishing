@@ -172,8 +172,6 @@
 
 /**
  *  dataStr -> NSDate
- *
- *  @param dateStr
  *  @param dateFormate  exp ("yyyy-MM-dd HH:mm:ss"）
  */
 + (NSDate *)transformDateStr:(NSString *)dateStr

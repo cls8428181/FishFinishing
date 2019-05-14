@@ -131,6 +131,10 @@ KNB_DEFINE_SINGLETON_FOR_CLASS(KNBAppManager);
         [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
         [[UIApplication sharedApplication] registerForRemoteNotifications];
 #endif
+        
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+        
     } else if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0 ||
                [UIApplication instancesRespondToSelector:@selector(registerUserNotificationSettings:)]) {
         // 定义用户通知类型(Remote.远程 - Badge.标记 Alert.提示 Sound.声音)
@@ -149,6 +153,7 @@ KNB_DEFINE_SINGLETON_FOR_CLASS(KNBAppManager);
         // 注册远程通知 -根据远程通知类型
         // [[UIApplication sharedApplication] registerForRemoteNotificationTypes:myTypes];
     }
+#pragma clang diagnostic pop
 }
 
 

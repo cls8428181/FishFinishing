@@ -36,9 +36,6 @@
  通过标题生成
  
  @param titlesArray 标题数组
- @param gap
- @param tag
- @param height
  */
 + (NSArray *)buttonTitlesArray:(NSArray<NSString *> *)titlesArray
                            gap:(NSUInteger)gap

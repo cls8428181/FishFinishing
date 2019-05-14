@@ -96,7 +96,7 @@
  */
 -(void)xhLaunchAd:(XHLaunchAd *)launchAd clickAndOpenModel:(id)openModel clickPoint:(CGPoint)clickPoint{
     NSString *linkUrl = [KNBMainConfigModel shareInstance].launch_adJumpUrl;
-    NSString *title = [KNBMainConfigModel shareInstance].launch_adName;
+//    NSString *title = [KNBMainConfigModel shareInstance].launch_adName;
     if (!isNullStr(linkUrl)) {
         KNWebViewController *webVC = [[KNWebViewController alloc] init];
         webVC.urlString = linkUrl;

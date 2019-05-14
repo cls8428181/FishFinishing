@@ -41,7 +41,6 @@
  *  添加导航右边按钮
  *
  *  @param imgName 图片
- *  @param sel     sel
  */
 - (void)addRightBarItemImageName:(NSString *)imgName;
 
@@ -57,7 +56,6 @@
  *  添加导航左边按钮
  *
  *  @param imgName 图片
- *  @param sel     sel
  */
 - (void)addLeftBarItemImageName:(NSString *)imgName;
 
@@ -65,7 +63,6 @@
  *  添加导航按钮
  *
  *  @param title 标题
- *  @param sel   sel
  */
 - (void)addRightBarItemTitle:(NSString *)title;
 
@@ -73,7 +70,6 @@
  *  添加导航按钮，绑定事件
  *
  *  @param title 标题
- *  @param sel   sel
  */
 - (void)addRightBarItemTitle:(NSString *)title target:(id)target sel:(SEL)sel;
 
@@ -82,7 +78,6 @@
  *  默认自带返回按钮
  *
  *  @param title 返回按钮旁边的按钮
- *  @param sel   按钮事件
  */
 - (void)addLeftBarItemTitle:(NSString *)title;
 

@@ -74,7 +74,6 @@
 /**
  *  通知外部，下拉的距离，用于定制某个时机的状态
  *
- *  @param refreshView    需要改变状态的View
  *  @param pullDownOffset 下拉的距离
  */
 - (void)customPullDownRefreshView:(UIView *)customPullDownRefreshView withPullDownOffset:(CGFloat)pullDownOffset;
@@ -82,7 +81,6 @@
 /**
  *  通知外部，下拉的状态，用于定制某个时机的状态
  *
- *  @param refreshView    需要改变状态的View
  *  @param refreshState 下拉的状态
  */
 - (void)customPullDownRefreshViewRefreshState:(XHRefreshState)refreshState;

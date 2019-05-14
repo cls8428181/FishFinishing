@@ -13,8 +13,13 @@
 @interface KNBHomeCityListViewController ()<UISearchBarDelegate, UISearchControllerDelegate, UISearchResultsUpdating>
 
 @property (nonatomic, strong) NSArray *sectionArray;
-
 @property (nonatomic, strong) NSDictionary *cityDataDic;
+
+//顶部当前选择城市
+@property (nonatomic, strong) UIImageView *topImageView;
+@property (nonatomic, strong) UILabel *topLabel;
+@property (nonatomic, strong) UILabel *currentCityLabel;
+@property (nonatomic, strong) UIView *lineView;
 
 @property (nonatomic, strong) KNBHomeCityHeaderView *cityHeadView;
 
@@ -241,6 +246,35 @@
         _searchArray = [NSMutableArray array];
     }
     return _searchArray;
+}
+
+- (UIImageView *)topImageView {
+    if (!_topImageView) {
+        _topImageView = [[UIImageView alloc] init];
+        _topImageView.image = KNBImages(@"knb_me_dingwei");
+    }
+    return _topImageView;
+}
+
+- (UILabel *)topLabel {
+    if (!_topLabel) {
+        _topLabel = [[UILabel alloc] init];
+    }
+    return _topLabel;
+}
+
+- (UILabel *)currentCityLabel {
+    if (!_currentCityLabel) {
+        _currentCityLabel = [[UILabel alloc] init];
+    }
+    return _currentCityLabel;
+}
+
+- (UIView *)lineView {
+    if (!_lineView) {
+        _lineView = [[UIView alloc] init];
+    }
+    return _lineView;
 }
 
 @end

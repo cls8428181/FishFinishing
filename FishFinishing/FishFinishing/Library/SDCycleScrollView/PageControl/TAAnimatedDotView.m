@@ -71,17 +71,19 @@ static CGFloat const kAnimateDuration = 1;
 
 - (void)animateToActiveState
 {
+    KNB_WS(weakSelf);
     [UIView animateWithDuration:kAnimateDuration delay:0 usingSpringWithDamping:.5 initialSpringVelocity:-20 options:UIViewAnimationOptionCurveLinear animations:^{
-        self.backgroundColor = _dotColor;
-        self.transform = CGAffineTransformMakeScale(1.4, 1.4);
+        weakSelf.backgroundColor = weakSelf.dotColor;
+        weakSelf.transform = CGAffineTransformMakeScale(1.4, 1.4);
     } completion:nil];
 }
 
 - (void)animateToDeactiveState
 {
+    KNB_WS(weakSelf);
     [UIView animateWithDuration:kAnimateDuration delay:0 usingSpringWithDamping:.5 initialSpringVelocity:0 options:UIViewAnimationOptionCurveLinear animations:^{
-        self.backgroundColor = [UIColor clearColor];
-        self.transform = CGAffineTransformIdentity;
+        weakSelf.backgroundColor = [UIColor clearColor];
+        weakSelf.transform = CGAffineTransformIdentity;
     } completion:nil];
 }
 

@@ -138,7 +138,7 @@
 }
 
 - (void)refreshSearchView:(NSString *)searchText {
-    NSString *searchStr = [searchText stringByReplacingOccurrencesOfString:@" " withString:@""];
+//    NSString *searchStr = [searchText stringByReplacingOccurrencesOfString:@" " withString:@""];
     [self.collectionView reloadData];
 }
 

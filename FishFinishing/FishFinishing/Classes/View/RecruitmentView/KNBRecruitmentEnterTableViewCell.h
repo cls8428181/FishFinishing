@@ -8,9 +8,10 @@
 
 #import <UIKit/UIKit.h>
 typedef NS_ENUM(NSInteger, KNBRecruitmentEnterType) {
-    KNBRecruitmentEnterTypeOrder = 0,       //免费预约
-    KNBRecruitmentEnterTypeRecruitment,   //商家入驻
-    KNBRecruitmentEnterTypeSet               //设置
+    KNBRecruitmentEnterTypeOrder = 0,        //免费预约
+    KNBRecruitmentEnterTypeRecruitment,      //商家入驻
+    KNBRecruitmentEnterTypeSet,              //设置
+    KNBRecruitmentEnterTypeBinding           //绑定手机
 };
 
 NS_ASSUME_NONNULL_BEGIN

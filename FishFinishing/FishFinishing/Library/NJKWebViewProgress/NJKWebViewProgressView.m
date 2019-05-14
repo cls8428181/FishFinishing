@@ -50,24 +50,25 @@
 - (void)setProgress:(float)progress animated:(BOOL)animated
 {
     BOOL isGrowing = progress > 0.0;
+    KNB_WS(weakSelf);
     [UIView animateWithDuration:(isGrowing && animated) ? _barAnimationDuration : 0.0 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-        CGRect frame = _progressBarView.frame;
-        frame.size.width = progress * self.bounds.size.width;
-        _progressBarView.frame = frame;
+        CGRect frame = weakSelf.progressBarView.frame;
+        frame.size.width = progress * weakSelf.bounds.size.width;
+        weakSelf.progressBarView.frame = frame;
     } completion:nil];
 
     if (progress >= 1.0) {
         [UIView animateWithDuration:animated ? _fadeAnimationDuration : 0.0 delay:_fadeOutDelay options:UIViewAnimationOptionCurveEaseInOut animations:^{
-            _progressBarView.alpha = 0.0;
+            weakSelf.progressBarView.alpha = 0.0;
         } completion:^(BOOL completed){
-            CGRect frame = _progressBarView.frame;
+            CGRect frame = weakSelf.progressBarView.frame;
             frame.size.width = 0;
-            _progressBarView.frame = frame;
+            weakSelf.progressBarView.frame = frame;
         }];
     }
     else {
         [UIView animateWithDuration:animated ? _fadeAnimationDuration : 0.0 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-            _progressBarView.alpha = 1.0;
+            weakSelf.progressBarView.alpha = 1.0;
         } completion:nil];
     }
 }

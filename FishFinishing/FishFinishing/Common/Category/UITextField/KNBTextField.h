@@ -21,20 +21,19 @@ typedef void (^KNBTextFieldRightButtonBlock)(UIButton *sender);
 
 /**
  * UITextField 初始化
-  * @param imageName  占位文字
+  * @param text 占位文字
  */
 
 - (instancetype)initWithPlaceholderText:(NSString *)text;
 
 /**
  * UITextField 添加左侧按钮
- * @param imageName  图片名字
+ * @param imageNameN  图片名字
  */
 - (void)addLeftWithImageNameNormal:(NSString *)imageNameN ImageNameSelect:(NSString *)imageNameS;
 
 /**
  * UITextField 添加右侧按钮
- * @param imageName  图片名字
  */
 - (void)addRightWithImageNameNormal:(NSString *)imageNameN ImageNameSelect:(NSString *)imageNameS;
 

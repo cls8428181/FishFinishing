@@ -205,12 +205,12 @@
     [self.provinceModelArr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         BRProvinceModel *model = obj;
         if ([model.name isEqualToString:selectProvinceName]) {
-            _provinceIndex = idx;
+            self->_provinceIndex = idx;
             weakSelf.selectProvinceModel = model;
             *stop = YES;
         } else {
             if (idx == weakSelf.provinceModelArr.count - 1) {
-                _provinceIndex = 0;
+                self->_provinceIndex = 0;
                 weakSelf.selectProvinceModel = [weakSelf.provinceModelArr firstObject];
             }
         }
@@ -220,12 +220,12 @@
         [self.cityModelArr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             BRCityModel *model = obj;
             if ([model.name isEqualToString:selectCityName]) {
-                _cityIndex = idx;
+                self->_cityIndex = idx;
                 weakSelf.selectCityModel = model;
                 *stop = YES;
             } else {
                 if (idx == weakSelf.cityModelArr.count - 1) {
-                    _cityIndex = 0;
+                    self->_cityIndex = 0;
                     weakSelf.selectCityModel = [weakSelf.cityModelArr firstObject];
                 }
             }
@@ -236,12 +236,12 @@
         [self.areaModelArr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             BRAreaModel *model = obj;
             if ([model.name isEqualToString:selectAreaName]) {
-                _areaIndex = idx;
+                self->_areaIndex = idx;
                 weakSelf.selectAreaModel = model;
                 *stop = YES;
             } else {
                 if (idx == weakSelf.cityModelArr.count - 1) {
-                    _areaIndex = 0;
+                    self->_areaIndex = 0;
                     weakSelf.selectAreaModel = [weakSelf.areaModelArr firstObject];
                 }
             }

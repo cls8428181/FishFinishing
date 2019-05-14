@@ -36,6 +36,9 @@
         
     }  else if (type == KNBRecruitmentEnterTypeSet) {
         [self.enterButton setTitle:@"退出" forState:UIControlStateNormal];
+        
+    }  else if (type == KNBRecruitmentEnterTypeBinding) {
+        [self.enterButton setTitle:@"提交" forState:UIControlStateNormal];
 
     } else {
         [self.enterButton setTitle:@"立即入驻" forState:UIControlStateNormal];

@@ -9,7 +9,9 @@
 #import "KNBBaseRequest.h"
 typedef NS_ENUM(NSInteger, KNBLoginSendCodeType) {
     KNBLoginSendCodeTypeRegister = 0,      //注册
-    KNBLoginSendCodeTypeForgot               //找回密码
+    KNBLoginSendCodeTypeForgot,            //找回密码
+    KNBLoginSendCodeTypeBinding            //绑定
+    
 };
 
 NS_ASSUME_NONNULL_BEGIN

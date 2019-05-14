@@ -18,8 +18,10 @@
         _mobile = mobile;
         if (type == KNBLoginSendCodeTypeRegister) {
             _action = @"register";
-        } else {
+        } else if (type == KNBLoginSendCodeTypeForgot) {
             _action = @"forgotpassword";
+        } else {
+            _action = @"binding";
         }
     }
     return self;

@@ -114,7 +114,7 @@ KNB_DEFINE_SINGLETON_FOR_CLASS(KNBPushManager);
 //    NSString * messageContent = [content valueForKey:@"messageContent"];
     NSString *content = [userInfo valueForKey:@"content"];
     NSString *messageID = [userInfo valueForKey:@"_j_msgid"];
-    NSDictionary *extras = [userInfo valueForKey:@"extras"];
+//    NSDictionary *extras = [userInfo valueForKey:@"extras"];
 
 //    NSString *customizeField1 = [extras valueForKey:@"customizeField1"]; //服务端传递的Extras附加字段，key是自己定义的
 
@@ -205,7 +205,8 @@ KNB_DEFINE_SINGLETON_FOR_CLASS(KNBPushManager);
     [JPUSHService handleRemoteNotification:userInfo];
 }
 
-
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
 -(void)showLocalNotification
 {
     if (@available(iOS 10.0, *)) {
@@ -229,9 +230,9 @@ KNB_DEFINE_SINGLETON_FOR_CLASS(KNBPushManager);
         [[UIApplication sharedApplication] scheduleLocalNotification:notification];
     }
 }
-
+#pragma clang diagnostic pop
 //iOS 10以上接收消息处理消息
-- (void)jpushNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void (^)())completionHandler {
+- (void)jpushNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void (^)(void))completionHandler {
     NSDictionary * userInfo = response.notification.request.content.userInfo;
     UNNotificationRequest *request = response.notification.request; // 收到推送的请求
     UNNotificationContent *content = request.content; // 收到推送的消息内容

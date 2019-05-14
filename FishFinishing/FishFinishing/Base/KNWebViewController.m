@@ -109,6 +109,8 @@ NSString *const KNWebDocumentTitles = @"document.title";
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(windowDidBecomeHidden:) name:UIWindowDidBecomeHiddenNotification object:nil];
 }
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
 - (void)windowDidBecomeHidden:(NSNotification *)noti {
     UIWindow *win = (UIWindow *)noti.object;
     if (win) {
@@ -140,7 +142,7 @@ NSString *const KNWebDocumentTitles = @"document.title";
 
 
 - (void)loadWebView {
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:self.urlString]];
+//    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:self.urlString]];
 //    NSString *mtmyUserId = [NSString stringWithFormat:@"%ld", (long)[KNBUserInfo shareInstance].mtmyUserId];
 //    NSDictionary *dic = @{
 //        @"userId" : mtmyUserId ?: @"",
@@ -363,7 +365,7 @@ NSString *const KNWebDocumentTitles = @"document.title";
 }
 
 - (void)showAlertRemind {
-    KNB_WS(weakSelf);
+//    KNB_WS(weakSelf);
 //    [[KNBAlertRemind sharedInstance] addAlertRemindWithController:self
 //                                                            title:@"温馨提示"
 //                                                          message:@"未安装每天美耶,是否下载?"
