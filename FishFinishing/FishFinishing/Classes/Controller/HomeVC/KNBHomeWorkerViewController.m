@@ -217,10 +217,32 @@
         KNBDSFreeOrderAreaTableViewCell *areaCell = [weakSelf.knbTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:0]];
         KNBDSFreeOrderNameTableViewCell *nameCell = [weakSelf.knbTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:3 inSection:0]];
         KNBDSFreeOrderPhoneTableViewCell *phoneCell = [weakSelf.knbTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:4 inSection:0]];
-        self.orderModel.decorate_cat = houseCell.isNewHouse ? @"新房装修" : @"旧房翻新";
+        self.orderModel.decorate_cat = houseCell.isNewHouse;
         self.orderModel.area_info = areaCell.detailTextField.text;
         self.orderModel.name = nameCell.detailTextField.text;
         self.orderModel.mobile = phoneCell.detailTextField.text;
+        
+        if (isNullStr(self.orderModel.decorate_cat)) {
+            [LCProgressHUD showMessage:@"请选择新房装修或者旧房翻新"];
+            return;
+        }
+        if (!(self.orderModel.province_id || self.orderModel.city_id || self.orderModel.area_id)) {
+            [LCProgressHUD showMessage:@"请选择省市区"];
+            return;
+        }
+        if (isNullStr(self.orderModel.area_info)) {
+            [LCProgressHUD showMessage:@"请输入房屋面积"];
+            return;
+        }
+        if (isNullStr(self.orderModel.name)) {
+            [LCProgressHUD showMessage:@"请输入您的名称"];
+            return;
+        }
+        if (isNullStr(self.orderModel.mobile)) {
+            [LCProgressHUD showMessage:@"请输入你的电话"];
+            return;
+        }
+        
         KNBHomeBespokeApi *api = [[KNBHomeBespokeApi alloc] initWithFacId:self.faceId ?: 0 facName:self.faceId ? self.titleButton.titleLabel.text : @"" catId:[self.orderModel.typeModel.selectSubModel.typeId integerValue] userId:@"" areaInfo:self.orderModel.area_info houseInfo:self.orderModel.house_info community:self.orderModel.community provinceId:self.orderModel.province_id cityId:self.orderModel.city_id areaId:self.orderModel.area_id decorateStyle:self.orderModel.style decorateGrade:self.orderModel.level name:self.orderModel.name mobile:self.orderModel.mobile decorateCat:self.orderModel.decorate_cat type:1];
         api.hudString = @"";
         KNB_WS(weakSelf);
@@ -334,6 +356,13 @@
         _titleButton.imageView.layer.cornerRadius = 19;
     }
     return _titleButton;
+}
+
+- (KNBOrderModel *)orderModel {
+    if (!_orderModel) {
+        _orderModel = [[KNBOrderModel alloc] init];
+    }
+    return _orderModel;
 }
 
 

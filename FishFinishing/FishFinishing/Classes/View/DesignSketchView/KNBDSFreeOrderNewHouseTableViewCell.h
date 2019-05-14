@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  是不是新房
  */
-@property (nonatomic, assign) BOOL isNewHouse;
+@property (nonatomic, assign) NSString *isNewHouse;
 
 /**
  cell 创建

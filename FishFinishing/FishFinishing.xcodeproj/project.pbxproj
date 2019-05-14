@@ -2871,9 +2871,9 @@
 		96B098DE2249E45000154643 /* NJKWebViewProgress */ = {
 			isa = PBXGroup;
 			children = (
-				96B098DF2249E45000154643 /* NJKWebViewProgressView.h */,
-				96B098E02249E45000154643 /* NJKWebViewProgress.m */,
 				96B098E12249E45000154643 /* NJKWebViewProgress.h */,
+				96B098E02249E45000154643 /* NJKWebViewProgress.m */,
+				96B098DF2249E45000154643 /* NJKWebViewProgressView.h */,
 				96B098E22249E45000154643 /* NJKWebViewProgressView.m */,
 			);
 			path = NJKWebViewProgress;

@@ -106,6 +106,21 @@
     // 2. 给数据源赋值}
     
     // 4. 给选择器设置默认值
+//    NSMutableArray *tempArr = [NSMutableArray array];
+//    for (NSInteger i = 0; i < self.dataSourceArr.count; i++) {
+//        NSString *selValue = nil;
+//        if (defaultSelValue && [defaultSelValue isKindOfClass:[NSArray class]] && [defaultSelValue count] > 0 && i < [defaultSelValue count] && [self.dataSourceArr[i] containsObject:defaultSelValue[i]]) {
+//            [tempArr addObject:defaultSelValue[i]];
+//            selValue = defaultSelValue[i];
+//        } else {
+//            [tempArr addObject:[self.dataSourceArr[i] firstObject]];
+//            selValue = [self.dataSourceArr[i] firstObject];
+//        }
+//        NSInteger row = [self.dataSourceArr[i] indexOfObject:selValue];
+//        // 默认滚动的行
+//        [self.pickerView selectRow:row inComponent:i animated:NO];
+//    }
+//    self.selectValueArr = [tempArr copy];
 }
 
 #pragma mark - 初始化子视图

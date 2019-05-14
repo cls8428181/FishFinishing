@@ -48,14 +48,14 @@
     if (!self.isNewHouse) {
         button.selected = YES;
         self.oldHouseButton.selected = NO;
-        self.isNewHouse = YES;
+        self.isNewHouse = button.titleLabel.text;
     }
 }
 - (IBAction)oldHouseButtonAction:(id)sender {
     UIButton *button = (UIButton *)sender;
     self.houseButton.selected = NO;
     button.selected = YES;
-    self.isNewHouse = NO;
+    self.isNewHouse = button.titleLabel.text;
 }
 
 @end

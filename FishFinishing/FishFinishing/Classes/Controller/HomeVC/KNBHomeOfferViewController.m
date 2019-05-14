@@ -262,8 +262,9 @@
 - (void)beginTimer {
     if (_timer == nil) {
         __weak typeof(self) weakSelf = self;
+        NSInteger randomNum = arc4random()%10000;
         self.timer = [NSTimer eoc_scheduledTimerWithTimeInterval:0.01 block:^{
-            weakSelf.headerView.numLabel.text = [NSString stringWithFormat:@"%ld",13257 + (long)self.index++];
+            weakSelf.headerView.numLabel.text = [NSString stringWithFormat:@"%ld",10000 + randomNum + (long)self.index++];
         } repeats:YES];
     }
 }
