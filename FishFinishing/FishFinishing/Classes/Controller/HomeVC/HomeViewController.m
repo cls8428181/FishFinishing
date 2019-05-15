@@ -104,7 +104,6 @@ static CGFloat const kHeaderViewHeight = 50.0f;
     [self.view bringSubviewToFront:self.searchView];
     [self.view addSubview:self.serviceButton];
     [self.view bringSubviewToFront:self.serviceButton];
-    self.searchView.backgroundColor=[[UIColor colorWithHex:0x0096e6] colorWithAlphaComponent:0];
     [self addMJRefreshHeaderView];
     [self addMJRefreshFootView];
 }
@@ -120,6 +119,7 @@ static CGFloat const kHeaderViewHeight = 50.0f;
     knbTableViewHeader.automaticallyChangeAlpha = YES;
     // 隐藏时间
     knbTableViewHeader.lastUpdatedTimeLabel.hidden = YES;
+    
     self.mainTableView.mj_header = knbTableViewHeader;
 }
 
@@ -221,20 +221,20 @@ static CGFloat const kHeaderViewHeight = 50.0f;
             }
         };
         //广告图点击
-        blockCell.adButtonBlock = ^{
-//            if ([KNBUserInfo shareInstance].isLogin) {
-                KNBHomeOfferViewController *offerVC = [[KNBHomeOfferViewController alloc] init];
-                [weakSelf.navigationController pushViewController:offerVC animated:YES];
-//            } else {
-//                [KNBAlertRemind alterWithTitle:@"" message:@"您还未登录,请先登录" buttonTitles:@[@"去登录",@"取消"] handler:^(NSInteger index, NSString *title) {
-//                    if ([title isEqualToString:@"去登录"]) {
-//                        KNBLoginViewController *loginVC = [[KNBLoginViewController alloc] init];
-//                        loginVC.vcType = KNBLoginTypeLogin;
-//                        [weakSelf presentViewController:loginVC animated:YES completion:nil];
-//                    }
-//                }];
-//            }
-        };
+//        blockCell.adButtonBlock = ^{
+////            if ([KNBUserInfo shareInstance].isLogin) {
+//                KNBHomeOfferViewController *offerVC = [[KNBHomeOfferViewController alloc] init];
+//                [weakSelf.navigationController pushViewController:offerVC animated:YES];
+////            } else {
+////                [KNBAlertRemind alterWithTitle:@"" message:@"您还未登录,请先登录" buttonTitles:@[@"去登录",@"取消"] handler:^(NSInteger index, NSString *title) {
+////                    if ([title isEqualToString:@"去登录"]) {
+////                        KNBLoginViewController *loginVC = [[KNBLoginViewController alloc] init];
+////                        loginVC.vcType = KNBLoginTypeLogin;
+////                        [weakSelf presentViewController:loginVC animated:YES completion:nil];
+////                    }
+////                }];
+////            }
+//        };
     } else if (indexPath.section == 1) {
         cell = [KNBHomeDesignSketchTableViewCell cellWithTableView:tableView];
         KNBHomeDesignSketchTableViewCell *blockCell = (KNBHomeDesignSketchTableViewCell *)cell;
@@ -295,7 +295,7 @@ static CGFloat const kHeaderViewHeight = 50.0f;
 
 // !!!: 悬停的位置
 -(CGFloat)homeTableViewHeightForStayPosition:(KNBHomeTableView *)tableView{
-    return [tableView rectForSection:2].origin.y - KNB_NAV_HEIGHT;
+    return [tableView rectForSection:2].origin.y;
 }
 
 #pragma mark - SDCycleScrollViewDelegate
@@ -304,26 +304,26 @@ static CGFloat const kHeaderViewHeight = 50.0f;
 }
 
 #pragma mark - private method
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-
-    // 导航栏处理
-    CGFloat yOffset = scrollView.contentOffset.y;
-    if (yOffset < 0.0) {
-        [UIView animateWithDuration:0.5 animations:^{
-            self.searchView.backgroundColor=[[UIColor colorWithHex:0x0096e6] colorWithAlphaComponent:0];
-        }];
-    } else {
-        [UIView animateWithDuration:0.5 animations:^{
-            self.searchView.backgroundColor=[[UIColor colorWithHex:0x0096e6] colorWithAlphaComponent:1];
-        }];
-    }
-
-    CGFloat maxAlphaOffset = 150;
-    CGFloat alpha = yOffset / (CGFloat)maxAlphaOffset;
-    alpha = (alpha >= 1) ? 1 : alpha;
-    alpha = (alpha <= 0) ? 0 : alpha;
-    self.searchView.backgroundColor=[[UIColor colorWithHex:0x0096e6] colorWithAlphaComponent:alpha];
-}
+//- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+//
+//    // 导航栏处理
+//    CGFloat yOffset = scrollView.contentOffset.y;
+//    if (yOffset < 0.0) {
+//        [UIView animateWithDuration:0.5 animations:^{
+//            self.searchView.backgroundColor=[[UIColor colorWithHex:0x0096e6] colorWithAlphaComponent:0];
+//        }];
+//    } else {
+//        [UIView animateWithDuration:0.5 animations:^{
+//            self.searchView.backgroundColor=[[UIColor colorWithHex:0x0096e6] colorWithAlphaComponent:1];
+//        }];
+//    }
+//
+//    CGFloat maxAlphaOffset = 150;
+//    CGFloat alpha = yOffset / (CGFloat)maxAlphaOffset;
+//    alpha = (alpha >= 1) ? 1 : alpha;
+//    alpha = (alpha <= 0) ? 0 : alpha;
+//    self.searchView.backgroundColor=[[UIColor colorWithHex:0x0096e6] colorWithAlphaComponent:alpha];
+//}
 
 - (void)serviceListRequest:(NSInteger)index page:(NSInteger)page {
     KNBRecruitmentServiceListApi *serviceApi = [[KNBRecruitmentServiceListApi alloc] initWithLng:[KNGetUserLoaction shareInstance].lng lat:[KNGetUserLoaction shareInstance].lat];
@@ -393,7 +393,7 @@ static CGFloat const kHeaderViewHeight = 50.0f;
 /* getter和setter全部都放在最后*/
 - (SDCycleScrollView *)cycleScrollView {
     if (!_cycleScrollView) {
-        _cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, KNB_SCREEN_WIDTH, KNB_SCREEN_WIDTH * 245 / 375 + KNB_StatusBar_H) delegate:nil placeholderImage:[UIImage imageNamed:@"knb_home_banner"]];
+        _cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(13, 13, KNB_SCREEN_WIDTH - 26, 126) delegate:nil placeholderImage:[UIImage imageNamed:@"knb_home_banner"]];
         _cycleScrollView.delegate = self;
         _cycleScrollView.backgroundColor = [UIColor whiteColor];
         _cycleScrollView.pageControlAliment = SDCycleScrollViewPageContolAlimentCenter;
@@ -407,7 +407,7 @@ static CGFloat const kHeaderViewHeight = 50.0f;
 
 -(KNBHomeSubView *)subView{
     if (!_subView) {
-        _subView = [[KNBHomeSubView alloc] initWithFrame:CGRectMake(0, 50, KNB_SCREEN_WIDTH, self.mainTableView.frame.size.height-kHeaderViewHeight - KNB_TAB_HEIGHT - 45) index:self.titleArray.count dataSource:self.serviceArray];
+        _subView = [[KNBHomeSubView alloc] initWithFrame:CGRectMake(0, 50, KNB_SCREEN_WIDTH, self.mainTableView.frame.size.height - kHeaderViewHeight - 45) index:self.titleArray.count dataSource:self.serviceArray];
         KNB_WS(weakSelf);
         _subView.scrollEventBlock = ^(NSInteger row) {
             weakSelf.segmentedControl.selectedSegmentIndex = row;
@@ -421,13 +421,12 @@ static CGFloat const kHeaderViewHeight = 50.0f;
         _segmentedControl = [[HMSegmentedControl alloc] initWithSectionTitles:self.titleArray];
         _segmentedControl.frame = CGRectMake(0, 0, KNB_SCREEN_WIDTH, 50);
         _segmentedControl.titleTextAttributes = @{NSForegroundColorAttributeName : [UIColor blackColor], NSFontAttributeName : [UIFont systemFontOfSize:15.0]};
-        _segmentedControl.selectedTitleTextAttributes = @{NSForegroundColorAttributeName : [UIColor colorWithHex:0x009fe8], NSFontAttributeName : [UIFont systemFontOfSize:15.0]};
+        _segmentedControl.selectedTitleTextAttributes = @{NSForegroundColorAttributeName : [UIColor colorWithHex:0x009fe8], NSFontAttributeName : [UIFont boldSystemFontOfSize:15.0]};
         _segmentedControl.selectionIndicatorColor = [UIColor colorWithHex:0x009fe8];
         _segmentedControl.selectionIndicatorHeight = 2.0;
         _segmentedControl.selectionStyle = HMSegmentedControlSelectionStyleTextWidthStripe;
         _segmentedControl.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationDown;
-        _segmentedControl.selectionIndicatorEdgeInsets = UIEdgeInsetsMake(0, 20, -10, 40);
-        _segmentedControl.segmentEdgeInset = UIEdgeInsetsMake(0, 10, 0, 10);
+        _segmentedControl.selectionIndicatorEdgeInsets = UIEdgeInsetsMake(0, 0, -10, 0);
         KNB_WS(weakSelf);
         [_segmentedControl setIndexChangeBlock:^(NSInteger index) {
             if (weakSelf.subView.contentView) {
@@ -440,7 +439,7 @@ static CGFloat const kHeaderViewHeight = 50.0f;
 
 -(KNBHomeTableView *)mainTableView {
     if (!_mainTableView) {
-        _mainTableView = [[KNBHomeTableView alloc] initWithFrame:CGRectMake(0, 0, KNB_SCREEN_WIDTH, KNB_SCREEN_HEIGHT - KNB_TAB_HEIGHT) style:UITableViewStyleGrouped];
+        _mainTableView = [[KNBHomeTableView alloc] initWithFrame:CGRectMake(0, KNB_NAV_HEIGHT, KNB_SCREEN_WIDTH, KNB_SCREEN_HEIGHT - KNB_TAB_HEIGHT - KNB_NAV_HEIGHT) style:UITableViewStyleGrouped];
         _mainTableView.delegate = self;
         _mainTableView.dataSource = self;
         _mainTableView.delegate_StayPosition = self;

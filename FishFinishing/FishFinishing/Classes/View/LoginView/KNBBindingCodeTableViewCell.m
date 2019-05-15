@@ -35,7 +35,7 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    self.codeButton.layer.borderColor = [UIColor colorWithHex:0xf2f2f2].CGColor;
+    self.codeButton.layer.borderColor = [UIColor colorWithHex:0x009fe8].CGColor;
     self.codeButton.layer.borderWidth = 1;
     self.codeButton.layer.masksToBounds = YES;
     self.codeButton.layer.cornerRadius = 3;

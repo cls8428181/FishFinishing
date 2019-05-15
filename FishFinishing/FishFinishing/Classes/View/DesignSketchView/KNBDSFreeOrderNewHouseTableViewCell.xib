@@ -23,12 +23,12 @@
                         <rect key="frame" x="12" y="5" width="357" height="119.5"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Voy-Ez-4sX">
-                                <rect key="frame" x="125" y="38" width="88" height="44"/>
+                                <rect key="frame" x="119" y="38" width="88" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="88" id="4oA-fk-MlT"/>
                                     <constraint firstAttribute="height" constant="44" id="orm-Ij-rCQ"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <state key="normal" title="旧房翻新" image="knb_offer_kong">
                                     <color key="titleColor" red="0.50196078430000002" green="0.50196078430000002" blue="0.50196078430000002" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
@@ -38,12 +38,12 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bbr-0K-JMS">
-                                <rect key="frame" x="12" y="38" width="88" height="44"/>
+                                <rect key="frame" x="6" y="38" width="88" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="gtX-Ne-atA"/>
                                     <constraint firstAttribute="width" constant="88" id="lDX-uz-Rbi"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <state key="normal" title="新房装修" image="knb_offer_kong">
                                     <color key="titleColor" red="0.50196078430000002" green="0.50196078430000002" blue="0.50196078430000002" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
@@ -55,7 +55,7 @@
                         </subviews>
                         <color key="backgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.94901960780000005" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="bbr-0K-JMS" firstAttribute="leading" secondItem="lHT-BS-ySk" secondAttribute="leading" constant="12" id="AMQ-T3-fYa"/>
+                            <constraint firstItem="bbr-0K-JMS" firstAttribute="leading" secondItem="lHT-BS-ySk" secondAttribute="leading" constant="6" id="AMQ-T3-fYa"/>
                             <constraint firstItem="Voy-Ez-4sX" firstAttribute="centerY" secondItem="lHT-BS-ySk" secondAttribute="centerY" id="WI4-So-nTA"/>
                             <constraint firstItem="Voy-Ez-4sX" firstAttribute="leading" secondItem="bbr-0K-JMS" secondAttribute="trailing" constant="25" id="XAc-gS-IGO"/>
                             <constraint firstItem="bbr-0K-JMS" firstAttribute="centerY" secondItem="lHT-BS-ySk" secondAttribute="centerY" id="eFw-I1-57D"/>

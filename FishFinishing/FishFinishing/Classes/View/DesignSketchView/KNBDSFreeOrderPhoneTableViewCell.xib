@@ -23,17 +23,17 @@
                         <rect key="frame" x="12" y="5" width="326" height="100.5"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="输入您的电话号码，报价结果将发送到您的手机" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2Es-u1-9jb">
-                                <rect key="frame" x="12" y="42" width="302" height="17"/>
+                                <rect key="frame" x="6" y="41.5" width="314" height="18"/>
                                 <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.94901960780000005" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="2Es-u1-9jb" secondAttribute="trailing" constant="12" id="8lU-AO-8HU"/>
+                            <constraint firstAttribute="trailing" secondItem="2Es-u1-9jb" secondAttribute="trailing" constant="6" id="8lU-AO-8HU"/>
                             <constraint firstItem="2Es-u1-9jb" firstAttribute="centerY" secondItem="8fK-j3-b67" secondAttribute="centerY" id="dKJ-35-VZ2"/>
-                            <constraint firstItem="2Es-u1-9jb" firstAttribute="leading" secondItem="8fK-j3-b67" secondAttribute="leading" constant="12" id="pfV-dq-w0b"/>
+                            <constraint firstItem="2Es-u1-9jb" firstAttribute="leading" secondItem="8fK-j3-b67" secondAttribute="leading" constant="6" id="pfV-dq-w0b"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>

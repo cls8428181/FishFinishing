@@ -29,12 +29,16 @@
 
 @interface KNBHomeDesignViewController ()
 @property (nonatomic, strong) UIScrollView *bgView;
-//顶部广告图片
-@property (nonatomic, strong) UIImageView *adImageView;
+//服务商头像
+@property (nonatomic, strong) UIImageView *iconImageView;
 //服务商 label
 @property (nonatomic, strong) UILabel *titleLabel;
-//服务商按钮
-@property (nonatomic, strong) UIButton *titleButton;
+//标签按钮
+@property (nonatomic, strong) UIButton *markButton;
+//标签文字
+@property (nonatomic, strong) UILabel *markLabel;
+//底部线条
+@property (nonatomic, strong) UIView *lineView;
 //服务流程
 @property (nonatomic, strong) UILabel *middleLabel;
 //电话回访
@@ -84,70 +88,80 @@
         make.left.right.bottom.equalTo(weakSelf.view);
     }];
     if (self.faceId) {
-        [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(12);
-            make.top.mas_equalTo(22);
+        [self.iconImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(15);
+            make.top.mas_equalTo(15);
+            make.width.mas_equalTo(64);
+            make.height.mas_equalTo(64);
         }];
-        [self.titleButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(weakSelf.iconImageView.mas_right).mas_offset(13);
+            make.top.equalTo(weakSelf.iconImageView.mas_top).mas_offset(11);
+        }];
+        [self.markButton mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(weakSelf.titleLabel.mas_right).mas_offset(13);
             make.centerY.equalTo(weakSelf.titleLabel);
-            make.left.equalTo(weakSelf.titleLabel.mas_right).mas_offset(15);
+        }];
+        [self.markLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(weakSelf.titleLabel.mas_bottom).mas_offset(15);
+            make.left.equalTo(weakSelf.iconImageView.mas_right).mas_offset(13);
+        }];
+        [self.lineView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(weakSelf.iconImageView.mas_bottom).mas_offset(15);
+            make.width.mas_equalTo(KNB_SCREEN_WIDTH);
+            make.height.mas_equalTo(8);
         }];
     }
-    [self.adImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.mas_equalTo(weakSelf.view);
-        if (weakSelf.faceId) {
-            make.top.equalTo(weakSelf.titleButton.mas_bottom).mas_offset(12);
-        } else {
-            make.top.equalTo(weakSelf.naviView.mas_bottom).mas_offset(12);
-        }
-        make.height.mas_equalTo(138);
-    }];
     [self.middleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(weakSelf.adImageView.mas_bottom).mas_offset(15);
+        if (weakSelf.faceId) {
+            make.top.equalTo(weakSelf.lineView.mas_bottom).mas_offset(15);
+        } else {
+            make.top.mas_equalTo(15);
+        }
         make.centerX.equalTo(weakSelf.view);
     }];
     CGFloat leftPadding = (KNB_SCREEN_WIDTH - 320)/8;
     CGFloat middlePadding = leftPadding * 2;
     [self.phoneButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(leftPadding);
-        make.top.equalTo(weakSelf.middleLabel.mas_bottom).mas_offset(12);
+        make.top.equalTo(weakSelf.middleLabel.mas_bottom).mas_offset(15);
         make.width.mas_equalTo(80);
         make.height.mas_equalTo(80);
     }];
     [self.leftArrowImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(weakSelf.phoneButton.mas_right).mas_offset(0);
-        make.centerY.equalTo(weakSelf.phoneButton);
+        make.centerY.equalTo(weakSelf.phoneButton.mas_centerY).mas_offset(-12);
     }];
     [self.ruleButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(weakSelf.phoneButton.mas_right).mas_offset(middlePadding);
-        make.top.equalTo(weakSelf.middleLabel.mas_bottom).mas_offset(12);
+        make.top.equalTo(weakSelf.middleLabel.mas_bottom).mas_offset(15);
         make.width.mas_equalTo(80);
         make.height.mas_equalTo(80);
     }];
     [self.middleArrowImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(weakSelf.ruleButton.mas_right).mas_offset(0);
-        make.centerY.equalTo(weakSelf.phoneButton);
+        make.centerY.equalTo(weakSelf.phoneButton.mas_centerY).mas_offset(-12);
     }];
     [self.designButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(weakSelf.ruleButton.mas_right).mas_offset(middlePadding);
-        make.top.equalTo(weakSelf.middleLabel.mas_bottom).mas_offset(12);
+        make.top.equalTo(weakSelf.middleLabel.mas_bottom).mas_offset(15);
         make.width.mas_equalTo(80);
         make.height.mas_equalTo(80);
     }];
     [self.rightArrowImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(weakSelf.designButton.mas_right).mas_offset(0);
-        make.centerY.equalTo(weakSelf.phoneButton);
+        make.centerY.equalTo(weakSelf.phoneButton.mas_centerY).mas_offset(-12);
     }];
     [self.infoButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(weakSelf.designButton.mas_right).mas_offset(middlePadding);
-        make.top.equalTo(weakSelf.middleLabel.mas_bottom).mas_offset(12);
+        make.top.equalTo(weakSelf.middleLabel.mas_bottom).mas_offset(15);
         make.width.mas_equalTo(80);
         make.height.mas_equalTo(80);
     }];
     [self.headerView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.equalTo(weakSelf.view);
-        make.height.mas_equalTo(10);
-        make.top.equalTo(weakSelf.infoButton.mas_bottom).mas_offset(20);
+        make.height.mas_equalTo(8);
+        make.top.equalTo(weakSelf.infoButton.mas_bottom).mas_offset(18);
     }];
 }
 
@@ -155,7 +169,7 @@
 - (void)configuration {
     self.naviView.title = @"免费获取装修预算";
     [self.naviView addLeftBarItemImageName:@"knb_back_black" target:self sel:@selector(backAction)];
-    [self.naviView addRightBarItemImageName:@"knb_design_share" target:self sel:@selector(shareAction)];
+    [self.naviView addRightBarItemImageName:@"knb_icon_share" target:self sel:@selector(shareAction)];
     self.naviView.titleNaviLabel.textColor = [UIColor blackColor];
     self.view.backgroundColor = [UIColor whiteColor];
     self.knbTableView.backgroundColor = [UIColor whiteColor];
@@ -166,9 +180,9 @@
     self.knbTableView.clipsToBounds = false;
     self.knbTableView.scrollEnabled = NO;
     if (self.faceId) {
-        self.knbTableView.frame = CGRectMake(12, 370, KNB_SCREEN_WIDTH - 24, 315);
+        self.knbTableView.frame = CGRectMake(12, 270, KNB_SCREEN_WIDTH - 24, 315);
     } else {
-        self.knbTableView.frame = CGRectMake(12, 310, KNB_SCREEN_WIDTH - 24, 315);
+        self.knbTableView.frame = CGRectMake(12, 170, KNB_SCREEN_WIDTH - 24, 315);
     }
     self.footerView.frame = CGRectMake(12, CGRectGetMaxY(self.knbTableView.frame), KNB_SCREEN_WIDTH - 24, 38);
 }
@@ -176,10 +190,12 @@
 - (void)addUI {
     [self.view addSubview:self.bgView];
     if (self.faceId) {
+        [self.bgView addSubview:self.iconImageView];
         [self.bgView addSubview:self.titleLabel];
-        [self.bgView addSubview:self.titleButton];
+        [self.bgView addSubview:self.markButton];
+        [self.bgView addSubview:self.markLabel];
+        [self.bgView addSubview:self.lineView];
     }
-    [self.bgView addSubview:self.adImageView];
     [self.bgView addSubview:self.middleLabel];
     [self.bgView addSubview:self.phoneButton];
     [self.bgView addSubview:self.leftArrowImageView];
@@ -202,13 +218,8 @@
             if (api.requestSuccess) {
                 NSDictionary *dic = request.responseObject[@"list"];
                 KNBHomeServiceModel *model = [KNBHomeServiceModel changeResponseJSONObject:dic];
-                [weakSelf.titleButton setTitle:model.name forState:UIControlStateNormal];
-                [weakSelf.titleButton sd_setImageWithURL:[NSURL URLWithString:model.logo] forState:UIControlStateNormal completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
-                    UIImage *refined = [UIImage imageWithCGImage:image.CGImage scale:3 orientation:image.imageOrientation];
-                    refined = [refined resizedImage:CGSizeMake(38, 38) interpolationQuality:0];
-                    [weakSelf.titleButton setImage:refined forState:UIControlStateNormal];
-                    [weakSelf.titleButton layoutButtonWithEdgeInsetsStyle:GLButtonEdgeInsetsStyleLeft imageTitleSpace:5];
-                }];
+                weakSelf.titleLabel.text = model.name;
+                [weakSelf.iconImageView sd_setImageWithURL:[NSURL URLWithString:model.logo] placeholderImage:KNBImages(@"knb_default_user")];
             } else {
                 [weakSelf requestSuccess:NO requestEnd:NO];
             }
@@ -239,6 +250,8 @@
         cell = [KNBDSFreeOrderNameTableViewCell cellWithTableView:tableView];
     } else  if (indexPath.row == 4){
         cell = [KNBDSFreeOrderPhoneTableViewCell cellWithTableView:tableView];
+        KNBDSFreeOrderPhoneTableViewCell * typeCell = (KNBDSFreeOrderPhoneTableViewCell *)cell;
+        typeCell.detailTextField.placeholder = @"输入您的电话号码，设计方案将发送到您的手机";
     } else {
         cell = [KNBDSFreeOrderRedEnterTableViewCell cellWithTableView:tableView];
     }
@@ -247,7 +260,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return indexPath.row == 0 ? 55 : 50;
+    return indexPath.row == 5 ? 55 : 50;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
@@ -296,7 +309,7 @@
         }
 
   
-        KNBHomeBespokeApi *api = [[KNBHomeBespokeApi alloc] initWithFacId:self.faceId ?: 0 facName:self.faceId ? self.titleButton.titleLabel.text : @"" catId:[self.orderModel.typeModel.selectSubModel.typeId integerValue] userId:@"" areaInfo:self.orderModel.area_info houseInfo:self.orderModel.house_info community:self.orderModel.community provinceId:self.orderModel.province_id cityId:self.orderModel.city_id areaId:self.orderModel.area_id decorateStyle:self.orderModel.style decorateGrade:self.orderModel.level name:self.orderModel.name mobile:self.orderModel.mobile decorateCat:self.orderModel.decorate_cat type:1];
+        KNBHomeBespokeApi *api = [[KNBHomeBespokeApi alloc] initWithFacId:self.faceId ?: 0 facName:self.faceId ? self.titleLabel.text : @"" catId:[self.orderModel.typeModel.selectSubModel.typeId integerValue] userId:@"" areaInfo:self.orderModel.area_info houseInfo:self.orderModel.house_info community:self.orderModel.community provinceId:self.orderModel.province_id cityId:self.orderModel.city_id areaId:self.orderModel.area_id decorateStyle:self.orderModel.style decorateGrade:self.orderModel.level name:self.orderModel.name mobile:self.orderModel.mobile decorateCat:self.orderModel.decorate_cat type:1];
         api.hudString = @"";
         KNB_WS(weakSelf);
         [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *_Nonnull request) {
@@ -338,18 +351,10 @@
     return _bgView;
 }
 
-- (UIImageView *)adImageView {
-    if (!_adImageView) {
-        _adImageView = [[UIImageView alloc] init];
-        _adImageView.image = KNBImages(@"knb_home_sy_banner");
-    }
-    return _adImageView;
-}
-
 - (UIView *)headerView {
     if (!_headerView) {
         _headerView = [[UIView alloc] init];
-        _headerView.frame = CGRectMake(0, 0, KNB_SCREEN_WIDTH, 10);
+        _headerView.frame = CGRectMake(0, 0, KNB_SCREEN_WIDTH, 8);
         _headerView.backgroundColor = [UIColor colorWithHex:0xf2f2f2];
     }
     return _headerView;
@@ -363,33 +368,59 @@
     return _footerView;
 }
 
+- (UIImageView *)iconImageView {
+    if (!_iconImageView) {
+        _iconImageView = [[UIImageView alloc] init];
+        _iconImageView.layer.masksToBounds = YES;
+        _iconImageView.layer.cornerRadius = 32;
+    }
+    return _iconImageView;
+}
+
 - (UILabel *)titleLabel {
     if (!_titleLabel) {
         _titleLabel = [[UILabel alloc] init];
-        _titleLabel.font = [UIFont boldSystemFontOfSize:14];
-        _titleLabel.text = @"服务商:";
+        _titleLabel.font = [UIFont systemFontOfSize:16];
+        _titleLabel.textColor = [UIColor colorWithHex:0x333333];
+        _titleLabel.text = @"名称";
     }
     return _titleLabel;
 }
 
-- (UIButton *)titleButton {
-    if (!_titleButton) {
-        _titleButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_titleButton setTitle:@"装饰公司" forState:UIControlStateNormal];
-        [_titleButton setImage:KNBImages(@"knb_default_user") forState:UIControlStateNormal];
-        [_titleButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        _titleButton.titleLabel.font = [UIFont systemFontOfSize:14];
-        _titleButton.imageView.layer.masksToBounds = YES;
-        _titleButton.imageView.layer.cornerRadius = 19;
+- (UIButton *)markButton {
+    if (!_markButton) {
+        _markButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_markButton setTitle:@"服务商" forState:UIControlStateNormal];
+        [_markButton setTitleColor:[UIColor colorWithHex:0x0093d6] forState:UIControlStateNormal];
+        _markButton.titleLabel.font = [UIFont systemFontOfSize:12];
+        [_markButton setBackgroundImage:KNBImages(@"knb_offer_fuwushang") forState:UIControlStateNormal];
     }
-    return _titleButton;
+    return _markButton;
+}
+
+- (UILabel *)markLabel {
+    if (!_markLabel) {
+        _markLabel = [[UILabel alloc] init];
+        _markLabel.font = [UIFont systemFontOfSize:15];
+        _markLabel.text = @"免费";
+    }
+    return _markLabel;
+}
+
+- (UIView *)lineView {
+    if (!_lineView) {
+        _lineView = [[UIView alloc] init];
+        _lineView.backgroundColor = [UIColor knBgColor];
+    }
+    return _lineView;
 }
 
 - (UILabel *)middleLabel {
     if (!_middleLabel) {
         _middleLabel = [[UILabel alloc] init];
         _middleLabel.text = @"服务流程";
-        _middleLabel.font = [UIFont boldSystemFontOfSize:14];
+        _middleLabel.font = [UIFont systemFontOfSize:15];
+        _middleLabel.textColor = [UIColor colorWithHex:0x333333];
     }
     return _middleLabel;
 }
@@ -400,8 +431,8 @@
         [_phoneButton setTitle:@"1.电话回访" forState:UIControlStateNormal];
         [_phoneButton setImage:KNBImages(@"knb_home_phone") forState:UIControlStateNormal];
         [_phoneButton setTitleColor:[UIColor colorWithHex:0x808080] forState:UIControlStateNormal];
-        _phoneButton.titleLabel.font = [UIFont systemFontOfSize:12];
-        [_phoneButton verticalImageAndTitle:12];
+        _phoneButton.titleLabel.font = [UIFont systemFontOfSize:14];
+        [_phoneButton layoutButtonWithEdgeInsetsStyle:GLButtonEdgeInsetsStyleTop imageTitleSpace:10];
     }
     return _phoneButton;
 }
@@ -420,8 +451,8 @@
         [_ruleButton setTitle:@"2.上门量房" forState:UIControlStateNormal];
         [_ruleButton setImage:KNBImages(@"knb_home_ruler") forState:UIControlStateNormal];
         [_ruleButton setTitleColor:[UIColor colorWithHex:0x808080] forState:UIControlStateNormal];
-        _ruleButton.titleLabel.font = [UIFont systemFontOfSize:12];
-        [_ruleButton verticalImageAndTitle:12];
+        _ruleButton.titleLabel.font = [UIFont systemFontOfSize:14];
+        [_ruleButton layoutButtonWithEdgeInsetsStyle:GLButtonEdgeInsetsStyleTop imageTitleSpace:10];
     }
     return _ruleButton;
 }
@@ -440,8 +471,8 @@
         [_designButton setTitle:@"3.出设计图" forState:UIControlStateNormal];
         [_designButton setImage:KNBImages(@"knb_home_design") forState:UIControlStateNormal];
         [_designButton setTitleColor:[UIColor colorWithHex:0x808080] forState:UIControlStateNormal];
-        _designButton.titleLabel.font = [UIFont systemFontOfSize:12];
-        [_designButton verticalImageAndTitle:12];
+        _designButton.titleLabel.font = [UIFont systemFontOfSize:14];
+        [_designButton layoutButtonWithEdgeInsetsStyle:GLButtonEdgeInsetsStyleTop imageTitleSpace:10];
     }
     return _designButton;
 }
@@ -460,8 +491,8 @@
         [_infoButton setTitle:@"4.方案调优" forState:UIControlStateNormal];
         [_infoButton setImage:KNBImages(@"knb_home_information") forState:UIControlStateNormal];
         [_infoButton setTitleColor:[UIColor colorWithHex:0x808080] forState:UIControlStateNormal];
-        _infoButton.titleLabel.font = [UIFont systemFontOfSize:12];
-        [_infoButton verticalImageAndTitle:12];
+        _infoButton.titleLabel.font = [UIFont systemFontOfSize:14];
+        [_infoButton layoutButtonWithEdgeInsetsStyle:GLButtonEdgeInsetsStyleTop imageTitleSpace:10];
     }
     return _infoButton;
 }

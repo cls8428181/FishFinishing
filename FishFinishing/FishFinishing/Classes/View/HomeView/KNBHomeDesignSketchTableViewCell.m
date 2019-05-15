@@ -116,12 +116,12 @@
     if (!_segmentedControl) {
         _segmentedControl = [[HMSegmentedControl alloc] initWithSectionTitles:@[ @"风格", @"户型", @"空间"]];
         _segmentedControl.titleTextAttributes = @{NSForegroundColorAttributeName : [UIColor blackColor], NSFontAttributeName : [UIFont systemFontOfSize:15.0]};
-        _segmentedControl.selectedTitleTextAttributes = @{NSForegroundColorAttributeName : [UIColor colorWithHex:0x009fe8], NSFontAttributeName : [UIFont systemFontOfSize:15.0]};
+        _segmentedControl.selectedTitleTextAttributes = @{NSForegroundColorAttributeName : [UIColor colorWithHex:0x009fe8], NSFontAttributeName : [UIFont boldSystemFontOfSize:15.0]};
         _segmentedControl.selectionIndicatorColor = [UIColor colorWithHex:0x009fe8];
         _segmentedControl.selectionIndicatorHeight = 2.0;
         _segmentedControl.selectionStyle = HMSegmentedControlSelectionStyleTextWidthStripe;
         _segmentedControl.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationDown;
-        _segmentedControl.selectionIndicatorEdgeInsets = UIEdgeInsetsMake(0, 8, -10, 15);
+        _segmentedControl.selectionIndicatorEdgeInsets = UIEdgeInsetsMake(0, 0, -10, 0);
         KNB_WS(weakSelf);
         [_segmentedControl setIndexChangeBlock:^(NSInteger index) {
             !weakSelf.selectIndexBlock ?: weakSelf.selectIndexBlock(index);

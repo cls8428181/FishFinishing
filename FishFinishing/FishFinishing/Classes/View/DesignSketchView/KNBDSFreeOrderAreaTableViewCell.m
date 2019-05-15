@@ -26,4 +26,10 @@
 + (CGFloat)cellHeight {
     return 50;
 }
+
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    [self.detailTextField setValue:[UIColor colorWithHex:0x808080] forKeyPath:@"_placeholderLabel.textColor"];
+}
+
 @end

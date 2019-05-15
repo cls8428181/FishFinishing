@@ -9,8 +9,7 @@
 #import <UIKit/UIKit.h>
 
 typedef NS_ENUM(NSInteger, KNBLoginInputViewType) {
-    KNBLoginInputViewTypeMobileAndIcon = 0, //手机号并展示icon
-    KNBLoginInputViewTypeMobileAndText,     //手机号并展示 文字
+    KNBLoginInputViewTypeMobileAndIcon = 0, //手机号
     KNBLoginInputViewTypeVerify,     //验证码
     KNBLoginInputViewTypePassword,   //密码
     KNBLoginInputViewTypeSetPassword,   //设置密码

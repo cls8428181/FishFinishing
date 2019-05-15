@@ -11,6 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface KNBDSFreeOrderRedEnterTableViewCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UIButton *enterButton;
 
 /**
  cell 创建

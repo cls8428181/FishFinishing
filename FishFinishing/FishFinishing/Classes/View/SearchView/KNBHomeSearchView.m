@@ -39,8 +39,8 @@ CGFloat KNBHomeSearchViewHeight = 44;
 }
 
 - (void)configView {
-    [self addSubview:self.chooseCityView];
     [self addSubview:self.chooseCityButton];
+    [self addSubview:self.chooseCityView];
     [self addSubview:self.chatButton];
     [self addSubview:self.searchBgView];
     self.backgroundColor = [UIColor colorWithHex:0x0096e6];
@@ -57,18 +57,18 @@ CGFloat KNBHomeSearchViewHeight = 44;
 - (void)layoutSubviews {
     [super layoutSubviews];
     KNB_WS(weakSelf);
-    [self.chooseCityView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(weakSelf);
-        make.top.mas_equalTo(KNB_StatusBar_H + 12);
-        make.width.mas_equalTo(60);
-    }];
     [self.chooseCityButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.center.equalTo(weakSelf.chooseCityView);
+        make.top.mas_equalTo(KNB_StatusBar_H);
+        make.left.mas_equalTo(13);
         make.width.mas_equalTo(55);
         make.height.mas_equalTo(36);
     }];
+    [self.chooseCityView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(weakSelf.chooseCityButton.mas_right).mas_offset(5);
+        make.centerY.equalTo(weakSelf.chooseCityButton);
+    }];
     [self.chatButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(KNB_StatusBar_H + 12);
+        make.centerY.equalTo(weakSelf.chooseCityButton);
         make.right.mas_equalTo(-25);
     }];
     [self.searchBgView mas_remakeConstraints:^(MASConstraintMaker *make) {
@@ -174,7 +174,7 @@ CGFloat KNBHomeSearchViewHeight = 44;
 - (UIImageView *)chooseCityView {
     if (!_chooseCityView) {
         _chooseCityView = [[UIImageView alloc] init];
-        _chooseCityView.image = KNBImages(@"knb_home_locationbg");
+        _chooseCityView.image = KNBImages(@"knb_search_xialajiantou");
     }
     return _chooseCityView;
 }

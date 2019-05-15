@@ -20,21 +20,30 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KrW-UT-UKf">
-                        <rect key="frame" x="12" y="5" width="338" height="106.5"/>
-                        <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <rect key="frame" x="12" y="5" width="338" height="40"/>
+                        <color key="backgroundColor" red="0.96078431372549022" green="0.4392156862745098" blue="0.10588235294117647" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="40" id="ehO-Uo-u2K"/>
+                        </constraints>
                         <state key="normal" title="0元获取3套设计方案">
                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </state>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                            <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="3"/>
+                        </userDefinedRuntimeAttributes>
                     </button>
                 </subviews>
                 <constraints>
                     <constraint firstItem="KrW-UT-UKf" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="12" id="8CT-oc-e1G"/>
                     <constraint firstAttribute="trailing" secondItem="KrW-UT-UKf" secondAttribute="trailing" constant="12" id="OhS-N4-QaC"/>
                     <constraint firstItem="KrW-UT-UKf" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="W4j-E2-lO1"/>
-                    <constraint firstAttribute="bottom" secondItem="KrW-UT-UKf" secondAttribute="bottom" constant="10" id="bSc-Le-l5q"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
+            <connections>
+                <outlet property="enterButton" destination="KrW-UT-UKf" id="mQy-Sh-fYH"/>
+            </connections>
             <point key="canvasLocation" x="163.19999999999999" y="175.41229385307346"/>
         </tableViewCell>
     </objects>

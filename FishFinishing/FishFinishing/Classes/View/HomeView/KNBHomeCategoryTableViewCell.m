@@ -38,7 +38,7 @@
     if (self) {
         self.contentView.backgroundColor = [UIColor whiteColor];
         [self.contentView addSubview:self.collectionView];
-        [self.contentView addSubview:self.adButton];
+//        [self.contentView addSubview:self.adButton];
     }
     return self;
 }
@@ -52,11 +52,11 @@
         make.height.mas_equalTo(100);
     }];
     
-    [self.adButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(12);
-        make.right.bottom.mas_equalTo(-12);
-        make.top.equalTo(weakSelf.collectionView.mas_bottom).mas_offset(0);
-    }];
+//    [self.adButton mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.mas_equalTo(12);
+//        make.right.bottom.mas_equalTo(-12);
+//        make.top.equalTo(weakSelf.collectionView.mas_bottom).mas_offset(0);
+//    }];
 }
 
 #pragma mark - System Delegate
@@ -87,7 +87,7 @@
 #pragma mark - private method
 
 + (CGFloat)cellHeight {
-    return 225;
+    return 120;
 }
 
 - (void)reloadCollectionView {
@@ -117,14 +117,14 @@
     return _collectionView;
 }
 
-- (UIButton *)adButton {
-    if (!_adButton) {
-        _adButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_adButton setImage:KNBImages(@"knb_home_ad") forState:UIControlStateNormal];
-        [_adButton addTarget:self action:@selector(adButtonAction) forControlEvents:UIControlEventTouchUpInside];
-    }
-    return _adButton;
-}
+//- (UIButton *)adButton {
+//    if (!_adButton) {
+//        _adButton = [UIButton buttonWithType:UIButtonTypeCustom];
+//        [_adButton setImage:KNBImages(@"knb_home_ad") forState:UIControlStateNormal];
+//        [_adButton addTarget:self action:@selector(adButtonAction) forControlEvents:UIControlEventTouchUpInside];
+//    }
+//    return _adButton;
+//}
 
 - (void)setDataArray:(NSArray *)dataArray {
     if (!isNullArray(dataArray)) {

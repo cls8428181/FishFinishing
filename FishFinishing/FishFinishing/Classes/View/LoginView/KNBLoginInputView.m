@@ -16,8 +16,6 @@
 @property (nonatomic, strong) UIView *lineView;
 //icon
 @property (nonatomic, strong) UIImageView *iconImageView;
-//标题
-@property (nonatomic, strong) UILabel *titleLabel;
 //获取验证码
 @property (nonatomic, strong) KNBButton *timeButton;
 //显示隐藏密码
@@ -34,50 +32,35 @@
 - (instancetype)initWithFrame:(CGRect)frame viewType:(KNBLoginInputViewType)viewType {
     if (self = [super initWithFrame:frame]) {
         self.viewType = viewType;
-        if (viewType == KNBLoginInputViewTypeMobileAndIcon) {//手机号并展示icon
-            self.textField.placeholder = @"请输入手机号";
+        [self addSubview:self.lineView];
+        [self addSubview:self.iconImageView];
+        [self addSubview:self.textField];
+        
+        if (viewType == KNBLoginInputViewTypeMobileAndIcon) {//手机号
+            self.textField.placeholder = @"手机号";
             self.textField.keyboardType = UIKeyboardTypeNumberPad;
-            [self addSubview:self.textField];
-            [self addSubview:self.iconImageView];
+            self.iconImageView.image = KNBImages(@"knb_login_phone");
             [self.textField addTarget:self action:@selector(textFieldEditingChanged) forControlEvents:UIControlEventEditingChanged];
-            self.iconImageView.image = [UIImage imageNamed:@"knb_login_phone"];
-        } else if (viewType == KNBLoginInputViewTypeMobileAndText) {//手机号并展示文字
-            self.textField.placeholder = @"请输入手机号";
-            self.textField.keyboardType = UIKeyboardTypeNumberPad;
-            [self addSubview:self.textField];
-            [self addSubview:self.titleLabel];
-            [self.textField addTarget:self action:@selector(textFieldEditingChanged) forControlEvents:UIControlEventEditingChanged];
-            self.titleLabel.text = @"手机号";
         } else if (viewType == KNBLoginInputViewTypeVerify) {//验证码
-            self.textField.placeholder = @"请输入验证码";
+            self.textField.placeholder = @"验证码";
             self.textField.keyboardType = UIKeyboardTypeNumberPad;
-            [self addSubview:self.textField];
+            self.iconImageView.image = KNBImages(@"knb_login_yanzhengma");
             [self addSubview:self.timeButton];
-            [self addSubview:self.titleLabel];
-            self.titleLabel.text = @"验证码";
-        } else if (viewType == KNBLoginInputViewTypePassword) {//密码
-            self.textField.placeholder = @"请输入密码";
-            [self addSubview:self.textField];
-            [self addSubview:self.iconImageView];
+        } else {//密码
             self.textField.secureTextEntry = YES;
-            self.iconImageView.image = [UIImage imageNamed:@"knb_login_password"];
-        } else {
-            self.textField.placeholder = @"请输入密码";
-            [self addSubview:self.textField];
-            [self addSubview:self.showOrHidenButton];
-            [self addSubview:self.titleLabel];
-            self.textField.secureTextEntry = YES;
-            if (viewType == KNBLoginInputViewTypeSetPassword) {//设置密码
-                self.titleLabel.text = @"设置密码";
+            self.iconImageView.image = KNBImages(@"knb_login_password");
+            if (viewType == KNBLoginInputViewTypePassword) {
+                self.textField.placeholder = @"密码";
+            } else if (viewType == KNBLoginInputViewTypeSetPassword) {//设置密码
+                self.textField.placeholder = @"设置密码";
             } else if (viewType == KNBLoginInputViewTypeNewPassword) {//新的密码
-                self.titleLabel.text = @"新的密码";
+                self.textField.placeholder = @"新密码";
             } else {//确认密码
-                self.titleLabel.text = @"确认密码";
+                self.textField.placeholder = @"确认密码";
+                self.iconImageView.image = KNBImages(@"knb_login_querenmima");
             }
         }
-        [self addSubview:self.lineView];
-        
-        self.textField.tintColor = [UIColor colorWithHex:0xffb0a1];
+        [self.textField setValue:KNBFont(15) forKeyPath:@"_placeholderLabel.font"];
         [self.textField setValue:[UIColor whiteColor] forKeyPath:@"_placeholderLabel.textColor"];
 //        [self addGestureRecognizer:[self addTapGesture]];
     }
@@ -86,67 +69,39 @@
 
 - (void)layoutSubviews {
     [super layoutSubviews];
+    KNB_WS(weakSelf);
     [self.lineView mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.mas_equalTo(0);
-        make.bottom.mas_equalTo(self);
-        make.height.mas_equalTo(1);
+        make.left.bottom.right.mas_equalTo(0);
+        make.height.mas_equalTo(0.5);
     }];
     
-    if (self.viewType == KNBLoginInputViewTypeMobileAndIcon || self.viewType == KNBLoginInputViewTypePassword) {//手机号并展示icon || 密码并展示icon
-        [self.textField mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(45);
-            make.right.mas_equalTo(0);
-            make.bottom.mas_equalTo(self.lineView.mas_top).offset(0);
-            make.height.mas_equalTo(40);
-        }];
-        [self.iconImageView mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(0);
-            make.bottom.mas_equalTo(self.lineView.mas_top).offset(-10);
-        }];
-    } else if (self.viewType == KNBLoginInputViewTypeMobileAndText) {//手机号并展示文字
-        [self.textField mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(85);
-            make.right.mas_equalTo(0);
-            make.bottom.mas_equalTo(self.lineView.mas_top).offset(0);
-            make.height.mas_equalTo(40);
-        }];
-        [self.titleLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(0);
-            make.bottom.mas_equalTo(self.lineView.mas_top).offset(-10);
-        }];
-    } else if (self.viewType == KNBLoginInputViewTypeVerify) {//验证码
-        [self.textField mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(85);
-            make.right.mas_equalTo(55);
-            make.bottom.mas_equalTo(self.lineView.mas_top).offset(0);
-            make.height.mas_equalTo(40);
-        }];
-        [self.titleLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(0);
-            make.bottom.mas_equalTo(self.lineView.mas_top).offset(-10);
-        }];
-        [self.timeButton mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.centerY.mas_equalTo(self.textField.mas_centerY);
-            make.right.mas_equalTo(0);
-            make.height.mas_equalTo(40);
-            make.width.mas_equalTo(60);
-        }];
-    } else {
-        [self.textField mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(85);
-            make.right.mas_equalTo(55);
-            make.bottom.mas_equalTo(self.lineView.mas_top).offset(0);
-            make.height.mas_equalTo(40);
-        }];
-        [self.titleLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(0);
-            make.bottom.mas_equalTo(self.lineView.mas_top).offset(-10);
-        }];
-        [self.showOrHidenButton mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.centerY.mas_equalTo(self.textField.mas_centerY);
-            make.right.mas_equalTo(0);
-        }];
-    }
+    [self.iconImageView mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(0);
+        make.bottom.mas_equalTo(weakSelf.lineView.mas_top).offset(-20);
+    }];
+    
+    [self.textField mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(35);
+        make.right.mas_equalTo(0);
+        make.centerY.equalTo(weakSelf.iconImageView);
+        make.height.mas_equalTo(40);
+    }];
+    
+   if (self.viewType == KNBLoginInputViewTypeVerify) {//验证码
+       [self.textField mas_remakeConstraints:^(MASConstraintMaker *make) {
+           make.left.mas_equalTo(35);
+           make.right.mas_equalTo(75);
+           make.centerY.equalTo(weakSelf.iconImageView);
+           make.height.mas_equalTo(40);
+       }];
+       
+       [self.timeButton mas_remakeConstraints:^(MASConstraintMaker *make) {
+           make.centerY.mas_equalTo(self.textField.mas_centerY);
+           make.right.mas_equalTo(0);
+           make.height.mas_equalTo(40);
+           make.width.mas_equalTo(65);
+       }];
+   }
 }
 
 - (void)timerControll:(BOOL)startTimer {
@@ -215,7 +170,7 @@
         _textField.secureTextEntry = NO;
         _textField.delegate = self;
         _textField.returnKeyType = UIReturnKeyDone;
-        [_textField setValue:KNBFont(14) forKeyPath:@"_placeholderLabel.font"];
+        _textField.tintColor = [UIColor whiteColor];
     }
     return _textField;
 }
@@ -235,26 +190,18 @@
     return _iconImageView;
 }
 
-- (UILabel *)titleLabel {
-    if (!_titleLabel) {
-        _titleLabel = [[UILabel alloc] init];
-        _titleLabel.font = KNBFont(16);
-        _titleLabel.textColor = [UIColor whiteColor];
-    }
-    return _titleLabel;
-}
-
 - (KNBButton *)timeButton {
     if (!_timeButton) {
         _timeButton = [KNBButton buttonWithType:UIButtonTypeCustom];
         [_timeButton setTitle:@"获取验证码" forState:UIControlStateNormal];
-        _timeButton.titleLabel.font = KNBFont(13);
-        [_timeButton setTitleColor:[UIColor colorWithHex:0x009fe8] forState:UIControlStateNormal];
+        _timeButton.titleLabel.font = KNBFont(12);
+        [_timeButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_timeButton addTarget:self action:@selector(selectVeriNumClick:) forControlEvents:UIControlEventTouchUpInside];
-        _timeButton.titleLabel.textAlignment = NSTextAlignmentRight;
+        _timeButton.titleLabel.textAlignment = NSTextAlignmentCenter;
     }
     return _timeButton;
 }
+
 - (KNBButton *)showOrHidenButton {
     if (!_showOrHidenButton) {
         _showOrHidenButton = [KNBButton buttonWithType:UIButtonTypeCustom];

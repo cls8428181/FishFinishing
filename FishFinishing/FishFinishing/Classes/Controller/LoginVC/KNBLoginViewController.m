@@ -21,11 +21,9 @@
 //背景
 @property (nonatomic, strong) UIImageView *bgView;
 //logo
-@property (nonatomic, strong) KNBButton *logoButton;
+@property (nonatomic, strong) UIImageView *logoImageView;
 //输入手机号带icon
 @property (nonatomic, strong) KNBLoginInputView *mobileView;
-//输入手机号带标题
-@property (nonatomic, strong) KNBLoginInputView *mobileTextView;
 //输入验证码
 @property (nonatomic, strong) KNBLoginInputView *verinumView;
 //密码
@@ -43,7 +41,7 @@
 //新用户注册
 @property (nonatomic, strong) KNBButton *newRegisterButton;
 //已有账号
-@property (nonatomic, strong) KNBButton *loginButton;
+//@property (nonatomic, strong) KNBButton *loginButton;
 //找回密码
 @property (nonatomic, strong) KNBButton *findButton;
 //用于记录最后一个 View
@@ -86,26 +84,25 @@
         make.edges.equalTo(weakSelf.view);
     }];
     //logo
-    [self.logoButton mas_remakeConstraints:^(MASConstraintMaker *make) {
+    [self.logoImageView mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(weakSelf.naviView.mas_bottom).mas_offset(50);
         make.centerX.equalTo(weakSelf.view);
-        make.width.mas_equalTo(70);
-        make.height.mas_equalTo(95);
+    }];
+    //手机号码
+    [self.mobileView mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(weakSelf.logoImageView.mas_bottom).mas_offset(65);
+        make.left.mas_equalTo(35);
+        make.right.mas_equalTo(-35);
+        make.height.mas_equalTo(40);
     }];
     
     //如果是登录页面
     if (self.vcType == KNBLoginTypeLogin) {
-        //手机号码
-        [self.mobileView mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(weakSelf.logoButton.mas_bottom).mas_offset(45);
-            make.centerX.equalTo(weakSelf.view);
-            make.width.mas_equalTo(250);
-            make.height.mas_equalTo(40);
-        }];
+
         [self.passwordView mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.top.mas_equalTo(weakSelf.mobileView.mas_bottom).mas_offset(20);
-            make.centerX.equalTo(weakSelf.view);
-            make.width.mas_equalTo(250);
+            make.left.mas_equalTo(35);
+            make.right.mas_equalTo(-35);
             make.height.mas_equalTo(40);
         }];
         [self.findButton mas_remakeConstraints:^(MASConstraintMaker *make) {
@@ -153,46 +150,40 @@
         }];
     
     } else {
-        [self.mobileTextView mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(weakSelf.logoButton.mas_bottom).mas_offset(45);
-            make.centerX.equalTo(weakSelf.view);
-            make.width.mas_equalTo(250);
-            make.height.mas_equalTo(40);
-        }];
         [self.verinumView mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.top.mas_equalTo(weakSelf.mobileTextView.mas_bottom).mas_offset(20);
-            make.centerX.equalTo(weakSelf.view);
-            make.width.mas_equalTo(250);
+            make.top.mas_equalTo(weakSelf.mobileView.mas_bottom).mas_offset(20);
+            make.left.mas_equalTo(35);
+            make.right.mas_equalTo(-35);
             make.height.mas_equalTo(40);
         }];
         if (self.vcType == KNBLoginTypeRegister) {
             [self.passwordSetView mas_remakeConstraints:^(MASConstraintMaker *make) {
                 make.top.mas_equalTo(weakSelf.verinumView.mas_bottom).mas_offset(20);
-                make.centerX.equalTo(weakSelf.view);
-                make.width.mas_equalTo(250);
+                make.left.mas_equalTo(35);
+                make.right.mas_equalTo(-35);
                 make.height.mas_equalTo(40);
             }];
             [self.passwordEnterView mas_remakeConstraints:^(MASConstraintMaker *make) {
                 make.top.mas_equalTo(weakSelf.passwordSetView.mas_bottom).mas_offset(20);
-                make.centerX.equalTo(weakSelf.view);
-                make.width.mas_equalTo(250);
+                make.left.mas_equalTo(35);
+                make.right.mas_equalTo(-35);
                 make.height.mas_equalTo(40);
             }];
-            [self.loginButton mas_remakeConstraints:^(MASConstraintMaker *make) {
-                make.top.mas_equalTo(weakSelf.passwordEnterView.mas_bottom).offset(10);
-                make.right.mas_equalTo(weakSelf.sureButton);
-            }];
+//            [self.loginButton mas_remakeConstraints:^(MASConstraintMaker *make) {
+//                make.top.mas_equalTo(weakSelf.passwordEnterView.mas_bottom).offset(10);
+//                make.right.mas_equalTo(weakSelf.sureButton);
+//            }];
         } else {
             [self.passwordNewView mas_remakeConstraints:^(MASConstraintMaker *make) {
                 make.top.mas_equalTo(weakSelf.verinumView.mas_bottom).mas_offset(20);
-                make.centerX.equalTo(weakSelf.view);
-                make.width.mas_equalTo(250);
+                make.left.mas_equalTo(35);
+                make.right.mas_equalTo(-35);
                 make.height.mas_equalTo(40);
             }];
             [self.passwordEnterView mas_remakeConstraints:^(MASConstraintMaker *make) {
                 make.top.mas_equalTo(weakSelf.passwordNewView.mas_bottom).mas_offset(20);
-                make.centerX.equalTo(weakSelf.view);
-                make.width.mas_equalTo(250);
+                make.left.mas_equalTo(35);
+                make.right.mas_equalTo(-35);
                 make.height.mas_equalTo(40);
             }];
         }
@@ -200,10 +191,10 @@
     
     //登录确认
     [self.sureButton mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.width.mas_equalTo(250);
-        make.centerX.mas_equalTo(weakSelf.view);
-        make.height.mas_equalTo(40);
-        make.top.mas_equalTo(weakSelf.lastView.mas_bottom).mas_offset(60);
+        make.left.mas_equalTo(35);
+        make.right.mas_equalTo(-35);
+        make.height.mas_equalTo(44);
+        make.top.mas_equalTo(weakSelf.lastView.mas_bottom).mas_offset(70);
     }];
 }
 
@@ -226,10 +217,10 @@
 - (void)addUI {
     [self.view addSubview:self.bgView];
     [self.view bringSubviewToFront:self.naviView];
-    [self.view addSubview:self.logoButton];
+    [self.view addSubview:self.logoImageView];
+    [self.view addSubview:self.mobileView];
     [self.view addSubview:self.sureButton];
     if (self.vcType == KNBLoginTypeLogin) {
-        [self.view addSubview:self.mobileView];
         [self.view addSubview:self.passwordView];
         [self.view addSubview:self.findButton];
         [self.view addSubview:self.newRegisterButton];
@@ -241,11 +232,10 @@
         [self.view addSubview:self.rightLineView];
         self.lastView = self.passwordView;
     } else {
-        [self.view addSubview:self.mobileTextView];
         [self.view addSubview:self.verinumView];
         if (self.vcType == KNBLoginTypeRegister) {
             [self.view addSubview:self.passwordSetView];
-            [self.view addSubview:self.loginButton];
+//            [self.view addSubview:self.loginButton];
         } else {
             [self.view addSubview:self.passwordNewView];
         }
@@ -281,7 +271,7 @@
         [self loginRequest];
     } else {
         //验证手机号是否为空
-        if (isNullStr(self.mobileTextView.textField.text) || !isPhoneNumber(self.mobileTextView.textField.text)) {
+        if (isNullStr(self.mobileView.textField.text) || !isPhoneNumber(self.mobileView.textField.text)) {
             [LCProgressHUD showInfoMsg:@"请输入正确的手机号"];
             [[LCProgressHUD sharedHUD].customView setSize:CGSizeMake(25, 25)];
             return;
@@ -339,7 +329,7 @@
 }
 //注册
 - (void)registerRequest {
-    if (self.mobileTextView.textField.text.length == 0) {
+    if (self.mobileView.textField.text.length == 0) {
         [LCProgressHUD showInfoMsg:@"请输入手机号"];
         [[LCProgressHUD sharedHUD].customView setSize:CGSizeMake(25, 25)];
         return;
@@ -360,7 +350,7 @@
         return;
     }
     
-    KNBLoginRegisterApi *api = [[KNBLoginRegisterApi alloc] initWithMobile:self.mobileTextView.textField.text code:self.verinumView.textField.text password:self.passwordSetView.textField.text repassword:self.passwordEnterView.textField.text];
+    KNBLoginRegisterApi *api = [[KNBLoginRegisterApi alloc] initWithMobile:self.mobileView.textField.text code:self.verinumView.textField.text password:self.passwordSetView.textField.text repassword:self.passwordEnterView.textField.text];
     api.hudString = @"";
     KNB_WS(weakSelf);
     [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *_Nonnull request) {
@@ -380,7 +370,7 @@
 }
 //找回密码
 - (void)findPassswordRequest {
-    KNBLoginModifyApi *api = [[KNBLoginModifyApi alloc] initWithMobile:self.mobileTextView.textField.text code:self.verinumView.textField.text password:self.passwordNewView.textField.text repassword:self.passwordEnterView.textField.text];
+    KNBLoginModifyApi *api = [[KNBLoginModifyApi alloc] initWithMobile:self.mobileView.textField.text code:self.verinumView.textField.text password:self.passwordNewView.textField.text repassword:self.passwordEnterView.textField.text];
     api.hudString = @"";
     KNB_WS(weakSelf);
     [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *_Nonnull request) {
@@ -416,12 +406,12 @@
 }
 //获取验证码
 - (void)getVerifyCodeRequest {
-    if (isNullStr(self.mobileTextView.textField.text) || !isPhoneNumber(self.mobileTextView.textField.text)) {
+    if (isNullStr(self.mobileView.textField.text) || !isPhoneNumber(self.mobileView.textField.text)) {
         [LCProgressHUD showInfoMsg:@"请输入正确的手机号"];
         [[LCProgressHUD sharedHUD].customView setSize:CGSizeMake(25, 25)];
         return;
     }
-    KNBLoginSendCodeApi *codeApi = [[KNBLoginSendCodeApi alloc] initWithMobile:self.mobileTextView.textField.text type:self.vcType == KNBLoginTypeRegister ? KNBLoginSendCodeTypeRegister : KNBLoginSendCodeTypeForgot];
+    KNBLoginSendCodeApi *codeApi = [[KNBLoginSendCodeApi alloc] initWithMobile:self.mobileView.textField.text type:self.vcType == KNBLoginTypeRegister ? KNBLoginSendCodeTypeRegister : KNBLoginSendCodeTypeForgot];
 
     KNB_WS(weakSelf);
     [codeApi startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *request) {
@@ -524,17 +514,12 @@
     return _bgView;
 }
 
-- (KNBButton *)logoButton {
-    if (!_logoButton) {
-        _logoButton = [KNBButton buttonWithType:UIButtonTypeCustom];
-        [_logoButton setImage:KNBImages(@"knb_login_logo") forState:UIControlStateNormal];
-        [_logoButton sizeToFit];
-        [_logoButton setTitle:@"大鱼装修" forState:UIControlStateNormal];
-        _logoButton.titleLabel.font = [UIFont boldSystemFontOfSize:16];
-        [_logoButton verticalImageAndTitle:20 width:60 height:60];
-        [_logoButton setUserInteractionEnabled  :NO];
+- (UIImageView *)logoImageView {
+    if (!_logoImageView) {
+        _logoImageView = [[UIImageView alloc] init];
+        _logoImageView.image = KNBImages(@"knb_login_logo");
     }
-    return _logoButton;
+    return _logoImageView;
 }
 
 - (KNBLoginInputView *)mobileView {
@@ -542,13 +527,6 @@
         _mobileView = [[KNBLoginInputView alloc] initWithFrame:CGRectZero viewType:KNBLoginInputViewTypeMobileAndIcon];
     }
     return _mobileView;
-}
-
-- (KNBLoginInputView *)mobileTextView {
-    if (!_mobileTextView) {
-        _mobileTextView = [[KNBLoginInputView alloc] initWithFrame:CGRectZero viewType:KNBLoginInputViewTypeMobileAndText];
-    }
-    return _mobileTextView;
 }
 
 - (KNBLoginInputView *)verinumView {
@@ -597,7 +575,7 @@
         [_sureButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_sureButton setBackgroundColor:[UIColor colorWithHex:0x009fe8]];
         _sureButton.layer.masksToBounds = YES;
-        _sureButton.layer.cornerRadius = 20;
+        _sureButton.layer.cornerRadius = 22;
         [_sureButton addTarget:self action:@selector(sureButtonClick:) forControlEvents:UIControlEventTouchUpInside];
         if (self.vcType == KNBLoginTypeLogin) {
             [_sureButton setTitle:@"登录" forState:UIControlStateNormal];
@@ -614,8 +592,8 @@
     if (!_newRegisterButton) {
         _newRegisterButton = [KNBButton buttonWithType:UIButtonTypeCustom];
         [_newRegisterButton setTitle:@"没有账号?" forState:UIControlStateNormal];
-        _newRegisterButton.titleLabel.font = KNBFont(11);
-        [_newRegisterButton setTitleColor:[UIColor colorWithHex:0x009fe8] forState:UIControlStateNormal];
+        _newRegisterButton.titleLabel.font = KNBFont(12);
+        [_findButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_newRegisterButton addTarget:self action:@selector(userRegisterClick:) forControlEvents:UIControlEventTouchUpInside];
         _newRegisterButton.titleLabel.textAlignment = NSTextAlignmentRight;
     }
@@ -626,7 +604,7 @@
     if (!_findButton) {
         _findButton = [KNBButton buttonWithType:UIButtonTypeCustom];
         [_findButton setTitle:@"忘记密码" forState:UIControlStateNormal];
-        _findButton.titleLabel.font = KNBFont(11);
+        _findButton.titleLabel.font = KNBFont(12);
         [_findButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_findButton addTarget:self action:@selector(findClick:) forControlEvents:UIControlEventTouchUpInside];
         _findButton.titleLabel.textAlignment = NSTextAlignmentRight;
@@ -688,16 +666,16 @@
     return _sinaButton;
 }
 
-- (KNBButton *)loginButton {
-    if (!_loginButton) {
-        _loginButton = [KNBButton buttonWithType:UIButtonTypeCustom];
-        [_loginButton setTitle:@"已有账号" forState:UIControlStateNormal];
-        _loginButton.titleLabel.font = KNBFont(11);
-        [_loginButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [_loginButton addTarget:self action:@selector(loginClick:) forControlEvents:UIControlEventTouchUpInside];
-        _loginButton.titleLabel.textAlignment = NSTextAlignmentRight;
-    }
-    return _loginButton;
-}
+//- (KNBButton *)loginButton {
+//    if (!_loginButton) {
+//        _loginButton = [KNBButton buttonWithType:UIButtonTypeCustom];
+//        [_loginButton setTitle:@"已有账号" forState:UIControlStateNormal];
+//        _loginButton.titleLabel.font = KNBFont(11);
+//        [_loginButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+//        [_loginButton addTarget:self action:@selector(loginClick:) forControlEvents:UIControlEventTouchUpInside];
+//        _loginButton.titleLabel.textAlignment = NSTextAlignmentRight;
+//    }
+//    return _loginButton;
+//}
 
 @end

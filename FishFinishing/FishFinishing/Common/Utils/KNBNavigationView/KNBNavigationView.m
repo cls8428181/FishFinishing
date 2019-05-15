@@ -104,7 +104,7 @@
     if (!_titleNaviLabel) {
         _titleNaviLabel = [[UILabel alloc] initWithFrame:CGRectMake(60, KNB_StatusBar_H, KNB_SCREEN_WIDTH - 120, 44)];
         _titleNaviLabel.textColor = [UIColor blackColor];
-        _titleNaviLabel.font = [UIFont boldSystemFontOfSize:18];
+        _titleNaviLabel.font = [UIFont systemFontOfSize:18];
         _titleNaviLabel.textAlignment = NSTextAlignmentCenter;
     }
     return _titleNaviLabel;

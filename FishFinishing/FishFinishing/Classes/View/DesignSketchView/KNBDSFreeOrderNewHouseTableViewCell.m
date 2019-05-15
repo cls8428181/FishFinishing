@@ -45,7 +45,7 @@
 
 - (IBAction)newHouseButtonAction:(id)sender {
     UIButton *button = (UIButton *)sender;
-    if (!self.isNewHouse) {
+    if (![self.isNewHouse isEqualToString:@"新房装修"]) {
         button.selected = YES;
         self.oldHouseButton.selected = NO;
         self.isNewHouse = button.titleLabel.text;

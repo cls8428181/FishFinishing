@@ -29,9 +29,9 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="输入您的房屋面积" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="R1R-Fg-09u">
-                                <rect key="frame" x="12" y="39" width="267.5" height="17"/>
+                                <rect key="frame" x="6" y="38.5" width="279.5" height="18"/>
                                 <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                             </textField>
                         </subviews>
@@ -39,9 +39,9 @@
                         <constraints>
                             <constraint firstItem="R1R-Fg-09u" firstAttribute="centerY" secondItem="RT0-Fj-Izh" secondAttribute="centerY" id="1ng-7X-HtZ"/>
                             <constraint firstAttribute="trailing" secondItem="Uw7-NZ-2sz" secondAttribute="trailing" constant="12" id="7fA-6Q-nP7"/>
-                            <constraint firstItem="R1R-Fg-09u" firstAttribute="leading" secondItem="RT0-Fj-Izh" secondAttribute="leading" constant="12" id="ARO-s2-g2M"/>
+                            <constraint firstItem="R1R-Fg-09u" firstAttribute="leading" secondItem="RT0-Fj-Izh" secondAttribute="leading" constant="6" id="ARO-s2-g2M"/>
                             <constraint firstItem="Uw7-NZ-2sz" firstAttribute="centerY" secondItem="RT0-Fj-Izh" secondAttribute="centerY" id="LGO-6p-3R3"/>
-                            <constraint firstItem="Uw7-NZ-2sz" firstAttribute="leading" secondItem="R1R-Fg-09u" secondAttribute="trailing" constant="12" id="uGP-ze-F4d"/>
+                            <constraint firstItem="Uw7-NZ-2sz" firstAttribute="leading" secondItem="R1R-Fg-09u" secondAttribute="trailing" constant="6" id="uGP-ze-F4d"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>

@@ -42,7 +42,7 @@
 - (void)configuration {
     self.naviView.title = @"绑定手机";
     [self.naviView addLeftBarItemImageName:@"knb_back_black" target:self sel:@selector(backAction)];
-    self.view.backgroundColor = [UIColor knBgColor];
+    self.knGroupTableView.backgroundColor = [UIColor whiteColor];
     
 }
 
@@ -92,6 +92,12 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     return 10;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    UIView *headerView = [[UIView alloc] init];
+    headerView.backgroundColor = [UIColor knBgColor];
+    return headerView;
 }
 
 //获取验证码

@@ -180,11 +180,11 @@
         tagView.tagcornerRadius = 10;
         tagView.tagBorderColor = [UIColor colorWithHex:0xebebeb];
         tagView.tagSelectedBorderColor = [UIColor colorWithHex:0xebebeb];
-        tagView.tagBackgroundColor = [UIColor colorWithHex:0xfafafa];
+        tagView.tagBackgroundColor = [UIColor colorWithHex:0xf2f2f2];
         tagView.lineSpacing = 7;
         tagView.interitemSpacing = 5;
         tagView.tagFont = KNBFont(11);
-        tagView.tagTextColor = [UIColor colorWithHex:0x666666];
+        tagView.tagTextColor = [UIColor colorWithHex:0x737373];
         tagView.allowsSelection = NO;
         tagView.collectionView.scrollEnabled = NO;
         tagView.collectionView.showsVerticalScrollIndicator = NO;
@@ -233,23 +233,14 @@
     
     if ([model.parent_cat_name containsString:@"家居"] || [model.parent_cat_name containsString:@"建材"]) {
         self.orderButton.hidden = YES;
-        [self.mobileImageView mas_updateConstraints:^(MASConstraintMaker *make) {
-            make.width.mas_equalTo(27);
-            make.height.mas_equalTo(27);
-        }];
     } else {
         self.orderButton.hidden = NO;
-        [self.mobileImageView mas_updateConstraints:^(MASConstraintMaker *make) {
-            make.width.mas_equalTo(20);
-            make.height.mas_equalTo(20);
-        }];
     }
 
     if ([model.is_stick isEqualToString:@"0"]) {
         self.topImageView.hidden = YES;
     } else {
         self.topImageView.hidden = NO;
-        self.topImageView.image = KNBImages(@"knb_home_zhiding");
     }
     
     
