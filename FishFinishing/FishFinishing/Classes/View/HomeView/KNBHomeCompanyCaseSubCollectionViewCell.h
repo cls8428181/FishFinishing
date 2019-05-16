@@ -18,6 +18,8 @@ NS_ASSUME_NONNULL_BEGIN
 + (instancetype)cellWithCollectionView:(UICollectionView *)collectionView indexPath:(NSIndexPath *)indexPath;
 
 + (CGFloat)cellHeight;
+
+- (void)setServiceName:(NSString *)name ServiceIcon:(NSString *)icon;
 @end
 
 NS_ASSUME_NONNULL_END

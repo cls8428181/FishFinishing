@@ -11,7 +11,7 @@
 @implementation KNBRecruitmentModifyFacilitatorApi
 
 - (NSString *)requestUrl {
-    return [[KNBMainConfigModel shareInstance] getRequestUrlWithKey:KNBRecruitment_GetModify];
+    return [[KNBMainConfigModel shareInstance] getRequestUrlWithKey:KNBRecruitment_ModifyFacilitator];
 }
 
 - (id)requestArgument {

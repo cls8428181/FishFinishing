@@ -37,14 +37,12 @@
 #import "KNBOrderAreaRangeApi.h"
 #import <AFNetworking.h>
 #import "KNBMeAboutViewController.h"
+#import "KNBHomeHeaderView.h"
 
 static CGFloat const kHeaderViewHeight = 50.0f;
 
-@interface HomeViewController ()<SDCycleScrollViewDelegate,KNBHomeTableViewDelegate>
-// 轮播图
-@property (nonatomic, strong) SDCycleScrollView *cycleScrollView;
-// 轮播图数据
-@property (nonatomic, strong) NSArray *bannerArray;
+@interface HomeViewController ()<KNBHomeTableViewDelegate,KNBHomeHeaderViewDelete>
+@property (nonatomic, strong) KNBHomeHeaderView *headerView;
 //搜索
 @property (nonatomic, strong) KNBHomeSearchView *searchView;
 //主tableview
@@ -94,7 +92,7 @@ static CGFloat const kHeaderViewHeight = 50.0f;
     } else {
         self.automaticallyAdjustsScrollViewInsets = NO;
     }
-    self.view.backgroundColor = [UIColor knBgColor];
+    self.view.backgroundColor = [UIColor whiteColor];
     [self.naviView removeFromSuperview];
 }
 
@@ -145,8 +143,9 @@ static CGFloat const kHeaderViewHeight = 50.0f;
             for (KNBHomeBannerModel *model in modelArray) {
                 [tempArray addObject:model.img];
             }
-            weakSelf.cycleScrollView.imageURLStringsGroup = tempArray;
-            weakSelf.mainTableView.tableHeaderView = weakSelf.cycleScrollView;
+            KNBHomeHeaderView *headerView = [[KNBHomeHeaderView alloc] initWithDataSource:tempArray];
+            headerView.frame = CGRectMake(0, 0, KNB_SCREEN_WIDTH, 143);
+            weakSelf.mainTableView.tableHeaderView = headerView;
             [weakSelf requestSuccess:YES requestEnd:YES];
         } else {
             [weakSelf requestSuccess:NO requestEnd:NO];
@@ -274,7 +273,7 @@ static CGFloat const kHeaderViewHeight = 50.0f;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return section == 0 ? CGFLOAT_MIN : 30;
+    return section == 0 ? CGFLOAT_MIN : 40;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
@@ -391,19 +390,7 @@ static CGFloat const kHeaderViewHeight = 50.0f;
 
 #pragma mark - Getters And Setters
 /* getter和setter全部都放在最后*/
-- (SDCycleScrollView *)cycleScrollView {
-    if (!_cycleScrollView) {
-        _cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(13, 13, KNB_SCREEN_WIDTH - 26, 126) delegate:nil placeholderImage:[UIImage imageNamed:@"knb_home_banner"]];
-        _cycleScrollView.delegate = self;
-        _cycleScrollView.backgroundColor = [UIColor whiteColor];
-        _cycleScrollView.pageControlAliment = SDCycleScrollViewPageContolAlimentCenter;
-        _cycleScrollView.pageDotColor = [UIColor whiteColor];
-        _cycleScrollView.currentPageDotColor = KNB_RGB(255, 94, 132);
-        _cycleScrollView.autoScrollTimeInterval = 3.5f;
-        _cycleScrollView.bannerImageViewContentMode = UIViewContentModeScaleToFill;
-    }
-    return _cycleScrollView;
-}
+
 
 -(KNBHomeSubView *)subView{
     if (!_subView) {
@@ -446,7 +433,6 @@ static CGFloat const kHeaderViewHeight = 50.0f;
         _mainTableView.tableFooterView = [UIView new];
         _mainTableView.showsVerticalScrollIndicator = NO;
         _mainTableView.type = KNBHomeTableViewTypeMain;
-        _mainTableView.tableHeaderView = self.cycleScrollView;
         _mainTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     }
     return _mainTableView;
@@ -460,12 +446,6 @@ static CGFloat const kHeaderViewHeight = 50.0f;
         [_serviceButton addTarget:self action:@selector(serviceButtonAction) forControlEvents:UIControlEventTouchUpInside];
     }
     return _serviceButton;
-}
-
-- (void)setBannerArray:(NSArray *)bannerArray{
-    if (_bannerArray != bannerArray) {
-        _bannerArray = bannerArray;
-    }
 }
 
 - (KNBHomeSearchView *)searchView {

@@ -62,8 +62,10 @@
 - (void)configuration {
     self.naviView.title = @"入驻编辑";
     [self.naviView addLeftBarItemImageName:@"knb_back_black" target:self sel:@selector(backAction)];
-    [self.naviView addRightBarItemImageName:@"knb_me_baocun" target:self sel:@selector(saveAction)];
+    [self.naviView addRightBarItemTitle:@"保存" target:self sel:@selector(saveAction)];
+    [self.naviView.rightNaviButton setTitleColor:[UIColor colorWithHex:0x009fe8] forState:UIControlStateNormal];
     self.view.backgroundColor = [UIColor knBgColor];
+    
     self.knGroupTableView.backgroundColor = [UIColor whiteColor];
 }
 
@@ -149,7 +151,10 @@
         cell = [KNBRecruitmentDomainTableViewCell cellWithTableView:tableView];
         KNBRecruitmentDomainTableViewCell *typeCell = (KNBRecruitmentDomainTableViewCell *)cell;
         typeCell.type = KNBRecruitmentDomainTypeService;
-        NSArray *tagsArray = [self.model.service componentsSeparatedByString:@","];
+        NSMutableArray *tagsArray = [NSMutableArray array];
+        for (KNBHomeServiceModel *model in self.model.serviceList) {
+            [tagsArray addObject:model.service_name];
+        }
         [typeCell setTagsViewDataSource:tagsArray];
     } else {
         cell = [KNBRecruitmentIntroTableViewCell cellWithTableView:tableView];

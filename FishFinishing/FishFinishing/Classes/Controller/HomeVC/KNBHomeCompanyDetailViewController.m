@@ -132,10 +132,19 @@
             topVC.model = weakSelf.model;
             [weakSelf.navigationController pushViewController:topVC animated:YES];
         };
+        blockCell.gotoEditBlock = ^{
+            [weakSelf editButtonAction];
+        };
+        blockCell.gotoOrderBlock = ^{
+            [weakSelf enterButtonAction];
+        };
     } else if (indexPath.section == 2) {
         cell = [KNBHomeCompanyIntroTableViewCell cellWithTableView:tableView];
         KNBHomeCompanyIntroTableViewCell *blockCell = (KNBHomeCompanyIntroTableViewCell *)cell;
         blockCell.model = self.currentModel;
+        blockCell.spreadIntroBlock = ^{
+            [tableView reloadData];
+        };
     } else {
         cell = [KNBHomeCompanyCaseTableViewCell cellWithTableView:tableView];
         KNBHomeCompanyCaseTableViewCell *blockCell = (KNBHomeCompanyCaseTableViewCell *)cell;

@@ -30,9 +30,10 @@
     [super layoutSubviews];
     KNB_WS(weakSelf);
     [self.lineView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.top.mas_equalTo(12);
+        make.centerY.equalTo(weakSelf);
+        make.left.mas_equalTo(12);
         make.width.mas_equalTo(2);
-        make.height.mas_equalTo(15);
+        make.height.mas_equalTo(16);
     }];
     
     [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -53,7 +54,8 @@
 - (UILabel *)titleLabel {
     if (!_titleLabel) {
         _titleLabel = [[UILabel alloc] init];
-        _titleLabel.font = [UIFont boldSystemFontOfSize:14];
+        _titleLabel.font = [UIFont systemFontOfSize:16];
+        _titleLabel.textColor = [UIColor colorWithHex:0x333333];
     }
     return _titleLabel;
 }

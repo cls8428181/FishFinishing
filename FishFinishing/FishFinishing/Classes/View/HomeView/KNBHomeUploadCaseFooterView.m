@@ -22,6 +22,7 @@
 
 - (instancetype)init {
     if (self = [super init]) {
+        self.backgroundColor = [UIColor whiteColor];
         [self addSubview:self.titleLabel];
         [self addSubview:self.describeText];
         [self addSubview:self.collectionView];

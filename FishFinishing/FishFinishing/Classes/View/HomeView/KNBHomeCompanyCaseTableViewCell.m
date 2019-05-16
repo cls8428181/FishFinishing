@@ -54,16 +54,16 @@
 #pragma mark - private method
 + (CGFloat)cellHeight:(NSInteger)count isEdit:(BOOL)isEdit {
     if (count == 0) {
-        return 200;
+        return 250;
     }
     if (count %2 == 0) {
         if (isEdit) {
-            return 220 *(count /2 + 1);
+            return 220 *(count /2 + 1) + 50;
         } else {
-            return 220 *count /2;
+            return 220 *count /2 + 50;
         }
     } else {
-        return 220 *(count /2 + 1);
+        return 220 *(count /2 + 1) + 50;
     }
 
 }
@@ -87,6 +87,7 @@
         KNBHomeCompanyCaseSubCollectionViewCell *cell = [KNBHomeCompanyCaseSubCollectionViewCell cellWithCollectionView:collectionView indexPath:indexPath];
         cell.model = model;
         cell.isEdit = self.isEdit;
+        [cell setServiceName:self.model.name ServiceIcon:self.model.logo];
         cell.deleteButtonBlock = ^{
             [weakSelf deleteCaseRequest:indexPath.row];
         };
@@ -96,7 +97,7 @@
 
 //定义每一个cell的大小
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    return CGSizeMake(180, 180);
+    return CGSizeMake(180, 210);
 }
 
 //cell的点击事件
@@ -171,10 +172,10 @@
 - (UICollectionView *)collectionView {
     if (!_collectionView) {
         UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-        layout.minimumInteritemSpacing = 10;
+        layout.minimumInteritemSpacing = 0;
         layout.minimumLineSpacing = 10;
         layout.headerReferenceSize = CGSizeMake(0, 0); //头视图的大小
-        //        layout.footerReferenceSize = CGSizeMake(12.5, 140);
+        layout.sectionInset = UIEdgeInsetsMake(0, 10, 0, 0);
         layout.scrollDirection = UICollectionViewScrollDirectionVertical;
         _collectionView = [[UICollectionView alloc] initWithFrame:self.bounds collectionViewLayout:layout];
         _collectionView.showsHorizontalScrollIndicator = NO;

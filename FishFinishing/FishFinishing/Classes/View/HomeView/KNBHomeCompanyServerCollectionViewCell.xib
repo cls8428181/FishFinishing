@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="KNBHomeCompanyServerCollectionViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="135" height="111"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="135" height="111"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="knb_service_bg" translatesAutoresizingMaskIntoConstraints="NO" id="8DO-M7-AAw">
+                        <rect key="frame" x="0.0" y="0.0" width="135" height="111"/>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="免费" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pSW-Jt-Qcl">
+                        <rect key="frame" x="16" y="48.5" width="103" height="14"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                        <color key="textColor" red="0.96078431369999995" green="0.43921568630000002" blue="0.1058823529" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="服务名称" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y4a-Ch-DGC">
+                        <rect key="frame" x="16" y="22.5" width="103" height="16"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="knb_service_icon" translatesAutoresizingMaskIntoConstraints="NO" id="JPG-e7-MNy">
+                        <rect key="frame" x="97" y="70.5" width="18" height="16.5"/>
+                    </imageView>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SQV-1h-uzU">
+                        <rect key="frame" x="16" y="70.5" width="40" height="16"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="40" id="FDL-rl-Al0"/>
+                            <constraint firstAttribute="height" constant="16" id="gzk-uC-zY6"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                        <state key="normal" title="预约" backgroundImage="knb_service_yuyue"/>
+                    </button>
+                </subviews>
+            </view>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="JPG-e7-MNy" secondAttribute="trailing" constant="20" id="0tD-ue-wmm"/>
+                <constraint firstItem="JPG-e7-MNy" firstAttribute="centerY" secondItem="SQV-1h-uzU" secondAttribute="centerY" id="2WE-xj-M9n"/>
+                <constraint firstAttribute="bottom" secondItem="8DO-M7-AAw" secondAttribute="bottom" id="99s-gs-4WO"/>
+                <constraint firstItem="Y4a-Ch-DGC" firstAttribute="leading" secondItem="pSW-Jt-Qcl" secondAttribute="leading" id="Puv-U2-UD1"/>
+                <constraint firstItem="SQV-1h-uzU" firstAttribute="leading" secondItem="pSW-Jt-Qcl" secondAttribute="leading" id="UJp-5v-sP3"/>
+                <constraint firstItem="8DO-M7-AAw" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="Zwi-cz-i0f"/>
+                <constraint firstAttribute="trailing" secondItem="pSW-Jt-Qcl" secondAttribute="trailing" constant="16" id="f8D-2d-VDQ"/>
+                <constraint firstItem="pSW-Jt-Qcl" firstAttribute="top" secondItem="Y4a-Ch-DGC" secondAttribute="bottom" constant="10" id="iZi-WM-J4P"/>
+                <constraint firstItem="pSW-Jt-Qcl" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="16" id="mgb-Fq-SiD"/>
+                <constraint firstItem="Y4a-Ch-DGC" firstAttribute="trailing" secondItem="pSW-Jt-Qcl" secondAttribute="trailing" id="mqB-KN-KPH"/>
+                <constraint firstItem="8DO-M7-AAw" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="nUT-pE-jWq"/>
+                <constraint firstItem="SQV-1h-uzU" firstAttribute="top" secondItem="pSW-Jt-Qcl" secondAttribute="bottom" constant="8" id="tAX-QK-yHc"/>
+                <constraint firstItem="pSW-Jt-Qcl" firstAttribute="centerY" secondItem="8DO-M7-AAw" secondAttribute="centerY" id="tv0-qL-WMe"/>
+                <constraint firstAttribute="trailing" secondItem="8DO-M7-AAw" secondAttribute="trailing" id="tze-Gw-ciK"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="SEy-5g-ep8"/>
+            <size key="customSize" width="135" height="111"/>
+            <connections>
+                <outlet property="iconImageView" destination="JPG-e7-MNy" id="mp6-Fw-SRv"/>
+                <outlet property="priceLabel" destination="pSW-Jt-Qcl" id="O4C-Xl-Awf"/>
+                <outlet property="titleLabel" destination="Y4a-Ch-DGC" id="l8H-ji-hMb"/>
+            </connections>
+            <point key="canvasLocation" x="193.47826086956522" y="132.92410714285714"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="knb_service_bg" width="123.5" height="90.5"/>
+        <image name="knb_service_icon" width="18" height="16.5"/>
+        <image name="knb_service_yuyue" width="40" height="16"/>
+    </resources>
+</document>

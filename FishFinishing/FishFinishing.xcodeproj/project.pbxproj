@@ -166,6 +166,9 @@
 		18B8DA4D22601FB700D18BC4 /* KNBUserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B8DA4C22601FB700D18BC4 /* KNBUserInfo.m */; };
 		18B8DA502260449800D18BC4 /* KNBHomeCityListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B8DA4F2260449700D18BC4 /* KNBHomeCityListViewController.m */; };
 		18B8DA522260450B00D18BC4 /* city.json in Resources */ = {isa = PBXBuildFile; fileRef = 18B8DA512260450B00D18BC4 /* city.json */; };
+		18BEE4AB228CEF3F003C4E60 /* KNBHomeHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18BEE4AA228CEF3F003C4E60 /* KNBHomeHeaderView.m */; };
+		18BEE4AF228D0FDD003C4E60 /* KNBHomeCompanyServerCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18BEE4AD228D0FDD003C4E60 /* KNBHomeCompanyServerCollectionViewCell.m */; };
+		18BEE4B0228D0FDD003C4E60 /* KNBHomeCompanyServerCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18BEE4AE228D0FDD003C4E60 /* KNBHomeCompanyServerCollectionViewCell.xib */; };
 		18D4D7212271A426000C1022 /* KNBHomeBuyTopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D4D7202271A426000C1022 /* KNBHomeBuyTopViewController.m */; };
 		18D4D7252271AD19000C1022 /* KNBHomeBuyTopCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D4D7232271AD19000C1022 /* KNBHomeBuyTopCollectionViewCell.m */; };
 		18D4D7262271AD19000C1022 /* KNBHomeBuyTopCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D4D7242271AD19000C1022 /* KNBHomeBuyTopCollectionViewCell.xib */; };
@@ -735,6 +738,11 @@
 		18B8DA4E2260449700D18BC4 /* KNBHomeCityListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KNBHomeCityListViewController.h; sourceTree = "<group>"; };
 		18B8DA4F2260449700D18BC4 /* KNBHomeCityListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KNBHomeCityListViewController.m; sourceTree = "<group>"; };
 		18B8DA512260450B00D18BC4 /* city.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = city.json; sourceTree = "<group>"; };
+		18BEE4A9228CEF3F003C4E60 /* KNBHomeHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNBHomeHeaderView.h; sourceTree = "<group>"; };
+		18BEE4AA228CEF3F003C4E60 /* KNBHomeHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNBHomeHeaderView.m; sourceTree = "<group>"; };
+		18BEE4AC228D0FDD003C4E60 /* KNBHomeCompanyServerCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNBHomeCompanyServerCollectionViewCell.h; sourceTree = "<group>"; };
+		18BEE4AD228D0FDD003C4E60 /* KNBHomeCompanyServerCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNBHomeCompanyServerCollectionViewCell.m; sourceTree = "<group>"; };
+		18BEE4AE228D0FDD003C4E60 /* KNBHomeCompanyServerCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KNBHomeCompanyServerCollectionViewCell.xib; sourceTree = "<group>"; };
 		18D4D71F2271A426000C1022 /* KNBHomeBuyTopViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNBHomeBuyTopViewController.h; sourceTree = "<group>"; };
 		18D4D7202271A426000C1022 /* KNBHomeBuyTopViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNBHomeBuyTopViewController.m; sourceTree = "<group>"; };
 		18D4D7222271AD19000C1022 /* KNBHomeBuyTopCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNBHomeBuyTopCollectionViewCell.h; sourceTree = "<group>"; };
@@ -2156,6 +2164,9 @@
 				961C532622548E200089E997 /* KNBHomeCompanyServerTableViewCell.h */,
 				961C532722548E200089E997 /* KNBHomeCompanyServerTableViewCell.m */,
 				961C532822548E210089E997 /* KNBHomeCompanyServerTableViewCell.xib */,
+				18BEE4AC228D0FDD003C4E60 /* KNBHomeCompanyServerCollectionViewCell.h */,
+				18BEE4AD228D0FDD003C4E60 /* KNBHomeCompanyServerCollectionViewCell.m */,
+				18BEE4AE228D0FDD003C4E60 /* KNBHomeCompanyServerCollectionViewCell.xib */,
 				961C532B22548E4D0089E997 /* KNBHomeCompanyIntroTableViewCell.h */,
 				961C532C22548E4D0089E997 /* KNBHomeCompanyIntroTableViewCell.m */,
 				961C532D22548E4D0089E997 /* KNBHomeCompanyIntroTableViewCell.xib */,
@@ -2202,6 +2213,8 @@
 				1857ED8D227EE094008E9668 /* KNBHomeExperienceFooterView.h */,
 				1857ED8E227EE094008E9668 /* KNBHomeExperienceFooterView.m */,
 				1857ED8F227EE094008E9668 /* KNBHomeExperienceFooterView.xib */,
+				18BEE4A9228CEF3F003C4E60 /* KNBHomeHeaderView.h */,
+				18BEE4AA228CEF3F003C4E60 /* KNBHomeHeaderView.m */,
 			);
 			path = HomeView;
 			sourceTree = "<group>";
@@ -3093,6 +3106,7 @@
 				1857ED8C227EE080008E9668 /* KNBHomeExperienceHeaderView.xib in Resources */,
 				966AA519224A00D700EDBF5F /* KNBStartPageView.xib in Resources */,
 				961C532A22548E210089E997 /* KNBHomeCompanyServerTableViewCell.xib in Resources */,
+				18BEE4B0228D0FDD003C4E60 /* KNBHomeCompanyServerCollectionViewCell.xib in Resources */,
 				961C532522548E050089E997 /* KNBHomeCompanyHeaderTableViewCell.xib in Resources */,
 				961C53102253583F0089E997 /* LCDM2N.TTF in Resources */,
 				964926BD225C948D000BBC7E /* KNBRecruitmentShowTableViewCell.xib in Resources */,
@@ -3504,6 +3518,7 @@
 				1868A69B2265B525005546BB /* KNBOrderAreaApi.m in Sources */,
 				964926AE225C7F21000BBC7E /* BRBaseView.m in Sources */,
 				187EBC4522745B0200F6E324 /* KNBJPushApi.m in Sources */,
+				18BEE4AB228CEF3F003C4E60 /* KNBHomeHeaderView.m in Sources */,
 				9697FD5E225597A900027AB3 /* GHDropMenuModel.m in Sources */,
 				966AA53C224A033000EDBF5F /* FLAnimatedImageView.m in Sources */,
 				966AA53B224A033000EDBF5F /* FLAnimatedImage.m in Sources */,
@@ -3511,6 +3526,7 @@
 				96B098B22249CC1000154643 /* NSString+HTML.m in Sources */,
 				961C52FD2251A8E50089E997 /* KNBDSFreeOrderNameTableViewCell.m in Sources */,
 				187A6A88225ED4B7006CA2B0 /* KNBRecruitmentAddCaseApi.m in Sources */,
+				18BEE4AF228D0FDD003C4E60 /* KNBHomeCompanyServerCollectionViewCell.m in Sources */,
 				96FDB4CF224B62D6005844E7 /* KNBLoginViewController.m in Sources */,
 				187A6A7F225ED27F006CA2B0 /* KNBOrderServerTypeApi.m in Sources */,
 				186EE2D62266F43400E71241 /* KNBOrderUnitApi.m in Sources */,

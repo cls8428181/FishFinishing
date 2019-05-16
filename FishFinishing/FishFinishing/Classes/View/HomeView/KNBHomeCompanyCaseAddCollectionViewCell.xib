@@ -19,16 +19,16 @@
                 <rect key="frame" x="0.0" y="0.0" width="275" height="184"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="knb_me_tianjia" translatesAutoresizingMaskIntoConstraints="NO" id="wwL-DW-IKi">
-                        <rect key="frame" x="10" y="10" width="255" height="164"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="knb_service_tianjia" translatesAutoresizingMaskIntoConstraints="NO" id="wwL-DW-IKi">
+                        <rect key="frame" x="0.0" y="10" width="265" height="174"/>
                     </imageView>
                 </subviews>
             </view>
             <constraints>
                 <constraint firstItem="wwL-DW-IKi" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="10" id="Akf-ID-I5q"/>
                 <constraint firstAttribute="trailing" secondItem="wwL-DW-IKi" secondAttribute="trailing" constant="10" id="SDX-D5-dl6"/>
-                <constraint firstItem="wwL-DW-IKi" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="10" id="pth-9v-Efb"/>
-                <constraint firstAttribute="bottom" secondItem="wwL-DW-IKi" secondAttribute="bottom" constant="10" id="wcX-mz-1tc"/>
+                <constraint firstItem="wwL-DW-IKi" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="pth-9v-Efb"/>
+                <constraint firstAttribute="bottom" secondItem="wwL-DW-IKi" secondAttribute="bottom" id="wcX-mz-1tc"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="SEy-5g-ep8"/>
             <size key="customSize" width="275" height="184"/>
@@ -39,6 +39,6 @@
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="knb_me_tianjia" width="170" height="161"/>
+        <image name="knb_service_tianjia" width="170" height="199"/>
     </resources>
 </document>

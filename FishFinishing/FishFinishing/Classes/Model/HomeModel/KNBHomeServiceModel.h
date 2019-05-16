@@ -48,9 +48,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *logo;
 
 /**
- 案例地址
+ 区
  */
-@property (nonatomic, copy) NSString *img;
+@property (nonatomic, copy) NSString *area_name;
 
 /**
  地址
@@ -70,7 +70,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  服务
  */
-@property (nonatomic, copy) NSString *service;
+@property (nonatomic, strong) NSArray *serviceList;
 
 /**
  标题
@@ -78,9 +78,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *title;
 
 /**
- 阅读量
+ 分享名
  */
-@property (nonatomic, copy) NSString *browse_num;
+@property (nonatomic, copy) NSString *share_name;
 
 /**
  备注
@@ -96,6 +96,8 @@ NS_ASSUME_NONNULL_BEGIN
  服务商类型
  */
 @property (nonatomic, copy) NSString *share_id;
+
+@property (nonatomic, copy) NSString *cat_name;
 
 /**
  服务商类型名称
@@ -123,9 +125,59 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *due_time;
 
 /**
+ 检查
+ */
+@property (nonatomic, copy) NSString *check_in;
+
+/**
+ 路径
+ */
+@property (nonatomic, copy) NSString *path;
+
+/**
+ 服务类型
+ */
+@property (nonatomic, copy) NSString *subscribe_type;
+
+/**
+ 服务名称
+ */
+@property (nonatomic, copy) NSString *service_name;
+
+/**
+ 服务图标
+ */
+@property (nonatomic, copy) NSString *icon;
+
+/**
+ 案例图片
+ */
+@property (nonatomic, copy) NSString *img;
+
+/**
+ 户型
+ */
+@property (nonatomic, copy) NSString *apart_name;
+
+/**
+ 风格
+ */
+@property (nonatomic, copy) NSString *style_name;
+
+/**
+ 面积
+ */
+@property (nonatomic, copy) NSString *acreage;
+
+/**
  案例数据
  */
 @property (nonatomic, strong) NSArray<KNBHomeServiceModel *> *caseList;
+
+/**
+ 是否展开简介
+ */
+@property (nonatomic, assign) BOOL isSpread;
 
 @end
 

@@ -52,6 +52,7 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
+    self.addressLabel.preferredMaxLayoutWidth = KNB_SCREEN_WIDTH - 150;
     [self.tagBgView addSubview:self.tagView];
 }
 
@@ -80,7 +81,7 @@
         tagView.tagcornerRadius = 10;
         tagView.tagBorderColor = [UIColor colorWithHex:0xebebeb];
         tagView.tagSelectedBorderColor = [UIColor colorWithHex:0xebebeb];
-        tagView.tagBackgroundColor = [UIColor colorWithHex:0xfafafa];
+        tagView.tagBackgroundColor = [UIColor colorWithHex:0xf2f2f2];
         tagView.lineSpacing = 7;
         tagView.interitemSpacing = 5;
         tagView.tagFont = KNBFont(11);
@@ -98,24 +99,23 @@
     self.iconImageView.layer.masksToBounds = YES;
     self.iconImageView.layer.cornerRadius = 45;
     self.nameLabel.text = model.name;
-//   CGFloat width  = [model.name widthWithFont:[UIFont systemFontOfSize:14] constrainedToHeight:16];
-//    if (width + 205 > KNB_SCREEN_WIDTH) {
-//        width = KNB_SCREEN_WIDTH - 205;
-//        [self.nameLabel mas_updateConstraints:^(MASConstraintMaker *make) {
-//            make.width.mas_equalTo(width);
-//        }];
-//    }
-    
     //计算名称最大长度
     self.maxSpace.constant = KNB_SCREEN_WIDTH - 218;
-    
+    //地址
     self.addressLabel.text = model.address;
+    CGFloat height  = [model.address heightWithFont:[UIFont systemFontOfSize:13] constrainedToWidth:KNB_SCREEN_WIDTH - 150];
+    if (height > 30) {
+        height = 32;
+    }
+    [self.addressLabel mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.height.mas_equalTo(height);
+    }];
     NSArray *array = [model.tag componentsSeparatedByString:@","]; //分割字符串
     self.tagView.tagsArray = array;
     if ([model.is_stick isEqualToString:@"0"]) {
-        self.topImageView.image = KNBImages(@"knb_home_weizhiding");
+        self.topImageView.hidden = YES;
     } else {
-        self.topImageView.image = KNBImages(@"knb_home_yizhiding");
+        self.topImageView.hidden = NO;
     }
     
     NSString *openString = [[NSUserDefaults standardUserDefaults] objectForKey:@"OpenPayment"];

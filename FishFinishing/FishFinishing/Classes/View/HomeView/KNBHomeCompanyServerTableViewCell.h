@@ -17,6 +17,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, assign) BOOL isEdit;
 
+@property (nonatomic, copy) void (^gotoEditBlock)(void);
+@property (nonatomic, copy) void (^gotoOrderBlock)(void);
 @property (nonatomic, copy) void (^topButtonBlock)(void);
 
 /**

@@ -11,6 +11,8 @@
 
 @interface KNBHomeCompanyIntroTableViewCell ()
 @property (weak, nonatomic) IBOutlet UILabel *contentLabel;
+@property (weak, nonatomic) IBOutlet UIButton *bottomButton;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *heightConstraint;
 
 @end
 
@@ -30,15 +32,33 @@
 
 #pragma mark - private method
 + (CGFloat)cellHeight:(KNBHomeServiceModel *)model {
-    CGFloat height = [model.remark heightWithFont:[UIFont systemFontOfSize:14] constrainedToWidth:KNB_SCREEN_WIDTH - 24];
-    return 62 + height;
+    CGFloat height = 0;
+    if (model.isSpread) {
+        height = [model.remark heightWithFont:[UIFont systemFontOfSize:14] constrainedToWidth:KNB_SCREEN_WIDTH - 24];
+    } else {
+        height = 60;
+    }
+    return 100 + height;
 }
 
 - (void)awakeFromNib {
     [super awakeFromNib];
 }
 
+- (IBAction)bottomButtonAction:(id)sender {
+    UIButton *button = (UIButton *)sender;
+    button.selected = !button.isSelected;
+    self.model.isSpread = button.isSelected;
+    if (button.isSelected) {
+        self.heightConstraint.constant = [self.model.remark heightWithFont:[UIFont systemFontOfSize:14] constrainedToWidth:KNB_SCREEN_WIDTH - 24];
+    } else {
+        self.heightConstraint.constant = 55;
+    }
+    !self.spreadIntroBlock ?: self.spreadIntroBlock();
+}
+
 - (void)setModel:(KNBHomeServiceModel *)model {
+    _model = model;
     self.contentLabel.text = model.remark;
 }
 @end

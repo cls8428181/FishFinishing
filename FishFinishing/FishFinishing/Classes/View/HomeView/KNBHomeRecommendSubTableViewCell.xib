@@ -104,7 +104,7 @@
                         </constraints>
                     </view>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="knb_home_icon_phone" translatesAutoresizingMaskIntoConstraints="NO" id="t7C-Uf-IZH">
-                        <rect key="frame" x="495.5" y="125.5" width="23" height="23"/>
+                        <rect key="frame" x="490.5" y="125.5" width="23" height="23"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="23" id="2OY-aT-mLL"/>
                             <constraint firstAttribute="width" constant="23" id="Shk-6D-liT"/>
@@ -201,7 +201,7 @@
                     <constraint firstItem="Q5K-z3-LId" firstAttribute="top" secondItem="P5y-CN-f0n" secondAttribute="bottom" constant="9" id="peR-nk-2UQ"/>
                     <constraint firstItem="90m-7z-rrU" firstAttribute="width" secondItem="y9d-2m-amS" secondAttribute="width" id="rlr-GD-Jrd"/>
                     <constraint firstItem="Q5K-z3-LId" firstAttribute="width" secondItem="7qM-7d-U19" secondAttribute="width" id="tSf-Ny-1yT"/>
-                    <constraint firstItem="t7C-Uf-IZH" firstAttribute="centerX" secondItem="1So-QH-vyD" secondAttribute="centerX" id="v46-BB-gMH"/>
+                    <constraint firstItem="t7C-Uf-IZH" firstAttribute="centerX" secondItem="1So-QH-vyD" secondAttribute="centerX" constant="-5" id="v46-BB-gMH"/>
                     <constraint firstItem="2Kv-iq-wOk" firstAttribute="centerY" secondItem="Q5K-z3-LId" secondAttribute="centerY" id="v7f-cT-gcL"/>
                     <constraint firstItem="90m-7z-rrU" firstAttribute="centerX" secondItem="y9d-2m-amS" secondAttribute="centerX" id="vmD-te-Hgf"/>
                     <constraint firstItem="y9d-2m-amS" firstAttribute="height" secondItem="7qM-7d-U19" secondAttribute="height" id="xyx-Gh-5jh"/>

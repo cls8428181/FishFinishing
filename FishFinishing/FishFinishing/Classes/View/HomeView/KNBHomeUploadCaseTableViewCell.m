@@ -28,7 +28,7 @@
         cell = [[KNBHomeUploadCaseTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.backgroundColor = [UIColor colorWithHex:0xfafafa];
+    cell.backgroundColor = [UIColor whiteColor];
     if (!isNullArray(heightArray)) {
         [cell.dataArray removeAllObjects];
         [cell.dataArray addObjectsFromArray:heightArray];
@@ -77,7 +77,7 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row == self.dataArray.count) {
         KNBHomeCompanyCaseAddCollectionViewCell *cell = [KNBHomeCompanyCaseAddCollectionViewCell cellWithCollectionView:collectionView indexPath:indexPath];
-        cell.iconImageView.image = KNBImages(@"knb_me_tianjia_white");
+        cell.iconImageView.image = KNBImages(@"knb_upload_tianjia");
         return cell;
     } else {
         UIImage *image = self.dataArray[indexPath.row];

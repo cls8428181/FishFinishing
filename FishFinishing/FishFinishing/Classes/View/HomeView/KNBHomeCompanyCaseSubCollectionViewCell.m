@@ -12,11 +12,14 @@
 
 @interface KNBHomeCompanyCaseSubCollectionViewCell ()
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
-@property (weak, nonatomic) IBOutlet UILabel *timeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *detailLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *iconImageView;
 @property (weak, nonatomic) IBOutlet UIButton *deleteButton;
 @property (weak, nonatomic) IBOutlet UIView *bgView;
 @property (weak, nonatomic) IBOutlet UIButton *showButton;
+@property (weak, nonatomic) IBOutlet UIImageView *headImageView;
+@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+
 @end
 
 @implementation KNBHomeCompanyCaseSubCollectionViewCell
@@ -77,9 +80,14 @@
     _model = model;
     [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:model.img] placeholderImage:KNBImages(@"knb_default_user")];
     self.titleLabel.text = model.title;
-    self.timeLabel.text = [NSDate transformFromTimestamp:model.created_at];
+    self.detailLabel.text = [NSString stringWithFormat:@"%@/%@m㎡/%@",model.apart_name,model.acreage,model.style_name];
     self.iconImageView.layer.masksToBounds = YES;
     self.iconImageView.layer.cornerRadius = 5;
+}
+
+- (void)setServiceName:(NSString *)name ServiceIcon:(NSString *)icon {
+    [self.headImageView sd_setImageWithURL:[NSURL URLWithString:icon] placeholderImage:KNBImages(@"knb_default_user")];
+    self.nameLabel.text = name;
 }
 
 - (void)setIsEdit:(BOOL)isEdit {
