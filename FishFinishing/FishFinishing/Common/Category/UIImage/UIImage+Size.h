@@ -19,6 +19,11 @@ NS_ASSUME_NONNULL_BEGIN
 + (CGSize)getPNGImageSizeWithRequest:(NSMutableURLRequest*)request;
 // 根据图片url获取图片尺寸
 + (CGSize)getImageSizeWithURL:(id)imageURL;
+
+/**
+ 通过 url 获取图片尺寸
+ */
++ (CGSize)downloadImageSizeWithURL:(id)imageURL;
 @end
 
 NS_ASSUME_NONNULL_END

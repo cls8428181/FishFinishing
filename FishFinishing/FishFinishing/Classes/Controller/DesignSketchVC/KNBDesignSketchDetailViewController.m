@@ -11,6 +11,7 @@
 #import "KNBRecruitmentCaseDetailApi.h"
 #import "KNBLoginViewController.h"
 #import "KNBOrderViewController.h"
+#import "NSString+Size.h"
 
 @interface KNBDesignSketchDetailViewController ()
 //返回按钮
@@ -19,8 +20,6 @@
 @property (nonatomic, strong) UIButton *shareButton;
 //大图
 @property (nonatomic, strong) RFPhotoScrollerView *scrollerView;
-//底部背景
-@property (nonatomic, strong) UIView *bottomBgView;
 //标题
 @property (nonatomic, strong) UILabel *titleLabel;
 //风格
@@ -62,18 +61,6 @@
  */
 - (void)settingConstraints {
     KNB_WS(weakSelf);
-    [self.backButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(12);
-        make.top.mas_equalTo(35);
-        make.width.mas_equalTo(44);
-        make.height.mas_equalTo(44);
-    }];
-    [self.shareButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.mas_equalTo(-12);
-        make.top.mas_equalTo(35);
-        make.width.mas_equalTo(44);
-        make.height.mas_equalTo(44);
-    }];
     [self.leftBgView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.bottom.equalTo(weakSelf.view);
         make.height.mas_equalTo(KNB_TAB_HEIGHT);
@@ -88,6 +75,7 @@
     [self.leftLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(weakSelf.leftImageView);
         make.left.equalTo(weakSelf.leftImageView.mas_right).mas_offset(10);
+        make.right.mas_equalTo(-KNB_SCREEN_WIDTH/3 - 10);
     }];
     [self.orderButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.bottom.equalTo(weakSelf.view);
@@ -103,8 +91,6 @@
 }
 
 - (void)addUI {
-    [self.view addSubview:self.backButton];
-    [self.view addSubview:self.shareButton];
     [self.view addSubview:self.leftBgView];
     [self.leftBgView addSubview:self.leftImageView];
     [self.leftBgView addSubview:self.leftLabel];
@@ -144,45 +130,58 @@
 
 - (void)settingUI {
     [self.view addSubview:self.scrollerView];
-    [self.view addSubview:self.bottomBgView];
-    [self.bottomBgView addSubview:self.titleLabel];
-    [self.bottomBgView addSubview:self.styleLabel];
-    [self.bottomBgView addSubview:self.houseLabel];
-    [self.bottomBgView addSubview:self.areaLabel];
-    [self.bottomBgView addSubview:self.contentLabel];
+    [self.view addSubview:self.contentLabel];
+    [self.view addSubview:self.styleLabel];
+    [self.view addSubview:self.titleLabel];
+//    [self.view addSubview:self.houseLabel];
+    [self.view addSubview:self.areaLabel];
+    [self.view addSubview:self.backButton];
+    [self.view addSubview:self.shareButton];
 }
 
 - (void)settingLayout {
     KNB_WS(weakSelf);
-    [self.bottomBgView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.equalTo(weakSelf.view);
-        make.bottom.mas_equalTo(-KNB_TAB_HEIGHT);
-        make.height.mas_equalTo(100);
-    }];
-    [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(10);
-        make.left.mas_equalTo(12);
-    }];
-    [self.styleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(weakSelf.titleLabel.mas_bottom).mas_offset(10);
-        make.left.mas_equalTo(12);
-        make.width.mas_equalTo((KNB_SCREEN_WIDTH - 24)/3);
-    }];
-    [self.houseLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(weakSelf.titleLabel.mas_bottom).mas_offset(10);
-        make.left.equalTo(weakSelf.styleLabel.mas_right).mas_offset(0);
-        make.width.mas_equalTo((KNB_SCREEN_WIDTH - 24)/3);
-    }];
-    [self.areaLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(weakSelf.titleLabel.mas_bottom).mas_offset(10);
-        make.left.equalTo(weakSelf.houseLabel.mas_right).mas_offset(0);
-        make.width.mas_equalTo((KNB_SCREEN_WIDTH - 24)/3);
-    }];
+    CGFloat contentHeight = [weakSelf.contentLabel.text heightWithFont:KNBFont(12) constrainedToWidth:KNB_SCREEN_WIDTH - 24];
     [self.contentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(weakSelf.styleLabel.mas_bottom).mas_offset(10);
+        make.bottom.equalTo(weakSelf.orderButton.mas_top).mas_offset(-24);
         make.left.mas_equalTo(12);
         make.right.mas_equalTo(-12);
+        make.height.mas_equalTo(contentHeight);
     }];
+    CGFloat styleHeight = [weakSelf.styleLabel.text heightWithFont:KNBFont(12) constrainedToWidth:KNB_SCREEN_WIDTH - 24];
+    [self.styleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.equalTo(weakSelf.contentLabel.mas_top).mas_offset(-10);
+        make.left.mas_equalTo(12);
+        make.right.mas_equalTo(-12);
+        make.height.mas_equalTo(styleHeight);
+    }];
+    [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.equalTo(weakSelf.styleLabel.mas_top).mas_offset(-20);
+        make.left.mas_equalTo(12);
+    }];
+
+//    [self.houseLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.top.equalTo(weakSelf.titleLabel.mas_bottom).mas_offset(10);
+//        make.left.equalTo(weakSelf.styleLabel.mas_right).mas_offset(0);
+//        make.width.mas_equalTo((KNB_SCREEN_WIDTH - 24)/3);
+//    }];
+    [self.areaLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.equalTo(weakSelf.styleLabel.mas_top).mas_offset(-20);
+        make.left.equalTo(weakSelf.titleLabel.mas_right).mas_offset(50);
+    }];
+    [self.backButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(12);
+        make.top.mas_equalTo(35);
+        make.width.mas_equalTo(44);
+        make.height.mas_equalTo(44);
+    }];
+    [self.shareButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.mas_equalTo(-12);
+        make.top.mas_equalTo(35);
+        make.width.mas_equalTo(44);
+        make.height.mas_equalTo(44);
+    }];
+
 }
 
 #pragma mark - Event Response
@@ -221,7 +220,7 @@
             orderVC.model = self.model;
             [self.navigationController pushViewController:orderVC animated:YES];
         } else {
-            NSMutableString * str=[[NSMutableString alloc] initWithFormat:@"tel:%ld",button.tag];
+            NSMutableString * str=[[NSMutableString alloc] initWithFormat:@"tel:%ld",(long)button.tag];
             UIApplication *application = [UIApplication sharedApplication];
             NSURL *URL = [NSURL URLWithString:str];
             [application openURL:URL options:@{} completionHandler:^(BOOL success) {
@@ -300,24 +299,16 @@
 
 - (RFPhotoScrollerView *)scrollerView {
     if (!_scrollerView) {
-        _scrollerView = [[RFPhotoScrollerView alloc]initWithImagesArray:self.photosArray currentIndex:0 frame:CGRectMake(0, 80, KNB_SCREEN_WIDTH, KNB_SCREEN_HEIGHT - KNB_TAB_HEIGHT - 180)];
+        _scrollerView = [[RFPhotoScrollerView alloc]initWithImagesArray:self.photosArray currentIndex:0 frame:CGRectMake(0, 0, KNB_SCREEN_WIDTH, KNB_SCREEN_HEIGHT - KNB_TAB_HEIGHT)];
     }
     return _scrollerView;
-}
-
-- (UIView *)bottomBgView {
-    if (!_bottomBgView) {
-        _bottomBgView = [[UIView alloc] init];
-        _bottomBgView.backgroundColor = [UIColor colorWithHex:0x1a1a1a];
-    }
-    return _bottomBgView;
 }
 
 - (UILabel *)titleLabel {
     if (!_titleLabel) {
         _titleLabel = [[UILabel alloc] init];
         _titleLabel.textColor = [UIColor whiteColor];
-        _titleLabel.font = [UIFont systemFontOfSize:14];
+        _titleLabel.font = KNBFont(15);
     }
     return _titleLabel;
 }
@@ -326,7 +317,8 @@
     if (!_styleLabel) {
         _styleLabel = [[UILabel alloc] init];
         _styleLabel.textColor = [UIColor whiteColor];
-        _styleLabel.font = [UIFont systemFontOfSize:14];
+        _styleLabel.font = KNBFont(12);
+        _styleLabel.numberOfLines = 0;
     }
     return _styleLabel;
 }
@@ -346,7 +338,7 @@
     if (!_areaLabel) {
         _areaLabel = [[UILabel alloc] init];
         _areaLabel.textColor = [UIColor whiteColor];
-        _areaLabel.font = [UIFont systemFontOfSize:14];
+        _areaLabel.font = KNBFont(15);
         _areaLabel.textAlignment = NSTextAlignmentRight;
     }
     return _areaLabel;
@@ -356,7 +348,8 @@
     if (!_contentLabel) {
         _contentLabel = [[UILabel alloc] init];
         _contentLabel.textColor = [UIColor whiteColor];
-        _contentLabel.font = [UIFont systemFontOfSize:14];
+        _contentLabel.font = KNBFont(12);
+        _contentLabel.numberOfLines = 0;
     }
     return _contentLabel;
 }
@@ -394,9 +387,9 @@
     if (!_orderButton) {
         _orderButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [_orderButton setTitle:@"立即预约" forState:UIControlStateNormal];
-        [_orderButton setBackgroundColor:[UIColor redColor]];
+        [_orderButton setBackgroundColor:[UIColor colorWithHex:0xf5701b]];
         [_orderButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        _orderButton.titleLabel.font = [UIFont systemFontOfSize:18];
+        _orderButton.titleLabel.font = KNBFont(18);
         [_orderButton addTarget:self action:@selector(orderButtonAction:) forControlEvents:UIControlEventTouchUpInside];
 
     }

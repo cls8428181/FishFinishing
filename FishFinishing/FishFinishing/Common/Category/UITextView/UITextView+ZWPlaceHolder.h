@@ -8,6 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+typedef NS_ENUM(NSInteger, ZWPlaceHolderLocation) {
+    ZWPlaceHolderLocationDefault = 100,
+    ZWPlaceHolderLocationCenter
+};
+
 @interface UITextView (ZWPlaceHolder)
 /** 
  *  UITextView+placeholder
@@ -21,5 +26,7 @@
  *  placeHolder颜色
  */
 @property (nonatomic, strong) UIColor *zw_placeHolderColor;
+
+@property (nonatomic, assign) ZWPlaceHolderLocation placeHolderLocation;
 
 @end

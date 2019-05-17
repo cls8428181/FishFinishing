@@ -44,7 +44,8 @@
 - (void)configuration {
     self.naviView.title = @"产品上传";
     [self.naviView addLeftBarItemImageName:@"knb_back_black" target:self sel:@selector(backAction)];
-    [self.naviView addRightBarItemImageName:@"knb_me_baocun" target:self sel:@selector(saveAction)];
+    [self.naviView addRightBarItemTitle:@"保存" target:self sel:@selector(saveAction)];
+    [self.naviView.rightNaviButton setTitleColor:[UIColor colorWithHex:0x333333] forState:UIControlStateNormal];
     self.view.backgroundColor = [UIColor knBgColor];
 }
 
@@ -168,6 +169,7 @@
         _footerView.frame = CGRectMake(0, 0, KNB_SCREEN_WIDTH, [KNBHomeUploadCaseTableViewCell cellHeight:self.imgsArray.count] + 100);
         _footerView.addCaseBlock = ^(NSMutableArray * _Nonnull imgsArray) {
             weakSelf.knGroupTableView.tableFooterView.height = [KNBHomeUploadCaseTableViewCell cellHeight:imgsArray.count] + 100;
+            [weakSelf.knGroupTableView setTableFooterView:weakSelf.footerView];
         };
     }
     return _footerView;

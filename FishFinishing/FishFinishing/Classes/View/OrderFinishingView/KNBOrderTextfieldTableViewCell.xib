@@ -20,17 +20,17 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="类型" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uOj-j2-e0x">
-                        <rect key="frame" x="33" y="13.5" width="65" height="17"/>
+                        <rect key="frame" x="13" y="13" width="70" height="18"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="65" id="CWN-F8-r9f"/>
+                            <constraint firstAttribute="width" constant="70" id="CWN-F8-r9f"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="m²" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GRT-Su-2h3">
-                        <rect key="frame" x="111" y="13.5" width="199" height="17"/>
-                        <nil key="textColor"/>
+                        <rect key="frame" x="96" y="13.5" width="214" height="17"/>
+                        <color key="textColor" red="0.50196078431372548" green="0.50196078431372548" blue="0.50196078431372548" alpha="1" colorSpace="calibratedRGB"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <textInputTraits key="textInputTraits"/>
                     </textField>
@@ -46,7 +46,7 @@
                     <constraint firstAttribute="bottom" secondItem="VuN-BF-gJY" secondAttribute="bottom" id="5IU-18-v0S"/>
                     <constraint firstItem="VuN-BF-gJY" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="13" id="8Lp-TP-Oav"/>
                     <constraint firstAttribute="trailing" secondItem="GRT-Su-2h3" secondAttribute="trailing" constant="10" id="ISJ-bq-dJZ"/>
-                    <constraint firstItem="uOj-j2-e0x" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="33" id="W5Y-Ye-AVt"/>
+                    <constraint firstItem="uOj-j2-e0x" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="13" id="W5Y-Ye-AVt"/>
                     <constraint firstItem="uOj-j2-e0x" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="bxR-n4-s2u"/>
                     <constraint firstItem="GRT-Su-2h3" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="hmk-aT-ceh"/>
                     <constraint firstAttribute="trailing" secondItem="VuN-BF-gJY" secondAttribute="trailing" constant="13" id="oFh-ed-JXw"/>

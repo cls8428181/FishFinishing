@@ -13,7 +13,6 @@ target 'FishFinishing' do
     pod 'Masonry'
     pod 'MJRefresh'
     pod 'IQKeyboardManager'
-    pod 'HMSegmentedControl'
     pod 'pop'
     pod 'Pingpp', '~> 2.2.10'
     pod 'Pingpp/Alipay'

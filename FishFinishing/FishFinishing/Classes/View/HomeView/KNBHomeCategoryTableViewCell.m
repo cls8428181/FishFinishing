@@ -48,15 +48,8 @@
     KNB_WS(weakSelf);
     
     [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.top.equalTo(weakSelf.contentView);
-        make.height.mas_equalTo(100);
+        make.edges.equalTo(weakSelf.contentView);
     }];
-    
-//    [self.adButton mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.left.mas_equalTo(12);
-//        make.right.bottom.mas_equalTo(-12);
-//        make.top.equalTo(weakSelf.collectionView.mas_bottom).mas_offset(0);
-//    }];
 }
 
 #pragma mark - System Delegate
@@ -76,7 +69,7 @@
 }
 //定义每一个cell的大小
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    return CGSizeMake(60, 75);
+    return CGSizeMake(60, 85);
 }
 
 //cell的点击事件
@@ -104,7 +97,7 @@
         UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
         layout.minimumInteritemSpacing = 10;
         layout.minimumLineSpacing = 10;
-        layout.sectionInset = UIEdgeInsetsMake(12, 12, 12, 12);
+        layout.sectionInset = UIEdgeInsetsMake(5, 12, 10, 12);
         layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
         _collectionView = [[UICollectionView alloc] initWithFrame:self.contentView.bounds collectionViewLayout:layout];
         _collectionView.showsHorizontalScrollIndicator = NO;

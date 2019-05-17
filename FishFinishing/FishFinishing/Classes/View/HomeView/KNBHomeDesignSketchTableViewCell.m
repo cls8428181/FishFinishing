@@ -8,7 +8,7 @@
 
 #import "KNBHomeDesignSketchTableViewCell.h"
 //utils
-#import <HMSegmentedControl.h>
+#import "HMSegmentedControl.h"
 //views
 #import "KNBHomeDesignSketchSubTableViewCell.h"
 #import "KNBHomeRecommendCaseModel.h"

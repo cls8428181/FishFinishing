@@ -20,26 +20,32 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="简介说明:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GHc-R7-JHy">
-                        <rect key="frame" x="33" y="15" width="62" height="17"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <rect key="frame" x="13" y="15" width="65.5" height="18"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="249" image="knb_me_wenbenkuang" translatesAutoresizingMaskIntoConstraints="NO" id="GYN-54-J2O">
+                        <rect key="frame" x="13" y="53" width="458" height="169.5"/>
+                    </imageView>
                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Egu-75-CCy">
-                        <rect key="frame" x="12" y="54" width="460" height="166.5"/>
-                        <color key="backgroundColor" red="0.98039215686274506" green="0.98039215686274506" blue="0.98039215686274506" alpha="1" colorSpace="calibratedRGB"/>
-                        <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                        <rect key="frame" x="5" y="53" width="474" height="159.5"/>
+                        <color key="textColor" red="0.33725490196078434" green="0.33725490196078434" blue="0.33725490196078434" alpha="1" colorSpace="calibratedRGB"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                     </textView>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="Egu-75-CCy" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="12" id="1XY-B0-3rG"/>
-                    <constraint firstAttribute="trailing" secondItem="Egu-75-CCy" secondAttribute="trailing" constant="12" id="3Y4-fU-rOh"/>
-                    <constraint firstItem="GHc-R7-JHy" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="33" id="8xA-eN-yfS"/>
-                    <constraint firstAttribute="bottom" secondItem="Egu-75-CCy" secondAttribute="bottom" constant="12" id="Ok2-7t-bpi"/>
-                    <constraint firstItem="Egu-75-CCy" firstAttribute="top" secondItem="GHc-R7-JHy" secondAttribute="bottom" constant="22" id="RFh-gI-Q1W"/>
+                    <constraint firstItem="Egu-75-CCy" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="5" id="1XY-B0-3rG"/>
+                    <constraint firstAttribute="trailing" secondItem="Egu-75-CCy" secondAttribute="trailing" constant="5" id="3Y4-fU-rOh"/>
+                    <constraint firstAttribute="trailing" secondItem="GYN-54-J2O" secondAttribute="trailing" constant="13" id="5vA-jh-08q"/>
+                    <constraint firstItem="GHc-R7-JHy" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="13" id="8xA-eN-yfS"/>
+                    <constraint firstItem="GYN-54-J2O" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="13" id="IZi-m2-bYi"/>
+                    <constraint firstAttribute="bottom" secondItem="Egu-75-CCy" secondAttribute="bottom" constant="20" id="Ok2-7t-bpi"/>
+                    <constraint firstItem="GYN-54-J2O" firstAttribute="top" secondItem="GHc-R7-JHy" secondAttribute="bottom" constant="20" id="QbJ-R6-Vit"/>
+                    <constraint firstItem="Egu-75-CCy" firstAttribute="top" secondItem="GHc-R7-JHy" secondAttribute="bottom" constant="20" id="RFh-gI-Q1W"/>
                     <constraint firstItem="GHc-R7-JHy" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="nsb-Gc-h6n"/>
+                    <constraint firstAttribute="bottom" secondItem="GYN-54-J2O" secondAttribute="bottom" constant="10" id="zQy-C8-Qja"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
@@ -49,4 +55,7 @@
             <point key="canvasLocation" x="264" y="225.33733133433284"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="knb_me_wenbenkuang" width="350" height="150"/>
+    </resources>
 </document>

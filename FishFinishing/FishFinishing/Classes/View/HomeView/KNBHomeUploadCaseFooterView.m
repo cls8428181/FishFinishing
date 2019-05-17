@@ -15,15 +15,17 @@
 
 @interface KNBHomeUploadCaseFooterView ()<UICollectionViewDelegate, UICollectionViewDataSource,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 @property (nonatomic, strong) UICollectionView *collectionView;
-
+@property (nonatomic, strong) UIView *topLineView;
+@property (nonatomic, strong) UIImageView *textBgView;
 @end
 
 @implementation KNBHomeUploadCaseFooterView
 
 - (instancetype)init {
     if (self = [super init]) {
-        self.backgroundColor = [UIColor whiteColor];
+        [self addSubview:self.topLineView];
         [self addSubview:self.titleLabel];
+        [self addSubview:self.textBgView];
         [self addSubview:self.describeText];
         [self addSubview:self.collectionView];
     }
@@ -33,20 +35,30 @@
 - (void)layoutSubviews {
     [super layoutSubviews];
     KNB_WS(weakSelf);
+    [self.topLineView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.left.right.mas_equalTo(0);
+        make.height.mas_equalTo(10);
+    }];
     [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(10);
+        make.top.equalTo(weakSelf.topLineView.mas_bottom).mas_offset(10);
         make.left.mas_equalTo(12);
     }];
-    [self.describeText mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.textBgView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(12);
         make.top.equalTo(weakSelf.titleLabel.mas_bottom).mas_offset(12);
         make.right.mas_equalTo(-12);
         make.height.mas_equalTo(50);
     }];
-    [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.describeText mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(12);
+        make.top.equalTo(weakSelf.titleLabel.mas_bottom).mas_offset(12);
+        make.right.mas_equalTo(-12);
+        make.height.mas_equalTo(40);
+    }];
+    [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.mas_equalTo(0);
         make.top.equalTo(weakSelf.describeText.mas_bottom).mas_offset(15);
-        make.right.bottom.mas_equalTo(-12);
+        make.bottom.mas_equalTo(-12);
     }];
 }
 
@@ -62,7 +74,7 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row == self.dataArray.count) {
         KNBHomeCompanyCaseAddCollectionViewCell *cell = [KNBHomeCompanyCaseAddCollectionViewCell cellWithCollectionView:collectionView indexPath:indexPath];
-        cell.iconImageView.image = KNBImages(@"knb_me_tianjia_white");
+        cell.iconImageView.image = KNBImages(@"knb_upload_tianjia");
         return cell;
     } else {
         UIImage *image = self.dataArray[indexPath.row];
@@ -189,6 +201,14 @@
     return 140 *(count /2 + 1);
 }
 
+- (UIView *)topLineView {
+    if (!_topLineView) {
+        _topLineView = [[UIView alloc] init];
+        _topLineView.backgroundColor = [UIColor colorWithHex:0xf2f2f2];
+    }
+    return _topLineView;
+}
+
 - (UILabel *)titleLabel {
     if (!_titleLabel) {
         _titleLabel = [[UILabel alloc] init];
@@ -199,11 +219,21 @@
     return _titleLabel;
 }
 
-- (UITextView *)describeText {
+- (UIImageView *)textBgView {
+    if (!_textBgView) {
+        _textBgView = [[UIImageView alloc] init];
+        _textBgView.image = KNBImages(@"knb_me_kuang");
+    }
+    return _textBgView;
+}
+
+- (CCTextView *)describeText {
     if (!_describeText) {
-        _describeText = [[UITextView alloc] init];
+        _describeText = [[CCTextView alloc] init];
         _describeText.zw_placeHolder = @"50字以内";
-        _describeText.textContainerInset = UIEdgeInsetsMake(12, 16, 12, 16);
+        _describeText.maxLength = 50;
+        _describeText.placeHolderLocation = ZWPlaceHolderLocationCenter;
+        _describeText.backgroundColor = [UIColor clearColor];
     }
     return _describeText;
 }
@@ -214,14 +244,14 @@
         layout.minimumInteritemSpacing = 10;
         layout.minimumLineSpacing = 10;
         layout.headerReferenceSize = CGSizeMake(0, 0); //头视图的大小
+        layout.sectionInset = UIEdgeInsetsMake(0, 12, 0, 2);
         layout.scrollDirection = UICollectionViewScrollDirectionVertical;
         _collectionView = [[UICollectionView alloc] initWithFrame:self.bounds collectionViewLayout:layout];
         _collectionView.showsHorizontalScrollIndicator = NO;
-        _collectionView.backgroundColor = [UIColor whiteColor];
         _collectionView.delegate = self;
         _collectionView.dataSource = self;
         _collectionView.scrollEnabled = NO;
-        _collectionView.backgroundColor = [UIColor colorWithHex:0xfafafa];
+        _collectionView.backgroundColor = [UIColor whiteColor];
         [_collectionView registerNib:[UINib nibWithNibName:@"KNBHomeUploadCaseCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"KNBHomeUploadCaseCollectionViewCell"];
         [_collectionView registerNib:[UINib nibWithNibName:@"KNBHomeCompanyCaseAddCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"KNBHomeCompanyCaseAddCollectionViewCell"];
     }

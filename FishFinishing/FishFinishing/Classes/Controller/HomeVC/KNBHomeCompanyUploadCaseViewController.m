@@ -19,7 +19,7 @@
 #import "KNBUploadFileApi.h"
 #import "KNBHomeUploadCaseFooterView.h"
 
-@interface KNBHomeCompanyUploadCaseViewController ()
+@interface KNBHomeCompanyUploadCaseViewController ()<UITextFieldDelegate,UITextViewDelegate>
 //图片数组
 @property (nonatomic, strong) NSMutableArray *imgsArray;
 //标题
@@ -28,12 +28,16 @@
 @property (nonatomic, copy) NSString *areaString;
 //户型
 @property (nonatomic, assign) NSInteger houseId;
+@property (nonatomic, copy) NSString *houseInfo;
 //风格
 @property (nonatomic, strong) KNBRecruitmentTypeModel *styleModel;
 //案例描述
 @property (nonatomic, copy) NSString *desribeString;
 
 @property (nonatomic, strong) KNBHomeUploadCaseFooterView *footerView;
+//记录最后一个输入框
+@property (nonatomic, strong) UITextField *lastTextField;
+@property (nonatomic, assign) NSInteger maxLength;
 
 @end
 
@@ -52,13 +56,15 @@
 - (void)configuration {
     self.naviView.title = @"案例上传";
     [self.naviView addLeftBarItemImageName:@"knb_back_black" target:self sel:@selector(backAction)];
-    [self.naviView addRightBarItemImageName:@"knb_me_baocun" target:self sel:@selector(saveAction)];
+    [self.naviView addRightBarItemTitle:@"保存" target:self sel:@selector(saveAction)];
+    [self.naviView.rightNaviButton setTitleColor:[UIColor colorWithHex:0x333333] forState:UIControlStateNormal];
     self.view.backgroundColor = [UIColor knBgColor];
+    self.maxLength = 50;
 }
 
 - (void)addUI {
     [self.view addSubview:self.knGroupTableView];
-    self.knGroupTableView.backgroundColor = [UIColor colorWithHex:0xfafafa];
+    self.knGroupTableView.backgroundColor = [UIColor whiteColor];
     self.knGroupTableView.tableFooterView = self.footerView;
 }
 
@@ -78,18 +84,32 @@
             cell = [KNBOrderTextfieldTableViewCell cellWithTableView:tableView];
             KNBOrderTextfieldTableViewCell *typeCell = (KNBOrderTextfieldTableViewCell *)cell;
             typeCell.type = KNBOrderTextFieldTypeTitle;
+            typeCell.describeTextField.delegate = self;
+            if (!isNullStr(self.titleString)) {
+                typeCell.describeTextField.text = self.titleString;
+            }
         } else if (indexPath.row == 1) {
             cell = [KNBOrderTextfieldTableViewCell cellWithTableView:tableView];
             KNBOrderTextfieldTableViewCell *typeCell = (KNBOrderTextfieldTableViewCell *)cell;
             typeCell.type = KNBOrderTextFieldTypeArea;
+            typeCell.describeTextField.delegate = self;
+            if (!isNullStr(self.areaString)) {
+                typeCell.describeTextField.text = self.areaString;
+            }
         } else if (indexPath.row == 2) {
             cell = [KNBOrderDownTableViewCell cellWithTableView:tableView];
             KNBOrderDownTableViewCell *typeCell = (KNBOrderDownTableViewCell *)cell;
             typeCell.type = KNBOrderDownTypeHouse;
+            if (!isNullStr(self.houseInfo)) {
+                [typeCell setButtonTitle:self.houseInfo];
+            }
         } else {
             cell = [KNBOrderDownTableViewCell cellWithTableView:tableView];
             KNBOrderDownTableViewCell *typeCell = (KNBOrderDownTableViewCell *)cell;
             typeCell.type = KNBOrderDownTypeStyle;
+            if (!isNullStr(self.styleModel.catName)) {
+                [typeCell setButtonTitle:self.styleModel.catName];
+            }
         }
     }
     return cell;
@@ -119,6 +139,26 @@
         }
     }
 }
+
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+    [self.lastTextField resignFirstResponder];
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField {
+    KNBOrderTextfieldTableViewCell *titleCell = [self.knGroupTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+    KNBOrderTextfieldTableViewCell *areaCell = [self.knGroupTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]];
+    if ([textField isEqual:titleCell.describeTextField]) {
+        self.titleString = textField.text;
+    }
+    if ([textField isEqual:areaCell.describeTextField]) {
+        self.areaString = textField.text;
+    }
+}
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
+    self.lastTextField = textField;
+}
+
 //请求户型数据
 - (void)unitRequest {
     KNBOrderUnitApi *api = [[KNBOrderUnitApi alloc] init];
@@ -135,6 +175,7 @@
             [BRStringPickerView showStringPickerWithTitle:@"选择户型" dataSource:titleArray defaultSelValue:nil resultBlock:^(id selectValue) {
                 KNBOrderDownTableViewCell *cell = [weakSelf.knGroupTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:0]];
                 [cell setButtonTitle:selectValue];
+                weakSelf.houseInfo = selectValue;
                 for (KNBRecruitmentUnitModel *model in modelArray) {
                     if ([model.name isEqualToString:selectValue]) {
                         weakSelf.houseId = [model.houseId integerValue];
@@ -264,6 +305,7 @@
         _footerView.frame = CGRectMake(0, 0, KNB_SCREEN_WIDTH, [KNBHomeUploadCaseTableViewCell cellHeight:self.imgsArray.count] + 100);
         _footerView.addCaseBlock = ^(NSMutableArray * _Nonnull imgsArray) {
             weakSelf.knGroupTableView.tableFooterView.height = [KNBHomeUploadCaseTableViewCell cellHeight:imgsArray.count] + 100;
+            [weakSelf.knGroupTableView setTableFooterView:weakSelf.footerView];
         };
     }
     return _footerView;

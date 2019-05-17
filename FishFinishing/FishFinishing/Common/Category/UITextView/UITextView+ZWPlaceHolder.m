@@ -9,6 +9,8 @@
 #import "UITextView+ZWPlaceHolder.h"
 #import <objc/runtime.h>
 static const void *zw_placeHolderKey;
+static NSString *locationKey = @"placeHolderLocation"; //name的key
+
 
 @interface UITextView ()
 @property (nonatomic, readonly) UILabel *zw_placeHolderLabel;
@@ -30,13 +32,23 @@ static const void *zw_placeHolderKey;
 }
 - (void)zwPlaceHolder_swizzling_layoutSubviews {
     if (self.zw_placeHolder) {
-        UIEdgeInsets textContainerInset = self.textContainerInset;
-        CGFloat lineFragmentPadding = self.textContainer.lineFragmentPadding;
-        CGFloat x = lineFragmentPadding + textContainerInset.left + self.layer.borderWidth;
-        CGFloat y = textContainerInset.top + self.layer.borderWidth;
-        CGFloat width = CGRectGetWidth(self.bounds) - x - textContainerInset.right - 2*self.layer.borderWidth;
-        CGFloat height = [self.zw_placeHolderLabel sizeThatFits:CGSizeMake(width, 0)].height;
-        self.zw_placeHolderLabel.frame = CGRectMake(x, y, width, height);
+        if (self.zw_placeHolderLabel.superview) {
+            if (self.placeHolderLocation == ZWPlaceHolderLocationCenter) {
+                KNB_WS(weakSelf);
+                [self.zw_placeHolderLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+                    make.centerX.equalTo(weakSelf);
+                    make.centerY.equalTo(weakSelf.mas_centerY).mas_offset(5);
+                }];
+            } else {
+                UIEdgeInsets textContainerInset = self.textContainerInset;
+                CGFloat lineFragmentPadding = self.textContainer.lineFragmentPadding;
+                CGFloat x = lineFragmentPadding + textContainerInset.left + self.layer.borderWidth;
+                CGFloat y = textContainerInset.top + self.layer.borderWidth;
+                CGFloat width = CGRectGetWidth(self.bounds) - x - textContainerInset.right - 2*self.layer.borderWidth;
+                CGFloat height = [self.zw_placeHolderLabel sizeThatFits:CGSizeMake(width, 0)].height;
+                self.zw_placeHolderLabel.frame = CGRectMake(x, y, width, height);
+            }
+        }
     }
     [self zwPlaceHolder_swizzling_layoutSubviews];
 }
@@ -66,6 +78,23 @@ static const void *zw_placeHolderKey;
 -(void)setPlaceholder:(NSString *)placeholder{
     self.zw_placeHolder = placeholder;
 }
+
+- (void)setPlaceHolderLocation:(ZWPlaceHolderLocation)placeHolderLocation {
+    if (placeHolderLocation == ZWPlaceHolderLocationCenter) {
+        objc_setAssociatedObject(self, &locationKey, @(100), OBJC_ASSOCIATION_ASSIGN);
+    } else {
+        objc_setAssociatedObject(self, &locationKey, @(101), OBJC_ASSOCIATION_ASSIGN);
+    }
+}
+
+- (ZWPlaceHolderLocation)placeHolderLocation {
+    if ([objc_getAssociatedObject(self, &locationKey) integerValue] == 100) {
+        return ZWPlaceHolderLocationCenter;
+    } else {
+        return ZWPlaceHolderLocationDefault;
+    }
+}
+
 #pragma mark - update
 - (void)updatePlaceHolder{
     if (self.text.length) {

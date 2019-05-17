@@ -15,7 +15,7 @@
 #import "KNBHomeSearchView.h"
 #import "KNBHomeTableView.h"
 #import "KNBHomeSubView.h"
-#import <HMSegmentedControl.h>
+#import "HMSegmentedControl.h"
 //controllers
 #import "KNBHomeOfferViewController.h"
 #import "KNBHomeDesignViewController.h"
@@ -409,6 +409,8 @@ static CGFloat const kHeaderViewHeight = 50.0f;
         _segmentedControl.frame = CGRectMake(0, 0, KNB_SCREEN_WIDTH, 50);
         _segmentedControl.titleTextAttributes = @{NSForegroundColorAttributeName : [UIColor blackColor], NSFontAttributeName : [UIFont systemFontOfSize:15.0]};
         _segmentedControl.selectedTitleTextAttributes = @{NSForegroundColorAttributeName : [UIColor colorWithHex:0x009fe8], NSFontAttributeName : [UIFont boldSystemFontOfSize:15.0]};
+        _segmentedControl.leading = 30;
+        _segmentedControl.segmentEdgeInset = UIEdgeInsetsMake(0, 10, 0, 10);
         _segmentedControl.selectionIndicatorColor = [UIColor colorWithHex:0x009fe8];
         _segmentedControl.selectionIndicatorHeight = 2.0;
         _segmentedControl.selectionStyle = HMSegmentedControlSelectionStyleTextWidthStripe;

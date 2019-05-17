@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CCTextView.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -26,7 +27,7 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (nonatomic, strong) NSMutableArray *dataArray;
 
-@property (nonatomic, strong) UITextView *describeText;
+@property (nonatomic, strong) CCTextView *describeText;
 
 /**
  cell 高度

@@ -7,7 +7,7 @@
 //
 
 #import "KNBHomeRecommendTableViewCell.h"
-#import <HMSegmentedControl.h>
+#import "HMSegmentedControl.h"
 #import "KNBHomeRecommendSubTableViewCell.h"
 
 @interface KNBHomeRecommendTableViewCell () <UITableViewDelegate, UITableViewDataSource>

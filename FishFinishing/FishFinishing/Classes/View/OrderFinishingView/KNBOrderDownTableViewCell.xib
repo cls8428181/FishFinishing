@@ -20,8 +20,8 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="类型" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oT8-0N-uf3">
-                        <rect key="frame" x="33" y="13.5" width="29" height="17"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <rect key="frame" x="13" y="13" width="31" height="18"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -34,9 +34,6 @@
                             <color key="titleColor" red="0.50196078431372548" green="0.50196078431372548" blue="0.50196078431372548" alpha="1" colorSpace="calibratedRGB"/>
                         </state>
                     </button>
-                    <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="knb_order_more" translatesAutoresizingMaskIntoConstraints="NO" id="XcV-bv-egJ">
-                        <rect key="frame" x="12" y="14" width="16" height="16"/>
-                    </imageView>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lBt-Cx-p7x">
                         <rect key="frame" x="13" y="42.5" width="294" height="1"/>
                         <color key="backgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.94901960784313721" alpha="1" colorSpace="calibratedRGB"/>
@@ -48,19 +45,16 @@
                 <constraints>
                     <constraint firstItem="lBt-Cx-p7x" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="13" id="6Rz-Ze-Bqm"/>
                     <constraint firstAttribute="trailing" secondItem="7qX-44-MCd" secondAttribute="trailing" constant="12" id="PEw-6Q-ESa"/>
-                    <constraint firstItem="oT8-0N-uf3" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="33" id="SSk-fi-zij"/>
+                    <constraint firstItem="oT8-0N-uf3" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="13" id="SSk-fi-zij"/>
                     <constraint firstAttribute="bottom" secondItem="lBt-Cx-p7x" secondAttribute="bottom" id="WL1-aC-Iqa"/>
-                    <constraint firstItem="XcV-bv-egJ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="12" id="ZrL-fM-GAV"/>
                     <constraint firstItem="oT8-0N-uf3" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="f3c-uE-sNR"/>
                     <constraint firstAttribute="trailing" secondItem="lBt-Cx-p7x" secondAttribute="trailing" constant="13" id="i6h-Wb-SJD"/>
-                    <constraint firstItem="XcV-bv-egJ" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="jq8-k5-1hg"/>
                     <constraint firstItem="7qX-44-MCd" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="wyL-ko-jxY"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
             <connections>
                 <outlet property="describeButton" destination="7qX-44-MCd" id="ZuO-DP-IKw"/>
-                <outlet property="iconImageView" destination="XcV-bv-egJ" id="eYL-v0-r7A"/>
                 <outlet property="titleLabel" destination="oT8-0N-uf3" id="682-ln-9r0"/>
             </connections>
             <point key="canvasLocation" x="49.600000000000001" y="52.173913043478265"/>
@@ -68,6 +62,5 @@
     </objects>
     <resources>
         <image name="knb_design_down" width="10" height="6"/>
-        <image name="knb_order_more" width="16" height="16"/>
     </resources>
 </document>

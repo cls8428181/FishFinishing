@@ -97,7 +97,7 @@
 
 //定义每一个cell的大小
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    return CGSizeMake(180, 210);
+    return CGSizeMake(180, 215);
 }
 
 //cell的点击事件

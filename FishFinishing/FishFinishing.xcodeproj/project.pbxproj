@@ -12,6 +12,9 @@
 		183C56172283B4E80054217D /* KNBMeOrderOtherTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 183C56152283B4E80054217D /* KNBMeOrderOtherTableViewCell.xib */; };
 		183E04B32280155C009EA112 /* KNBOrderCheckApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 183E04B22280155C009EA112 /* KNBOrderCheckApi.m */; };
 		183E04B622803E55009EA112 /* KNBLoginUserInfoApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 183E04B522803E55009EA112 /* KNBLoginUserInfoApi.m */; };
+		1840B692228E64990062F626 /* CCTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 1840B691228E64990062F626 /* CCTextField.m */; };
+		1840B695228E65080062F626 /* CCTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1840B694228E65080062F626 /* CCTextView.m */; };
+		1840B6A2228EBDBB0062F626 /* HMSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 1840B6A1228EBDBB0062F626 /* HMSegmentedControl.m */; };
 		1849CE2422851AE50064D439 /* MPNoResultHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1849CE1A22851AE50064D439 /* MPNoResultHeadView.m */; };
 		1849CE2522851AE50064D439 /* MPAddNewAddressVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1849CE1B22851AE50064D439 /* MPAddNewAddressVC.m */; };
 		1849CE2622851AE50064D439 /* MPBaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1849CE1D22851AE50064D439 /* MPBaseTableViewController.m */; };
@@ -442,6 +445,12 @@
 		183E04B22280155C009EA112 /* KNBOrderCheckApi.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNBOrderCheckApi.m; sourceTree = "<group>"; };
 		183E04B422803E55009EA112 /* KNBLoginUserInfoApi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNBLoginUserInfoApi.h; sourceTree = "<group>"; };
 		183E04B522803E55009EA112 /* KNBLoginUserInfoApi.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNBLoginUserInfoApi.m; sourceTree = "<group>"; };
+		1840B690228E64990062F626 /* CCTextField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCTextField.h; sourceTree = "<group>"; };
+		1840B691228E64990062F626 /* CCTextField.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CCTextField.m; sourceTree = "<group>"; };
+		1840B693228E65080062F626 /* CCTextView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCTextView.h; sourceTree = "<group>"; };
+		1840B694228E65080062F626 /* CCTextView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CCTextView.m; sourceTree = "<group>"; };
+		1840B6A0228EBDBB0062F626 /* HMSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMSegmentedControl.h; sourceTree = "<group>"; };
+		1840B6A1228EBDBB0062F626 /* HMSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMSegmentedControl.m; sourceTree = "<group>"; };
 		1849CE1522851AE50064D439 /* MPMapView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPMapView.h; sourceTree = "<group>"; };
 		1849CE1622851AE50064D439 /* MPFindNearAddressViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPFindNearAddressViewModel.h; sourceTree = "<group>"; };
 		1849CE1822851AE50064D439 /* MPNoResultHeadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPNoResultHeadView.h; sourceTree = "<group>"; };
@@ -1245,6 +1254,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1840B69F228EBDBB0062F626 /* HMSegmentedControl */ = {
+			isa = PBXGroup;
+			children = (
+				1840B6A0228EBDBB0062F626 /* HMSegmentedControl.h */,
+				1840B6A1228EBDBB0062F626 /* HMSegmentedControl.m */,
+			);
+			path = HMSegmentedControl;
+			sourceTree = "<group>";
+		};
 		1849CE1422851AE50064D439 /* KNBMapChooseView */ = {
 			isa = PBXGroup;
 			children = (
@@ -2520,6 +2538,7 @@
 		96B097FF2249C6D800154643 /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				1840B69F228EBDBB0062F626 /* HMSegmentedControl */,
 				963274F9226D6FEE0080C650 /* CQTopBar */,
 				966D1611226CBD48005F5D77 /* KNPaypp */,
 				966D15DE226C70F3005F5D77 /* UMSocial */,
@@ -2587,6 +2606,10 @@
 				96B0981F2249CB8800154643 /* KNTabBarViewController.m */,
 				96B0982C2249CB8800154643 /* KNWebViewController.h */,
 				96B098232249CB8800154643 /* KNWebViewController.m */,
+				1840B690228E64990062F626 /* CCTextField.h */,
+				1840B691228E64990062F626 /* CCTextField.m */,
+				1840B693228E65080062F626 /* CCTextView.h */,
+				1840B694228E65080062F626 /* CCTextView.m */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -3293,6 +3316,7 @@
 				966DD66D2281CC7400F0F68F /* KNBHomeCompanyOtherViewController.m in Sources */,
 				18697B1B22729E0B0076FFBA /* KNBMeAboutModel.m in Sources */,
 				9697FD5A225597A900027AB3 /* GHDropMenuWaterFallCell.m in Sources */,
+				1840B692228E64990062F626 /* CCTextField.m in Sources */,
 				96B098A52249CC1000154643 /* UIButton+Indicator.m in Sources */,
 				1854B8D422732374009821B8 /* KNBPayProtocolViewController.m in Sources */,
 				966AA550224A0AB300EDBF5F /* HomeViewController.m in Sources */,
@@ -3426,6 +3450,7 @@
 				966AA542224A033000EDBF5F /* XHLaunchAd.m in Sources */,
 				18D4D7332271B4BE000C1022 /* KNBTopRemainingTimeApi.m in Sources */,
 				964926AC225C7F21000BBC7E /* BRDatePickerView.m in Sources */,
+				1840B695228E65080062F626 /* CCTextView.m in Sources */,
 				18F32923227E8C7B008B5B57 /* KNBMeRecruitmentAlertView.m in Sources */,
 				961C532422548E050089E997 /* KNBHomeCompanyHeaderTableViewCell.m in Sources */,
 				96327506226D6FEE0080C650 /* CQTopBarSegmentCell.m in Sources */,
@@ -3541,6 +3566,7 @@
 				96B098A72249CC1000154643 /* UIColor+Hex.m in Sources */,
 				1849CE8E22851EA90064D439 /* SQActionSheetView.m in Sources */,
 				96811888224F5F7B00E4A622 /* KNBHomeOfferViewController.m in Sources */,
+				1840B6A2228EBDBB0062F626 /* HMSegmentedControl.m in Sources */,
 				96B0989C2249CC1000154643 /* UIImage+Resize.m in Sources */,
 				961C52F82251A8C00089E997 /* KNBDSFreeOrderAreaTableViewCell.m in Sources */,
 				966AA581224A2D7000EDBF5F /* KNBHomeDesignSketchTableViewCell.m in Sources */,
