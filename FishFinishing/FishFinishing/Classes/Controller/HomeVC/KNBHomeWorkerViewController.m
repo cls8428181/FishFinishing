@@ -104,6 +104,7 @@
         [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(weakSelf.iconImageView.mas_right).mas_offset(13);
             make.top.mas_equalTo(13);
+            make.width.mas_lessThanOrEqualTo(KNB_SCREEN_WIDTH - 190);
         }];
         [self.markButton mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(weakSelf.titleLabel.mas_right).mas_offset(18);
@@ -256,7 +257,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     KNB_WS(weakSelf);
     if (indexPath.row == 1) {
-        [KNBAddressPickerView showAddressPickerWithDefaultSelected:nil resultBlock:^(KNBCityModel *province, KNBCityModel *city, KNBCityModel *area) {
+        [KNBAddressPickerView showAddressPickerWithDefaultSelected:nil resultBlock:^(KNBAddressModel *province, KNBAddressModel *city, KNBAddressModel *area) {
             KNBDSFreeOrderAddressTableViewCell *cell = [weakSelf.knbTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]];
             [cell setProvinceName:province.name cityName:city.name areaName:area.name];
             weakSelf.orderModel.province_id = [province.code integerValue];
@@ -466,7 +467,7 @@
         [_orderButton setTitle:@"点击预约" forState:UIControlStateNormal];
         [_orderButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         _orderButton.titleLabel.font = [UIFont systemFontOfSize:12];
-        [_orderButton setBackgroundColor:[UIColor colorWithHex:0xf5701b]];
+        [_orderButton setBackgroundColor:[UIColor knf5701bColor]];
         _orderButton.layer.masksToBounds = YES;
         _orderButton.layer.cornerRadius = 13;
         [_orderButton addTarget:self action:@selector(orderButtonAction) forControlEvents:UIControlEventTouchUpInside];

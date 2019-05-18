@@ -9,22 +9,22 @@
 #import "KNBHomeCityListViewController.h"
 #import "KNBMainConfigModel.h"
 #import "KNBSearchView.h"
+#import "KNBCityModel.h"
 
 @interface KNBHomeCityListViewController ()<UISearchBarDelegate, UISearchControllerDelegate, UISearchResultsUpdating>
 
 @property (nonatomic, strong) NSArray *sectionArray;
 @property (nonatomic, strong) NSDictionary *cityDataDic;
-
 //顶部当前选择城市
 @property (nonatomic, strong) UIImageView *topImageView;
 @property (nonatomic, strong) UILabel *topLabel;
 @property (nonatomic, strong) UILabel *currentCityLabel;
 @property (nonatomic, strong) UIView *lineView;
-
+//tableview headerview
 @property (nonatomic, strong) KNBHomeCityHeaderView *cityHeadView;
-
+@property (nonatomic, strong) NSMutableArray *historyArray;
+//搜索
 @property (nonatomic, strong) KNBSearchView *searchView;
-
 @property (nonatomic, assign) BOOL isSearchResult;
 //搜索数组
 @property (nonatomic, strong) NSMutableArray *searchArray;
@@ -33,20 +33,63 @@
 
 @implementation KNBHomeCityListViewController
 
+#pragma mark - life cycle
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [self configuration];
+    
+    [self addUI];
+    
+    [self settingConstraints];
+}
+
+#pragma mark - Setup UI Constraints
+/*
+ *  在这里添加UIView的约束布局相关代码
+ */
+- (void)settingConstraints {
+    KNB_WS(weakSelf);
+    [self.topImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(12);
+        make.top.equalTo(weakSelf.searchView.mas_bottom).mas_offset(20);
+    }];
+    [self.topLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(weakSelf.topImageView.mas_right).mas_offset(10);
+        make.centerY.equalTo(weakSelf.topImageView);
+    }];
+    [self.currentCityLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(weakSelf.topLabel.mas_right).mas_offset(10);
+        make.centerY.equalTo(weakSelf.topImageView);
+    }];
+    [self.lineView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.mas_equalTo(0);
+        make.top.equalTo(weakSelf.topLabel.mas_bottom).mas_offset(20);
+        make.height.mas_equalTo(10);
+    }];
+    [self.knbTableView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.bottom.mas_equalTo(0);
+        make.top.equalTo(weakSelf.lineView.mas_bottom).mas_offset(0);
+    }];
+}
+
+#pragma mark - Utils
+- (void)configuration {
     [self.naviView removeFromSuperview];
-    [self.view addSubview:self.searchView];
-    self.knbTableView.rowHeight = 38;
-    [self.view addSubview:self.knbTableView];
     self.isSearchResult = NO;
-    if (self.headerType == KNHomeCityHeaderCustom) {
-        self.knbTableView.tableHeaderView = self.cityHeadView;
-    } else {
-        CGFloat topHeigh = self.cityHeadView.cityHeaderViewHeight;
-        self.knbTableView.frame = CGRectMake(0, KNB_NAV_HEIGHT + topHeigh, KNB_SCREEN_WIDTH, KNB_SCREEN_HEIGHT - KNB_NAV_HEIGHT - topHeigh);
-        [self.view addSubview:self.cityHeadView];
-    }
+    self.knbTableView.rowHeight = 38;
+    self.knbTableView.tableHeaderView = self.cityHeadView;
+    self.view.backgroundColor = [UIColor whiteColor];
+    self.knbTableView.backgroundColor = [UIColor whiteColor];
+}
+
+- (void)addUI {
+    [self.view addSubview:self.searchView];
+    [self.view addSubview:self.topImageView];
+    [self.view addSubview:self.topLabel];
+    [self.view addSubview:self.currentCityLabel];
+    [self.view addSubview:self.lineView];
+    [self.view addSubview:self.knbTableView];
 }
 
 - (void)leftButtonAction:(UIButton *)button {
@@ -101,12 +144,13 @@
         NSArray *cityArr = self.cityDataDic[self.sectionArray[indexPath.section]];
         cityDic = cityArr[indexPath.row];
     }
-
-    if (self.cityBlock) {
-        self.cityBlock(cityDic[@"name"], cityDic[@"id"]);
-    }
+    !self.cityBlock ?: self.cityBlock(cityDic[@"name"], cityDic[@"id"]);
+    KNBCityModel *cityModel = [KNBCityModel changeResponseJSONObject:cityDic];
+    [KNBCityModel saveWithModel:cityModel resultBlock:^(BOOL success) {
+    }];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
+
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 20)];
     label.textColor = [UIColor knLightGrayColor];
@@ -127,6 +171,7 @@
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     return self.sectionArray[section];
 }
+
 //设置tableView的右边索引
 - (NSArray<NSString *> *)sectionIndexTitlesForTableView:(UITableView *)tableView {
     tableView.sectionIndexColor = [UIColor knLightGrayColor];
@@ -210,13 +255,13 @@
 
 - (KNBHomeCityHeaderView *)cityHeadView {
     if (!_cityHeadView) {
-        _cityHeadView = [[KNBHomeCityHeaderView alloc] initWithViewType:self.headerType];
-        _cityHeadView.currentCityName = self.currentCity;
+        _cityHeadView = [[KNBHomeCityHeaderView alloc] init];
+        _cityHeadView.frame = CGRectMake(0, 0, KNB_SCREEN_WIDTH, [KNBHomeCityHeaderView cityHeaderViewHeight]);
         KNB_WS(weakSelf);
-        _cityHeadView.allCityBlock = ^() {
-            if (weakSelf.cityBlock) {
-                weakSelf.cityBlock(@"全部城市", @"");
-            }
+        _cityHeadView.selectComplete = ^(KNBCityModel *cityModel) {
+            !weakSelf.cityBlock ?: weakSelf.cityBlock(cityModel.name, cityModel.code);
+            [KNBCityModel saveWithModel:cityModel resultBlock:^(BOOL success) {
+            }];
             [weakSelf dismissViewControllerAnimated:YES completion:nil];
         };
     }
@@ -225,12 +270,12 @@
 
 - (void)setCurrentCity:(NSString *)currentCity {
     _currentCity = currentCity;
-    self.cityHeadView.currentCityName = currentCity;
+    self.currentCityLabel.text = currentCity;
 }
 
 - (KNBSearchView *)searchView {
     if (!_searchView) {
-        _searchView = [[KNBSearchView alloc] initWithFrame:CGRectMake(0, 0, KNB_SCREEN_WIDTH, KNB_NAV_HEIGHT  ) isNavView:YES isHaveBackButton:YES isHaveCancleButton:NO style:KNBSearchViewStyleWhite];
+        _searchView = [[KNBSearchView alloc] initWithFrame:CGRectMake(0, 0, KNB_SCREEN_WIDTH, KNB_NAV_HEIGHT) isNavView:YES isHaveBackButton:YES isHaveCancleButton:NO style:KNBSearchViewStyleWhite];
         _searchView.searchBar.placeholder = @"搜索城市";
         _searchView.searchBar.delegate = self;
         KNB_WS(weakSelf);
@@ -259,6 +304,7 @@
 - (UILabel *)topLabel {
     if (!_topLabel) {
         _topLabel = [[UILabel alloc] init];
+        _topLabel.text = @"当前定位城市";
     }
     return _topLabel;
 }
@@ -266,6 +312,7 @@
 - (UILabel *)currentCityLabel {
     if (!_currentCityLabel) {
         _currentCityLabel = [[UILabel alloc] init];
+        _currentCityLabel.text = self.currentCity;
     }
     return _currentCityLabel;
 }
@@ -273,8 +320,16 @@
 - (UIView *)lineView {
     if (!_lineView) {
         _lineView = [[UIView alloc] init];
+        _lineView.backgroundColor = [UIColor knf2f2f2Color];
     }
     return _lineView;
+}
+
+- (NSMutableArray *)historyArray {
+    if (!_historyArray) {
+        _historyArray = [NSMutableArray array];
+    }
+    return _historyArray;
 }
 
 @end

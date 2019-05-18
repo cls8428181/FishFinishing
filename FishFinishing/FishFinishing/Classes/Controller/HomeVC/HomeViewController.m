@@ -61,6 +61,8 @@ static CGFloat const kHeaderViewHeight = 50.0f;
 @property (nonatomic, strong) NSArray *serviceArray;
 //客服按钮
 @property (nonatomic, strong) UIButton *serviceButton;
+//遮罩
+@property (nonatomic, strong) UIView *coverView;
 @end
 
 @implementation HomeViewController
@@ -104,6 +106,7 @@ static CGFloat const kHeaderViewHeight = 50.0f;
     [self.view bringSubviewToFront:self.serviceButton];
     [self addMJRefreshHeaderView];
     [self addMJRefreshFootView];
+    [self.view addSubview:self.coverView];
 }
 
 - (void)addMJRefreshHeaderView {
@@ -133,9 +136,10 @@ static CGFloat const kHeaderViewHeight = 50.0f;
 }
 
 - (void)fetchData {
-    [LCProgressHUD showLoading:@""];
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     KNBHomeBannerApi *api = [[KNBHomeBannerApi alloc] initWithVari:@"index_banner" cityName:[KNGetUserLoaction shareInstance].cityName];
     KNB_WS(weakSelf);
+    api.needHud = NO;
     [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *_Nonnull request) {
         if (api.requestSuccess) {
             NSArray *modelArray = [KNBHomeBannerModel changeResponseJSONObject:request.responseObject[@"list"]];
@@ -146,7 +150,7 @@ static CGFloat const kHeaderViewHeight = 50.0f;
             KNBHomeHeaderView *headerView = [[KNBHomeHeaderView alloc] initWithDataSource:tempArray];
             headerView.frame = CGRectMake(0, 0, KNB_SCREEN_WIDTH, 143);
             weakSelf.mainTableView.tableHeaderView = headerView;
-            [weakSelf requestSuccess:YES requestEnd:YES];
+//            [weakSelf requestSuccess:YES requestEnd:YES];
         } else {
             [weakSelf requestSuccess:NO requestEnd:NO];
         }
@@ -158,6 +162,7 @@ static CGFloat const kHeaderViewHeight = 50.0f;
     [self recommendCaseRequest:1];
     
     KNBRecruitmentTypeApi *typeApi = [[KNBRecruitmentTypeApi alloc] init];
+    typeApi.needHud = NO;
     [typeApi startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *_Nonnull request) {
         if (typeApi.requestSuccess) {
             NSDictionary *dic = request.responseObject[@"list"];
@@ -330,21 +335,29 @@ static CGFloat const kHeaderViewHeight = 50.0f;
     serviceApi.cat_parent_id = [model.typeId integerValue];
     serviceApi.page = page;
     serviceApi.limit = 10;
+    serviceApi.needHud = NO;
     KNB_WS(weakSelf);
     [serviceApi startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *_Nonnull request) {
         if (serviceApi.requestSuccess) {
-            [LCProgressHUD hide];
+            [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
+            [UIView animateWithDuration:1 animations:^{
+                weakSelf.coverView.alpha = 0;
+            }];
             NSDictionary *dic = request.responseObject[@"list"];
             NSArray *modelArray = [KNBHomeServiceModel changeResponseJSONObject:dic];
             self.serviceArray = modelArray;
-            [weakSelf.subView reloadTableViewAtIndex:index dataSource:modelArray title:weakSelf.titleArray[index] page:page];
+            if (!isNullArray(weakSelf.titleArray)) {
+                [weakSelf.subView reloadTableViewAtIndex:index dataSource:modelArray title:weakSelf.titleArray[index] page:page];
+            }
             if (modelArray.count < 10) {
                 weakSelf.requestPage = 1;
             }
         } else {
+            [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
             [weakSelf requestSuccess:NO requestEnd:NO];
         }
     } failure:^(__kindof YTKBaseRequest *_Nonnull request) {
+        [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
         [weakSelf requestSuccess:NO requestEnd:NO];
     }];
 }
@@ -358,6 +371,7 @@ static CGFloat const kHeaderViewHeight = 50.0f;
     } else {
         api = [[KNBOrderAreaRangeApi alloc] init];
     }
+    api.needHud = NO;
     KNB_WS(weakSelf);
     [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *_Nonnull request) {
         if (api.requestSuccess) {
@@ -388,6 +402,15 @@ static CGFloat const kHeaderViewHeight = 50.0f;
     [self.navigationController pushViewController:aboutVC animated:YES];
 }
 
+- (void)panAction:(UIPanGestureRecognizer *)recognizer {
+    CGPoint translationPoint = [recognizer translationInView:self.view];
+    CGPoint center = recognizer.view.center;
+    if (center.y + translationPoint.y < KNB_SCREEN_HEIGHT - KNB_TAB_HEIGHT) {
+        recognizer.view.center = CGPointMake(center.x + translationPoint.x, center.y + translationPoint.y);
+        [recognizer setTranslation:CGPointZero inView:self.view];
+    }
+}
+
 #pragma mark - Getters And Setters
 /* getter和setter全部都放在最后*/
 
@@ -410,7 +433,7 @@ static CGFloat const kHeaderViewHeight = 50.0f;
         _segmentedControl.titleTextAttributes = @{NSForegroundColorAttributeName : [UIColor blackColor], NSFontAttributeName : [UIFont systemFontOfSize:15.0]};
         _segmentedControl.selectedTitleTextAttributes = @{NSForegroundColorAttributeName : [UIColor colorWithHex:0x009fe8], NSFontAttributeName : [UIFont boldSystemFontOfSize:15.0]};
         _segmentedControl.leading = 30;
-        _segmentedControl.segmentEdgeInset = UIEdgeInsetsMake(0, 10, 0, 10);
+        _segmentedControl.segmentEdgeInset = UIEdgeInsetsMake(0, 15, 0, 15);
         _segmentedControl.selectionIndicatorColor = [UIColor colorWithHex:0x009fe8];
         _segmentedControl.selectionIndicatorHeight = 2.0;
         _segmentedControl.selectionStyle = HMSegmentedControlSelectionStyleTextWidthStripe;
@@ -446,6 +469,9 @@ static CGFloat const kHeaderViewHeight = 50.0f;
         _serviceButton.frame = CGRectMake(KNB_SCREEN_WIDTH - 40, KNB_SCREEN_HEIGHT - 300, 40, 40);
         [_serviceButton setImage:KNBImages(@"knb_home_kefu") forState:UIControlStateNormal];
         [_serviceButton addTarget:self action:@selector(serviceButtonAction) forControlEvents:UIControlEventTouchUpInside];
+        UIPanGestureRecognizer *panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panAction:)];
+        [_serviceButton addGestureRecognizer:panGesture];
+
     }
     return _serviceButton;
 }
@@ -478,5 +504,14 @@ static CGFloat const kHeaderViewHeight = 50.0f;
         _recommendCaseArray = [NSMutableArray array];
     }
     return _recommendCaseArray;
+}
+
+- (UIView *)coverView {
+    if (!_coverView) {
+        _coverView = [[UIView alloc] init];
+        _coverView.frame = CGRectMake(0, KNB_NAV_HEIGHT, KNB_SCREEN_WIDTH, KNB_SCREEN_HEIGHT - KNB_TAB_HEIGHT - KNB_NAV_HEIGHT);
+        _coverView.backgroundColor = [UIColor whiteColor];
+    }
+    return _coverView;
 }
 @end

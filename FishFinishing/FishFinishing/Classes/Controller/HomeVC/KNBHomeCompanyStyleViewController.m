@@ -10,7 +10,7 @@
 #import "FMTagsView.h"
 #import "KNBRecruitmentCatChildApi.h"
 #import "KNBHomeSingleAreaApi.h"
-#import "KNBCityModel.h"
+#import "KNBAddressModel.h"
 #import "NSString+Size.h"
 #import "KNBOrderStyleApi.h"
 

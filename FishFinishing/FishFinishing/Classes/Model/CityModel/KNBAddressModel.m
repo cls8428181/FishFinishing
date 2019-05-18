@@ -1,14 +1,14 @@
 //
-//  KNBCityModel.m
+//  KNBAddressModel.m
 //  FishFinishing
 //
 //  Created by apple on 2019/4/16.
 //  Copyright © 2019年 常立山. All rights reserved.
 //
 
-#import "KNBCityModel.h"
+#import "KNBAddressModel.h"
 
-@implementation KNBCityModel
+@implementation KNBAddressModel
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
     return @{
              @"code" : @"id",
@@ -30,14 +30,14 @@
 }
 
 + (NSValueTransformer *)cityListJSONTransformer {
-    return [MTLJSONAdapter arrayTransformerWithModelClass:KNBCityModel.class];
+    return [MTLJSONAdapter arrayTransformerWithModelClass:KNBAddressModel.class];
 }
 
 + (NSValueTransformer *)areaListJSONTransformer {
-    return [MTLJSONAdapter arrayTransformerWithModelClass:KNBCityModel.class];
+    return [MTLJSONAdapter arrayTransformerWithModelClass:KNBAddressModel.class];
 }
 
 + (NSValueTransformer *)dataListJSONTransformer {
-    return [MTLJSONAdapter arrayTransformerWithModelClass:KNBCityModel.class];
+    return [MTLJSONAdapter arrayTransformerWithModelClass:KNBAddressModel.class];
 }
 @end

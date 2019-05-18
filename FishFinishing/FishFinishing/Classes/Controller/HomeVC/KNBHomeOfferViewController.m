@@ -20,7 +20,7 @@
 #import "KNBAddressPickerView.h"
 #import "KNBHomeBespokeApi.h"
 #import "KNBOrderModel.h"
-#import "KNBCityModel.h"
+#import "KNBAddressModel.h"
 #import "KNBRecruitmentDetailApi.h"
 #import "KNBHomeServiceModel.h"
 #import "KNBOrderAlertView.h"
@@ -89,6 +89,7 @@
         [self.titleButton mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerY.equalTo(weakSelf.titleLabel);
             make.left.equalTo(weakSelf.titleLabel.mas_right).mas_offset(15);
+            make.right.mas_equalTo(-12);
         }];
     }
     [self.adImageView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -207,7 +208,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     KNB_WS(weakSelf);
     if (indexPath.row == 1) {
-        [KNBAddressPickerView showAddressPickerWithDefaultSelected:nil resultBlock:^(KNBCityModel *province, KNBCityModel *city, KNBCityModel *area) {
+        [KNBAddressPickerView showAddressPickerWithDefaultSelected:nil resultBlock:^(KNBAddressModel *province, KNBAddressModel *city, KNBAddressModel *area) {
             KNBDSFreeOrderAddressTableViewCell *cell = [weakSelf.knbTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]];
             [cell setProvinceName:province.name cityName:city.name areaName:area.name];
             weakSelf.orderModel.province_id = [province.code integerValue];

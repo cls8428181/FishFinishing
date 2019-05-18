@@ -19,6 +19,7 @@
 #import "KNBHomeCompanyHouseViewController.h"
 #import "KNBHomeCompanyAreaViewController.h"
 #import "KNBHomeRecommendCaseModel.h"
+#import "KNBMeAboutViewController.h"
 
 @interface DesignSketchViewController ()<UICollectionViewDelegate, UICollectionViewDataSource>
 //滑动区域
@@ -28,7 +29,8 @@
 @property (nonatomic, strong) CQTopBarViewController *topBar;
 //网络请求
 @property (nonatomic, strong) KNBRecruitmentCaseListApi *api;
-
+//客服按钮
+@property (nonatomic, strong) UIButton *serviceButton;
 @end
 
 @implementation DesignSketchViewController
@@ -81,6 +83,8 @@
         [self.view addSubview:self.topBar.view];
         [self.topBar.footerView addSubview:self.collectionView];
         [self.view bringSubviewToFront:self.naviView];
+        [self.view addSubview:self.serviceButton];
+        [self.view bringSubviewToFront:self.serviceButton];
         self.topBar.footerView.frame = CGRectMake(0, KNB_NAV_HEIGHT + 50, KNB_SCREEN_WIDTH, KNB_SCREEN_HEIGHT - KNB_NAV_HEIGHT - KNB_TAB_HEIGHT - 50);
         self.collectionView.frame = CGRectMake(0, KNB_NAV_HEIGHT + 50, KNB_SCREEN_WIDTH, KNB_SCREEN_HEIGHT - KNB_NAV_HEIGHT - KNB_TAB_HEIGHT- 50);
 
@@ -88,8 +92,6 @@
         [self.view addSubview:self.collectionView];
         self.collectionView.frame = CGRectMake(0, KNB_NAV_HEIGHT, KNB_SCREEN_WIDTH, KNB_SCREEN_HEIGHT - KNB_NAV_HEIGHT);
     }
-  
-    
 }
 
 - (void)addUI {
@@ -226,6 +228,19 @@
     [self fetchData:1];
 }
 
+- (void)serviceButtonAction {
+    KNBMeAboutViewController *aboutVC = [[KNBMeAboutViewController alloc] init];
+    [self.navigationController pushViewController:aboutVC animated:YES];
+}
+
+- (void)panAction:(UIPanGestureRecognizer *)recognizer {
+    CGPoint translationPoint = [recognizer translationInView:self.view];
+    CGPoint center = recognizer.view.center;
+    if (center.y + translationPoint.y < KNB_SCREEN_HEIGHT - KNB_TAB_HEIGHT) {
+        recognizer.view.center = CGPointMake(center.x + translationPoint.x, center.y + translationPoint.y);
+        [recognizer setTranslation:CGPointZero inView:self.view];
+    }
+}
 
 #pragma mark - Getters And Setters
 /* getter和setter全部都放在最后*/
@@ -280,6 +295,19 @@
         _topBar.selectedTitleTextColor = [UIColor colorWithHex:0x0096e6];
     }
     return _topBar;
+}
+
+- (UIButton *)serviceButton {
+    if (!_serviceButton) {
+        _serviceButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        _serviceButton.frame = CGRectMake(KNB_SCREEN_WIDTH - 40, KNB_SCREEN_HEIGHT - 300, 40, 40);
+        [_serviceButton setImage:KNBImages(@"knb_home_kefu") forState:UIControlStateNormal];
+        [_serviceButton addTarget:self action:@selector(serviceButtonAction) forControlEvents:UIControlEventTouchUpInside];
+        UIPanGestureRecognizer *panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panAction:)];
+        [_serviceButton addGestureRecognizer:panGesture];
+        
+    }
+    return _serviceButton;
 }
 
 @end

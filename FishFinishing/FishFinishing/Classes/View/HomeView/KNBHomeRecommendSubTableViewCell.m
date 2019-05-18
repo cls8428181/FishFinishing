@@ -182,7 +182,7 @@
         tagView.tagSelectedBorderColor = [UIColor colorWithHex:0xebebeb];
         tagView.tagBackgroundColor = [UIColor colorWithHex:0xf2f2f2];
         tagView.lineSpacing = 7;
-        tagView.interitemSpacing = 5;
+        tagView.interitemSpacing = 17;
         tagView.tagFont = KNBFont(11);
         tagView.tagTextColor = [UIColor colorWithHex:0x737373];
         tagView.allowsSelection = NO;

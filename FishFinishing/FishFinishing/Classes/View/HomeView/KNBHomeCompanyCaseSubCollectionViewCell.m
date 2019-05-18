@@ -80,7 +80,7 @@
     _model = model;
     [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:model.img] placeholderImage:KNBImages(@"knb_default_user")];
     self.titleLabel.text = model.title;
-    self.detailLabel.text = [NSString stringWithFormat:@"%@/%@m㎡/%@",model.apart_name,model.acreage,model.style_name];
+    self.detailLabel.text = [NSString stringWithFormat:@"%@/%@㎡/%@",model.apart_name ?: @"无",model.acreage ?: @"0",model.style_name ?: @"无"];
     self.iconImageView.layer.masksToBounds = YES;
     self.iconImageView.layer.cornerRadius = 5;
 }

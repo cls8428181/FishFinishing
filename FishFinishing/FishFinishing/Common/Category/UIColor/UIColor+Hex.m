@@ -88,6 +88,13 @@
     return [UIColor colorWithHex:0x0096e6];
 }
 
++ (UIColor *)knf5701bColor {
+    return [UIColor colorWithHex:0xf5701b];
+}
+
++ (UIColor *)knf2f2f2Color {
+    return [UIColor colorWithHex:0xf2f2f2];
+}
 //0x666666
 + (UIColor *)knGrayColor {
     return [UIColor colorWithRed:102 / 255.0 green:102 / 255.0 blue:102 / 255.0 alpha:1.0];
@@ -97,9 +104,9 @@
     return [UIColor colorWithRed:26 / 255.0 green:26 / 255.0 blue:26 / 255.0 alpha:0.7];
 }
 
-//0x999999
-+ (UIColor *)knWordsColor {
-    return [UIColor colorWithRed:153 / 255.0 green:153 / 255.0 blue:153 / 255.0 alpha:1.0];
+//0x333333
++ (UIColor *)kn333333Color {
+    return [UIColor colorWithHex:0x333333];
 }
 + (UIColor *)SmartColorWithHexString:(NSString *)hexValue {
     UIColor *defaultResult = [UIColor whiteColor];

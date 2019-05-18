@@ -1,5 +1,5 @@
 //
-//  KNBCityModel.h
+//  KNBAddressModel.h
 //  FishFinishing
 //
 //  Created by apple on 2019/4/16.
@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface KNBCityModel : KNBBaseModel
+@interface KNBAddressModel : KNBBaseModel
 /**
  省 id/市 id/区 id
  */

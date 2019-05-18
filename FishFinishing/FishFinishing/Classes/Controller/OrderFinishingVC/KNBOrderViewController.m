@@ -277,7 +277,7 @@
             [self unitRequest];
             
         } else if (indexPath.section == 2 && indexPath.row == 1) {
-            [KNBAddressPickerView showAddressPickerWithDefaultSelected:@[] resultBlock:^(KNBCityModel *province, KNBCityModel *city, KNBCityModel *area) {
+            [KNBAddressPickerView showAddressPickerWithDefaultSelected:@[] resultBlock:^(KNBAddressModel *province, KNBAddressModel *city, KNBAddressModel *area) {
                 KNBOrderAddressTableViewCell *cell = [weakSelf.knGroupTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:2]];
                 [cell setProvinceName:province.name cityName:city.name areaName:area.name];
                 weakSelf.orderModel.province_id = [province.code integerValue];
@@ -288,7 +288,7 @@
             if (indexPath.row == 0) {
                 [self finishingStyleRequest];
             } else {
-                [BRStringPickerView showStringPickerWithTitle:@"选择档次" dataSource:@[@"低",@"中",@"高"] defaultSelValue:nil resultBlock:^(id selectValue) {
+                [BRStringPickerView showStringPickerWithTitle:@"选择档次" dataSource:@[@"高",@"中",@"低"] defaultSelValue:nil resultBlock:^(id selectValue) {
                     KNBOrderDownTableViewCell *cell = [weakSelf.knGroupTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:3]];
                     [cell setButtonTitle:selectValue];
                     weakSelf.orderModel.level = selectValue;

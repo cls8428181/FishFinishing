@@ -17,7 +17,7 @@
 #import "KNBHomeCompanyStyleViewController.h"
 #import "KNBHomeCompanyCityViewController.h"
 #import "KNBHomeCompanyOtherViewController.h"
-#import "KNBCityModel.h"
+#import "KNBAddressModel.h"
 
 @interface KNBHomeCompanyListViewController ()
 //header view
@@ -56,8 +56,8 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(InfoNotificationAction:) name:NSStringFromClass([KNBHomeCompanyCityViewController class]) object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(InfoNotificationAction:) name:NSStringFromClass([KNBHomeCompanyOtherViewController class]) object:nil];
     self.topBar.model = self.model;
-    for (KNBCityModel *provinceModel in self.cityArray) {
-        for (KNBCityModel *cityModel in provinceModel.cityList) {
+    for (KNBAddressModel *provinceModel in self.cityArray) {
+        for (KNBAddressModel *cityModel in provinceModel.cityList) {
             if ([cityModel.name isEqual:[KNGetUserLoaction shareInstance].cityName]) {
                 self.topBar.areaId = [cityModel.code integerValue];
             }
@@ -205,7 +205,7 @@
     if (!_cityArray) {
         NSString *filePath =[[NSBundle mainBundle] pathForResource:@"KNBCity" ofType:@"plist"];
         NSArray *dataSource = [NSArray arrayWithContentsOfFile:filePath];
-        _cityArray = [KNBCityModel changeResponseJSONObject:dataSource];
+        _cityArray = [KNBAddressModel changeResponseJSONObject:dataSource];
     }
     return _cityArray;
 }
@@ -216,6 +216,7 @@
         _serviceApi.cat_parent_id = [self.model.typeId integerValue];
         _serviceApi.page = 1;
         _serviceApi.limit = 10;
+        _serviceApi.hudString = @"";
     }
     return _serviceApi;
 }

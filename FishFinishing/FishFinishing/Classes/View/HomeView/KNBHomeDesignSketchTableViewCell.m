@@ -114,7 +114,7 @@
 #pragma mark - lazy load
 - (HMSegmentedControl *)segmentedControl {
     if (!_segmentedControl) {
-        _segmentedControl = [[HMSegmentedControl alloc] initWithSectionTitles:@[ @"风格", @"户型", @"空间"]];
+        _segmentedControl = [[HMSegmentedControl alloc] initWithSectionTitles:@[ @"风格", @"户型", @"面积"]];
         _segmentedControl.titleTextAttributes = @{NSForegroundColorAttributeName : [UIColor blackColor], NSFontAttributeName : [UIFont systemFontOfSize:15.0]};
         _segmentedControl.selectedTitleTextAttributes = @{NSForegroundColorAttributeName : [UIColor colorWithHex:0x009fe8], NSFontAttributeName : [UIFont boldSystemFontOfSize:15.0]};
         _segmentedControl.selectionIndicatorColor = [UIColor colorWithHex:0x009fe8];

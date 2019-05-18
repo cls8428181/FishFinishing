@@ -7,22 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "KNBCityModel.h"
 
 typedef void(^KNHomeCityHeaderAllCityBlock)(void);
 
-typedef NS_ENUM(NSInteger, KNHomeCityHeaderType) {
-    KNHomeCityHeaderCustom,
-    KNHomeCityHeaderBeauty,
-};
-
 @interface KNBHomeCityHeaderView : UIView
 
-@property (nonatomic, copy) KNHomeCityHeaderAllCityBlock allCityBlock;
++ (CGFloat)cityHeaderViewHeight;
 
-@property (nonatomic, copy) NSString *currentCityName;
-
-- (instancetype)initWithViewType:(KNHomeCityHeaderType)headerType;
-
-- (CGFloat)cityHeaderViewHeight;
+@property (nonatomic, copy) void (^selectComplete)(KNBCityModel *cityModel);
 
 @end

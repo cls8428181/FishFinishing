@@ -47,9 +47,27 @@
 + (UIColor *)knYellowColor;
 + (UIColor *)knBgColor;         // 灰色背景颜色
 + (UIColor *)knRedColor;
-+ (UIColor *)knMainColor;        //大鱼装修主色调
+
+/**
+ 主色调 0x0096e6
+ */
++ (UIColor *)knMainColor;        //主色调
 + (UIColor *)knGrayColor;       //灰色字体
-+ (UIColor *)knWordsColor;      //999999灰色的字
+
+/**
+ 黑色 0x333333
+ */
++ (UIColor *)kn333333Color;
+
+/**
+ 橘色 0xf5701b
+ */
++ (UIColor *)knf5701bColor;
+
+/**
+ 灰色 0xf2f2f2
+ */
++ (UIColor *)knf2f2f2Color;
 + (UIColor *)knCoverBlackColor; // #1a1a1a
 
 @end

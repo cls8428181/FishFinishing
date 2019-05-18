@@ -29,7 +29,14 @@
             if (api.requestSuccess) {
                 NSDictionary *dic = request.responseJSONObject[@"list"];
                 [[NSUserDefaults standardUserDefaults] setObject:dic[@"orderid"] forKey:@"orderid"];
-                [self startPay:dic payMethod:payMethod orderId:dic[@"orderid"] completeBlock:complete];
+                if ([request.responseJSONObject[@"status"] isEqualToString:@"1"]) {
+                    if (complete) {
+                        complete(YES, api.errMessage, api.getRequestStatuCode);
+                    }
+                } else {
+                    [self startPay:dic payMethod:payMethod orderId:dic[@"orderid"] completeBlock:complete];
+                }
+
             } else {
                 if (complete) {
                     complete(NO, api.errMessage, api.getRequestStatuCode);
@@ -47,9 +54,17 @@
         [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *_Nonnull request) {
             if (api.requestSuccess) {
                 NSDictionary *dic = request.responseJSONObject[@"list"];
-                NSString *sign = dic[@"sign"];
                 [[NSUserDefaults standardUserDefaults] setObject:dic[@"orderid"] forKey:@"orderid"];
-                [self startPay:sign payMethod:payMethod orderId:dic[@"orderid"] completeBlock:complete];
+
+                if ([request.responseJSONObject[@"status"] isEqualToString:@"1"]) {
+                    if (complete) {
+                        complete(YES, api.errMessage, api.getRequestStatuCode);
+                    }
+                } else {
+                    NSString *sign = dic[@"sign"];
+                    [self startPay:sign payMethod:payMethod orderId:dic[@"orderid"] completeBlock:complete];
+                }
+
             } else {
                 if (complete) {
                     complete(NO, api.errMessage, api.getRequestStatuCode);

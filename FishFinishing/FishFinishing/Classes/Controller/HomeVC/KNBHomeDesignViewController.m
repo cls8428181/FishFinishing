@@ -97,6 +97,7 @@
         [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(weakSelf.iconImageView.mas_right).mas_offset(13);
             make.top.equalTo(weakSelf.iconImageView.mas_top).mas_offset(11);
+            make.width.mas_lessThanOrEqualTo(KNB_SCREEN_WIDTH - 190);
         }];
         [self.markButton mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(weakSelf.titleLabel.mas_right).mas_offset(13);
@@ -270,7 +271,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     KNB_WS(weakSelf);
     if (indexPath.row == 1) {
-        [KNBAddressPickerView showAddressPickerWithDefaultSelected:nil resultBlock:^(KNBCityModel *province, KNBCityModel *city, KNBCityModel *area) {
+        [KNBAddressPickerView showAddressPickerWithDefaultSelected:nil resultBlock:^(KNBAddressModel *province, KNBAddressModel *city, KNBAddressModel *area) {
             KNBDSFreeOrderAddressTableViewCell *cell = [weakSelf.knbTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]];
             [cell setProvinceName:province.name cityName:city.name areaName:area.name];
             weakSelf.orderModel.province_id = [province.code integerValue];

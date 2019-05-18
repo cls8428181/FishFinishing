@@ -75,7 +75,7 @@
     [self.leftLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(weakSelf.leftImageView);
         make.left.equalTo(weakSelf.leftImageView.mas_right).mas_offset(10);
-        make.right.mas_equalTo(-KNB_SCREEN_WIDTH/3 - 10);
+        make.right.mas_equalTo(-10);
     }];
     [self.orderButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.bottom.equalTo(weakSelf.view);
@@ -365,7 +365,7 @@
 - (UIImageView *)leftImageView {
     if (!_leftImageView) {
         _leftImageView = [[UIImageView alloc] init];
-        [_leftImageView sd_setImageWithURL:[NSURL URLWithString:self.model.img] placeholderImage:KNBImages(@"knb_default_user")];
+        [_leftImageView sd_setImageWithURL:[NSURL URLWithString:self.model.logo] placeholderImage:KNBImages(@"knb_default_user")];
         _leftImageView.layer.masksToBounds = YES;
         _leftImageView.layer.cornerRadius = 19;
         
@@ -378,7 +378,7 @@
         _leftLabel = [[UILabel alloc] init];
         _leftLabel.text = self.model.name;
         _leftLabel.font = [UIFont systemFontOfSize:14];
-        _leftLabel.textColor = [UIColor colorWithHex:0x333333];
+        _leftLabel.textColor = [UIColor kn333333Color];
     }
     return _leftLabel;
 }
@@ -387,7 +387,7 @@
     if (!_orderButton) {
         _orderButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [_orderButton setTitle:@"立即预约" forState:UIControlStateNormal];
-        [_orderButton setBackgroundColor:[UIColor colorWithHex:0xf5701b]];
+        [_orderButton setBackgroundColor:[UIColor knf5701bColor]];
         [_orderButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         _orderButton.titleLabel.font = KNBFont(18);
         [_orderButton addTarget:self action:@selector(orderButtonAction:) forControlEvents:UIControlEventTouchUpInside];

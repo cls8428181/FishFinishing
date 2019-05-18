@@ -54,12 +54,15 @@ KNB_DEFINE_SINGLETON_FOR_CLASS(KNBAppManager);
     [KNPaypp registerWxApp:KN_WeixinAppId];
     // 网络请求配置
     [self configureRequestFilters];
+    //主配置
     [self configureMainConfig];
+    // 配置数据库路径
+    [self configureCoreDataPath];
     // 定位
     [[KNGetUserLoaction shareInstance] startLocation];
     //配置友盟分享
     [KNUMManager shareInstance];
-    
+    //配置高德地图
     [self configureMapKit];
     //开启键盘控制
     [IQKeyboardManager sharedManager].enable = YES;
@@ -89,7 +92,6 @@ KNB_DEFINE_SINGLETON_FOR_CLASS(KNBAppManager);
 
 - (void)configureMainConfig {
     KNBGetCollocationApi *api = [[KNBGetCollocationApi alloc] initWithKey:@"System_setup"];
-    api.hudString = @"";
     [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *_Nonnull request) {
         if (api.requestSuccess) {
             NSDictionary *dic = request.responseObject[@"list"];
@@ -98,6 +100,71 @@ KNB_DEFINE_SINGLETON_FOR_CLASS(KNBAppManager);
         }
     } failure:^(__kindof YTKBaseRequest *_Nonnull request) {
     }];
+}
+
+#pragma mark - Configure CoreData
+- (void)configureCoreDataPath {
+    //3.0版本之后 本地数据库改为唯一数据库 md5 加密 作为数据库名称
+    //    NSString *dbName = [@"KNBDataBase" MD5];
+    //    [MagicalRecord cleanUp];
+    //    NSString *sqlitName = [NSString stringWithFormat:@"%@.sqlite", dbName];
+    //    [MagicalRecord setupCoreDataStackWithAutoMigratingSqliteStoreNamed:sqlitName];
+    //    [MagicalRecord setLoggingLevel:MagicalRecordLoggingLevelOff];
+    
+    /*3.1.0版本之后，本地数据库改为多个数据库，KNBDataBase md5加密作为未登录时记录数据库
+     userId, officeId md5加密作为每个用户登录后用数据库
+     */
+    NSString *dbName;
+    NSString *userId = [KNBUserInfo shareInstance].userId;
+    if ([userId isEqualToString:@"-1"]) {
+        dbName = [NSString stringWithFormat:@"%@.sqlite", [@"KNBDataBase" MD5]];
+    }else {
+        dbName = [NSString stringWithFormat:@"%@.sqlite", [[NSString stringWithFormat:@"%@", userId] MD5]];
+    }
+    
+    if ([KNB_APP_VERSION isEqualToString:@"3.1.0"]) {
+        NSString *path = [KNB_PATH_LIBRARY stringByAppendingPathComponent:@"Application Support/KenuoTraining"];
+        NSFileManager *fileManager = [NSFileManager defaultManager];
+        NSArray *contents = [fileManager contentsOfDirectoryAtPath:path error:NULL];
+        NSEnumerator *e = [contents objectEnumerator];
+        NSString *filename;
+        while ((filename = [e nextObject])) {
+            if ([filename hasPrefix:[NSString stringWithFormat:@"%@.sqlite", [@"KNBDataBase" MD5]]]) {
+                NSString *newName = [NSString stringWithFormat:@"%@.%@", [dbName stringByDeletingPathExtension], filename.pathExtension];
+                if (![newName isEqualToString:filename]) {
+                    [fileManager moveItemAtPath:[NSString stringWithFormat:@"%@/%@", path, filename] toPath:[NSString stringWithFormat:@"%@/%@", path, newName] error:nil];
+                }
+            }
+        }
+    }
+    
+    [MagicalRecord cleanUp];
+    [MagicalRecord setupCoreDataStackWithAutoMigratingSqliteStoreNamed:dbName];
+    [MagicalRecord setLoggingLevel:MagicalRecordLoggingLevelOff];
+}
+
+/**
+ 数据库重命名方法
+ */
+- (void)resetCoreDataName {
+    NSString *userId = [KNBUserInfo shareInstance].userId;
+    if (isNullStr(userId)) {
+        return;
+    }
+    NSString *path = [KNB_PATH_LIBRARY stringByAppendingPathComponent:@"Application Support/KenuoTraining"];
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSArray *contents = [fileManager contentsOfDirectoryAtPath:path error:NULL];
+    NSEnumerator *e = [contents objectEnumerator];
+    // md5 加密 作为数据库名
+    NSString *dbName = [[NSString stringWithFormat:@"%@", userId] MD5];
+    NSString *filename;
+    while ((filename = [e nextObject])) {
+        if ([filename hasPrefix:userId]) {
+            NSString *newName = [NSString stringWithFormat:@"%@.%@", dbName, filename.pathExtension];
+            [fileManager moveItemAtPath:[NSString stringWithFormat:@"%@/%@", path, filename] toPath:[NSString stringWithFormat:@"%@/%@", path, newName] error:nil];
+        }
+    }
+    [self configureCoreDataPath];
 }
 
 - (void)configureMapKit {

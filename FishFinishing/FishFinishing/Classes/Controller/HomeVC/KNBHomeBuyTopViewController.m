@@ -154,7 +154,7 @@
 
 //定义每一个cell的大小
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    return CGSizeMake(80, 125);
+    return CGSizeMake(85, 125);
 }
 
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{
@@ -164,7 +164,9 @@
         self.headerView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"KNBHomeBuyTopHeaderView" forIndexPath:indexPath];
         if ([self.model.is_stick isEqualToString:@"0"]) {
             self.headerView.timeLabel.text = @"您还未开通置顶服务，立即开通获得更多资源！";
+            self.headerView.timeLabel.textColor = [UIColor kn333333Color];
         } else {
+            self.headerView.timeLabel.textColor = [UIColor knf5701bColor];
             KNBTopRemainingTimeApi *api = [[KNBTopRemainingTimeApi alloc] initWithFacId:[self.model.fac_id integerValue]];
             KNB_WS(weakSelf);
             [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *_Nonnull request) {
@@ -255,11 +257,11 @@
 - (UICollectionView *)collectionView {
     if (!_collectionView) {
         UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-        layout.minimumInteritemSpacing = 60;
+        layout.minimumInteritemSpacing = KNB_SCREEN_WIDTH - 320;
         layout.minimumLineSpacing = 13;
         layout.headerReferenceSize = CGSizeMake(KNB_SCREEN_WIDTH, 153); //头视图的大小
         layout.footerReferenceSize = CGSizeMake(KNB_SCREEN_WIDTH, 193); //头视图的大小
-        layout.sectionInset = UIEdgeInsetsMake(15, 80, 15, 80);
+        layout.sectionInset = UIEdgeInsetsMake(15, 70, 15, 70);
         layout.scrollDirection = UICollectionViewScrollDirectionVertical;
         _collectionView = [[UICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:layout];
         _collectionView.showsHorizontalScrollIndicator = NO;

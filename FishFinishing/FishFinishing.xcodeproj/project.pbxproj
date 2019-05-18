@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1823CA5C228FFFAA00BC5D8D /* KNBCityModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1823CA5B228FFFAA00BC5D8D /* KNBCityModel.m */; };
+		1823CA642290012200BC5D8D /* _KNBCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 1823CA602290012200BC5D8D /* _KNBCity.m */; };
+		1823CA652290012200BC5D8D /* KNBCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 1823CA622290012200BC5D8D /* KNBCity.m */; };
 		182F5A7822811A7B00E8B323 /* KNBHomeUploadCaseFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 182F5A7722811A7B00E8B323 /* KNBHomeUploadCaseFooterView.m */; };
 		183C56162283B4E80054217D /* KNBMeOrderOtherTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 183C56142283B4E80054217D /* KNBMeOrderOtherTableViewCell.m */; };
 		183C56172283B4E80054217D /* KNBMeOrderOtherTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 183C56152283B4E80054217D /* KNBMeOrderOtherTableViewCell.xib */; };
@@ -84,7 +87,7 @@
 		1868A694226560D1005546BB /* BRTagsPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1868A693226560D1005546BB /* BRTagsPickerView.m */; };
 		1868A6982265B072005546BB /* KNBOrderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1868A6972265B072005546BB /* KNBOrderModel.m */; };
 		1868A69B2265B525005546BB /* KNBOrderAreaApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 1868A69A2265B525005546BB /* KNBOrderAreaApi.m */; };
-		1868A69E2265C001005546BB /* KNBCityModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1868A69D2265C001005546BB /* KNBCityModel.m */; };
+		1868A69E2265C001005546BB /* KNBAddressModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1868A69D2265C001005546BB /* KNBAddressModel.m */; };
 		1868A6A12265C15C005546BB /* KNBAddressPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1868A6A02265C15C005546BB /* KNBAddressPickerView.m */; };
 		1868A6A32265C819005546BB /* KNBCity.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1868A6A22265C819005546BB /* KNBCity.plist */; };
 		1868A6A72265DA98005546BB /* BRChoicePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1868A6A62265DA98005546BB /* BRChoicePickerView.m */; };
@@ -436,6 +439,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1823CA5A228FFFAA00BC5D8D /* KNBCityModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNBCityModel.h; sourceTree = "<group>"; };
+		1823CA5B228FFFAA00BC5D8D /* KNBCityModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNBCityModel.m; sourceTree = "<group>"; };
+		1823CA5F2290012200BC5D8D /* _KNBCity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _KNBCity.h; sourceTree = "<group>"; };
+		1823CA602290012200BC5D8D /* _KNBCity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _KNBCity.m; sourceTree = "<group>"; };
+		1823CA622290012200BC5D8D /* KNBCity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KNBCity.m; sourceTree = "<group>"; };
+		1823CA632290012200BC5D8D /* KNBCity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KNBCity.h; sourceTree = "<group>"; };
 		182F5A7622811A7B00E8B323 /* KNBHomeUploadCaseFooterView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNBHomeUploadCaseFooterView.h; sourceTree = "<group>"; };
 		182F5A7722811A7B00E8B323 /* KNBHomeUploadCaseFooterView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNBHomeUploadCaseFooterView.m; sourceTree = "<group>"; };
 		183C56132283B4E80054217D /* KNBMeOrderOtherTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNBMeOrderOtherTableViewCell.h; sourceTree = "<group>"; };
@@ -589,8 +598,8 @@
 		1868A6972265B072005546BB /* KNBOrderModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNBOrderModel.m; sourceTree = "<group>"; };
 		1868A6992265B525005546BB /* KNBOrderAreaApi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNBOrderAreaApi.h; sourceTree = "<group>"; };
 		1868A69A2265B525005546BB /* KNBOrderAreaApi.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNBOrderAreaApi.m; sourceTree = "<group>"; };
-		1868A69C2265C001005546BB /* KNBCityModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNBCityModel.h; sourceTree = "<group>"; };
-		1868A69D2265C001005546BB /* KNBCityModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNBCityModel.m; sourceTree = "<group>"; };
+		1868A69C2265C001005546BB /* KNBAddressModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNBAddressModel.h; sourceTree = "<group>"; };
+		1868A69D2265C001005546BB /* KNBAddressModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNBAddressModel.m; sourceTree = "<group>"; };
 		1868A69F2265C15C005546BB /* KNBAddressPickerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNBAddressPickerView.h; sourceTree = "<group>"; };
 		1868A6A02265C15C005546BB /* KNBAddressPickerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNBAddressPickerView.m; sourceTree = "<group>"; };
 		1868A6A22265C819005546BB /* KNBCity.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = KNBCity.plist; sourceTree = "<group>"; };
@@ -1254,6 +1263,45 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1823CA58228FF43C00BC5D8D /* CityModel */ = {
+			isa = PBXGroup;
+			children = (
+				1868A69C2265C001005546BB /* KNBAddressModel.h */,
+				1868A69D2265C001005546BB /* KNBAddressModel.m */,
+				1823CA5A228FFFAA00BC5D8D /* KNBCityModel.h */,
+				1823CA5B228FFFAA00BC5D8D /* KNBCityModel.m */,
+			);
+			path = CityModel;
+			sourceTree = "<group>";
+		};
+		1823CA5D2290012200BC5D8D /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				1823CA5E2290012200BC5D8D /* Machine */,
+				1823CA612290012200BC5D8D /* Human */,
+			);
+			name = CoreData;
+			path = FishFinishing/CoreData;
+			sourceTree = SOURCE_ROOT;
+		};
+		1823CA5E2290012200BC5D8D /* Machine */ = {
+			isa = PBXGroup;
+			children = (
+				1823CA5F2290012200BC5D8D /* _KNBCity.h */,
+				1823CA602290012200BC5D8D /* _KNBCity.m */,
+			);
+			path = Machine;
+			sourceTree = "<group>";
+		};
+		1823CA612290012200BC5D8D /* Human */ = {
+			isa = PBXGroup;
+			children = (
+				1823CA622290012200BC5D8D /* KNBCity.m */,
+				1823CA632290012200BC5D8D /* KNBCity.h */,
+			);
+			path = Human;
+			sourceTree = "<group>";
+		};
 		1840B69F228EBDBB0062F626 /* HMSegmentedControl */ = {
 			isa = PBXGroup;
 			children = (
@@ -1878,8 +1926,6 @@
 				964926AA225C7F21000BBC7E /* BRAddressPickerView.m */,
 				964926A8225C7F21000BBC7E /* BRPickerView.bundle */,
 				964926A7225C7F21000BBC7E /* BRPickerView.h */,
-				1868A69C2265C001005546BB /* KNBCityModel.h */,
-				1868A69D2265C001005546BB /* KNBCityModel.m */,
 				1868A69F2265C15C005546BB /* KNBAddressPickerView.h */,
 				1868A6A02265C15C005546BB /* KNBAddressPickerView.m */,
 			);
@@ -2517,6 +2563,7 @@
 		96B097FD2249C6C200154643 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				1823CA5D2290012200BC5D8D /* CoreData */,
 				18D8D65D225DBB3F00532E52 /* Network */,
 				96B098DC2249D8EB00154643 /* Controller */,
 				96B098D82249D8D900154643 /* Model */,
@@ -2865,6 +2912,7 @@
 		96B098D82249D8D900154643 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				1823CA58228FF43C00BC5D8D /* CityModel */,
 				187B609022701674000AA05E /* MeModel */,
 				966D15572268C8A0005F5D77 /* DesignSketchModel */,
 				1868A6952265B057005546BB /* OrderModel */,
@@ -3052,6 +3100,7 @@
 				96B097DC2249C69100154643 /* Frameworks */,
 				96B097DD2249C69100154643 /* Resources */,
 				577688FDCBAB851C60F8264D /* [CP] Copy Pods Resources */,
+				1823CA57228FF3FF00BC5D8D /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -3183,6 +3232,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		1823CA57228FF3FF00BC5D8D /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "MODELS_DIR=\"${PROJECT_DIR}/$PROJECT_NAME\"\nDATA_MODEL_PACKAGE=\"$MODELS_DIR/Supporting Files/FishFinishing.xcdatamodeld\"\n# - 替换相应的 xxxxx.xcdatamodeld名称\n\nCURRENT_VERSION=`/usr/libexec/PlistBuddy \"$DATA_MODEL_PACKAGE/.xccurrentversion\" -c 'print _XCCurrentVersionName'`\n\n\nif [ -x /usr/local/bin/mogenerator ]; then\necho \"mogenerator exists in /usr/local/bin path\";\nMOGENERATOR_DIR=\"/usr/local/bin\";\nelif [ -x /usr/bin/mogenerator ]; then\necho \"mogenerator exists in /usr/bin path\";\nMOGENERATOR_DIR=\"/usr/bin\";\nelse\necho \"mogenerator not found\"; exit 1;\nfi\n# $MOGENERATOR_DIR/mogenerator -m \"$DATA_MODEL_PACKAGE\" -M \"$MODELS_DIR/CoreData/Machine/\" -H \"$MODELS_DIR/CoreData/Human/\"\n# 如果是ARC工程，加上 --template-var arc=true就行了，即mogenerator命令换成：\n$MOGENERATOR_DIR/mogenerator --template-var arc=true -m \"$DATA_MODEL_PACKAGE\" -M \"$MODELS_DIR/CoreData/Machine/\" -H \"$MODELS_DIR/CoreData/Human/\"\n";
+		};
 		577688FDCBAB851C60F8264D /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -3323,7 +3389,7 @@
 				96E7E0C5225B2E2100188DD1 /* KNBOrderDownTableViewCell.m in Sources */,
 				966AA574224A1E4F00EDBF5F /* TADotView.m in Sources */,
 				96811885224F497C00E4A622 /* KNBDesignSketchDetailViewController.m in Sources */,
-				1868A69E2265C001005546BB /* KNBCityModel.m in Sources */,
+				1868A69E2265C001005546BB /* KNBAddressModel.m in Sources */,
 				18B8DA502260449800D18BC4 /* KNBHomeCityListViewController.m in Sources */,
 				966AA576224A1E4F00EDBF5F /* TAAnimatedDotView.m in Sources */,
 				1849CE8F22851EA90064D439 /* UISearchBar+MP.m in Sources */,
@@ -3353,6 +3419,7 @@
 				96B098CD2249D68D00154643 /* EXTRuntimeExtensions.m in Sources */,
 				96B098B52249CC1000154643 /* NSString+Size.m in Sources */,
 				966D1606226C7669005F5D77 /* ShareView.m in Sources */,
+				1823CA652290012200BC5D8D /* KNBCity.m in Sources */,
 				966D1627226CD221005F5D77 /* KNBHomeCompanyAreaViewController.m in Sources */,
 				186EE2D92266FF2100E71241 /* KNBHomeMessageListApi.m in Sources */,
 				187A6A72225ECE74006CA2B0 /* KNBRecruitmentTypeApi.m in Sources */,
@@ -3453,6 +3520,7 @@
 				1840B695228E65080062F626 /* CCTextView.m in Sources */,
 				18F32923227E8C7B008B5B57 /* KNBMeRecruitmentAlertView.m in Sources */,
 				961C532422548E050089E997 /* KNBHomeCompanyHeaderTableViewCell.m in Sources */,
+				1823CA642290012200BC5D8D /* _KNBCity.m in Sources */,
 				96327506226D6FEE0080C650 /* CQTopBarSegmentCell.m in Sources */,
 				966D1624226CD20E005F5D77 /* KNBHomeCompanyHouseViewController.m in Sources */,
 				1866530722695D64004C176F /* KNBMeSetViewController.m in Sources */,
@@ -3581,6 +3649,7 @@
 				18B3B04922648E870058AE4F /* KNBRecruitmentIntroTableViewCell.m in Sources */,
 				1849CE2622851AE50064D439 /* MPBaseTableViewController.m in Sources */,
 				1868A6A12265C15C005546BB /* KNBAddressPickerView.m in Sources */,
+				1823CA5C228FFFAA00BC5D8D /* KNBCityModel.m in Sources */,
 				9697FD54225597A900027AB3 /* NSArray+Bounds.m in Sources */,
 				966D160C226C7673005F5D77 /* ImageWithLabel.m in Sources */,
 				1849CE7F22851EA90064D439 /* XHSysatemRefreshTableViewController.m in Sources */,

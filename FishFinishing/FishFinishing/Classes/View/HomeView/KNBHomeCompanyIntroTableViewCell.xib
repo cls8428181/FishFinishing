@@ -21,6 +21,10 @@
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="简介" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sBY-OE-by3">
                         <rect key="frame" x="12" y="15" width="29" height="17"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="29" id="Egi-le-I48"/>
+                            <constraint firstAttribute="height" constant="17" id="slw-Ry-stU"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -28,7 +32,7 @@
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F0v-aP-pam">
                         <rect key="frame" x="12" y="47" width="370" height="53"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="53" id="rHe-G9-I0p"/>
+                            <constraint firstAttribute="height" constant="53" id="iox-IA-Sj1"/>
                         </constraints>
                         <string key="text">杭州良工装饰有限公司成立于2004年2月，是一家具备国家建筑装修装饰工程专业承包贰级资质的企业，业务涉及家装、别墅、会所、写字杭州良工装饰有限公司成立于2004年2月，是一家具备国家建筑装修装饰工程专业承包贰级资质的企业，业务涉及家装、别墅、会所、写字杭州良工装饰有限公司成立于2004年2月，是一家具备国家建筑装修装饰工程专业承包贰级资质的企业，业务涉及家装、别墅、会所、写字杭州良工装饰有限公司成立于2004年2月，是一家具备国家建筑装修装饰工程专业承包贰级资质的企业，业务涉及家装、别墅、会所、写字</string>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
@@ -36,13 +40,12 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5kM-4t-mMu">
-                        <rect key="frame" x="175" y="100" width="44" height="44"/>
+                        <rect key="frame" x="175" y="283.5" width="44" height="44"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="44" id="2It-jt-xiZ"/>
                             <constraint firstAttribute="height" constant="44" id="JR8-xF-Njh"/>
                         </constraints>
                         <state key="normal" image="knb_service_xiala"/>
-                        <state key="selected" image="knb_service_shangla"/>
                         <connections>
                             <action selector="bottomButtonAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Kk9-uz-sTP"/>
                         </connections>
@@ -51,8 +54,8 @@
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="F0v-aP-pam" secondAttribute="trailing" constant="12" id="c3F-sS-M20"/>
                     <constraint firstItem="sBY-OE-by3" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="12" id="djg-wQ-3b5"/>
-                    <constraint firstItem="5kM-4t-mMu" firstAttribute="top" secondItem="F0v-aP-pam" secondAttribute="bottom" id="geU-G7-A0T"/>
                     <constraint firstItem="F0v-aP-pam" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="12" id="hWR-gT-CWC"/>
+                    <constraint firstAttribute="bottom" secondItem="5kM-4t-mMu" secondAttribute="bottom" id="jwf-wp-hSF"/>
                     <constraint firstItem="sBY-OE-by3" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="l0F-UC-ZmS"/>
                     <constraint firstItem="F0v-aP-pam" firstAttribute="top" secondItem="sBY-OE-by3" secondAttribute="bottom" constant="15" id="lnU-0Y-VaM"/>
                     <constraint firstItem="5kM-4t-mMu" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="n6E-L9-I7A"/>
@@ -62,13 +65,12 @@
             <connections>
                 <outlet property="bottomButton" destination="5kM-4t-mMu" id="xVt-Zh-MBa"/>
                 <outlet property="contentLabel" destination="F0v-aP-pam" id="FjG-E9-PQd"/>
-                <outlet property="heightConstraint" destination="rHe-G9-I0p" id="UMC-Vq-v8U"/>
+                <outlet property="heightConstraint" destination="iox-IA-Sj1" id="P8z-kW-sQP"/>
             </connections>
             <point key="canvasLocation" x="188.80000000000001" y="268.06596701649175"/>
         </tableViewCell>
     </objects>
     <resources>
-        <image name="knb_service_shangla" width="18" height="10"/>
         <image name="knb_service_xiala" width="18" height="10"/>
     </resources>
 </document>

@@ -13,6 +13,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *contentLabel;
 @property (weak, nonatomic) IBOutlet UIButton *bottomButton;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *heightConstraint;
+@property (nonatomic, strong) UITableView *superTableView;
 
 @end
 
@@ -27,6 +28,7 @@
         cell = [tableView dequeueReusableCellWithIdentifier:ID];
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.superTableView = tableView;
     return cell;
 }
 
@@ -34,7 +36,7 @@
 + (CGFloat)cellHeight:(KNBHomeServiceModel *)model {
     CGFloat height = 0;
     if (model.isSpread) {
-        height = [model.remark heightWithFont:[UIFont systemFontOfSize:14] constrainedToWidth:KNB_SCREEN_WIDTH - 24];
+        height = [model.remark heightWithFont:KNBFont(13) constrainedToWidth:KNB_SCREEN_WIDTH - 24];
     } else {
         height = 60;
     }
@@ -46,15 +48,51 @@
 }
 
 - (IBAction)bottomButtonAction:(id)sender {
+    KNB_WS(weakSelf);
     UIButton *button = (UIButton *)sender;
     button.selected = !button.isSelected;
     self.model.isSpread = button.isSelected;
     if (button.isSelected) {
-        self.heightConstraint.constant = [self.model.remark heightWithFont:[UIFont systemFontOfSize:14] constrainedToWidth:KNB_SCREEN_WIDTH - 24];
+        [UIView animateWithDuration:0.3f delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+            button.transform = CGAffineTransformMakeRotation(M_PI);
+            //监听tableview动画执行结束时间
+            [CATransaction begin];
+            [CATransaction setCompletionBlock:^{
+                weakSelf.heightConstraint.constant = [weakSelf.model.remark heightWithFont:KNBFont(13) constrainedToWidth:KNB_SCREEN_WIDTH - 24] + 6;
+                //tableview动画结束回调
+                [weakSelf.superTableView reloadData];
+            }];
+            [weakSelf.superTableView beginUpdates];
+            [weakSelf.superTableView endUpdates];
+            [CATransaction commit];
+        }completion:^(BOOL finished) {
+            //UIView动画结束回调
+            [button setImage:KNBImages(@"knb_service_xiala") forState:UIControlStateNormal];
+        }];
     } else {
-        self.heightConstraint.constant = 55;
+        [UIView animateWithDuration:0.3f delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+            //监听tableview动画执行结束时间
+            //button.transform = CGAffineTransformIdentity;
+            if (weakSelf.superTableView.contentOffset.y > KNB_SCREEN_HEIGHT/2) {
+                [weakSelf.superTableView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
+                [weakSelf.superTableView setContentOffset:CGPointMake(0,0) animated:YES];
+            };
+            weakSelf.heightConstraint.constant = 55;
+            button.transform = CGAffineTransformMakeRotation(2*M_PI);
+
+            [CATransaction begin];
+            [CATransaction setCompletionBlock:^{
+                //tableview动画结束回调
+                [weakSelf.superTableView reloadData];
+            }];
+            [weakSelf.superTableView beginUpdates];
+            [weakSelf.superTableView endUpdates];
+            [CATransaction commit];
+        }completion:^(BOOL finished) {
+            //UIView动画结束回调
+            [button setImage:KNBImages(@"knb_service_xiala") forState:UIControlStateNormal];
+        }];
     }
-    !self.spreadIntroBlock ?: self.spreadIntroBlock();
 }
 
 - (void)setModel:(KNBHomeServiceModel *)model {

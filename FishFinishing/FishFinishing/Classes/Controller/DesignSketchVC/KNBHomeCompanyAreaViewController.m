@@ -58,9 +58,6 @@
         }
     } failure:^(__kindof YTKBaseRequest *_Nonnull request) {
     }];
-    
-//    self.tagView.tagsArray = @[@"全部",@"50-80",@"80-100",@"100-120",@"120以上"];
-//    self.tagView.height = [self getTagsViewHeight];
 }
 
 - (NSInteger)getTagsViewHeight {

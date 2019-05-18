@@ -122,7 +122,7 @@
 
 //定义每一个cell的大小
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    return CGSizeMake(80, 125);
+    return CGSizeMake(85, 125);
 }
 
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{
@@ -194,11 +194,11 @@
 - (UICollectionView *)collectionView {
     if (!_collectionView) {
         UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-        layout.minimumInteritemSpacing = 60;
+        layout.minimumInteritemSpacing = (KNB_SCREEN_WIDTH - 335)/2;
         layout.minimumLineSpacing = 13;
         layout.headerReferenceSize = CGSizeMake(KNB_SCREEN_WIDTH, 360); //头视图的大小
         layout.footerReferenceSize = CGSizeMake(KNB_SCREEN_WIDTH, 193); //头视图的大小
-        layout.sectionInset = UIEdgeInsetsMake(15, 80, 15, 80);
+        layout.sectionInset = UIEdgeInsetsMake(18, 40, 24, 40);
         layout.scrollDirection = UICollectionViewScrollDirectionVertical;
         _collectionView = [[UICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:layout];
         _collectionView.showsHorizontalScrollIndicator = NO;

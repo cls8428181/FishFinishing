@@ -16,6 +16,7 @@
 #import "KNBLoginThirdPartyApi.h"
 #import "KNBLoginBindingPhoneViewController.h"
 #import "KNBLoginThirdPartyApi.h"
+#import "KNBAppManager.h"
 
 @interface KNBLoginViewController ()
 //背景
@@ -317,6 +318,8 @@
         if (api.requestSuccess) {
             NSDictionary *dic = request.responseObject[@"list"];
             [[KNBUserInfo shareInstance] registUserInfo:dic];
+            //配置数据库
+            [[KNBAppManager shareInstance] configureCoreDataPath];
             [LCProgressHUD showSuccess:@"登录成功"];
             [weakSelf dismissViewControllerAnimated:YES completion:nil];
             [weakSelf requestSuccess:YES requestEnd:YES];
@@ -357,6 +360,8 @@
         if (api.requestSuccess) {
             NSDictionary *dic = request.responseObject[@"list"];
             [[KNBUserInfo shareInstance] registUserInfo:dic];
+            //配置数据库
+            [[KNBAppManager shareInstance] configureCoreDataPath];
             [LCProgressHUD showSuccess:@"注册成功"];
             [weakSelf dismissToRootViewController];
         } else {

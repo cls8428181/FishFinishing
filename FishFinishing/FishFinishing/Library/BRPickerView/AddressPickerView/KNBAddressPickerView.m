@@ -30,11 +30,11 @@
 // 显示类型
 @property (nonatomic, assign) KNBAddressPickerMode showType;
 // 选中的省
-@property(nonatomic, strong) KNBCityModel *selectProvinceModel;
+@property(nonatomic, strong) KNBAddressModel *selectProvinceModel;
 // 选中的市
-@property(nonatomic, strong) KNBCityModel *selectCityModel;
+@property(nonatomic, strong) KNBAddressModel *selectCityModel;
 // 选中的区
-@property(nonatomic, strong) KNBCityModel *selectAreaModel;
+@property(nonatomic, strong) KNBAddressModel *selectAreaModel;
 
 // 是否开启自动选择
 @property (nonatomic, assign) BOOL isAutoSelect;
@@ -147,7 +147,7 @@
 
 #pragma mark - 解析数据源
 - (void)parseDataSource {
-    NSArray *modelArray = [KNBCityModel changeResponseJSONObject:self.dataSource];
+    NSArray *modelArray = [KNBAddressModel changeResponseJSONObject:self.dataSource];
     self.provinceModelArr = [modelArray copy];
 }
 
@@ -172,7 +172,7 @@
     // 2. 根据名称找到默认选中的省市区索引
     __weak typeof(self) weakSelf = self;
     [self.provinceModelArr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        KNBCityModel *model = obj;
+        KNBAddressModel *model = obj;
         if ([model.name isEqualToString:selectProvinceName]) {
             self->_provinceIndex = idx;
             weakSelf.selectProvinceModel = model;
@@ -187,7 +187,7 @@
     if (self.showType == KNBAddressPickerModeCity || self.showType == KNBAddressPickerModeArea) {
         self.cityModelArr = [self getCityModelArray:_provinceIndex];
         [self.cityModelArr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            KNBCityModel *model = obj;
+            KNBAddressModel *model = obj;
             if ([model.name isEqualToString:selectCityName]) {
                 self->_cityIndex = idx;
                 weakSelf.selectCityModel = model;
@@ -203,7 +203,7 @@
     if (self.showType == KNBAddressPickerModeArea) {
         self.areaModelArr = [self getAreaModelArray:_provinceIndex cityIndex:_cityIndex];
         [self.areaModelArr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            KNBCityModel *model = obj;
+            KNBAddressModel *model = obj;
             if ([model.name isEqualToString:selectAreaName]) {
                 self->_areaIndex = idx;
                 weakSelf.selectAreaModel = model;
@@ -234,15 +234,15 @@
 
 // 根据 省索引 获取 城市模型数组
 - (NSArray *)getCityModelArray:(NSInteger)provinceIndex {
-    KNBCityModel *provinceModel = self.provinceModelArr[provinceIndex];
+    KNBAddressModel *provinceModel = self.provinceModelArr[provinceIndex];
     // 返回城市模型数组
     return provinceModel.cityList;
 }
 
 // 根据 省索引和城市索引 获取 区域模型数组
 - (NSArray *)getAreaModelArray:(NSInteger)provinceIndex cityIndex:(NSInteger)cityIndex {
-    KNBCityModel *provinceModel = self.provinceModelArr[provinceIndex];
-    KNBCityModel *cityModel = provinceModel.cityList[cityIndex];
+    KNBAddressModel *provinceModel = self.provinceModelArr[provinceIndex];
+    KNBAddressModel *cityModel = provinceModel.cityList[cityIndex];
     // 返回地区模型数组
     return cityModel.areaList;
 }
@@ -336,13 +336,13 @@
     // 自适应最小字体缩放比例
     label.minimumScaleFactor = 0.5f;
     if (component == 0) {
-        KNBCityModel *model = self.provinceModelArr[row];
+        KNBAddressModel *model = self.provinceModelArr[row];
         label.text = model.name;
     }else if (component == 1){
-        KNBCityModel *model = self.cityModelArr[row];
+        KNBAddressModel *model = self.cityModelArr[row];
         label.text = model.name;
     }else if (component == 2){
-        KNBCityModel *model = self.areaModelArr[row];
+        KNBAddressModel *model = self.areaModelArr[row];
         label.text = model.name;
     }
     return bgView;
@@ -536,25 +536,25 @@
     return _areaModelArr;
 }
 
-- (KNBCityModel *)selectProvinceModel {
+- (KNBAddressModel *)selectProvinceModel {
     if (!_selectProvinceModel) {
-        _selectProvinceModel = [[KNBCityModel alloc]init];
+        _selectProvinceModel = [[KNBAddressModel alloc]init];
     }
     return _selectProvinceModel;
 }
 
-- (KNBCityModel *)selectCityModel {
+- (KNBAddressModel *)selectCityModel {
     if (!_selectCityModel) {
-        _selectCityModel = [[KNBCityModel alloc]init];
+        _selectCityModel = [[KNBAddressModel alloc]init];
         _selectCityModel.code = @"";
         _selectCityModel.name = @"";
     }
     return _selectCityModel;
 }
 
-- (KNBCityModel *)selectAreaModel {
+- (KNBAddressModel *)selectAreaModel {
     if (!_selectAreaModel) {
-        _selectAreaModel = [[KNBCityModel alloc]init];
+        _selectAreaModel = [[KNBAddressModel alloc]init];
         _selectAreaModel.code = @"";
         _selectAreaModel.name = @"";
     }
