@@ -365,7 +365,7 @@
 - (UIImageView *)leftImageView {
     if (!_leftImageView) {
         _leftImageView = [[UIImageView alloc] init];
-        [_leftImageView sd_setImageWithURL:[NSURL URLWithString:self.model.logo] placeholderImage:KNBImages(@"knb_default_user")];
+        [_leftImageView sd_setImageWithURL:[NSURL URLWithString:isNullStr(self.model.logo) ? self.model.img : self.model.logo] placeholderImage:CCPortraitPlaceHolder];
         _leftImageView.layer.masksToBounds = YES;
         _leftImageView.layer.cornerRadius = 19;
         

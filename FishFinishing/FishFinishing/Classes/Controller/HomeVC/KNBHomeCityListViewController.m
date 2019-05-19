@@ -10,6 +10,7 @@
 #import "KNBMainConfigModel.h"
 #import "KNBSearchView.h"
 #import "KNBCityModel.h"
+#import "FMTagsView.h"
 
 @interface KNBHomeCityListViewController ()<UISearchBarDelegate, UISearchControllerDelegate, UISearchResultsUpdating>
 
@@ -264,6 +265,9 @@
             }];
             [weakSelf dismissViewControllerAnimated:YES completion:nil];
         };
+        _cityHeadView.clearComplete = ^{
+            [weakSelf dismissViewControllerAnimated:YES completion:nil];
+        };
     }
     return _cityHeadView;
 }
@@ -305,6 +309,7 @@
     if (!_topLabel) {
         _topLabel = [[UILabel alloc] init];
         _topLabel.text = @"当前定位城市";
+        _topLabel.font = KNBFont(14);
     }
     return _topLabel;
 }
@@ -313,6 +318,7 @@
     if (!_currentCityLabel) {
         _currentCityLabel = [[UILabel alloc] init];
         _currentCityLabel.text = self.currentCity;
+        _currentCityLabel.font = [UIFont boldSystemFontOfSize:14];
     }
     return _currentCityLabel;
 }

@@ -96,7 +96,13 @@
         make.right.mas_equalTo(-35);
         make.height.mas_equalTo(40);
     }];
-    
+    //登录确认
+    [self.sureButton mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(35);
+        make.right.mas_equalTo(-35);
+        make.height.mas_equalTo(44);
+        make.top.mas_equalTo(weakSelf.lastView.mas_bottom).mas_offset(70);
+    }];
     //如果是登录页面
     if (self.vcType == KNBLoginTypeLogin) {
 
@@ -115,12 +121,15 @@
             make.top.mas_equalTo(weakSelf.passwordView.mas_bottom).offset(10);
             make.right.equalTo(weakSelf.findButton.mas_left).mas_offset(-5);
         }];
-        
+    
         [self.wechatButton mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.bottom.mas_equalTo(- KNB_TAB_HEIGHT - 50);
+            if (KNB_SCREEN_HEIGHT < 750) {
+                make.bottom.mas_equalTo(- KNB_TAB_HEIGHT);
+            } else {
+                make.bottom.mas_equalTo(- KNB_TAB_HEIGHT - 50);
+            }
             make.centerX.equalTo(weakSelf.view);
         }];
-        
         [self.qqButton mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.centerY.equalTo(weakSelf.wechatButton);
             make.right.equalTo(weakSelf.wechatButton.mas_left).mas_offset(-50);
@@ -170,10 +179,6 @@
                 make.right.mas_equalTo(-35);
                 make.height.mas_equalTo(40);
             }];
-//            [self.loginButton mas_remakeConstraints:^(MASConstraintMaker *make) {
-//                make.top.mas_equalTo(weakSelf.passwordEnterView.mas_bottom).offset(10);
-//                make.right.mas_equalTo(weakSelf.sureButton);
-//            }];
         } else {
             [self.passwordNewView mas_remakeConstraints:^(MASConstraintMaker *make) {
                 make.top.mas_equalTo(weakSelf.verinumView.mas_bottom).mas_offset(20);
@@ -189,14 +194,6 @@
             }];
         }
     }
-    
-    //登录确认
-    [self.sureButton mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(35);
-        make.right.mas_equalTo(-35);
-        make.height.mas_equalTo(44);
-        make.top.mas_equalTo(weakSelf.lastView.mas_bottom).mas_offset(70);
-    }];
 }
 
 #pragma mark - Utils
@@ -236,23 +233,19 @@
         [self.view addSubview:self.verinumView];
         if (self.vcType == KNBLoginTypeRegister) {
             [self.view addSubview:self.passwordSetView];
-//            [self.view addSubview:self.loginButton];
         } else {
             [self.view addSubview:self.passwordNewView];
         }
         [self.view addSubview:self.passwordEnterView];
         self.lastView = self.passwordEnterView;
     }
+    
 }
 
 #pragma mark - Event Response
 - (void)backAction {
     [self.verinumView timerControll:NO];
-//    if (self.navigationController.viewControllers.count == 1) {
     [self dismissViewControllerAnimated:YES completion:nil];
-//    } else {
-//        [self.navigationController popViewControllerAnimated:YES];
-//    }
 }
 //登录or确定
 - (void)sureButtonClick:(KNBButton *)sender {

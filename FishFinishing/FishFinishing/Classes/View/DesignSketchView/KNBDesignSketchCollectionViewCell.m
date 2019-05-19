@@ -50,8 +50,8 @@
 }
 
 - (void)setModel:(KNBDesignSketchModel *)model {
-    [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:model.img] placeholderImage:KNBImages(@"knb_default_user")];
-    [self.userImageView sd_setImageWithURL:[NSURL URLWithString:model.logo] placeholderImage:KNBImages(@"knb_default_user")];
+    [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:model.img] placeholderImage:CCPortraitPlaceHolder];
+    [self.userImageView sd_setImageWithURL:[NSURL URLWithString:model.logo] placeholderImage:CCPortraitPlaceHolder];
     self.titleLabel.text = model.title;
     self.userLabel.text = model.name;
 }

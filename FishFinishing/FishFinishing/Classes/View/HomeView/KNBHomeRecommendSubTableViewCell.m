@@ -201,9 +201,9 @@
     
     NSString *distance = @"";
     if ([model.distance integerValue] > 1000) {
-        distance = [NSString stringWithFormat:@"%ld km",[model.distance integerValue] / 1000];
+        distance = [NSString stringWithFormat:@"%d km",[model.distance integerValue] / 1000];
     } else {
-        distance = [NSString stringWithFormat:@"%ld m",[model.distance integerValue]];
+        distance = [NSString stringWithFormat:@"%ld m",(long)[model.distance integerValue]];
     }
     self.distanceLabel.text = distance;
     
@@ -213,7 +213,9 @@
     self.maxSpace.constant = KNB_SCREEN_WIDTH - 158 - distanceWidth;
     
     NSArray *tagsArray = [model.tag componentsSeparatedByString:@","];
-    self.tagView.tagsArray = tagsArray;
+    if (isNullArray(tagsArray)) {
+        self.tagView.tagsArray = tagsArray;
+    }
     for (int i = 0 ; i < model.caseList.count; i++) {
         KNBHomeServiceModel *caseModel = model.caseList[i];
         if (i == 0) {
@@ -231,11 +233,11 @@
         [self.orderButton setTitle:@"预约设计" forState:UIControlStateNormal];
     }
     
-    if ([model.parent_cat_name containsString:@"家居"] || [model.parent_cat_name containsString:@"建材"]) {
-        self.orderButton.hidden = YES;
-    } else {
-        self.orderButton.hidden = NO;
-    }
+//    if ([model.parent_cat_name containsString:@"家居"] || [model.parent_cat_name containsString:@"建材"]) {
+//        self.orderButton.hidden = YES;
+//    } else {
+//        self.orderButton.hidden = NO;
+//    }
 
     if ([model.is_stick isEqualToString:@"0"]) {
         self.topImageView.hidden = YES;

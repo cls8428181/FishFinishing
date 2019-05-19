@@ -36,7 +36,7 @@
 - (void)setModel:(KNBHomeChatModel *)model {
     _model = model;
     self.timeLabel.text = [NSDate transformFromTimestamp:model.created_at];
-    [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:model.img] placeholderImage:KNBImages(@"knb_default_user")];
+    [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:model.img] placeholderImage:CCPortraitPlaceHolder];
     self.titleLabel.text = model.title;
 }
 

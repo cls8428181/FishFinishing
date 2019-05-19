@@ -125,7 +125,7 @@
                 [weakSelf.dataArray removeAllObjects];
             }
             [weakSelf.dataArray addObjectsFromArray:modelArray];
-            [weakSelf requestSuccess:YES requestEnd:modelArray.count<10];
+            [weakSelf requestSuccess:YES requestEnd:modelArray.count == 0];
         } else {
             [weakSelf requestSuccess:NO requestEnd:NO];
         }

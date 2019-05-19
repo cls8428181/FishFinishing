@@ -27,6 +27,7 @@
         [self addSubview:_contentView];
         
         _tableView = [[KNBHomeSubTableView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height) dataSource:dataSrouce];
+
         [_contentView addSubview:_tableView];
         
     }

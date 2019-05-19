@@ -17,6 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface KNBHomeSearchView : UIView
 @property (nonatomic, copy) void (^chatButtonBlock)(void);
+@property (nonatomic, copy) void (^cityChooseBlock)(void);
 /**
  左边城市选择按钮
  */

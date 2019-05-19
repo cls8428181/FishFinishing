@@ -118,9 +118,9 @@
     if (!_portraitImageView) {
         _portraitImageView = [[UIImageView alloc] init];
         if ([KNBUserInfo shareInstance].isLogin) {
-            [_portraitImageView sd_setImageWithURL:[NSURL URLWithString:[KNBUserInfo shareInstance].portrait] placeholderImage:KNBImages(@"knb_default_user")];
+            [_portraitImageView sd_setImageWithURL:[NSURL URLWithString:[KNBUserInfo shareInstance].portrait] placeholderImage:CCPortraitPlaceHolder];
         } else {
-            _portraitImageView.image = KNBImages(@"knb_default_user");
+            _portraitImageView.image = CCPortraitPlaceHolder;
         }
         _portraitImageView.layer.masksToBounds = YES;
         _portraitImageView.layer.cornerRadius = 75/2;

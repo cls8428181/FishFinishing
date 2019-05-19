@@ -32,7 +32,7 @@
 #pragma mark - life cycle
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self.headerView.portraitImageView sd_setImageWithURL:[NSURL URLWithString:[KNBUserInfo shareInstance].portrait] placeholderImage:KNBImages(@"knb_default_user")];
+    [self.headerView.portraitImageView sd_setImageWithURL:[NSURL URLWithString:[KNBUserInfo shareInstance].portrait] placeholderImage:CCPortraitPlaceHolder];
     self.headerView.nameLabel.text = [KNBUserInfo shareInstance].nickName ?: @"未登录";
 }
 
@@ -149,12 +149,12 @@
                     
                 }else{
                     NSLog(@"没有安装应用");
-                    KNBGetCollocationApi *api = [[KNBGetCollocationApi alloc] initWithKey:@"app_download_url"];
+                    KNBGetCollocationApi *api = [[KNBGetCollocationApi alloc] initWithKey:@"System_setup"];
                     api.hudString = @"";
                     [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *_Nonnull request) {
                         if (api.requestSuccess) {
                             NSDictionary *dic = request.responseObject[@"list"];
-                            NSString *downString = dic[@"iphone_app_url"];
+                            NSString *downString = dic[@"Receipt_address"];
                             [[UIApplication sharedApplication] openURL:[NSURL URLWithString:downString] options:nil completionHandler:nil];
                         }
                     } failure:^(__kindof YTKBaseRequest *_Nonnull request) {

@@ -155,6 +155,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *img;
 
 /**
+ 案例推荐 1 推荐 0 未推荐
+ */
+@property (nonatomic, copy) NSString *is_recommend;
+
+/**
  户型
  */
 @property (nonatomic, copy) NSString *apart_name;
@@ -177,7 +182,13 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  是否展开简介
  */
-@property (nonatomic, assign) BOOL isSpread;
+@property (nonatomic, assign) BOOL isOpen;
+
+
+/**
+ 服务商详情简介 cell 高度
+ */
+@property (nonatomic, assign) CGFloat cellHeight;
 
 @end
 

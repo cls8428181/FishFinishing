@@ -61,10 +61,13 @@
     [self.view addSubview:self.collectionView];
     [self.view addSubview:self.searchView];
     [self.view bringSubviewToFront:self.searchView];
-//    UITapGestureRecognizer *tap =
-//    [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideSerchBarWhenTapBackground:)];
-//    tap.delegate = self;
-//    [self.view addGestureRecognizer:tap];
+    KNB_WS(weakSelf);
+    [self addMJRefreshHeadView:^(NSInteger page) {
+        [weakSelf fetchDataWithPage:page];
+    }];
+    [self addMJRefreshFootView:^(NSInteger page) {
+        
+    }];
 }
 
 - (void)settingConstraints {
@@ -75,27 +78,77 @@
     }];
 }
 
-
-- (void)fetchData:(NSString *)searchStr {
-    KNB_WS(weakSelf);
+- (void)fetchDataWithSearchString:(NSString *)searchStr {
     if (isNullStr(searchStr)) {
         [self.dataArray removeAllObjects];
         [self.collectionView reloadData];
     } else {
         self.api.search = searchStr;
-        [self.api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *_Nonnull request) {
-            if (weakSelf.api.requestSuccess) {
+        [self fetchDataWithPage:1];
+    }
+}
+
+- (void)fetchDataWithPage:(NSInteger)page {
+    self.api.page = page;
+    KNB_WS(weakSelf);
+    [self.api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *_Nonnull request) {
+        if (weakSelf.api.requestSuccess) {
+            NSDictionary *dic = request.responseObject[@"list"];
+            NSArray *modelArray = [KNBDesignSketchModel changeResponseJSONObject:dic];
+            if (page == 1) {
                 [weakSelf.dataArray removeAllObjects];
-                NSDictionary *dic = request.responseObject[@"list"];
-                NSArray *modelArray = [KNBDesignSketchModel changeResponseJSONObject:dic];
-                [weakSelf.dataArray addObjectsFromArray:modelArray];
-                [weakSelf.collectionView reloadData];
-            } else {
-                [weakSelf requestSuccess:NO requestEnd:NO];
             }
-        } failure:^(__kindof YTKBaseRequest *_Nonnull request) {
+            [weakSelf.dataArray addObjectsFromArray:modelArray];
+            [weakSelf.collectionView reloadData];
+            [weakSelf requestSuccess:YES requestEnd:modelArray.count == 0];
+            
+        } else {
             [weakSelf requestSuccess:NO requestEnd:NO];
-        }];
+        }
+    } failure:^(__kindof YTKBaseRequest *_Nonnull request) {
+        [weakSelf requestSuccess:NO requestEnd:NO];
+    }];
+}
+
+
+- (void)addMJRefreshHeadView:(KNMJHeaderLoadCompleteBlock)completeBlock {
+    KNB_WS(weakSelf);
+    MJRefreshNormalHeader *knbTableViewHeader = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        [weakSelf.collectionView.mj_footer resetNoMoreData];
+        weakSelf.requestPage = 1;
+        if (completeBlock) {
+            completeBlock(1);
+        }
+    }];
+    // 设置自动切换透明度(在导航栏下面自动隐藏)
+    knbTableViewHeader.automaticallyChangeAlpha = YES;
+    // 隐藏时间
+    knbTableViewHeader.lastUpdatedTimeLabel.hidden = YES;
+    self.collectionView.mj_header = knbTableViewHeader;
+}
+
+- (void)addMJRefreshFootView:(KNMJFooterLoadCompleteBlock)completeBlock {
+    self.collectionView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
+}
+
+- (void)loadMoreData {
+    self.requestPage += 1;
+    [self fetchDataWithPage:self.requestPage];
+}
+
+- (void)requestSuccess:(BOOL)success requestEnd:(BOOL)end {
+    [self.collectionView.mj_header endRefreshing];
+    [self.collectionView.mj_footer endRefreshing];
+    
+    if (end) {
+        [self.collectionView.mj_footer endRefreshingWithNoMoreData];
+        [self.collectionView reloadData];
+        return;
+    }
+    if (!success && self.requestPage > 1) {
+        self.requestPage -= 1;
+    } else {
+        [self.collectionView reloadData];
     }
 }
 
@@ -134,7 +187,7 @@
 }
 
 - (void)searchViewSearchBarTextDidChange:(NSString *)searchText {
-    [self fetchData:searchText];
+    [self fetchDataWithSearchString:searchText];
 }
 
 - (void)refreshSearchView:(NSString *)searchText {
@@ -165,13 +218,6 @@
 - (void)hideSerchBarWhenTapBackground:(id)sender {
     [self.searchView.searchBar resignFirstResponder];
 }
-
-//- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
-//    if ([NSStringFromClass([touch.view class]) isEqualToString:@"UITableViewCellContentView"]) {
-//        return NO;
-//    }
-//    return YES;
-//}
 
 #pragma mark - Event Response
 - (void)cancelAction {

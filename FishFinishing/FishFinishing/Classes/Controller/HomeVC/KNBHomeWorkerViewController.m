@@ -206,7 +206,7 @@
                 NSDictionary *dic = request.responseObject[@"list"];
                 KNBHomeServiceModel *model = [KNBHomeServiceModel changeResponseJSONObject:dic];
                 weakSelf.titleLabel.text = model.name;
-                [weakSelf.iconImageView sd_setImageWithURL:[NSURL URLWithString:model.logo] placeholderImage:KNBImages(@"knb_default_user")];
+                [weakSelf.iconImageView sd_setImageWithURL:[NSURL URLWithString:model.logo] placeholderImage:CCPortraitPlaceHolder];
             } else {
                 [weakSelf requestSuccess:NO requestEnd:NO];
             }

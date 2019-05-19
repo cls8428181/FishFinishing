@@ -40,7 +40,7 @@
 
 - (void)setModel:(KNBMeOrderModel *)model {
     _model = model;
-    [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:model.portrait_img] placeholderImage:KNBImages(@"knb_default_user")];
+    [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:model.portrait_img] placeholderImage:CCPortraitPlaceHolder];
     self.nameLabel.text = model.name;
     self.styleLabel.text = model.decorate_style;
     self.houseLabel.text = model.house_info;

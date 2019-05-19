@@ -95,7 +95,7 @@
 }
 
 - (void)setModel:(KNBHomeServiceModel *)model {
-    [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:model.logo] placeholderImage:KNBImages(@"knb_default_user")];
+    [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:model.logo] placeholderImage:CCPortraitPlaceHolder];
     self.iconImageView.layer.masksToBounds = YES;
     self.iconImageView.layer.cornerRadius = 45;
     self.nameLabel.text = model.name;

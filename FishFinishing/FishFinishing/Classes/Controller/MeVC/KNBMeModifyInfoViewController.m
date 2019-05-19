@@ -220,7 +220,7 @@
 - (UIButton *)iconButton {
     if (!_iconButton) {
         _iconButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_iconButton sd_setImageWithURL:[NSURL URLWithString:[KNBUserInfo shareInstance].portrait] forState:UIControlStateNormal placeholderImage:KNBImages(@"knb_default_user")];
+        [_iconButton sd_setImageWithURL:[NSURL URLWithString:[KNBUserInfo shareInstance].portrait] forState:UIControlStateNormal placeholderImage:CCPortraitPlaceHolder];
         [_iconButton addTarget:self action:@selector(iconButtonAction) forControlEvents:UIControlEventTouchUpInside];
         _iconButton.layer.masksToBounds = YES;
         _iconButton.layer.cornerRadius = 50;

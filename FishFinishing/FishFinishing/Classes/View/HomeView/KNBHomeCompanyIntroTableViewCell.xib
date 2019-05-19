@@ -29,11 +29,8 @@
                         <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F0v-aP-pam">
-                        <rect key="frame" x="12" y="47" width="370" height="53"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="53" id="iox-IA-Sj1"/>
-                        </constraints>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F0v-aP-pam">
+                        <rect key="frame" x="12" y="47" width="370" height="216.5"/>
                         <string key="text">杭州良工装饰有限公司成立于2004年2月，是一家具备国家建筑装修装饰工程专业承包贰级资质的企业，业务涉及家装、别墅、会所、写字杭州良工装饰有限公司成立于2004年2月，是一家具备国家建筑装修装饰工程专业承包贰级资质的企业，业务涉及家装、别墅、会所、写字杭州良工装饰有限公司成立于2004年2月，是一家具备国家建筑装修装饰工程专业承包贰级资质的企业，业务涉及家装、别墅、会所、写字杭州良工装饰有限公司成立于2004年2月，是一家具备国家建筑装修装饰工程专业承包贰级资质的企业，业务涉及家装、别墅、会所、写字</string>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <color key="textColor" red="0.50196078430000002" green="0.50196078430000002" blue="0.50196078430000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -52,6 +49,7 @@
                     </button>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="5kM-4t-mMu" firstAttribute="top" secondItem="F0v-aP-pam" secondAttribute="bottom" constant="20" id="ACW-73-kho"/>
                     <constraint firstAttribute="trailing" secondItem="F0v-aP-pam" secondAttribute="trailing" constant="12" id="c3F-sS-M20"/>
                     <constraint firstItem="sBY-OE-by3" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="12" id="djg-wQ-3b5"/>
                     <constraint firstItem="F0v-aP-pam" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="12" id="hWR-gT-CWC"/>
@@ -65,7 +63,6 @@
             <connections>
                 <outlet property="bottomButton" destination="5kM-4t-mMu" id="xVt-Zh-MBa"/>
                 <outlet property="contentLabel" destination="F0v-aP-pam" id="FjG-E9-PQd"/>
-                <outlet property="heightConstraint" destination="iox-IA-Sj1" id="P8z-kW-sQP"/>
             </connections>
             <point key="canvasLocation" x="188.80000000000001" y="268.06596701649175"/>
         </tableViewCell>

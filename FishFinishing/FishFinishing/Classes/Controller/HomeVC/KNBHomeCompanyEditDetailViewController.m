@@ -123,7 +123,7 @@
         } else {
             cell = [KNBRecruitmentPortraitTableViewCell cellWithTableView:tableView];
             KNBRecruitmentPortraitTableViewCell *typeCell = (KNBRecruitmentPortraitTableViewCell *)cell;
-            [typeCell.iconImageView sd_setImageWithURL:[NSURL URLWithString:self.model.logo] placeholderImage:KNBImages(@"knb_default_user")];
+            [typeCell.iconImageView sd_setImageWithURL:[NSURL URLWithString:self.model.logo] placeholderImage:CCPortraitPlaceHolder];
         }
         
     } else if (indexPath.section == 2) {
@@ -440,7 +440,7 @@
     if (self.recruitmentModel.iconImage) {
         //上传图片
         [LCProgressHUD showLoading:@""];
-        KNBUploadFileApi *fileApi = [[KNBUploadFileApi alloc] initWithImage:self.recruitmentModel.iconImage ?: KNBImages(@"knb_default_user")];
+        KNBUploadFileApi *fileApi = [[KNBUploadFileApi alloc] initWithImage:self.recruitmentModel.iconImage ?: CCPortraitPlaceHolder];
         KNB_WS(weakSelf);
         [fileApi startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *_Nonnull request) {
             if (fileApi.requestSuccess) {

@@ -100,6 +100,7 @@ CGFloat KNBHomeSearchViewHeight = 44;
         [[KNGetUserLoaction shareInstance] saveUserCityName:cityName areaId:areaId];
         weakSelf.defaultCityName = cityName;
         [weakSelf changeButtontTitle:cityName];
+        !weakSelf.cityChooseBlock ?: weakSelf.cityChooseBlock();
     };
     cityListVC.currentCity = [KNGetUserLoaction shareInstance].selectCityName;
     KNBNavgationController *nav = [[KNBNavgationController alloc] initWithRootViewController:cityListVC];

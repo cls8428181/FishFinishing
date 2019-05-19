@@ -62,7 +62,7 @@
     } else if (indexPath.section == 1) {
         cell = [KNBRecruitmentPortraitTableViewCell cellWithTableView:tableView];
         KNBRecruitmentPortraitTableViewCell *blockCell = (KNBRecruitmentPortraitTableViewCell *)cell;
-        [blockCell.iconImageView sd_setImageWithURL:[NSURL URLWithString:[KNBUserInfo shareInstance].portrait] placeholderImage:KNBImages(@"knb_default_user")];
+        [blockCell.iconImageView sd_setImageWithURL:[NSURL URLWithString:[KNBUserInfo shareInstance].portrait] placeholderImage:CCPortraitPlaceHolder];
     } else if (indexPath.section == 2) {
         cell = [KNBOrderDownTableViewCell cellWithTableView:tableView];
         KNBOrderDownTableViewCell *blockCell = (KNBOrderDownTableViewCell *)cell;

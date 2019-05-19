@@ -136,7 +136,7 @@
         layout.minimumInteritemSpacing = 10;
         layout.minimumLineSpacing = 10;
         layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-        layout.sectionInset = UIEdgeInsetsMake(0, 0, 0, 10);
+        layout.sectionInset = UIEdgeInsetsMake(0, 13, 0, 13);
         _collectionView = [[UICollectionView alloc] initWithFrame:self.contentView.bounds collectionViewLayout:layout];
         _collectionView.showsHorizontalScrollIndicator = NO;
         _collectionView.backgroundColor = [UIColor whiteColor];

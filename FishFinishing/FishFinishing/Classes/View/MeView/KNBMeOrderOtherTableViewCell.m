@@ -39,7 +39,7 @@
 
 - (void)setModel:(KNBMeOrderModel *)model {
     _model = model;
-    [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:model.portrait_img] placeholderImage:KNBImages(@"knb_default_user")];
+    [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:model.portrait_img] placeholderImage:CCPortraitPlaceHolder];
     self.nameLabel.text = model.name;
     self.houseLabel.text = model.decorate_cat;
     self.areaLabel.text = [NSString stringWithFormat:@"%@m²",model.area_info];

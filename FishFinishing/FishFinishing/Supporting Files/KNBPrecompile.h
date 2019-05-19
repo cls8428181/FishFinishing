@@ -78,6 +78,8 @@
 #define KNBImages(imageName) [UIImage imageNamed:imageName]
 //字体大小
 #define KNBFont(font) [UIFont systemFontOfSize:font]
+//字体大小
+#define KNBColor(color) [UIColor colorWithHex:color]
 //图片地址
 #define KNBImageUrl(imageUrl) [NSURL URLWithString:imageUrl]
 //过滤字符串
@@ -162,4 +164,9 @@
 #endif
 #endif
 #endif
+
+
+#define CCPortraitPlaceHolderName @"knb_default_user"
+#define CCPortraitPlaceHolder KNBImages(CCPortraitPlaceHolderName)
+
 #endif /* KNBPrecompile_h */

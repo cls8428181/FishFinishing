@@ -34,8 +34,10 @@
 @property (nonatomic, strong) UIImageView *adImageView;
 //服务商 label
 @property (nonatomic, strong) UILabel *titleLabel;
-//服务商按钮
-@property (nonatomic, strong) UIButton *titleButton;
+//服务商头像
+@property (nonatomic, strong) UIImageView *iconImageView;
+//服务商名称
+@property (nonatomic, strong) UILabel *nameLabel;
 // 定时器
 @property (nonatomic, strong) NSTimer *timer;
 //header view
@@ -85,17 +87,24 @@
         [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(12);
             make.top.mas_equalTo(22);
+            make.width.mas_equalTo(50);
         }];
-        [self.titleButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        [self.iconImageView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerY.equalTo(weakSelf.titleLabel);
-            make.left.equalTo(weakSelf.titleLabel.mas_right).mas_offset(15);
+            make.left.equalTo(weakSelf.titleLabel.mas_right).mas_offset(10);
+            make.width.mas_equalTo(38);
+            make.height.mas_equalTo(38);
+        }];
+        [self.nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerY.equalTo(weakSelf.titleLabel);
+            make.left.equalTo(weakSelf.iconImageView.mas_right).mas_offset(10);
             make.right.mas_equalTo(-12);
         }];
     }
     [self.adImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(12);
         if (weakSelf.faceId) {
-            make.top.equalTo(weakSelf.titleButton.mas_bottom).mas_offset(12);
+            make.top.equalTo(weakSelf.iconImageView.mas_bottom).mas_offset(12);
         } else {
             make.top.equalTo(weakSelf.bgView.mas_bottom).mas_offset(12);
         }
@@ -131,7 +140,8 @@
     [self.view addSubview:self.bgView];
     if (self.faceId) {
         [self.bgView addSubview:self.titleLabel];
-        [self.bgView addSubview:self.titleButton];
+        [self.bgView addSubview:self.iconImageView];
+        [self.bgView addSubview:self.nameLabel];
     }
     [self.bgView addSubview:self.adImageView];
     [self.bgView addSubview:self.knbTableView];
@@ -149,13 +159,8 @@
             if (api.requestSuccess) {
                 NSDictionary *dic = request.responseObject[@"list"];
                 KNBHomeServiceModel *model = [KNBHomeServiceModel changeResponseJSONObject:dic];
-                [weakSelf.titleButton setTitle:model.name forState:UIControlStateNormal];
-                [weakSelf.titleButton sd_setImageWithURL:[NSURL URLWithString:model.logo] forState:UIControlStateNormal completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
-                    UIImage *refined = [UIImage imageWithCGImage:image.CGImage scale:3 orientation:image.imageOrientation];
-                    refined = [refined resizedImage:CGSizeMake(38, 38) interpolationQuality:0];
-                    [weakSelf.titleButton setImage:refined forState:UIControlStateNormal];
-                    [weakSelf.titleButton layoutButtonWithEdgeInsetsStyle:GLButtonEdgeInsetsStyleLeft imageTitleSpace:5];
-                }];
+                [weakSelf.iconImageView sd_setImageWithURL:[NSURL URLWithString:model.logo] placeholderImage:CCPortraitPlaceHolder];
+                weakSelf.nameLabel.text = model.name;
             } else {
                 [weakSelf requestSuccess:NO requestEnd:NO];
             }
@@ -225,7 +230,7 @@
         self.orderModel.area_info = areaCell.detailTextField.text;
         self.orderModel.name = nameCell.detailTextField.text;
         self.orderModel.mobile = phoneCell.detailTextField.text;
-        KNBHomeBespokeApi *api = [[KNBHomeBespokeApi alloc] initWithFacId:self.faceId ?: 0 facName:self.faceId ? self.titleButton.titleLabel.text : @"" catId:[self.orderModel.typeModel.selectSubModel.typeId integerValue] userId:@"" areaInfo:self.orderModel.area_info houseInfo:self.orderModel.house_info community:self.orderModel.community provinceId:self.orderModel.province_id cityId:self.orderModel.city_id areaId:self.orderModel.area_id decorateStyle:self.orderModel.style decorateGrade:self.orderModel.level name:self.orderModel.name mobile:self.orderModel.mobile decorateCat:self.orderModel.decorate_cat type:1];
+        KNBHomeBespokeApi *api = [[KNBHomeBespokeApi alloc] initWithFacId:self.faceId ?: 0 facName:self.faceId ? self.nameLabel.text : @"" catId:[self.orderModel.typeModel.selectSubModel.typeId integerValue] userId:@"" areaInfo:self.orderModel.area_info houseInfo:self.orderModel.house_info community:self.orderModel.community provinceId:self.orderModel.province_id cityId:self.orderModel.city_id areaId:self.orderModel.area_id decorateStyle:self.orderModel.style decorateGrade:self.orderModel.level name:self.orderModel.name mobile:self.orderModel.mobile decorateCat:self.orderModel.decorate_cat type:1];
         api.hudString = @"";
         KNB_WS(weakSelf);
         [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *_Nonnull request) {
@@ -319,17 +324,22 @@
     return _titleLabel;
 }
 
-- (UIButton *)titleButton {
-    if (!_titleButton) {
-        _titleButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_titleButton setTitle:@"装饰公司" forState:UIControlStateNormal];
-        [_titleButton setImage:KNBImages(@"knb_default_user") forState:UIControlStateNormal];
-        [_titleButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        _titleButton.titleLabel.font = [UIFont systemFontOfSize:14];
-        _titleButton.imageView.layer.masksToBounds = YES;
-        _titleButton.imageView.layer.cornerRadius = 19;
+- (UIImageView *)iconImageView {
+    if (!_iconImageView) {
+        _iconImageView = [[UIImageView alloc] init];
+        _iconImageView.layer.masksToBounds = YES;
+        _iconImageView.layer.cornerRadius = 19;
     }
-    return _titleButton;
+    return _iconImageView;
+}
+
+- (UILabel *)nameLabel {
+    if (!_nameLabel) {
+        _nameLabel = [[UILabel alloc] init];
+        _nameLabel.textColor = [UIColor kn333333Color];
+        _nameLabel.font = [UIFont systemFontOfSize:14];
+    }
+    return _nameLabel;
 }
 
 - (KNBOrderModel *)orderModel {

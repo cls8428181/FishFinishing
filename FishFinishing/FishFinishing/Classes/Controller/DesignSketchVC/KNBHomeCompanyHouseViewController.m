@@ -48,6 +48,7 @@
             NSDictionary *dic = request.responseObject[@"list"];
             NSArray *modelArray = [KNBRecruitmentUnitModel changeResponseJSONObject:dic];
             // 给数据源赋值
+            weakSelf.modelArray = modelArray;
             [weakSelf.dataArray addObject:@"全部"];
             for (KNBRecruitmentUnitModel *model in modelArray) {
                 [weakSelf.dataArray addObject:model.name];

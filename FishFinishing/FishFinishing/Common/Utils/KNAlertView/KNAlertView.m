@@ -87,7 +87,7 @@
         _remidLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 10, kWidth - 30, 80)];
         _remidLabel.font = [UIFont systemFontOfSize:16.0];
         _remidLabel.textAlignment = NSTextAlignmentCenter;
-        _remidLabel.textColor = [UIColor knMainColor];
+        _remidLabel.textColor = [UIColor colorWithHex:0x808080];
         _remidLabel.numberOfLines = 2;
     }
     return _remidLabel;

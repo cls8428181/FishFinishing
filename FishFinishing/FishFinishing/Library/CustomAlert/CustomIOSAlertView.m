@@ -210,7 +210,7 @@ CGFloat buttonSpacerHeight = 0;
 
     // There is a line above the button
     UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, dialogContainer.bounds.size.height - buttonHeight - buttonSpacerHeight, dialogContainer.bounds.size.width, buttonSpacerHeight)];
-    lineView.backgroundColor = [UIColor blackColor];
+    lineView.backgroundColor = [UIColor colorWithHex:0x808080];
     [dialogContainer addSubview:lineView];
     // ^^^
 
@@ -243,18 +243,14 @@ CGFloat buttonSpacerHeight = 0;
         if (i == 0) {
             if ([buttonTitles count] == 1) {
                 closeButton.backgroundColor = [UIColor colorWithRed:26.0 / 255.0 green:26.0 / 255.0 blue:26.0 / 255.0 alpha:1.0f];
-                [closeButton setTitleColor:[UIColor colorWithHex:0xef508d] forState:UIControlStateNormal];
-                [closeButton setTitleColor:[UIColor colorWithHex:0xef508d] forState:UIControlStateNormal];
+                [closeButton setTitleColor:[UIColor knMainColor] forState:UIControlStateNormal];
             } else {
                 [closeButton setTitleColor:[UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:1.0f] forState:UIControlStateNormal];
-                [closeButton setTitleColor:[UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:0.5f] forState:UIControlStateHighlighted];
+                [closeButton setTitleColor:[UIColor colorWithHex:0x808080] forState:UIControlStateNormal];
             }
         } else {
-            //            closeButton.backgroundColor = [UIColor colorWithRed:26.0/255.0 green:26.0/255.0 blue:26.0/255.0 alpha:1.0f];
-            //            [closeButton setTitleColor:[UIColor colorWithRed:235.0/255.0 green:189.0/255.0 blue:48.0/255.0 alpha:1.0f] forState:UIControlStateNormal];
-            //            [closeButton setTitleColor:[UIColor colorWithRed:235.0/255.0 green:189.0/255.0 blue:48.0/255.0 alpha:0.5f] forState:UIControlStateHighlighted];
-            closeButton.backgroundColor = [UIColor colorWithHex:0x333333];
-            [closeButton setTitleColor:[UIColor colorWithHex:0xef508d] forState:UIControlStateNormal];
+            closeButton.backgroundColor = [UIColor knMainColor];
+            [closeButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         }
 
         [closeButton.titleLabel setFont:[UIFont boldSystemFontOfSize:14.0f]];

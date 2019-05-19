@@ -43,6 +43,9 @@
         _tableView.showsVerticalScrollIndicator = NO;
         _tableView.type = KNBHomeTableViewTypeSub;
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        _tableView.estimatedRowHeight = 0;
+        _tableView.estimatedSectionHeaderHeight = 0;
+        _tableView.estimatedSectionFooterHeight = 0;
 //        _tableView.tableFooterView = self.footerView;
     }
     return _tableView;
@@ -102,7 +105,7 @@
         [self.tableView setContentOffset:CGPointZero animated:YES];
     }
     [self.dataArray addObjectsFromArray:dataSource];
-    if (dataSource.count < 10) {
+    if (dataSource.count == 0) {
         [self.tableView.mj_footer endRefreshing];
         [self.tableView.mj_footer endRefreshingWithNoMoreData];
     }

@@ -40,7 +40,7 @@
 
 #pragma mark - Utils
 - (void)configuration {
-    self.naviView.title = @"入驻支付";
+    self.naviView.title = @"支付";
     [self.naviView addLeftBarItemImageName:@"knb_back_black" target:self sel:@selector(backAction)];
     self.view.backgroundColor = [UIColor knBgColor];
     self.knGroupTableView.tableFooterView = self.footerView;
@@ -175,7 +175,7 @@
 - (void)addRecruitmentRequest {
     //上传图片
     [LCProgressHUD showLoading:@""];
-    KNBUploadFileApi *fileApi = [[KNBUploadFileApi alloc] initWithImage:self.recruitmentModel.iconImage ?: KNBImages(@"knb_default_user")];
+    KNBUploadFileApi *fileApi = [[KNBUploadFileApi alloc] initWithImage:self.recruitmentModel.iconImage ?: CCPortraitPlaceHolder];
     KNB_WS(weakSelf);
     [fileApi startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *_Nonnull request) {
         if (fileApi.requestSuccess) {

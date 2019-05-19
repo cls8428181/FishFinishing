@@ -36,7 +36,9 @@
 //标签按钮
 @property (nonatomic, strong) UIButton *markButton;
 //标签文字
-@property (nonatomic, strong) UILabel *markLabel;
+@property (nonatomic, strong) UILabel *leftMarkLabel;
+@property (nonatomic, strong) UILabel *middleMarkLabel;
+@property (nonatomic, strong) UILabel *rightMarkLabel;
 //底部线条
 @property (nonatomic, strong) UIView *lineView;
 //服务流程
@@ -103,9 +105,18 @@
             make.left.equalTo(weakSelf.titleLabel.mas_right).mas_offset(13);
             make.centerY.equalTo(weakSelf.titleLabel);
         }];
-        [self.markLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        [self.leftMarkLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(weakSelf.titleLabel.mas_bottom).mas_offset(15);
             make.left.equalTo(weakSelf.iconImageView.mas_right).mas_offset(13);
+        }];
+        [self.middleMarkLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(weakSelf.titleLabel.mas_bottom).mas_offset(15);
+            make.left.equalTo(weakSelf.leftMarkLabel.mas_right).mas_offset(20);
+        }];
+        [self.rightMarkLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(weakSelf.titleLabel.mas_bottom).mas_offset(15);
+            make.left.equalTo(weakSelf.middleMarkLabel.mas_right).mas_offset(20);
+            make.right.mas_equalTo(-13);
         }];
         [self.lineView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(weakSelf.iconImageView.mas_bottom).mas_offset(15);
@@ -194,7 +205,9 @@
         [self.bgView addSubview:self.iconImageView];
         [self.bgView addSubview:self.titleLabel];
         [self.bgView addSubview:self.markButton];
-        [self.bgView addSubview:self.markLabel];
+        [self.bgView addSubview:self.leftMarkLabel];
+        [self.bgView addSubview:self.middleMarkLabel];
+        [self.bgView addSubview:self.rightMarkLabel];
         [self.bgView addSubview:self.lineView];
     }
     [self.bgView addSubview:self.middleLabel];
@@ -220,7 +233,7 @@
                 NSDictionary *dic = request.responseObject[@"list"];
                 KNBHomeServiceModel *model = [KNBHomeServiceModel changeResponseJSONObject:dic];
                 weakSelf.titleLabel.text = model.name;
-                [weakSelf.iconImageView sd_setImageWithURL:[NSURL URLWithString:model.logo] placeholderImage:KNBImages(@"knb_default_user")];
+                [weakSelf.iconImageView sd_setImageWithURL:[NSURL URLWithString:model.logo] placeholderImage:CCPortraitPlaceHolder];
             } else {
                 [weakSelf requestSuccess:NO requestEnd:NO];
             }
@@ -399,13 +412,34 @@
     return _markButton;
 }
 
-- (UILabel *)markLabel {
-    if (!_markLabel) {
-        _markLabel = [[UILabel alloc] init];
-        _markLabel.font = [UIFont systemFontOfSize:15];
-        _markLabel.text = @"免费";
+- (UILabel *)leftMarkLabel {
+    if (!_leftMarkLabel) {
+        _leftMarkLabel = [[UILabel alloc] init];
+        _leftMarkLabel.font = [UIFont systemFontOfSize:15];
+        _leftMarkLabel.textColor = KNBColor(0x009fe8);
+        _leftMarkLabel.text = @"免费";
     }
-    return _markLabel;
+    return _leftMarkLabel;
+}
+
+- (UILabel *)middleMarkLabel {
+    if (!_middleMarkLabel) {
+        _middleMarkLabel = [[UILabel alloc] init];
+        _middleMarkLabel.font = [UIFont systemFontOfSize:15];
+        _middleMarkLabel.textColor = KNBColor(0xFD9424);
+        _middleMarkLabel.text = @"户型设计";
+    }
+    return _middleMarkLabel;
+}
+
+- (UILabel *)rightMarkLabel {
+    if (!_rightMarkLabel) {
+        _rightMarkLabel = [[UILabel alloc] init];
+        _rightMarkLabel.font = [UIFont systemFontOfSize:15];
+        _rightMarkLabel.textColor = KNBColor(0xFF6600);
+        _rightMarkLabel.text = @"专业设计师1对1服务";
+    }
+    return _rightMarkLabel;
 }
 
 - (UIView *)lineView {

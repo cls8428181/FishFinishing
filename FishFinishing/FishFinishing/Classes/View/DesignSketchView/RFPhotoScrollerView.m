@@ -83,7 +83,7 @@
         // 添加图片并适配
 
         UIImageView *imageView = [[UIImageView alloc] init];
-        [imageView sd_setImageWithURL:[NSURL URLWithString:imageNamed] placeholderImage:KNBImages(@"knb_default_user") completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+        [imageView sd_setImageWithURL:[NSURL URLWithString:imageNamed] placeholderImage:CCPortraitPlaceHolder completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
             //图片的宽
             CGFloat width = image.size.width;
             //图片的高

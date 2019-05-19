@@ -231,8 +231,8 @@ NSString *const KNSaveUserLocation = @"KNSaveUserLocation";
     cityName = [cityName replaceString:@"市" withString:@""];
     NSString *text = [NSString stringWithFormat:@"小主,系统检测到您当前所处城市为%@,需要切换至%@吗?", cityName, cityName];
     NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:text];
-    [str addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithHex:0xef508d] range:NSMakeRange(16, cityName.length)];
-    [str addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithHex:0xef508d] range:NSMakeRange(16 + cityName.length + 6, cityName.length)];
+    [str addAttribute:NSForegroundColorAttributeName value:[UIColor knMainColor] range:NSMakeRange(16, cityName.length)];
+    [str addAttribute:NSForegroundColorAttributeName value:[UIColor knMainColor] range:NSMakeRange(16 + cityName.length + 6, cityName.length)];
     return str;
 }
 

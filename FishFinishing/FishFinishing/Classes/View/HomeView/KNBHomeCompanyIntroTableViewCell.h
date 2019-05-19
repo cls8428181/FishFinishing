@@ -13,8 +13,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface KNBHomeCompanyIntroTableViewCell : UITableViewCell
 @property (nonatomic, strong) KNBHomeServiceModel *model;
-
-@property (nonatomic, copy) void (^spreadIntroBlock)(void);
+@property (nonatomic, assign) BOOL isEdit;
+@property (nonatomic, copy) void (^openIntroBlock)(void);
 
 /**
  cell 创建

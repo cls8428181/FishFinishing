@@ -58,9 +58,9 @@
     if (!self.isEdit) {
         self.knGroupTableView.frame = CGRectMake(0, KNB_NAV_HEIGHT, KNB_SCREEN_WIDTH, KNB_SCREEN_HEIGHT - KNB_TAB_HEIGHT - KNB_NAV_HEIGHT);
     }
-    self.knGroupTableView.estimatedRowHeight = 0;
-    self.knGroupTableView.estimatedSectionHeaderHeight = 0;
-    self.knGroupTableView.estimatedSectionFooterHeight = 0;
+    self.knGroupTableView.estimatedRowHeight = 170;
+//    self.knGroupTableView.estimatedSectionHeaderHeight = 0;
+//    self.knGroupTableView.estimatedSectionFooterHeight = 0;
 }
 
 - (void)addUI {
@@ -161,8 +161,12 @@
         cell = [KNBHomeCompanyIntroTableViewCell cellWithTableView:tableView];
         KNBHomeCompanyIntroTableViewCell *blockCell = (KNBHomeCompanyIntroTableViewCell *)cell;
         blockCell.model = self.currentModel;
-        blockCell.spreadIntroBlock = ^{
-            [tableView reloadData];
+        blockCell.isEdit = self.isEdit;
+        blockCell.openIntroBlock = ^{
+            KNBHomeCompanyIntroTableViewCell *weakCell = [tableView cellForRowAtIndexPath:indexPath];
+            weakCell.model.isOpen = !weakCell.model.isOpen;
+            [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+//            [tableView reloadData];
         };
     } else {
         cell = [KNBHomeCompanyCaseTableViewCell cellWithTableView:tableView];
@@ -176,17 +180,30 @@
     return cell;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
         return [KNBHomeCompanyHeaderTableViewCell cellHeight:self.isEdit];
     } else if (indexPath.section == 1) {
         return [KNBHomeCompanyServerTableViewCell cellHeight:self.isEdit];
     } else if (indexPath.section == 2) {
-        return [KNBHomeCompanyIntroTableViewCell cellHeight:self.currentModel];
+        return self.currentModel.cellHeight;
     } else {
         return [KNBHomeCompanyCaseTableViewCell cellHeight:self.currentModel.caseList.count isEdit:self.isEdit];
     }
 }
+
+//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+//    if (indexPath.section == 0) {
+//        return [KNBHomeCompanyHeaderTableViewCell cellHeight:self.isEdit];
+//    } else if (indexPath.section == 1) {
+//        return [KNBHomeCompanyServerTableViewCell cellHeight:self.isEdit];
+//    } else if (indexPath.section == 2) {
+//        return self.currentModel.cellHeight;
+////        return [KNBHomeCompanyIntroTableViewCell cellHeight:self.currentModel];
+//    } else {
+//        return [KNBHomeCompanyCaseTableViewCell cellHeight:self.currentModel.caseList.count isEdit:self.isEdit];
+//    }
+//}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     if (section == 0) return CGFLOAT_MIN;
@@ -254,18 +271,23 @@
 - (UIButton *)enterButton {
     if (!_enterButton) {
         _enterButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        _enterButton.frame = CGRectMake(KNB_SCREEN_WIDTH/2 + 13, KNB_SCREEN_HEIGHT - KNB_TAB_HEIGHT + 17, KNB_SCREEN_WIDTH/2 - 26, 34);
+        if (KNB_ISIPHONEX) {
+            _enterButton.frame = CGRectMake(KNB_SCREEN_WIDTH/2 + 13, KNB_SCREEN_HEIGHT - KNB_TAB_HEIGHT + 12, KNB_SCREEN_WIDTH/2 - 26, 34);
+        } else {
+            _enterButton.frame = CGRectMake(KNB_SCREEN_WIDTH/2 + 13, KNB_SCREEN_HEIGHT - KNB_TAB_HEIGHT + 8, KNB_SCREEN_WIDTH/2 - 26, 34);
+        }
+
         [_enterButton setTitle:[self.naviView.title isEqualToString:@"家居建材"] ? @"立即购买" : @"立即预约" forState:UIControlStateNormal];
         [_enterButton addTarget:self action:@selector(enterButtonAction) forControlEvents:UIControlEventTouchUpInside];
         _enterButton.layer.masksToBounds = YES;
         _enterButton.layer.cornerRadius = 17;
-        if ([self.naviView.title containsString:@"家居"] || [self.naviView.title containsString:@"建材"]) {
-            _enterButton.enabled = NO;
-            [_enterButton setBackgroundColor:[UIColor knLightGrayColor]];
-        } else {
+//        if ([self.naviView.title containsString:@"家居"] || [self.naviView.title containsString:@"建材"]) {
+//            _enterButton.enabled = NO;
+//            [_enterButton setBackgroundColor:[UIColor knLightGrayColor]];
+//        } else {
             _enterButton.enabled = YES;
             [_enterButton setBackgroundColor:[UIColor knf5701bColor]];
-        }
+//        }
     }
     return _enterButton;
 }
@@ -282,7 +304,7 @@
 - (UIButton *)phoneButton {
     if (!_phoneButton) {
         _phoneButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        _phoneButton.frame = CGRectMake((KNB_SCREEN_WIDTH/2 - 60)/2, KNB_SCREEN_HEIGHT - KNB_TAB_HEIGHT + 5, 60, 60);
+        _phoneButton.frame = CGRectMake((KNB_SCREEN_WIDTH/2 - 60)/2, KNB_SCREEN_HEIGHT - KNB_TAB_HEIGHT, 60, 60);
         [_phoneButton setTitle:@"电话" forState:UIControlStateNormal];
         _phoneButton.titleLabel.font = KNBFont(13);
         [_phoneButton setTitleColor:[UIColor kn333333Color] forState:UIControlStateNormal];

@@ -349,7 +349,7 @@ static CGFloat const kHeaderViewHeight = 50.0f;
             if (!isNullArray(weakSelf.titleArray)) {
                 [weakSelf.subView reloadTableViewAtIndex:index dataSource:modelArray title:weakSelf.titleArray[index] page:page];
             }
-            if (modelArray.count < 10) {
+            if (modelArray.count == 0) {
                 weakSelf.requestPage = 1;
             }
         } else {
@@ -487,6 +487,10 @@ static CGFloat const kHeaderViewHeight = 50.0f;
         _searchView.touchBlock = ^{
             KNBSearchViewController *searchVC = [[KNBSearchViewController alloc] init];
             [weakSelf.navigationController pushViewController:searchVC animated:YES];
+        };
+        _searchView.cityChooseBlock = ^{
+            weakSelf.segmentedControl.selectedSegmentIndex = 0;
+            [weakSelf serviceListRequest:0 page:1];
         };
     }
     return _searchView;

@@ -39,6 +39,7 @@
              @"service_name" : @"service_name",
              @"icon" : @"icon",
              @"img" : @"img",
+             @"is_recommend" : @"is_recommend",
              @"distance" : @"distance",
              @"apart_name" : @"apart_name",
              @"style_name" : @"style_name",
@@ -54,4 +55,14 @@
 + (NSValueTransformer *)serviceListJSONTransformer {
     return [MTLJSONAdapter arrayTransformerWithModelClass:KNBHomeServiceModel.class];
 }
+
+- (void)setRemark:(NSString *)remark {
+    _remark = remark;
+    CGFloat w = [UIScreen mainScreen].bounds.size.width - 24;
+    CGFloat h = MAXFLOAT;
+    NSDictionary *dict = @{NSFontAttributeName: [UIFont systemFontOfSize:13]};
+    CGFloat height = [remark boundingRectWithSize:CGSizeMake(w, h) options:NSStringDrawingUsesLineFragmentOrigin attributes:dict context:nil].size.height;
+    _cellHeight = height + 111;
+}
+
 @end

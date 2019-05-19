@@ -7,11 +7,9 @@
 //
 
 #import "KNBHomeCityHeaderView.h"
-#import "FMTagsView.h"
 #import "NSString+Size.h"
 
 @interface KNBHomeCityHeaderView ()<FMTagsViewDelegate>
-
 @property (nonatomic, strong) UILabel *historyTipLabel;
 @property (nonatomic, strong) FMTagsView *historyTagsView;
 @property (nonatomic, strong) UILabel *hotTipLabel;
@@ -134,6 +132,7 @@
             BOOL result = [KNBCityModel deleteModel];
             if (result) {
                 self.historyTagsView.tagsArray = [NSArray array];
+                !self.clearComplete ?: self.clearComplete();
             }
         }
     }];

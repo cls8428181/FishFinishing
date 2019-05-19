@@ -78,15 +78,20 @@
 
 - (void)setModel:(KNBHomeServiceModel *)model {
     _model = model;
-    [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:model.img] placeholderImage:KNBImages(@"knb_default_user")];
+    [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:model.img] placeholderImage:CCPortraitPlaceHolder];
     self.titleLabel.text = model.title;
     self.detailLabel.text = [NSString stringWithFormat:@"%@/%@㎡/%@",model.apart_name ?: @"无",model.acreage ?: @"0",model.style_name ?: @"无"];
     self.iconImageView.layer.masksToBounds = YES;
     self.iconImageView.layer.cornerRadius = 5;
+    if ([model.is_recommend isEqualToString:@"1"]) {
+        self.showButton.selected = YES;
+    } else {
+        self.showButton.selected = NO;
+    }
 }
 
 - (void)setServiceName:(NSString *)name ServiceIcon:(NSString *)icon {
-    [self.headImageView sd_setImageWithURL:[NSURL URLWithString:icon] placeholderImage:KNBImages(@"knb_default_user")];
+    [self.headImageView sd_setImageWithURL:[NSURL URLWithString:icon] placeholderImage:CCPortraitPlaceHolder];
     self.nameLabel.text = name;
 }
 
