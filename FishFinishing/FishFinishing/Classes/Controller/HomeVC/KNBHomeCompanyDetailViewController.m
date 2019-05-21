@@ -11,7 +11,6 @@
 #import "KNBHomeCompanyHeaderTableViewCell.h"
 #import "KNBHomeCompanyServerTableViewCell.h"
 #import "KNBHomeCompanyIntroTableViewCell.h"
-#import "KNBHomeCompanyCaseTableViewCell.h"
 #import "KNBRecruitmentDetailApi.h"
 #import "KNBHomeServiceModel.h"
 #import "KNBHomeCompanyEditDetailViewController.h"
@@ -23,12 +22,14 @@
 #import "KNBRecruitmentModifyDetailApi.h"
 #import "KNBOrderModifyPowerApi.h"
 #import "UIButton+Style.h"
+#import "KNBHomeCompanyDetailFooterView.h"
 
 @interface KNBHomeCompanyDetailViewController ()
 @property (nonatomic, strong) KNBHomeServiceModel *currentModel;
 @property (nonatomic, strong) UIImageView *bottomBgView;
 @property (nonatomic, strong) UIButton *phoneButton;
 @property (nonatomic, strong) UIButton *enterButton;
+@property (nonatomic, strong) KNBHomeCompanyDetailFooterView *footerView;
 //遮罩
 @property (nonatomic, strong) UIView *coverView;
 @end
@@ -59,8 +60,6 @@
         self.knGroupTableView.frame = CGRectMake(0, KNB_NAV_HEIGHT, KNB_SCREEN_WIDTH, KNB_SCREEN_HEIGHT - KNB_TAB_HEIGHT - KNB_NAV_HEIGHT);
     }
     self.knGroupTableView.estimatedRowHeight = 170;
-//    self.knGroupTableView.estimatedSectionHeaderHeight = 0;
-//    self.knGroupTableView.estimatedSectionFooterHeight = 0;
 }
 
 - (void)addUI {
@@ -86,6 +85,8 @@
                 NSDictionary *dic = request.responseObject[@"list"];
                 KNBHomeServiceModel *model = [KNBHomeServiceModel changeResponseJSONObject:dic];
                 weakSelf.currentModel = model;
+                weakSelf.currentModel.isEdit = YES;
+                [weakSelf reloadFooterView];
                 [weakSelf requestSuccess:YES requestEnd:YES];
             } else {
                 weakSelf.currentModel = weakSelf.model;
@@ -107,6 +108,7 @@
                 NSDictionary *dic = request.responseObject[@"list"];
                 KNBHomeServiceModel *model = [KNBHomeServiceModel changeResponseJSONObject:dic];
                 weakSelf.currentModel = model;
+                [weakSelf reloadFooterView];
                 [weakSelf requestSuccess:YES requestEnd:YES];
             } else {
                 weakSelf.currentModel = weakSelf.model;
@@ -119,9 +121,17 @@
     }
 }
 
+- (void)reloadFooterView {
+    self.footerView.frame = CGRectMake(0, 0, KNB_SCREEN_WIDTH, self.currentModel.caseListHeight);
+    self.knGroupTableView.tableFooterView = self.footerView;
+    self.footerView.model = self.currentModel;
+    self.footerView.isEdit = self.isEdit;
+    [self.footerView.collectionView reloadData];
+}
+
 #pragma mark - tableview delegate & dataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 4;
+    return 3;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -157,7 +167,7 @@
         blockCell.gotoOrderBlock = ^{
             [weakSelf enterButtonAction];
         };
-    } else if (indexPath.section == 2) {
+    } else {
         cell = [KNBHomeCompanyIntroTableViewCell cellWithTableView:tableView];
         KNBHomeCompanyIntroTableViewCell *blockCell = (KNBHomeCompanyIntroTableViewCell *)cell;
         blockCell.model = self.currentModel;
@@ -165,17 +175,9 @@
         blockCell.openIntroBlock = ^{
             KNBHomeCompanyIntroTableViewCell *weakCell = [tableView cellForRowAtIndexPath:indexPath];
             weakCell.model.isOpen = !weakCell.model.isOpen;
+            weakSelf.currentModel.isOpen = weakCell.model.isOpen;
             [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-//            [tableView reloadData];
         };
-    } else {
-        cell = [KNBHomeCompanyCaseTableViewCell cellWithTableView:tableView];
-        KNBHomeCompanyCaseTableViewCell *blockCell = (KNBHomeCompanyCaseTableViewCell *)cell;
-        blockCell.addCaseBlock = ^{
-            [weakSelf fetchData];
-        };
-        blockCell.model = self.currentModel;
-        blockCell.isEdit = self.isEdit;
     }
     return cell;
 }
@@ -185,25 +187,10 @@
         return [KNBHomeCompanyHeaderTableViewCell cellHeight:self.isEdit];
     } else if (indexPath.section == 1) {
         return [KNBHomeCompanyServerTableViewCell cellHeight:self.isEdit];
-    } else if (indexPath.section == 2) {
-        return self.currentModel.cellHeight;
     } else {
-        return [KNBHomeCompanyCaseTableViewCell cellHeight:self.currentModel.caseList.count isEdit:self.isEdit];
+        return self.currentModel.remarkHeight;
     }
 }
-
-//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-//    if (indexPath.section == 0) {
-//        return [KNBHomeCompanyHeaderTableViewCell cellHeight:self.isEdit];
-//    } else if (indexPath.section == 1) {
-//        return [KNBHomeCompanyServerTableViewCell cellHeight:self.isEdit];
-//    } else if (indexPath.section == 2) {
-//        return self.currentModel.cellHeight;
-////        return [KNBHomeCompanyIntroTableViewCell cellHeight:self.currentModel];
-//    } else {
-//        return [KNBHomeCompanyCaseTableViewCell cellHeight:self.currentModel.caseList.count isEdit:self.isEdit];
-//    }
-//}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     if (section == 0) return CGFLOAT_MIN;
@@ -322,6 +309,20 @@
         _coverView.backgroundColor = [UIColor whiteColor];
     }
     return _coverView;
+}
+
+- (KNBHomeCompanyDetailFooterView *)footerView {
+    KNB_WS(weakSelf);
+    if (!_footerView) {
+        _footerView = [[KNBHomeCompanyDetailFooterView alloc] init];
+        _footerView.frame = CGRectMake(0, 0, KNB_SCREEN_WIDTH, self.currentModel.caseListHeight);
+        _footerView.addCaseBlock = ^{
+            [weakSelf fetchData];
+        };
+        _footerView.model = self.currentModel;
+        _footerView.isEdit = self.isEdit;
+    }
+    return _footerView;
 }
 
 @end

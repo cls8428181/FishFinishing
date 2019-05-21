@@ -31,7 +31,7 @@
                         <constraints>
                             <constraint firstAttribute="width" relation="lessThanOrEqual" constant="50" id="HyT-VM-Jas"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
                         <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -42,10 +42,7 @@
                         <rect key="frame" x="127" y="57" width="9" height="12"/>
                     </imageView>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WWW-vy-9Gc">
-                        <rect key="frame" x="127" y="81" width="245" height="22"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="22" id="0HI-Jw-voU"/>
-                        </constraints>
+                        <rect key="frame" x="127" y="81" width="245" height="151.5"/>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="地址" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vaS-lq-Ukf">
                         <rect key="frame" x="142" y="55" width="230" height="16"/>
@@ -122,6 +119,7 @@
                     <constraint firstItem="wi9-yg-jHC" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="21" id="cPD-IR-Lai"/>
                     <constraint firstItem="WWW-vy-9Gc" firstAttribute="top" secondItem="vaS-lq-Ukf" secondAttribute="bottom" constant="10" id="dWN-7e-X1B"/>
                     <constraint firstItem="G4g-FI-1Ds" firstAttribute="leading" secondItem="wi9-yg-jHC" secondAttribute="trailing" constant="25" id="etv-XB-XBQ"/>
+                    <constraint firstAttribute="bottom" secondItem="WWW-vy-9Gc" secondAttribute="bottom" constant="15" id="gEb-ZH-jtY"/>
                     <constraint firstAttribute="trailing" secondItem="CUi-W8-Pr5" secondAttribute="trailing" constant="13" id="gKK-MK-Ysj"/>
                     <constraint firstItem="oJe-wc-vI3" firstAttribute="leading" secondItem="G4g-FI-1Ds" secondAttribute="leading" id="iKd-cG-QzC"/>
                     <constraint firstItem="eJt-Qf-aHc" firstAttribute="leading" secondItem="714-i5-YAn" secondAttribute="trailing" constant="10" id="jy7-JX-db4"/>
@@ -134,6 +132,7 @@
                 <outlet property="adButton" destination="apO-VT-cxw" id="fya-eF-bq5"/>
                 <outlet property="adView" destination="CUi-W8-Pr5" id="SZm-iG-JnQ"/>
                 <outlet property="addressLabel" destination="vaS-lq-Ukf" id="TYg-nB-nKM"/>
+                <outlet property="bottomConstraint" destination="gEb-ZH-jtY" id="82U-Z0-0fS"/>
                 <outlet property="enterLabel" destination="rVa-Cv-811" id="cGh-SU-mFd"/>
                 <outlet property="experienceTimeLabel" destination="zcj-Vb-QbJ" id="EwO-no-eOl"/>
                 <outlet property="iconImageView" destination="wi9-yg-jHC" id="xmf-vK-eKm"/>

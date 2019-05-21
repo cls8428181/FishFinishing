@@ -60,6 +60,11 @@
 + (UIColor *)kn333333Color;
 
 /**
+ 灰色 0x808080
+ */
++ (UIColor *)kn808080Color;
+
+/**
  橘色 0xf5701b
  */
 + (UIColor *)knf5701bColor;

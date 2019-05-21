@@ -15,6 +15,7 @@
 @property (weak, nonatomic) IBOutlet UIView *tagsView;
 //标签视图
 @property (nonatomic, strong) FMTagsView *tagView;
+@property (weak, nonatomic) IBOutlet UIImageView *allowImageView;
 @end
 
 @implementation KNBRecruitmentDomainTableViewCell
@@ -52,6 +53,13 @@
         [tempArray addObject:[NSString stringWithFormat:@"%@ X",string]];
     }
     self.tagView.tagsArray = tempArray;
+    KNB_WS(weakSelf);
+//    [self.allowImageView mas_remakeConstraints:^(MASConstraintMaker *make) {
+//        make.right.mas_equalTo(15);
+//        make.centerY.equalTo(weakSelf.contentView);
+//        make.width.mas_equalTo(10);
+//        make.height.mas_equalTo(6);
+//    }];
 }
 
 - (void)tagsView:(FMTagsView *)tagsView didSelectTagAtIndex:(NSUInteger)index {
@@ -65,8 +73,9 @@
 - (FMTagsView *)tagView {
     if (!_tagView) {
         FMTagsView *tagView = [[FMTagsView alloc] init];
-        tagView.frame = CGRectMake(0, 0, self.tagsView.frame.size.width, self.tagsView.frame.size.height);
+        tagView.frame = CGRectMake(0, 0, KNB_SCREEN_WIDTH - 124, self.tagsView.frame.size.height);
         tagView.contentInsets = UIEdgeInsetsMake(0, 0, 0, 0);
+        tagView.alignmentType = FMTagCellAlignmentTypeRight;
         tagView.tagBorderWidth = 0.5;
         tagView.tagcornerRadius = 10;
         tagView.tagBorderColor = [UIColor colorWithHex:0xf2f2f2];
@@ -74,7 +83,7 @@
         tagView.tagBackgroundColor = [UIColor colorWithHex:0xebebeb];
         tagView.tagSelectedBackgroundColor = [UIColor colorWithHex:0x0096e6];
         tagView.interitemSpacing = 10;
-        tagView.tagFont = KNBFont(9);
+        tagView.tagFont = KNBFont(11);
         tagView.tagTextColor = [UIColor colorWithHex:0x333333];
         tagView.allowsSelection = YES;
         tagView.allowsMultipleSelection = NO;

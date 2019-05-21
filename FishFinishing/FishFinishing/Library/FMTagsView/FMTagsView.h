@@ -8,8 +8,25 @@
 
 #import <UIKit/UIKit.h>
 
+typedef NS_ENUM(NSInteger, FMTagCellAlignmentType) {
+    FMTagCellAlignmentTypeLeft = 1,         //从左开始排列
+    FMTagCellAlignmentTypeRight         //从右开始排列
+};
+
 @protocol FMTagsViewDelegate;
 
+@interface FMEqualSpaceFlowLayout : UICollectionViewFlowLayout
+
+/**
+ set left aligned or right aligned, default is NO, left aligned
+ */
+@property (nonatomic, assign) BOOL rightAligned;
+
+@end
+
+@protocol FMTagsViewDelegateLeftOrRightAlignedLayout <UICollectionViewDelegateFlowLayout>
+
+@end
 
 @interface FMTagCell : UICollectionViewCell
 
@@ -45,7 +62,7 @@
 @property (nonatomic) CGFloat tagHeight;       //标签高度，默认28
 @property (nonatomic) CGFloat mininumTagWidth; //tag 最小宽度值, 默认是0，即不作最小宽度限制
 @property (nonatomic) CGFloat maximumTagWidth; //tag 最大宽度值, 默认是CGFLOAT_MAX， 即不作最大宽度限制
-
+@property (nonatomic, assign) FMTagCellAlignmentType alignmentType;
 #pragma mark - ......::::::: 选中 :::::::......
 
 @property (nonatomic) BOOL allowsSelection;         //是否允许选中, default is YES

@@ -11,6 +11,7 @@
 		1823CA642290012200BC5D8D /* _KNBCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 1823CA602290012200BC5D8D /* _KNBCity.m */; };
 		1823CA652290012200BC5D8D /* KNBCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 1823CA622290012200BC5D8D /* KNBCity.m */; };
 		182F5A7822811A7B00E8B323 /* KNBHomeUploadCaseFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 182F5A7722811A7B00E8B323 /* KNBHomeUploadCaseFooterView.m */; };
+		1835FC3A229407D5004F3756 /* LXCollectionViewLeftOrRightAlignedLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 1835FC39229407D5004F3756 /* LXCollectionViewLeftOrRightAlignedLayout.m */; };
 		183C56162283B4E80054217D /* KNBMeOrderOtherTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 183C56142283B4E80054217D /* KNBMeOrderOtherTableViewCell.m */; };
 		183C56172283B4E80054217D /* KNBMeOrderOtherTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 183C56152283B4E80054217D /* KNBMeOrderOtherTableViewCell.xib */; };
 		183E04B32280155C009EA112 /* KNBOrderCheckApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 183E04B22280155C009EA112 /* KNBOrderCheckApi.m */; };
@@ -18,6 +19,7 @@
 		1840B692228E64990062F626 /* CCTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 1840B691228E64990062F626 /* CCTextField.m */; };
 		1840B695228E65080062F626 /* CCTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1840B694228E65080062F626 /* CCTextView.m */; };
 		1840B6A2228EBDBB0062F626 /* HMSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 1840B6A1228EBDBB0062F626 /* HMSegmentedControl.m */; };
+		1847DBEB22927A0200A8CDEA /* KNBHomeCompanyDetailFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1847DBEA22927A0200A8CDEA /* KNBHomeCompanyDetailFooterView.m */; };
 		1849CE2422851AE50064D439 /* MPNoResultHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1849CE1A22851AE50064D439 /* MPNoResultHeadView.m */; };
 		1849CE2522851AE50064D439 /* MPAddNewAddressVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1849CE1B22851AE50064D439 /* MPAddNewAddressVC.m */; };
 		1849CE2622851AE50064D439 /* MPBaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1849CE1D22851AE50064D439 /* MPBaseTableViewController.m */; };
@@ -220,8 +222,6 @@
 		961C532A22548E210089E997 /* KNBHomeCompanyServerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 961C532822548E210089E997 /* KNBHomeCompanyServerTableViewCell.xib */; };
 		961C532E22548E4D0089E997 /* KNBHomeCompanyIntroTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 961C532C22548E4D0089E997 /* KNBHomeCompanyIntroTableViewCell.m */; };
 		961C532F22548E4D0089E997 /* KNBHomeCompanyIntroTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 961C532D22548E4D0089E997 /* KNBHomeCompanyIntroTableViewCell.xib */; };
-		961C533322548E730089E997 /* KNBHomeCompanyCaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 961C533122548E730089E997 /* KNBHomeCompanyCaseTableViewCell.m */; };
-		961C533422548E730089E997 /* KNBHomeCompanyCaseTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 961C533222548E730089E997 /* KNBHomeCompanyCaseTableViewCell.xib */; };
 		961C53382254A79E0089E997 /* FMTagsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 961C53372254A79D0089E997 /* FMTagsView.m */; };
 		96327504226D6FEE0080C650 /* CQTopBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 963274FB226D6FEE0080C650 /* CQTopBarView.m */; };
 		96327505226D6FEE0080C650 /* CQSegmentTitleImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 963274FC226D6FEE0080C650 /* CQSegmentTitleImage.m */; };
@@ -287,7 +287,6 @@
 		966AA577224A1E4F00EDBF5F /* TAAbstractDotView.m in Sources */ = {isa = PBXBuildFile; fileRef = 966AA56D224A1E4F00EDBF5F /* TAAbstractDotView.m */; };
 		966AA57C224A2D3E00EDBF5F /* KNBHomeCategoryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 966AA57A224A2D3E00EDBF5F /* KNBHomeCategoryTableViewCell.m */; };
 		966AA581224A2D7000EDBF5F /* KNBHomeDesignSketchTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 966AA57F224A2D7000EDBF5F /* KNBHomeDesignSketchTableViewCell.m */; };
-		966AA586224A2DA200EDBF5F /* KNBHomeRecommendTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 966AA584224A2DA200EDBF5F /* KNBHomeRecommendTableViewCell.m */; };
 		966D155A2268C8BF005F5D77 /* KNBDesignSketchModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 966D15592268C8BF005F5D77 /* KNBDesignSketchModel.m */; };
 		966D155D2268D6E2005F5D77 /* RFPhotoScrollerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 966D155B2268D6E2005F5D77 /* RFPhotoScrollerView.m */; };
 		966D15602268F2DE005F5D77 /* KNBHomeChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 966D155F2268F2DE005F5D77 /* KNBHomeChatViewController.m */; };
@@ -447,6 +446,8 @@
 		1823CA632290012200BC5D8D /* KNBCity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KNBCity.h; sourceTree = "<group>"; };
 		182F5A7622811A7B00E8B323 /* KNBHomeUploadCaseFooterView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNBHomeUploadCaseFooterView.h; sourceTree = "<group>"; };
 		182F5A7722811A7B00E8B323 /* KNBHomeUploadCaseFooterView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNBHomeUploadCaseFooterView.m; sourceTree = "<group>"; };
+		1835FC38229407D5004F3756 /* LXCollectionViewLeftOrRightAlignedLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXCollectionViewLeftOrRightAlignedLayout.h; sourceTree = "<group>"; };
+		1835FC39229407D5004F3756 /* LXCollectionViewLeftOrRightAlignedLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXCollectionViewLeftOrRightAlignedLayout.m; sourceTree = "<group>"; };
 		183C56132283B4E80054217D /* KNBMeOrderOtherTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNBMeOrderOtherTableViewCell.h; sourceTree = "<group>"; };
 		183C56142283B4E80054217D /* KNBMeOrderOtherTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNBMeOrderOtherTableViewCell.m; sourceTree = "<group>"; };
 		183C56152283B4E80054217D /* KNBMeOrderOtherTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KNBMeOrderOtherTableViewCell.xib; sourceTree = "<group>"; };
@@ -460,6 +461,8 @@
 		1840B694228E65080062F626 /* CCTextView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CCTextView.m; sourceTree = "<group>"; };
 		1840B6A0228EBDBB0062F626 /* HMSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMSegmentedControl.h; sourceTree = "<group>"; };
 		1840B6A1228EBDBB0062F626 /* HMSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMSegmentedControl.m; sourceTree = "<group>"; };
+		1847DBE922927A0200A8CDEA /* KNBHomeCompanyDetailFooterView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNBHomeCompanyDetailFooterView.h; sourceTree = "<group>"; };
+		1847DBEA22927A0200A8CDEA /* KNBHomeCompanyDetailFooterView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNBHomeCompanyDetailFooterView.m; sourceTree = "<group>"; };
 		1849CE1522851AE50064D439 /* MPMapView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPMapView.h; sourceTree = "<group>"; };
 		1849CE1622851AE50064D439 /* MPFindNearAddressViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPFindNearAddressViewModel.h; sourceTree = "<group>"; };
 		1849CE1822851AE50064D439 /* MPNoResultHeadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPNoResultHeadView.h; sourceTree = "<group>"; };
@@ -841,9 +844,6 @@
 		961C532B22548E4D0089E997 /* KNBHomeCompanyIntroTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNBHomeCompanyIntroTableViewCell.h; sourceTree = "<group>"; };
 		961C532C22548E4D0089E997 /* KNBHomeCompanyIntroTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNBHomeCompanyIntroTableViewCell.m; sourceTree = "<group>"; };
 		961C532D22548E4D0089E997 /* KNBHomeCompanyIntroTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KNBHomeCompanyIntroTableViewCell.xib; sourceTree = "<group>"; };
-		961C533022548E730089E997 /* KNBHomeCompanyCaseTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNBHomeCompanyCaseTableViewCell.h; sourceTree = "<group>"; };
-		961C533122548E730089E997 /* KNBHomeCompanyCaseTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNBHomeCompanyCaseTableViewCell.m; sourceTree = "<group>"; };
-		961C533222548E730089E997 /* KNBHomeCompanyCaseTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KNBHomeCompanyCaseTableViewCell.xib; sourceTree = "<group>"; };
 		961C53362254A79D0089E997 /* FMTagsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMTagsView.h; sourceTree = "<group>"; };
 		961C53372254A79D0089E997 /* FMTagsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMTagsView.m; sourceTree = "<group>"; };
 		963274FA226D6FEE0080C650 /* CQTopBarSegment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CQTopBarSegment.h; sourceTree = "<group>"; };
@@ -968,8 +968,6 @@
 		966AA57A224A2D3E00EDBF5F /* KNBHomeCategoryTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNBHomeCategoryTableViewCell.m; sourceTree = "<group>"; };
 		966AA57E224A2D7000EDBF5F /* KNBHomeDesignSketchTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNBHomeDesignSketchTableViewCell.h; sourceTree = "<group>"; };
 		966AA57F224A2D7000EDBF5F /* KNBHomeDesignSketchTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNBHomeDesignSketchTableViewCell.m; sourceTree = "<group>"; };
-		966AA583224A2DA200EDBF5F /* KNBHomeRecommendTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNBHomeRecommendTableViewCell.h; sourceTree = "<group>"; };
-		966AA584224A2DA200EDBF5F /* KNBHomeRecommendTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNBHomeRecommendTableViewCell.m; sourceTree = "<group>"; };
 		966D15582268C8BF005F5D77 /* KNBDesignSketchModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNBDesignSketchModel.h; sourceTree = "<group>"; };
 		966D15592268C8BF005F5D77 /* KNBDesignSketchModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNBDesignSketchModel.m; sourceTree = "<group>"; };
 		966D155B2268D6E2005F5D77 /* RFPhotoScrollerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RFPhotoScrollerView.m; sourceTree = "<group>"; };
@@ -1300,6 +1298,15 @@
 				1823CA632290012200BC5D8D /* KNBCity.h */,
 			);
 			path = Human;
+			sourceTree = "<group>";
+		};
+		1835FC37229407D5004F3756 /* UICollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				1835FC38229407D5004F3756 /* LXCollectionViewLeftOrRightAlignedLayout.h */,
+				1835FC39229407D5004F3756 /* LXCollectionViewLeftOrRightAlignedLayout.m */,
+			);
+			path = UICollectionView;
 			sourceTree = "<group>";
 		};
 		1840B69F228EBDBB0062F626 /* HMSegmentedControl */ = {
@@ -2217,8 +2224,6 @@
 				961C53092252194E0089E997 /* KNBHomeDesignSketchSubTableViewCell.xib */,
 				96FDB4C5224B17D7005844E7 /* KNBHomeSectionView.h */,
 				96FDB4C6224B17D7005844E7 /* KNBHomeSectionView.m */,
-				966AA583224A2DA200EDBF5F /* KNBHomeRecommendTableViewCell.h */,
-				966AA584224A2DA200EDBF5F /* KNBHomeRecommendTableViewCell.m */,
 				96FDB4C8224B553F005844E7 /* KNBHomeRecommendSubTableViewCell.h */,
 				96FDB4C9224B553F005844E7 /* KNBHomeRecommendSubTableViewCell.m */,
 				96FDB4CA224B553F005844E7 /* KNBHomeRecommendSubTableViewCell.xib */,
@@ -2234,9 +2239,8 @@
 				961C532B22548E4D0089E997 /* KNBHomeCompanyIntroTableViewCell.h */,
 				961C532C22548E4D0089E997 /* KNBHomeCompanyIntroTableViewCell.m */,
 				961C532D22548E4D0089E997 /* KNBHomeCompanyIntroTableViewCell.xib */,
-				961C533022548E730089E997 /* KNBHomeCompanyCaseTableViewCell.h */,
-				961C533122548E730089E997 /* KNBHomeCompanyCaseTableViewCell.m */,
-				961C533222548E730089E997 /* KNBHomeCompanyCaseTableViewCell.xib */,
+				1847DBE922927A0200A8CDEA /* KNBHomeCompanyDetailFooterView.h */,
+				1847DBEA22927A0200A8CDEA /* KNBHomeCompanyDetailFooterView.m */,
 				1866530822696CA1004C176F /* KNBHomeCompanyCaseSubCollectionViewCell.h */,
 				1866530922696CA1004C176F /* KNBHomeCompanyCaseSubCollectionViewCell.m */,
 				1866530A22696CA1004C176F /* KNBHomeCompanyCaseSubCollectionViewCell.xib */,
@@ -2664,6 +2668,7 @@
 		96B098362249CC1000154643 /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				1835FC37229407D5004F3756 /* UICollectionView */,
 				96B098372249CC1000154643 /* UIImage */,
 				96B098442249CC1000154643 /* UILabel */,
 				96B0984B2249CC1000154643 /* UIResponder */,
@@ -3183,7 +3188,6 @@
 				961C53102253583F0089E997 /* LCDM2N.TTF in Resources */,
 				964926BD225C948D000BBC7E /* KNBRecruitmentShowTableViewCell.xib in Resources */,
 				966D15FF226C70F3005F5D77 /* UMSocialSDKPromptResources.bundle in Resources */,
-				961C533422548E730089E997 /* KNBHomeCompanyCaseTableViewCell.xib in Resources */,
 				1868A6A32265C819005546BB /* KNBCity.plist in Resources */,
 				96E5541C224CCD4200D025C4 /* KNBMe.plist in Resources */,
 				961C52F42251A8710089E997 /* KNBDSFreeOrderAddressTableViewCell.xib in Resources */,
@@ -3348,7 +3352,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				961C53022251A8FC0089E997 /* KNBDSFreeOrderPhoneTableViewCell.m in Sources */,
-				961C533322548E730089E997 /* KNBHomeCompanyCaseTableViewCell.m in Sources */,
 				961C52F32251A8710089E997 /* KNBDSFreeOrderAddressTableViewCell.m in Sources */,
 				961C5317225462070089E997 /* KNBDSFreeOrderEnterTableViewCell.m in Sources */,
 				966D1610226CB1FD005F5D77 /* KNPayManager.m in Sources */,
@@ -3429,6 +3432,7 @@
 				187B6097227016AC000AA05E /* KNBMeOrderApi.m in Sources */,
 				9697FD53225597A900027AB3 /* NSString+Arc4random.m in Sources */,
 				185F1A21226F0F15000F6E9C /* KNBLoginModifyUserInfoApi.m in Sources */,
+				1847DBEB22927A0200A8CDEA /* KNBHomeCompanyDetailFooterView.m in Sources */,
 				1849CE7822851EA90064D439 /* XHSystemCollectionViewController.m in Sources */,
 				187C9559225EC685006FD01A /* KNBLoginBindingApi.m in Sources */,
 				96B098312249CB8800154643 /* KNBBaseRequest.m in Sources */,
@@ -3439,6 +3443,7 @@
 				186EE2EB2267015D00E71241 /* KNBRecruitmentModifyFacilitatorApi.m in Sources */,
 				96E7E0BB225ADD5900188DD1 /* KNBHomeCompanyListHeaderView.m in Sources */,
 				96B098BA2249CC1000154643 /* CALayer+Transition.m in Sources */,
+				1835FC3A229407D5004F3756 /* LXCollectionViewLeftOrRightAlignedLayout.m in Sources */,
 				96327510226DA3E10080C650 /* KNBSearchBar.m in Sources */,
 				185F1A18226EE5AA000F6E9C /* KNBHomeWorkerViewController.m in Sources */,
 				1857ED90227EE094008E9668 /* KNBHomeExperienceFooterView.m in Sources */,
@@ -3667,7 +3672,6 @@
 				966169B7224DAB6400FB2D01 /* KNBMeHeaderView.m in Sources */,
 				1849CE7B22851EA90064D439 /* XHPinterestPullRefreshTableViewController.m in Sources */,
 				966AA575224A1E4F00EDBF5F /* TAPageControl.m in Sources */,
-				966AA586224A2DA200EDBF5F /* KNBHomeRecommendTableViewCell.m in Sources */,
 				9697FD5F225597A900027AB3 /* GHDropMenuFilterSectionHeader.m in Sources */,
 				96FDB4D6224B6B5E005844E7 /* KNBButton.m in Sources */,
 				96B098B62249CC1000154643 /* GTMNSString+HTML.m in Sources */,

@@ -212,7 +212,7 @@
 
 - (KNBRecruitmentServiceListApi *)serviceApi {
     if (!_serviceApi) {
-        _serviceApi = [[KNBRecruitmentServiceListApi alloc] initWithLng:[KNGetUserLoaction shareInstance].lng lat:[KNGetUserLoaction shareInstance].lat];
+        _serviceApi = [[KNBRecruitmentServiceListApi alloc] initWithLng:[KNGetUserLoaction shareInstance].currentLng lat:[KNGetUserLoaction shareInstance].currentLat];
         _serviceApi.cat_parent_id = [self.model.typeId integerValue];
         _serviceApi.page = 1;
         _serviceApi.limit = 10;

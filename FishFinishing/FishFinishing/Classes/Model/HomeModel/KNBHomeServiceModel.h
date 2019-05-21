@@ -184,11 +184,40 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (nonatomic, assign) BOOL isOpen;
 
+/**
+ 是否显示图标
+ */
+@property (nonatomic, assign) BOOL isShow;
 
 /**
  服务商详情简介 cell 高度
  */
-@property (nonatomic, assign) CGFloat cellHeight;
+@property (nonatomic, assign) CGFloat remarkHeight;
+
+/**
+ 案例列表高度
+ */
+@property (nonatomic, assign) CGFloat caseListHeight;
+
+/**
+ 是否为编辑状态
+ */
+@property (nonatomic, assign) BOOL isEdit;
+
+/**
+ 最大地址宽度
+ */
+@property (nonatomic, assign) CGFloat maxAddressWidth;
+
+/**
+ 转换后的距离字符串
+ */
+@property (nonatomic, copy) NSString *distanceString;
+
+/**
+ 限制长度后的名字
+ */
+@property (nonatomic, copy) NSString *nameString;
 
 @end
 

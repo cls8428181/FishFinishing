@@ -19,6 +19,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *catName;
 
 /**
+ 附近装修推荐类型名称
+ */
+@property (nonatomic, copy) NSString *sub_name;
+
+/**
  选择的子类型模型
  */
 @property (nonatomic, strong) KNBRecruitmentTypeModel *selectSubModel;

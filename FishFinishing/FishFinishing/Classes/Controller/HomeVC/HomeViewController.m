@@ -150,12 +150,15 @@ static CGFloat const kHeaderViewHeight = 50.0f;
             KNBHomeHeaderView *headerView = [[KNBHomeHeaderView alloc] initWithDataSource:tempArray];
             headerView.frame = CGRectMake(0, 0, KNB_SCREEN_WIDTH, 143);
             weakSelf.mainTableView.tableHeaderView = headerView;
-//            [weakSelf requestSuccess:YES requestEnd:YES];
         } else {
             [weakSelf requestSuccess:NO requestEnd:NO];
+            [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
+            self.coverView.alpha = 0;
         }
     } failure:^(__kindof YTKBaseRequest *_Nonnull request) {
         [weakSelf requestSuccess:NO requestEnd:NO];
+        [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
+        self.coverView.alpha = 0;
     }];
     
     //请求推荐装修案例列表
@@ -173,9 +176,13 @@ static CGFloat const kHeaderViewHeight = 50.0f;
             });
             [weakSelf requestSuccess:YES requestEnd:YES];
         } else {
+            [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
+            self.coverView.alpha = 0;
             [weakSelf requestSuccess:NO requestEnd:NO];
         }
     } failure:^(__kindof YTKBaseRequest *_Nonnull request) {
+        [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
+        self.coverView.alpha = 0;
         [weakSelf requestSuccess:NO requestEnd:NO];
     }];
 
@@ -252,7 +259,7 @@ static CGFloat const kHeaderViewHeight = 50.0f;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         NSMutableArray *titleArray = [NSMutableArray array];
         for (KNBRecruitmentTypeModel *model in self.categoryArray) {
-            [titleArray addObject:model.catName];
+            [titleArray addObject:model.sub_name];
         }
         self.titleArray = titleArray;
         if (!isNullArray(self.titleArray)) {
@@ -330,7 +337,7 @@ static CGFloat const kHeaderViewHeight = 50.0f;
 //}
 
 - (void)serviceListRequest:(NSInteger)index page:(NSInteger)page {
-    KNBRecruitmentServiceListApi *serviceApi = [[KNBRecruitmentServiceListApi alloc] initWithLng:[KNGetUserLoaction shareInstance].lng lat:[KNGetUserLoaction shareInstance].lat];
+    KNBRecruitmentServiceListApi *serviceApi = [[KNBRecruitmentServiceListApi alloc] initWithLng:[KNGetUserLoaction shareInstance].currentLng lat:[KNGetUserLoaction shareInstance].currentLat];
     KNBRecruitmentTypeModel *model = self.categoryArray[index];
     serviceApi.cat_parent_id = [model.typeId integerValue];
     serviceApi.page = page;
@@ -354,10 +361,12 @@ static CGFloat const kHeaderViewHeight = 50.0f;
             }
         } else {
             [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
+            self.coverView.alpha = 0;
             [weakSelf requestSuccess:NO requestEnd:NO];
         }
     } failure:^(__kindof YTKBaseRequest *_Nonnull request) {
         [MBProgressHUD hideHUDForView:weakSelf.view animated:YES];
+        self.coverView.alpha = 0;
         [weakSelf requestSuccess:NO requestEnd:NO];
     }];
 }
@@ -430,10 +439,10 @@ static CGFloat const kHeaderViewHeight = 50.0f;
     if (!_segmentedControl) {
         _segmentedControl = [[HMSegmentedControl alloc] initWithSectionTitles:self.titleArray];
         _segmentedControl.frame = CGRectMake(0, 0, KNB_SCREEN_WIDTH, 50);
-        _segmentedControl.titleTextAttributes = @{NSForegroundColorAttributeName : [UIColor blackColor], NSFontAttributeName : [UIFont systemFontOfSize:15.0]};
+        _segmentedControl.titleTextAttributes = @{NSForegroundColorAttributeName : KNBColor(0x666666), NSFontAttributeName : [UIFont systemFontOfSize:14.0]};
         _segmentedControl.selectedTitleTextAttributes = @{NSForegroundColorAttributeName : [UIColor colorWithHex:0x009fe8], NSFontAttributeName : [UIFont boldSystemFontOfSize:15.0]};
-        _segmentedControl.leading = 30;
-        _segmentedControl.segmentEdgeInset = UIEdgeInsetsMake(0, 15, 0, 15);
+        _segmentedControl.leading = 5;
+        _segmentedControl.segmentEdgeInset = UIEdgeInsetsMake(0, 0, 0, 0);
         _segmentedControl.selectionIndicatorColor = [UIColor colorWithHex:0x009fe8];
         _segmentedControl.selectionIndicatorHeight = 2.0;
         _segmentedControl.selectionStyle = HMSegmentedControlSelectionStyleTextWidthStripe;
@@ -490,6 +499,7 @@ static CGFloat const kHeaderViewHeight = 50.0f;
         };
         _searchView.cityChooseBlock = ^{
             weakSelf.segmentedControl.selectedSegmentIndex = 0;
+            
             [weakSelf serviceListRequest:0 page:1];
         };
     }

@@ -24,7 +24,8 @@
              @"updater" : @"updater",
              @"updatedAt" : @"updated_at",
              @"serviceName" : @"service_name",
-             @"childList" : @"child"
+             @"childList" : @"child",
+             @"sub_name" : @"sub_name"
              };
 }
 

@@ -302,7 +302,11 @@
             CGFloat y = roundf((CGRectGetHeight(self.frame) - selectionStyleNotBox * self.selectionIndicatorHeight) / 2 - stringHeight / 2 + self.selectionIndicatorHeight * locationUp);
             CGRect rect;
             if (self.segmentWidthStyle == HMSegmentedControlSegmentWidthStyleFixed) {
-                rect = CGRectMake((self.segmentWidth * idx) + (self.segmentWidth - stringWidth) / 2 + self.leading, y, stringWidth, stringHeight);
+                if (idx == 0) {
+                    rect = CGRectMake((self.segmentWidth * idx) + (self.segmentWidth - stringWidth) / 2 + self.leading, y, stringWidth, stringHeight);
+                } else {
+                    rect = CGRectMake((self.segmentWidth * idx) + (self.segmentWidth - stringWidth) / 2, y, stringWidth, stringHeight);
+                }
                 rectDiv = CGRectMake((self.segmentWidth * idx) - (self.verticalDividerWidth / 2), self.selectionIndicatorHeight * 2, self.verticalDividerWidth, self.frame.size.height - (self.selectionIndicatorHeight * 4));
                 fullRect = CGRectMake(self.segmentWidth * idx, 0, self.segmentWidth, oldRect.size.height);
             } else {
@@ -739,7 +743,8 @@
     }
 
     self.scrollView.scrollEnabled = self.isUserDraggable;
-    self.scrollView.contentSize = CGSizeMake([self totalSegmentedControlWidth], self.frame.size.height);
+//    self.scrollView.contentSize = CGSizeMake([self totalSegmentedControlWidth], self.frame.size.height);
+    self.scrollView.contentSize = CGSizeMake(self.frame.size.width, self.frame.size.height);
 }
 
 - (NSUInteger)sectionCount {

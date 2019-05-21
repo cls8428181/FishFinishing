@@ -17,6 +17,9 @@ static KNBHomeCompanyServerTableViewCell *cell;
 @property (weak, nonatomic) IBOutlet UIButton *bottomButton;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *heightConstraint;
 @property (nonatomic, strong) UITableView *superTableView;
+@property (nonatomic, assign) BOOL isOpen;
+@property (weak, nonatomic) IBOutlet UIImageView *allowImageView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomConstrait;
 
 @end
 
@@ -43,71 +46,16 @@ static KNBHomeCompanyServerTableViewCell *cell;
     } else {
         height = 60;
     }
-    return 100 + height;
+    return 104 + height;
 }
 
 - (void)awakeFromNib {
     [super awakeFromNib];
+    self.isOpen = YES;
 }
 
 - (IBAction)bottomButtonAction:(id)sender {
-    KNB_WS(weakSelf);
-    UIButton *button = (UIButton *)sender;
-    button.selected = !button.isSelected;
-//    self.model.isSpread = button.isSelected;
     !self.openIntroBlock ?: self.openIntroBlock();
-//    if (button.isSelected) {
-//        self.heightConstraint.constant = [weakSelf.model.remark heightWithFont:KNBFont(13) constrainedToWidth:KNB_SCREEN_WIDTH - 24] + 6;
-//    } else {
-//
-//        self.heightConstraint.constant = 55;
-//        button.transform = CGAffineTransformMakeRotation(2*M_PI);
-//    }
-//    [self.superTableView reloadData];
-
-//    if (button.isSelected) {
-//        [UIView animateWithDuration:0.3f delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-//            button.transform = CGAffineTransformMakeRotation(M_PI);
-//            //监听tableview动画执行结束时间
-//            [CATransaction begin];
-//            [CATransaction setCompletionBlock:^{
-//                weakSelf.heightConstraint.constant = [weakSelf.model.remark heightWithFont:KNBFont(13) constrainedToWidth:KNB_SCREEN_WIDTH - 24] + 6;
-//                //tableview动画结束回调
-//                weakSelf.superTableView.estimatedRowHeight = 0;
-//                weakSelf.superTableView.estimatedSectionHeaderHeight = 0;
-//                weakSelf.superTableView.estimatedSectionFooterHeight = 0;
-//                [weakSelf.superTableView reloadData];
-//            }];
-//            [weakSelf.superTableView beginUpdates];
-//            [weakSelf.superTableView endUpdates];
-//            [CATransaction commit];
-//        }completion:^(BOOL finished) {
-//            //UIView动画结束回调
-//            [button setImage:KNBImages(@"knb_service_xiala") forState:UIControlStateNormal];
-//        }];
-//    } else {
-//        [UIView animateWithDuration:0.3f delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-//            //监听tableview动画执行结束时间
-//            //button.transform = CGAffineTransformIdentity;
-//            weakSelf.heightConstraint.constant = 55;
-//            button.transform = CGAffineTransformMakeRotation(2*M_PI);
-//
-//            [CATransaction begin];
-//            [CATransaction setCompletionBlock:^{
-//                //tableview动画结束回调
-//                weakSelf.superTableView.estimatedRowHeight = 0;
-//                weakSelf.superTableView.estimatedSectionHeaderHeight = 0;
-//                weakSelf.superTableView.estimatedSectionFooterHeight = 0;
-//                [weakSelf.superTableView reloadData];
-//            }];
-//            [weakSelf.superTableView beginUpdates];
-//            [weakSelf.superTableView endUpdates];
-//            [CATransaction commit];
-//        }completion:^(BOOL finished) {
-//            //UIView动画结束回调
-//            [button setImage:KNBImages(@"knb_service_xiala") forState:UIControlStateNormal];
-//        }];
-//    }
 }
 
 - (void)setModel:(KNBHomeServiceModel *)model {
@@ -118,5 +66,23 @@ static KNBHomeCompanyServerTableViewCell *cell;
     } else {
         self.contentLabel.numberOfLines = 4;
     }
+    if (model.isShow) {
+        self.allowImageView.hidden = NO;
+        self.bottomConstrait.constant = 45;
+        //根据是否展开显示尖头的方向（向下或向上）
+        UIImage *img = [UIImage imageNamed:@"knb_service_xiala"];
+        if (model.isOpen){
+            //image的翻转
+            img = [UIImage imageWithCGImage:img.CGImage scale:1 orientation:UIImageOrientationDown];
+            
+        }
+        self.allowImageView.image = img;
+    } else {
+        self.bottomConstrait.constant = 15;
+        self.allowImageView.hidden = YES;
+    }
+    
+
 }
+
 @end

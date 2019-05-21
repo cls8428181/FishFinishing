@@ -27,13 +27,16 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="擅长领域:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CfT-RI-gMo">
-                        <rect key="frame" x="13" y="22.5" width="65.5" height="18"/>
+                        <rect key="frame" x="13" y="22.5" width="66" height="18"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="66" id="7Pe-I9-mcl"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XRq-Pq-yDj" userLabel="tagsView">
-                        <rect key="frame" x="88.5" y="21.5" width="310.5" height="20"/>
+                        <rect key="frame" x="89" y="21.5" width="310" height="20"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="20" id="EBl-XO-vwZ"/>
                         </constraints>
@@ -59,6 +62,7 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
             <connections>
+                <outlet property="allowImageView" destination="2iN-FE-xU0" id="k4e-9w-Zx2"/>
                 <outlet property="describeLabel" destination="8je-bf-ong" id="S5G-Ou-t3m"/>
                 <outlet property="tagsView" destination="XRq-Pq-yDj" id="mxn-hK-e0u"/>
                 <outlet property="titleLabel" destination="CfT-RI-gMo" id="36C-a1-PNT"/>

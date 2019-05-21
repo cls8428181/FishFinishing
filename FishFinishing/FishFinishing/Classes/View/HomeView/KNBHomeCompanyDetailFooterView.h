@@ -1,8 +1,8 @@
 //
-//  KNBHomeCompanyCaseTableViewCell.h
+//  KNBHomeCompanyDetailFooterView.h
 //  FishFinishing
 //
-//  Created by 常立山 on 2019/4/3.
+//  Created by apple on 2019/5/20.
 //  Copyright © 2019 常立山. All rights reserved.
 //
 
@@ -11,9 +11,10 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface KNBHomeCompanyCaseTableViewCell : UITableViewCell
+@interface KNBHomeCompanyDetailFooterView : UIView
 
 @property (nonatomic, copy) void (^addCaseBlock)(void);
+@property (nonatomic, strong) UICollectionView *collectionView;
 
 @property (nonatomic, strong) KNBHomeServiceModel *model;
 
@@ -21,16 +22,6 @@ NS_ASSUME_NONNULL_BEGIN
  能否编辑
  */
 @property (nonatomic, assign) BOOL isEdit;
-
-/**
- cell 创建
- */
-+ (instancetype)cellWithTableView:(UITableView *)tableView;
-
-/**
- cell 高度
- */
-+ (CGFloat)cellHeight:(NSInteger)count isEdit:(BOOL)isEdit;
 @end
 
 NS_ASSUME_NONNULL_END

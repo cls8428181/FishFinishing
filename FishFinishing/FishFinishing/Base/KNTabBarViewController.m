@@ -38,7 +38,7 @@ const NSInteger KNTabBarButtonTitleLabelTag = 666;
     [self.view addObserver:self forKeyPath:@"frame" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:NULL];
     self.view.autoresizesSubviews = NO;
 
-    self.titleDefaultColor = [UIColor knLightGrayColor];
+    self.titleDefaultColor = [UIColor kn808080Color];
     self.titleSelectColor = [UIColor knMainColor];
 
     [self creatViewControllers];
@@ -128,7 +128,7 @@ const NSInteger KNTabBarButtonTitleLabelTag = 666;
         titleLabel.textAlignment = NSTextAlignmentCenter;
         titleLabel.text = self.titlesArray[i];
         titleLabel.textColor = self.titleDefaultColor;
-        titleLabel.font = [UIFont systemFontOfSize:12.0];
+        titleLabel.font = [UIFont systemFontOfSize:13.0];
         [button addSubview:titleLabel];
 
 //        if (i == [KNBUserInfo shareInstance].userInterestPageSelectIndex) {

@@ -99,9 +99,9 @@
 + (CGFloat)cellHeight:(BOOL)isEdit {
     NSString *openString = [[NSUserDefaults standardUserDefaults] objectForKey:@"OpenPayment"];
     if ([openString isEqualToString:@"1"] && isEdit) {
-        return 280;
+        return 284;
     } else {
-        return 137;
+        return 141;
     }
 }
 

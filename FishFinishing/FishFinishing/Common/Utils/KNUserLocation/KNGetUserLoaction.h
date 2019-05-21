@@ -14,6 +14,8 @@ typedef void (^KNUserLoactionCompleteBlock)(NSString *location);
 @interface KNGetUserLoaction : NSObject <CLLocationManagerDelegate>
 @property (nonatomic, copy) NSString *lng;
 @property (nonatomic, copy) NSString *lat;
+@property (nonatomic, copy) NSString *currentLng;
+@property (nonatomic, copy) NSString *currentLat;
 @property (nonatomic, strong) CLLocationManager *locationManager;
 @property (nonatomic, strong) CLGeocoder *geocoder;
 @property (nonatomic, strong, readonly) CLLocation *location;
@@ -27,6 +29,11 @@ typedef void (^KNUserLoactionCompleteBlock)(NSString *location);
  用户选择的 城市
  */
 @property (nonatomic,copy) NSString *selectCityName;
+
+/**
+ 当前定位城市
+ */
+@property (nonatomic, copy) NSString *currentCityName;
 
 /**
  *  开始定位
@@ -43,8 +50,7 @@ typedef void (^KNUserLoactionCompleteBlock)(NSString *location);
  *  @param cityName 城市名称
  *  @param areaId   区域ID（为空时保存的是定位的区名称）
  */
-- (void)saveUserCityName:(NSString *)cityName
-                  areaId:(NSString *)areaId;
+- (void)saveUserCityName:(NSString *)cityName address:(NSString *)adddress areaId:(NSString *)areaId saveCompleteBlock:(void(^)(void))saveCompleteBlock;
 
 /**
  *  省的名称

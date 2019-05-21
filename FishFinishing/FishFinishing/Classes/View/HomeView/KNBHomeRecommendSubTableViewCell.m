@@ -35,6 +35,7 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *widthConstraints;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *topConstraints;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *maxSpace;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *maxAddressWidth;
 
 @end
 
@@ -196,25 +197,29 @@
 - (void)setModel:(KNBHomeServiceModel *)model {
     _model = model;
     [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:model.logo]];
-    self.nameLabel.text = model.name;
+    self.nameLabel.text = model.nameString;
     self.addressLabel.text = model.address;
-    
-    NSString *distance = @"";
-    if ([model.distance integerValue] > 1000) {
-        distance = [NSString stringWithFormat:@"%d km",[model.distance integerValue] / 1000];
-    } else {
-        distance = [NSString stringWithFormat:@"%ld m",(long)[model.distance integerValue]];
-    }
-    self.distanceLabel.text = distance;
-    
-    CGFloat distanceWidth = [distance widthWithFont:[UIFont systemFontOfSize:11] constrainedToHeight:12];
-    
+    self.distanceLabel.text = model.distanceString;
     //计算名称最大长度
-    self.maxSpace.constant = KNB_SCREEN_WIDTH - 158 - distanceWidth;
-    
+    self.maxSpace.constant = KNB_SCREEN_WIDTH - 158;
+    self.maxAddressWidth.constant = model.maxAddressWidth;
     NSArray *tagsArray = [model.tag componentsSeparatedByString:@","];
     if (isNullArray(tagsArray)) {
-        self.tagView.tagsArray = tagsArray;
+        self.tagView.hidden = YES;
+    } else {
+        NSMutableArray *tempArray = [NSMutableArray arrayWithArray:tagsArray];
+        for (int i = 0; i < tempArray.count; i++) {
+            NSString *str = tempArray[i];
+            if (isNullStr(str)) {
+                [tempArray removeObject:str];
+            }
+        }
+        if (isNullArray(tempArray)) {
+            self.tagView.hidden = YES;
+        } else {
+            self.tagView.hidden = NO;
+            self.tagView.tagsArray = tempArray;
+        }
     }
     for (int i = 0 ; i < model.caseList.count; i++) {
         KNBHomeServiceModel *caseModel = model.caseList[i];
@@ -228,16 +233,6 @@
             [self.rightCase sd_setImageWithURL:[NSURL URLWithString:caseModel.img] placeholderImage:KNBImages(@"knb_default_case")];
         }
     }
-    
-    if ([model.parent_cat_name containsString:@"设计"]) {
-        [self.orderButton setTitle:@"预约设计" forState:UIControlStateNormal];
-    }
-    
-//    if ([model.parent_cat_name containsString:@"家居"] || [model.parent_cat_name containsString:@"建材"]) {
-//        self.orderButton.hidden = YES;
-//    } else {
-//        self.orderButton.hidden = NO;
-//    }
 
     if ([model.is_stick isEqualToString:@"0"]) {
         self.topImageView.hidden = YES;

@@ -103,11 +103,15 @@
 + (UIColor *)knCoverBlackColor { // #1a1a1a
     return [UIColor colorWithRed:26 / 255.0 green:26 / 255.0 blue:26 / 255.0 alpha:0.7];
 }
-
 //0x333333
 + (UIColor *)kn333333Color {
     return [UIColor colorWithHex:0x333333];
 }
+//0x808080
++ (UIColor *)kn808080Color {
+    return [UIColor colorWithHex:0x808080];
+}
+
 + (UIColor *)SmartColorWithHexString:(NSString *)hexValue {
     UIColor *defaultResult = [UIColor whiteColor];
     if ([hexValue hasPrefix:@"#"] && [hexValue length] > 1) {

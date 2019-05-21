@@ -13,6 +13,9 @@
 #import "LCProgressHUD.h"
 
 NSString *const KNLocationCoordinate2D = @"KNLocationCoordinate2D"; // 经纬度对象
+NSString *const KNLocationLongitude = @"KNLocationLongitude"; // 经度
+NSString *const KNLocationLatitude = @"KNLocationLatitude"; // 纬度
+NSString *const KNLocationAddress = @"KNLocationAddress"; // 地址
 NSString *const KNLocationStateName = @"KNLocationStateName";       // 省
 NSString *const KNLocationCityName = @"KNLocationCityName";         // 市
 NSString *const KNLocationSubLocality = @"KNLocationSubLocality";   //区名称(定位的时候使用)
@@ -117,13 +120,14 @@ NSString *const KNSaveUserLocation = @"KNSaveUserLocation";
             if ([self.state isEqualToString:self.stateName] &&
                 [self.city isEqualToString:self.cityName] &&
                 ![self.subLocality isEqualToString:self.subLocalityName]) {
-                [self saveUserCityName:nil areaId:nil];
+                [self saveUserCityName:nil address:nil areaId:nil saveCompleteBlock:nil];
             } else {
                 if (!isNullStr(self.stateName) && !isNullStr(self.cityAreaId) && !isNullStr(self.subLocalityName)) {
-                    [self saveUserCityName:nil areaId:nil];
+                    [self saveUserCityName:nil address:nil areaId:nil saveCompleteBlock:nil];
                 }
             }
             if (![self.city isEmpty]) {
+                [self saveUserCityName:self.city address:nil areaId:nil saveCompleteBlock:nil];
                 if (self.completeBlock) {
                     self.completeBlock(self.city);
                 }
@@ -134,17 +138,62 @@ NSString *const KNSaveUserLocation = @"KNSaveUserLocation";
 
 
 #pragma mark - Private Method
-- (void)saveUserCityName:(NSString *)cityName areaId:(NSString *)areaId {
-    if (areaId) {
-        self.isSelectCity = YES;
-        [self saveLocationInfo:@{KNLocationCityName : cityName,
-                                 KNLocationAreaId : areaId}];
+- (void)saveUserCityName:(NSString *)cityName address:(NSString *)address areaId:(NSString *)areaId saveCompleteBlock:(void(^)(void))saveCompleteBlock {
+    if (isNullStr(address)) {
+        if (areaId) {
+            self.isSelectCity = YES;
+            [self saveLocationInfo:@{KNLocationCityName : cityName,
+                                         KNLocationAddress : @"",
+                                         KNLocationAreaId : areaId,
+                                         KNLocationLongitude : self.lng,
+                                         KNLocationLatitude : self.lat
+                                         }];
+        } else {
+            self.isSelectCity = NO;
+            [self saveLocationInfo:@{KNLocationStateName : self.state,
+                                     KNLocationCityName : self.city,
+                                     KNLocationAddress : @"",
+                                     KNLocationSubLocality : self.subLocality,
+                                     KNLocationLongitude : self.lng,
+                                     KNLocationLatitude : self.lat
+                                         }];
+        }
+        !saveCompleteBlock ?: saveCompleteBlock();
     } else {
-        self.isSelectCity = NO;
-        [self saveLocationInfo:@{KNLocationStateName : self.state,
-                                 KNLocationCityName : self.city,
-                                 KNLocationSubLocality : self.subLocality}];
+        KNB_WS(weakSelf);
+        CLGeocoder *myGeocoder = [[CLGeocoder alloc] init];
+        [myGeocoder geocodeAddressString:address completionHandler:^(NSArray *placemarks, NSError *error) {
+            if ([placemarks count] > 0 && error == nil) {
+                CLPlacemark *firstPlacemark = [placemarks objectAtIndex:0];
+                if (areaId) {
+                    weakSelf.isSelectCity = YES;
+                    [weakSelf saveLocationInfo:@{KNLocationCityName : cityName,
+                                                 KNLocationAddress : address,
+                                                 KNLocationAreaId : areaId,
+                                                 KNLocationLongitude : @(firstPlacemark.location.coordinate.longitude),
+                                                 KNLocationLatitude : @(firstPlacemark.location.coordinate.latitude)
+                                                 }];
+                } else {
+                    weakSelf.isSelectCity = NO;
+                    [weakSelf saveLocationInfo:@{KNLocationStateName : weakSelf.state,
+                                                 KNLocationCityName : weakSelf.city,
+                                                 KNLocationAddress : address,
+                                                 KNLocationSubLocality : weakSelf.subLocality,
+                                                 KNLocationLongitude : @(firstPlacemark.location.coordinate.longitude),
+                                                 KNLocationLatitude : @(firstPlacemark.location.coordinate.latitude)
+                                                 }];
+                }
+
+                !saveCompleteBlock ?: saveCompleteBlock();
+
+            } else if ([placemarks count] == 0 && error == nil) {
+                NSLog(@"Found no placemarks.");
+            } else if (error != nil) {
+                NSLog(@"An error occurred = %@", error);
+            }
+        }];
     }
+
 }
 
 - (void)saveLocationInfo:(NSDictionary *)dic {
@@ -203,6 +252,18 @@ NSString *const KNSaveUserLocation = @"KNSaveUserLocation";
     return name ? name : @"";
 }
 
+- (NSString *)currentLat {
+    NSDictionary *dic = [self userLocation];
+    NSString *lat = [NSString stringWithFormat:@"%@",dic[KNLocationLatitude]];
+    return lat ? lat : @"";
+}
+
+- (NSString *)currentLng {
+    NSDictionary *dic = [self userLocation];
+    NSString *lng = [NSString stringWithFormat:@"%@",dic[KNLocationLongitude]];;
+    return lng ? lng : @"";
+}
+
 - (CLLocation *)cllocation {
     return self.location;
 }
@@ -229,10 +290,10 @@ NSString *const KNSaveUserLocation = @"KNSaveUserLocation";
 //设置城市地址字体高亮为黄色
 - (NSAttributedString *)remidTitle:(NSString *)cityName {
     cityName = [cityName replaceString:@"市" withString:@""];
-    NSString *text = [NSString stringWithFormat:@"小主,系统检测到您当前所处城市为%@,需要切换至%@吗?", cityName, cityName];
+    NSString *text = [NSString stringWithFormat:@"系统检测到您当前所处城市为%@,需要切换至%@吗?", cityName, cityName];
     NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:text];
-    [str addAttribute:NSForegroundColorAttributeName value:[UIColor knMainColor] range:NSMakeRange(16, cityName.length)];
-    [str addAttribute:NSForegroundColorAttributeName value:[UIColor knMainColor] range:NSMakeRange(16 + cityName.length + 6, cityName.length)];
+    [str addAttribute:NSForegroundColorAttributeName value:[UIColor knMainColor] range:NSMakeRange(13, cityName.length)];
+    [str addAttribute:NSForegroundColorAttributeName value:[UIColor knMainColor] range:NSMakeRange(13 + cityName.length + 6, cityName.length)];
     return str;
 }
 

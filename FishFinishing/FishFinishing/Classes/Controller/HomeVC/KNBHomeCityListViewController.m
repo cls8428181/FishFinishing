@@ -19,7 +19,7 @@
 //顶部当前选择城市
 @property (nonatomic, strong) UIImageView *topImageView;
 @property (nonatomic, strong) UILabel *topLabel;
-@property (nonatomic, strong) UILabel *currentCityLabel;
+@property (nonatomic, strong) UIButton *currentCityButton;
 @property (nonatomic, strong) UIView *lineView;
 //tableview headerview
 @property (nonatomic, strong) KNBHomeCityHeaderView *cityHeadView;
@@ -59,7 +59,7 @@
         make.left.equalTo(weakSelf.topImageView.mas_right).mas_offset(10);
         make.centerY.equalTo(weakSelf.topImageView);
     }];
-    [self.currentCityLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.currentCityButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(weakSelf.topLabel.mas_right).mas_offset(10);
         make.centerY.equalTo(weakSelf.topImageView);
     }];
@@ -88,7 +88,7 @@
     [self.view addSubview:self.searchView];
     [self.view addSubview:self.topImageView];
     [self.view addSubview:self.topLabel];
-    [self.view addSubview:self.currentCityLabel];
+    [self.view addSubview:self.currentCityButton];
     [self.view addSubview:self.lineView];
     [self.view addSubview:self.knbTableView];
 }
@@ -132,7 +132,7 @@
     }
 
     cell.textLabel.textColor = [UIColor knLightGrayColor];
-    cell.textLabel.font = [UIFont systemFontOfSize:12.0];
+    cell.textLabel.font = [UIFont systemFontOfSize:14.0];
     return cell;
 }
 
@@ -232,6 +232,27 @@
 - (void)updateSearchResultsForSearchController:(UISearchController *)searchController {
 }
 
+- (void)currentCityButtonAction {
+    KNB_WS(weakSelf);
+    [[KNGetUserLoaction shareInstance] startLocation];
+    [KNGetUserLoaction shareInstance].completeBlock = ^(NSString *cityName) {
+        [KNGetUserLoaction shareInstance].currentCityName = cityName;
+        for (int i = 0; i < self.sectionArray.count; i++) {
+            NSArray *cityArr = self.cityDataDic[self.sectionArray[i]];
+            for (int j = 0; j < cityArr.count; j++) {
+                NSDictionary *cityDic = cityArr[j];
+                if ([cityDic[@"name"] containsString:cityName]) {
+                    KNBCityModel *model = [KNBCityModel changeResponseJSONObject:cityDic];
+                    !weakSelf.cityBlock ?: weakSelf.cityBlock(model.name, model.code);
+                    [KNBCityModel saveWithModel:model resultBlock:^(BOOL success) {
+                    }];
+                    [weakSelf dismissViewControllerAnimated:YES completion:nil];
+                }
+            }
+        }
+
+    };
+}
 
 #pragma mark----- Setter && Getter
 - (NSDictionary *)cityDataDic {
@@ -266,15 +287,10 @@
             [weakSelf dismissViewControllerAnimated:YES completion:nil];
         };
         _cityHeadView.clearComplete = ^{
-            [weakSelf dismissViewControllerAnimated:YES completion:nil];
+//            [weakSelf dismissViewControllerAnimated:YES completion:nil];
         };
     }
     return _cityHeadView;
-}
-
-- (void)setCurrentCity:(NSString *)currentCity {
-    _currentCity = currentCity;
-    self.currentCityLabel.text = currentCity;
 }
 
 - (KNBSearchView *)searchView {
@@ -314,13 +330,15 @@
     return _topLabel;
 }
 
-- (UILabel *)currentCityLabel {
-    if (!_currentCityLabel) {
-        _currentCityLabel = [[UILabel alloc] init];
-        _currentCityLabel.text = self.currentCity;
-        _currentCityLabel.font = [UIFont boldSystemFontOfSize:14];
+- (UIButton *)currentCityButton {
+    if (!_currentCityButton) {
+        _currentCityButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_currentCityButton setTitle:[KNGetUserLoaction shareInstance].currentCityName forState:UIControlStateNormal];
+        [_currentCityButton setTitleColor:[UIColor kn333333Color] forState:UIControlStateNormal];
+        _currentCityButton.titleLabel.font = [UIFont boldSystemFontOfSize:14];
+        [_currentCityButton addTarget:self action:@selector(currentCityButtonAction) forControlEvents:UIControlEventTouchUpInside];
     }
-    return _currentCityLabel;
+    return _currentCityButton;
 }
 
 - (UIView *)lineView {

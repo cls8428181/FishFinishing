@@ -45,6 +45,7 @@
     self.view.backgroundColor = [UIColor knBgColor];
     self.knGroupTableView.tableFooterView = self.footerView;
     self.isAlipy = NO;
+    self.isProtocol = YES;
     self.knGroupTableView.backgroundColor = [UIColor whiteColor];
 }
 
@@ -99,7 +100,7 @@
         KNBRecruitmentShowTableViewCell *typeCell = (KNBRecruitmentShowTableViewCell *)cell;
         typeCell.iconImageView.hidden = YES;
         typeCell.titleLabel.text = @"费用总计:";
-        typeCell.describeLabel.text = self.recruitmentModel.priceModel.price;
+        typeCell.describeLabel.text = [NSString stringWithFormat:@"%@元",self.recruitmentModel.priceModel.price];
     } else if (indexPath.section == 3) {
         if (indexPath.row == 0) {
             cell = [KNBRecruitmentPayTableViewCell cellWithTableView:tableView payType:@"支付宝"];

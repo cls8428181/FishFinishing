@@ -48,6 +48,7 @@ CGFloat KNBHomeSearchViewHeight = 44;
     self.defaultCityName = [KNGetUserLoaction shareInstance].cityName;
     [self changeButtontTitle:self.defaultCityName];
     [KNGetUserLoaction shareInstance].completeBlock = ^(NSString *cityName) {
+        [KNGetUserLoaction shareInstance].currentCityName = cityName;
         if (![weakSelf.defaultCityName isEqualToString:cityName]) {
             [weakSelf remindChangeCityName:cityName];
         }
@@ -97,12 +98,12 @@ CGFloat KNBHomeSearchViewHeight = 44;
     KNB_WS(weakSelf);
     KNBHomeCityListViewController *cityListVC = [[KNBHomeCityListViewController alloc] init];
     cityListVC.cityBlock = ^(NSString *cityName, NSString *areaId) {
-        [[KNGetUserLoaction shareInstance] saveUserCityName:cityName areaId:areaId];
-        weakSelf.defaultCityName = cityName;
-        [weakSelf changeButtontTitle:cityName];
-        !weakSelf.cityChooseBlock ?: weakSelf.cityChooseBlock();
+        [[KNGetUserLoaction shareInstance] saveUserCityName:cityName address:cityName areaId:areaId saveCompleteBlock:^{
+            weakSelf.defaultCityName = cityName;
+            [weakSelf changeButtontTitle:cityName];
+            !weakSelf.cityChooseBlock ?: weakSelf.cityChooseBlock();
+        }];
     };
-    cityListVC.currentCity = [KNGetUserLoaction shareInstance].selectCityName;
     KNBNavgationController *nav = [[KNBNavgationController alloc] initWithRootViewController:cityListVC];
     [KNB_AppDelegate.navController presentViewController:nav animated:YES completion:nil];
 }
@@ -126,7 +127,7 @@ CGFloat KNBHomeSearchViewHeight = 44;
     alterView.attributedString = [[KNGetUserLoaction shareInstance] remidTitle:cityName];
     alterView.alterBlock = ^(NSInteger selectIndex) {
         if (selectIndex == 1) {
-            [[KNGetUserLoaction shareInstance] saveUserCityName:cityName areaId:nil];
+            [[KNGetUserLoaction shareInstance] saveUserCityName:cityName address:nil areaId:nil saveCompleteBlock:nil];
             [weakSelf changeButtontTitle:cityName];
         }
     };

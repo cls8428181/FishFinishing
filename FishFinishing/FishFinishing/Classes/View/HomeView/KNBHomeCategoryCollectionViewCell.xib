@@ -20,14 +20,14 @@
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="knb_home_icon_offer" translatesAutoresizingMaskIntoConstraints="NO" id="oQd-ul-eRj">
-                        <rect key="frame" x="58.5" y="0.0" width="60" height="60"/>
+                        <rect key="frame" x="62" y="0.0" width="53" height="53"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="60" id="AIS-MR-qJb"/>
-                            <constraint firstAttribute="width" constant="60" id="nuE-IG-cdq"/>
+                            <constraint firstAttribute="height" constant="53" id="AIS-MR-qJb"/>
+                            <constraint firstAttribute="width" constant="53" id="nuE-IG-cdq"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="量房报价" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pVm-aA-sbU">
-                        <rect key="frame" x="60" y="68" width="57.5" height="17"/>
+                        <rect key="frame" x="60" y="63" width="57.5" height="17"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -38,7 +38,7 @@
                 <constraint firstItem="oQd-ul-eRj" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="CoU-JQ-vNq"/>
                 <constraint firstItem="oQd-ul-eRj" firstAttribute="centerX" secondItem="SEy-5g-ep8" secondAttribute="centerX" id="YLf-hP-5EA"/>
                 <constraint firstItem="pVm-aA-sbU" firstAttribute="centerX" secondItem="SEy-5g-ep8" secondAttribute="centerX" id="eh3-Sy-163"/>
-                <constraint firstItem="pVm-aA-sbU" firstAttribute="top" secondItem="oQd-ul-eRj" secondAttribute="bottom" constant="8" id="iHF-Qm-GVh"/>
+                <constraint firstItem="pVm-aA-sbU" firstAttribute="top" secondItem="oQd-ul-eRj" secondAttribute="bottom" constant="10" id="iHF-Qm-GVh"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="SEy-5g-ep8"/>
             <size key="customSize" width="177" height="110"/>

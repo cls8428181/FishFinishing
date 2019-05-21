@@ -7,6 +7,7 @@
 //
 
 #import "KNBHomeServiceModel.h"
+#import "NSString+Size.h"
 
 @implementation KNBHomeServiceModel
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
@@ -62,7 +63,56 @@
     CGFloat h = MAXFLOAT;
     NSDictionary *dict = @{NSFontAttributeName: [UIFont systemFontOfSize:13]};
     CGFloat height = [remark boundingRectWithSize:CGSizeMake(w, h) options:NSStringDrawingUsesLineFragmentOrigin attributes:dict context:nil].size.height;
-    _cellHeight = height + 111;
+    if (self.isOpen) {
+        _remarkHeight = height + 111;
+        _isShow = YES;
+    } else {
+        if (height < 55) {
+            _remarkHeight = height + 81;
+            _isShow = NO;
+        } else {
+            _remarkHeight = 55 + 111;
+            _isShow = YES;
+        }
+    }
 }
 
+- (void)setCaseList:(NSArray<KNBHomeServiceModel *> *)caseList {
+    _caseList = caseList;
+    NSInteger count = caseList.count;
+    if (count == 0) {
+        _caseListHeight = 300;
+    } else {
+        if (count %2 == 0) {
+            if (self.isEdit) {
+                _caseListHeight = 220 *(count /2 + 1) + 84;
+            } else {
+                _caseListHeight = 220 *count /2 + 84;
+            }
+        } else {
+            _caseListHeight = 220 *(count /2 + 1) + 84;
+        }
+    }
+}
+
+- (void)setDistance:(NSString *)distance {
+    _distance = distance;
+    if ([distance integerValue] > 1000) {
+        _distanceString = [NSString stringWithFormat:@"%ldkm",(long)[distance integerValue] / 1000];
+    } else {
+        _distanceString = [NSString stringWithFormat:@"%ldm",(long)[distance integerValue]];
+    }
+    CGFloat width = [_distanceString widthWithFont:KNBFont(12) constrainedToHeight:15];
+    
+    _maxAddressWidth = KNB_SCREEN_WIDTH - 211 - width;
+}
+
+- (void)setName:(NSString *)name {
+    _name = name;
+    if (name.length > 10) {
+        _nameString = [NSString stringWithFormat:@"%@...",[name substringToIndex:10]];
+    } else {
+        _nameString = name;
+    }
+}
 @end

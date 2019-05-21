@@ -19,9 +19,9 @@
                 <rect key="frame" x="0.0" y="0.0" width="412" height="303.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="服务" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AZe-S3-raY">
-                        <rect key="frame" x="12" y="145" width="29" height="17"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="特色服务" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AZe-S3-raY">
+                        <rect key="frame" x="12" y="145" width="73.5" height="51.5"/>
+                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
                         <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -40,6 +40,7 @@
                     <constraint firstAttribute="trailing" secondItem="u9V-2Q-IDQ" secondAttribute="trailing" constant="13" id="CtS-eF-yb9"/>
                     <constraint firstItem="u9V-2Q-IDQ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="13" id="b5L-Uy-uEY"/>
                     <constraint firstItem="AZe-S3-raY" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="145" id="c5A-69-Dyg"/>
+                    <constraint firstAttribute="bottom" secondItem="AZe-S3-raY" secondAttribute="bottom" constant="107" id="gmA-Wx-iZu"/>
                     <constraint firstItem="u9V-2Q-IDQ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="h9D-8n-izf"/>
                     <constraint firstItem="AZe-S3-raY" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="12" id="v4u-J3-Khe"/>
                 </constraints>

@@ -25,6 +25,7 @@
 @property (weak, nonatomic) IBOutlet UIView *adView;
 @property (weak, nonatomic) IBOutlet UILabel *enterLabel;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *maxSpace;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomConstraint;
 
 @end
 
@@ -111,7 +112,23 @@
         make.height.mas_equalTo(height);
     }];
     NSArray *array = [model.tag componentsSeparatedByString:@","]; //分割字符串
-    self.tagView.tagsArray = array;
+    if (isNullArray(array)) {
+        self.tagView.hidden = YES;
+    } else {
+        NSMutableArray *tempArray = [NSMutableArray arrayWithArray:array];
+        for (int i = 0; i < tempArray.count; i++) {
+            NSString *str = tempArray[i];
+            if (isNullStr(str)) {
+                [tempArray removeObject:str];
+            }
+        }
+        if (isNullArray(tempArray)) {
+            self.tagView.tagsArray = @[@"无"];
+        } else {
+            self.tagView.hidden = NO;
+            self.tagView.tagsArray = tempArray;
+        }
+    }
     if ([model.is_stick isEqualToString:@"0"]) {
         self.topImageView.hidden = YES;
     } else {
@@ -121,8 +138,10 @@
     NSString *openString = [[NSUserDefaults standardUserDefaults] objectForKey:@"OpenPayment"];
     if ([openString isEqualToString:@"1"] && self.isEdit) {
         self.adView.hidden = NO;
+        self.bottomConstraint.constant = 95;
     } else {
         self.adView.hidden = YES;
+        self.bottomConstraint.constant = 15;
     }
     
     NSInteger time = [NSDate getDifferenceByDate:[NSDate transformFromTimestamp:model.due_time]];

@@ -50,6 +50,7 @@
         if (self.theTimer != nil) {
             dispatch_source_cancel(self.theTimer);
         }
+        self.codeButton.userInteractionEnabled = YES;
         [self.codeButton setTitle:@"获取验证码" forState:UIControlStateNormal];
     } else {
         __block int timeout = KNBTimerInvalue; //倒计时时间
@@ -60,11 +61,13 @@
             if (timeout <= 0) { //倒计时结束，关闭
                 dispatch_source_cancel(_timer);
                 dispatch_async(dispatch_get_main_queue(), ^{
+                    self.codeButton.userInteractionEnabled = YES;
                     [self.codeButton setTitle:@"重新获取" forState:UIControlStateNormal];
                 });
             } else {
                 dispatch_async(dispatch_get_main_queue(), ^{
                     //设置界面的按钮显示 根据自己需求设置
+                    self.codeButton.userInteractionEnabled = NO;
                     [self.codeButton setTitle:[NSString stringWithFormat:@"(%ds)", timeout] forState:UIControlStateNormal];
                 });
                 timeout--;

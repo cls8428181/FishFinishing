@@ -1,12 +1,12 @@
 //
-//  KNBHomeCompanyCaseTableViewCell.m
+//  KNBHomeCompanyDetailFooterView.m
 //  FishFinishing
 //
-//  Created by 常立山 on 2019/4/3.
+//  Created by apple on 2019/5/20.
 //  Copyright © 2019 常立山. All rights reserved.
 //
 
-#import "KNBHomeCompanyCaseTableViewCell.h"
+#import "KNBHomeCompanyDetailFooterView.h"
 #import "KNBHomeCompanyCaseSubCollectionViewCell.h"
 #import "KNBDesignSketchDetailViewController.h"
 #import "KNBDesignSketchModel.h"
@@ -16,56 +16,39 @@
 #import "KNBHomeUploadProductViewController.h"
 #import "KNBOrderCheckCaseNumApi.h"
 
-@interface KNBHomeCompanyCaseTableViewCell ()<UICollectionViewDelegate, UICollectionViewDataSource>
+@interface KNBHomeCompanyDetailFooterView ()<UICollectionViewDelegate, UICollectionViewDataSource>
 //滑动区域
-@property (nonatomic, strong) UICollectionView *collectionView;
-@property (weak, nonatomic) IBOutlet UILabel *topLabel;
+@property (nonatomic, strong) UIView *topLineView;
+@property (nonatomic, strong) UILabel *topLabel;
 @property (nonatomic, strong) NSArray *dataArray;
 @end
 
-@implementation KNBHomeCompanyCaseTableViewCell
-
-#pragma mark - life cycle
-+ (instancetype)cellWithTableView:(UITableView *)tableView {
-    static NSString *ID = @"KNBHomeCompanyCaseTableViewCell";
-    KNBHomeCompanyCaseTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
-    if (!cell) {
-        [tableView registerNib:[UINib nibWithNibName:ID bundle:nil] forCellReuseIdentifier:ID];
-        cell = [tableView dequeueReusableCellWithIdentifier:ID];
+@implementation KNBHomeCompanyDetailFooterView
+- (instancetype)init {
+    if (self = [super init]) {
+        [self addSubview:self.topLineView];
+        [self addSubview:self.topLabel];
+        [self addSubview:self.collectionView];
     }
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    return cell;
+    return self;
 }
 
 - (void)layoutSubviews {
     [super layoutSubviews];
     KNB_WS(weakSelf);
+    [self.topLineView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.top.right.equalTo(weakSelf);
+        make.height.mas_equalTo(10);
+    }];
+    [self.topLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(13);
+        make.right.mas_equalTo(-13);
+        make.top.equalTo(weakSelf.topLineView.mas_bottom).mas_offset(17);
+    }];
     [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.bottom.equalTo(weakSelf);
-        make.top.mas_equalTo(40);
+        make.top.equalTo(weakSelf.topLineView.mas_bottom).mas_offset(40);
     }];
-}
-
-- (void)awakeFromNib {
-    [super awakeFromNib];
-    [self.contentView addSubview:self.collectionView];
-}
-
-#pragma mark - private method
-+ (CGFloat)cellHeight:(NSInteger)count isEdit:(BOOL)isEdit {
-    if (count == 0) {
-        return 250;
-    }
-    if (count %2 == 0) {
-        if (isEdit) {
-            return 220 *(count /2 + 1) + 50;
-        } else {
-            return 220 *count /2 + 50;
-        }
-    } else {
-        return 220 *(count /2 + 1) + 50;
-    }
-
 }
 
 #pragma mark - collectionview delegate & dataSource
@@ -200,5 +183,22 @@
     }
     
     [self.collectionView reloadData];
+}
+
+- (UILabel *)topLabel {
+    if (!_topLabel) {
+        _topLabel = [[UILabel alloc] init];
+        _topLabel.textColor = [UIColor kn333333Color];
+        _topLabel.font = [UIFont systemFontOfSize:18 weight:UIFontWeightMedium];
+    }
+    return _topLabel;
+}
+
+- (UIView *)topLineView {
+    if (!_topLineView) {
+        _topLineView = [[UIView alloc] init];
+        _topLineView.backgroundColor = [UIColor knf2f2f2Color];
+    }
+    return _topLineView;
 }
 @end

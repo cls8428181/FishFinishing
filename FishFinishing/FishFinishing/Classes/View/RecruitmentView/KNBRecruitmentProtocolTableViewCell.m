@@ -32,6 +32,14 @@
     return 50;
 }
 
+- (void)awakeFromNib{
+    [super awakeFromNib];
+    NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:self.protocolButton.titleLabel.text];
+    [str addAttribute:NSForegroundColorAttributeName value:[UIColor knMainColor] range:NSMakeRange(7,8)];
+    self.protocolButton.titleLabel.attributedText = str;
+    [self.protocolButton setAttributedTitle:str forState:UIControlStateNormal];
+}
+
 - (IBAction)selectButtonAction:(id)sender {
     !self.selectButtonBlock ?: self.selectButtonBlock(sender);
 }

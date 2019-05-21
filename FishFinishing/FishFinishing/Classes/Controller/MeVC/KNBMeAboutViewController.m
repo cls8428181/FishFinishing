@@ -80,14 +80,17 @@
         cell.iconImageView.image = KNBImages(@"knb_me_weixin");
         cell.titleLabel.text = @"微信客服";
         cell.detailLabel.text = self.model.wechat_customer_service;
+        cell.allowImageView.hidden = YES;
     } else if (indexPath.row == 1) {
         cell.iconImageView.image = KNBImages(@"knb_me_phone");
         cell.titleLabel.text = @"服务热线";
         cell.detailLabel.text = self.model.hotline;
+        cell.allowImageView.hidden = NO;
     } else {
         cell.iconImageView.image = KNBImages(@"knb_me_time");
         cell.titleLabel.text = @"接待时间";
         cell.detailLabel.text = self.model.reception_time;
+        cell.allowImageView.hidden = YES;
     }
     return cell;
 }
@@ -97,16 +100,16 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.row == 0) {
-        NSMutableString * str=[[NSMutableString alloc] initWithFormat:@"tel:%@",self.model.wechat_customer_service];
-        UIApplication *application = [UIApplication sharedApplication];
-        NSURL *URL = [NSURL URLWithString:str];
-        [application openURL:URL options:@{} completionHandler:^(BOOL success) {
-            //OpenSuccess = 选择 呼叫 为 1  选择 取消 为0
-            NSLog(@"OpenSuccess=%d",success);
-            
-        }];
-    }
+//    if (indexPath.row == 0) {
+//        NSMutableString * str=[[NSMutableString alloc] initWithFormat:@"tel:%@",self.model.wechat_customer_service];
+//        UIApplication *application = [UIApplication sharedApplication];
+//        NSURL *URL = [NSURL URLWithString:str];
+//        [application openURL:URL options:@{} completionHandler:^(BOOL success) {
+//            //OpenSuccess = 选择 呼叫 为 1  选择 取消 为0
+//            NSLog(@"OpenSuccess=%d",success);
+//
+//        }];
+//    }
     if (indexPath.row == 1) {
         NSMutableString * str=[[NSMutableString alloc] initWithFormat:@"tel:%@",self.model.hotline];
         UIApplication *application = [UIApplication sharedApplication];

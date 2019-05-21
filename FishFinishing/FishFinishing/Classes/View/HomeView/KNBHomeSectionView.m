@@ -54,7 +54,7 @@
 - (UILabel *)titleLabel {
     if (!_titleLabel) {
         _titleLabel = [[UILabel alloc] init];
-        _titleLabel.font = [UIFont systemFontOfSize:16];
+        _titleLabel.font = [UIFont boldSystemFontOfSize:18];
         _titleLabel.textColor = [UIColor colorWithHex:0x333333];
     }
     return _titleLabel;

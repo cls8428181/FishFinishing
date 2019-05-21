@@ -106,9 +106,9 @@
             NSDictionary *dic = request.responseObject[@"list"];
             KNBDesignSketchModel *model = [KNBDesignSketchModel changeResponseJSONObject:dic];
             weakSelf.titleLabel.text = model.title;
-            weakSelf.styleLabel.text = model.style_name ?: @"暂无风格信息";
-            weakSelf.houseLabel.text = model.apart_name ?: @"暂无户型信息";
-            weakSelf.areaLabel.text = [NSString stringWithFormat:@"%@㎡",model.acreage] ?: @"暂无面积信息";
+            weakSelf.styleLabel.text = [NSString stringWithFormat:@"%@ | %@ | %@㎡",model.apart_name ?: @"无",model.style_name ?: @"无",model.acreage ?: @"无"];
+//            weakSelf.houseLabel.text = model.apart_name ?: @"暂无户型信息";
+//            weakSelf.areaLabel.text = [NSString stringWithFormat:@"%@㎡",model.acreage] ?: @"暂无面积信息";
             weakSelf.contentLabel.text = model.remark ?: @"暂无简介信息";
             weakSelf.orderButton.tag = [model.telephone integerValue];
             weakSelf.model = model;
@@ -134,7 +134,7 @@
     [self.view addSubview:self.styleLabel];
     [self.view addSubview:self.titleLabel];
 //    [self.view addSubview:self.houseLabel];
-    [self.view addSubview:self.areaLabel];
+//    [self.view addSubview:self.areaLabel];
     [self.view addSubview:self.backButton];
     [self.view addSubview:self.shareButton];
 }
@@ -165,10 +165,10 @@
 //        make.left.equalTo(weakSelf.styleLabel.mas_right).mas_offset(0);
 //        make.width.mas_equalTo((KNB_SCREEN_WIDTH - 24)/3);
 //    }];
-    [self.areaLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.equalTo(weakSelf.styleLabel.mas_top).mas_offset(-20);
-        make.left.equalTo(weakSelf.titleLabel.mas_right).mas_offset(50);
-    }];
+//    [self.areaLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.bottom.equalTo(weakSelf.styleLabel.mas_top).mas_offset(-20);
+//        make.left.equalTo(weakSelf.titleLabel.mas_right).mas_offset(50);
+//    }];
     [self.backButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(12);
         make.top.mas_equalTo(35);
@@ -195,13 +195,13 @@
 - (void)shareButtonAction {
     NSString *imgUrl = self.photosArray[self.scrollerView.currentIndex];
     UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL: [NSURL URLWithString:imgUrl]]];
-    NSAttributedString *titleString = [[NSAttributedString alloc] initWithString:self.titleLabel.text attributes:@{NSFontAttributeName:[UIFont boldSystemFontOfSize:20]}];
-    NSAttributedString *styleString = [[NSAttributedString alloc] initWithString:self.styleLabel.text attributes:@{NSFontAttributeName:[UIFont boldSystemFontOfSize:20]}];
-    NSAttributedString *houseString = [[NSAttributedString alloc] initWithString:self.houseLabel.text attributes:@{NSFontAttributeName:[UIFont boldSystemFontOfSize:20]}];
-    NSAttributedString *areaString = [[NSAttributedString alloc] initWithString:self.areaLabel.text attributes:@{NSFontAttributeName:[UIFont boldSystemFontOfSize:20]}];
-    NSAttributedString *remarkString = [[NSAttributedString alloc] initWithString:self.contentLabel.text attributes:@{NSFontAttributeName:[UIFont boldSystemFontOfSize:20]}];
+    NSAttributedString *titleString = [[NSAttributedString alloc] initWithString:self.titleLabel.text attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:25]}];
+    NSAttributedString *styleString = [[NSAttributedString alloc] initWithString:self.styleLabel.text attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:20]}];
+//    NSAttributedString *houseString = [[NSAttributedString alloc] initWithString:self.houseLabel.text attributes:@{NSFontAttributeName:[UIFont boldSystemFontOfSize:20]}];
+//    NSAttributedString *areaString = [[NSAttributedString alloc] initWithString:self.areaLabel.text attributes:@{NSFontAttributeName:[UIFont boldSystemFontOfSize:20]}];
+    NSAttributedString *remarkString = [[NSAttributedString alloc] initWithString:self.contentLabel.text attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:20]}];
     
-    UIImage *shareImage = [self combine:image title:titleString style:styleString house:houseString area:areaString remark:remarkString];
+    UIImage *shareImage = [self combine:image title:titleString style:styleString remark:remarkString];
     NSString *name = @"效果图详情";
     NSString *describeStr = @"这是效果图详情";
     [self shareImageWithMessages:@[name , describeStr] image:shareImage shareButtonBlock:^(NSInteger platformType, BOOL success) {
@@ -241,10 +241,14 @@
 }
 
 #pragma mark 合并图片
-- (UIImage *)combine:(UIImage *)image title:(NSAttributedString *)title style:(NSAttributedString *)style house:(NSAttributedString *)house area:(NSAttributedString *)area remark:(NSAttributedString *)remark {
+- (UIImage *)combine:(UIImage *)image title:(NSAttributedString *)title style:(NSAttributedString *)style remark:(NSAttributedString *)remark {
     //计算画布大小
     CGFloat width = image.size.width;
-    CGFloat height = image.size.height + 150;
+    CGFloat titleHeight = [title.string heightWithFont:KNBFont(25) constrainedToWidth:width - 26];
+    CGFloat styleHeight = [style.string heightWithFont:KNBFont(20) constrainedToWidth:width - 26];
+    CGFloat remarkHeight = [remark.string heightWithFont:KNBFont(20) constrainedToWidth:width - 26];
+    CGFloat height = image.size.height + titleHeight + styleHeight + remarkHeight + 55;
+
     CGSize resultSize = CGSizeMake(width, height);
     UIGraphicsBeginImageContext(resultSize);
     
@@ -253,23 +257,23 @@
     [image drawInRect:imageRect];
     
     //标题
-    CGRect titleRect = CGRectMake(13, image.size.height + 15, resultSize.width, 25);
+    CGRect titleRect = CGRectMake(13, image.size.height + 15, resultSize.width - 26, titleHeight);
     [title drawInRect:titleRect];
     
     //风格
-    CGRect styleRect = CGRectMake(13, image.size.height + 50, (KNB_SCREEN_WIDTH - 26)/3, 25);
+    CGRect styleRect = CGRectMake(13, image.size.height + 60, resultSize.width - 26, styleHeight);
     [style drawInRect:styleRect];
     
-    //户型
-    CGRect houseRect = CGRectMake((KNB_SCREEN_WIDTH - 26)/3 + 13, image.size.height + 50, (KNB_SCREEN_WIDTH - 26)/3, 25);
-    [house drawInRect:houseRect];
-    
-    //面积
-    CGRect areaRect = CGRectMake((KNB_SCREEN_WIDTH - 26)/3 * 2 + 13, image.size.height + 50, (KNB_SCREEN_WIDTH - 26)/3, 25);
-    [area drawInRect:areaRect];
+//    //户型
+//    CGRect houseRect = CGRectMake((KNB_SCREEN_WIDTH - 26)/3 + 13, image.size.height + 50, (KNB_SCREEN_WIDTH - 26)/3, 25);
+//    [house drawInRect:houseRect];
+//
+//    //面积
+//    CGRect areaRect = CGRectMake((KNB_SCREEN_WIDTH - 26)/3 * 2 + 13, image.size.height + 50, (KNB_SCREEN_WIDTH - 26)/3, 25);
+//    [area drawInRect:areaRect];
     
     //简介
-    CGRect remarkRect = CGRectMake(13, image.size.height + 85, resultSize.width, 55);
+    CGRect remarkRect = CGRectMake(13, image.size.height + 85, resultSize.width - 26, remarkHeight);
     [remark drawInRect:remarkRect];
     
     UIImage *resultImage = UIGraphicsGetImageFromCurrentImageContext();
@@ -323,26 +327,26 @@
     return _styleLabel;
 }
 
-- (UILabel *)houseLabel {
-    if (!_houseLabel) {
-        _houseLabel = [[UILabel alloc] init];
-        _houseLabel.textColor = [UIColor whiteColor];
-        _houseLabel.font = [UIFont systemFontOfSize:14];
-        _houseLabel.textAlignment = NSTextAlignmentCenter;
-
-    }
-    return _houseLabel;
-}
-
-- (UILabel *)areaLabel {
-    if (!_areaLabel) {
-        _areaLabel = [[UILabel alloc] init];
-        _areaLabel.textColor = [UIColor whiteColor];
-        _areaLabel.font = KNBFont(15);
-        _areaLabel.textAlignment = NSTextAlignmentRight;
-    }
-    return _areaLabel;
-}
+//- (UILabel *)houseLabel {
+//    if (!_houseLabel) {
+//        _houseLabel = [[UILabel alloc] init];
+//        _houseLabel.textColor = [UIColor whiteColor];
+//        _houseLabel.font = [UIFont systemFontOfSize:14];
+//        _houseLabel.textAlignment = NSTextAlignmentCenter;
+//
+//    }
+//    return _houseLabel;
+//}
+//
+//- (UILabel *)areaLabel {
+//    if (!_areaLabel) {
+//        _areaLabel = [[UILabel alloc] init];
+//        _areaLabel.textColor = [UIColor whiteColor];
+//        _areaLabel.font = KNBFont(15);
+//        _areaLabel.textAlignment = NSTextAlignmentRight;
+//    }
+//    return _areaLabel;
+//}
 
 - (UILabel *)contentLabel {
     if (!_contentLabel) {

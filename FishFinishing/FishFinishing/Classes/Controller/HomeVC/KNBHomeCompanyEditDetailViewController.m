@@ -185,6 +185,8 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
 //        [self recruitmentTypeRequest];
+        [KNBAlertRemind alterWithTitle:@"提示" message:@"编辑入驻信息时不可修改入驻类型" buttonTitles:@[@"知道了"] handler:^(NSInteger index, NSString *title) {
+        }];
     } else if (indexPath.section == 1 && indexPath.row == 1) {
         [self changePortrait];
     } else if (indexPath.section == 2 && indexPath.row == 0) {
@@ -437,6 +439,12 @@
 
     KNBRecruitmentIntroTableViewCell *introCell = [self.knGroupTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:4]];
     self.recruitmentModel.remark = introCell.contentTextView.text;
+//    if (isNullArray(self.recruitmentModel.domainList)) {
+//        [LCProgressHUD showMessage:@"请选择擅长领域"];
+//    }
+//    if (isNullArray(self.recruitmentModel.serviceList)) {
+//        [LCProgressHUD showMessage:@"请选择服务"];
+//    }
     if (self.recruitmentModel.iconImage) {
         //上传图片
         [LCProgressHUD showLoading:@""];

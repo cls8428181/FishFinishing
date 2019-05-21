@@ -16,6 +16,4 @@ typedef void (^KNBHomeCityListViewBlock)(NSString *cityName, NSString *areaId);
 
 @property (nonatomic, copy) KNBHomeCityListViewBlock cityBlock;
 
-@property (nonatomic, copy) NSString *currentCity;
-
 @end
