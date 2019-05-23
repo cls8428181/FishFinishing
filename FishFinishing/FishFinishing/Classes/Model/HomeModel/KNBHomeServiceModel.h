@@ -38,7 +38,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *serviceId;
 
 /**
-   名称
+ 名称
  */
 @property (nonatomic, copy) NSString *name;
 
@@ -46,6 +46,17 @@ NS_ASSUME_NONNULL_BEGIN
  头像
  */
 @property (nonatomic, copy) NSString *logo;
+
+/**
+ 省
+ */
+@property (nonatomic, copy) NSString *province_name;
+
+/**
+ 市
+ */
+@property (nonatomic, copy) NSString *city_name;
+
 
 /**
  区
@@ -173,6 +184,11 @@ NS_ASSUME_NONNULL_BEGIN
  面积
  */
 @property (nonatomic, copy) NSString *acreage;
+
+/**
+ 价格
+ */
+@property (nonatomic, copy) NSString *price;
 
 /**
  案例数据

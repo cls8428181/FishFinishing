@@ -18,6 +18,10 @@ NS_ASSUME_NONNULL_BEGIN
 /// 如果需要自定义UITextField的delegate，请用textField.bridgeDelegate = self 代替 textField.delegate = self
 @property(nonatomic, weak) id<UITextFieldDelegate> bridgeDelegate;
 
+/**
+ placeholder 距离左边的间距
+ */
+@property (nonatomic, assign) NSInteger leftSpace;
 @end
 
 NS_ASSUME_NONNULL_END

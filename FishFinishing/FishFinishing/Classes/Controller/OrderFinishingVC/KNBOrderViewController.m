@@ -465,7 +465,6 @@
 //请求入驻费用数据
 - (void)showPriceRequest {
     KNBRecruitmentCostApi *api = [[KNBRecruitmentCostApi alloc] initWithCatId:[self.recruitmentModel.typeModel.selectSubModel.typeId integerValue] costType:1];
-    api.package_type = self.isExperience ? 1 : 2;
     api.hudString = @"";
     KNB_WS(weakSelf);
     [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *_Nonnull request) {

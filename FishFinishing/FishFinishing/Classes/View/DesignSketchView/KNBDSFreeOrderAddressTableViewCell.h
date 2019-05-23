@@ -21,6 +21,9 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (CGFloat)cellHeight;
 
+/**
+ 设置省市区
+ */
 - (void)setProvinceName:(NSString *)provinceName cityName:(NSString *)cityName areaName:(NSString *)areaName;
 @end
 

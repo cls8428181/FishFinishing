@@ -461,6 +461,9 @@ static NSString *const kTagCellID = @"TagCellID";
         [self.tagModels addObject:tagModel];
     }];
     [self.collectionView reloadData];
+    if (isNullArray(tagsArray)) {
+        
+    }
     [self invalidateIntrinsicContentSize];
 }
 

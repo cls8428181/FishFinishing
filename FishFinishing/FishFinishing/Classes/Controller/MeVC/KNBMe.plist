@@ -11,12 +11,6 @@
 		</dict>
 		<dict>
 			<key>title</key>
-			<string>我要接单</string>
-			<key>imageName</key>
-			<string>knb_me_icon_receiving</string>
-		</dict>
-		<dict>
-			<key>title</key>
 			<string>预约订单</string>
 			<key>imageName</key>
 			<string>knb_me_order</string>
@@ -33,7 +27,7 @@
 	<array>
 		<dict>
 			<key>title</key>
-			<string>关于我们</string>
+			<string>联系我们</string>
 			<key>imageName</key>
 			<string>knb_me_icon_about</string>
 		</dict>

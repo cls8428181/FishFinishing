@@ -30,6 +30,7 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     NSInteger space = 10;
+    self.isNewHouse = @"新房装修";
     self.oldHouseButton.imageEdgeInsets = UIEdgeInsetsMake(0, -space/2.0, 0, space/2.0);
     self.oldHouseButton.titleEdgeInsets = UIEdgeInsetsMake(0, space/2.0, 0, -space/2.0);
     self.houseButton.imageEdgeInsets = UIEdgeInsetsMake(0, -space/2.0, 0, space/2.0);

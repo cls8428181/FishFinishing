@@ -11,11 +11,13 @@
 @implementation KNBDesignSketchModel
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
     return @{
+             @"facilitator_id" : @"facilitator_id",
              @"caseId" : @"id",
              @"title" : @"title",
              @"name" : @"name",
              @"img" : @"img",
              @"logo" : @"logo",
+             @"price" : @"price",
              @"browse_num" : @"browse_num",
              @"created_at" : @"created_at",
              @"style_name" : @"style_name",

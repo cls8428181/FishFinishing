@@ -11,6 +11,15 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface KNBDesignSketchModel : KNBBaseModel
+
+/**
+ 服务商 id
+ */
+@property (nonatomic, copy) NSString *facilitator_id;
+
+/**
+ 案例 id
+ */
 @property (nonatomic, copy) NSString *caseId;
 
 /**
@@ -34,6 +43,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *logo;
 @property (nonatomic, copy) NSString *browse_num;
 @property (nonatomic, copy) NSString *created_at;
+@property (nonatomic, copy) NSString *price;
 
 /**
  类型

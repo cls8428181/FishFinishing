@@ -116,17 +116,9 @@
                             detailVC.isEdit = YES;
                             [weakSelf.navigationController pushViewController:detailVC animated:YES];
                         } else {
-                            [KNBMeRecruitmentAlertView showAlertViewRecruitmentBlock:^{
-                                KNBOrderViewController *orderVC = [[KNBOrderViewController alloc] init];
-                                orderVC.VCType = KNBOrderVCTypeRecruitment;
-                                orderVC.isExperience = NO;
-                                [weakSelf.navigationController pushViewController:orderVC animated:YES];
-                            } experienceBlock:^{
-                                KNBOrderViewController *orderVC = [[KNBOrderViewController alloc] init];
-                                orderVC.VCType = KNBOrderVCTypeRecruitment;
-                                orderVC.isExperience = YES;
-                                [weakSelf.navigationController pushViewController:orderVC animated:YES];
-                            }];
+                            KNBOrderViewController *orderVC = [[KNBOrderViewController alloc] init];
+                            orderVC.VCType = KNBOrderVCTypeRecruitment;
+                            [weakSelf.navigationController pushViewController:orderVC animated:YES];
                         }
                     } failure:^(__kindof YTKBaseRequest *_Nonnull request) {
                         [LCProgressHUD showMessage:api.errMessage];
@@ -143,25 +135,6 @@
                 }
             }
             if (indexPath.row == 1) {
-                NSURL *url = [NSURL URLWithString:@"test://"];
-                if ([[UIApplication sharedApplication] canOpenURL:url]) {
-                    [[UIApplication sharedApplication] openURL:url options:nil completionHandler:nil];
-                    
-                }else{
-                    NSLog(@"没有安装应用");
-                    KNBGetCollocationApi *api = [[KNBGetCollocationApi alloc] initWithKey:@"System_setup"];
-                    api.hudString = @"";
-                    [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *_Nonnull request) {
-                        if (api.requestSuccess) {
-                            NSDictionary *dic = request.responseObject[@"list"];
-                            NSString *downString = dic[@"Receipt_address"];
-                            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:downString] options:nil completionHandler:nil];
-                        }
-                    } failure:^(__kindof YTKBaseRequest *_Nonnull request) {
-                    }];
-                }
-            }
-            if (indexPath.row == 2) {
                 if ([KNBUserInfo shareInstance].isLogin) {
                     if (isNullStr([KNBUserInfo shareInstance].fac_id)) {
                         [LCProgressHUD showMessage:@"您还未入驻,请先成为入驻商家"];

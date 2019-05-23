@@ -7,6 +7,7 @@
 //
 
 #import "CCTextField.h"
+#define Default_FontColor KNBColor(0x333333)
 
 @implementation CCTextField
 
@@ -29,6 +30,18 @@
 - (void)commonSetup
 {
     _maxLength = 0;
+    //字体大小
+    self.font = [UIFont systemFontOfSize:15];
+    //字体颜色
+    self.textColor = Default_FontColor;
+    //光标颜色
+    self.tintColor= self.textColor;
+    //占位符的颜色和大小
+    [self setValue:KNBColor(0x7e7e7e) forKeyPath:@"_placeholderLabel.textColor"];
+    [self setValue:[UIFont boldSystemFontOfSize:14] forKeyPath:@"_placeholderLabel.font"];
+    // 不成为第一响应者
+    [self resignFirstResponder];
+    
     [self addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
     self.delegate = self;
 }
@@ -106,9 +119,6 @@
     return YES;
 }
 
-
-
-
 // return NO to disallow editing.
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
 {
@@ -162,12 +172,44 @@
     }
     return NO;
 }
-/*
- // Only override drawRect: if you perform custom drawing.
- // An empty implementation adversely affects performance during animation.
- - (void)drawRect:(CGRect)rect {
- // Drawing code
- }
+/**
+ * 当前文本框聚焦时就会调用
  */
+- (BOOL)becomeFirstResponder
+{
+    // 修改占位文字颜色
+    [self setValue:self.textColor forKeyPath:@"_placeholderLabel.textColor"];
+    return [super becomeFirstResponder];
+}
+
+/**
+ * 当前文本框失去焦点时就会调用
+ */
+- (BOOL)resignFirstResponder
+{
+    // 修改占位文字颜色
+    [self setValue:[UIColor grayColor] forKeyPath:@"_placeholderLabel.textColor"];
+    return [super resignFirstResponder];
+}
+//控制placeHolder的位置
+-(CGRect)placeholderRectForBounds:(CGRect)bounds
+{
+    CGRect inset = CGRectMake(bounds.origin.x + self.leftSpace ?: 15, bounds.origin.y, bounds.size.width - self.leftSpace ?: 15, bounds.size.height);
+    return inset;
+}
+
+//控制显示文本的位置
+-(CGRect)textRectForBounds:(CGRect)bounds
+{
+    CGRect inset = CGRectMake(bounds.origin.x + self.leftSpace ?: 15, bounds.origin.y, bounds.size.width - self.leftSpace ?: 15, bounds.size.height);
+    return inset;
+}
+
+//控制编辑文本的位置
+-(CGRect)editingRectForBounds:(CGRect)bounds
+{
+    CGRect inset = CGRectMake(bounds.origin.x + self.leftSpace ?: 15, bounds.origin.y, bounds.size.width - self.leftSpace ?: 15, bounds.size.height);
+    return inset;
+}
 
 @end

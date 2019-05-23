@@ -37,7 +37,7 @@
                                     <action selector="oldHouseButtonAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="HSb-6c-Qq8"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bbr-0K-JMS">
+                            <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bbr-0K-JMS">
                                 <rect key="frame" x="6" y="38" width="88" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="gtX-Ne-atA"/>

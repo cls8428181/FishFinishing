@@ -12,6 +12,7 @@
 		1823CA652290012200BC5D8D /* KNBCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 1823CA622290012200BC5D8D /* KNBCity.m */; };
 		182F5A7822811A7B00E8B323 /* KNBHomeUploadCaseFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 182F5A7722811A7B00E8B323 /* KNBHomeUploadCaseFooterView.m */; };
 		1835FC3A229407D5004F3756 /* LXCollectionViewLeftOrRightAlignedLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 1835FC39229407D5004F3756 /* LXCollectionViewLeftOrRightAlignedLayout.m */; };
+		183B51932295533200CADC81 /* CCOrderAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 183B51922295533200CADC81 /* CCOrderAlertView.m */; };
 		183C56162283B4E80054217D /* KNBMeOrderOtherTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 183C56142283B4E80054217D /* KNBMeOrderOtherTableViewCell.m */; };
 		183C56172283B4E80054217D /* KNBMeOrderOtherTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 183C56152283B4E80054217D /* KNBMeOrderOtherTableViewCell.xib */; };
 		183E04B32280155C009EA112 /* KNBOrderCheckApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 183E04B22280155C009EA112 /* KNBOrderCheckApi.m */; };
@@ -59,6 +60,8 @@
 		1849CE9222851EA90064D439 /* UIScrollView+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = 1849CE7122851EA80064D439 /* UIScrollView+Addition.m */; };
 		1849CE9322851EA90064D439 /* MKMapView+ZoomLevel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1849CE7322851EA90064D439 /* MKMapView+ZoomLevel.m */; };
 		1854B8D422732374009821B8 /* KNBPayProtocolViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1854B8D322732374009821B8 /* KNBPayProtocolViewController.m */; };
+		18573348229675FB00A4D749 /* LCD-BOLD.TTF in Resources */ = {isa = PBXBuildFile; fileRef = 18573347229675FB00A4D749 /* LCD-BOLD.TTF */; };
+		1857334B2296A45C00A4D749 /* CCOrderAlertTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1857334A2296A45C00A4D749 /* CCOrderAlertTextView.m */; };
 		1857ED87227EDEB7008E9668 /* KNBHomeCompanyExperienceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1857ED86227EDEB7008E9668 /* KNBHomeCompanyExperienceViewController.m */; };
 		1857ED8B227EE080008E9668 /* KNBHomeExperienceHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1857ED89227EE080008E9668 /* KNBHomeExperienceHeaderView.m */; };
 		1857ED8C227EE080008E9668 /* KNBHomeExperienceHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1857ED8A227EE080008E9668 /* KNBHomeExperienceHeaderView.xib */; };
@@ -448,6 +451,8 @@
 		182F5A7722811A7B00E8B323 /* KNBHomeUploadCaseFooterView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNBHomeUploadCaseFooterView.m; sourceTree = "<group>"; };
 		1835FC38229407D5004F3756 /* LXCollectionViewLeftOrRightAlignedLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXCollectionViewLeftOrRightAlignedLayout.h; sourceTree = "<group>"; };
 		1835FC39229407D5004F3756 /* LXCollectionViewLeftOrRightAlignedLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXCollectionViewLeftOrRightAlignedLayout.m; sourceTree = "<group>"; };
+		183B51912295533200CADC81 /* CCOrderAlertView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCOrderAlertView.h; sourceTree = "<group>"; };
+		183B51922295533200CADC81 /* CCOrderAlertView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CCOrderAlertView.m; sourceTree = "<group>"; };
 		183C56132283B4E80054217D /* KNBMeOrderOtherTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNBMeOrderOtherTableViewCell.h; sourceTree = "<group>"; };
 		183C56142283B4E80054217D /* KNBMeOrderOtherTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNBMeOrderOtherTableViewCell.m; sourceTree = "<group>"; };
 		183C56152283B4E80054217D /* KNBMeOrderOtherTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KNBMeOrderOtherTableViewCell.xib; sourceTree = "<group>"; };
@@ -547,6 +552,9 @@
 		1849CE9C22851F630064D439 /* KNBMapHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNBMapHeader.h; sourceTree = "<group>"; };
 		1854B8D222732374009821B8 /* KNBPayProtocolViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNBPayProtocolViewController.h; sourceTree = "<group>"; };
 		1854B8D322732374009821B8 /* KNBPayProtocolViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNBPayProtocolViewController.m; sourceTree = "<group>"; };
+		18573347229675FB00A4D749 /* LCD-BOLD.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LCD-BOLD.TTF"; sourceTree = "<group>"; };
+		185733492296A45C00A4D749 /* CCOrderAlertTextView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCOrderAlertTextView.h; sourceTree = "<group>"; };
+		1857334A2296A45C00A4D749 /* CCOrderAlertTextView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CCOrderAlertTextView.m; sourceTree = "<group>"; };
 		1857ED85227EDEB7008E9668 /* KNBHomeCompanyExperienceViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNBHomeCompanyExperienceViewController.h; sourceTree = "<group>"; };
 		1857ED86227EDEB7008E9668 /* KNBHomeCompanyExperienceViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNBHomeCompanyExperienceViewController.m; sourceTree = "<group>"; };
 		1857ED88227EE080008E9668 /* KNBHomeExperienceHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNBHomeExperienceHeaderView.h; sourceTree = "<group>"; };
@@ -1309,6 +1317,121 @@
 			path = UICollectionView;
 			sourceTree = "<group>";
 		};
+		183B51892294EBA700CADC81 /* CCCityChooseView */ = {
+			isa = PBXGroup;
+			children = (
+				189A6B7922606094007C6CC1 /* KNBHomeCityHeaderView.h */,
+				189A6B7822606093007C6CC1 /* KNBHomeCityHeaderView.m */,
+			);
+			path = CCCityChooseView;
+			sourceTree = "<group>";
+		};
+		183B518A2294EBBC00CADC81 /* CCCategoryView */ = {
+			isa = PBXGroup;
+			children = (
+				966AA579224A2D3E00EDBF5F /* KNBHomeCategoryTableViewCell.h */,
+				966AA57A224A2D3E00EDBF5F /* KNBHomeCategoryTableViewCell.m */,
+				1877F30422682F7D0092207E /* KNBHomeCategoryCollectionViewCell.h */,
+				1877F30522682F7D0092207E /* KNBHomeCategoryCollectionViewCell.m */,
+				1877F30622682F7D0092207E /* KNBHomeCategoryCollectionViewCell.xib */,
+			);
+			path = CCCategoryView;
+			sourceTree = "<group>";
+		};
+		183B518B2294EBD600CADC81 /* CCDesignSketchView */ = {
+			isa = PBXGroup;
+			children = (
+				966AA57E224A2D7000EDBF5F /* KNBHomeDesignSketchTableViewCell.h */,
+				966AA57F224A2D7000EDBF5F /* KNBHomeDesignSketchTableViewCell.m */,
+				961C53072252194E0089E997 /* KNBHomeDesignSketchSubTableViewCell.h */,
+				961C53082252194E0089E997 /* KNBHomeDesignSketchSubTableViewCell.m */,
+				961C53092252194E0089E997 /* KNBHomeDesignSketchSubTableViewCell.xib */,
+			);
+			path = CCDesignSketchView;
+			sourceTree = "<group>";
+		};
+		183B518C2294EC2300CADC81 /* CCServiceListView */ = {
+			isa = PBXGroup;
+			children = (
+				1877F2FB226800E60092207E /* KNBHomeTableView.h */,
+				1877F2FC226800E60092207E /* KNBHomeTableView.m */,
+				1877F2FE226806900092207E /* KNBHomeSubTableView.h */,
+				1877F2FF226806900092207E /* KNBHomeSubTableView.m */,
+				1877F301226807EF0092207E /* KNBHomeSubView.h */,
+				1877F302226807EF0092207E /* KNBHomeSubView.m */,
+				96FDB4C8224B553F005844E7 /* KNBHomeRecommendSubTableViewCell.h */,
+				96FDB4C9224B553F005844E7 /* KNBHomeRecommendSubTableViewCell.m */,
+				96FDB4CA224B553F005844E7 /* KNBHomeRecommendSubTableViewCell.xib */,
+			);
+			path = CCServiceListView;
+			sourceTree = "<group>";
+		};
+		183B518D2294EC6A00CADC81 /* CCCompanyDetailView */ = {
+			isa = PBXGroup;
+			children = (
+				1857ED88227EE080008E9668 /* KNBHomeExperienceHeaderView.h */,
+				1857ED89227EE080008E9668 /* KNBHomeExperienceHeaderView.m */,
+				1857ED8A227EE080008E9668 /* KNBHomeExperienceHeaderView.xib */,
+				1857ED8D227EE094008E9668 /* KNBHomeExperienceFooterView.h */,
+				1857ED8E227EE094008E9668 /* KNBHomeExperienceFooterView.m */,
+				1857ED8F227EE094008E9668 /* KNBHomeExperienceFooterView.xib */,
+				18D4D7222271AD19000C1022 /* KNBHomeBuyTopCollectionViewCell.h */,
+				18D4D7232271AD19000C1022 /* KNBHomeBuyTopCollectionViewCell.m */,
+				18D4D7242271AD19000C1022 /* KNBHomeBuyTopCollectionViewCell.xib */,
+				18D4D7272271AD45000C1022 /* KNBHomeBuyTopHeaderView.h */,
+				18D4D7282271AD45000C1022 /* KNBHomeBuyTopHeaderView.m */,
+				18D4D7292271AD45000C1022 /* KNBHomeBuyTopHeaderView.xib */,
+				18D4D72C2271AD5A000C1022 /* KNBHomeBuyTopFooterView.h */,
+				18D4D72D2271AD5A000C1022 /* KNBHomeBuyTopFooterView.m */,
+				18D4D72E2271AD5A000C1022 /* KNBHomeBuyTopFooterView.xib */,
+				1866530822696CA1004C176F /* KNBHomeCompanyCaseSubCollectionViewCell.h */,
+				1866530922696CA1004C176F /* KNBHomeCompanyCaseSubCollectionViewCell.m */,
+				1866530A22696CA1004C176F /* KNBHomeCompanyCaseSubCollectionViewCell.xib */,
+				1866530D22699A83004C176F /* KNBHomeCompanyCaseAddCollectionViewCell.h */,
+				1866530E22699A83004C176F /* KNBHomeCompanyCaseAddCollectionViewCell.m */,
+				1866530F22699A83004C176F /* KNBHomeCompanyCaseAddCollectionViewCell.xib */,
+				961C532122548E050089E997 /* KNBHomeCompanyHeaderTableViewCell.h */,
+				961C532222548E050089E997 /* KNBHomeCompanyHeaderTableViewCell.m */,
+				961C532322548E050089E997 /* KNBHomeCompanyHeaderTableViewCell.xib */,
+				961C532622548E200089E997 /* KNBHomeCompanyServerTableViewCell.h */,
+				961C532722548E200089E997 /* KNBHomeCompanyServerTableViewCell.m */,
+				961C532822548E210089E997 /* KNBHomeCompanyServerTableViewCell.xib */,
+				18BEE4AC228D0FDD003C4E60 /* KNBHomeCompanyServerCollectionViewCell.h */,
+				18BEE4AD228D0FDD003C4E60 /* KNBHomeCompanyServerCollectionViewCell.m */,
+				18BEE4AE228D0FDD003C4E60 /* KNBHomeCompanyServerCollectionViewCell.xib */,
+				961C532B22548E4D0089E997 /* KNBHomeCompanyIntroTableViewCell.h */,
+				961C532C22548E4D0089E997 /* KNBHomeCompanyIntroTableViewCell.m */,
+				961C532D22548E4D0089E997 /* KNBHomeCompanyIntroTableViewCell.xib */,
+				1847DBE922927A0200A8CDEA /* KNBHomeCompanyDetailFooterView.h */,
+				1847DBEA22927A0200A8CDEA /* KNBHomeCompanyDetailFooterView.m */,
+			);
+			path = CCCompanyDetailView;
+			sourceTree = "<group>";
+		};
+		183B518F2294ECCE00CADC81 /* CCUploadCaseView */ = {
+			isa = PBXGroup;
+			children = (
+				186653182269A0D3004C176F /* KNBHomeUploadCaseTableViewCell.h */,
+				186653192269A0D3004C176F /* KNBHomeUploadCaseTableViewCell.m */,
+				1866531D2269A104004C176F /* KNBHomeUploadCaseCollectionViewCell.h */,
+				1866531E2269A104004C176F /* KNBHomeUploadCaseCollectionViewCell.m */,
+				1866531F2269A104004C176F /* KNBHomeUploadCaseCollectionViewCell.xib */,
+				182F5A7622811A7B00E8B323 /* KNBHomeUploadCaseFooterView.h */,
+				182F5A7722811A7B00E8B323 /* KNBHomeUploadCaseFooterView.m */,
+			);
+			path = CCUploadCaseView;
+			sourceTree = "<group>";
+		};
+		183B51902294EEF300CADC81 /* CCChatView */ = {
+			isa = PBXGroup;
+			children = (
+				966D15612268F2F4005F5D77 /* KNBHomeChatTableViewCell.h */,
+				966D15622268F2F4005F5D77 /* KNBHomeChatTableViewCell.m */,
+				966D15632268F2F4005F5D77 /* KNBHomeChatTableViewCell.xib */,
+			);
+			path = CCChatView;
+			sourceTree = "<group>";
+		};
 		1840B69F228EBDBB0062F626 /* HMSegmentedControl */ = {
 			isa = PBXGroup;
 			children = (
@@ -1696,6 +1819,10 @@
 				187B609922701A27000AA05E /* KNBMeOrderAlertView.m */,
 				18F32921227E8C7B008B5B57 /* KNBMeRecruitmentAlertView.h */,
 				18F32922227E8C7B008B5B57 /* KNBMeRecruitmentAlertView.m */,
+				183B51912295533200CADC81 /* CCOrderAlertView.h */,
+				183B51922295533200CADC81 /* CCOrderAlertView.m */,
+				185733492296A45C00A4D749 /* CCOrderAlertTextView.h */,
+				1857334A2296A45C00A4D749 /* CCOrderAlertTextView.m */,
 			);
 			path = KNAlertView;
 			sourceTree = "<group>";
@@ -1839,6 +1966,7 @@
 		961C530E225358350089E997 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				18573347229675FB00A4D749 /* LCD-BOLD.TTF */,
 				961C530F2253583F0089E997 /* LCDM2N.TTF */,
 			);
 			path = Fonts;
@@ -2210,79 +2338,20 @@
 		966AA578224A2CBE00EDBF5F /* HomeView */ = {
 			isa = PBXGroup;
 			children = (
-				189A6B7922606094007C6CC1 /* KNBHomeCityHeaderView.h */,
-				189A6B7822606093007C6CC1 /* KNBHomeCityHeaderView.m */,
-				966AA579224A2D3E00EDBF5F /* KNBHomeCategoryTableViewCell.h */,
-				966AA57A224A2D3E00EDBF5F /* KNBHomeCategoryTableViewCell.m */,
-				1877F30422682F7D0092207E /* KNBHomeCategoryCollectionViewCell.h */,
-				1877F30522682F7D0092207E /* KNBHomeCategoryCollectionViewCell.m */,
-				1877F30622682F7D0092207E /* KNBHomeCategoryCollectionViewCell.xib */,
-				966AA57E224A2D7000EDBF5F /* KNBHomeDesignSketchTableViewCell.h */,
-				966AA57F224A2D7000EDBF5F /* KNBHomeDesignSketchTableViewCell.m */,
-				961C53072252194E0089E997 /* KNBHomeDesignSketchSubTableViewCell.h */,
-				961C53082252194E0089E997 /* KNBHomeDesignSketchSubTableViewCell.m */,
-				961C53092252194E0089E997 /* KNBHomeDesignSketchSubTableViewCell.xib */,
 				96FDB4C5224B17D7005844E7 /* KNBHomeSectionView.h */,
 				96FDB4C6224B17D7005844E7 /* KNBHomeSectionView.m */,
-				96FDB4C8224B553F005844E7 /* KNBHomeRecommendSubTableViewCell.h */,
-				96FDB4C9224B553F005844E7 /* KNBHomeRecommendSubTableViewCell.m */,
-				96FDB4CA224B553F005844E7 /* KNBHomeRecommendSubTableViewCell.xib */,
-				961C532122548E050089E997 /* KNBHomeCompanyHeaderTableViewCell.h */,
-				961C532222548E050089E997 /* KNBHomeCompanyHeaderTableViewCell.m */,
-				961C532322548E050089E997 /* KNBHomeCompanyHeaderTableViewCell.xib */,
-				961C532622548E200089E997 /* KNBHomeCompanyServerTableViewCell.h */,
-				961C532722548E200089E997 /* KNBHomeCompanyServerTableViewCell.m */,
-				961C532822548E210089E997 /* KNBHomeCompanyServerTableViewCell.xib */,
-				18BEE4AC228D0FDD003C4E60 /* KNBHomeCompanyServerCollectionViewCell.h */,
-				18BEE4AD228D0FDD003C4E60 /* KNBHomeCompanyServerCollectionViewCell.m */,
-				18BEE4AE228D0FDD003C4E60 /* KNBHomeCompanyServerCollectionViewCell.xib */,
-				961C532B22548E4D0089E997 /* KNBHomeCompanyIntroTableViewCell.h */,
-				961C532C22548E4D0089E997 /* KNBHomeCompanyIntroTableViewCell.m */,
-				961C532D22548E4D0089E997 /* KNBHomeCompanyIntroTableViewCell.xib */,
-				1847DBE922927A0200A8CDEA /* KNBHomeCompanyDetailFooterView.h */,
-				1847DBEA22927A0200A8CDEA /* KNBHomeCompanyDetailFooterView.m */,
-				1866530822696CA1004C176F /* KNBHomeCompanyCaseSubCollectionViewCell.h */,
-				1866530922696CA1004C176F /* KNBHomeCompanyCaseSubCollectionViewCell.m */,
-				1866530A22696CA1004C176F /* KNBHomeCompanyCaseSubCollectionViewCell.xib */,
-				1866530D22699A83004C176F /* KNBHomeCompanyCaseAddCollectionViewCell.h */,
-				1866530E22699A83004C176F /* KNBHomeCompanyCaseAddCollectionViewCell.m */,
-				1866530F22699A83004C176F /* KNBHomeCompanyCaseAddCollectionViewCell.xib */,
-				186653182269A0D3004C176F /* KNBHomeUploadCaseTableViewCell.h */,
-				186653192269A0D3004C176F /* KNBHomeUploadCaseTableViewCell.m */,
-				1866531D2269A104004C176F /* KNBHomeUploadCaseCollectionViewCell.h */,
-				1866531E2269A104004C176F /* KNBHomeUploadCaseCollectionViewCell.m */,
-				1866531F2269A104004C176F /* KNBHomeUploadCaseCollectionViewCell.xib */,
-				182F5A7622811A7B00E8B323 /* KNBHomeUploadCaseFooterView.h */,
-				182F5A7722811A7B00E8B323 /* KNBHomeUploadCaseFooterView.m */,
+				18BEE4A9228CEF3F003C4E60 /* KNBHomeHeaderView.h */,
+				18BEE4AA228CEF3F003C4E60 /* KNBHomeHeaderView.m */,
 				96E7E0B9225ADD5900188DD1 /* KNBHomeCompanyListHeaderView.h */,
 				96E7E0BA225ADD5900188DD1 /* KNBHomeCompanyListHeaderView.m */,
 				96E7E0BC225ADDD000188DD1 /* KNBHomeCompanyListHeaderView.xib */,
-				1877F2FB226800E60092207E /* KNBHomeTableView.h */,
-				1877F2FC226800E60092207E /* KNBHomeTableView.m */,
-				1877F2FE226806900092207E /* KNBHomeSubTableView.h */,
-				1877F2FF226806900092207E /* KNBHomeSubTableView.m */,
-				1877F301226807EF0092207E /* KNBHomeSubView.h */,
-				1877F302226807EF0092207E /* KNBHomeSubView.m */,
-				966D15612268F2F4005F5D77 /* KNBHomeChatTableViewCell.h */,
-				966D15622268F2F4005F5D77 /* KNBHomeChatTableViewCell.m */,
-				966D15632268F2F4005F5D77 /* KNBHomeChatTableViewCell.xib */,
-				18D4D7222271AD19000C1022 /* KNBHomeBuyTopCollectionViewCell.h */,
-				18D4D7232271AD19000C1022 /* KNBHomeBuyTopCollectionViewCell.m */,
-				18D4D7242271AD19000C1022 /* KNBHomeBuyTopCollectionViewCell.xib */,
-				18D4D7272271AD45000C1022 /* KNBHomeBuyTopHeaderView.h */,
-				18D4D7282271AD45000C1022 /* KNBHomeBuyTopHeaderView.m */,
-				18D4D7292271AD45000C1022 /* KNBHomeBuyTopHeaderView.xib */,
-				18D4D72C2271AD5A000C1022 /* KNBHomeBuyTopFooterView.h */,
-				18D4D72D2271AD5A000C1022 /* KNBHomeBuyTopFooterView.m */,
-				18D4D72E2271AD5A000C1022 /* KNBHomeBuyTopFooterView.xib */,
-				1857ED88227EE080008E9668 /* KNBHomeExperienceHeaderView.h */,
-				1857ED89227EE080008E9668 /* KNBHomeExperienceHeaderView.m */,
-				1857ED8A227EE080008E9668 /* KNBHomeExperienceHeaderView.xib */,
-				1857ED8D227EE094008E9668 /* KNBHomeExperienceFooterView.h */,
-				1857ED8E227EE094008E9668 /* KNBHomeExperienceFooterView.m */,
-				1857ED8F227EE094008E9668 /* KNBHomeExperienceFooterView.xib */,
-				18BEE4A9228CEF3F003C4E60 /* KNBHomeHeaderView.h */,
-				18BEE4AA228CEF3F003C4E60 /* KNBHomeHeaderView.m */,
+				183B51902294EEF300CADC81 /* CCChatView */,
+				183B518F2294ECCE00CADC81 /* CCUploadCaseView */,
+				183B518D2294EC6A00CADC81 /* CCCompanyDetailView */,
+				183B518C2294EC2300CADC81 /* CCServiceListView */,
+				183B518B2294EBD600CADC81 /* CCDesignSketchView */,
+				183B518A2294EBBC00CADC81 /* CCCategoryView */,
+				183B51892294EBA700CADC81 /* CCCityChooseView */,
 			);
 			path = HomeView;
 			sourceTree = "<group>";
@@ -3196,6 +3265,7 @@
 				96B097F22249C69300154643 /* LaunchScreen.storyboard in Resources */,
 				188441DE22714A2100402B7F /* KNBBindingCodeTableViewCell.xib in Resources */,
 				1849CE8A22851EA90064D439 /* README.md in Resources */,
+				18573348229675FB00A4D749 /* LCD-BOLD.TTF in Resources */,
 				96E7E0CB225B2E4D00188DD1 /* KNBOrderTextfieldTableViewCell.xib in Resources */,
 				966AA51A224A00D700EDBF5F /* KNBStartPage.plist in Resources */,
 				961C5318225462070089E997 /* KNBDSFreeOrderEnterTableViewCell.xib in Resources */,
@@ -3432,6 +3502,7 @@
 				187B6097227016AC000AA05E /* KNBMeOrderApi.m in Sources */,
 				9697FD53225597A900027AB3 /* NSString+Arc4random.m in Sources */,
 				185F1A21226F0F15000F6E9C /* KNBLoginModifyUserInfoApi.m in Sources */,
+				183B51932295533200CADC81 /* CCOrderAlertView.m in Sources */,
 				1847DBEB22927A0200A8CDEA /* KNBHomeCompanyDetailFooterView.m in Sources */,
 				1849CE7822851EA90064D439 /* XHSystemCollectionViewController.m in Sources */,
 				187C9559225EC685006FD01A /* KNBLoginBindingApi.m in Sources */,
@@ -3571,6 +3642,7 @@
 				96327505226D6FEE0080C650 /* CQSegmentTitleImage.m in Sources */,
 				96B098A92249CC1000154643 /* UITextView+ZWPlaceHolder.m in Sources */,
 				1877F30B226857790092207E /* KNBHomeServiceModel.m in Sources */,
+				1857334B2296A45C00A4D749 /* CCOrderAlertTextView.m in Sources */,
 				1849CE8722851EA90064D439 /* XHRefreshCircleContainerView.m in Sources */,
 				18F439A822769FCD00E64048 /* KNBMeModifyInfoViewController.m in Sources */,
 				1877F2FD226800E60092207E /* KNBHomeTableView.m in Sources */,

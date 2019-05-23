@@ -43,7 +43,7 @@ CGFloat KNBHomeSearchViewHeight = 44;
     [self addSubview:self.chooseCityView];
     [self addSubview:self.chatButton];
     [self addSubview:self.searchBgView];
-    self.backgroundColor = [UIColor colorWithHex:0x0096e6];
+    self.backgroundColor = [UIColor whiteColor];
     KNB_WS(weakSelf);
     self.defaultCityName = [KNGetUserLoaction shareInstance].cityName;
     [self changeButtontTitle:self.defaultCityName];
@@ -166,7 +166,7 @@ CGFloat KNBHomeSearchViewHeight = 44;
     if (!_searchLabel) {
         _searchLabel = [[UILabel alloc] init];
         _searchLabel.font = [UIFont systemFontOfSize:12];
-        _searchLabel.textColor = [UIColor whiteColor];
+        _searchLabel.textColor = KNBColor(0x919191);
         _searchLabel.textAlignment = NSTextAlignmentLeft;
         _searchLabel.text = @"猜猜我的预算能装成什么样?";
     }
@@ -187,6 +187,7 @@ CGFloat KNBHomeSearchViewHeight = 44;
         UIImage *image = [UIImage imageNamed:@"knb_home_location"];
         [_chooseCityButton setImage:image forState:UIControlStateNormal];
         [_chooseCityButton setTitle:@"北京" forState:UIControlStateNormal];
+        [_chooseCityButton setTitleColor:KNBColor(0x4d4d4d) forState:UIControlStateNormal];
         _chooseCityButton.titleLabel.font = [UIFont systemFontOfSize:14.f];
         [_chooseCityButton addTarget:self action:@selector(chooseCityButtonAction:) forControlEvents:UIControlEventTouchUpInside];
         [_chooseCityButton setTitleEdgeInsets:UIEdgeInsetsMake(0, 5, 0, 0)];

@@ -17,6 +17,8 @@
              @"serviceId" : @"id",
              @"remark" : @"remark",
              @"created_at" : @"created_at",
+             @"province_name" : @"province_name",
+             @"city_name" : @"city_name",
              @"area_name" : @"area_name",
              @"telephone" : @"telephone",
              @"address" : @"address",
@@ -33,6 +35,7 @@
              @"name" : @"name",
              @"parent_cat_name" : @"parent_cat_name",
              @"facilitator_id" : @"facilitator_id",
+             @"price" : @"price",
              @"caseList" : @"case",
              @"is_experience" : @"is_experience",
              @"share_id" : @"share_id",
@@ -104,13 +107,13 @@
     }
     CGFloat width = [_distanceString widthWithFont:KNBFont(12) constrainedToHeight:15];
     
-    _maxAddressWidth = KNB_SCREEN_WIDTH - 211 - width;
+    _maxAddressWidth = KNB_SCREEN_WIDTH - 190 - width;
 }
 
 - (void)setName:(NSString *)name {
     _name = name;
-    if (name.length > 10) {
-        _nameString = [NSString stringWithFormat:@"%@...",[name substringToIndex:10]];
+    if (name.length > 9) {
+        _nameString = [NSString stringWithFormat:@"%@...",[name substringToIndex:9]];
     } else {
         _nameString = name;
     }

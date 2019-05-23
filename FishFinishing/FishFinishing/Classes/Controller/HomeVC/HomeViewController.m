@@ -7,37 +7,35 @@
 //
 
 #import "HomeViewController.h"
-//views
-#import "SDCycleScrollView.h"
-#import "KNBHomeCategoryTableViewCell.h"
-#import "KNBHomeDesignSketchTableViewCell.h"
-#import "KNBHomeSectionView.h"
-#import "KNBHomeSearchView.h"
-#import "KNBHomeTableView.h"
-#import "KNBHomeSubView.h"
-#import "HMSegmentedControl.h"
-//controllers
-#import "KNBHomeOfferViewController.h"
-#import "KNBHomeDesignViewController.h"
-#import "KNBLoginViewController.h"
 #import "KNBHomeCompanyDetailViewController.h"
 #import "KNBHomeCompanyListViewController.h"
-#import "KNBHomeBannerApi.h"
-#import "KNBHomeBannerModel.h"
-#import "KNBRecruitmentTypeApi.h"
-#import "KNBRecruitmentTypeModel.h"
+#import "KNBHomeDesignSketchTableViewCell.h"
 #import "KNBRecruitmentServiceListApi.h"
-#import "KNBHomeServiceModel.h"
+#import "KNBHomeCategoryTableViewCell.h"
+#import "KNBHomeDesignViewController.h"
+#import "KNBHomeOfferViewController.h"
 #import "KNBHomeChatViewController.h"
-#import "KNBHomeRecommendCaseApi.h"
 #import "KNBHomeRecommendCaseModel.h"
+#import "KNBMeAboutViewController.h"
+#import "KNBRecruitmentTypeModel.h"
+#import "KNBHomeRecommendCaseApi.h"
 #import "KNBSearchViewController.h"
+#import "KNBLoginViewController.h"
+#import "KNBRecruitmentTypeApi.h"
+#import "KNBOrderAreaRangeApi.h"
+#import "KNBHomeServiceModel.h"
+#import "HMSegmentedControl.h"
+#import "KNBHomeBannerModel.h"
+#import "KNBHomeSectionView.h"
+#import "KNBHomeSearchView.h"
+#import "SDCycleScrollView.h"
+#import "KNBHomeHeaderView.h"
+#import "KNBHomeTableView.h"
+#import "KNBHomeBannerApi.h"
 #import "KNBOrderStyleApi.h"
 #import "KNBOrderUnitApi.h"
-#import "KNBOrderAreaRangeApi.h"
+#import "KNBHomeSubView.h"
 #import <AFNetworking.h>
-#import "KNBMeAboutViewController.h"
-#import "KNBHomeHeaderView.h"
 
 static CGFloat const kHeaderViewHeight = 50.0f;
 
@@ -114,6 +112,9 @@ static CGFloat const kHeaderViewHeight = 50.0f;
     MJRefreshNormalHeader *knbTableViewHeader = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         [weakSelf.mainTableView.mj_footer resetNoMoreData];
         weakSelf.requestPage = 1;
+        weakSelf.segmentedControl.selectedSegmentIndex = 0;
+        KNBHomeDesignSketchTableViewCell *cell = [weakSelf.mainTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:1]];
+        cell.segmentedControl.selectedSegmentIndex = 0;
         [weakSelf fetchData];
     }];
     // 设置自动切换透明度(在导航栏下面自动隐藏)
@@ -439,8 +440,8 @@ static CGFloat const kHeaderViewHeight = 50.0f;
     if (!_segmentedControl) {
         _segmentedControl = [[HMSegmentedControl alloc] initWithSectionTitles:self.titleArray];
         _segmentedControl.frame = CGRectMake(0, 0, KNB_SCREEN_WIDTH, 50);
-        _segmentedControl.titleTextAttributes = @{NSForegroundColorAttributeName : KNBColor(0x666666), NSFontAttributeName : [UIFont systemFontOfSize:14.0]};
-        _segmentedControl.selectedTitleTextAttributes = @{NSForegroundColorAttributeName : [UIColor colorWithHex:0x009fe8], NSFontAttributeName : [UIFont boldSystemFontOfSize:15.0]};
+        _segmentedControl.titleTextAttributes = @{NSForegroundColorAttributeName : KNBColor(0x666666), NSFontAttributeName : [UIFont systemFontOfSize:14.f weight:UIFontWeightMedium]};
+        _segmentedControl.selectedTitleTextAttributes = @{NSForegroundColorAttributeName : [UIColor colorWithHex:0x009fe8], NSFontAttributeName : [UIFont systemFontOfSize:16.f weight:UIFontWeightBlack]};
         _segmentedControl.leading = 5;
         _segmentedControl.segmentEdgeInset = UIEdgeInsetsMake(0, 0, 0, 0);
         _segmentedControl.selectionIndicatorColor = [UIColor colorWithHex:0x009fe8];

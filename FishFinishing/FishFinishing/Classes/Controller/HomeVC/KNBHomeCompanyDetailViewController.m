@@ -23,12 +23,15 @@
 #import "KNBOrderModifyPowerApi.h"
 #import "UIButton+Style.h"
 #import "KNBHomeCompanyDetailFooterView.h"
+#import "CCOrderAlertView.h"
+#import "KNBHomeBespokeApi.h"
 
 @interface KNBHomeCompanyDetailViewController ()
 @property (nonatomic, strong) KNBHomeServiceModel *currentModel;
 @property (nonatomic, strong) UIImageView *bottomBgView;
 @property (nonatomic, strong) UIButton *phoneButton;
 @property (nonatomic, strong) UIButton *enterButton;
+@property (nonatomic, strong) UIButton *offerButton;
 @property (nonatomic, strong) KNBHomeCompanyDetailFooterView *footerView;
 //遮罩
 @property (nonatomic, strong) UIView *coverView;
@@ -66,6 +69,7 @@
     [self.view addSubview:self.knGroupTableView];
     if (!self.isEdit) {
         [self.view addSubview:self.bottomBgView];
+        [self.view addSubview:self.offerButton];
         [self.view addSubview:self.enterButton];
         [self.view addSubview:self.phoneButton];
     }
@@ -227,11 +231,28 @@
 }
 
 - (void)enterButtonAction {
-    if ([self.naviView.title isEqualToString:@"设计师"]) {
+    [CCOrderAlertView showAlertViewOrderBlock:^(NSString *nickName, NSString *phone, NSString *area, NSString *address, NSString *house) {
+        KNBHomeBespokeApi *api = [[KNBHomeBespokeApi alloc] initWithFacId:self.model ? [self.model.serviceId integerValue] : [[KNBUserInfo shareInstance].fac_id integerValue] facName:self.model ? self.model.name : [KNBUserInfo shareInstance].fac_name catId:0 userId:@"" areaInfo:area houseInfo:@"" community:address provinceId:0 cityId:0 areaId:0 decorateStyle:@"" decorateGrade:@"" name:nickName mobile:phone decorateCat:house type:2];
+        api.hudString = @"";
+        [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *_Nonnull request) {
+            if (api.requestSuccess) {
+                [KNBAlertRemind alterWithTitle:@"提示" message:@"您已经预约成功" buttonTitles:@[@"我知道了"] handler:^(NSInteger index, NSString *title) {
+                }];
+            } else {
+                [LCProgressHUD showMessage:api.errMessage];
+            }
+        } failure:^(__kindof YTKBaseRequest *_Nonnull request) {
+            [LCProgressHUD showMessage:api.errMessage];
+        }];
+    }];
+}
+
+- (void)offerButtonAction {
+    if ([self.naviView.title containsString:@"设计师"]) {
         KNBHomeDesignViewController *designVC = [[KNBHomeDesignViewController alloc] init];
         designVC.faceId = [self.model.serviceId integerValue];
         [self.navigationController pushViewController:designVC animated:YES];
-    } else if ([self.naviView.title isEqualToString:@"装修工人"] || [self.naviView.title isEqualToString:@"装修工长"]) {
+    } else if ([self.naviView.title containsString:@"工人"] || [self.naviView.title containsString:@"工长"]) {
         KNBHomeWorkerViewController *workerVC = [[KNBHomeWorkerViewController alloc] init];
         workerVC.faceId = [self.model.serviceId integerValue];
         [self.navigationController pushViewController:workerVC animated:YES];
@@ -255,30 +276,6 @@
 
 #pragma mark - Getters And Setters
 /* getter和setter全部都放在最后*/
-- (UIButton *)enterButton {
-    if (!_enterButton) {
-        _enterButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        if (KNB_ISIPHONEX) {
-            _enterButton.frame = CGRectMake(KNB_SCREEN_WIDTH/2 + 13, KNB_SCREEN_HEIGHT - KNB_TAB_HEIGHT + 12, KNB_SCREEN_WIDTH/2 - 26, 34);
-        } else {
-            _enterButton.frame = CGRectMake(KNB_SCREEN_WIDTH/2 + 13, KNB_SCREEN_HEIGHT - KNB_TAB_HEIGHT + 8, KNB_SCREEN_WIDTH/2 - 26, 34);
-        }
-
-        [_enterButton setTitle:[self.naviView.title isEqualToString:@"家居建材"] ? @"立即购买" : @"立即预约" forState:UIControlStateNormal];
-        [_enterButton addTarget:self action:@selector(enterButtonAction) forControlEvents:UIControlEventTouchUpInside];
-        _enterButton.layer.masksToBounds = YES;
-        _enterButton.layer.cornerRadius = 17;
-//        if ([self.naviView.title containsString:@"家居"] || [self.naviView.title containsString:@"建材"]) {
-//            _enterButton.enabled = NO;
-//            [_enterButton setBackgroundColor:[UIColor knLightGrayColor]];
-//        } else {
-            _enterButton.enabled = YES;
-            [_enterButton setBackgroundColor:[UIColor knf5701bColor]];
-//        }
-    }
-    return _enterButton;
-}
-
 - (UIImageView *)bottomBgView {
     if (!_bottomBgView) {
         _bottomBgView = [[UIImageView alloc] init];
@@ -288,10 +285,46 @@
     return _bottomBgView;
 }
 
+- (UIButton *)enterButton {
+    if (!_enterButton) {
+        CGFloat x = KNB_SCREEN_WIDTH - 180 + 39;
+        _enterButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        if (KNB_ISIPHONEX) {
+            _enterButton.frame = CGRectMake(x, KNB_SCREEN_HEIGHT - KNB_TAB_HEIGHT + 12, 128, 34);
+        } else {
+            _enterButton.frame = CGRectMake(x, KNB_SCREEN_HEIGHT - KNB_TAB_HEIGHT + 8, 128, 34);
+        }
+
+        [_enterButton setTitle:@"立即预约" forState:UIControlStateNormal];
+        [_enterButton addTarget:self action:@selector(enterButtonAction) forControlEvents:UIControlEventTouchUpInside];
+        _enterButton.layer.masksToBounds = YES;
+        _enterButton.layer.cornerRadius = 17;
+        [_enterButton setBackgroundColor:[UIColor knf5701bColor]];
+    }
+    return _enterButton;
+}
+
+- (UIButton *)offerButton {
+    if (!_offerButton) {
+        CGFloat width = (KNB_SCREEN_WIDTH - 180)/2;
+        _offerButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        _offerButton.frame = CGRectMake(13 + width, KNB_SCREEN_HEIGHT - KNB_TAB_HEIGHT, width, 60);
+        [_offerButton setTitle:@"立即报价" forState:UIControlStateNormal];
+        _offerButton.titleLabel.font = KNBFont(13);
+        [_offerButton setTitleColor:[UIColor kn333333Color] forState:UIControlStateNormal];
+        [_offerButton setImage:KNBImages(@"knb_service_offer") forState:UIControlStateNormal];
+        [_offerButton addTarget:self action:@selector(offerButtonAction) forControlEvents:UIControlEventTouchUpInside];
+        [_offerButton layoutButtonWithEdgeInsetsStyle:GLButtonEdgeInsetsStyleTop imageTitleSpace:6];
+    }
+    return _offerButton;
+}
+
 - (UIButton *)phoneButton {
     if (!_phoneButton) {
+        CGFloat width = (KNB_SCREEN_WIDTH - 180)/2;
+
         _phoneButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        _phoneButton.frame = CGRectMake((KNB_SCREEN_WIDTH/2 - 60)/2, KNB_SCREEN_HEIGHT - KNB_TAB_HEIGHT, 60, 60);
+        _phoneButton.frame = CGRectMake(13, KNB_SCREEN_HEIGHT - KNB_TAB_HEIGHT, width, 60);
         [_phoneButton setTitle:@"电话" forState:UIControlStateNormal];
         _phoneButton.titleLabel.font = KNBFont(13);
         [_phoneButton setTitleColor:[UIColor kn333333Color] forState:UIControlStateNormal];

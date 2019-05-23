@@ -47,6 +47,7 @@
 @property (nonatomic, strong) KNBOrderModel *orderModel;
 //计数
 @property (nonatomic, assign) NSInteger index;
+@property (nonatomic, strong) KNBHomeServiceModel *model;
 @end
 
 @implementation KNBHomeOfferViewController
@@ -98,7 +99,7 @@
         [self.nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerY.equalTo(weakSelf.titleLabel);
             make.left.equalTo(weakSelf.iconImageView.mas_right).mas_offset(10);
-            make.right.mas_equalTo(-12);
+            make.right.equalTo(weakSelf.view.mas_right).mas_offset(-12);
         }];
     }
     [self.adImageView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -129,9 +130,9 @@
     self.knbTableView.scrollEnabled = NO;
     self.index = 0;
     if (self.faceId) {
-        self.knbTableView.frame = CGRectMake(12, 160, KNB_SCREEN_WIDTH - 24, 530);
+        self.knbTableView.frame = CGRectMake(12, 160, KNB_SCREEN_WIDTH - 24, 530 - 55);
     } else {
-        self.knbTableView.frame = CGRectMake(12, KNB_NAV_HEIGHT + 30, KNB_SCREEN_WIDTH - 24, 530);
+        self.knbTableView.frame = CGRectMake(12, KNB_NAV_HEIGHT + 30, KNB_SCREEN_WIDTH - 24, 530 - 55);
     }
     self.footerView.frame = CGRectMake(12, CGRectGetMaxY(self.knbTableView.frame) + 5, KNB_SCREEN_WIDTH - 24, 38);
 }
@@ -160,7 +161,8 @@
                 NSDictionary *dic = request.responseObject[@"list"];
                 KNBHomeServiceModel *model = [KNBHomeServiceModel changeResponseJSONObject:dic];
                 [weakSelf.iconImageView sd_setImageWithURL:[NSURL URLWithString:model.logo] placeholderImage:CCPortraitPlaceHolder];
-                weakSelf.nameLabel.text = model.name;
+                weakSelf.model = model;
+                [weakSelf requestSuccess:YES requestEnd:YES];
             } else {
                 [weakSelf requestSuccess:NO requestEnd:NO];
             }
@@ -186,12 +188,16 @@
         cell = [KNBDSFreeOrderNewHouseTableViewCell cellWithTableView:tableView];
     } else if (indexPath.row == 1) {
         cell = [KNBDSFreeOrderAddressTableViewCell cellWithTableView:tableView];
+        KNBDSFreeOrderAddressTableViewCell *typeCell = (KNBDSFreeOrderAddressTableViewCell *)cell;
+        [typeCell setProvinceName:self.model.province_name cityName:self.model.city_name areaName:self.model.area_name];
     } else if (indexPath.row == 2) {
         cell = [KNBDSFreeOrderAreaTableViewCell cellWithTableView:tableView];
     } else if (indexPath.row == 3) {
         cell = [KNBDSFreeOrderNameTableViewCell cellWithTableView:tableView];
     } else if (indexPath.row == 4) {
         cell = [KNBDSFreeOrderPhoneTableViewCell cellWithTableView:tableView];
+        KNBDSFreeOrderPhoneTableViewCell *typeCell = (KNBDSFreeOrderPhoneTableViewCell *)cell;
+        typeCell.detailTextField.text = self.model.telephone;
     } else {
         cell = [KNBDSFreeOrderEnterTableViewCell cellWithTableView:tableView];
     }
@@ -302,7 +308,7 @@
 - (KNBDesignSketchFreeOrderHeaderView *)headerView {
     if (!_headerView) {
         _headerView = [[NSBundle mainBundle] loadNibNamed:@"KNBDesignSketchFreeOrderHeaderView" owner:nil options:nil].lastObject;
-        _headerView.frame = CGRectMake(0, 0, KNB_SCREEN_WIDTH, 210);
+        _headerView.frame = CGRectMake(0, 0, KNB_SCREEN_WIDTH, 155);
     }
     return _headerView;
 }
@@ -338,6 +344,7 @@
         _nameLabel = [[UILabel alloc] init];
         _nameLabel.textColor = [UIColor kn333333Color];
         _nameLabel.font = [UIFont systemFontOfSize:14];
+        _nameLabel.text = [KNBUserInfo shareInstance].nickName;
     }
     return _nameLabel;
 }
@@ -347,6 +354,13 @@
         _orderModel = [[KNBOrderModel alloc] init];
     }
     return _orderModel;
+}
+
+- (KNBHomeServiceModel *)model {
+    if (!_model) {
+        _model = [[KNBHomeServiceModel alloc] init];
+    }
+    return _model;
 }
 
 @end

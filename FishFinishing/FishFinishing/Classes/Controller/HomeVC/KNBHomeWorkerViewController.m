@@ -25,6 +25,7 @@
 #import "KNBHomeBespokeApi.h"
 #import "KNBOrderAlertView.h"
 #import "UIButton+Style.h"
+#import "FMTagsView.h"
 
 @interface KNBHomeWorkerViewController ()
 @property (nonatomic, strong) UIScrollView *bgView;
@@ -38,14 +39,10 @@
 @property (nonatomic, strong) UILabel *titleLabel;
 //标签按钮
 @property (nonatomic, strong) UIButton *markButton;
-//标签文字
-@property (nonatomic, strong) UILabel *markTopAndLeftLabel;
-//标签文字
-@property (nonatomic, strong) UILabel *markTopAndRightLabel;
-//标签文字
-@property (nonatomic, strong) UILabel *markBottomAndLeftLabel;
-//标签文字
-@property (nonatomic, strong) UILabel *markBottomAndRightLabel;
+//服务标签
+@property (nonatomic, strong) FMTagsView *servicesView;
+//服务标签
+@property (nonatomic, strong) FMTagsView *tagsView;
 //预约人数
 @property (nonatomic, strong) UILabel *topLabel;
 //免费服务上门
@@ -110,21 +107,15 @@
             make.left.equalTo(weakSelf.titleLabel.mas_right).mas_offset(18);
             make.top.mas_equalTo(13);
         }];
-        [self.markTopAndLeftLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        [self.servicesView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(weakSelf.titleLabel.mas_bottom).mas_offset(17);
-            make.left.equalTo(weakSelf.iconImageView.mas_right).mas_offset(13);
+            make.left.equalTo(weakSelf.iconImageView.mas_right).mas_offset(5);
+            make.right.mas_equalTo(-13);
         }];
-        [self.markTopAndRightLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(weakSelf.titleLabel.mas_bottom).mas_offset(17);
-            make.left.equalTo(weakSelf.markTopAndLeftLabel.mas_right).mas_offset(19);
-        }];
-        [self.markBottomAndLeftLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(weakSelf.markTopAndLeftLabel.mas_bottom).mas_offset(15);
-            make.left.equalTo(weakSelf.iconImageView.mas_right).mas_offset(13);
-        }];
-        [self.markBottomAndRightLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(weakSelf.markTopAndLeftLabel.mas_bottom).mas_offset(15);
-            make.left.equalTo(weakSelf.markBottomAndLeftLabel.mas_right).mas_offset(19);
+        [self.tagsView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(weakSelf.servicesView.mas_bottom).mas_offset(15);
+            make.left.equalTo(weakSelf.iconImageView.mas_right).mas_offset(5);
+            make.right.mas_equalTo(-13);
         }];
     }
     [self.topLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -182,11 +173,8 @@
         [self.bgView addSubview:self.iconImageView];
         [self.bgView addSubview:self.titleLabel];
         [self.bgView addSubview:self.markButton];
-        [self.bgView addSubview:self.markTopAndLeftLabel];
-        [self.bgView addSubview:self.markTopAndRightLabel];
-        [self.bgView addSubview:self.markBottomAndLeftLabel];
-        [self.bgView addSubview:self.markBottomAndRightLabel];
-
+        [self.bgView addSubview:self.servicesView];
+        [self.bgView addSubview:self.tagsView];
     }
     [self.bgView addSubview:self.topLabel];
     [self.bgView addSubview:self.bottomLabel];
@@ -207,6 +195,12 @@
                 KNBHomeServiceModel *model = [KNBHomeServiceModel changeResponseJSONObject:dic];
                 weakSelf.titleLabel.text = model.name;
                 [weakSelf.iconImageView sd_setImageWithURL:[NSURL URLWithString:model.logo] placeholderImage:CCPortraitPlaceHolder];
+                NSMutableArray *tagsArray = [NSMutableArray array];
+                for (KNBHomeServiceModel *tempModel in model.serviceList) {
+                    [tagsArray addObject:tempModel.service_name];
+                }
+                weakSelf.servicesView.tagsArray = tagsArray;
+                weakSelf.tagsView.tagsArray = [model.tag componentsSeparatedByString:@","];
             } else {
                 [weakSelf requestSuccess:NO requestEnd:NO];
             }
@@ -394,44 +388,58 @@
     return _markButton;
 }
 
-- (UILabel *)markTopAndLeftLabel {
-    if (!_markTopAndLeftLabel) {
-        _markTopAndLeftLabel = [[UILabel alloc] init];
-        _markTopAndLeftLabel.font = [UIFont systemFontOfSize:15];
-        _markTopAndLeftLabel.text = @"户型设计";
-        _markTopAndLeftLabel.textColor = [UIColor colorWithHex:0xfd9424];
+- (FMTagsView *)servicesView {
+    if (!_servicesView) {
+        FMTagsView *tagView = [[FMTagsView alloc] init];
+        tagView.frame = CGRectMake(0, 0, KNB_SCREEN_WIDTH, 15);
+        tagView.contentInsets = UIEdgeInsetsMake(0, 0, 0, 0);
+        tagView.tagInsets = UIEdgeInsetsMake(0.5, 8, 0.5, 8);
+        tagView.tagBorderWidth = 0.5;
+        tagView.tagcornerRadius = 5;
+        tagView.tagBorderColor = [UIColor clearColor];
+        tagView.tagSelectedBorderColor = [UIColor clearColor];
+        tagView.tagBackgroundColor = [UIColor clearColor];
+        tagView.tagSelectedBackgroundColor = [UIColor clearColor];
+        tagView.backgroundColor = [UIColor clearColor];
+        tagView.interitemSpacing = 15;
+        tagView.tagFont = KNBFont(15);
+        tagView.tagTextColor = KNBColor(0xfd9424);
+        tagView.allowsSelection = YES;
+        tagView.collectionView.scrollEnabled = NO;
+        tagView.collectionView.showsVerticalScrollIndicator = NO;
+        tagView.tagHeight = 15;
+//        tagView.mininumTagWidth = 75;
+        tagView.userInteractionEnabled = NO;
+        _servicesView = tagView;
     }
-    return _markTopAndLeftLabel;
+    return _servicesView;
 }
 
-- (UILabel *)markTopAndRightLabel {
-    if (!_markTopAndRightLabel) {
-        _markTopAndRightLabel = [[UILabel alloc] init];
-        _markTopAndRightLabel.font = [UIFont systemFontOfSize:15];
-        _markTopAndRightLabel.text = @"专业设计师1对1服务";
-        _markTopAndRightLabel.textColor = [UIColor colorWithHex:0xfd9424];
+- (FMTagsView *)tagsView {
+    if (!_tagsView) {
+        FMTagsView *tagView = [[FMTagsView alloc] init];
+        tagView.frame = CGRectMake(0, 0, KNB_SCREEN_WIDTH, 15);
+        tagView.contentInsets = UIEdgeInsetsMake(0, 0, 0, 0);
+        tagView.tagInsets = UIEdgeInsetsMake(0.5, 8, 0.5, 8);
+        tagView.tagBorderWidth = 0.5;
+        tagView.tagcornerRadius = 5;
+        tagView.tagBorderColor = [UIColor clearColor];
+        tagView.tagSelectedBorderColor = [UIColor clearColor];
+        tagView.tagBackgroundColor = [UIColor clearColor];
+        tagView.tagSelectedBackgroundColor = [UIColor clearColor];
+        tagView.backgroundColor = [UIColor clearColor];
+        tagView.interitemSpacing = 15;
+        tagView.tagFont = KNBFont(15);
+        tagView.tagTextColor = KNBColor(0x0096E6);
+        tagView.allowsSelection = YES;
+        tagView.collectionView.scrollEnabled = NO;
+        tagView.collectionView.showsVerticalScrollIndicator = NO;
+        tagView.tagHeight = 15;
+//        tagView.mininumTagWidth = 75;
+        tagView.userInteractionEnabled = NO;
+        _tagsView = tagView;
     }
-    return _markTopAndRightLabel;
-}
-
-- (UILabel *)markBottomAndLeftLabel {
-    if (!_markBottomAndLeftLabel) {
-        _markBottomAndLeftLabel = [[UILabel alloc] init];
-        _markBottomAndLeftLabel.font = [UIFont systemFontOfSize:15];
-        _markBottomAndLeftLabel.text = @"在线预约";
-        _markBottomAndLeftLabel.textColor = [UIColor colorWithHex:0x00C993];
-    }
-    return _markBottomAndLeftLabel;
-}
-
-- (UILabel *)markBottomAndRightLabel {
-    if (!_markBottomAndRightLabel) {
-        _markBottomAndRightLabel = [[UILabel alloc] init];
-        _markBottomAndRightLabel.font = [UIFont systemFontOfSize:15];
-        _markBottomAndRightLabel.text = @"免费量房";
-        _markBottomAndRightLabel.textColor = [UIColor colorWithHex:0x0096E6];
-    }
-    return _markBottomAndRightLabel;
+    return _tagsView;
 }
 
 - (UILabel *)topLabel {

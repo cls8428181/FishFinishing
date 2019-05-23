@@ -184,7 +184,7 @@
     if ([model.catName isEqualToString:@"装修工人"]) {
         self.topBar.sectionTitles = @[@"工种",@"区域",@"其他"];
     } else {
-        self.topBar.sectionTitles = @[@"风格",@"区域",@"其他"];
+        self.topBar.sectionTitles = @[@"类型",@"区域",@"其他"];
     }
     if ([model.catName isEqualToString:@"设计师"]) {
         self.headerView.middleButton.hidden = YES;
