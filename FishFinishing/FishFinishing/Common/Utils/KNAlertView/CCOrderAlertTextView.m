@@ -48,7 +48,7 @@
 - (void)setType:(CCOrderAlertTextViewType)type {
     self.arrowLabel.alpha = 0;
     if (type == CCOrderAlertTextViewTypeNickName) {
-        self.titleLabel.text = @"昵称:";
+        self.titleLabel.text = @"您的称呼:";
     } else if (type == CCOrderAlertTextViewTypePhone) {
         self.titleLabel.text = @"手机号:";
         self.detailTextField.keyboardType = UIKeyboardTypeNumberPad;

@@ -20,7 +20,7 @@
 #import "KNBAddressPickerView.h"
 #import "KNBHomeBespokeApi.h"
 #import "KNBOrderModel.h"
-#import "KNBAddressModel.h"
+#import "KNBCityModel.h"
 #import "KNBRecruitmentDetailApi.h"
 #import "KNBHomeServiceModel.h"
 #import "KNBOrderAlertView.h"
@@ -130,11 +130,11 @@
     self.knbTableView.scrollEnabled = NO;
     self.index = 0;
     if (self.faceId) {
-        self.knbTableView.frame = CGRectMake(12, 160, KNB_SCREEN_WIDTH - 24, 530 - 55);
+        self.knbTableView.frame = CGRectMake(12, 160, KNB_SCREEN_WIDTH - 24, 530 - 55 - 31);
     } else {
-        self.knbTableView.frame = CGRectMake(12, KNB_NAV_HEIGHT + 30, KNB_SCREEN_WIDTH - 24, 530 - 55);
+        self.knbTableView.frame = CGRectMake(12, KNB_NAV_HEIGHT + 30, KNB_SCREEN_WIDTH - 24, 530 - 55 - 31);
     }
-    self.footerView.frame = CGRectMake(12, CGRectGetMaxY(self.knbTableView.frame) + 5, KNB_SCREEN_WIDTH - 24, 38);
+//    self.footerView.frame = CGRectMake(12, CGRectGetMaxY(self.knbTableView.frame) + 5, KNB_SCREEN_WIDTH - 24, 38);
 }
 
 - (void)addUI {
@@ -146,7 +146,7 @@
     }
     [self.bgView addSubview:self.adImageView];
     [self.bgView addSubview:self.knbTableView];
-    [self.bgView addSubview:self.footerView];
+//    [self.bgView addSubview:self.footerView];
     self.knbTableView.tableHeaderView = self.headerView;
     [self beginTimer];
 }
@@ -161,6 +161,7 @@
                 NSDictionary *dic = request.responseObject[@"list"];
                 KNBHomeServiceModel *model = [KNBHomeServiceModel changeResponseJSONObject:dic];
                 [weakSelf.iconImageView sd_setImageWithURL:[NSURL URLWithString:model.logo] placeholderImage:CCPortraitPlaceHolder];
+                weakSelf.nameLabel.text = model.name;
                 weakSelf.model = model;
                 [weakSelf requestSuccess:YES requestEnd:YES];
             } else {
@@ -189,7 +190,10 @@
     } else if (indexPath.row == 1) {
         cell = [KNBDSFreeOrderAddressTableViewCell cellWithTableView:tableView];
         KNBDSFreeOrderAddressTableViewCell *typeCell = (KNBDSFreeOrderAddressTableViewCell *)cell;
-        [typeCell setProvinceName:self.model.province_name cityName:self.model.city_name areaName:self.model.area_name];
+        [typeCell setProvinceName:[KNGetUserLoaction shareInstance].currentStateName cityName:[KNGetUserLoaction shareInstance].currentCityName areaName:[KNGetUserLoaction shareInstance].currentSubLocalityName];
+        self.orderModel.province_id = [[[KNGetUserLoaction shareInstance] currentStateCode] integerValue];
+        self.orderModel.city_id = [[[KNGetUserLoaction shareInstance] currentCityCode] integerValue];
+        self.orderModel.area_id = [[[KNGetUserLoaction shareInstance] currentSubLocalityCode] integerValue];
     } else if (indexPath.row == 2) {
         cell = [KNBDSFreeOrderAreaTableViewCell cellWithTableView:tableView];
     } else if (indexPath.row == 3) {
@@ -197,7 +201,7 @@
     } else if (indexPath.row == 4) {
         cell = [KNBDSFreeOrderPhoneTableViewCell cellWithTableView:tableView];
         KNBDSFreeOrderPhoneTableViewCell *typeCell = (KNBDSFreeOrderPhoneTableViewCell *)cell;
-        typeCell.detailTextField.text = self.model.telephone;
+        typeCell.detailTextField.text = [KNBUserInfo shareInstance].mobile;
     } else {
         cell = [KNBDSFreeOrderEnterTableViewCell cellWithTableView:tableView];
     }
@@ -207,7 +211,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row == 5) {
-        return 70;
+        return 60;
     }
     return 50;
 }
@@ -219,7 +223,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     KNB_WS(weakSelf);
     if (indexPath.row == 1) {
-        [KNBAddressPickerView showAddressPickerWithDefaultSelected:nil resultBlock:^(KNBAddressModel *province, KNBAddressModel *city, KNBAddressModel *area) {
+        [KNBAddressPickerView showAddressPickerWithDefaultSelected:nil resultBlock:^(KNBCityModel *province, KNBCityModel *city, KNBCityModel *area) {
             KNBDSFreeOrderAddressTableViewCell *cell = [weakSelf.knbTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]];
             [cell setProvinceName:province.name cityName:city.name areaName:area.name];
             weakSelf.orderModel.province_id = [province.code integerValue];
@@ -233,6 +237,14 @@
         KNBDSFreeOrderNameTableViewCell *nameCell = [weakSelf.knbTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:3 inSection:0]];
         KNBDSFreeOrderPhoneTableViewCell *phoneCell = [weakSelf.knbTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:4 inSection:0]];
         self.orderModel.decorate_cat = houseCell.isNewHouse ? @"新房装修" : @"旧房翻新";
+        if (isNullStr(areaCell.detailTextField.text)) {
+            [LCProgressHUD showMessage:@"房屋面积不能为空"];
+            return;
+        }
+        if (isNullStr(nameCell.detailTextField.text)) {
+            [LCProgressHUD showMessage:@"姓名不能为空"];
+            return;
+        }
         self.orderModel.area_info = areaCell.detailTextField.text;
         self.orderModel.name = nameCell.detailTextField.text;
         self.orderModel.mobile = phoneCell.detailTextField.text;
@@ -263,8 +275,8 @@
 
 - (void)shareAction {
     NSString *urlStr = @"http://dayuapp.idayu.cn/Home/quote.html";
-    NSString *name = @"大鱼装修";
-    NSString *describeStr = @"大鱼装修";
+    NSString *name = @"大鱼装修app";
+    NSString *describeStr = @"免费看装修设计、选材料、算报价、找装修的App";
     [self shareMessages:@[ name, describeStr, urlStr ] isActionType:NO shareButtonBlock:nil];
 }
 
@@ -276,7 +288,7 @@
         __weak typeof(self) weakSelf = self;
         NSInteger randomNum = arc4random()%10000;
         self.timer = [NSTimer eoc_scheduledTimerWithTimeInterval:0.01 block:^{
-            weakSelf.headerView.numLabel.text = [NSString stringWithFormat:@"%ld",10000 + randomNum + (long)self.index++];
+            weakSelf.headerView.numLabel.text = [NSString stringWithFormat:@"%ld",10000 + randomNum + self.index++];
         } repeats:YES];
     }
 }
@@ -308,18 +320,18 @@
 - (KNBDesignSketchFreeOrderHeaderView *)headerView {
     if (!_headerView) {
         _headerView = [[NSBundle mainBundle] loadNibNamed:@"KNBDesignSketchFreeOrderHeaderView" owner:nil options:nil].lastObject;
-        _headerView.frame = CGRectMake(0, 0, KNB_SCREEN_WIDTH, 155);
+        _headerView.frame = CGRectMake(0, 0, KNB_SCREEN_WIDTH, 124);
     }
     return _headerView;
 }
 
-- (KNBDSFreeOrderFooterView *)footerView {
-    if (!_footerView) {
-        _footerView = [[KNBDSFreeOrderFooterView alloc] init];
-        _footerView.frame = CGRectMake(0, 0, KNB_SCREEN_WIDTH, 65);
-    }
-    return _footerView;
-}
+//- (KNBDSFreeOrderFooterView *)footerView {
+//    if (!_footerView) {
+//        _footerView = [[KNBDSFreeOrderFooterView alloc] init];
+//        _footerView.frame = CGRectMake(0, 0, KNB_SCREEN_WIDTH, 65);
+//    }
+//    return _footerView;
+//}
 
 - (UILabel *)titleLabel {
     if (!_titleLabel) {
@@ -344,7 +356,6 @@
         _nameLabel = [[UILabel alloc] init];
         _nameLabel.textColor = [UIColor kn333333Color];
         _nameLabel.font = [UIFont systemFontOfSize:14];
-        _nameLabel.text = [KNBUserInfo shareInstance].nickName;
     }
     return _nameLabel;
 }

@@ -19,8 +19,8 @@
                 <rect key="frame" x="0.0" y="0.0" width="394" height="327.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="简介" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sBY-OE-by3">
-                        <rect key="frame" x="12" y="15" width="37" height="17"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="商家简介" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sBY-OE-by3">
+                        <rect key="frame" x="12" y="15" width="73.5" height="17"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="17" id="slw-Ry-stU"/>
                         </constraints>

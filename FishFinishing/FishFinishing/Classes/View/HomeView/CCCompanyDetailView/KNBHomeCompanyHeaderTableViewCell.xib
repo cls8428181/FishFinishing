@@ -141,6 +141,7 @@
                 <outlet property="adView" destination="CUi-W8-Pr5" id="SZm-iG-JnQ"/>
                 <outlet property="addressLabel" destination="vaS-lq-Ukf" id="TYg-nB-nKM"/>
                 <outlet property="bottomConstraint" destination="gEb-ZH-jtY" id="82U-Z0-0fS"/>
+                <outlet property="certImageView" destination="714-i5-YAn" id="N3Z-LS-FbM"/>
                 <outlet property="enterLabel" destination="rVa-Cv-811" id="cGh-SU-mFd"/>
                 <outlet property="experienceTimeLabel" destination="zcj-Vb-QbJ" id="EwO-no-eOl"/>
                 <outlet property="iconImageView" destination="wi9-yg-jHC" id="xmf-vK-eKm"/>

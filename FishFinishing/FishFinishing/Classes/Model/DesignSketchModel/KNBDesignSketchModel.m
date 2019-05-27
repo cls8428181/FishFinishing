@@ -7,6 +7,8 @@
 //
 
 #import "KNBDesignSketchModel.h"
+#import "UIImage+Size.h"
+#import "MPNslogHeader.h"
 
 @implementation KNBDesignSketchModel
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
@@ -34,6 +36,16 @@
 
 + (NSValueTransformer *)imgsJSONTransformer {
     return [MTLJSONAdapter arrayTransformerWithModelClass:KNBDesignSketchModel.class];
+}
+
+- (void)setImg:(NSString *)img {
+    _img = img;
+    
+    NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:img]];
+    CGSize imageSize = [UIImage imageWithData:data].size;
+    CGFloat imageH = imageSize.height / imageSize.width * (KNB_SCREEN_WIDTH - 36)/2;
+    
+    _cellHeight = imageH + 88;
 }
 
 @end

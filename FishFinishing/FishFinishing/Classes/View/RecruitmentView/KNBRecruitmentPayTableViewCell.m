@@ -39,9 +39,4 @@
     return 50;
 }
 
-- (IBAction)selectButtonAction:(id)sender {
-    !self.selectButtonBlock ?: self.selectButtonBlock(sender);
-
-}
-
 @end

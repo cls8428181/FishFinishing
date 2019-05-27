@@ -20,8 +20,8 @@ NSString *const KNLocationStateName = @"KNLocationStateName";       // 省
 NSString *const KNLocationCityName = @"KNLocationCityName";         // 市
 NSString *const KNLocationSubLocality = @"KNLocationSubLocality";   //区名称(定位的时候使用)
 NSString *const KNLocationAreaId = @"KNLocationAreaId";             // 城市id
-NSString *const KNSaveUserLocation = @"KNSaveUserLocation";
-
+NSString *const KNSaveUserLocation = @"KNSaveUserLocation";      //选择位置信息保存
+NSString *const KNSaveUserCurrentLocation = @"KNSaveUserCurrentLocation";      //当前位置信息保存
 
 @interface KNGetUserLoaction ()
 
@@ -31,7 +31,7 @@ NSString *const KNSaveUserLocation = @"KNSaveUserLocation";
 @property (nonatomic, strong, readwrite) CLLocation *location;
 @property (nonatomic, readwrite) BOOL isSelectCity; //default no
 @property (nonatomic, strong, readwrite) NSDictionary *addressDictionary;
-
+@property (nonatomic, strong) NSArray *cityDataArray;
 @end
 
 
@@ -117,19 +117,26 @@ NSString *const KNSaveUserLocation = @"KNSaveUserLocation";
             self.city = dic[@"City"] ?: @"";               //市
             self.subLocality = dic[@"SubLocality"] ?: @""; // 区
 
-            if ([self.state isEqualToString:self.stateName] &&
-                [self.city isEqualToString:self.cityName] &&
-                ![self.subLocality isEqualToString:self.subLocalityName]) {
-                [self saveUserCityName:nil address:nil areaId:nil saveCompleteBlock:nil];
+            if ([self.state isEqualToString:self.currentStateName] &&
+                [self.city isEqualToString:self.currentCityName] &&
+                ![self.subLocality isEqualToString:self.currentSubLocalityName]) {
+                [self saveUserProvinceName:nil cityName:nil areaName:nil address:nil areaId:nil saveCompleteBlock:nil];
             } else {
-                if (!isNullStr(self.stateName) && !isNullStr(self.cityAreaId) && !isNullStr(self.subLocalityName)) {
-                    [self saveUserCityName:nil address:nil areaId:nil saveCompleteBlock:nil];
+                if (!isNullStr(self.currentStateName) && !isNullStr(self.cityAreaId) && !isNullStr(self.currentSubLocalityName)) {
+                    [self saveUserProvinceName:nil cityName:nil areaName:nil address:nil areaId:nil saveCompleteBlock:nil];
                 }
             }
             if (![self.city isEmpty]) {
-                [self saveUserCityName:self.city address:nil areaId:nil saveCompleteBlock:nil];
-                if (self.completeBlock) {
-                    self.completeBlock(self.city);
+                [self saveUserProvinceName:self.state cityName:self.city areaName:self.subLocality address:nil areaId:nil saveCompleteBlock:nil];
+                
+                
+                KNBCityModel *model = [self getCityModel:self.city];
+                if (model) {
+                    [KNBCityModel saveWithModel:model resultBlock:^(BOOL success) {
+                    }];
+                    if (self.completeBlock) {
+                        self.completeBlock(model.name, model.code);
+                    }
                 }
             }
         }
@@ -138,25 +145,28 @@ NSString *const KNSaveUserLocation = @"KNSaveUserLocation";
 
 
 #pragma mark - Private Method
-- (void)saveUserCityName:(NSString *)cityName address:(NSString *)address areaId:(NSString *)areaId saveCompleteBlock:(void(^)(void))saveCompleteBlock {
+- (void)saveUserProvinceName:(NSString *)provinceName cityName:(NSString *)cityName areaName:(NSString *)areaName address:(NSString *)address areaId:(NSString *)areaId saveCompleteBlock:(void(^)(void))saveCompleteBlock {
     if (isNullStr(address)) {
         if (areaId) {
             self.isSelectCity = YES;
-            [self saveLocationInfo:@{KNLocationCityName : cityName,
-                                         KNLocationAddress : @"",
-                                         KNLocationAreaId : areaId,
-                                         KNLocationLongitude : self.lng,
-                                         KNLocationLatitude : self.lat
-                                         }];
+            [self saveLocationInfo:@{KNLocationStateName : provinceName ?: @"",
+                                     KNLocationCityName : cityName ?: @"",
+                                     KNLocationSubLocality : areaName ?: @"",
+                                     KNLocationAddress : @"",
+                                     KNLocationAreaId : areaId ?: @"",
+                                     KNLocationLongitude : self.lng,
+                                     KNLocationLatitude : self.lat
+                                     }];
         } else {
             self.isSelectCity = NO;
-            [self saveLocationInfo:@{KNLocationStateName : self.state,
+            [self saveCurrentLocationInfo:@{KNLocationStateName : self.state,
                                      KNLocationCityName : self.city,
+                                     KNLocationSubLocality : self.subLocality,
                                      KNLocationAddress : @"",
                                      KNLocationSubLocality : self.subLocality,
                                      KNLocationLongitude : self.lng,
                                      KNLocationLatitude : self.lat
-                                         }];
+                                            }];
         }
         !saveCompleteBlock ?: saveCompleteBlock();
     } else {
@@ -167,16 +177,19 @@ NSString *const KNSaveUserLocation = @"KNSaveUserLocation";
                 CLPlacemark *firstPlacemark = [placemarks objectAtIndex:0];
                 if (areaId) {
                     weakSelf.isSelectCity = YES;
-                    [weakSelf saveLocationInfo:@{KNLocationCityName : cityName,
-                                                 KNLocationAddress : address,
-                                                 KNLocationAreaId : areaId,
+                    [weakSelf saveLocationInfo:@{KNLocationStateName : provinceName ?: @"",
+                                                 KNLocationCityName : cityName ?: @"",
+                                                 KNLocationSubLocality : areaName ?: @"",
+                                                 KNLocationAddress : address ?: @"",
+                                                 KNLocationAreaId : areaId ?: @"",
                                                  KNLocationLongitude : @(firstPlacemark.location.coordinate.longitude),
                                                  KNLocationLatitude : @(firstPlacemark.location.coordinate.latitude)
                                                  }];
                 } else {
                     weakSelf.isSelectCity = NO;
-                    [weakSelf saveLocationInfo:@{KNLocationStateName : weakSelf.state,
+                    [weakSelf saveCurrentLocationInfo:@{KNLocationStateName : weakSelf.state,
                                                  KNLocationCityName : weakSelf.city,
+                                                 KNLocationSubLocality : weakSelf.subLocality,
                                                  KNLocationAddress : address,
                                                  KNLocationSubLocality : weakSelf.subLocality,
                                                  KNLocationLongitude : @(firstPlacemark.location.coordinate.longitude),
@@ -199,6 +212,67 @@ NSString *const KNSaveUserLocation = @"KNSaveUserLocation";
 - (void)saveLocationInfo:(NSDictionary *)dic {
     [[NSUserDefaults standardUserDefaults] setObject:dic forKey:KNSaveUserLocation];
     [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+- (void)saveCurrentLocationInfo:(NSDictionary *)dic {
+    [[NSUserDefaults standardUserDefaults] setObject:dic forKey:KNSaveUserCurrentLocation];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+- (KNBCityModel *)getCityModel:(NSString *)cityName {
+    for (int i = 0; i < self.cityDataArray.count; i++) {
+        KNBCityModel *provinceModel = self.cityDataArray[i];
+        NSArray *cityArray = provinceModel.cityList;
+        for (int j = 0; j < cityArray.count; j++) {
+            KNBCityModel *cityModel = cityArray[j];
+            if ([cityModel.name containsString:cityName]) {
+                return cityModel;
+            }
+        }
+    }
+    return nil;
+}
+
+- (NSString *)currentStateCode {
+    for (int i = 0; i < self.cityDataArray.count; i++) {
+        KNBCityModel *provinceModel = self.cityDataArray[i];
+        if ([provinceModel.name containsString:self.currentStateName]) {
+            return provinceModel.code;
+        }
+    }
+    return @"";
+}
+
+- (NSString *)currentCityCode {
+    for (int i = 0; i < self.cityDataArray.count; i++) {
+        KNBCityModel *provinceModel = self.cityDataArray[i];
+        NSArray *cityArray = provinceModel.cityList;
+        for (int j = 0; j < cityArray.count; j++) {
+            KNBCityModel *cityModel = cityArray[j];
+            if ([cityModel.name containsString:self.currentCityName]) {
+                return cityModel.code;
+            }
+        }
+    }
+    return @"";
+}
+
+- (NSString *)currentSubLocalityCode {
+    for (int i = 0; i < self.cityDataArray.count; i++) {
+        KNBCityModel *provinceModel = self.cityDataArray[i];
+        NSArray *cityArray = provinceModel.cityList;
+        for (int j = 0; j < cityArray.count; j++) {
+            KNBCityModel *cityModel = cityArray[j];
+            NSArray *areaArray = cityModel.areaList;
+            for (int k = 0; k < areaArray.count; k++) {
+                KNBCityModel *areaModel = areaArray[k];
+                if ([areaModel.name containsString:self.currentSubLocalityName]) {
+                    return areaModel.code;
+                }
+            }
+        }
+    }
+    return @"";
 }
 
 #pragma clang diagnostic push
@@ -240,26 +314,32 @@ NSString *const KNSaveUserLocation = @"KNSaveUserLocation";
     return areaId ? areaId : @"";
 }
 
-- (NSString *)subLocalityName {
-    NSDictionary *dic = [self userLocation];
+- (NSString *)currentSubLocalityName {
+    NSDictionary *dic = [self userCurrentLocation];
     NSString *name = dic[KNLocationSubLocality];
     return name ? name : @"";
 }
 
-- (NSString *)stateName {
-    NSDictionary *dic = [self userLocation];
+- (NSString *)currentStateName {
+    NSDictionary *dic = [self userCurrentLocation];
     NSString *name = dic[KNLocationStateName];
     return name ? name : @"";
 }
 
+- (NSString *)currentCityName {
+    NSDictionary *dic = [self userCurrentLocation];
+    NSString *name = dic[KNLocationCityName];
+    return name ? name : @"";
+}
+
 - (NSString *)currentLat {
-    NSDictionary *dic = [self userLocation];
+    NSDictionary *dic = [self userCurrentLocation];
     NSString *lat = [NSString stringWithFormat:@"%@",dic[KNLocationLatitude]];
     return lat ? lat : @"";
 }
 
 - (NSString *)currentLng {
-    NSDictionary *dic = [self userLocation];
+    NSDictionary *dic = [self userCurrentLocation];
     NSString *lng = [NSString stringWithFormat:@"%@",dic[KNLocationLongitude]];;
     return lng ? lng : @"";
 }
@@ -269,22 +349,30 @@ NSString *const KNSaveUserLocation = @"KNSaveUserLocation";
 }
 
 - (NSString *)lat {
-    return [NSString stringWithFormat:@"%f",self.location.coordinate.latitude];
+    NSDictionary *dic = [self userLocation];
+    NSString *lat = [NSString stringWithFormat:@"%@",dic[KNLocationLatitude]];
+    return lat ? lat : @"";
 }
 
 - (NSString *)lng {
-    return [NSString stringWithFormat:@"%f",self.location.coordinate.longitude];
+    NSDictionary *dic = [self userLocation];
+    NSString *lng = [NSString stringWithFormat:@"%@",dic[KNLocationLongitude]];;
+    return lng ? lng : @"";
 }
 
 /**
  完整的地址
  */
 - (NSString *)fullAddress {
-    return [NSString stringWithFormat:@"%@%@%@", self.stateName, self.cityName, self.subLocalityName];
+    return [NSString stringWithFormat:@"%@%@%@", self.currentStateName, self.currentCityName, self.currentSubLocalityName];
 }
 
 - (NSDictionary *)userLocation {
     return [[NSUserDefaults standardUserDefaults] objectForKey:KNSaveUserLocation];
+}
+
+- (NSDictionary *)userCurrentLocation {
+    return [[NSUserDefaults standardUserDefaults] objectForKey:KNSaveUserCurrentLocation];
 }
 
 //设置城市地址字体高亮为黄色
@@ -297,4 +385,12 @@ NSString *const KNSaveUserLocation = @"KNSaveUserLocation";
     return str;
 }
 
+- (NSArray *)cityDataArray {
+    if (!_cityDataArray) {
+        NSString *areasPath = [[NSBundle mainBundle] pathForResource:@"KNBCity" ofType:@"plist"];
+        NSArray *dataArray = [NSArray arrayWithContentsOfFile:areasPath];
+        _cityDataArray = [KNBCityModel changeResponseJSONObject:dataArray];
+    }
+    return _cityDataArray;
+}
 @end

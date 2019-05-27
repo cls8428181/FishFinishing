@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface CCOrderAlertView : UIView
 
-+ (void)showAlertViewOrderBlock:(OrderActionBlock)orderBlock;
++ (void)showAlertViewWithTitle:(NSString *)title imageUrl:(NSString *)url OrderBlock:(OrderActionBlock)orderBlock;
 
 @end
 

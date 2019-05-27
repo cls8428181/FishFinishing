@@ -58,7 +58,7 @@
     }
     self.view.backgroundColor = [UIColor whiteColor];
     self.knGroupTableView.backgroundColor = [UIColor whiteColor];
-    self.naviView.title = self.model.parent_cat_name;
+    self.naviView.title = @"装修公司";
     if (!self.isEdit) {
         self.knGroupTableView.frame = CGRectMake(0, KNB_NAV_HEIGHT, KNB_SCREEN_WIDTH, KNB_SCREEN_HEIGHT - KNB_TAB_HEIGHT - KNB_NAV_HEIGHT);
     }
@@ -88,8 +88,8 @@
                 }];
                 NSDictionary *dic = request.responseObject[@"list"];
                 KNBHomeServiceModel *model = [KNBHomeServiceModel changeResponseJSONObject:dic];
-                weakSelf.currentModel = model;
                 weakSelf.currentModel.isEdit = YES;
+                weakSelf.currentModel = model;
                 [weakSelf reloadFooterView];
                 [weakSelf requestSuccess:YES requestEnd:YES];
             } else {
@@ -231,7 +231,7 @@
 }
 
 - (void)enterButtonAction {
-    [CCOrderAlertView showAlertViewOrderBlock:^(NSString *nickName, NSString *phone, NSString *area, NSString *address, NSString *house) {
+    [CCOrderAlertView showAlertViewWithTitle:self.currentModel.name imageUrl:self.currentModel.logo OrderBlock:^(NSString *nickName, NSString *phone, NSString *area, NSString *address, NSString *house) {
         KNBHomeBespokeApi *api = [[KNBHomeBespokeApi alloc] initWithFacId:self.model ? [self.model.serviceId integerValue] : [[KNBUserInfo shareInstance].fac_id integerValue] facName:self.model ? self.model.name : [KNBUserInfo shareInstance].fac_name catId:0 userId:@"" areaInfo:area houseInfo:@"" community:address provinceId:0 cityId:0 areaId:0 decorateStyle:@"" decorateGrade:@"" name:nickName mobile:phone decorateCat:house type:2];
         api.hudString = @"";
         [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *_Nonnull request) {
@@ -352,8 +352,8 @@
         _footerView.addCaseBlock = ^{
             [weakSelf fetchData];
         };
-        _footerView.model = self.currentModel;
         _footerView.isEdit = self.isEdit;
+        _footerView.model = self.currentModel;
     }
     return _footerView;
 }

@@ -156,8 +156,8 @@
         }
         if (indexPath.section == 1) {
             NSString *urlStr = @"http://dayuapp.idayu.cn/Home/download.html";
-            NSString *name = @"大鱼装修";
-            NSString *describeStr = @"大鱼装修";
+            NSString *name = @"大鱼装修app";
+            NSString *describeStr = @"免费看装修设计、选材料、算报价、找装修的App";
             [self shareMessages:@[ name, describeStr, urlStr ] isActionType:NO shareButtonBlock:nil];
         }
         if (indexPath.section == 2 && indexPath.row == 0) {

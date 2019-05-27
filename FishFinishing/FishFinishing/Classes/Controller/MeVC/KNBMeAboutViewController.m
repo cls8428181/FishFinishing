@@ -81,6 +81,8 @@
         cell.titleLabel.text = @"微信客服";
         cell.detailLabel.text = self.model.wechat_customer_service;
         cell.allowImageView.hidden = YES;
+        UILongPressGestureRecognizer * recognizer = [[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(longPressEvent:)];
+        [cell addGestureRecognizer:recognizer];
     } else if (indexPath.row == 1) {
         cell.iconImageView.image = KNBImages(@"knb_me_phone");
         cell.titleLabel.text = @"服务热线";
@@ -128,6 +130,30 @@
  */
 - (void)backAction {
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+-(void)longPressEvent:(UILongPressGestureRecognizer *)longPress {
+    KNBMeAboutTableViewCell *cell = [self.knbTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+    if (longPress.state == UIGestureRecognizerStateBegan) {
+        [self becomeFirstResponder];//一定要写
+        UIMenuController * menuController = [UIMenuController sharedMenuController];
+        [menuController setTargetRect:cell.bounds inView:cell];
+        [menuController setMenuVisible:YES animated:YES];
+    }
+}
+
+- (BOOL)canBecomeFirstResponder{
+    return true;
+}
+
+- (void)copy:(id)sender{
+    UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
+    [pasteboard setString:self.model.wechat_customer_service];
+    [LCProgressHUD showMessage:@"已复制微信号"];
+}
+
+- (BOOL)canPerformAction:(SEL)action withSender:(id)sender{
+    return action == @selector(copy:);
 }
 
 #pragma mark - Getters And Setters

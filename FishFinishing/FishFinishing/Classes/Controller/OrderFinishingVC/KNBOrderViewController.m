@@ -135,6 +135,11 @@
                 typeCell.describeTextField.delegate = self;
             } else {
                 cell = [KNBOrderAddressTableViewCell cellWithTableView:tableView];
+                KNBOrderAddressTableViewCell *typeCell = (KNBOrderAddressTableViewCell *)cell;
+                [typeCell setProvinceName:[KNGetUserLoaction shareInstance].currentStateName cityName:[KNGetUserLoaction shareInstance].currentCityName areaName:[KNGetUserLoaction shareInstance].currentSubLocalityName];
+                self.orderModel.province_id = [[[KNGetUserLoaction shareInstance] currentStateCode] integerValue];
+                self.orderModel.city_id = [[[KNGetUserLoaction shareInstance] currentCityCode] integerValue];
+                self.orderModel.area_id = [[[KNGetUserLoaction shareInstance] currentSubLocalityCode] integerValue];
             }
             
         } else if (indexPath.section == 3) {
@@ -277,7 +282,7 @@
             [self unitRequest];
             
         } else if (indexPath.section == 2 && indexPath.row == 1) {
-            [KNBAddressPickerView showAddressPickerWithDefaultSelected:@[] resultBlock:^(KNBAddressModel *province, KNBAddressModel *city, KNBAddressModel *area) {
+            [KNBAddressPickerView showAddressPickerWithDefaultSelected:@[] resultBlock:^(KNBCityModel *province, KNBCityModel *city, KNBCityModel *area) {
                 KNBOrderAddressTableViewCell *cell = [weakSelf.knGroupTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:2]];
                 [cell setProvinceName:province.name cityName:city.name areaName:area.name];
                 weakSelf.orderModel.province_id = [province.code integerValue];
@@ -670,10 +675,6 @@
     }
     if (isNullStr(self.orderModel.community)) {
         [LCProgressHUD showMessage:@"小区名称不能为空"];
-        return;
-    }
-    if (!self.orderModel.city_id || !self.orderModel.area_id) {
-        [LCProgressHUD showMessage:@"地址不能为空"];
         return;
     }
     if (isNullStr(self.orderModel.style)) {

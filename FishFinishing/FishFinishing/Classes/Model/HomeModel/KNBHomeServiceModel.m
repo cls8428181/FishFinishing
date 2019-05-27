@@ -48,7 +48,8 @@
              @"apart_name" : @"apart_name",
              @"style_name" : @"style_name",
              @"acreage" : @"acreage",
-             @"title" : @"title"
+             @"title" : @"title",
+             @"status" : @"status"
              };
 }
 

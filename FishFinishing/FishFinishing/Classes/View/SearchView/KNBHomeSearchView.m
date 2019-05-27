@@ -44,15 +44,15 @@ CGFloat KNBHomeSearchViewHeight = 44;
     [self addSubview:self.chatButton];
     [self addSubview:self.searchBgView];
     self.backgroundColor = [UIColor whiteColor];
-    KNB_WS(weakSelf);
+//    KNB_WS(weakSelf);
     self.defaultCityName = [KNGetUserLoaction shareInstance].cityName;
     [self changeButtontTitle:self.defaultCityName];
-    [KNGetUserLoaction shareInstance].completeBlock = ^(NSString *cityName) {
-        [KNGetUserLoaction shareInstance].currentCityName = cityName;
-        if (![weakSelf.defaultCityName isEqualToString:cityName]) {
-            [weakSelf remindChangeCityName:cityName];
-        }
-    };
+//    [KNGetUserLoaction shareInstance].completeBlock = ^(NSString *cityName, NSString *code) {
+//        [KNGetUserLoaction shareInstance].currentCityName = cityName;
+//        if (![weakSelf.defaultCityName isEqualToString:cityName]) {
+//            [weakSelf remindChangeCityName:cityName code:code];
+//        }
+//    };
 }
 
 - (void)layoutSubviews {
@@ -98,7 +98,7 @@ CGFloat KNBHomeSearchViewHeight = 44;
     KNB_WS(weakSelf);
     KNBHomeCityListViewController *cityListVC = [[KNBHomeCityListViewController alloc] init];
     cityListVC.cityBlock = ^(NSString *cityName, NSString *areaId) {
-        [[KNGetUserLoaction shareInstance] saveUserCityName:cityName address:cityName areaId:areaId saveCompleteBlock:^{
+        [[KNGetUserLoaction shareInstance] saveUserProvinceName:nil cityName:cityName areaName:nil address:cityName areaId:areaId saveCompleteBlock:^{
             weakSelf.defaultCityName = cityName;
             [weakSelf changeButtontTitle:cityName];
             !weakSelf.cityChooseBlock ?: weakSelf.cityChooseBlock();
@@ -121,14 +121,16 @@ CGFloat KNBHomeSearchViewHeight = 44;
 }
 
 //提醒用户是否切换城市
-- (void)remindChangeCityName:(NSString *)cityName {
+- (void)remindChangeCityName:(NSString *)cityName code:(NSString *)code {
     KNB_WS(weakSelf);
     KNAlertView *alterView = [[KNAlertView alloc] initAlterTitle:nil];
     alterView.attributedString = [[KNGetUserLoaction shareInstance] remidTitle:cityName];
     alterView.alterBlock = ^(NSInteger selectIndex) {
         if (selectIndex == 1) {
-            [[KNGetUserLoaction shareInstance] saveUserCityName:cityName address:nil areaId:nil saveCompleteBlock:nil];
-            [weakSelf changeButtontTitle:cityName];
+            [[KNGetUserLoaction shareInstance] saveUserProvinceName:nil cityName:cityName areaName:nil address:cityName areaId:code saveCompleteBlock:^{
+                [weakSelf changeButtontTitle:cityName];
+                !weakSelf.cityChooseBlock ?: weakSelf.cityChooseBlock();
+            }];
         }
     };
     [alterView showAlterView];

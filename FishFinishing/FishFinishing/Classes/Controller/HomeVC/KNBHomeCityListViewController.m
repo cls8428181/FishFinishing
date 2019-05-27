@@ -131,7 +131,7 @@
         cell.textLabel.text = cityArr[indexPath.row][@"name"];
     }
 
-    cell.textLabel.textColor = [UIColor knLightGrayColor];
+    cell.textLabel.textColor = [UIColor kn333333Color];
     cell.textLabel.font = [UIFont systemFontOfSize:14.0];
     return cell;
 }
@@ -235,22 +235,10 @@
 - (void)currentCityButtonAction {
     KNB_WS(weakSelf);
     [[KNGetUserLoaction shareInstance] startLocation];
-    [KNGetUserLoaction shareInstance].completeBlock = ^(NSString *cityName) {
+    [KNGetUserLoaction shareInstance].completeBlock = ^(NSString *cityName, NSString *code) {
         [KNGetUserLoaction shareInstance].currentCityName = cityName;
-        for (int i = 0; i < self.sectionArray.count; i++) {
-            NSArray *cityArr = self.cityDataDic[self.sectionArray[i]];
-            for (int j = 0; j < cityArr.count; j++) {
-                NSDictionary *cityDic = cityArr[j];
-                if ([cityDic[@"name"] containsString:cityName]) {
-                    KNBCityModel *model = [KNBCityModel changeResponseJSONObject:cityDic];
-                    !weakSelf.cityBlock ?: weakSelf.cityBlock(model.name, model.code);
-                    [KNBCityModel saveWithModel:model resultBlock:^(BOOL success) {
-                    }];
-                    [weakSelf dismissViewControllerAnimated:YES completion:nil];
-                }
-            }
-        }
-
+        !weakSelf.cityBlock ?: weakSelf.cityBlock(cityName, code);
+        [weakSelf dismissViewControllerAnimated:YES completion:nil];
     };
 }
 

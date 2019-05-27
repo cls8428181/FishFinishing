@@ -19,6 +19,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *showButton;
 @property (weak, nonatomic) IBOutlet UIImageView *headImageView;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+@property (weak, nonatomic) IBOutlet UIView *coverView;
+@property (weak, nonatomic) IBOutlet UILabel *coverLabel;
 
 @end
 
@@ -92,6 +94,27 @@
     } else {
         self.showButton.selected = NO;
     }
+    if (self.isEdit) {
+        if ([model.status isEqualToString:@"1"]) {
+            self.deleteButton.hidden = YES;
+            self.coverView.hidden = YES;
+            self.userInteractionEnabled = YES;
+        } else if ([model.status isEqualToString:@"0"]) {
+            self.deleteButton.hidden = NO;
+            self.coverView.hidden = NO;
+            self.userInteractionEnabled = NO;
+            self.coverLabel.text = @"审核中...";
+        } else {
+            self.deleteButton.hidden = NO;
+            self.coverView.hidden = NO;
+            self.userInteractionEnabled = NO;
+            self.coverLabel.text = @"审核失败";
+        }
+    } else {
+        self.deleteButton.hidden = YES;
+        self.coverView.hidden = YES;
+        self.userInteractionEnabled = YES;
+    }
 }
 
 - (void)setServiceName:(NSString *)name ServiceIcon:(NSString *)icon {
@@ -100,7 +123,6 @@
 }
 
 - (void)setIsEdit:(BOOL)isEdit {
-    self.deleteButton.hidden = !isEdit;
     self.showButton.hidden = !isEdit;
 }
 

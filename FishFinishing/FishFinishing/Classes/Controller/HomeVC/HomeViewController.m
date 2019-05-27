@@ -338,7 +338,7 @@ static CGFloat const kHeaderViewHeight = 50.0f;
 //}
 
 - (void)serviceListRequest:(NSInteger)index page:(NSInteger)page {
-    KNBRecruitmentServiceListApi *serviceApi = [[KNBRecruitmentServiceListApi alloc] initWithLng:[KNGetUserLoaction shareInstance].currentLng lat:[KNGetUserLoaction shareInstance].currentLat];
+    KNBRecruitmentServiceListApi *serviceApi = [[KNBRecruitmentServiceListApi alloc] initWithLng:[KNGetUserLoaction shareInstance].lng lat:[KNGetUserLoaction shareInstance].lat];
     KNBRecruitmentTypeModel *model = self.categoryArray[index];
     serviceApi.cat_parent_id = [model.typeId integerValue];
     serviceApi.page = page;
@@ -423,8 +423,6 @@ static CGFloat const kHeaderViewHeight = 50.0f;
 
 #pragma mark - Getters And Setters
 /* getter和setter全部都放在最后*/
-
-
 -(KNBHomeSubView *)subView{
     if (!_subView) {
         _subView = [[KNBHomeSubView alloc] initWithFrame:CGRectMake(0, 50, KNB_SCREEN_WIDTH, self.mainTableView.frame.size.height - kHeaderViewHeight - 45) index:self.titleArray.count dataSource:self.serviceArray];
@@ -500,7 +498,6 @@ static CGFloat const kHeaderViewHeight = 50.0f;
         };
         _searchView.cityChooseBlock = ^{
             weakSelf.segmentedControl.selectedSegmentIndex = 0;
-            
             [weakSelf serviceListRequest:0 page:1];
         };
     }

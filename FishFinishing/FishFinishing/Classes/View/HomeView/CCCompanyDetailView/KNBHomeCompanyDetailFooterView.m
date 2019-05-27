@@ -69,8 +69,8 @@
         KNB_WS(weakSelf);
         KNBHomeCompanyCaseSubCollectionViewCell *cell = [KNBHomeCompanyCaseSubCollectionViewCell cellWithCollectionView:collectionView indexPath:indexPath];
         cell.isProduct = [self.model.share_id isEqualToString:@"0"];
-        cell.model = model;
         cell.isEdit = self.isEdit;
+        cell.model = model;
         [cell setServiceName:self.model.name ServiceIcon:self.model.logo];
         cell.deleteButtonBlock = ^{
             [weakSelf deleteCaseRequest:indexPath.row];
@@ -178,9 +178,9 @@
     self.dataArray = model.caseList;
     
     if ([model.share_id isEqualToString:@"0"]) {
-        self.topLabel.text = @"产品";
+        self.topLabel.text = @"产品展示";
     } else {
-        self.topLabel.text = @"案例";
+        self.topLabel.text = @"案例作品";
     }
     
     [self.collectionView reloadData];

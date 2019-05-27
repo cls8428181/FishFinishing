@@ -196,7 +196,7 @@
     } else {
         self.knbTableView.frame = CGRectMake(12, 170, KNB_SCREEN_WIDTH - 24, 315);
     }
-    self.footerView.frame = CGRectMake(12, CGRectGetMaxY(self.knbTableView.frame), KNB_SCREEN_WIDTH - 24, 38);
+//    self.footerView.frame = CGRectMake(12, CGRectGetMaxY(self.knbTableView.frame), KNB_SCREEN_WIDTH - 24, 38);
 }
 
 - (void)addUI {
@@ -220,7 +220,7 @@
     [self.bgView addSubview:self.infoButton];
     [self.bgView addSubview:self.headerView];
     [self.bgView addSubview:self.knbTableView];
-    [self.bgView addSubview:self.footerView];
+//    [self.bgView addSubview:self.footerView];
 }
 
 - (void)fetchData {
@@ -258,6 +258,8 @@
         cell = [KNBDSFreeOrderNewHouseTableViewCell cellWithTableView:tableView];
     } else if (indexPath.row == 1) {
         cell = [KNBDSFreeOrderAddressTableViewCell cellWithTableView:tableView];
+        KNBDSFreeOrderAddressTableViewCell *typeCell = (KNBDSFreeOrderAddressTableViewCell *)cell;
+        [typeCell setProvinceName:[KNGetUserLoaction shareInstance].currentStateName cityName:[KNGetUserLoaction shareInstance].currentCityName areaName:[KNGetUserLoaction shareInstance].currentSubLocalityName];
     } else if (indexPath.row == 2) {
         cell = [KNBDSFreeOrderAreaTableViewCell cellWithTableView:tableView];
     } else if (indexPath.row == 3) {
@@ -266,6 +268,7 @@
         cell = [KNBDSFreeOrderPhoneTableViewCell cellWithTableView:tableView];
         KNBDSFreeOrderPhoneTableViewCell * typeCell = (KNBDSFreeOrderPhoneTableViewCell *)cell;
         typeCell.detailTextField.placeholder = @"输入您的电话号码，设计方案将发送到您的手机";
+        typeCell.detailTextField.text = [KNBUserInfo shareInstance].mobile;
     } else {
         cell = [KNBDSFreeOrderRedEnterTableViewCell cellWithTableView:tableView];
     }
@@ -284,7 +287,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     KNB_WS(weakSelf);
     if (indexPath.row == 1) {
-        [KNBAddressPickerView showAddressPickerWithDefaultSelected:nil resultBlock:^(KNBAddressModel *province, KNBAddressModel *city, KNBAddressModel *area) {
+        [KNBAddressPickerView showAddressPickerWithDefaultSelected:nil resultBlock:^(KNBCityModel *province, KNBCityModel *city, KNBCityModel *area) {
             KNBDSFreeOrderAddressTableViewCell *cell = [weakSelf.knbTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]];
             [cell setProvinceName:province.name cityName:city.name areaName:area.name];
             weakSelf.orderModel.province_id = [province.code integerValue];
@@ -350,8 +353,8 @@
 
 - (void)shareAction {
     NSString *urlStr = @"http://dayuapp.idayu.cn/Home/design.html";
-    NSString *name = @"大鱼装修";
-    NSString *describeStr = @"大鱼装修";
+    NSString *name = @"大鱼装修app";
+    NSString *describeStr = @"免费看装修设计、选材料、算报价、找装修的App";
     [self shareMessages:@[ name, describeStr, urlStr ] isActionType:NO shareButtonBlock:nil];
 }
 
@@ -374,13 +377,13 @@
     return _headerView;
 }
 
-- (KNBDSFreeOrderFooterView *)footerView {
-    if (!_footerView) {
-        _footerView = [[KNBDSFreeOrderFooterView alloc] init];
-        _footerView.frame = CGRectMake(0, 0, KNB_SCREEN_WIDTH, 38);
-    }
-    return _footerView;
-}
+//- (KNBDSFreeOrderFooterView *)footerView {
+//    if (!_footerView) {
+//        _footerView = [[KNBDSFreeOrderFooterView alloc] init];
+//        _footerView.frame = CGRectMake(0, 0, KNB_SCREEN_WIDTH, 38);
+//    }
+//    return _footerView;
+//}
 
 - (UIImageView *)iconImageView {
     if (!_iconImageView) {

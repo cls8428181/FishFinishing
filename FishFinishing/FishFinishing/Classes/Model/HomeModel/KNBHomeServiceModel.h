@@ -191,6 +191,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *price;
 
 /**
+ 审核状态
+ */
+@property (nonatomic, copy) NSString *status;
+
+/**
  案例数据
  */
 @property (nonatomic, strong) NSArray<KNBHomeServiceModel *> *caseList;

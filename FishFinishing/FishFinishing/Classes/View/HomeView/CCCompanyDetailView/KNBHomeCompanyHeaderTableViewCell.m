@@ -20,6 +20,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *addressLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *topImageView;
+@property (weak, nonatomic) IBOutlet UIImageView *certImageView;
 @property (weak, nonatomic) IBOutlet UIButton *adButton;
 @property (weak, nonatomic) IBOutlet UILabel *experienceTimeLabel;
 @property (weak, nonatomic) IBOutlet UIView *adView;
@@ -98,7 +99,12 @@
 - (void)setModel:(KNBHomeServiceModel *)model {
     [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:model.logo] placeholderImage:CCPortraitPlaceHolder];
     self.iconImageView.layer.masksToBounds = YES;
-    self.iconImageView.layer.cornerRadius = 45;
+    if ([model.parent_cat_name containsString:@"装修公司"] || [model.parent_cat_name containsString:@"家居建材"]) {
+        self.iconImageView.layer.cornerRadius = 0;
+    } else {
+        self.iconImageView.layer.cornerRadius = 45;
+    }
+
     self.nameLabel.text = model.name;
     //计算名称最大长度
     self.maxSpace.constant = KNB_SCREEN_WIDTH - 186;
@@ -151,9 +157,11 @@
     if ([model.is_experience isEqualToString:@"1"]) {
         self.experienceTimeLabel.text = [NSString stringWithFormat:@"%ld天后入驻到期[体验版]",(long)time];
         self.enterLabel.text = @"马上升级";
+        self.certImageView.image = KNBImages(@"knb_home_icon_rz");
     } else {
         self.experienceTimeLabel.text = [NSString stringWithFormat:@"%ld天后入驻到期[正式版]",(long)time];
         self.enterLabel.text = @"马上续费";
+        self.certImageView.image = KNBImages(@"knb_home_icon_rz_yellow");
     }
     
 }

@@ -197,6 +197,11 @@
 - (void)setModel:(KNBHomeServiceModel *)model {
     _model = model;
     [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:model.logo]];
+    if ([model.parent_cat_name containsString:@"装修公司"] || [model.parent_cat_name containsString:@"家居建材"]) {
+        self.iconImageView.layer.cornerRadius = 0;
+    } else {
+        self.iconImageView.layer.cornerRadius = 24;
+    }
     self.nameLabel.text = model.nameString;
     self.addressLabel.text = model.address;
     self.distanceLabel.text = model.distanceString;
@@ -245,7 +250,11 @@
     } else {
         self.topImageView.hidden = NO;
     }
-    
+    if ([model.is_experience isEqualToString:@"1"]) {
+        self.certImageView.image = KNBImages(@"knb_home_icon_rz");
+    } else {
+        self.certImageView.image = KNBImages(@"knb_home_icon_rz_yellow");
+    }
     
 }
 

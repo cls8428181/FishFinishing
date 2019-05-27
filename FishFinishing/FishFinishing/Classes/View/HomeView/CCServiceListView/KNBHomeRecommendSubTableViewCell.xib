@@ -252,7 +252,7 @@
                 <outlet property="tagBgView" destination="P5y-CN-f0n" id="gjH-vd-ZSR"/>
                 <outlet property="topImageView" destination="Mh1-wL-7eT" id="voE-RO-ZTa"/>
             </connections>
-            <point key="canvasLocation" x="1327.2" y="24.287856071964018"/>
+            <point key="canvasLocation" x="1326.4000000000001" y="24.287856071964018"/>
         </tableViewCell>
     </objects>
     <resources>

@@ -30,11 +30,11 @@
 // 显示类型
 @property (nonatomic, assign) KNBAddressPickerMode showType;
 // 选中的省
-@property(nonatomic, strong) KNBAddressModel *selectProvinceModel;
+@property(nonatomic, strong) KNBCityModel *selectProvinceModel;
 // 选中的市
-@property(nonatomic, strong) KNBAddressModel *selectCityModel;
+@property(nonatomic, strong) KNBCityModel *selectCityModel;
 // 选中的区
-@property(nonatomic, strong) KNBAddressModel *selectAreaModel;
+@property(nonatomic, strong) KNBCityModel *selectAreaModel;
 
 // 是否开启自动选择
 @property (nonatomic, assign) BOOL isAutoSelect;
@@ -52,7 +52,7 @@
 #pragma mark - 1.显示地址选择器
 + (void)showAddressPickerWithDefaultSelected:(NSArray *)defaultSelectedArr
                                  resultBlock:(KNBAddressResultBlock)resultBlock {
-    [self showAddressPickerWithShowType:KNBAddressPickerModeArea dataSource:nil defaultSelected:defaultSelectedArr isAutoSelect:NO themeColor:nil resultBlock:resultBlock cancelBlock:nil];
+    [self showAddressPickerWithShowType:KNBAddressPickerModeArea dataSource:[NSArray array] defaultSelected:defaultSelectedArr isAutoSelect:NO themeColor:nil resultBlock:resultBlock cancelBlock:nil];
 }
 
 #pragma mark - 2.显示地址选择器（支持 设置自动选择 和 自定义主题颜色）
@@ -60,7 +60,8 @@
                                 isAutoSelect:(BOOL)isAutoSelect
                                   themeColor:(UIColor *)themeColor
                                  resultBlock:(KNBAddressResultBlock)resultBlock {
-    [self showAddressPickerWithShowType:KNBAddressPickerModeArea dataSource:nil defaultSelected:defaultSelectedArr isAutoSelect:isAutoSelect themeColor:themeColor resultBlock:resultBlock cancelBlock:nil];
+    [self showAddressPickerWithShowType:KNBAddressPickerModeArea dataSource:[NSArray array] defaultSelected:defaultSelectedArr isAutoSelect:isAutoSelect themeColor:themeColor resultBlock:resultBlock cancelBlock:^{
+    }];
 }
 
 #pragma mark - 3.显示地址选择器（支持 设置选择器类型、设置自动选择、自定义主题颜色、取消选择的回调）
@@ -70,7 +71,7 @@
                            themeColor:(UIColor *)themeColor
                           resultBlock:(KNBAddressResultBlock)resultBlock
                           cancelBlock:(KNBAddressCancelBlock)cancelBlock {
-    [self showAddressPickerWithShowType:showType dataSource:nil defaultSelected:defaultSelectedArr isAutoSelect:isAutoSelect themeColor:themeColor resultBlock:resultBlock cancelBlock:cancelBlock];
+    [self showAddressPickerWithShowType:showType dataSource:[NSArray array] defaultSelected:defaultSelectedArr isAutoSelect:isAutoSelect themeColor:themeColor resultBlock:resultBlock cancelBlock:cancelBlock];
 }
 
 #pragma mark - 4.显示地址选择器（支持 设置选择器类型、传入地区数据源、设置自动选择、自定义主题颜色、取消选择的回调）
@@ -147,7 +148,7 @@
 
 #pragma mark - 解析数据源
 - (void)parseDataSource {
-    NSArray *modelArray = [KNBAddressModel changeResponseJSONObject:self.dataSource];
+    NSArray *modelArray = [KNBCityModel changeResponseJSONObject:self.dataSource];
     self.provinceModelArr = [modelArray copy];
 }
 
@@ -172,7 +173,7 @@
     // 2. 根据名称找到默认选中的省市区索引
     __weak typeof(self) weakSelf = self;
     [self.provinceModelArr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        KNBAddressModel *model = obj;
+        KNBCityModel *model = obj;
         if ([model.name isEqualToString:selectProvinceName]) {
             self->_provinceIndex = idx;
             weakSelf.selectProvinceModel = model;
@@ -187,7 +188,7 @@
     if (self.showType == KNBAddressPickerModeCity || self.showType == KNBAddressPickerModeArea) {
         self.cityModelArr = [self getCityModelArray:_provinceIndex];
         [self.cityModelArr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            KNBAddressModel *model = obj;
+            KNBCityModel *model = obj;
             if ([model.name isEqualToString:selectCityName]) {
                 self->_cityIndex = idx;
                 weakSelf.selectCityModel = model;
@@ -203,7 +204,7 @@
     if (self.showType == KNBAddressPickerModeArea) {
         self.areaModelArr = [self getAreaModelArray:_provinceIndex cityIndex:_cityIndex];
         [self.areaModelArr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            KNBAddressModel *model = obj;
+            KNBCityModel *model = obj;
             if ([model.name isEqualToString:selectAreaName]) {
                 self->_areaIndex = idx;
                 weakSelf.selectAreaModel = model;
@@ -234,15 +235,15 @@
 
 // 根据 省索引 获取 城市模型数组
 - (NSArray *)getCityModelArray:(NSInteger)provinceIndex {
-    KNBAddressModel *provinceModel = self.provinceModelArr[provinceIndex];
+    KNBCityModel *provinceModel = self.provinceModelArr[provinceIndex];
     // 返回城市模型数组
     return provinceModel.cityList;
 }
 
 // 根据 省索引和城市索引 获取 区域模型数组
 - (NSArray *)getAreaModelArray:(NSInteger)provinceIndex cityIndex:(NSInteger)cityIndex {
-    KNBAddressModel *provinceModel = self.provinceModelArr[provinceIndex];
-    KNBAddressModel *cityModel = provinceModel.cityList[cityIndex];
+    KNBCityModel *provinceModel = self.provinceModelArr[provinceIndex];
+    KNBCityModel *cityModel = provinceModel.cityList[cityIndex];
     // 返回地区模型数组
     return cityModel.areaList;
 }
@@ -336,13 +337,13 @@
     // 自适应最小字体缩放比例
     label.minimumScaleFactor = 0.5f;
     if (component == 0) {
-        KNBAddressModel *model = self.provinceModelArr[row];
+        KNBCityModel *model = self.provinceModelArr[row];
         label.text = model.name;
     }else if (component == 1){
-        KNBAddressModel *model = self.cityModelArr[row];
+        KNBCityModel *model = self.cityModelArr[row];
         label.text = model.name;
     }else if (component == 2){
-        KNBAddressModel *model = self.areaModelArr[row];
+        KNBCityModel *model = self.areaModelArr[row];
         label.text = model.name;
     }
     return bgView;
@@ -536,25 +537,25 @@
     return _areaModelArr;
 }
 
-- (KNBAddressModel *)selectProvinceModel {
+- (KNBCityModel *)selectProvinceModel {
     if (!_selectProvinceModel) {
-        _selectProvinceModel = [[KNBAddressModel alloc]init];
+        _selectProvinceModel = [[KNBCityModel alloc]init];
     }
     return _selectProvinceModel;
 }
 
-- (KNBAddressModel *)selectCityModel {
+- (KNBCityModel *)selectCityModel {
     if (!_selectCityModel) {
-        _selectCityModel = [[KNBAddressModel alloc]init];
+        _selectCityModel = [[KNBCityModel alloc]init];
         _selectCityModel.code = @"";
         _selectCityModel.name = @"";
     }
     return _selectCityModel;
 }
 
-- (KNBAddressModel *)selectAreaModel {
+- (KNBCityModel *)selectAreaModel {
     if (!_selectAreaModel) {
-        _selectAreaModel = [[KNBAddressModel alloc]init];
+        _selectAreaModel = [[KNBCityModel alloc]init];
         _selectAreaModel.code = @"";
         _selectAreaModel.name = @"";
     }

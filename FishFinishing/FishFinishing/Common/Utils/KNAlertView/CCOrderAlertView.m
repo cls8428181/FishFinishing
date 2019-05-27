@@ -11,6 +11,7 @@
 #import "UIButton+Style.h"
 
 @interface CCOrderAlertView ()
+@property (nonatomic, strong) UIImageView *iconImageView;
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UILabel *nickNameArrow;
 @property (nonatomic, strong) CCOrderAlertTextView *nickNameTextView;
@@ -27,12 +28,15 @@
 @property (nonatomic, strong) UIButton *oldHouseButton;
 @property (nonatomic, copy) OrderActionBlock orderBlock;
 @property (nonatomic, copy) NSString *house;
+@property (nonatomic, assign) BOOL isOpen;
 @end
 
 @implementation CCOrderAlertView
-+ (void)showAlertViewOrderBlock:(OrderActionBlock)orderBlock {
++ (void)showAlertViewWithTitle:(NSString *)title imageUrl:(NSString *)url OrderBlock:(OrderActionBlock)orderBlock {
     CCOrderAlertView *alertView = [[CCOrderAlertView alloc] initWithFrame:CGRectMake((KNB_SCREEN_WIDTH - 305)/2, (KNB_SCREEN_HEIGHT - 315)/2, 305, 315)];
     alertView.orderBlock = orderBlock;
+    alertView.titleLabel.text = title;
+    [alertView.iconImageView sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:CCPortraitPlaceHolder];
     [alertView showPopupView:YES];
 }
 
@@ -41,6 +45,7 @@
         self.backgroundColor = [UIColor whiteColor];
         self.layer.cornerRadius = 10;
         self.layer.masksToBounds = YES;
+        [self addSubview:self.iconImageView];
         [self addSubview:self.titleLabel];
         [self addSubview:self.nickNameTextView];
         [self addSubview:self.nickNameArrow];
@@ -52,6 +57,7 @@
         [self addSubview:self.cancelButton];
         [self setUpDataUI];
         self.userInteractionEnabled = YES;
+        self.isOpen = NO;
     }
     return self;
 }
@@ -74,21 +80,22 @@
     [self addSubview:weakSelf.houseButton];
     [self addSubview:weakSelf.oldHouseButton];
     [self settingLayout];
-    [UIView animateWithDuration:0.5 animations:^{
+    [UIView animateWithDuration:0.3 animations:^{
         self.openButton.alpha = 0;
         self.openDescribe.alpha = 0;
         self.orderButton.alpha = 0;
     } completion:^(BOOL finished) {
-        [UIView animateWithDuration:0.5 animations:^{
+        [UIView animateWithDuration:0.3 animations:^{
             weakSelf.y = weakSelf.y - (410 - 315)/2;
             weakSelf.height = 410;
         } completion:^(BOOL finished) {
-            [UIView animateWithDuration:0.5 animations:^{
+            [UIView animateWithDuration:0.3 animations:^{
                 weakSelf.orderButton.alpha = 1;
                 weakSelf.areaTextView.alpha = 1;
                 weakSelf.addressTextView.alpha = 1;
                 weakSelf.houseButton.alpha = 1;
                 weakSelf.oldHouseButton.alpha = 1;
+                weakSelf.isOpen = YES;
             }];
         }];
     }];
@@ -98,7 +105,13 @@
     KNB_WS(weakSelf);
     [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(26);
-        make.centerX.mas_equalTo(weakSelf);
+        make.centerX.equalTo(weakSelf.mas_centerX).mas_offset(24);
+    }];
+    [self.iconImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(weakSelf.titleLabel);
+        make.right.equalTo(weakSelf.titleLabel.mas_left).mas_offset(-10);
+        make.width.mas_equalTo(38);
+        make.height.mas_equalTo(38);
     }];
     [self.nickNameTextView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(weakSelf.titleLabel.mas_bottom).mas_offset(35);
@@ -184,7 +197,7 @@
 
 - (void)orderButtonAction {
     if (isNullStr(self.nickNameTextView.detailTextField.text)) {
-        [LCProgressHUD showMessage:@"昵称不能为空"];
+        [LCProgressHUD showMessage:@"姓名不能为空"];
         return;
     }
     
@@ -194,7 +207,7 @@
     }
     
     [self showPopupView:NO];
-    !self.orderBlock ?: self.orderBlock(self.nickNameTextView.detailTextField.text, self.phoneTextView.detailTextField.text, self.areaTextView.detailTextField.text ?: @"", self.addressTextView.detailTextField.text ?: @"", self.house ?: @"");
+    !self.orderBlock ?: self.orderBlock(self.nickNameTextView.detailTextField.text, self.phoneTextView.detailTextField.text, self.areaTextView.detailTextField.text ?: @"", self.addressTextView.detailTextField.text ?: @"", self.isOpen ? self.house : @"");
 }
 
 - (void)houseButtonAction:(UIButton *)button {
@@ -222,6 +235,15 @@
         [_coverView addSubview:self];
     }
     return _coverView;
+}
+
+- (UIImageView *)iconImageView {
+    if (!_iconImageView) {
+        _iconImageView = [[UIImageView alloc] init];
+        _iconImageView.layer.masksToBounds = YES;
+        _iconImageView.layer.cornerRadius = 19;
+    }
+    return _iconImageView;
 }
 
 - (UILabel *)titleLabel {
@@ -267,6 +289,7 @@
     if (!_phoneTextView) {
         _phoneTextView = [[CCOrderAlertTextView alloc] init];
         _phoneTextView.type = CCOrderAlertTextViewTypePhone;
+        _phoneTextView.detailTextField.text = [KNBUserInfo shareInstance].mobile;
     }
     return _phoneTextView;
 }
@@ -341,6 +364,8 @@
         [_houseButton setImage:KNBImages(@"knb_offer_hover") forState:UIControlStateSelected];
         [_houseButton addTarget:self action:@selector(houseButtonAction:) forControlEvents:UIControlEventTouchUpInside];
         [_houseButton layoutButtonWithEdgeInsetsStyle:GLButtonEdgeInsetsStyleLeft imageTitleSpace:6];
+        _houseButton.selected = YES;
+        self.house = @"新房";
         _houseButton.alpha = 0;
     }
     return _houseButton;

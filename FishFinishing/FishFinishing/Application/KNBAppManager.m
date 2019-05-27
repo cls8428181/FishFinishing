@@ -123,7 +123,7 @@ KNB_DEFINE_SINGLETON_FOR_CLASS(KNBAppManager);
     }
     
     if ([KNB_APP_VERSION isEqualToString:@"3.1.0"]) {
-        NSString *path = [KNB_PATH_LIBRARY stringByAppendingPathComponent:@"Application Support/KenuoTraining"];
+        NSString *path = [KNB_PATH_LIBRARY stringByAppendingPathComponent:@"Application Support/FinshFinishing"];
         NSFileManager *fileManager = [NSFileManager defaultManager];
         NSArray *contents = [fileManager contentsOfDirectoryAtPath:path error:NULL];
         NSEnumerator *e = [contents objectEnumerator];
@@ -151,7 +151,7 @@ KNB_DEFINE_SINGLETON_FOR_CLASS(KNBAppManager);
     if (isNullStr(userId)) {
         return;
     }
-    NSString *path = [KNB_PATH_LIBRARY stringByAppendingPathComponent:@"Application Support/KenuoTraining"];
+    NSString *path = [KNB_PATH_LIBRARY stringByAppendingPathComponent:@"Application Support/FishFinishing"];
     NSFileManager *fileManager = [NSFileManager defaultManager];
     NSArray *contents = [fileManager contentsOfDirectoryAtPath:path error:NULL];
     NSEnumerator *e = [contents objectEnumerator];

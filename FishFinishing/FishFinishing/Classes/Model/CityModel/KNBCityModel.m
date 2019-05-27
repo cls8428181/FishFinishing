@@ -12,13 +12,32 @@
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
     return @{
              @"code" : @"id",
-             @"name" : @"name"
+             @"isOpen" : @"is_open",
+             @"isHot" : @"is_hot",
+             @"temp" : @"temp",
+             @"letter" : @"letter",
+             @"pinyin" : @"pinyin",
+             @"cityList" : @"city",
+             @"level" : @"level",
+             @"region" : @"region",
+             @"pid" : @"pid",
+             @"sort" : @"sort",
+             @"name" : @"name",
+             @"status" : @"status",
+             @"areaList" : @"area"
              };
 }
 
 // 主健
 + (NSSet *)propertyKeysForManagedObjectUniquing {
-    return [NSSet setWithObject:@"name"];
+    return [NSSet setWithObject:@"code"];
 }
 
++ (NSValueTransformer *)cityListJSONTransformer {
+    return [MTLJSONAdapter arrayTransformerWithModelClass:KNBCityModel.class];
+}
+
++ (NSValueTransformer *)areaListJSONTransformer {
+    return [MTLJSONAdapter arrayTransformerWithModelClass:KNBCityModel.class];
+}
 @end

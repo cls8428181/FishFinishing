@@ -90,6 +90,16 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (nonatomic, copy) NSString *telephone;
 @property (nonatomic, strong) NSArray<KNBDesignSketchModel *> *imgs;
+
+/**
+ 图片的尺寸
+ */
+@property (nonatomic, assign) CGSize imgSize;
+
+/**
+ cell 高度
+ */
+@property (nonatomic, assign) CGFloat cellHeight;
 @end
 
 NS_ASSUME_NONNULL_END

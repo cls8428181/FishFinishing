@@ -20,8 +20,9 @@
 #import "KNBHomeCompanyAreaViewController.h"
 #import "KNBHomeRecommendCaseModel.h"
 #import "KNBMeAboutViewController.h"
+#import "WSLWaterFlowLayout.h"
 
-@interface DesignSketchViewController ()<UICollectionViewDelegate, UICollectionViewDataSource>
+@interface DesignSketchViewController ()<UICollectionViewDelegate, UICollectionViewDataSource,WSLWaterFlowLayoutDelegate>
 //滑动区域
 @property (nonatomic, strong) UICollectionView *collectionView;
 //顶部下拉筛选
@@ -86,12 +87,12 @@
         [self.view addSubview:self.serviceButton];
         [self.view bringSubviewToFront:self.serviceButton];
         self.topBar.footerView.frame = CGRectMake(0, KNB_NAV_HEIGHT + 50, KNB_SCREEN_WIDTH, KNB_SCREEN_HEIGHT - KNB_NAV_HEIGHT - KNB_TAB_HEIGHT - 50);
-        self.collectionView.frame = CGRectMake(0, KNB_NAV_HEIGHT + 50, KNB_SCREEN_WIDTH, KNB_SCREEN_HEIGHT - KNB_NAV_HEIGHT - KNB_TAB_HEIGHT- 50);
 
     } else {
         [self.view addSubview:self.collectionView];
-        self.collectionView.frame = CGRectMake(0, KNB_NAV_HEIGHT, KNB_SCREEN_WIDTH, KNB_SCREEN_HEIGHT - KNB_NAV_HEIGHT);
     }
+    self.collectionView.frame = CGRectMake(0, KNB_NAV_HEIGHT, KNB_SCREEN_WIDTH, KNB_SCREEN_HEIGHT - KNB_NAV_HEIGHT);
+
 }
 
 - (void)addUI {
@@ -181,8 +182,42 @@
     return cell;
 }
 //定义每一个cell的大小
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    return CGSizeMake(170, 192);
+- (CGSize)waterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+    KNBDesignSketchModel *model = self.dataArray[indexPath.row];
+    return CGSizeMake(170, model.cellHeight);
+}
+/** 头视图Size */
+-(CGSize )waterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout sizeForHeaderViewInSection:(NSInteger)section {
+    if (self.isTabbar) {
+        return CGSizeMake(KNB_SCREEN_WIDTH, 50); //头视图的大小
+    }
+    return CGSizeZero;
+}
+/** 脚视图Size */
+-(CGSize )waterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout sizeForFooterViewInSection:(NSInteger)section {
+    if (self.isTabbar) {
+        return CGSizeMake(KNB_SCREEN_WIDTH, KNB_TAB_HEIGHT); //底部视图的大小
+    }
+    return CGSizeZero;
+}
+/** 列数*/
+-(CGFloat)columnCountInWaterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout {
+    return 2;
+}
+/** 行数*/
+//-(CGFloat)rowCountInWaterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout;
+/** 列间距*/
+-(CGFloat)columnMarginInWaterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout {
+    return 10;
+}
+/** 行间距*/
+//-(CGFloat)rowMarginInWaterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout;
+/** 边缘之间的间距*/
+-(UIEdgeInsets)edgeInsetInWaterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout {
+    if (self.isTabbar) {
+        return UIEdgeInsetsMake(0, 13, 10, 13);
+    }
+    return UIEdgeInsetsMake(10, 13, 10, 13);
 }
 
 //cell的点击事件
@@ -246,15 +281,13 @@
 /* getter和setter全部都放在最后*/
 - (UICollectionView *)collectionView {
     if (!_collectionView) {
-        UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-        layout.minimumInteritemSpacing = 10;
-        layout.minimumLineSpacing = 10;
-        if (self.isTabbar) {
-            layout.headerReferenceSize = CGSizeMake(KNB_SCREEN_WIDTH, 50); //头视图的大小
-            layout.footerReferenceSize = CGSizeMake(KNB_SCREEN_WIDTH, KNB_TAB_HEIGHT); //底部视图的大小
-        }
-        layout.sectionInset = UIEdgeInsetsMake(10, 12, 10, 12);
-        layout.scrollDirection = UICollectionViewScrollDirectionVertical;
+        WSLWaterFlowLayout *layout = [[WSLWaterFlowLayout alloc] init];
+//        if (self.isTabbar) {
+//            layout.headerReferenceSize = CGSizeMake(KNB_SCREEN_WIDTH, 50); //头视图的大小
+//            layout.footerReferenceSize = CGSizeMake(KNB_SCREEN_WIDTH, KNB_TAB_HEIGHT); //底部视图的大小
+//        }
+        layout.delegate = self;
+        layout.flowLayoutStyle = WSLWaterFlowVerticalEqualWidth;
         _collectionView = [[UICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:layout];
         _collectionView.showsHorizontalScrollIndicator = NO;
         _collectionView.backgroundColor = [UIColor whiteColor];

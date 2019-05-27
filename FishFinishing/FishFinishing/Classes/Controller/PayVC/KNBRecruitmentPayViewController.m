@@ -105,15 +105,10 @@
         if (indexPath.row == 0) {
             cell = [KNBRecruitmentPayTableViewCell cellWithTableView:tableView payType:@"支付宝"];
             KNBRecruitmentPayTableViewCell *typeCell = (KNBRecruitmentPayTableViewCell *)cell;
-            typeCell.selectButtonBlock = ^(UIButton * _Nonnull button) {
-            };
-
+            typeCell.selectButton.selected = YES;
+            self.isAlipy = YES;
         } else {
             cell = [KNBRecruitmentPayTableViewCell cellWithTableView:tableView payType:@"微信"];
-            KNBRecruitmentPayTableViewCell *typeCell = (KNBRecruitmentPayTableViewCell *)cell;
-            typeCell.selectButtonBlock = ^(UIButton * _Nonnull button) {
-
-            };
         }
         
     } else {
@@ -152,11 +147,9 @@
         KNBRecruitmentPayTableViewCell *alipyCell = [tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:3]];
         KNBRecruitmentPayTableViewCell *wechatCell = [tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:3]];
         if (indexPath.row == 0) {
-            if (!self.isAlipy) {
-                alipyCell.selectButton.selected = YES;
-                wechatCell.selectButton.selected = NO;
-                self.isAlipy = YES;
-            }
+            alipyCell.selectButton.selected = YES;
+            wechatCell.selectButton.selected = NO;
+            self.isAlipy = YES;
         } else {
             alipyCell.selectButton.selected = NO;
             wechatCell.selectButton.selected = YES;
@@ -220,7 +213,7 @@
         _footerView.enterButtonBlock = ^{
             if (weakSelf.isProtocol) {
                 if (weakSelf.isAlipy) {
-                    [KNPayManager payWithOrderId:weakSelf.recruitmentModel.priceModel.costId payPrice:[weakSelf.recruitmentModel.priceModel.price doubleValue] payMethod:KN_PayCodeAlipay chargeType:KNBGetChargeTypeRecruitment completeBlock:^(BOOL success, id errorMsg, NSInteger errorCode) {
+                    [KNPayManager payWithOrderId:weakSelf.recruitmentModel.priceModel.costId payPrice:[weakSelf.recruitmentModel.priceModel.price doubleValue] payMethod:KN_PayCodeAlipay chargeType:(weakSelf.type == KNBPayVCTypeTop ? KNBGetChargeTypeBuyService : KNBGetChargeTypeRecruitment) completeBlock:^(BOOL success, id errorMsg, NSInteger errorCode) {
                         if (success) {
                             if (weakSelf.type == KNBPayVCTypeRecruitment) {
                                 [weakSelf addRecruitmentRequest];
@@ -251,7 +244,7 @@
                         }
                     }];
                 } else {
-                    [KNPayManager payWithOrderId:weakSelf.recruitmentModel.priceModel.costId payPrice:[weakSelf.recruitmentModel.priceModel.price doubleValue] payMethod:KN_PayCodeWX chargeType:KNBGetChargeTypeBuyService completeBlock:^(BOOL success, id errorMsg, NSInteger errorCode) {
+                    [KNPayManager payWithOrderId:weakSelf.recruitmentModel.priceModel.costId payPrice:[weakSelf.recruitmentModel.priceModel.price doubleValue] payMethod:KN_PayCodeWX chargeType:(weakSelf.type == KNBPayVCTypeTop ? KNBGetChargeTypeBuyService : KNBGetChargeTypeRecruitment) completeBlock:^(BOOL success, id errorMsg, NSInteger errorCode) {
                         if (success) {
                             if (weakSelf.type == KNBPayVCTypeRecruitment) {
                                 [weakSelf addRecruitmentRequest];

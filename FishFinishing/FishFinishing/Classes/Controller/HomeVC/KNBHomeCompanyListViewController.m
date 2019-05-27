@@ -17,7 +17,7 @@
 #import "KNBHomeCompanyStyleViewController.h"
 #import "KNBHomeCompanyCityViewController.h"
 #import "KNBHomeCompanyOtherViewController.h"
-#import "KNBAddressModel.h"
+#import "KNBCityModel.h"
 
 @interface KNBHomeCompanyListViewController ()
 //header view
@@ -56,8 +56,8 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(InfoNotificationAction:) name:NSStringFromClass([KNBHomeCompanyCityViewController class]) object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(InfoNotificationAction:) name:NSStringFromClass([KNBHomeCompanyOtherViewController class]) object:nil];
     self.topBar.model = self.model;
-    for (KNBAddressModel *provinceModel in self.cityArray) {
-        for (KNBAddressModel *cityModel in provinceModel.cityList) {
+    for (KNBCityModel *provinceModel in self.cityArray) {
+        for (KNBCityModel *cityModel in provinceModel.cityList) {
             if ([cityModel.name isEqual:[KNGetUserLoaction shareInstance].cityName]) {
                 self.topBar.areaId = [cityModel.code integerValue];
             }
@@ -205,7 +205,7 @@
     if (!_cityArray) {
         NSString *filePath =[[NSBundle mainBundle] pathForResource:@"KNBCity" ofType:@"plist"];
         NSArray *dataSource = [NSArray arrayWithContentsOfFile:filePath];
-        _cityArray = [KNBAddressModel changeResponseJSONObject:dataSource];
+        _cityArray = [KNBCityModel changeResponseJSONObject:dataSource];
     }
     return _cityArray;
 }

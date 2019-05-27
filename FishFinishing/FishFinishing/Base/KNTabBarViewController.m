@@ -116,9 +116,9 @@ const NSInteger KNTabBarButtonTitleLabelTag = 666;
         CGRect titleLabelFrame = CGRectMake(0, 30, buttonWith, 20);
         if (i == 2) {
             CGFloat plusX = buttonWith * i;
-            CGFloat plusY = - 25;
+            CGFloat plusY = - 15;
             button.frame = CGRectMake(plusX, plusY, buttonWith, KNB_TAB_HEIGHT + 15);
-            titleLabelFrame = CGRectMake(0, 55, buttonWith, 20);
+            titleLabelFrame = CGRectMake(0, 45, buttonWith, 20);
         } else {
             button.frame = CGRectMake(buttonWith * i, 0, buttonWith, KNB_TAB_HEIGHT);
         }

@@ -24,6 +24,6 @@
 
 #pragma mark - private method
 + (CGFloat)cellHeight {
-    return 55;
+    return 60;
 }
 @end

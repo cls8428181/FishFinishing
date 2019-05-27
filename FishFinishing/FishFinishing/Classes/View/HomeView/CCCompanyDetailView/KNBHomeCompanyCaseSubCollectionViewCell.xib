@@ -89,6 +89,26 @@
                             <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="5"/>
                         </userDefinedRuntimeAttributes>
                     </view>
+                    <view hidden="YES" alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aRw-UG-n1A" userLabel="cover">
+                        <rect key="frame" x="0.0" y="10" width="221" height="222"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q0Z-KF-hay">
+                                <rect key="frame" x="89.5" y="100.5" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="q0Z-KF-hay" firstAttribute="centerX" secondItem="aRw-UG-n1A" secondAttribute="centerX" id="1wy-78-TDb"/>
+                            <constraint firstItem="q0Z-KF-hay" firstAttribute="centerY" secondItem="aRw-UG-n1A" secondAttribute="centerY" id="gzQ-hE-ZuJ"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="5"/>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.maskToBounds" value="YES"/>
+                        </userDefinedRuntimeAttributes>
+                    </view>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3pF-Yu-8sS">
                         <rect key="frame" x="207" y="5" width="19" height="19"/>
                         <constraints>
@@ -107,13 +127,19 @@
                 <constraint firstAttribute="bottom" secondItem="roE-tt-tKt" secondAttribute="bottom" id="3A5-Ba-mHZ"/>
                 <constraint firstItem="roE-tt-tKt" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="D53-6l-JCz"/>
                 <constraint firstItem="3pF-Yu-8sS" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="5" id="KiU-bg-TZG"/>
+                <constraint firstItem="aRw-UG-n1A" firstAttribute="width" secondItem="roE-tt-tKt" secondAttribute="width" id="MTT-0v-ztI"/>
+                <constraint firstItem="aRw-UG-n1A" firstAttribute="height" secondItem="roE-tt-tKt" secondAttribute="height" id="OdV-fi-Yrt"/>
                 <constraint firstAttribute="trailing" secondItem="roE-tt-tKt" secondAttribute="trailing" constant="10" id="aYv-p3-x7e"/>
+                <constraint firstItem="aRw-UG-n1A" firstAttribute="centerX" secondItem="roE-tt-tKt" secondAttribute="centerX" id="dGO-aV-qoW"/>
+                <constraint firstItem="aRw-UG-n1A" firstAttribute="centerY" secondItem="roE-tt-tKt" secondAttribute="centerY" id="j69-Yc-O3V"/>
                 <constraint firstItem="roE-tt-tKt" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="10" id="kUR-eu-fgB"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="SEy-5g-ep8"/>
             <size key="customSize" width="231" height="232"/>
             <connections>
                 <outlet property="bgView" destination="roE-tt-tKt" id="uYY-BJ-yCB"/>
+                <outlet property="coverLabel" destination="q0Z-KF-hay" id="H5A-UX-sRx"/>
+                <outlet property="coverView" destination="aRw-UG-n1A" id="hHU-sf-Bpk"/>
                 <outlet property="deleteButton" destination="3pF-Yu-8sS" id="kfp-U1-10d"/>
                 <outlet property="detailLabel" destination="UQC-LG-Bh1" id="cJz-1r-doF"/>
                 <outlet property="headImageView" destination="OOM-ah-7Xe" id="eYa-ub-Ss6"/>

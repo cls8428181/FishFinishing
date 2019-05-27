@@ -18,11 +18,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIButton *selectButton;
 
 /**
- 选择按钮的回调
- */
-@property (nonatomic, copy) void(^selectButtonBlock)(UIButton *button);
-
-/**
  cell 创建
  */
 + (instancetype)cellWithTableView:(UITableView *)tableView payType:(NSString *)type;

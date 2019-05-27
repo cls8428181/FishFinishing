@@ -70,7 +70,7 @@
     [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_WechatSession appKey:KN_WeixinAppId appSecret:KN_WeixinAppSecret redirectURL:@"http://mobile.umeng.com/social"];
     [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_QQ appKey:KN_QQAppId appSecret:nil redirectURL:@"http://mobile.umeng.com/social"];
 
-    [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_Sina appKey:KN_WeiboAppId appSecret:nil redirectURL:@"http://www.sina.com"];
+    [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_Sina appKey:KN_WeiboAppId appSecret:nil redirectURL:@"http://sns.whalecloud.com/sina2/callback"];
 
     [[UMSocialManager defaultManager] removePlatformProviderWithPlatformTypes:@[ @(UMSocialPlatformType_WechatFavorite)]];
 
