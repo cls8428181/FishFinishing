@@ -135,10 +135,16 @@
 -(void)longPressEvent:(UILongPressGestureRecognizer *)longPress {
     KNBMeAboutTableViewCell *cell = [self.knbTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
     if (longPress.state == UIGestureRecognizerStateBegan) {
-        [self becomeFirstResponder];//一定要写
-        UIMenuController * menuController = [UIMenuController sharedMenuController];
-        [menuController setTargetRect:cell.bounds inView:cell];
-        [menuController setMenuVisible:YES animated:YES];
+        UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
+        [pasteboard setString:self.model.wechat_customer_service];
+        [LCProgressHUD showMessage:@"已复制微信号"];
+//        [self becomeFirstResponder];//一定要写
+//        UIMenuController * menuController = [UIMenuController sharedMenuController];
+//        menuController.menuItems = @[
+//                           [[UIMenuItem alloc] initWithTitle:@"复制微信号" action:@selector(copyWeChat:)]
+//                           ];
+//        [menuController setTargetRect:cell.bounds inView:cell];
+//        [menuController setMenuVisible:YES animated:YES];
     }
 }
 
@@ -146,14 +152,14 @@
     return true;
 }
 
-- (void)copy:(id)sender{
+- (void)copyWeChat:(id)sender{
     UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
     [pasteboard setString:self.model.wechat_customer_service];
     [LCProgressHUD showMessage:@"已复制微信号"];
 }
 
 - (BOOL)canPerformAction:(SEL)action withSender:(id)sender{
-    return action == @selector(copy:);
+    return action == @selector(copyWeChat:);
 }
 
 #pragma mark - Getters And Setters

@@ -148,6 +148,7 @@
     !self.cityBlock ?: self.cityBlock(cityDic[@"name"], cityDic[@"id"]);
     KNBCityModel *cityModel = [KNBCityModel changeResponseJSONObject:cityDic];
     [KNBCityModel saveWithModel:cityModel resultBlock:^(BOOL success) {
+        NSLog(@"..",success);
     }];
     [self dismissViewControllerAnimated:YES completion:nil];
 }

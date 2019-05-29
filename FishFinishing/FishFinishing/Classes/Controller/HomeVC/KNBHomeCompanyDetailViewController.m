@@ -88,8 +88,8 @@
                 }];
                 NSDictionary *dic = request.responseObject[@"list"];
                 KNBHomeServiceModel *model = [KNBHomeServiceModel changeResponseJSONObject:dic];
-                weakSelf.currentModel.isEdit = YES;
                 weakSelf.currentModel = model;
+                weakSelf.currentModel.isEdit = YES;
                 [weakSelf reloadFooterView];
                 [weakSelf requestSuccess:YES requestEnd:YES];
             } else {
@@ -232,7 +232,7 @@
 
 - (void)enterButtonAction {
     [CCOrderAlertView showAlertViewWithTitle:self.currentModel.name imageUrl:self.currentModel.logo OrderBlock:^(NSString *nickName, NSString *phone, NSString *area, NSString *address, NSString *house) {
-        KNBHomeBespokeApi *api = [[KNBHomeBespokeApi alloc] initWithFacId:self.model ? [self.model.serviceId integerValue] : [[KNBUserInfo shareInstance].fac_id integerValue] facName:self.model ? self.model.name : [KNBUserInfo shareInstance].fac_name catId:0 userId:@"" areaInfo:area houseInfo:@"" community:address provinceId:0 cityId:0 areaId:0 decorateStyle:@"" decorateGrade:@"" name:nickName mobile:phone decorateCat:house type:2];
+        KNBHomeBespokeApi *api = [[KNBHomeBespokeApi alloc] initWithFacId:self.model ? [self.model.serviceId integerValue] : [[KNBUserInfo shareInstance].fac_id integerValue] facName:self.model ? self.model.name : [KNBUserInfo shareInstance].fac_name catId:0 userId:@"" areaInfo:area houseInfo:@"" community:address provinceId:[[KNGetUserLoaction shareInstance].currentStateCode integerValue] cityId:[[KNGetUserLoaction shareInstance].currentCityCode integerValue] areaId:[[KNGetUserLoaction shareInstance].currentSubLocalityCode integerValue] decorateStyle:@"" decorateGrade:@"" name:nickName mobile:phone decorateCat:house type:2];
         api.hudString = @"";
         [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *_Nonnull request) {
             if (api.requestSuccess) {

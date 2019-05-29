@@ -13,29 +13,29 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="KNBHomeCompanyCaseSubCollectionViewCell">
-            <rect key="frame" x="0.0" y="0.0" width="231" height="232"/>
+            <rect key="frame" x="0.0" y="0.0" width="287" height="286"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="231" height="232"/>
+                <rect key="frame" x="0.0" y="0.0" width="287" height="286"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="roE-tt-tKt">
-                        <rect key="frame" x="0.0" y="10" width="221" height="222"/>
+                        <rect key="frame" x="0.0" y="10" width="277" height="276"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="O2o-Uz-cHe">
-                                <rect key="frame" x="0.0" y="0.0" width="221" height="115"/>
+                                <rect key="frame" x="0.0" y="0.0" width="277" height="115"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="115" id="BFY-Py-9RW"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="户型风格" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UQC-LG-Bh1">
-                                <rect key="frame" x="5" y="150" width="211" height="14.5"/>
+                                <rect key="frame" x="5" y="150" width="267" height="14.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" red="0.59607843137254901" green="0.59607843137254901" blue="0.59607843137254901" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="名称" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EaI-jE-2Fg">
-                                <rect key="frame" x="5" y="124" width="211" height="16"/>
+                                <rect key="frame" x="5" y="124" width="267" height="16"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -60,7 +60,7 @@
                                 </userDefinedRuntimeAttributes>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="服务商姓名" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uhs-IQ-DIR">
-                                <rect key="frame" x="37" y="178.5" width="179" height="16"/>
+                                <rect key="frame" x="37" y="178.5" width="235" height="16"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <color key="textColor" red="0.19607843137254902" green="0.19607843137254902" blue="0.19607843137254902" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -90,10 +90,10 @@
                         </userDefinedRuntimeAttributes>
                     </view>
                     <view hidden="YES" alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aRw-UG-n1A" userLabel="cover">
-                        <rect key="frame" x="0.0" y="10" width="221" height="222"/>
+                        <rect key="frame" x="0.0" y="10" width="277" height="276"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q0Z-KF-hay">
-                                <rect key="frame" x="89.5" y="100.5" width="42" height="21"/>
+                                <rect key="frame" x="117.5" y="127.5" width="42" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -110,7 +110,7 @@
                         </userDefinedRuntimeAttributes>
                     </view>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3pF-Yu-8sS">
-                        <rect key="frame" x="207" y="5" width="19" height="19"/>
+                        <rect key="frame" x="263" y="5" width="19" height="19"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="19" id="Uum-GH-ysr"/>
                             <constraint firstAttribute="height" constant="19" id="bx2-GE-htv"/>
@@ -135,7 +135,7 @@
                 <constraint firstItem="roE-tt-tKt" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="10" id="kUR-eu-fgB"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="SEy-5g-ep8"/>
-            <size key="customSize" width="231" height="232"/>
+            <size key="customSize" width="287" height="286"/>
             <connections>
                 <outlet property="bgView" destination="roE-tt-tKt" id="uYY-BJ-yCB"/>
                 <outlet property="coverLabel" destination="q0Z-KF-hay" id="H5A-UX-sRx"/>
@@ -148,7 +148,7 @@
                 <outlet property="showButton" destination="SGj-VU-SoA" id="5pl-yg-0h0"/>
                 <outlet property="titleLabel" destination="EaI-jE-2Fg" id="DE8-Fj-fFA"/>
             </connections>
-            <point key="canvasLocation" x="277.60000000000002" y="207.79610194902551"/>
+            <point key="canvasLocation" x="322.39999999999998" y="232.08395802098951"/>
         </collectionViewCell>
     </objects>
     <resources>

@@ -12,8 +12,10 @@
 #import <Photos/Photos.h>
 #import "KNBAlertRemind.h"
 #import "UITextView+ZWPlaceHolder.h"
+#import <TZImagePickerController.h>
+#import "UIImage+Resize.h"
 
-@interface KNBHomeUploadCaseFooterView ()<UICollectionViewDelegate, UICollectionViewDataSource,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
+@interface KNBHomeUploadCaseFooterView ()<UICollectionViewDelegate, UICollectionViewDataSource,TZImagePickerControllerDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 @property (nonatomic, strong) UICollectionView *collectionView;
 @property (nonatomic, strong) UIView *topLineView;
 @property (nonatomic, strong) UIImageView *textBgView;
@@ -161,12 +163,20 @@
 }
 
 - (void)pushPhotosController {
-    UIImagePickerController *PickerImage = [[UIImagePickerController alloc] init];
-    PickerImage.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-    PickerImage.allowsEditing = YES;
-    PickerImage.delegate = self;
-    PickerImage.navigationBar.tintColor = [UIColor colorWithHex:0x333333];
-    [[self getCurrentViewController] presentViewController:PickerImage animated:YES completion:nil];
+    TZImagePickerController *imagePickerVc = [[TZImagePickerController alloc] initWithMaxImagesCount:9 delegate:self];
+    
+    KNB_WS(weakSelf);
+    imagePickerVc.allowPickingVideo = NO;
+    imagePickerVc.allowPickingOriginalPhoto = NO;
+    
+    // 你可以通过block或者代理，来得到用户选择的照片.
+    [imagePickerVc setDidFinishPickingPhotosHandle:^(NSArray<UIImage *> *photos, NSArray *assets, BOOL isSelectOriginalPhoto) {
+        [weakSelf.dataArray addObjectsFromArray:photos];
+        !weakSelf.addCaseBlock ?: weakSelf.addCaseBlock(weakSelf.dataArray);
+        [weakSelf.collectionView reloadData];
+    }];
+    
+    [[self getCurrentViewController] presentViewController:imagePickerVc animated:YES completion:nil];
 }
 
 - (void)pushCameraController {

@@ -22,8 +22,9 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="i2Z-KL-4jY" userLabel="background">
                         <rect key="frame" x="0.0" y="0.0" width="250" height="246"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="knb_icon_logo" translatesAutoresizingMaskIntoConstraints="NO" id="KQI-nx-pvI">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="KQI-nx-pvI">
                                 <rect key="frame" x="0.0" y="0.0" width="250" height="157"/>
+                                <color key="backgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.94901960784313721" alpha="1" colorSpace="calibratedRGB"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c6b-Zo-Bfw">
                                 <rect key="frame" x="3" y="195" width="244" height="1"/>
@@ -110,7 +111,4 @@
             <point key="canvasLocation" x="289.60000000000002" y="228.48575712143929"/>
         </collectionViewCell>
     </objects>
-    <resources>
-        <image name="knb_icon_logo" width="91" height="91"/>
-    </resources>
 </document>

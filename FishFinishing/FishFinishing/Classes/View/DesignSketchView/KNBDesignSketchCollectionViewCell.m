@@ -50,7 +50,7 @@
 }
 
 - (void)setModel:(KNBDesignSketchModel *)model {
-    [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:model.img] placeholderImage:CCPortraitPlaceHolder];
+    [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:model.img]];
     [self.userImageView sd_setImageWithURL:[NSURL URLWithString:model.logo] placeholderImage:CCPortraitPlaceHolder];
     self.titleLabel.text = model.title;
     self.userLabel.text = model.name;

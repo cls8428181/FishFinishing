@@ -40,4 +40,14 @@
 + (NSValueTransformer *)areaListJSONTransformer {
     return [MTLJSONAdapter arrayTransformerWithModelClass:KNBCityModel.class];
 }
+
+//// 正反关联
+//+ (NSDictionary *)relationshipModelClassesByPropertyKey {
+//    return @{
+//             @"city_list" : [KNBCityModel class],
+//             @"area_list" : [KNBCityModel class],
+//             @"city_city" : [KNBCityModel class],
+//             @"area_province" : [KNBCityModel class]
+//             };
+//}
 @end

@@ -88,11 +88,7 @@
         _caseListHeight = 300;
     } else {
         if (count %2 == 0) {
-            if (self.isEdit) {
-                _caseListHeight = 220 *(count /2 + 1) + 84;
-            } else {
-                _caseListHeight = 220 *count /2 + 84;
-            }
+            _caseListHeight = 220 *count /2 + 84;
         } else {
             _caseListHeight = 220 *(count /2 + 1) + 84;
         }
@@ -119,4 +115,16 @@
         _nameString = name;
     }
 }
+
+- (void)setIsEdit:(BOOL)isEdit {
+    _isEdit = isEdit;
+    if (isEdit) {
+        if (!isNullArray(self.caseList)) {
+            if (self.caseList.count %2 == 0) {
+                _caseListHeight = 220 *(self.caseList.count /2 + 1) + 84;
+            }
+        }
+    }
+}
+
 @end

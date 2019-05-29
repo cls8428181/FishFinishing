@@ -115,13 +115,15 @@
         }];
     } else {
         KNBHomeServiceModel *cellModel = self.dataArray[indexPath.row];
-        KNBDesignSketchModel *model  = [[KNBDesignSketchModel alloc] init];
-        model.caseId = cellModel.serviceId;
-        model.name = self.model.name;
-        model.img = self.model.logo;
-        KNBDesignSketchDetailViewController *detailVC = [[KNBDesignSketchDetailViewController alloc] init];
-        detailVC.model = model;
-        [[[self getCurrentViewController] navigationController] pushViewController:detailVC animated:YES];
+        if (([cellModel.status isEqualToString:@"1"] && self.isEdit) || !self.isEdit) {
+            KNBDesignSketchModel *model  = [[KNBDesignSketchModel alloc] init];
+            model.caseId = cellModel.serviceId;
+            model.name = self.model.name;
+            model.img = self.model.logo;
+            KNBDesignSketchDetailViewController *detailVC = [[KNBDesignSketchDetailViewController alloc] init];
+            detailVC.model = model;
+            [[[self getCurrentViewController] navigationController] pushViewController:detailVC animated:YES];
+        }
     }
 }
 

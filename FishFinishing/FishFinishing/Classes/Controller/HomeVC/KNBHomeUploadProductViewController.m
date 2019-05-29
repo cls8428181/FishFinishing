@@ -8,7 +8,6 @@
 
 #import "KNBHomeUploadProductViewController.h"
 #import "KNBOrderTextfieldTableViewCell.h"
-#import "KNBHomeUploadCaseTableViewCell.h"
 #import "KNBRecruitmentAddCaseApi.h"
 #import "KNBRecruitmentTypeModel.h"
 #import "KNBUploadFileApi.h"
@@ -81,7 +80,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return indexPath.section == 0 ? [KNBOrderTextfieldTableViewCell cellHeight] :[KNBHomeUploadCaseTableViewCell cellHeight:self.heightArray.count] + 100;
+    return [KNBOrderTextfieldTableViewCell cellHeight];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
@@ -166,9 +165,9 @@
         _footerView = [[KNBHomeUploadCaseFooterView alloc] init];
         _footerView.titleLabel.text = @"产品描述:";
         _footerView.imgsCount = weakSelf.imgsCount;
-        _footerView.frame = CGRectMake(0, 0, KNB_SCREEN_WIDTH, [KNBHomeUploadCaseTableViewCell cellHeight:self.imgsArray.count] + 100);
+        _footerView.frame = CGRectMake(0, 0, KNB_SCREEN_WIDTH, [KNBHomeUploadCaseFooterView cellHeight:self.imgsArray.count] + 100);
         _footerView.addCaseBlock = ^(NSMutableArray * _Nonnull imgsArray) {
-            weakSelf.knGroupTableView.tableFooterView.height = [KNBHomeUploadCaseTableViewCell cellHeight:imgsArray.count] + 100;
+            weakSelf.knGroupTableView.tableFooterView.height = [KNBHomeUploadCaseFooterView cellHeight:imgsArray.count] + 100;
             [weakSelf.knGroupTableView setTableFooterView:weakSelf.footerView];
         };
     }

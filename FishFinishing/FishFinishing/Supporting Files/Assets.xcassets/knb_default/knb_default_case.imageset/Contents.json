@@ -10,6 +10,20 @@
       "scale" : "2x"
     },
     {
+      "resizing" : {
+        "mode" : "9-part",
+        "center" : {
+          "mode" : "stretch",
+          "width" : 2,
+          "height" : 1
+        },
+        "cap-insets" : {
+          "bottom" : 24,
+          "top" : 146,
+          "right" : 189,
+          "left" : 51
+        }
+      },
       "idiom" : "universal",
       "filename" : "image_morentupianjiazai@3x.png",
       "scale" : "3x"

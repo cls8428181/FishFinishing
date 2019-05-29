@@ -36,6 +36,7 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *topConstraints;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *maxSpace;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *maxAddressWidth;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomConstraints;
 
 @end
 
@@ -166,7 +167,10 @@
 }
 
 #pragma mark - private method
-+ (CGFloat)cellHeight {
++ (CGFloat)cellHeight:(KNBHomeServiceModel *)model {
+    if ([model.parent_cat_name containsString:@"家居建材"]) {
+        return 120;
+    }
     return 205;
 }
 
@@ -202,6 +206,19 @@
     } else {
         self.iconImageView.layer.cornerRadius = 24;
     }
+    
+    if ([model.parent_cat_name containsString:@"家居建材"]) {
+        self.bottomConstraints.constant = 15;
+        self.leftCase.hidden = YES;
+        self.middleCase.hidden = YES;
+        self.rightCase.hidden = YES;
+    } else {
+        self.bottomConstraints.constant = 99;
+        self.leftCase.hidden = NO;
+        self.middleCase.hidden = NO;
+        self.rightCase.hidden = NO;
+    }
+    
     self.nameLabel.text = model.nameString;
     self.addressLabel.text = model.address;
     self.distanceLabel.text = model.distanceString;

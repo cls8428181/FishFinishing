@@ -13,17 +13,24 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="KNBHomeUploadCaseCollectionViewCell">
-            <rect key="frame" x="0.0" y="0.0" width="386" height="213"/>
+            <rect key="frame" x="0.0" y="0.0" width="181" height="173"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="386" height="213"/>
+                <rect key="frame" x="0.0" y="0.0" width="181" height="173"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1EA-Ci-C90">
-                        <rect key="frame" x="0.0" y="10" width="376" height="203"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1EA-Ci-C90">
+                        <rect key="frame" x="11" y="10" width="160" height="105"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="160" id="6qL-9X-sYQ"/>
+                            <constraint firstAttribute="height" constant="105" id="dM7-PH-eVh"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                        </userDefinedRuntimeAttributes>
                     </imageView>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HpR-G1-5SV">
-                        <rect key="frame" x="352" y="-10" width="44" height="44"/>
+                        <rect key="frame" x="147" y="-10" width="44" height="44"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="44" id="a82-P2-xkq"/>
                             <constraint firstAttribute="height" constant="44" id="bay-7d-god"/>
@@ -40,16 +47,14 @@
                 <constraint firstAttribute="trailing" secondItem="HpR-G1-5SV" secondAttribute="trailing" constant="-10" id="EGb-Uh-QSX"/>
                 <constraint firstItem="HpR-G1-5SV" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="-10" id="fdb-rB-o2B"/>
                 <constraint firstAttribute="trailing" secondItem="1EA-Ci-C90" secondAttribute="trailing" constant="10" id="t7k-kj-BZE"/>
-                <constraint firstItem="1EA-Ci-C90" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="xoL-6g-nB7"/>
-                <constraint firstAttribute="bottom" secondItem="1EA-Ci-C90" secondAttribute="bottom" id="z1n-UT-jC1"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="SEy-5g-ep8"/>
-            <size key="customSize" width="386" height="213"/>
+            <size key="customSize" width="181" height="173"/>
             <connections>
                 <outlet property="delButton" destination="HpR-G1-5SV" id="0PN-U5-kCD"/>
                 <outlet property="iconImageView" destination="1EA-Ci-C90" id="QBg-KA-jKI"/>
             </connections>
-            <point key="canvasLocation" x="401.60000000000002" y="199.25037481259372"/>
+            <point key="canvasLocation" x="237.59999999999999" y="181.25937031484258"/>
         </collectionViewCell>
     </objects>
     <resources>

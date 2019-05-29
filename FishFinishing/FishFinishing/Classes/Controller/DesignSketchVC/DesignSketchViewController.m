@@ -107,6 +107,7 @@
 - (void)fetchData:(NSInteger)page {
     KNB_WS(weakSelf);
     self.api.page = page;
+    [LCProgressHUD showLoading:@""];
     [self.api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *_Nonnull request) {
         if (weakSelf.api.requestSuccess) {
             NSDictionary *dic = request.responseObject[@"list"];
@@ -115,6 +116,7 @@
                 [weakSelf.dataArray removeAllObjects];
             }
             [weakSelf.dataArray addObjectsFromArray:modelArray];
+            [LCProgressHUD hide];
             [weakSelf requestSuccess:YES requestEnd:modelArray.count == 0];
 
         } else {
@@ -305,7 +307,6 @@
     KNB_WS(weakSelf);
     if (!_api) {
         _api = [[KNBRecruitmentCaseListApi alloc] init];
-        _api.hudString = @"";
         _api.style_id = weakSelf.style_id ?: 0;
         _api.apartment_id = weakSelf.apartment_id ?: 0;
         _api.min_area = weakSelf.min_area ?: 0;

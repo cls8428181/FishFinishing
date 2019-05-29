@@ -9,7 +9,6 @@
 #import "KNBHomeCompanyUploadCaseViewController.h"
 #import "KNBOrderDownTableViewCell.h"
 #import "KNBOrderTextfieldTableViewCell.h"
-#import "KNBHomeUploadCaseTableViewCell.h"
 #import "KNBRecruitmentAddCaseApi.h"
 #import "KNBRecruitmentTypeModel.h"
 #import "KNBOrderUnitApi.h"
@@ -302,9 +301,9 @@
         _footerView = [[KNBHomeUploadCaseFooterView alloc] init];
         _footerView.titleLabel.text = @"案例描述:";
         _footerView.imgsCount = weakSelf.imgsCount;
-        _footerView.frame = CGRectMake(0, 0, KNB_SCREEN_WIDTH, [KNBHomeUploadCaseTableViewCell cellHeight:self.imgsArray.count] + 100);
+        _footerView.frame = CGRectMake(0, 0, KNB_SCREEN_WIDTH, [KNBHomeUploadCaseFooterView cellHeight:self.imgsArray.count] + 100);
         _footerView.addCaseBlock = ^(NSMutableArray * _Nonnull imgsArray) {
-            weakSelf.knGroupTableView.tableFooterView.height = [KNBHomeUploadCaseTableViewCell cellHeight:imgsArray.count] + 100;
+            weakSelf.knGroupTableView.tableFooterView.height = [KNBHomeUploadCaseFooterView cellHeight:imgsArray.count] + 100;
             [weakSelf.knGroupTableView setTableFooterView:weakSelf.footerView];
         };
     }

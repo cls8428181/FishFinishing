@@ -69,7 +69,8 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return [KNBHomeRecommendSubTableViewCell cellHeight];
+    KNBHomeServiceModel *model = self.dataArray[indexPath.section];
+    return [KNBHomeRecommendSubTableViewCell cellHeight:model];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {

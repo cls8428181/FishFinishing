@@ -114,13 +114,6 @@
                             <constraint firstAttribute="width" constant="30" id="Shk-6D-liT"/>
                         </constraints>
                     </imageView>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="knb_home_yuyue" translatesAutoresizingMaskIntoConstraints="NO" id="NHQ-Q7-Ftq" userLabel="预约图片">
-                        <rect key="frame" x="432" y="27" width="30" height="30"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="30" id="3It-o0-76r"/>
-                            <constraint firstAttribute="width" constant="30" id="P67-Fr-wbR"/>
-                        </constraints>
-                    </imageView>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bHd-JR-pu6">
                         <rect key="frame" x="12" y="203.5" width="110" height="75"/>
                         <connections>
@@ -139,6 +132,13 @@
                             <action selector="rightCaseButtonAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="orS-6m-AVE"/>
                         </connections>
                     </button>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="knb_home_yuyue" translatesAutoresizingMaskIntoConstraints="NO" id="NHQ-Q7-Ftq" userLabel="预约图片">
+                        <rect key="frame" x="432" y="27" width="30" height="30"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="30" id="3It-o0-76r"/>
+                            <constraint firstAttribute="width" constant="30" id="P67-Fr-wbR"/>
+                        </constraints>
+                    </imageView>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="45A-Yu-BAd" userLabel="预约免费量房">
                         <rect key="frame" x="427" y="22" width="40" height="40"/>
                         <constraints>
@@ -182,6 +182,7 @@
                     <constraint firstItem="1So-QH-vyD" firstAttribute="leading" secondItem="45A-Yu-BAd" secondAttribute="trailing" constant="12" id="3Pc-0O-ffR"/>
                     <constraint firstItem="2Kv-iq-wOk" firstAttribute="centerX" secondItem="Q5K-z3-LId" secondAttribute="centerX" id="40C-jq-Pwv"/>
                     <constraint firstItem="45A-Yu-BAd" firstAttribute="centerY" secondItem="1So-QH-vyD" secondAttribute="centerY" id="41S-o7-HAR"/>
+                    <constraint firstItem="y9d-2m-amS" firstAttribute="centerY" secondItem="7qM-7d-U19" secondAttribute="centerY" id="9rx-8n-syU"/>
                     <constraint firstItem="JmK-Rz-MDv" firstAttribute="leading" secondItem="7Fh-QU-4nn" secondAttribute="trailing" constant="5" id="AOs-UR-2UM"/>
                     <constraint firstAttribute="trailing" secondItem="1So-QH-vyD" secondAttribute="trailing" constant="8" id="Akd-sy-fSG"/>
                     <constraint firstItem="HIa-Xo-MwE" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="18" id="Cav-CQ-f8i"/>
@@ -190,10 +191,8 @@
                     <constraint firstItem="2Kv-iq-wOk" firstAttribute="height" secondItem="Q5K-z3-LId" secondAttribute="height" id="E7N-Zb-VLi"/>
                     <constraint firstItem="4mX-oM-hmx" firstAttribute="leading" secondItem="C8j-v5-10f" secondAttribute="trailing" constant="3" id="Edq-lJ-h5j"/>
                     <constraint firstItem="y9d-2m-amS" firstAttribute="width" secondItem="7qM-7d-U19" secondAttribute="width" id="Eww-7P-rX6"/>
-                    <constraint firstItem="7qM-7d-U19" firstAttribute="top" secondItem="P5y-CN-f0n" secondAttribute="bottom" constant="9" id="I7p-ke-snn"/>
                     <constraint firstItem="JmK-Rz-MDv" firstAttribute="top" secondItem="Bwf-CD-5lp" secondAttribute="bottom" constant="10" id="KOW-9X-o7D"/>
                     <constraint firstItem="c6x-cX-UEB" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="12" id="KTq-tR-Dlu"/>
-                    <constraint firstItem="y9d-2m-amS" firstAttribute="top" secondItem="P5y-CN-f0n" secondAttribute="bottom" constant="9" id="M10-23-GKl"/>
                     <constraint firstItem="o7B-JC-lNG" firstAttribute="centerY" secondItem="Bwf-CD-5lp" secondAttribute="centerY" id="RmF-eS-mLT"/>
                     <constraint firstItem="Mh1-wL-7eT" firstAttribute="centerY" secondItem="o7B-JC-lNG" secondAttribute="centerY" id="S3t-GD-Y5m"/>
                     <constraint firstItem="bHd-JR-pu6" firstAttribute="centerX" secondItem="7qM-7d-U19" secondAttribute="centerX" id="TEX-v8-DCo"/>
@@ -220,11 +219,12 @@
                     <constraint firstItem="4mX-oM-hmx" firstAttribute="centerY" secondItem="JmK-Rz-MDv" secondAttribute="centerY" id="jpK-Hy-ZIS"/>
                     <constraint firstItem="Q5K-z3-LId" firstAttribute="leading" secondItem="7qM-7d-U19" secondAttribute="trailing" constant="10" id="o07-RI-JtH"/>
                     <constraint firstAttribute="bottom" secondItem="7qM-7d-U19" secondAttribute="bottom" constant="15" id="o0r-83-CNF"/>
-                    <constraint firstItem="Q5K-z3-LId" firstAttribute="top" secondItem="P5y-CN-f0n" secondAttribute="bottom" constant="9" id="peR-nk-2UQ"/>
                     <constraint firstItem="C8j-v5-10f" firstAttribute="leading" secondItem="JmK-Rz-MDv" secondAttribute="trailing" constant="3" id="qkU-Li-vSO"/>
                     <constraint firstItem="90m-7z-rrU" firstAttribute="width" secondItem="y9d-2m-amS" secondAttribute="width" id="rlr-GD-Jrd"/>
+                    <constraint firstAttribute="bottom" secondItem="P5y-CN-f0n" secondAttribute="bottom" constant="99" id="s8G-sL-tQw"/>
                     <constraint firstItem="Q5K-z3-LId" firstAttribute="width" secondItem="7qM-7d-U19" secondAttribute="width" id="tSf-Ny-1yT"/>
                     <constraint firstItem="NHQ-Q7-Ftq" firstAttribute="centerY" secondItem="45A-Yu-BAd" secondAttribute="centerY" id="utF-Sy-EKn"/>
+                    <constraint firstItem="Q5K-z3-LId" firstAttribute="centerY" secondItem="7qM-7d-U19" secondAttribute="centerY" id="uy8-b8-PAe"/>
                     <constraint firstItem="2Kv-iq-wOk" firstAttribute="centerY" secondItem="Q5K-z3-LId" secondAttribute="centerY" id="v7f-cT-gcL"/>
                     <constraint firstItem="90m-7z-rrU" firstAttribute="centerX" secondItem="y9d-2m-amS" secondAttribute="centerX" id="vmD-te-Hgf"/>
                     <constraint firstItem="y9d-2m-amS" firstAttribute="height" secondItem="7qM-7d-U19" secondAttribute="height" id="xyx-Gh-5jh"/>
@@ -237,6 +237,7 @@
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
             <connections>
                 <outlet property="addressLabel" destination="JmK-Rz-MDv" id="pYI-ZI-b7a"/>
+                <outlet property="bottomConstraints" destination="s8G-sL-tQw" id="wyu-th-45J"/>
                 <outlet property="certImageView" destination="o7B-JC-lNG" id="cZZ-7Y-hBw"/>
                 <outlet property="distanceLabel" destination="4mX-oM-hmx" id="7g6-qr-eFR"/>
                 <outlet property="iconImageView" destination="HIa-Xo-MwE" id="Xt0-ra-dCl"/>

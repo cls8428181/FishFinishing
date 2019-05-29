@@ -41,9 +41,10 @@
     _model = model;
     [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:model.portrait_img] placeholderImage:CCPortraitPlaceHolder];
     self.nameLabel.text = model.name;
-    self.houseLabel.text = model.decorate_cat;
-    self.areaLabel.text = [NSString stringWithFormat:@"%@m²",model.area_info];
-    self.addressLabel.text = [NSString stringWithFormat:@"%@%@%@%@",[model.province_name containsString:@"市"] ? @"" : model.province_name,model.city_name,model.area_name,model.community];
+    self.houseLabel.text = !isNullStr(model.decorate_cat) ? model.decorate_cat : @"用户未提供";
+    self.areaLabel.text = [NSString stringWithFormat:@"%@m²",!isNullStr(model.area_info) ? model.area_info : @"用户未提供"];
+    NSString *address = [NSString stringWithFormat:@"%@%@%@%@",[model.province_name containsString:@"市"] ? @"" : model.province_name,model.city_name,model.area_name,model.community];
+    self.addressLabel.text = !isNullStr(address) ? address: @"用户未提供";
     self.timeLabel.text = [NSDate transformFromTimestamp:model.created_at];
     
     if ([model.sign isEqualToString:@"0"]) {

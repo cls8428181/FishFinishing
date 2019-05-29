@@ -22,6 +22,8 @@ target 'FishFinishing' do
     pod 'AMap3DMap'
     pod 'AMapLocation'
     pod 'AMapSearch'
+    pod 'JZLocationConverter'
+    pod 'TZImagePickerController'
 #    pod 'BaiduMapKit' #百度地图SDK
 #    pod 'BMKLocationKit'
 end

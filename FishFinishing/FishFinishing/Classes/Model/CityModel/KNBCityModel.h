@@ -15,22 +15,22 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  代码
  */
-@property (nonatomic, strong) NSString *code;
+@property (nonatomic, copy) NSString *code;
 
 /**
  名称
  */
-@property (nonatomic, strong) NSString *name;
-@property (nonatomic, strong) NSString *isOpen;
-@property (nonatomic, strong) NSString *isHot;
-@property (nonatomic, strong) NSString *temp;
-@property (nonatomic, strong) NSString *letter;
-@property (nonatomic, strong) NSString *pinyin;
-@property (nonatomic, strong) NSString *level;
-@property (nonatomic, strong) NSString *region;
-@property (nonatomic, strong) NSString *pid;
-@property (nonatomic, strong) NSString *sort;
-@property (nonatomic, strong) NSString *status;
+@property (nonatomic, copy) NSString *name;
+@property (nonatomic, copy) NSString *isOpen;
+@property (nonatomic, copy) NSString *isHot;
+@property (nonatomic, copy) NSString *temp;
+@property (nonatomic, copy) NSString *letter;
+@property (nonatomic, copy) NSString *pinyin;
+@property (nonatomic, copy) NSString *level;
+@property (nonatomic, copy) NSString *region;
+@property (nonatomic, copy) NSString *pid;
+@property (nonatomic, copy) NSString *sort;
+@property (nonatomic, copy) NSString *status;
 /**
  城市列表
  */

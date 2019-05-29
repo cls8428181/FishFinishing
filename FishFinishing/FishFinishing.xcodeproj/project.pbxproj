@@ -10,7 +10,6 @@
 		1823CA5C228FFFAA00BC5D8D /* KNBCityModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1823CA5B228FFFAA00BC5D8D /* KNBCityModel.m */; };
 		1823CA642290012200BC5D8D /* _KNBCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 1823CA602290012200BC5D8D /* _KNBCity.m */; };
 		1823CA652290012200BC5D8D /* KNBCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 1823CA622290012200BC5D8D /* KNBCity.m */; };
-		1829ABE92297FDBB00018316 /* JQScrollNumberLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1829ABE82297FDBB00018316 /* JQScrollNumberLabel.m */; };
 		182F5A7822811A7B00E8B323 /* KNBHomeUploadCaseFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 182F5A7722811A7B00E8B323 /* KNBHomeUploadCaseFooterView.m */; };
 		1835FC3A229407D5004F3756 /* LXCollectionViewLeftOrRightAlignedLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 1835FC39229407D5004F3756 /* LXCollectionViewLeftOrRightAlignedLayout.m */; };
 		183B51932295533200CADC81 /* CCOrderAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 183B51922295533200CADC81 /* CCOrderAlertView.m */; };
@@ -85,7 +84,6 @@
 		1866531122699A83004C176F /* KNBHomeCompanyCaseAddCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1866530F22699A83004C176F /* KNBHomeCompanyCaseAddCollectionViewCell.xib */; };
 		1866531422699C66004C176F /* KNBHomeCompanyUploadCaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1866531322699C66004C176F /* KNBHomeCompanyUploadCaseViewController.m */; };
 		1866531722699DDB004C176F /* KNBHomeCompanyEditDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1866531622699DDB004C176F /* KNBHomeCompanyEditDetailViewController.m */; };
-		1866531B2269A0D3004C176F /* KNBHomeUploadCaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 186653192269A0D3004C176F /* KNBHomeUploadCaseTableViewCell.m */; };
 		186653202269A104004C176F /* KNBHomeUploadCaseCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1866531E2269A104004C176F /* KNBHomeUploadCaseCollectionViewCell.m */; };
 		186653212269A104004C176F /* KNBHomeUploadCaseCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1866531F2269A104004C176F /* KNBHomeUploadCaseCollectionViewCell.xib */; };
 		186757A32283DA190063DEC9 /* KNBRecruitmentShowApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 186757A22283DA190063DEC9 /* KNBRecruitmentShowApi.m */; };
@@ -449,8 +447,6 @@
 		1823CA602290012200BC5D8D /* _KNBCity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _KNBCity.m; sourceTree = "<group>"; };
 		1823CA622290012200BC5D8D /* KNBCity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KNBCity.m; sourceTree = "<group>"; };
 		1823CA632290012200BC5D8D /* KNBCity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KNBCity.h; sourceTree = "<group>"; };
-		1829ABE72297FDBB00018316 /* JQScrollNumberLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JQScrollNumberLabel.h; sourceTree = "<group>"; };
-		1829ABE82297FDBB00018316 /* JQScrollNumberLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JQScrollNumberLabel.m; sourceTree = "<group>"; };
 		182F5A7622811A7B00E8B323 /* KNBHomeUploadCaseFooterView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNBHomeUploadCaseFooterView.h; sourceTree = "<group>"; };
 		182F5A7722811A7B00E8B323 /* KNBHomeUploadCaseFooterView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNBHomeUploadCaseFooterView.m; sourceTree = "<group>"; };
 		1835FC38229407D5004F3756 /* LXCollectionViewLeftOrRightAlignedLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXCollectionViewLeftOrRightAlignedLayout.h; sourceTree = "<group>"; };
@@ -598,8 +594,6 @@
 		1866531322699C66004C176F /* KNBHomeCompanyUploadCaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNBHomeCompanyUploadCaseViewController.m; sourceTree = "<group>"; };
 		1866531522699DDB004C176F /* KNBHomeCompanyEditDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNBHomeCompanyEditDetailViewController.h; sourceTree = "<group>"; };
 		1866531622699DDB004C176F /* KNBHomeCompanyEditDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNBHomeCompanyEditDetailViewController.m; sourceTree = "<group>"; };
-		186653182269A0D3004C176F /* KNBHomeUploadCaseTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNBHomeUploadCaseTableViewCell.h; sourceTree = "<group>"; };
-		186653192269A0D3004C176F /* KNBHomeUploadCaseTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNBHomeUploadCaseTableViewCell.m; sourceTree = "<group>"; };
 		1866531D2269A104004C176F /* KNBHomeUploadCaseCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KNBHomeUploadCaseCollectionViewCell.h; sourceTree = "<group>"; };
 		1866531E2269A104004C176F /* KNBHomeUploadCaseCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KNBHomeUploadCaseCollectionViewCell.m; sourceTree = "<group>"; };
 		1866531F2269A104004C176F /* KNBHomeUploadCaseCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KNBHomeUploadCaseCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -1314,15 +1308,6 @@
 			path = Human;
 			sourceTree = "<group>";
 		};
-		1829ABE62297FDBB00018316 /* JQScrollNumberLabel */ = {
-			isa = PBXGroup;
-			children = (
-				1829ABE72297FDBB00018316 /* JQScrollNumberLabel.h */,
-				1829ABE82297FDBB00018316 /* JQScrollNumberLabel.m */,
-			);
-			path = JQScrollNumberLabel;
-			sourceTree = "<group>";
-		};
 		1835FC37229407D5004F3756 /* UICollectionView */ = {
 			isa = PBXGroup;
 			children = (
@@ -1426,8 +1411,6 @@
 		183B518F2294ECCE00CADC81 /* CCUploadCaseView */ = {
 			isa = PBXGroup;
 			children = (
-				186653182269A0D3004C176F /* KNBHomeUploadCaseTableViewCell.h */,
-				186653192269A0D3004C176F /* KNBHomeUploadCaseTableViewCell.m */,
 				1866531D2269A104004C176F /* KNBHomeUploadCaseCollectionViewCell.h */,
 				1866531E2269A104004C176F /* KNBHomeUploadCaseCollectionViewCell.m */,
 				1866531F2269A104004C176F /* KNBHomeUploadCaseCollectionViewCell.xib */,
@@ -2683,7 +2666,6 @@
 			isa = PBXGroup;
 			children = (
 				18528BF5229BD02400C3C232 /* WSLWaterFlowLayout */,
-				1829ABE62297FDBB00018316 /* JQScrollNumberLabel */,
 				1840B69F228EBDBB0062F626 /* HMSegmentedControl */,
 				963274F9226D6FEE0080C650 /* CQTopBar */,
 				966D1611226CBD48005F5D77 /* KNPaypp */,
@@ -3367,6 +3349,7 @@
 				"${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle",
 				"${PODS_ROOT}/Pingpp/lib/Pingpp.bundle",
 				"${PODS_ROOT}/PingppAlipaySDK/AlipaySDK.bundle",
+				"${PODS_ROOT}/TZImagePickerController/TZImagePickerController/TZImagePickerController/TZImagePickerController.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
@@ -3381,6 +3364,7 @@
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MJRefresh.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Pingpp.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AlipaySDK.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/TZImagePickerController.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -3456,7 +3440,6 @@
 				1877F30722682F7D0092207E /* KNBHomeCategoryCollectionViewCell.m in Sources */,
 				96327514226DA5E30080C650 /* UIView+Utils.m in Sources */,
 				187B609D227066E3000AA05E /* KNBMeOrderStatusApi.m in Sources */,
-				1829ABE92297FDBB00018316 /* JQScrollNumberLabel.m in Sources */,
 				187B609322701689000AA05E /* KNBMeOrderModel.m in Sources */,
 				1866531722699DDB004C176F /* KNBHomeCompanyEditDetailViewController.m in Sources */,
 				966DD6672281CC5000F0F68F /* KNBHomeCompanyStyleViewController.m in Sources */,
@@ -3705,7 +3688,6 @@
 				1849CE2422851AE50064D439 /* MPNoResultHeadView.m in Sources */,
 				96FDB4CB224B553F005844E7 /* KNBHomeRecommendSubTableViewCell.m in Sources */,
 				96B098AD2249CC1000154643 /* UIImageView+Addition.m in Sources */,
-				1866531B2269A0D3004C176F /* KNBHomeUploadCaseTableViewCell.m in Sources */,
 				961C532922548E210089E997 /* KNBHomeCompanyServerTableViewCell.m in Sources */,
 				9697FD55225597A900027AB3 /* UIView+Extension.m in Sources */,
 				1866531422699C66004C176F /* KNBHomeCompanyUploadCaseViewController.m in Sources */,

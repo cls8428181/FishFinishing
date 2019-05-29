@@ -46,7 +46,11 @@
 }
 
 - (IBAction)deleteButtonAction:(id)sender {
-    !self.deleteButtonBlock ?: self.deleteButtonBlock();
+    [KNBAlertRemind alterWithTitle:@"提示" message:@"确定要删除吗?" buttonTitles:@[@"确定",@"不了"] handler:^(NSInteger index, NSString *title) {
+        if ([title isEqualToString:@"确定"]) {
+            !self.deleteButtonBlock ?: self.deleteButtonBlock();
+        }
+    }];
 }
 
 - (IBAction)showButtonAction:(id)sender {
@@ -98,22 +102,20 @@
         if ([model.status isEqualToString:@"1"]) {
             self.deleteButton.hidden = YES;
             self.coverView.hidden = YES;
-            self.userInteractionEnabled = YES;
         } else if ([model.status isEqualToString:@"0"]) {
             self.deleteButton.hidden = NO;
             self.coverView.hidden = NO;
-            self.userInteractionEnabled = NO;
+            self.deleteButton.userInteractionEnabled = YES;
             self.coverLabel.text = @"审核中...";
         } else {
             self.deleteButton.hidden = NO;
             self.coverView.hidden = NO;
-            self.userInteractionEnabled = NO;
+            self.deleteButton.userInteractionEnabled = YES;
             self.coverLabel.text = @"审核失败";
         }
     } else {
         self.deleteButton.hidden = YES;
         self.coverView.hidden = YES;
-        self.userInteractionEnabled = YES;
     }
 }
 
@@ -123,6 +125,7 @@
 }
 
 - (void)setIsEdit:(BOOL)isEdit {
+    _isEdit = isEdit;
     self.showButton.hidden = !isEdit;
 }
 

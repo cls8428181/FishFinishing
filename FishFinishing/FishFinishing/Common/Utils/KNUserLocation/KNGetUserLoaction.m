@@ -11,6 +11,7 @@
 #import "NSString+Empty.h"
 #import "AppDelegate.h"
 #import "LCProgressHUD.h"
+#import <JZLocationConverter.h>
 
 NSString *const KNLocationCoordinate2D = @"KNLocationCoordinate2D"; // 经纬度对象
 NSString *const KNLocationLongitude = @"KNLocationLongitude"; // 经度
@@ -147,6 +148,9 @@ NSString *const KNSaveUserCurrentLocation = @"KNSaveUserCurrentLocation";      /
 #pragma mark - Private Method
 - (void)saveUserProvinceName:(NSString *)provinceName cityName:(NSString *)cityName areaName:(NSString *)areaName address:(NSString *)address areaId:(NSString *)areaId saveCompleteBlock:(void(^)(void))saveCompleteBlock {
     if (isNullStr(address)) {
+        CLLocationCoordinate2D wgsPt = self.location.coordinate;
+        CLLocationCoordinate2D bd = [JZLocationConverter gcj02ToBd09:wgsPt];
+        
         if (areaId) {
             self.isSelectCity = YES;
             [self saveLocationInfo:@{KNLocationStateName : provinceName ?: @"",
@@ -154,8 +158,8 @@ NSString *const KNSaveUserCurrentLocation = @"KNSaveUserCurrentLocation";      /
                                      KNLocationSubLocality : areaName ?: @"",
                                      KNLocationAddress : @"",
                                      KNLocationAreaId : areaId ?: @"",
-                                     KNLocationLongitude : self.lng,
-                                     KNLocationLatitude : self.lat
+                                     KNLocationLongitude : @(bd.longitude),
+                                     KNLocationLatitude : @(bd.latitude)
                                      }];
         } else {
             self.isSelectCity = NO;
@@ -164,8 +168,8 @@ NSString *const KNSaveUserCurrentLocation = @"KNSaveUserCurrentLocation";      /
                                      KNLocationSubLocality : self.subLocality,
                                      KNLocationAddress : @"",
                                      KNLocationSubLocality : self.subLocality,
-                                     KNLocationLongitude : self.lng,
-                                     KNLocationLatitude : self.lat
+                                            KNLocationLongitude : @(bd.longitude),
+                                            KNLocationLatitude : @(bd.latitude)
                                             }];
         }
         !saveCompleteBlock ?: saveCompleteBlock();
@@ -175,6 +179,8 @@ NSString *const KNSaveUserCurrentLocation = @"KNSaveUserCurrentLocation";      /
         [myGeocoder geocodeAddressString:address completionHandler:^(NSArray *placemarks, NSError *error) {
             if ([placemarks count] > 0 && error == nil) {
                 CLPlacemark *firstPlacemark = [placemarks objectAtIndex:0];
+                CLLocationCoordinate2D wgsPt = firstPlacemark.location.coordinate;
+                CLLocationCoordinate2D bd = [JZLocationConverter gcj02ToBd09:wgsPt];
                 if (areaId) {
                     weakSelf.isSelectCity = YES;
                     [weakSelf saveLocationInfo:@{KNLocationStateName : provinceName ?: @"",
@@ -182,8 +188,8 @@ NSString *const KNSaveUserCurrentLocation = @"KNSaveUserCurrentLocation";      /
                                                  KNLocationSubLocality : areaName ?: @"",
                                                  KNLocationAddress : address ?: @"",
                                                  KNLocationAreaId : areaId ?: @"",
-                                                 KNLocationLongitude : @(firstPlacemark.location.coordinate.longitude),
-                                                 KNLocationLatitude : @(firstPlacemark.location.coordinate.latitude)
+                                                 KNLocationLongitude : @(bd.longitude),
+                                                 KNLocationLatitude : @(bd.latitude)
                                                  }];
                 } else {
                     weakSelf.isSelectCity = NO;
@@ -192,8 +198,8 @@ NSString *const KNSaveUserCurrentLocation = @"KNSaveUserCurrentLocation";      /
                                                  KNLocationSubLocality : weakSelf.subLocality,
                                                  KNLocationAddress : address,
                                                  KNLocationSubLocality : weakSelf.subLocality,
-                                                 KNLocationLongitude : @(firstPlacemark.location.coordinate.longitude),
-                                                 KNLocationLatitude : @(firstPlacemark.location.coordinate.latitude)
+                                                 KNLocationLongitude : @(bd.longitude),
+                                                 KNLocationLatitude : @(bd.latitude)
                                                  }];
                 }
 

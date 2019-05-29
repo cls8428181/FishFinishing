@@ -169,4 +169,8 @@
 #define CCPortraitPlaceHolderName @"knb_default_user"
 #define CCPortraitPlaceHolder KNBImages(CCPortraitPlaceHolderName)
 
+
+#define CCCasePlaceHolderName @"knb_default_sketch"
+#define CCCasePlaceHolder KNBImages(CCCasePlaceHolderName)
+
 #endif /* KNBPrecompile_h */

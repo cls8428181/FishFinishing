@@ -32,18 +32,78 @@
 	return keyPaths;
 }
 
+@dynamic areaList;
+
+@dynamic cityList;
+
 @dynamic code;
 
+@dynamic isHot;
+
+@dynamic isOpen;
+
+@dynamic letter;
+
+@dynamic level;
+
 @dynamic name;
+
+@dynamic pid;
+
+@dynamic pinyin;
+
+@dynamic region;
+
+@dynamic sort;
+
+@dynamic status;
+
+@dynamic temp;
 
 @end
 
 @implementation KNBCityAttributes 
++ (NSString *)areaList {
+	return @"areaList";
+}
++ (NSString *)cityList {
+	return @"cityList";
+}
 + (NSString *)code {
 	return @"code";
 }
++ (NSString *)isHot {
+	return @"isHot";
+}
++ (NSString *)isOpen {
+	return @"isOpen";
+}
++ (NSString *)letter {
+	return @"letter";
+}
++ (NSString *)level {
+	return @"level";
+}
 + (NSString *)name {
 	return @"name";
+}
++ (NSString *)pid {
+	return @"pid";
+}
++ (NSString *)pinyin {
+	return @"pinyin";
+}
++ (NSString *)region {
+	return @"region";
+}
++ (NSString *)sort {
+	return @"sort";
+}
++ (NSString *)status {
+	return @"status";
+}
++ (NSString *)temp {
+	return @"temp";
 }
 @end
 
